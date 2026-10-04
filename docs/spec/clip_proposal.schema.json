@@ -1,0 +1,344 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://shotvi/docs/spec/clip_proposal.schema.json",
+  "title": "Shotvi clip file (proposals run, gold labels, or creator anchors)",
+  "description": "v1.1. See docs/spec/output_schema.md. Word indices are 0-based into the episode's word_timestamps; ranges are inclusive. Word indices are authoritative; seconds are derived and must match word_timestamps within 0.01s.",
+  "oneOf": [
+    { "$ref": "#/$defs/proposalsFile" },
+    { "$ref": "#/$defs/goldFile" },
+    { "$ref": "#/$defs/anchorsFile" }
+  ],
+  "$defs": {
+    "wordIndex": { "type": "integer", "minimum": 0 },
+    "seconds": { "type": "number", "minimum": 0 },
+    "score": { "type": "number", "minimum": 1, "maximum": 5 },
+
+    "span": {
+      "type": "object",
+      "description": "Inclusive word range with derived times: start = words[start_word].start, end = words[end_word].end.",
+      "required": ["start_word", "end_word", "start", "end"],
+      "properties": {
+        "start_word": { "$ref": "#/$defs/wordIndex" },
+        "end_word": { "$ref": "#/$defs/wordIndex" },
+        "start": { "$ref": "#/$defs/seconds" },
+        "end": { "$ref": "#/$defs/seconds" }
+      },
+      "additionalProperties": false
+    },
+
+    "transcriptRef": {
+      "type": "object",
+      "description": "Pins the transcript the word indices refer to. Re-transcribing changes indices.",
+      "required": ["path", "sha256", "n_words", "audio_duration_secs"],
+      "properties": {
+        "path": { "type": "string" },
+        "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "n_words": { "type": "integer", "minimum": 1 },
+        "audio_duration_secs": { "$ref": "#/$defs/seconds" }
+      },
+      "additionalProperties": false
+    },
+
+    "fileHeader": {
+      "type": "object",
+      "required": ["schema_version", "kind", "video_id", "transcript"],
+      "properties": {
+        "schema_version": { "type": "string", "pattern": "^1\\.[0-9]+$" },
+        "kind": { "enum": ["proposals", "gold", "anchors"] },
+        "video_id": { "type": "string", "minLength": 1 },
+        "transcript": { "$ref": "#/$defs/transcriptRef" },
+        "derived_params": {
+          "type": "object",
+          "description": "Parameters used to derive clip fields. If skip_s is absent: 30 for schema 1.1+, 20 for 1.0.",
+          "properties": { "skip_s": { "type": "number", "exclusiveMinimum": 0 } }
+        }
+      }
+    },
+
+    "clipCore": {
+      "type": "object",
+      "description": "Shared by proposals, gold labels and creator anchors. region, edited_duration, reordered and n_blocks are derived from pieces; validators recompute them and fail on mismatch.",
+      "required": ["id", "pieces", "region", "edited_duration", "reordered", "n_blocks"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "pieces": {
+          "type": "array",
+          "description": "Kept word ranges in PLAYBACK order. No overlaps except a replayed cold open (clip_spec O4).",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/span" }
+        },
+        "region": { "$ref": "#/$defs/span" },
+        "edited_duration": { "$ref": "#/$defs/seconds" },
+        "reordered": { "type": "boolean", "description": "True if any piece starts at or before the previous piece's end_word (backward jump: cold open or reorder)." },
+        "n_blocks": { "type": "integer", "minimum": 1, "description": "1 + number of jumps (backward, or forward skip > derived_params.skip_s). Not capped here; clip_spec S1 flags 4 and rejects >= 5 for proposals." },
+        "text": { "type": "string", "description": "Kept text in playback order (optional convenience for review and judge)." }
+      }
+    },
+
+    "scores": {
+      "type": "object",
+      "required": ["hook", "standalone", "payoff", "value_emotion", "overall"],
+      "properties": {
+        "hook": { "$ref": "#/$defs/score" },
+        "standalone": { "$ref": "#/$defs/score" },
+        "payoff": { "$ref": "#/$defs/score" },
+        "value_emotion": { "$ref": "#/$defs/score" },
+        "overall": { "$ref": "#/$defs/score" }
+      },
+      "additionalProperties": false
+    },
+
+    "category": {
+      "enum": ["story", "advice", "humour", "controversy", "emotional", "insight", "reveal", "motivation", "other"]
+    },
+
+    "teluguTitle": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "pattern": "[\\u0C00-\\u0C7F]",
+      "description": "Must contain Telugu script; Tenglish allowed."
+    },
+
+    "hookLine": {
+      "type": "object",
+      "description": "Verbatim first spoken words of the clip (C1). start_word must equal pieces[0].start_word.",
+      "required": ["text", "start_word", "end_word"],
+      "properties": {
+        "text": { "type": "string", "minLength": 1 },
+        "start_word": { "$ref": "#/$defs/wordIndex" },
+        "end_word": { "$ref": "#/$defs/wordIndex" }
+      },
+      "additionalProperties": false
+    },
+
+    "oneLine": { "type": "string", "minLength": 1, "maxLength": 200, "pattern": "^[^\\n]+$" },
+
+    "editNote": {
+      "type": "object",
+      "required": ["type", "reason"],
+      "properties": {
+        "type": { "enum": ["cold_open", "reorder", "skip", "length_over_soft_max"] },
+        "after_piece": { "type": "integer", "minimum": 0, "description": "For skip, cold_open, reorder: index (in pieces) of the piece before the jump." },
+        "reason": { "$ref": "#/$defs/oneLine" }
+      },
+      "additionalProperties": false
+    },
+
+    "standaloneRisk": {
+      "type": "object",
+      "required": ["type", "note"],
+      "properties": {
+        "type": { "enum": ["unresolved_referent", "inside_reference", "missing_setup", "abrupt_end", "other"] },
+        "note": { "$ref": "#/$defs/oneLine" },
+        "word_index": { "$ref": "#/$defs/wordIndex" }
+      },
+      "additionalProperties": false
+    },
+
+    "flag": {
+      "enum": ["low_confidence", "song_overlap", "sensitive_content", "over_chopped", "under_tightened", "dead_air", "low_keep_ratio", "over_soft_max", "starts_with_demonstrative", "rough_start", "rough_end", "many_jumps", "long_range_stitch", "crude_language", "host_led", "similar_theme"]
+    },
+
+    "related": {
+      "type": "array",
+      "description": "Links to other clips in the same file (clip_spec Q8, F9).",
+      "items": {
+        "type": "object",
+        "required": ["id", "relation"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "relation": { "enum": ["similar_theme", "sequel"] }
+        },
+        "additionalProperties": false
+      }
+    },
+
+    "tags": {
+      "type": "array",
+      "description": "Secondary, non-ranking tags (clip_spec section 11, pending founder).",
+      "items": { "enum": ["relatable"] },
+      "uniqueItems": true
+    },
+
+    "proposal": {
+      "allOf": [
+        { "$ref": "#/$defs/clipCore" },
+        {
+          "type": "object",
+          "required": ["rank", "tier", "scores", "title", "hook_line", "why_it_works", "category", "standalone_risks", "edit_notes", "flags"],
+          "properties": {
+            "rank": { "type": "integer", "minimum": 1 },
+            "tier": { "enum": ["recommended", "worth_a_look", "below_threshold"] },
+            "scores": { "$ref": "#/$defs/scores" },
+            "title": { "$ref": "#/$defs/teluguTitle" },
+            "hook_line": { "$ref": "#/$defs/hookLine" },
+            "why_it_works": { "$ref": "#/$defs/oneLine" },
+            "category": { "$ref": "#/$defs/category" },
+            "standalone_risks": { "type": "array", "items": { "$ref": "#/$defs/standaloneRisk" } },
+            "edit_notes": { "type": "array", "items": { "$ref": "#/$defs/editNote" } },
+            "flags": { "type": "array", "items": { "$ref": "#/$defs/flag" }, "uniqueItems": true },
+            "related": { "$ref": "#/$defs/related" },
+            "tags": { "$ref": "#/$defs/tags" }
+          }
+        }
+      ]
+    },
+
+    "rejectedCandidate": {
+      "allOf": [
+        { "$ref": "#/$defs/clipCore" },
+        {
+          "type": "object",
+          "required": ["reject_reasons"],
+          "properties": {
+            "reject_reasons": { "type": "array", "minItems": 1, "items": { "type": "string", "description": "Rule id from clip_spec.md plus detail, e.g. 'A1: overlaps censored event at 69.4s'." } },
+            "scores": { "$ref": "#/$defs/scores" }
+          }
+        }
+      ]
+    },
+
+    "goldClip": {
+      "allOf": [
+        { "$ref": "#/$defs/clipCore" },
+        {
+          "type": "object",
+          "required": ["labeler", "tightening_labeled", "scores", "title", "why_it_works", "category"],
+          "properties": {
+            "labeler": { "type": "string", "description": "Agent or human id, e.g. 'telugu-content-strategist' or 'human:<initials>'." },
+            "tightening_labeled": { "type": "boolean", "description": "False = pieces is just the region as one piece; eval skips keep-list metrics for this clip." },
+            "scores": { "$ref": "#/$defs/scores" },
+            "title": { "$ref": "#/$defs/teluguTitle" },
+            "hook_line": { "$ref": "#/$defs/hookLine" },
+            "why_it_works": { "$ref": "#/$defs/oneLine" },
+            "category": { "$ref": "#/$defs/category" },
+            "notes": { "type": "string" },
+            "related": { "$ref": "#/$defs/related" },
+            "tags": { "$ref": "#/$defs/tags" }
+          }
+        }
+      ]
+    },
+
+    "anchorClip": {
+      "allOf": [
+        { "$ref": "#/$defs/clipCore" },
+        {
+          "type": "object",
+          "required": ["short_id", "mapping"],
+          "properties": {
+            "short_id": { "type": "string" },
+            "url": { "type": "string" },
+            "title": { "type": "string" },
+            "short_duration_secs": { "$ref": "#/$defs/seconds" },
+            "mapping": {
+              "type": "object",
+              "required": ["method", "confidence", "short_words", "matched_words"],
+              "properties": {
+                "method": { "type": "string" },
+                "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+                "short_words": { "type": "integer", "minimum": 0 },
+                "matched_words": { "type": "integer", "minimum": 0 },
+                "notes": { "type": "string" }
+              }
+            }
+          }
+        }
+      ]
+    },
+
+    "proposalsFile": {
+      "allOf": [
+        { "$ref": "#/$defs/fileHeader" },
+        {
+          "type": "object",
+          "required": ["kind", "run_id", "created_at", "pipeline", "models", "cost", "cutoff", "proposals"],
+          "properties": {
+            "kind": { "const": "proposals" },
+            "run_id": { "type": "string" },
+            "created_at": { "type": "string", "format": "date-time" },
+            "pipeline": {
+              "type": "object",
+              "required": ["version", "prompt_versions", "config"],
+              "properties": {
+                "version": { "type": "string" },
+                "git_commit": { "type": ["string", "null"] },
+                "prompt_versions": { "type": "object", "additionalProperties": { "type": "string" } },
+                "config": { "type": "object", "description": "Guardrails and thresholds actually used (min/soft max/hard max, T_show, T_rec, skip threshold, ...)." }
+              }
+            },
+            "models": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "required": ["role", "provider", "model"],
+                "properties": {
+                  "role": { "type": "string", "description": "e.g. candidate_gen, tightener, scorer, titler, judge" },
+                  "provider": { "type": "string" },
+                  "model": { "type": "string" },
+                  "params": { "type": "object" }
+                }
+              }
+            },
+            "cost": {
+              "type": "object",
+              "required": ["input_tokens", "output_tokens", "usd", "wall_time_secs", "n_llm_calls"],
+              "properties": {
+                "input_tokens": { "type": "integer", "minimum": 0 },
+                "output_tokens": { "type": "integer", "minimum": 0 },
+                "usd": { "type": "number", "minimum": 0 },
+                "wall_time_secs": { "type": "number", "minimum": 0 },
+                "n_llm_calls": { "type": "integer", "minimum": 0 },
+                "by_role": { "type": "object" }
+              }
+            },
+            "cutoff": {
+              "type": "object",
+              "required": ["t_show", "t_rec", "n_candidates", "n_passed_hard_rules", "n_shown"],
+              "properties": {
+                "t_show": { "$ref": "#/$defs/score" },
+                "t_rec": { "$ref": "#/$defs/score" },
+                "n_candidates": { "type": "integer", "minimum": 0 },
+                "n_passed_hard_rules": { "type": "integer", "minimum": 0 },
+                "n_shown": { "type": "integer", "minimum": 0 },
+                "warnings": { "type": "array", "items": { "type": "string" } }
+              }
+            },
+            "proposals": { "type": "array", "items": { "$ref": "#/$defs/proposal" } },
+            "rejected": { "type": "array", "items": { "$ref": "#/$defs/rejectedCandidate" } }
+          }
+        }
+      ]
+    },
+
+    "goldFile": {
+      "allOf": [
+        { "$ref": "#/$defs/fileHeader" },
+        {
+          "type": "object",
+          "required": ["kind", "clips"],
+          "properties": {
+            "kind": { "const": "gold" },
+            "clips": { "type": "array", "items": { "$ref": "#/$defs/goldClip" } }
+          }
+        }
+      ]
+    },
+
+    "anchorsFile": {
+      "allOf": [
+        { "$ref": "#/$defs/fileHeader" },
+        {
+          "type": "object",
+          "required": ["kind", "clips"],
+          "properties": {
+            "kind": { "const": "anchors" },
+            "clips": { "type": "array", "items": { "$ref": "#/$defs/anchorClip" } }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "r10_A_baseline",
+  "segment_opening_mode": "llm",
+  "merged_write": false,
+  "max_moments": 15,
+  "soft_budget_frac": 0.99,
+  "guest_profile": false,
+  "editor_notes": false,
+  "discover_notes": false,
+  "extra_discovery": {"enabled": false},
+  "order": "score",
+  "thresholds": {"interest_max_gap": 0.0},
+  "models": {
+    "candidate_gen": {"provider": "gemini", "model": "gemini-3.8-flash", "params": {"thinking_level": "low"}},
+    "tightener": {"provider": "gemini", "model": "gemini-3.8-flash", "params": {"thinking_level": "low"}},
+    "scorer": {"provider": "gemini", "model": "gemini-3.8-flash", "params": {"thinking_level": "low"}},
+    "rescore": null,
+    "brief": null,
+    "ranker": null,
+    "dedupe": {"provider": "gemini", "model": "gemini-3.8-flash", "params": {"thinking_level": "low"}}
+  }
+}

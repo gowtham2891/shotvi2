@@ -1,0 +1,5 @@
+# Shotvi dependencies (Python 3.11). System tools also required: ffmpeg, ffprobe.
+requests==2.34.2      # transcribe_scribe.py (ElevenLabs API), shotvi/llm (Gemini REST)
+python-dotenv==1.2.3  # loads .env (API keys)
+yt-dlp                # download_youtube.py (unpinned: YouTube changes often, keep it current)
+jsonschema==4.26.0    # eval: validate clip files against docs/spec/clip_proposal.schema.json; shotvi/llm: validate LLM JSON

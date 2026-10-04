@@ -1,0 +1,10 @@
+{
+  "name": "flash_pro",
+  "models": {
+    "candidate_gen": {"provider": "gemini", "model": "gemini-3.8-flash", "params": {"thinking_level": "low"}},
+    "tightener": {"provider": "gemini", "model": "gemini-3.8-flash", "params": {"thinking_level": "low"}},
+    "scorer": {"provider": "gemini", "model": "gemini-3.8-flash", "params": {"thinking_level": "low"}},
+    "rescore": {"provider": "gemini", "model": "gemini-3.1-pro-preview", "params": {"thinking_level": "low"}},
+    "dedupe": {"provider": "gemini", "model": "gemini-3.8-flash", "params": {"thinking_level": "low"}}
+  }
+}

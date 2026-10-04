@@ -1,0 +1,442 @@
+{
+ "asr_model": "elevenlabs/scribe_v2",
+ "language": "tel",
+ "language_probability": 0.9821469187736511,
+ "sentences": [
+  {
+   "id": 0,
+   "text": "మా business scratch నుంచి start చేశాం.",
+   "start": 0.14,
+   "end": 2.1,
+   "speaker": "speaker_0",
+   "words": [
+    0,
+    5
+   ]
+  },
+  {
+   "id": 1,
+   "text": "I think చాలా తక్కువ amount తీసుకుని ఆ రోజుల్లో one lakh ఏమో మా husband",
+   "start": 2.52,
+   "end": 7.08,
+   "speaker": "speaker_0",
+   "words": [
+    6,
+    18
+   ]
+  },
+  {
+   "id": 2,
+   "text": "You are talking about granules?",
+   "start": 7.46,
+   "end": 8.36,
+   "speaker": "speaker_1",
+   "words": [
+    19,
+    23
+   ]
+  },
+  {
+   "id": 3,
+   "text": "ఆ granules husband తీసుకుంది.",
+   "start": 8.4,
+   "end": 10.0,
+   "speaker": "speaker_0",
+   "words": [
+    24,
+    27
+   ]
+  },
+  {
+   "id": 4,
+   "text": "Okay.",
+   "start": 10.3,
+   "end": 10.48,
+   "speaker": "speaker_1",
+   "words": [
+    28,
+    28
+   ]
+  },
+  {
+   "id": 5,
+   "text": "So beginning days even though successful father-in-law ఇట్లా ఉన్నా కూడా మేము వాళ్ళ మీద depend అవకుండా total self-made అని చెప్పుకోగలం చాలా ధైర్యంగా.",
+   "start": 10.62,
+   "end": 19.08,
+   "speaker": "speaker_0",
+   "words": [
+    29,
+    49
+   ]
+  }
+ ],
+ "word_timestamps": [
+  {
+   "word": "మా",
+   "start": 0.14,
+   "end": 0.3,
+   "speaker": "speaker_0",
+   "logprob": -0.0
+  },
+  {
+   "word": "business",
+   "start": 0.34,
+   "end": 0.68,
+   "speaker": "speaker_0",
+   "logprob": -0.029
+  },
+  {
+   "word": "scratch",
+   "start": 0.88,
+   "end": 1.2,
+   "speaker": "speaker_0",
+   "logprob": -0.004
+  },
+  {
+   "word": "నుంచి",
+   "start": 1.26,
+   "end": 1.46,
+   "speaker": "speaker_0",
+   "logprob": -0.006
+  },
+  {
+   "word": "start",
+   "start": 1.52,
+   "end": 1.74,
+   "speaker": "speaker_0",
+   "logprob": -0.0
+  },
+  {
+   "word": "చేశాం.",
+   "start": 1.8,
+   "end": 2.1,
+   "speaker": "speaker_0",
+   "logprob": -0.192
+  },
+  {
+   "word": "I",
+   "start": 2.52,
+   "end": 2.58,
+   "speaker": "speaker_0",
+   "logprob": -0.0
+  },
+  {
+   "word": "think",
+   "start": 2.64,
+   "end": 2.82,
+   "speaker": "speaker_0",
+   "logprob": -0.0
+  },
+  {
+   "word": "చాలా",
+   "start": 3.16,
+   "end": 3.72,
+   "speaker": "speaker_0",
+   "logprob": -0.019
+  },
+  {
+   "word": "తక్కువ",
+   "start": 3.82,
+   "end": 4.12,
+   "speaker": "speaker_0",
+   "logprob": -0.0
+  },
+  {
+   "word": "amount",
+   "start": 4.22,
+   "end": 4.54,
+   "speaker": "speaker_0",
+   "logprob": -0.001
+  },
+  {
+   "word": "తీసుకుని",
+   "start": 4.62,
+   "end": 5.04,
+   "speaker": "speaker_0",
+   "logprob": -0.085
+  },
+  {
+   "word": "ఆ",
+   "start": 5.42,
+   "end": 5.48,
+   "speaker": "speaker_0",
+   "logprob": -0.013
+  },
+  {
+   "word": "రోజుల్లో",
+   "start": 5.52,
+   "end": 5.84,
+   "speaker": "speaker_0",
+   "logprob": -0.046
+  },
+  {
+   "word": "one",
+   "start": 5.94,
+   "end": 6.08,
+   "speaker": "speaker_0",
+   "logprob": -0.0
+  },
+  {
+   "word": "lakh",
+   "start": 6.16,
+   "end": 6.38,
+   "speaker": "speaker_0",
+   "logprob": -0.045
+  },
+  {
+   "word": "ఏమో",
+   "start": 6.42,
+   "end": 6.56,
+   "speaker": "speaker_0",
+   "logprob": -0.003
+  },
+  {
+   "word": "మా",
+   "start": 6.62,
+   "end": 6.7,
+   "speaker": "speaker_0",
+   "logprob": -0.001
+  },
+  {
+   "word": "husband",
+   "start": 6.72,
+   "end": 7.08,
+   "speaker": "speaker_0",
+   "logprob": -0.001
+  },
+  {
+   "word": "You",
+   "start": 7.46,
+   "end": 7.5,
+   "speaker": "speaker_1",
+   "logprob": -0.044
+  },
+  {
+   "word": "are",
+   "start": 7.52,
+   "end": 7.54,
+   "speaker": "speaker_1",
+   "logprob": -0.119
+  },
+  {
+   "word": "talking",
+   "start": 7.56,
+   "end": 7.76,
+   "speaker": "speaker_1",
+   "logprob": -0.004
+  },
+  {
+   "word": "about",
+   "start": 7.8,
+   "end": 7.94,
+   "speaker": "speaker_1",
+   "logprob": -0.0
+  },
+  {
+   "word": "granules?",
+   "start": 7.96,
+   "end": 8.36,
+   "speaker": "speaker_1",
+   "logprob": -0.022
+  },
+  {
+   "word": "ఆ",
+   "start": 8.4,
+   "end": 8.56,
+   "speaker": "speaker_0",
+   "logprob": -0.864
+  },
+  {
+   "word": "granules",
+   "start": 8.62,
+   "end": 8.96,
+   "speaker": "speaker_0",
+   "logprob": -0.015
+  },
+  {
+   "word": "husband",
+   "start": 9.0,
+   "end": 9.26,
+   "speaker": "speaker_0",
+   "logprob": -0.001
+  },
+  {
+   "word": "తీసుకుంది.",
+   "start": 9.46,
+   "end": 10.0,
+   "speaker": "speaker_0",
+   "logprob": -0.002
+  },
+  {
+   "word": "Okay.",
+   "start": 10.3,
+   "end": 10.48,
+   "speaker": "speaker_1",
+   "logprob": -0.429
+  },
+  {
+   "word": "So",
+   "start": 10.62,
+   "end": 10.7,
+   "speaker": "speaker_0",
+   "logprob": -0.019
+  },
+  {
+   "word": "beginning",
+   "start": 10.88,
+   "end": 11.22,
+   "speaker": "speaker_0",
+   "logprob": -0.013
+  },
+  {
+   "word": "days",
+   "start": 11.28,
+   "end": 11.54,
+   "speaker": "speaker_0",
+   "logprob": -0.0
+  },
+  {
+   "word": "even",
+   "start": 12.2,
+   "end": 12.4,
+   "speaker": "speaker_0",
+   "logprob": -0.039
+  },
+  {
+   "word": "though",
+   "start": 12.46,
+   "end": 12.62,
+   "speaker": "speaker_0",
+   "logprob": -0.0
+  },
+  {
+   "word": "successful",
+   "start": 12.66,
+   "end": 13.14,
+   "speaker": "speaker_0",
+   "logprob": -0.0
+  },
+  {
+   "word": "father-in-law",
+   "start": 13.22,
+   "end": 13.7,
+   "speaker": "speaker_0",
+   "logprob": -0.001
+  },
+  {
+   "word": "ఇట్లా",
+   "start": 13.74,
+   "end": 13.94,
+   "speaker": "speaker_0",
+   "logprob": -0.005
+  },
+  {
+   "word": "ఉన్నా",
+   "start": 14.0,
+   "end": 14.24,
+   "speaker": "speaker_0",
+   "logprob": -0.0
+  },
+  {
+   "word": "కూడా",
+   "start": 14.28,
+   "end": 14.52,
+   "speaker": "speaker_0",
+   "logprob": -0.001
+  },
+  {
+   "word": "మేము",
+   "start": 15.02,
+   "end": 15.24,
+   "speaker": "speaker_0",
+   "logprob": -0.001
+  },
+  {
+   "word": "వాళ్ళ",
+   "start": 15.28,
+   "end": 15.46,
+   "speaker": "speaker_0",
+   "logprob": -0.005
+  },
+  {
+   "word": "మీద",
+   "start": 15.48,
+   "end": 15.62,
+   "speaker": "speaker_0",
+   "logprob": -0.005
+  },
+  {
+   "word": "depend",
+   "start": 15.66,
+   "end": 15.92,
+   "speaker": "speaker_0",
+   "logprob": -0.001
+  },
+  {
+   "word": "అవకుండా",
+   "start": 15.98,
+   "end": 16.34,
+   "speaker": "speaker_0",
+   "logprob": -0.339
+  },
+  {
+   "word": "total",
+   "start": 16.5,
+   "end": 16.86,
+   "speaker": "speaker_0",
+   "logprob": -0.001
+  },
+  {
+   "word": "self-made",
+   "start": 16.94,
+   "end": 17.36,
+   "speaker": "speaker_0",
+   "logprob": -0.0
+  },
+  {
+   "word": "అని",
+   "start": 17.4,
+   "end": 17.48,
+   "speaker": "speaker_0",
+   "logprob": -0.002
+  },
+  {
+   "word": "చెప్పుకోగలం",
+   "start": 17.52,
+   "end": 18.02,
+   "speaker": "speaker_0",
+   "logprob": -0.015
+  },
+  {
+   "word": "చాలా",
+   "start": 18.08,
+   "end": 18.46,
+   "speaker": "speaker_0",
+   "logprob": -0.03
+  },
+  {
+   "word": "ధైర్యంగా.",
+   "start": 18.54,
+   "end": 19.08,
+   "speaker": "speaker_0",
+   "logprob": -0.0
+  }
+ ],
+ "audio_events": [
+  {
+   "text": "[outro jingle]",
+   "start": 19.08,
+   "end": 26.88
+  }
+ ],
+ "n_speakers": 2,
+ "speakers": [
+  "speaker_0",
+  "speaker_1"
+ ],
+ "ghost_speakers": [],
+ "total_sentences": 6,
+ "total_words": 50,
+ "audio_duration_secs": 26.9535,
+ "text": "మా business scratch నుంచి start చేశాం. I think చాలా తక్కువ amount తీసుకుని ఆ రోజుల్లో one lakh ఏమో మా husband You are talking about granules? ఆ granules husband తీసుకుంది. Okay. So beginning days even though successful father-in-law ఇట్లా ఉన్నా కూడా మేము వాళ్ళ మీద depend అవకుండా total self-made అని చెప్పుకోగలం చాలా ధైర్యంగా. [outro jingle]"
+}

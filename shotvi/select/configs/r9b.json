@@ -1,0 +1,49 @@
+{
+ "name": "r9b_ties_only",
+ "segment_opening_mode": "rules",
+ "merged_write": false,
+ "editor_notes": true,
+ "extra_discovery": {
+  "enabled": true,
+  "cap": 2
+ },
+ "order": "score_interest",
+ "reuse_from": {
+  "FS1DI5D_hUk": "runs/sel_r5_flash",
+  "TBlm6wcij94": "runs/sel_r6_flash"
+ },
+ "models": {
+  "candidate_gen": {
+   "provider": "gemini",
+   "model": "gemini-3.8-flash",
+   "params": {
+    "thinking_level": "low"
+   }
+  },
+  "tightener": {
+   "provider": "gemini",
+   "model": "gemini-3.8-flash",
+   "params": {
+    "thinking_level": "low"
+   }
+  },
+  "scorer": {
+   "provider": "gemini",
+   "model": "gemini-3.8-flash",
+   "params": {
+    "thinking_level": "low"
+   }
+  },
+  "rescore": null,
+  "dedupe": {
+   "provider": "gemini",
+   "model": "gemini-3.8-flash",
+   "params": {
+    "thinking_level": "low"
+   }
+  }
+ },
+ "thresholds": {
+  "interest_max_gap": 0.0
+ }
+}

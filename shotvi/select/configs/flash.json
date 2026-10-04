@@ -1,0 +1,10 @@
+{
+  "name": "flash",
+  "models": {
+    "candidate_gen": {"provider": "gemini", "model": "gemini-3.8-flash", "params": {"thinking_level": "low"}},
+    "tightener": {"provider": "gemini", "model": "gemini-3.8-flash", "params": {"thinking_level": "low"}},
+    "scorer": {"provider": "gemini", "model": "gemini-3.8-flash", "params": {"thinking_level": "low"}},
+    "rescore": null,
+    "dedupe": {"provider": "gemini", "model": "gemini-3.8-flash", "params": {"thinking_level": "low"}}
+  }
+}

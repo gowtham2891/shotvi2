@@ -1,0 +1,7812 @@
+{
+ "schema_version": "1.1",
+ "kind": "anchors",
+ "video_id": "mdxzKJ2gTQ4",
+ "derived_params": {
+  "skip_s": 30.0
+ },
+ "transcript": {
+  "path": "scribe_dataset/mdxzKJ2gTQ4/mdxzKJ2gTQ4_scribe_transcript.json",
+  "sha256": "65d3a4bb1684b4c0cb3d0651c4f3ccddaf18489b1c4ddf20d7502b9f5d6ce071",
+  "n_words": 13893,
+  "audio_duration_secs": 5746.5735
+ },
+ "generator": "eval.map_shorts v2: 3-gram seed clusters (opening teaser demoted, later copy wins ties) -> timing-constrained Viterbi over fuzzy word candidates -> chance-excursion filter -> playback-speed fit and rescale -> timing-checked fuzzy gap fill; doubtful pieces kept out of the clip core",
+ "clips": [
+  {
+   "id": "4USAUQTVQxg",
+   "short_id": "4USAUQTVQxg",
+   "short_duration_secs": 29.814,
+   "pieces": [
+    {
+     "start_word": 12929,
+     "end_word": 12939,
+     "start": 5323.222,
+     "end": 5325.542
+    },
+    {
+     "start_word": 12926,
+     "end_word": 12928,
+     "start": 5321.442,
+     "end": 5322.342
+    },
+    {
+     "start_word": 13012,
+     "end_word": 13029,
+     "start": 5360.422,
+     "end": 5369.022
+    },
+    {
+     "start_word": 12882,
+     "end_word": 12903,
+     "start": 5301.182,
+     "end": 5311.722
+    },
+    {
+     "start_word": 13030,
+     "end_word": 13038,
+     "start": 5369.802,
+     "end": 5373.402
+    }
+   ],
+   "region": {
+    "start_word": 12882,
+    "end_word": 13038,
+    "start": 5301.182,
+    "end": 5373.402
+   },
+   "edited_duration": 25.96,
+   "reordered": true,
+   "n_blocks": 5,
+   "text": "girls కి it is not easy అండి let me tell you చాలా చాలా tough ఒక మగవాళ్ళు పెట్టే effort కంటే ఆడవాళ్ళు పెట్టాల్సిన effort one and half two times ఎక్కువ ఉంటుంది recognition తెచ్చుకోవాలి అంటే young girl అనేది disadvantage a girl acceptance అనేది very disadvantage ఇక్కడ కాదు US లో ఇంకా ఎక్కువ ఉందది అవునా అదన్నీ ఎదురీది swim చేయాలంటే effort ఇంకా ఎక్కువ ఉంటుంది so it's not easy అండి",
+   "kept_episode_words": [
+    [
+     12882,
+     12903
+    ],
+    [
+     12926,
+     12939
+    ],
+    [
+     13012,
+     13038
+    ]
+   ],
+   "n_kept_episode_words": 63,
+   "mapping": {
+    "method": "eval.map_shorts v2: 3-gram seed clusters (opening teaser demoted, later copy wins ties) -> timing-constrained Viterbi over fuzzy word candidates -> chance-excursion filter -> playback-speed fit and rescale -> timing-checked fuzzy gap fill; doubtful pieces kept out of the clip core",
+    "confidence": 0.9545,
+    "short_words": 66,
+    "matched_words": 63,
+    "notes": "coverage 95.5% of Short words matched by text (95.5% of non-filler words); 7 fuzzy matches; confidence high",
+    "coverage": 0.9545,
+    "coverage_non_filler": 0.9545,
+    "n_fuzzy_matches": 7,
+    "confidence_label": "high",
+    "time_scale": 1.0,
+    "flags": [],
+    "pieces": [
+     {
+      "piece": 1,
+      "short_words": [
+       0,
+       11
+      ],
+      "short_time": [
+       0.18,
+       2.52
+      ],
+      "episode_words": [
+       12929,
+       12939
+      ],
+      "episode_time": [
+       5323.222,
+       5325.542
+      ],
+      "offset_s": 5323.042,
+      "offset_end_s": 5323.042,
+      "pause_trims": 0,
+      "n_short_words": 12,
+      "n_matched": 11,
+      "n_exact": 9,
+      "mean_sim": 0.991,
+      "timing_jitter_s": 0.02,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "backward",
+       "back_s": 4.1,
+       "overlap_words": 0
+      },
+      "in_core": true
+     },
+     {
+      "piece": 2,
+      "short_words": [
+       12,
+       14
+      ],
+      "short_time": [
+       2.94,
+       3.86
+      ],
+      "episode_words": [
+       12926,
+       12928
+      ],
+      "episode_time": [
+       5321.442,
+       5322.342
+      ],
+      "offset_s": 5318.502,
+      "offset_end_s": 5318.482,
+      "pause_trims": 0,
+      "n_short_words": 3,
+      "n_matched": 3,
+      "n_exact": 3,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.04,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "skip",
+       "n_words": 83,
+       "source_gap_s": 38.08,
+       "text": "girls కి it is not easy అండి let me tell you women … [59 words] … లో ఉండేదాన్ని తర్వాత ఇంకా నాకు maturity వచ్చి serioius లోకాన్ని around చూసేసరికి ఒక"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 3,
+      "short_words": [
+       15,
+       32
+      ],
+      "short_time": [
+       4.16,
+       11.74
+      ],
+      "episode_words": [
+       13012,
+       13029
+      ],
+      "episode_time": [
+       5360.422,
+       5369.022
+      ],
+      "offset_s": 5356.262,
+      "offset_end_s": 5357.242,
+      "pause_trims": 1,
+      "n_short_words": 18,
+      "n_matched": 18,
+      "n_exact": 18,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.04,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "backward",
+       "back_s": 67.84,
+       "overlap_words": 0
+      },
+      "in_core": true
+     },
+     {
+      "piece": 4,
+      "short_words": [
+       33,
+       56
+      ],
+      "short_time": [
+       12.0,
+       22.5
+      ],
+      "episode_words": [
+       12882,
+       12903
+      ],
+      "episode_time": [
+       5301.182,
+       5311.722
+      ],
+      "offset_s": 5289.182,
+      "offset_end_s": 5289.182,
+      "pause_trims": 0,
+      "n_short_words": 24,
+      "n_matched": 22,
+      "n_exact": 18,
+      "mean_sim": 0.968,
+      "timing_jitter_s": 0.08,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "skip",
+       "n_words": 126,
+       "source_gap_s": 58.08,
+       "text": "తను ఎంత extra effort పెట్టిందో ఎన్ని సార్లు break-- very strong girl ఉమ్ … [102 words] … పెట్టాల్సిన effort one and half two times ఎక్కువ ఉంటుంది recognition తెచ్చుకోవాలి అంటే"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 5,
+      "short_words": [
+       57,
+       65
+      ],
+      "short_time": [
+       22.92,
+       26.52
+      ],
+      "episode_words": [
+       13030,
+       13038
+      ],
+      "episode_time": [
+       5369.802,
+       5373.402
+      ],
+      "offset_s": 5346.882,
+      "offset_end_s": 5346.922,
+      "pause_trims": 0,
+      "n_short_words": 9,
+      "n_matched": 9,
+      "n_exact": 8,
+      "mean_sim": 0.994,
+      "timing_jitter_s": 0.04,
+      "quality": "good",
+      "issues": [],
+      "in_core": true
+     }
+    ],
+    "kept_untranscribed": [
+     {
+      "j": 12899,
+      "word": "అవునా",
+      "at": "cont"
+     },
+     {
+      "j": 12901,
+      "word": "ఎదురీది",
+      "at": "cont"
+     }
+    ],
+    "unmatched_short_words": [
+     {
+      "i": 7,
+      "word": "and",
+      "time": 1.84,
+      "context": "inside piece 1",
+      "episode_words_at_time": []
+     },
+     {
+      "i": 50,
+      "word": "అది.",
+      "time": 19.26,
+      "context": "inside piece 4",
+      "episode_words_at_time": [
+       {
+        "j": 12898,
+        "word": "ఉందది"
+       }
+      ]
+     },
+     {
+      "i": 51,
+      "word": "ఉహు",
+      "time": 19.72,
+      "context": "inside piece 4",
+      "episode_words_at_time": [
+       {
+        "j": 12899,
+        "word": "అవునా"
+       }
+      ]
+     }
+    ],
+    "other_text_matches": [],
+    "boundary": {
+     "start_natural": true,
+     "start_natural_t4": true,
+     "start_note": "",
+     "start_context": "understand చాలా చాలా tough | girls కి it is",
+     "end_natural": true,
+     "end_context": "it's not easy అండి | సో one thing or",
+     "piece_edges_natural": 10,
+     "piece_edges_total": 10
+    }
+   }
+  },
+  {
+   "id": "5HFRXNylY1A",
+   "short_id": "5HFRXNylY1A",
+   "short_duration_secs": 89.174,
+   "pieces": [
+    {
+     "start_word": 0,
+     "end_word": 72,
+     "start": 0.08,
+     "end": 31.56
+    },
+    {
+     "start_word": 80,
+     "end_word": 81,
+     "start": 34.04,
+     "end": 34.9
+    },
+    {
+     "start_word": 73,
+     "end_word": 77,
+     "start": 31.6,
+     "end": 32.94
+    },
+    {
+     "start_word": 95,
+     "end_word": 159,
+     "start": 40.54,
+     "end": 66.06
+    },
+    {
+     "start_word": 192,
+     "end_word": 213,
+     "start": 76.48,
+     "end": 85.52
+    },
+    {
+     "start_word": 292,
+     "end_word": 333,
+     "start": 117.36,
+     "end": 130.02
+    }
+   ],
+   "region": {
+    "start_word": 0,
+    "end_word": 333,
+    "start": 0.08,
+    "end": 130.02
+   },
+   "edited_duration": 80.9,
+   "reordered": true,
+   "n_blocks": 3,
+   "text": "Granules అంటే paracetamol company అంటారు. It's-it's many-many-many other things. Every second around the world, five people are taking our tablet అండి. Four five years of heavy struggle, almost bankruptcy stage కి వెళ్ళింది. Okay. All foreign buyers. ఇప్పుడు ఎట్లా successful అవుతారు? డబ్బులు ఎక్కడ మిగులుతాయి? Break-even ఎట్లా వస్తుంది? వచ్చింది. ఇప్పుడు Granules overall ఎంత revenue చేస్తుంది? Yearly six thousand crores అండి. కుమాచి గురుపాటి, the co-founder of Granules India Limited. She built a twenty three thousand crore pharma manufacturing company with Krishna Prasad గారు. కొన్ని medicines ten rupees కి దొరుకుతాయి, కొన్ని medicines ten thousand పెట్టినా దొరకదు. ఏంటి difference ఉంటది? Research and development very expensive అండి. So, అలాంటప్పుడు తప్పదు. India ఎప్పుడూ కూడా ఎందుకు scratch నుంచి ఒక medicine ని build చేయడానికి try చేయదు? అంటే... ఇప్పుడు India గాని ఒక medicine scratch నుంచి build చేయాలంటే India కి actually ఏం కావాలి? మీరు seven different continents లో seven different marathons చేసి world record hold చేసుకున్నారు. adventure marathons అంటే Asia లో అనుకోండి Gobi Desert, Africa అనుకోండి African Safari, last కి వచ్చేసరికి Antarctica. Crevices అని ఉంటాయి. One wrong step. ఇంత పెద్ద company ని build చేసిన తర్వాత next generations కి pass on చేయ-చేయాలనే situation వచ్చినప్పుడు ఎలాంటి discussions అవుతాయి? If మీ దగ్గరికి ఎవరైనా young lady వచ్చి she wants to build such a big company, ఆమెకి ఇచ్చే మీ genuine advice ఏంటి? Initial stages లో...",
+   "kept_episode_words": [
+    [
+     0,
+     77
+    ],
+    [
+     80,
+     81
+    ],
+    [
+     95,
+     159
+    ],
+    [
+     192,
+     213
+    ],
+    [
+     292,
+     333
+    ]
+   ],
+   "n_kept_episode_words": 209,
+   "mapping": {
+    "method": "eval.map_shorts v2: 3-gram seed clusters (opening teaser demoted, later copy wins ties) -> timing-constrained Viterbi over fuzzy word candidates -> chance-excursion filter -> playback-speed fit and rescale -> timing-checked fuzzy gap fill; doubtful pieces kept out of the clip core",
+    "confidence": 0.9811,
+    "short_words": 212,
+    "matched_words": 208,
+    "notes": "coverage 98.1% of Short words matched by text (98.1% of non-filler words); 5 fuzzy matches; confidence high. Flags: piece 2: tiny piece, corroborated by a neighbouring piece",
+    "coverage": 0.9811,
+    "coverage_non_filler": 0.9811,
+    "n_fuzzy_matches": 5,
+    "confidence_label": "high",
+    "time_scale": 1.0,
+    "flags": [
+     "piece 2: tiny piece, corroborated by a neighbouring piece"
+    ],
+    "pieces": [
+     {
+      "piece": 1,
+      "short_words": [
+       0,
+       73
+      ],
+      "short_time": [
+       0.1,
+       31.58
+      ],
+      "episode_words": [
+       0,
+       72
+      ],
+      "episode_time": [
+       0.08,
+       31.56
+      ],
+      "offset_s": -0.02,
+      "offset_end_s": 0.0,
+      "pause_trims": 0,
+      "n_short_words": 74,
+      "n_matched": 72,
+      "n_exact": 69,
+      "mean_sim": 0.992,
+      "timing_jitter_s": 0.14,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 7,
+       "source_gap_s": 2.48,
+       "text": "company with Krishna Prasad గారు. Granules ఒక"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 2,
+      "short_words": [
+       74,
+       75
+      ],
+      "short_time": [
+       31.62,
+       32.479
+      ],
+      "episode_words": [
+       80,
+       81
+      ],
+      "episode_time": [
+       34.04,
+       34.9
+      ],
+      "offset_s": 2.42,
+      "offset_end_s": 2.44,
+      "pause_trims": 0,
+      "n_short_words": 2,
+      "n_matched": 2,
+      "n_exact": 2,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.02,
+      "quality": "ok",
+      "issues": [
+       "tiny piece, corroborated by a neighbouring piece"
+      ],
+      "after": {
+       "type": "backward",
+       "back_s": 3.3,
+       "overlap_words": 0
+      },
+      "in_core": true
+     },
+     {
+      "piece": 3,
+      "short_words": [
+       76,
+       80
+      ],
+      "short_time": [
+       32.52,
+       33.94
+      ],
+      "episode_words": [
+       73,
+       77
+      ],
+      "episode_time": [
+       31.6,
+       32.94
+      ],
+      "offset_s": -0.92,
+      "offset_end_s": -0.92,
+      "pause_trims": 0,
+      "n_short_words": 5,
+      "n_matched": 5,
+      "n_exact": 5,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.06,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 17,
+       "source_gap_s": 7.6,
+       "text": "Granules ఒక pharma manufacturing company with six thousand five hundred plus employees, exporting to eighty plus countries."
+      },
+      "in_core": true
+     },
+     {
+      "piece": 4,
+      "short_words": [
+       81,
+       145
+      ],
+      "short_time": [
+       35.36,
+       60.94
+      ],
+      "episode_words": [
+       95,
+       159
+      ],
+      "episode_time": [
+       40.54,
+       66.06
+      ],
+      "offset_s": 5.18,
+      "offset_end_s": 5.18,
+      "pause_trims": 0,
+      "n_short_words": 65,
+      "n_matched": 65,
+      "n_exact": 64,
+      "mean_sim": 0.999,
+      "timing_jitter_s": 0.04,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 32,
+       "source_gap_s": 10.42,
+       "text": "2015 లో Krishna Prasad గారు, he was turning sixty in that year, … [8 words] … రోజుల్లో. అంతకు ముందు ఎవ్వరూ చేయలేదు, ఎవరు attempt చేయలేదు. ఈ city లో గాని"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 5,
+      "short_words": [
+       146,
+       167
+      ],
+      "short_time": [
+       61.0,
+       70.12
+      ],
+      "episode_words": [
+       192,
+       213
+      ],
+      "episode_time": [
+       76.48,
+       85.52
+      ],
+      "offset_s": 15.48,
+      "offset_end_s": 15.42,
+      "pause_trims": 0,
+      "n_short_words": 22,
+      "n_matched": 22,
+      "n_exact": 21,
+      "mean_sim": 0.998,
+      "timing_jitter_s": 0.04,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "skip",
+       "n_words": 78,
+       "source_gap_s": 31.84,
+       "text": "Metformin, నాలుగు billion tablets అమెరికాలో అమ్ముతాం. ఇప్పుడు రోజులో ఎలా అంటారో అక్కడ time … [54 words] … became very weak. I-I can't do beyond this అనే stage కి వెళ్ళానన్నమాట."
+      },
+      "in_core": true
+     },
+     {
+      "piece": 6,
+      "short_words": [
+       168,
+       211
+      ],
+      "short_time": [
+       72.76,
+       85.54
+      ],
+      "episode_words": [
+       292,
+       333
+      ],
+      "episode_time": [
+       117.36,
+       130.02
+      ],
+      "offset_s": 44.6,
+      "offset_end_s": 44.58,
+      "pause_trims": 1,
+      "n_short_words": 44,
+      "n_matched": 42,
+      "n_exact": 42,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.04,
+      "quality": "good",
+      "issues": [],
+      "in_core": true
+     }
+    ],
+    "kept_untranscribed": [
+     {
+      "j": 36,
+      "word": "ఇప్పుడు",
+      "at": "cont"
+     },
+     {
+      "j": 58,
+      "word": "కుమాచి",
+      "at": "cont"
+     }
+    ],
+    "unmatched_short_words": [
+     {
+      "i": 7,
+      "word": "many",
+      "time": 3.32,
+      "context": "inside piece 1",
+      "episode_words_at_time": [
+       {
+        "j": 6,
+        "word": "many-many-many"
+       }
+      ]
+     },
+     {
+      "i": 8,
+      "word": "many",
+      "time": 3.56,
+      "context": "inside piece 1",
+      "episode_words_at_time": [
+       {
+        "j": 6,
+        "word": "many-many-many"
+       }
+      ]
+     },
+     {
+      "i": 180,
+      "word": "చేయ-",
+      "time": 75.72,
+      "context": "inside piece 6",
+      "episode_words_at_time": [
+       {
+        "j": 304,
+        "word": "చేయ-చేయాలనే"
+       }
+      ]
+     },
+     {
+      "i": 191,
+      "word": "ఒక",
+      "time": 80.22,
+      "context": "inside piece 6",
+      "episode_words_at_time": []
+     }
+    ],
+    "other_text_matches": [
+     {
+      "t0": 2196.6,
+      "t1": 2266.4,
+      "n_short_words_explained": 31,
+      "used": false,
+      "duplicate_share": 0.97,
+      "lost_to_nearer_copy": false
+     },
+     {
+      "t0": 4119.5,
+      "t1": 4134.2,
+      "n_short_words_explained": 25,
+      "used": false,
+      "duplicate_share": 0.96,
+      "lost_to_nearer_copy": false
+     },
+     {
+      "t0": 2335.1,
+      "t1": 2348.2,
+      "n_short_words_explained": 22,
+      "used": false,
+      "duplicate_share": 1.0,
+      "lost_to_nearer_copy": false
+     },
+     {
+      "t0": 4751.5,
+      "t1": 4780.5,
+      "n_short_words_explained": 20,
+      "used": false,
+      "duplicate_share": 1.0,
+      "lost_to_nearer_copy": false
+     },
+     {
+      "t0": 2440.3,
+      "t1": 2451.8,
+      "n_short_words_explained": 17,
+      "used": false,
+      "duplicate_share": 1.0,
+      "lost_to_nearer_copy": false
+     },
+     {
+      "t0": 1417.1,
+      "t1": 1453.3,
+      "n_short_words_explained": 15,
+      "used": false,
+      "duplicate_share": 0.93,
+      "lost_to_nearer_copy": false
+     },
+     {
+      "t0": 3551.8,
+      "t1": 3588.9,
+      "n_short_words_explained": 14,
+      "used": false,
+      "duplicate_share": 1.0,
+      "lost_to_nearer_copy": false
+     },
+     {
+      "t0": 2615.3,
+      "t1": 2621.2,
+      "n_short_words_explained": 13,
+      "used": false,
+      "duplicate_share": 1.0,
+      "lost_to_nearer_copy": false
+     },
+     {
+      "t0": 4040.6,
+      "t1": 4056.9,
+      "n_short_words_explained": 12,
+      "used": false,
+      "duplicate_share": 1.0,
+      "lost_to_nearer_copy": false
+     },
+     {
+      "t0": 1251.9,
+      "t1": 1255.5,
+      "n_short_words_explained": 12,
+      "used": false,
+      "duplicate_share": 1.0,
+      "lost_to_nearer_copy": false
+     },
+     {
+      "t0": 2735.7,
+      "t1": 2739.2,
+      "n_short_words_explained": 10,
+      "used": false,
+      "duplicate_share": 1.0,
+      "lost_to_nearer_copy": false
+     },
+     {
+      "t0": 1630.3,
+      "t1": 1633.7,
+      "n_short_words_explained": 10,
+      "used": false,
+      "duplicate_share": 0.7,
+      "lost_to_nearer_copy": false
+     },
+     {
+      "t0": 4856.6,
+      "t1": 4881.3,
+      "n_short_words_explained": 6,
+      "used": false,
+      "duplicate_share": 1.0,
+      "lost_to_nearer_copy": false
+     },
+     {
+      "t0": 3039.5,
+      "t1": 3040.9,
+      "n_short_words_explained": 6,
+      "used": false,
+      "duplicate_share": 1.0,
+      "lost_to_nearer_copy": false
+     }
+    ],
+    "boundary": {
+     "start_natural": true,
+     "start_natural_t4": true,
+     "start_note": "",
+     "start_context": " | Granules అంటే paracetamol company",
+     "end_natural": true,
+     "end_context": "ఏంటి? Initial stages లో... | నాకు మీ నుంచి ఒక",
+     "piece_edges_natural": 7,
+     "piece_edges_total": 12
+    }
+   }
+  },
+  {
+   "id": "8wM_AoShEXI",
+   "short_id": "8wM_AoShEXI",
+   "short_duration_secs": 31.294,
+   "pieces": [
+    {
+     "start_word": 119,
+     "end_word": 146,
+     "start": 49.34,
+     "end": 59.04
+    },
+    {
+     "start_word": 2230,
+     "end_word": 2258,
+     "start": 893.92,
+     "end": 903.96
+    },
+    {
+     "start_word": 730,
+     "end_word": 739,
+     "start": 298.0,
+     "end": 301.64
+    }
+   ],
+   "region": {
+    "start_word": 119,
+    "end_word": 2258,
+    "start": 49.34,
+    "end": 903.96
+   },
+   "edited_duration": 23.38,
+   "reordered": true,
+   "n_blocks": 3,
+   "text": "India ఎప్పుడూ కూడా ఎందుకు scratch నుంచి ఒక medicine ని build చేయడానికి try చేయదు? అంటే... ఇప్పుడు India గాని ఒక medicine scratch నుంచి build చేయాలంటే India కి actually ఏం కావాలి? అప్పటికి ready ఉందా అసలు because 1991 వరకు India లో అలాంటి business thought ఎవరికీ లేదు. అలాంటిది మీరు 1984లోనే ఒక pharma company build చేద్దాము, medicines manufacture చేద్దాము అన్న thought ఎలా వచ్చింది? ఇంత పెద్ద company build చేయడానికి, ఇంత పెద్ద successful person అవ్వడానికి",
+   "kept_episode_words": [
+    [
+     119,
+     146
+    ],
+    [
+     730,
+     739
+    ],
+    [
+     2230,
+     2258
+    ]
+   ],
+   "n_kept_episode_words": 67,
+   "mapping": {
+    "method": "eval.map_shorts v2: 3-gram seed clusters (opening teaser demoted, later copy wins ties) -> timing-constrained Viterbi over fuzzy word candidates -> chance-excursion filter -> playback-speed fit and rescale -> timing-checked fuzzy gap fill; doubtful pieces kept out of the clip core",
+    "confidence": 0.9091,
+    "short_words": 66,
+    "matched_words": 60,
+    "notes": "coverage 90.9% of Short words matched by text (90.9% of non-filler words); 6 fuzzy matches; confidence high",
+    "coverage": 0.9091,
+    "coverage_non_filler": 0.9091,
+    "n_fuzzy_matches": 6,
+    "confidence_label": "high",
+    "time_scale": 1.0,
+    "flags": [],
+    "pieces": [
+     {
+      "piece": 1,
+      "short_words": [
+       0,
+       26
+      ],
+      "short_time": [
+       4.64,
+       13.34
+      ],
+      "episode_words": [
+       119,
+       146
+      ],
+      "episode_time": [
+       49.34,
+       59.04
+      ],
+      "offset_s": 44.7,
+      "offset_end_s": 45.56,
+      "pause_trims": 2,
+      "n_short_words": 27,
+      "n_matched": 27,
+      "n_exact": 24,
+      "mean_sim": 0.988,
+      "timing_jitter_s": 0.1,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "skip",
+       "n_words": 2083,
+       "source_gap_s": 834.88,
+       "text": "మీరు seven different continents లో seven different marathons చేసి world record hold … [2059 words] … ఉందా? ఆ time లోని pharmacy అనే thing ఎలా start చేశారు. Because India"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 2,
+      "short_words": [
+       28,
+       52
+      ],
+      "short_time": [
+       13.78,
+       23.82
+      ],
+      "episode_words": [
+       2230,
+       2258
+      ],
+      "episode_time": [
+       893.92,
+       903.96
+      ],
+      "offset_s": 880.14,
+      "offset_end_s": 880.16,
+      "pause_trims": 0,
+      "n_short_words": 25,
+      "n_matched": 23,
+      "n_exact": 20,
+      "mean_sim": 0.975,
+      "timing_jitter_s": 0.04,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "backward",
+       "back_s": 605.96,
+       "overlap_words": 0
+      },
+      "in_core": true
+     },
+     {
+      "piece": 3,
+      "short_words": [
+       54,
+       63
+      ],
+      "short_time": [
+       24.5,
+       27.92
+      ],
+      "episode_words": [
+       730,
+       739
+      ],
+      "episode_time": [
+       298.0,
+       301.64
+      ],
+      "offset_s": 273.5,
+      "offset_end_s": 273.72,
+      "pause_trims": 1,
+      "n_short_words": 10,
+      "n_matched": 10,
+      "n_exact": 10,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.02,
+      "quality": "good",
+      "issues": [],
+      "in_core": true
+     }
+    ],
+    "kept_untranscribed": [
+     {
+      "j": 2255,
+      "word": "అన్న",
+      "at": "cont"
+     }
+    ],
+    "unmatched_short_words": [
+     {
+      "i": 27,
+      "word": "Correct",
+      "time": 13.44,
+      "context": "between pieces 1 and 2"
+     },
+     {
+      "i": 28,
+      "word": "question",
+      "time": 13.78,
+      "context": "inside piece 2, timing-only match at a cut edge",
+      "episode_words_at_time": [
+       {
+        "j": 2230,
+        "word": "అప్పటికి"
+       }
+      ]
+     },
+     {
+      "i": 29,
+      "word": "అడిగారు.",
+      "time": 14.1,
+      "context": "inside piece 2",
+      "episode_words_at_time": [
+       {
+        "j": 2231,
+        "word": "ready"
+       },
+       {
+        "j": 2232,
+        "word": "ఉందా"
+       },
+       {
+        "j": 2233,
+        "word": "అసలు"
+       }
+      ]
+     },
+     {
+      "i": 53,
+      "word": "అది-",
+      "time": 23.98,
+      "context": "between pieces 2 and 3"
+     },
+     {
+      "i": 64,
+      "word": "story",
+      "time": 28.1,
+      "context": "after piece 3"
+     },
+     {
+      "i": 65,
+      "word": "ఏంటి?",
+      "time": 28.5,
+      "context": "after piece 3"
+     }
+    ],
+    "other_text_matches": [
+     {
+      "t0": 885.8,
+      "t1": 903.2,
+      "n_short_words_explained": 22,
+      "used": true,
+      "duplicate_share": 0.18,
+      "lost_to_nearer_copy": false
+     },
+     {
+      "t0": 2335.1,
+      "t1": 2347.3,
+      "n_short_words_explained": 18,
+      "used": false,
+      "duplicate_share": 1.0,
+      "lost_to_nearer_copy": false
+     },
+     {
+      "t0": 2441.3,
+      "t1": 2445.5,
+      "n_short_words_explained": 10,
+      "used": false,
+      "duplicate_share": 1.0,
+      "lost_to_nearer_copy": false
+     },
+     {
+      "t0": 298.0,
+      "t1": 300.5,
+      "n_short_words_explained": 10,
+      "used": true,
+      "duplicate_share": 0.4,
+      "lost_to_nearer_copy": false
+     },
+     {
+      "t0": 5514.3,
+      "t1": 5533.5,
+      "n_short_words_explained": 6,
+      "used": false,
+      "duplicate_share": 0.5,
+      "lost_to_nearer_copy": false
+     },
+     {
+      "t0": 2265.2,
+      "t1": 2266.4,
+      "n_short_words_explained": 6,
+      "used": false,
+      "duplicate_share": 1.0,
+      "lost_to_nearer_copy": false
+     }
+    ],
+    "boundary": {
+     "start_natural": true,
+     "start_natural_t4": true,
+     "start_note": "",
+     "start_context": "అండి. So, అలాంటప్పుడు తప్పదు. | India ఎప్పుడూ కూడా ఎందుకు",
+     "end_natural": false,
+     "end_context": "పెద్ద successful person అవ్వడానికి | maybe help చేసి ఉండొచ్చా?",
+     "piece_edges_natural": 3,
+     "piece_edges_total": 6
+    }
+   }
+  },
+  {
+   "id": "_gfj-FhsOB8",
+   "short_id": "_gfj-FhsOB8",
+   "short_duration_secs": 66.933,
+   "pieces": [
+    {
+     "start_word": 12323,
+     "end_word": 12329,
+     "start": 5056.298,
+     "end": 5058.818
+    },
+    {
+     "start_word": 12336,
+     "end_word": 12341,
+     "start": 5060.518,
+     "end": 5062.598
+    },
+    {
+     "start_word": 12348,
+     "end_word": 12353,
+     "start": 5065.218,
+     "end": 5066.998
+    },
+    {
+     "start_word": 12357,
+     "end_word": 12366,
+     "start": 5068.198,
+     "end": 5071.098
+    },
+    {
+     "start_word": 12657,
+     "end_word": 12663,
+     "start": 5201.862,
+     "end": 5204.402
+    },
+    {
+     "start_word": 12410,
+     "end_word": 12413,
+     "start": 5089.838,
+     "end": 5091.898
+    },
+    {
+     "start_word": 12416,
+     "end_word": 12419,
+     "start": 5092.838,
+     "end": 5093.838
+    },
+    {
+     "start_word": 12435,
+     "end_word": 12439,
+     "start": 5102.218,
+     "end": 5104.038
+    },
+    {
+     "start_word": 12441,
+     "end_word": 12442,
+     "start": 5105.318,
+     "end": 5105.838
+    },
+    {
+     "start_word": 12444,
+     "end_word": 12451,
+     "start": 5107.098,
+     "end": 5109.558
+    },
+    {
+     "start_word": 12458,
+     "end_word": 12461,
+     "start": 5112.278,
+     "end": 5114.038
+    },
+    {
+     "start_word": 12488,
+     "end_word": 12492,
+     "start": 5126.138,
+     "end": 5127.998
+    },
+    {
+     "start_word": 12494,
+     "end_word": 12496,
+     "start": 5129.138,
+     "end": 5130.418
+    },
+    {
+     "start_word": 12518,
+     "end_word": 12524,
+     "start": 5140.902,
+     "end": 5142.962
+    },
+    {
+     "start_word": 12527,
+     "end_word": 12533,
+     "start": 5143.722,
+     "end": 5147.382
+    },
+    {
+     "start_word": 12540,
+     "end_word": 12546,
+     "start": 5152.362,
+     "end": 5154.142
+    },
+    {
+     "start_word": 12549,
+     "end_word": 12557,
+     "start": 5155.822,
+     "end": 5159.242
+    },
+    {
+     "start_word": 12559,
+     "end_word": 12563,
+     "start": 5160.602,
+     "end": 5161.962
+    },
+    {
+     "start_word": 12566,
+     "end_word": 12570,
+     "start": 5163.042,
+     "end": 5165.262
+    },
+    {
+     "start_word": 12572,
+     "end_word": 12582,
+     "start": 5165.802,
+     "end": 5169.362
+    },
+    {
+     "start_word": 12609,
+     "end_word": 12617,
+     "start": 5179.582,
+     "end": 5184.102
+    },
+    {
+     "start_word": 12619,
+     "end_word": 12623,
+     "start": 5184.422,
+     "end": 5185.602
+    },
+    {
+     "start_word": 12625,
+     "end_word": 12627,
+     "start": 5186.222,
+     "end": 5187.602
+    },
+    {
+     "start_word": 12629,
+     "end_word": 12629,
+     "start": 5188.902,
+     "end": 5189.582
+    },
+    {
+     "start_word": 12634,
+     "end_word": 12648,
+     "start": 5192.782,
+     "end": 5196.962
+    },
+    {
+     "start_word": 12650,
+     "end_word": 12653,
+     "start": 5197.402,
+     "end": 5198.942
+    },
+    {
+     "start_word": 12674,
+     "end_word": 12690,
+     "start": 5209.162,
+     "end": 5216.562
+    },
+    {
+     "start_word": 12752,
+     "end_word": 12761,
+     "start": 5247.462,
+     "end": 5250.742
+    }
+   ],
+   "region": {
+    "start_word": 12323,
+    "end_word": 12761,
+    "start": 5056.298,
+    "end": 5250.742
+   },
+   "edited_duration": 66.8,
+   "reordered": true,
+   "n_blocks": 4,
+   "text": "మీది ఒకటి చూశాను ma'am. Pharma పాఠశాల అని చాలామంది పిల్లలకి free గా educate చేసి factories లో work చేయడానికి కావలసిన skill end to end అవన్నీ నేర్పించి వాళ్ళని ఇక్కడ employ చేస్తున్నారని. దాని learn while you earn అనే program ద్వారా intermediate అయిపోయిన వాళ్ళని తీసుకొచ్చి Swarna Bharat Trust అని మా CSR activity కింద వాళ్ళని four months overall training. ఉమ్ Pharma skills, soft skills కూడా. చాలా beautiful environment అండి. పొద్దున్నే yoga తో start చేస్తారు, different games ఉంటాయి. I think state of art facility ఉంది ఇండియాలోనే first అనుకుంటాను పిల్లలు అక్కడ learn చేస్తారు మా factory నుంచి వచ్చి కూడా teach చేస్తారు practical knowledge కూడా వస్తుంది వెళ్లి ఎట్లా manufacture చేస్తారో చూస్తారు four months training ఇచ్చిన తర్వాత LCCC అని exam కూడా జరుగుతుంది ఆ తర్వాత they are open to go to any ఫార్మా ఫార్మా but granules కి వచ్చిన తర్వాత అది మా company నుంచి it won't come under CSR మేము వాళ్ళకి BSC చదవటానికి two and half years hostel లో free గా ఉంచి final year లో బయటికి పంపిస్తాం వాళ్ళు సొంతగా బతకడానికి అలవాటు పడాలని వాళ్ళు earn చేస్తూ graduation programs free education ఇచ్చేసి తర్వాత వాళ్ళ growth అదంతా కూడా చాలా different గా ఉంటుంది ఆ pharma పాఠశాల gives you know lot of satisfaction అండి",
+   "kept_episode_words": [
+    [
+     12323,
+     12329
+    ],
+    [
+     12336,
+     12341
+    ],
+    [
+     12348,
+     12353
+    ],
+    [
+     12357,
+     12366
+    ],
+    [
+     12410,
+     12413
+    ],
+    [
+     12416,
+     12419
+    ],
+    [
+     12435,
+     12439
+    ],
+    [
+     12441,
+     12442
+    ],
+    [
+     12444,
+     12451
+    ],
+    [
+     12458,
+     12461
+    ],
+    [
+     12488,
+     12492
+    ],
+    [
+     12494,
+     12496
+    ],
+    [
+     12518,
+     12524
+    ],
+    [
+     12527,
+     12533
+    ],
+    [
+     12540,
+     12546
+    ],
+    [
+     12549,
+     12557
+    ],
+    [
+     12559,
+     12563
+    ],
+    [
+     12566,
+     12570
+    ],
+    [
+     12572,
+     12582
+    ],
+    [
+     12609,
+     12617
+    ],
+    [
+     12619,
+     12623
+    ],
+    [
+     12625,
+     12627
+    ],
+    [
+     12629,
+     12629
+    ],
+    [
+     12634,
+     12648
+    ],
+    [
+     12650,
+     12653
+    ],
+    [
+     12657,
+     12663
+    ],
+    [
+     12674,
+     12690
+    ],
+    [
+     12752,
+     12761
+    ]
+   ],
+   "n_kept_episode_words": 186,
+   "mapping": {
+    "method": "eval.map_shorts v2: 3-gram seed clusters (opening teaser demoted, later copy wins ties) -> timing-constrained Viterbi over fuzzy word candidates -> chance-excursion filter -> playback-speed fit and rescale -> timing-checked fuzzy gap fill; doubtful pieces kept out of the clip core",
+    "confidence": 0.9781,
+    "short_words": 183,
+    "matched_words": 179,
+    "notes": "coverage 97.8% of Short words matched by text (97.8% of non-filler words); 18 fuzzy matches; confidence high. Flags: piece 9: tiny piece, corroborated by a neighbouring piece | piece 24: tiny piece, corroborated by a neighbouring piece",
+    "coverage": 0.9781,
+    "coverage_non_filler": 0.9781,
+    "n_fuzzy_matches": 18,
+    "confidence_label": "high",
+    "time_scale": 1.0,
+    "flags": [
+     "piece 9: tiny piece, corroborated by a neighbouring piece",
+     "piece 24: tiny piece, corroborated by a neighbouring piece"
+    ],
+    "pieces": [
+     {
+      "piece": 1,
+      "short_words": [
+       0,
+       6
+      ],
+      "short_time": [
+       0.1,
+       2.56
+      ],
+      "episode_words": [
+       12323,
+       12329
+      ],
+      "episode_time": [
+       5056.298,
+       5058.818
+      ],
+      "offset_s": 5056.198,
+      "offset_end_s": 5056.258,
+      "pause_trims": 0,
+      "n_short_words": 7,
+      "n_matched": 7,
+      "n_exact": 5,
+      "mean_sim": 0.929,
+      "timing_jitter_s": 0.04,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 6,
+       "source_gap_s": 1.7,
+       "text": "మీది ఒక CSR event లాగా వేరు"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 2,
+      "short_words": [
+       7,
+       12
+      ],
+      "short_time": [
+       2.76,
+       4.82
+      ],
+      "episode_words": [
+       12336,
+       12341
+      ],
+      "episode_time": [
+       5060.518,
+       5062.598
+      ],
+      "offset_s": 5057.758,
+      "offset_end_s": 5057.758,
+      "pause_trims": 0,
+      "n_short_words": 6,
+      "n_matched": 6,
+      "n_exact": 6,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.02,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 6,
+       "source_gap_s": 2.62,
+       "text": "వాళ్ళని మళ్ళా అక్కడి నుంచి ఏదైతే మీ"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 3,
+      "short_words": [
+       13,
+       18
+      ],
+      "short_time": [
+       4.86,
+       6.66
+      ],
+      "episode_words": [
+       12348,
+       12353
+      ],
+      "episode_time": [
+       5065.218,
+       5066.998
+      ],
+      "offset_s": 5060.358,
+      "offset_end_s": 5060.398,
+      "pause_trims": 0,
+      "n_short_words": 6,
+      "n_matched": 6,
+      "n_exact": 5,
+      "mean_sim": 0.985,
+      "timing_jitter_s": 0.04,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 3,
+       "source_gap_s": 1.2,
+       "text": "ఏవైతే ఉంటాయో scratch"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 4,
+      "short_words": [
+       19,
+       26
+      ],
+      "short_time": [
+       6.7,
+       8.76
+      ],
+      "episode_words": [
+       12357,
+       12366
+      ],
+      "episode_time": [
+       5068.198,
+       5071.098
+      ],
+      "offset_s": 5061.498,
+      "offset_end_s": 5062.198,
+      "pause_trims": 2,
+      "n_short_words": 8,
+      "n_matched": 8,
+      "n_exact": 4,
+      "mean_sim": 0.865,
+      "timing_jitter_s": 0.04,
+      "quality": "ok",
+      "issues": [],
+      "after": {
+       "type": "skip",
+       "n_words": 290,
+       "source_gap_s": 130.76,
+       "text": "intention ఏంటి? ఇది మా factory లో కావలసిన skills అని కాదండి. Okay. General … [266 words] … లో బయటికి పంపిస్తాం వాళ్ళు వాళ్ళ సొంతగా బతకడానికి అలవాటు పడాలని ఓకే సో ఆ"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 5,
+      "short_words": [
+       27,
+       33
+      ],
+      "short_time": [
+       9.04,
+       11.54
+      ],
+      "episode_words": [
+       12657,
+       12663
+      ],
+      "episode_time": [
+       5201.862,
+       5204.402
+      ],
+      "offset_s": 5192.822,
+      "offset_end_s": 5192.842,
+      "pause_trims": 0,
+      "n_short_words": 7,
+      "n_matched": 7,
+      "n_exact": 7,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.02,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "backward",
+       "back_s": 114.56,
+       "overlap_words": 0
+      },
+      "in_core": true
+     },
+     {
+      "piece": 6,
+      "short_words": [
+       34,
+       37
+      ],
+      "short_time": [
+       11.58,
+       13.66
+      ],
+      "episode_words": [
+       12410,
+       12413
+      ],
+      "episode_time": [
+       5089.838,
+       5091.898
+      ],
+      "offset_s": 5078.258,
+      "offset_end_s": 5078.238,
+      "pause_trims": 0,
+      "n_short_words": 4,
+      "n_matched": 4,
+      "n_exact": 3,
+      "mean_sim": 0.961,
+      "timing_jitter_s": 0.02,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 2,
+       "source_gap_s": 0.94,
+       "text": "ఉమ్ ఆ"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 7,
+      "short_words": [
+       38,
+       40
+      ],
+      "short_time": [
+       13.76,
+       14.72
+      ],
+      "episode_words": [
+       12416,
+       12419
+      ],
+      "episode_time": [
+       5092.838,
+       5093.838
+      ],
+      "offset_s": 5079.078,
+      "offset_end_s": 5079.078,
+      "pause_trims": 0,
+      "n_short_words": 3,
+      "n_matched": 3,
+      "n_exact": 1,
+      "mean_sim": 0.96,
+      "timing_jitter_s": 0.0,
+      "quality": "ok",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 15,
+       "source_gap_s": 8.38,
+       "text": "ఉమ్ Venkaya Naidu గారు start చేశారు. Krishna Prasad గారు Hyderabad division head చేస్తారనమాట. దాంట్లో ఆ"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 8,
+      "short_words": [
+       41,
+       45
+      ],
+      "short_time": [
+       14.78,
+       16.5
+      ],
+      "episode_words": [
+       12435,
+       12439
+      ],
+      "episode_time": [
+       5102.218,
+       5104.038
+      ],
+      "offset_s": 5087.438,
+      "offset_end_s": 5087.418,
+      "pause_trims": 0,
+      "n_short_words": 5,
+      "n_matched": 5,
+      "n_exact": 5,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.02,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 1,
+       "source_gap_s": 1.28,
+       "text": "ఆ"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 9,
+      "short_words": [
+       46,
+       47
+      ],
+      "short_time": [
+       16.66,
+       17.16
+      ],
+      "episode_words": [
+       12441,
+       12442
+      ],
+      "episode_time": [
+       5105.318,
+       5105.838
+      ],
+      "offset_s": 5088.658,
+      "offset_end_s": 5088.678,
+      "pause_trims": 0,
+      "n_short_words": 2,
+      "n_matched": 2,
+      "n_exact": 2,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.02,
+      "quality": "ok",
+      "issues": [
+       "tiny piece, corroborated by a neighbouring piece"
+      ],
+      "after": {
+       "type": "cut",
+       "n_words": 1,
+       "source_gap_s": 1.26,
+       "text": "training,"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 10,
+      "short_words": [
+       48,
+       54
+      ],
+      "short_time": [
+       17.34,
+       19.52
+      ],
+      "episode_words": [
+       12444,
+       12451
+      ],
+      "episode_time": [
+       5107.098,
+       5109.558
+      ],
+      "offset_s": 5089.758,
+      "offset_end_s": 5090.038,
+      "pause_trims": 1,
+      "n_short_words": 7,
+      "n_matched": 7,
+      "n_exact": 6,
+      "mean_sim": 0.993,
+      "timing_jitter_s": 0.04,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 6,
+       "source_gap_s": 2.72,
+       "text": "Okay. ఉమ్ ఒకసారి వాళ్ళకి వస్తే ఆ"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 11,
+      "short_words": [
+       55,
+       58
+      ],
+      "short_time": [
+       19.82,
+       21.46
+      ],
+      "episode_words": [
+       12458,
+       12461
+      ],
+      "episode_time": [
+       5112.278,
+       5114.038
+      ],
+      "offset_s": 5092.458,
+      "offset_end_s": 5092.498,
+      "pause_trims": 0,
+      "n_short_words": 4,
+      "n_matched": 4,
+      "n_exact": 4,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.02,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 26,
+       "source_gap_s": 12.1,
+       "text": "చాలా బాగుంటది. అంటే పిల్లలు అట్లాంటి places కి expose అయితే మాకిట్లాంటి lifestyle కావాలని … [2 words] … ఉమ్ అందుకనే ఆ hostel, ఆ environment అదంతా కూడా చాలా beautiful గా ఉంటది."
+      },
+      "in_core": true
+     },
+     {
+      "piece": 12,
+      "short_words": [
+       59,
+       62
+      ],
+      "short_time": [
+       21.52,
+       23.36
+      ],
+      "episode_words": [
+       12488,
+       12492
+      ],
+      "episode_time": [
+       5126.138,
+       5127.998
+      ],
+      "offset_s": 5104.618,
+      "offset_end_s": 5104.638,
+      "pause_trims": 0,
+      "n_short_words": 4,
+      "n_matched": 4,
+      "n_exact": 3,
+      "mean_sim": 0.988,
+      "timing_jitter_s": 0.02,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 1,
+       "source_gap_s": 1.14,
+       "text": "running,"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 13,
+      "short_words": [
+       63,
+       65
+      ],
+      "short_time": [
+       23.44,
+       24.62
+      ],
+      "episode_words": [
+       12494,
+       12496
+      ],
+      "episode_time": [
+       5129.138,
+       5130.418
+      ],
+      "offset_s": 5105.698,
+      "offset_end_s": 5105.738,
+      "pause_trims": 0,
+      "n_short_words": 3,
+      "n_matched": 3,
+      "n_exact": 3,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.02,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 21,
+       "source_gap_s": 10.48,
+       "text": "తర్వాత ఉమ్ అక్కడ ఉన్న మేము ఆ బల్క్ డ్రగ్స్ ఎట్లా manufacturing చేస్తాం చిన్న చిన్న equipment కూడా పెట్టాము అలానే tablet punching ఎలా ఉంటుంది"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 14,
+      "short_words": [
+       66,
+       72
+      ],
+      "short_time": [
+       24.72,
+       26.64
+      ],
+      "episode_words": [
+       12518,
+       12524
+      ],
+      "episode_time": [
+       5140.902,
+       5142.962
+      ],
+      "offset_s": 5116.182,
+      "offset_end_s": 5116.282,
+      "pause_trims": 0,
+      "n_short_words": 7,
+      "n_matched": 7,
+      "n_exact": 7,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.16,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 2,
+       "source_gap_s": 0.76,
+       "text": "I think"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 15,
+      "short_words": [
+       73,
+       79
+      ],
+      "short_time": [
+       26.7,
+       29.5
+      ],
+      "episode_words": [
+       12527,
+       12533
+      ],
+      "episode_time": [
+       5143.722,
+       5147.382
+      ],
+      "offset_s": 5117.022,
+      "offset_end_s": 5117.861,
+      "pause_trims": 2,
+      "n_short_words": 7,
+      "n_matched": 7,
+      "n_exact": 7,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.16,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 6,
+       "source_gap_s": 4.98,
+       "text": "practical skills ఆ తర్వాత ఆ factory"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 16,
+      "short_words": [
+       80,
+       86
+      ],
+      "short_time": [
+       29.58,
+       31.28
+      ],
+      "episode_words": [
+       12540,
+       12546
+      ],
+      "episode_time": [
+       5152.362,
+       5154.142
+      ],
+      "offset_s": 5122.782,
+      "offset_end_s": 5122.822,
+      "pause_trims": 0,
+      "n_short_words": 7,
+      "n_matched": 7,
+      "n_exact": 7,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.04,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 2,
+       "source_gap_s": 1.68,
+       "text": "తర్వాత వాళ్ళకి"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 17,
+      "short_words": [
+       87,
+       95
+      ],
+      "short_time": [
+       31.36,
+       34.74
+      ],
+      "episode_words": [
+       12549,
+       12557
+      ],
+      "episode_time": [
+       5155.822,
+       5159.242
+      ],
+      "offset_s": 5124.462,
+      "offset_end_s": 5124.462,
+      "pause_trims": 0,
+      "n_short_words": 9,
+      "n_matched": 9,
+      "n_exact": 9,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.06,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 1,
+       "source_gap_s": 1.36,
+       "text": "so"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 18,
+      "short_words": [
+       96,
+       100
+      ],
+      "short_time": [
+       34.88,
+       36.2
+      ],
+      "episode_words": [
+       12559,
+       12563
+      ],
+      "episode_time": [
+       5160.602,
+       5161.962
+      ],
+      "offset_s": 5125.722,
+      "offset_end_s": 5125.742,
+      "pause_trims": 0,
+      "n_short_words": 5,
+      "n_matched": 5,
+      "n_exact": 5,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.02,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 2,
+       "source_gap_s": 1.08,
+       "text": "they are"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 19,
+      "short_words": [
+       101,
+       108
+      ],
+      "short_time": [
+       36.34,
+       38.46
+      ],
+      "episode_words": [
+       12566,
+       12570
+      ],
+      "episode_time": [
+       5163.042,
+       5165.262
+      ],
+      "offset_s": 5126.702,
+      "offset_end_s": 5126.822,
+      "pause_trims": 0,
+      "n_short_words": 8,
+      "n_matched": 5,
+      "n_exact": 3,
+      "mean_sim": 0.863,
+      "timing_jitter_s": 0.1,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 1,
+       "source_gap_s": 0.54,
+       "text": "ఉహు"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 20,
+      "short_words": [
+       109,
+       119
+      ],
+      "short_time": [
+       38.54,
+       41.14
+      ],
+      "episode_words": [
+       12572,
+       12582
+      ],
+      "episode_time": [
+       5165.802,
+       5169.362
+      ],
+      "offset_s": 5127.262,
+      "offset_end_s": 5128.222,
+      "pause_trims": 2,
+      "n_short_words": 11,
+      "n_matched": 10,
+      "n_exact": 10,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.16,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 26,
+       "source_gap_s": 10.22,
+       "text": "company అంటే familiarity wise ఎందుకంటే interaction అది granules నుంచి ఉంటుంది కాబట్టి they … [2 words] … come to granules granules and other companies కూడా వాళ్ళు they can go"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 21,
+      "short_words": [
+       120,
+       127
+      ],
+      "short_time": [
+       41.24,
+       44.5
+      ],
+      "episode_words": [
+       12609,
+       12617
+      ],
+      "episode_time": [
+       5179.582,
+       5184.102
+      ],
+      "offset_s": 5138.342,
+      "offset_end_s": 5139.622,
+      "pause_trims": 3,
+      "n_short_words": 8,
+      "n_matched": 8,
+      "n_exact": 6,
+      "mean_sim": 0.938,
+      "timing_jitter_s": 0.06,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 1,
+       "source_gap_s": 0.32,
+       "text": "it"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 22,
+      "short_words": [
+       128,
+       132
+      ],
+      "short_time": [
+       44.56,
+       45.66
+      ],
+      "episode_words": [
+       12619,
+       12623
+      ],
+      "episode_time": [
+       5184.422,
+       5185.602
+      ],
+      "offset_s": 5139.862,
+      "offset_end_s": 5139.882,
+      "pause_trims": 0,
+      "n_short_words": 5,
+      "n_matched": 5,
+      "n_exact": 5,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.02,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 1,
+       "source_gap_s": 0.62,
+       "text": "ఓకే"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 23,
+      "short_words": [
+       133,
+       135
+      ],
+      "short_time": [
+       46.0,
+       47.2
+      ],
+      "episode_words": [
+       12625,
+       12627
+      ],
+      "episode_time": [
+       5186.222,
+       5187.602
+      ],
+      "offset_s": 5140.222,
+      "offset_end_s": 5140.222,
+      "pause_trims": 0,
+      "n_short_words": 3,
+      "n_matched": 3,
+      "n_exact": 3,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.0,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 1,
+       "source_gap_s": 1.3,
+       "text": "కి"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 24,
+      "short_words": [
+       136,
+       136
+      ],
+      "short_time": [
+       47.5,
+       48.16
+      ],
+      "episode_words": [
+       12629,
+       12629
+      ],
+      "episode_time": [
+       5188.902,
+       5189.582
+      ],
+      "offset_s": 5141.402,
+      "offset_end_s": 5141.402,
+      "pause_trims": 0,
+      "n_short_words": 1,
+      "n_matched": 1,
+      "n_exact": 1,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.0,
+      "quality": "ok",
+      "issues": [
+       "tiny piece, corroborated by a neighbouring piece"
+      ],
+      "after": {
+       "type": "cut",
+       "n_words": 4,
+       "source_gap_s": 3.2,
+       "text": "ఓకే హాస్టల్లో పెట్టి two,"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 25,
+      "short_words": [
+       137,
+       151
+      ],
+      "short_time": [
+       48.2,
+       51.66
+      ],
+      "episode_words": [
+       12634,
+       12648
+      ],
+      "episode_time": [
+       5192.782,
+       5196.962
+      ],
+      "offset_s": 5144.582,
+      "offset_end_s": 5145.102,
+      "pause_trims": 1,
+      "n_short_words": 15,
+      "n_matched": 15,
+      "n_exact": 15,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.08,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 1,
+       "source_gap_s": 0.44,
+       "text": "వాళ్ళ"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 26,
+      "short_words": [
+       152,
+       155
+      ],
+      "short_time": [
+       51.7,
+       53.28
+      ],
+      "episode_words": [
+       12650,
+       12653
+      ],
+      "episode_time": [
+       5197.402,
+       5198.942
+      ],
+      "offset_s": 5145.702,
+      "offset_end_s": 5145.702,
+      "pause_trims": 0,
+      "n_short_words": 4,
+      "n_matched": 4,
+      "n_exact": 3,
+      "mean_sim": 0.981,
+      "timing_jitter_s": 0.02,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 20,
+       "source_gap_s": 10.22,
+       "text": "ఓకే సో ఆ learn while you earn అనే program ద్వారా పిల్లలు eighteen years అట్లా వచ్చిన వాళ్ళు వచ్చి join అవుతారు so"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 27,
+      "short_words": [
+       156,
+       172
+      ],
+      "short_time": [
+       53.38,
+       59.58
+      ],
+      "episode_words": [
+       12674,
+       12690
+      ],
+      "episode_time": [
+       5209.162,
+       5216.562
+      ],
+      "offset_s": 5155.782,
+      "offset_end_s": 5157.002,
+      "pause_trims": 3,
+      "n_short_words": 17,
+      "n_matched": 17,
+      "n_exact": 17,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.02,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "skip",
+       "n_words": 61,
+       "source_gap_s": 30.9,
+       "text": "ఉమ్ వాళ్ళు join అయినప్పుడు చాలా ఆ అంటే exposure లేక ఉమ్ ఎక్కువ మాట్లాడటం … [37 words] … వీళ్ళు మన మనం తెచ్చి పెంచి పెద్దోళ్ళు అయ్యారు ఎట్లా develop అయ్యారు అన్నట్లు అనిపిస్తుంది"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 28,
+      "short_words": [
+       173,
+       182
+      ],
+      "short_time": [
+       59.66,
+       62.98
+      ],
+      "episode_words": [
+       12752,
+       12761
+      ],
+      "episode_time": [
+       5247.462,
+       5250.742
+      ],
+      "offset_s": 5187.802,
+      "offset_end_s": 5187.722,
+      "pause_trims": 0,
+      "n_short_words": 10,
+      "n_matched": 10,
+      "n_exact": 9,
+      "mean_sim": 0.995,
+      "timing_jitter_s": 0.08,
+      "quality": "good",
+      "issues": [],
+      "in_core": true
+     }
+    ],
+    "kept_untranscribed": [
+     {
+      "j": 12326,
+      "word": "ma'am.",
+      "at": "cont"
+     },
+     {
+      "j": 12359,
+      "word": "end",
+      "at": "cont"
+     },
+     {
+      "j": 12360,
+      "word": "అవన్నీ",
+      "at": "cont"
+     },
+     {
+      "j": 12446,
+      "word": "ఉమ్",
+      "at": "trim"
+     },
+     {
+      "j": 12610,
+      "word": "granules",
+      "at": "cont"
+     },
+     {
+      "j": 12611,
+      "word": "కి",
+      "at": "cont"
+     }
+    ],
+    "unmatched_short_words": [
+     {
+      "i": 102,
+      "word": "Triple",
+      "time": 36.46,
+      "context": "inside piece 19",
+      "episode_words_at_time": [
+       {
+        "j": 12566,
+        "word": "LCCC"
+       }
+      ]
+     },
+     {
+      "i": 103,
+      "word": "S",
+      "time": 36.74,
+      "context": "inside piece 19",
+      "episode_words_at_time": [
+       {
+        "j": 12566,
+        "word": "LCCC"
+       }
+      ]
+     },
+     {
+      "i": 104,
+      "word": "DC",
+      "time": 36.84,
+      "context": "inside piece 19",
+      "episode_words_at_time": [
+       {
+        "j": 12566,
+        "word": "LCCC"
+       }
+      ]
+     },
+     {
+      "i": 119,
+      "word": "కంపెనీ.",
+      "time": 40.82,
+      "context": "inside piece 20, timing-only match at a cut edge",
+      "episode_words_at_time": [
+       {
+        "j": 12582,
+        "word": "ఫార్మా"
+       }
+      ]
+     }
+    ],
+    "other_text_matches": [],
+    "boundary": {
+     "start_natural": true,
+     "start_natural_t4": true,
+     "start_note": "",
+     "start_context": "working towards it. Nice. | మీది ఒకటి చూశాను ma'am.",
+     "end_natural": false,
+     "end_context": "lot of satisfaction అండి | ఆ పిల్లల parents ఆ",
+     "piece_edges_natural": 29,
+     "piece_edges_total": 56
+    }
+   }
+  },
+  {
+   "id": "E2TOXSCqVdQ",
+   "short_id": "E2TOXSCqVdQ",
+   "short_duration_secs": 41.114,
+   "pieces": [
+    {
+     "start_word": 7862,
+     "end_word": 7872,
+     "start": 3199.606,
+     "end": 3203.766
+    },
+    {
+     "start_word": 7889,
+     "end_word": 7898,
+     "start": 3210.726,
+     "end": 3214.646
+    },
+    {
+     "start_word": 7924,
+     "end_word": 7926,
+     "start": 3224.306,
+     "end": 3225.046
+    },
+    {
+     "start_word": 7930,
+     "end_word": 7967,
+     "start": 3225.986,
+     "end": 3241.906
+    },
+    {
+     "start_word": 7972,
+     "end_word": 8007,
+     "start": 3244.066,
+     "end": 3258.506
+    },
+    {
+     "start_word": 8015,
+     "end_word": 8019,
+     "start": 3260.546,
+     "end": 3263.806
+    }
+   ],
+   "region": {
+    "start_word": 7862,
+    "end_word": 8019,
+    "start": 3199.606,
+    "end": 3263.806
+   },
+   "edited_duration": 42.44,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "మేము Svalbard అనే island నుంచి North Pole కి వెళ్లి land అవ్వాలి. ఉ ఈ Svalbard లో wait చేస్తున్నాం. ఎంతండి? చాలా చిన్న island అక్కడ ఒక చిన్న medical store ఉంది. సో ఏం చేయాలో తోచక ఆ medical store లో అడుగుపెట్టాం. అడుగుపెడితే అక్కడ tablets చూసి చాలా bright అయిపోయింది ప్రసాద్ గారి face సడన్-సడన్ గా ఏంటంటే మేము manufacture చేసిన tablets సూపర్ అసలా Norway కి మేము supply చేస్తే అవి అక్కడున్నాయన్నమాట అంటే మేము ఎక్కడో యా End of the world లో ఉన్నాము, connectivity లేదు, అసలు వెనక్కి వస్తాము లేదో తెలీదు, వెళ్తామో లేదో తెలీదు. అట్లాంటి situation లో మనం చేసిన product అనేది తెలుసు చాలా ఎక్కడో connectivity with the world లాగా అనిపించి beautiful experiences in life అండి.",
+   "kept_episode_words": [
+    [
+     7862,
+     7872
+    ],
+    [
+     7889,
+     7898
+    ],
+    [
+     7924,
+     7926
+    ],
+    [
+     7930,
+     7967
+    ],
+    [
+     7972,
+     8007
+    ],
+    [
+     8015,
+     8019
+    ]
+   ],
+   "n_kept_episode_words": 103,
+   "mapping": {
+    "method": "eval.map_shorts v2: 3-gram seed clusters (opening teaser demoted, later copy wins ties) -> timing-constrained Viterbi over fuzzy word candidates -> chance-excursion filter -> playback-speed fit and rescale -> timing-checked fuzzy gap fill; doubtful pieces kept out of the clip core",
+    "confidence": 0.9901,
+    "short_words": 101,
+    "matched_words": 100,
+    "notes": "coverage 99.0% of Short words matched by text (99.0% of non-filler words); 1 fuzzy matches; confidence high",
+    "coverage": 0.9901,
+    "coverage_non_filler": 0.9901,
+    "n_fuzzy_matches": 1,
+    "confidence_label": "high",
+    "time_scale": 1.0,
+    "flags": [],
+    "pieces": [
+     {
+      "piece": 1,
+      "short_words": [
+       0,
+       10
+      ],
+      "short_time": [
+       0.06,
+       3.74
+      ],
+      "episode_words": [
+       7862,
+       7872
+      ],
+      "episode_time": [
+       3199.606,
+       3203.766
+      ],
+      "offset_s": 3199.546,
+      "offset_end_s": 3200.006,
+      "pause_trims": 1,
+      "n_short_words": 11,
+      "n_matched": 11,
+      "n_exact": 11,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.02,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 16,
+       "source_gap_s": 6.96,
+       "text": "అది ఇట్లా problem వచ్చింది ఉ Land అవ్వలేక వెనక్కి వచ్చాం. కొంచెం ఉంటే sink అయిపోయేవాళ్ళం అని నాకు తెలిసింది."
+      },
+      "in_core": true
+     },
+     {
+      "piece": 2,
+      "short_words": [
+       11,
+       19
+      ],
+      "short_time": [
+       3.82,
+       7.26
+      ],
+      "episode_words": [
+       7889,
+       7898
+      ],
+      "episode_time": [
+       3210.726,
+       3214.646
+      ],
+      "offset_s": 3207.006,
+      "offset_end_s": 3207.486,
+      "pause_trims": 1,
+      "n_short_words": 9,
+      "n_matched": 9,
+      "n_exact": 9,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.08,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 25,
+       "source_gap_s": 9.66,
+       "text": "నేషనల్ అదేంటి international treaty కింద ఉంటుందన్నమాట any ఓకే ఆ ఆ వా అది … [1 words] … అర్ధం Country వాళ్ళు వెళ్ళొచ్చు యా చాలా gloomy గా ఉంది వెళ్ళగలమా లేదా అని."
+      },
+      "in_core": true
+     },
+     {
+      "piece": 3,
+      "short_words": [
+       20,
+       22
+      ],
+      "short_time": [
+       7.38,
+       8.119
+      ],
+      "episode_words": [
+       7924,
+       7926
+      ],
+      "episode_time": [
+       3224.306,
+       3225.046
+      ],
+      "offset_s": 3216.926,
+      "offset_end_s": 3216.926,
+      "pause_trims": 0,
+      "n_short_words": 3,
+      "n_matched": 3,
+      "n_exact": 3,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.0,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 3,
+       "source_gap_s": 0.94,
+       "text": "medical shop అదే"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 4,
+      "short_words": [
+       23,
+       60
+      ],
+      "short_time": [
+       8.18,
+       22.1
+      ],
+      "episode_words": [
+       7930,
+       7967
+      ],
+      "episode_time": [
+       3225.986,
+       3241.906
+      ],
+      "offset_s": 3217.806,
+      "offset_end_s": 3219.846,
+      "pause_trims": 4,
+      "n_short_words": 38,
+      "n_matched": 37,
+      "n_exact": 37,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.08,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 4,
+       "source_gap_s": 2.16,
+       "text": "High moment అది చూడంగానే"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 5,
+      "short_words": [
+       61,
+       95
+      ],
+      "short_time": [
+       22.14,
+       35.08
+      ],
+      "episode_words": [
+       7972,
+       8007
+      ],
+      "episode_time": [
+       3244.066,
+       3258.506
+      ],
+      "offset_s": 3221.926,
+      "offset_end_s": 3223.406,
+      "pause_trims": 3,
+      "n_short_words": 35,
+      "n_matched": 35,
+      "n_exact": 34,
+      "mean_sim": 0.996,
+      "timing_jitter_s": 0.18,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 7,
+       "source_gap_s": 2.04,
+       "text": "you know these are certain you know"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 6,
+      "short_words": [
+       96,
+       100
+      ],
+      "short_time": [
+       35.2,
+       37.98
+      ],
+      "episode_words": [
+       8015,
+       8019
+      ],
+      "episode_time": [
+       3260.546,
+       3263.806
+      ],
+      "offset_s": 3225.346,
+      "offset_end_s": 3225.786,
+      "pause_trims": 1,
+      "n_short_words": 5,
+      "n_matched": 5,
+      "n_exact": 5,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.02,
+      "quality": "good",
+      "issues": [],
+      "in_core": true
+     }
+    ],
+    "kept_untranscribed": [
+     {
+      "j": 7889,
+      "word": "ఉ",
+      "at": "cut"
+     },
+     {
+      "j": 7936,
+      "word": "తోచక",
+      "at": "cont"
+     },
+     {
+      "j": 7975,
+      "word": "యా",
+      "at": "cont"
+     }
+    ],
+    "unmatched_short_words": [
+     {
+      "i": 29,
+      "word": "చూడటానికి",
+      "time": 9.88,
+      "context": "inside piece 4",
+      "episode_words_at_time": [
+       {
+        "j": 7936,
+        "word": "తోచక"
+       }
+      ]
+     }
+    ],
+    "other_text_matches": [],
+    "boundary": {
+     "start_natural": true,
+     "start_natural_t4": true,
+     "start_note": "",
+     "start_context": "ఇక్కడ చిన్న చిన్నయి ఆ | మేము Svalbard అనే island",
+     "end_natural": true,
+     "end_context": "experiences in life అండి. | Seven continents లోని seven",
+     "piece_edges_natural": 7,
+     "piece_edges_total": 12
+    }
+   }
+  },
+  {
+   "id": "JpAq-bk5RgA",
+   "short_id": "JpAq-bk5RgA",
+   "short_duration_secs": 35.413,
+   "pieces": [
+    {
+     "start_word": 3791,
+     "end_word": 3800,
+     "start": 1527.844,
+     "end": 1530.704
+    },
+    {
+     "start_word": 3802,
+     "end_word": 3809,
+     "start": 1531.244,
+     "end": 1533.384
+    },
+    {
+     "start_word": 3817,
+     "end_word": 3838,
+     "start": 1535.764,
+     "end": 1542.884
+    },
+    {
+     "start_word": 3842,
+     "end_word": 3844,
+     "start": 1544.464,
+     "end": 1546.204
+    },
+    {
+     "start_word": 3847,
+     "end_word": 3860,
+     "start": 1547.344,
+     "end": 1553.964
+    },
+    {
+     "start_word": 3876,
+     "end_word": 3882,
+     "start": 1562.044,
+     "end": 1564.844
+    },
+    {
+     "start_word": 3890,
+     "end_word": 3895,
+     "start": 1567.684,
+     "end": 1569.664
+    },
+    {
+     "start_word": 3917,
+     "end_word": 3923,
+     "start": 1577.444,
+     "end": 1578.904
+    },
+    {
+     "start_word": 3926,
+     "end_word": 3933,
+     "start": 1580.264,
+     "end": 1583.064
+    },
+    {
+     "start_word": 3935,
+     "end_word": 3942,
+     "start": 1584.444,
+     "end": 1586.964
+    }
+   ],
+   "region": {
+    "start_word": 3791,
+    "end_word": 3942,
+    "start": 1527.844,
+    "end": 1586.964
+   },
+   "edited_duration": 32.04,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "world లోనే ఇండియాని pharmacy of the world అంటారు అండ్ అందులో ఇండియాలోనే హైదరాబాద్ became the pharmacy of the world. ఇండియా pharmacy of the world అవ్వడానికి ఎలాంటి opportunity వచ్చింది ఎలాంటి opportunity ఇండియా grab చేసుకుంది? అందులో హైదరాబాద్ ఇంత పెద్ద role ఎలా play చేసింది? to IDPL. అప్పుడంతా Russian technology అదంతా వచ్చి IDPL నుంచి మనుషులందరూ బయటికి వచ్చి అందరూ start చేసుకోవటం మొదలు పెట్టారు. ఆ తర్వాత formulations automatic గా అట్లా మొదలైంది. అట్లా హైదరాబాద్ became the hub అన్నమాట. And that's why we are very proud. ఇండియా నుంచి export చేసే very few companies లో We are I think pioneers in doing that.",
+   "kept_episode_words": [
+    [
+     3791,
+     3800
+    ],
+    [
+     3802,
+     3809
+    ],
+    [
+     3817,
+     3838
+    ],
+    [
+     3842,
+     3844
+    ],
+    [
+     3847,
+     3860
+    ],
+    [
+     3876,
+     3882
+    ],
+    [
+     3890,
+     3895
+    ],
+    [
+     3917,
+     3923
+    ],
+    [
+     3926,
+     3933
+    ],
+    [
+     3935,
+     3942
+    ]
+   ],
+   "n_kept_episode_words": 93,
+   "mapping": {
+    "method": "eval.map_shorts v2: 3-gram seed clusters (opening teaser demoted, later copy wins ties) -> timing-constrained Viterbi over fuzzy word candidates -> chance-excursion filter -> playback-speed fit and rescale -> timing-checked fuzzy gap fill; doubtful pieces kept out of the clip core",
+    "confidence": 1.0,
+    "short_words": 92,
+    "matched_words": 92,
+    "notes": "coverage 100.0% of Short words matched by text (100.0% of non-filler words); 3 fuzzy matches; confidence high. Flags: piece 4: tiny piece, corroborated by a neighbouring piece",
+    "coverage": 1.0,
+    "coverage_non_filler": 1.0,
+    "n_fuzzy_matches": 3,
+    "confidence_label": "high",
+    "time_scale": 1.0,
+    "flags": [
+     "piece 4: tiny piece, corroborated by a neighbouring piece"
+    ],
+    "pieces": [
+     {
+      "piece": 1,
+      "short_words": [
+       0,
+       9
+      ],
+      "short_time": [
+       0.12,
+       2.5
+      ],
+      "episode_words": [
+       3791,
+       3800
+      ],
+      "episode_time": [
+       1527.844,
+       1530.704
+      ],
+      "offset_s": 1527.724,
+      "offset_end_s": 1528.204,
+      "pause_trims": 1,
+      "n_short_words": 10,
+      "n_matched": 10,
+      "n_exact": 9,
+      "mean_sim": 0.995,
+      "timing_jitter_s": 0.02,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 1,
+       "source_gap_s": 0.54,
+       "text": "హైదరాబాద్"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 2,
+      "short_words": [
+       10,
+       17
+      ],
+      "short_time": [
+       2.56,
+       4.64
+      ],
+      "episode_words": [
+       3802,
+       3809
+      ],
+      "episode_time": [
+       1531.244,
+       1533.384
+      ],
+      "offset_s": 1528.684,
+      "offset_end_s": 1528.664,
+      "pause_trims": 0,
+      "n_short_words": 8,
+      "n_matched": 8,
+      "n_exact": 8,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.02,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 7,
+       "source_gap_s": 2.38,
+       "text": "Actually ఆ time లో ఏం జరిగింది? అసలు"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 3,
+      "short_words": [
+       18,
+       39
+      ],
+      "short_time": [
+       4.78,
+       11.52
+      ],
+      "episode_words": [
+       3817,
+       3838
+      ],
+      "episode_time": [
+       1535.764,
+       1542.884
+      ],
+      "offset_s": 1530.984,
+      "offset_end_s": 1531.364,
+      "pause_trims": 1,
+      "n_short_words": 22,
+      "n_matched": 22,
+      "n_exact": 22,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.02,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 3,
+       "source_gap_s": 1.58,
+       "text": "IDPL అండి. Thanks"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 4,
+      "short_words": [
+       40,
+       41
+      ],
+      "short_time": [
+       11.62,
+       13.02
+      ],
+      "episode_words": [
+       3842,
+       3844
+      ],
+      "episode_time": [
+       1544.464,
+       1546.204
+      ],
+      "offset_s": 1532.984,
+      "offset_end_s": 1533.124,
+      "pause_trims": 0,
+      "n_short_words": 2,
+      "n_matched": 2,
+      "n_exact": 2,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.14,
+      "quality": "ok",
+      "issues": [
+       "tiny piece, corroborated by a neighbouring piece"
+      ],
+      "after": {
+       "type": "cut",
+       "n_words": 2,
+       "source_gap_s": 1.14,
+       "text": "you know"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 5,
+      "short_words": [
+       42,
+       55
+      ],
+      "short_time": [
+       13.14,
+       19.4
+      ],
+      "episode_words": [
+       3847,
+       3860
+      ],
+      "episode_time": [
+       1547.344,
+       1553.964
+      ],
+      "offset_s": 1534.204,
+      "offset_end_s": 1534.564,
+      "pause_trims": 1,
+      "n_short_words": 14,
+      "n_matched": 14,
+      "n_exact": 13,
+      "mean_sim": 0.986,
+      "timing_jitter_s": 0.06,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 15,
+       "source_gap_s": 8.08,
+       "text": "అట్లాగే హైదరాబాద్ became the you know bulk drug you know centre of the world అయిపోయింది."
+      },
+      "in_core": true
+     },
+     {
+      "piece": 6,
+      "short_words": [
+       56,
+       62
+      ],
+      "short_time": [
+       19.6,
+       22.32
+      ],
+      "episode_words": [
+       3876,
+       3882
+      ],
+      "episode_time": [
+       1562.044,
+       1564.844
+      ],
+      "offset_s": 1542.444,
+      "offset_end_s": 1542.424,
+      "pause_trims": 0,
+      "n_short_words": 7,
+      "n_matched": 7,
+      "n_exact": 7,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.02,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 7,
+       "source_gap_s": 2.84,
+       "text": "So that is the basic thing. ఓకే"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 7,
+      "short_words": [
+       63,
+       68
+      ],
+      "short_time": [
+       22.6,
+       24.44
+      ],
+      "episode_words": [
+       3890,
+       3895
+      ],
+      "episode_time": [
+       1567.684,
+       1569.664
+      ],
+      "offset_s": 1545.084,
+      "offset_end_s": 1545.084,
+      "pause_trims": 0,
+      "n_short_words": 6,
+      "n_matched": 6,
+      "n_exact": 5,
+      "mean_sim": 0.988,
+      "timing_jitter_s": 0.02,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 21,
+       "source_gap_s": 7.78,
+       "text": "ఉమ్ ఉమ్ సో ఆ తర్వాత ఇండియా ఆ తర్వాత చైనా వచ్చింది అనుకోండి. ఉమ్ So that is how Hyderabad became the centre. ఓకే"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 8,
+      "short_words": [
+       69,
+       75
+      ],
+      "short_time": [
+       24.48,
+       25.84
+      ],
+      "episode_words": [
+       3917,
+       3923
+      ],
+      "episode_time": [
+       1577.444,
+       1578.904
+      ],
+      "offset_s": 1552.964,
+      "offset_end_s": 1552.944,
+      "pause_trims": 0,
+      "n_short_words": 7,
+      "n_matched": 7,
+      "n_exact": 7,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.02,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 2,
+       "source_gap_s": 1.36,
+       "text": "హైదరాబాద్ నుంచి"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 9,
+      "short_words": [
+       76,
+       83
+      ],
+      "short_time": [
+       25.92,
+       28.68
+      ],
+      "episode_words": [
+       3926,
+       3933
+      ],
+      "episode_time": [
+       1580.264,
+       1583.064
+      ],
+      "offset_s": 1554.344,
+      "offset_end_s": 1554.344,
+      "pause_trims": 0,
+      "n_short_words": 8,
+      "n_matched": 8,
+      "n_exact": 8,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.02,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 1,
+       "source_gap_s": 1.38,
+       "text": "ఉమ్"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 10,
+      "short_words": [
+       84,
+       91
+      ],
+      "short_time": [
+       29.12,
+       31.28
+      ],
+      "episode_words": [
+       3935,
+       3942
+      ],
+      "episode_time": [
+       1584.444,
+       1586.964
+      ],
+      "offset_s": 1555.324,
+      "offset_end_s": 1555.584,
+      "pause_trims": 1,
+      "n_short_words": 8,
+      "n_matched": 8,
+      "n_exact": 8,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.02,
+      "quality": "good",
+      "issues": [],
+      "in_core": true
+     }
+    ],
+    "kept_untranscribed": [
+     {
+      "j": 3842,
+      "word": "to",
+      "at": "cut"
+     }
+    ],
+    "unmatched_short_words": [],
+    "other_text_matches": [
+     {
+      "t0": 3246.2,
+      "t1": 3246.2,
+      "n_short_words_explained": 9,
+      "used": false,
+      "duplicate_share": 1.0,
+      "lost_to_nearer_copy": false
+     },
+     {
+      "t0": 2708.5,
+      "t1": 2708.5,
+      "n_short_words_explained": 9,
+      "used": false,
+      "duplicate_share": 1.0,
+      "lost_to_nearer_copy": false
+     }
+    ],
+    "boundary": {
+     "start_natural": true,
+     "start_natural_t4": true,
+     "start_note": "",
+     "start_context": "will go. ఈరోజు చూస్తే | world లోనే ఇండియాని pharmacy",
+     "end_natural": true,
+     "end_context": "pioneers in doing that. | Right. And అసలు actually",
+     "piece_edges_natural": 13,
+     "piece_edges_total": 20
+    }
+   }
+  },
+  {
+   "id": "ox-jOxTbw-c",
+   "short_id": "ox-jOxTbw-c",
+   "short_duration_secs": 43.853,
+   "pieces": [
+    {
+     "start_word": 3926,
+     "end_word": 3933,
+     "start": 1580.264,
+     "end": 1583.064
+    },
+    {
+     "start_word": 3935,
+     "end_word": 3940,
+     "start": 1584.444,
+     "end": 1586.404
+    },
+    {
+     "start_word": 46,
+     "end_word": 57,
+     "start": 21.24,
+     "end": 26.1
+    },
+    {
+     "start_word": 9,
+     "end_word": 20,
+     "start": 4.46,
+     "end": 8.02
+    },
+    {
+     "start_word": 248,
+     "end_word": 256,
+     "start": 102.32,
+     "end": 104.8
+    },
+    {
+     "start_word": 147,
+     "end_word": 159,
+     "start": 61.96,
+     "end": 66.06
+    },
+    {
+     "start_word": 7839,
+     "end_word": 7846,
+     "start": 3190.166,
+     "end": 3191.926
+    },
+    {
+     "start_word": 7851,
+     "end_word": 7856,
+     "start": 3193.646,
+     "end": 3196.106
+    },
+    {
+     "start_word": 133,
+     "end_word": 146,
+     "start": 54.94,
+     "end": 59.04
+    }
+   ],
+   "region": {
+    "start_word": 9,
+    "end_word": 7856,
+    "start": 4.46,
+    "end": 3196.106
+   },
+   "edited_duration": 28.08,
+   "reordered": true,
+   "n_blocks": 7,
+   "text": "ఇండియా నుంచి export చేసే very few companies లో We are I think pioneers in వచ్చింది. ఇప్పుడు Granules overall ఎంత revenue చేస్తుంది? Yearly six thousand crores అండి. Every second around the world, five people are taking our tablet అండి. We don't want to be mediocre anywhere. Top. అంతే. మీరు seven different continents లో seven different marathons చేసి world record hold చేసుకున్నారు. ఉ As the only couple in the world Antarctica North Pole Marathon recognition వచ్చింది. ఇప్పుడు India గాని ఒక medicine scratch నుంచి build చేయాలంటే India కి actually ఏం కావాలి?",
+   "kept_episode_words": [
+    [
+     9,
+     20
+    ],
+    [
+     46,
+     57
+    ],
+    [
+     133,
+     159
+    ],
+    [
+     248,
+     256
+    ],
+    [
+     3926,
+     3933
+    ],
+    [
+     3935,
+     3940
+    ],
+    [
+     7839,
+     7846
+    ],
+    [
+     7851,
+     7856
+    ]
+   ],
+   "n_kept_episode_words": 88,
+   "mapping": {
+    "method": "eval.map_shorts v2: 3-gram seed clusters (opening teaser demoted, later copy wins ties) -> timing-constrained Viterbi over fuzzy word candidates -> chance-excursion filter -> playback-speed fit and rescale -> timing-checked fuzzy gap fill; doubtful pieces kept out of the clip core",
+    "confidence": 0.9773,
+    "short_words": 88,
+    "matched_words": 86,
+    "notes": "coverage 97.7% of Short words matched by text (97.7% of non-filler words); 3 fuzzy matches; confidence high",
+    "coverage": 0.9773,
+    "coverage_non_filler": 0.9773,
+    "n_fuzzy_matches": 3,
+    "confidence_label": "high",
+    "time_scale": 1.0,
+    "flags": [],
+    "pieces": [
+     {
+      "piece": 1,
+      "short_words": [
+       0,
+       7
+      ],
+      "short_time": [
+       0.1,
+       2.88
+      ],
+      "episode_words": [
+       3926,
+       3933
+      ],
+      "episode_time": [
+       1580.264,
+       1583.064
+      ],
+      "offset_s": 1580.164,
+      "offset_end_s": 1580.184,
+      "pause_trims": 0,
+      "n_short_words": 8,
+      "n_matched": 8,
+      "n_exact": 7,
+      "mean_sim": 0.985,
+      "timing_jitter_s": 0.04,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 1,
+       "source_gap_s": 1.38,
+       "text": "ఉమ్"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 2,
+      "short_words": [
+       8,
+       13
+      ],
+      "short_time": [
+       3.36,
+       5.32
+      ],
+      "episode_words": [
+       3935,
+       3940
+      ],
+      "episode_time": [
+       1584.444,
+       1586.404
+      ],
+      "offset_s": 1581.084,
+      "offset_end_s": 1581.044,
+      "pause_trims": 0,
+      "n_short_words": 6,
+      "n_matched": 6,
+      "n_exact": 6,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.04,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "backward",
+       "back_s": 1565.16,
+       "overlap_words": 0
+      },
+      "in_core": true
+     },
+     {
+      "piece": 3,
+      "short_words": [
+       15,
+       26
+      ],
+      "short_time": [
+       5.48,
+       9.9
+      ],
+      "episode_words": [
+       46,
+       57
+      ],
+      "episode_time": [
+       21.24,
+       26.1
+      ],
+      "offset_s": 15.76,
+      "offset_end_s": 16.24,
+      "pause_trims": 2,
+      "n_short_words": 12,
+      "n_matched": 11,
+      "n_exact": 10,
+      "mean_sim": 0.971,
+      "timing_jitter_s": 0.06,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "backward",
+       "back_s": 21.64,
+       "overlap_words": 0
+      },
+      "in_core": true
+     },
+     {
+      "piece": 4,
+      "short_words": [
+       27,
+       38
+      ],
+      "short_time": [
+       16.059,
+       19.54
+      ],
+      "episode_words": [
+       9,
+       20
+      ],
+      "episode_time": [
+       4.46,
+       8.02
+      ],
+      "offset_s": -11.599,
+      "offset_end_s": -11.6,
+      "pause_trims": 0,
+      "n_short_words": 12,
+      "n_matched": 12,
+      "n_exact": 12,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.02,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "skip",
+       "n_words": 227,
+       "source_gap_s": 94.3,
+       "text": "Four five years of heavy struggle, almost bankruptcy stage కి వెళ్ళింది. Okay. … [203 words] … అయితే ఆ country లోనే effect వస్తాదండి. We are very proud for that."
+      },
+      "in_core": true
+     },
+     {
+      "piece": 5,
+      "short_words": [
+       39,
+       47
+      ],
+      "short_time": [
+       23.16,
+       25.54
+      ],
+      "episode_words": [
+       248,
+       256
+      ],
+      "episode_time": [
+       102.32,
+       104.8
+      ],
+      "offset_s": 79.16,
+      "offset_end_s": 79.26,
+      "pause_trims": 0,
+      "n_short_words": 9,
+      "n_matched": 9,
+      "n_exact": 9,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.08,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "backward",
+       "back_s": 42.84,
+       "overlap_words": 0
+      },
+      "in_core": true
+     },
+     {
+      "piece": 6,
+      "short_words": [
+       48,
+       60
+      ],
+      "short_time": [
+       25.72,
+       29.8
+      ],
+      "episode_words": [
+       147,
+       159
+      ],
+      "episode_time": [
+       61.96,
+       66.06
+      ],
+      "offset_s": 36.24,
+      "offset_end_s": 36.24,
+      "pause_trims": 0,
+      "n_short_words": 13,
+      "n_matched": 13,
+      "n_exact": 12,
+      "mean_sim": 0.987,
+      "timing_jitter_s": 0.001,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "skip",
+       "n_words": 7679,
+       "source_gap_s": 3124.11,
+       "text": "2015 లో Krishna Prasad గారు, he was turning sixty in that year, … [7655 words] … life Its a గ్రేట్ experience అండి. అక్కడ కూడా వెళ్లి ఆ run చేశాము."
+      },
+      "in_core": true
+     },
+     {
+      "piece": 7,
+      "short_words": [
+       61,
+       67
+      ],
+      "short_time": [
+       29.9,
+       31.6
+      ],
+      "episode_words": [
+       7839,
+       7846
+      ],
+      "episode_time": [
+       3190.166,
+       3191.926
+      ],
+      "offset_s": 3160.365,
+      "offset_end_s": 3160.365,
+      "pause_trims": 0,
+      "n_short_words": 7,
+      "n_matched": 7,
+      "n_exact": 7,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.02,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 4,
+       "source_gap_s": 1.72,
+       "text": "ఉ Both marathon అదే"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 8,
+      "short_words": [
+       68,
+       73
+      ],
+      "short_time": [
+       31.68,
+       34.16
+      ],
+      "episode_words": [
+       7851,
+       7856
+      ],
+      "episode_time": [
+       3193.646,
+       3196.106
+      ],
+      "offset_s": 3161.966,
+      "offset_end_s": 3161.946,
+      "pause_trims": 0,
+      "n_short_words": 6,
+      "n_matched": 6,
+      "n_exact": 6,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.1,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "backward",
+       "back_s": 3141.17,
+       "overlap_words": 0
+      },
+      "in_core": true
+     },
+     {
+      "piece": 9,
+      "short_words": [
+       74,
+       87
+      ],
+      "short_time": [
+       34.22,
+       38.16
+      ],
+      "episode_words": [
+       133,
+       146
+      ],
+      "episode_time": [
+       54.94,
+       59.04
+      ],
+      "offset_s": 20.72,
+      "offset_end_s": 20.72,
+      "pause_trims": 0,
+      "n_short_words": 14,
+      "n_matched": 14,
+      "n_exact": 14,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.02,
+      "quality": "good",
+      "issues": [],
+      "in_core": true
+     }
+    ],
+    "kept_untranscribed": [
+     {
+      "j": 7839,
+      "word": "ఉ",
+      "at": "cut"
+     }
+    ],
+    "unmatched_short_words": [
+     {
+      "i": 14,
+      "word": "the",
+      "time": 5.36,
+      "context": "between pieces 2 and 3"
+     },
+     {
+      "i": 26,
+      "word": "sir.",
+      "time": 9.68,
+      "context": "inside piece 3, timing-only match at a cut edge",
+      "episode_words_at_time": [
+       {
+        "j": 57,
+        "word": "అండి."
+       }
+      ]
+     }
+    ],
+    "other_text_matches": [
+     {
+      "t0": 2440.3,
+      "t1": 2445.5,
+      "n_short_words_explained": 14,
+      "used": false,
+      "duplicate_share": 1.0,
+      "lost_to_nearer_copy": false
+     },
+     {
+      "t0": 3133.0,
+      "t1": 3194.7,
+      "n_short_words_explained": 13,
+      "used": true,
+      "duplicate_share": 0.0,
+      "lost_to_nearer_copy": false
+     },
+     {
+      "t0": 1580.6,
+      "t1": 1585.2,
+      "n_short_words_explained": 13,
+      "used": true,
+      "duplicate_share": 0.0,
+      "lost_to_nearer_copy": false
+     },
+     {
+      "t0": 2989.3,
+      "t1": 3023.3,
+      "n_short_words_explained": 12,
+      "used": false,
+      "duplicate_share": 1.0,
+      "lost_to_nearer_copy": false
+     },
+     {
+      "t0": 2615.3,
+      "t1": 2621.2,
+      "n_short_words_explained": 12,
+      "used": false,
+      "duplicate_share": 1.0,
+      "lost_to_nearer_copy": false
+     },
+     {
+      "t0": 3579.9,
+      "t1": 3588.9,
+      "n_short_words_explained": 10,
+      "used": false,
+      "duplicate_share": 1.0,
+      "lost_to_nearer_copy": false
+     },
+     {
+      "t0": 2196.6,
+      "t1": 2199.3,
+      "n_short_words_explained": 9,
+      "used": false,
+      "duplicate_share": 1.0,
+      "lost_to_nearer_copy": false
+     },
+     {
+      "t0": 839.0,
+      "t1": 839.6,
+      "n_short_words_explained": 7,
+      "used": false,
+      "duplicate_share": 1.0,
+      "lost_to_nearer_copy": false
+     },
+     {
+      "t0": 2335.1,
+      "t1": 2335.7,
+      "n_short_words_explained": 6,
+      "used": false,
+      "duplicate_share": 1.0,
+      "lost_to_nearer_copy": false
+     },
+     {
+      "t0": 2265.2,
+      "t1": 2266.4,
+      "n_short_words_explained": 6,
+      "used": false,
+      "duplicate_share": 1.0,
+      "lost_to_nearer_copy": false
+     }
+    ],
+    "boundary": {
+     "start_natural": false,
+     "start_natural_t4": false,
+     "start_note": "",
+     "start_context": "very proud. హైదరాబాద్ నుంచి | ఇండియా నుంచి export చేసే",
+     "end_natural": true,
+     "end_context": "కి actually ఏం కావాలి? | మీరు seven different continents",
+     "piece_edges_natural": 14,
+     "piece_edges_total": 18
+    }
+   }
+  },
+  {
+   "id": "pjQu-ctYnEM",
+   "short_id": "pjQu-ctYnEM",
+   "short_duration_secs": 41.593,
+   "pieces": [
+    {
+     "start_word": 5832,
+     "end_word": 5838,
+     "start": 2394.694,
+     "end": 2397.734
+    },
+    {
+     "start_word": 5872,
+     "end_word": 5881,
+     "start": 2407.274,
+     "end": 2409.694
+    },
+    {
+     "start_word": 5893,
+     "end_word": 5899,
+     "start": 2417.314,
+     "end": 2418.994
+    },
+    {
+     "start_word": 4804,
+     "end_word": 4817,
+     "start": 1957.194,
+     "end": 1965.994
+    },
+    {
+     "start_word": 4829,
+     "end_word": 4829,
+     "start": 1972.854,
+     "end": 1973.314
+    },
+    {
+     "start_word": 4831,
+     "end_word": 4831,
+     "start": 1974.854,
+     "end": 1975.174
+    },
+    {
+     "start_word": 4833,
+     "end_word": 4835,
+     "start": 1975.714,
+     "end": 1976.794
+    },
+    {
+     "start_word": 4841,
+     "end_word": 4866,
+     "start": 1977.994,
+     "end": 1988.074
+    },
+    {
+     "start_word": 4588,
+     "end_word": 4607,
+     "start": 1853.034,
+     "end": 1862.094
+    },
+    {
+     "start_word": 5882,
+     "end_word": 5886,
+     "start": 2410.054,
+     "end": 2412.374
+    },
+    {
+     "start_word": 5908,
+     "end_word": 5910,
+     "start": 2423.134,
+     "end": 2424.274
+    }
+   ],
+   "region": {
+    "start_word": 4588,
+    "end_word": 5910,
+    "start": 1853.034,
+    "end": 2424.274
+   },
+   "edited_duration": 40.4,
+   "reordered": true,
+   "n_blocks": 4,
+   "text": "we are able to give cheap medicines it to the world we are very proud for that quality medicines ఉమ్ At the same time metformin ఉమ్ నాలుగు billion tablets అమెరికాలో అమ్ముతాం అంటే అంతమందికి diabetes నుంచి మనం ఇది చేస్తున్నామా? tylenol అంటే Dolo ఎలా అంటారో ఉమ్ అక్కడ tylenol అనేది ఎన్నో సంవత్సరాల నుంచి ఉంది దాంట్లో ముప్పాతి కొంత మన tablets లే ఉమ్ ఇక్కడి నుంచి మనం manufacturing చేసి పంపిస్తున్నాం అక్కడ ఒక name వేసుకుని ఇస్తారు కొన్ని కొన్ని products అయితేనండి మనం manufacturing ఏదన్నా problem వచ్చి ఏదన్నా ఆగితే ఆ country లోనే effect వస్తోంది అట్లాంటి manufacturing కొన్ని ఉన్నాయి India ఒక value ప్రపంచానికి ఉందండి మన value మనకుంది",
+   "kept_episode_words": [
+    [
+     4588,
+     4607
+    ],
+    [
+     4804,
+     4817
+    ],
+    [
+     4829,
+     4829
+    ],
+    [
+     4831,
+     4831
+    ],
+    [
+     4833,
+     4835
+    ],
+    [
+     4841,
+     4866
+    ],
+    [
+     5832,
+     5838
+    ],
+    [
+     5872,
+     5886
+    ],
+    [
+     5893,
+     5899
+    ],
+    [
+     5908,
+     5910
+    ]
+   ],
+   "n_kept_episode_words": 97,
+   "mapping": {
+    "method": "eval.map_shorts v2: 3-gram seed clusters (opening teaser demoted, later copy wins ties) -> timing-constrained Viterbi over fuzzy word candidates -> chance-excursion filter -> playback-speed fit and rescale -> timing-checked fuzzy gap fill; doubtful pieces kept out of the clip core",
+    "confidence": 0.9783,
+    "short_words": 92,
+    "matched_words": 90,
+    "notes": "coverage 97.8% of Short words matched by text (97.8% of non-filler words); 9 fuzzy matches; confidence high. Flags: piece 5: tiny piece, corroborated by a neighbouring piece | piece 6: tiny piece, corroborated by a neighbouring piece",
+    "coverage": 0.9783,
+    "coverage_non_filler": 0.9783,
+    "n_fuzzy_matches": 9,
+    "confidence_label": "high",
+    "time_scale": 1.0,
+    "flags": [
+     "piece 5: tiny piece, corroborated by a neighbouring piece",
+     "piece 6: tiny piece, corroborated by a neighbouring piece"
+    ],
+    "pieces": [
+     {
+      "piece": 1,
+      "short_words": [
+       0,
+       6
+      ],
+      "short_time": [
+       0.1,
+       3.12
+      ],
+      "episode_words": [
+       5832,
+       5838
+      ],
+      "episode_time": [
+       2394.694,
+       2397.734
+      ],
+      "offset_s": 2394.594,
+      "offset_end_s": 2394.474,
+      "pause_trims": 0,
+      "n_short_words": 7,
+      "n_matched": 6,
+      "n_exact": 6,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.12,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 33,
+       "source_gap_s": 9.54,
+       "text": "To the world Cheap medicines అంటే cheap అంటే తక్కువ price cheap అంటే … [9 words] … not the right right word affordable medicines we are able to give"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 2,
+      "short_words": [
+       7,
+       15
+      ],
+      "short_time": [
+       3.16,
+       5.48
+      ],
+      "episode_words": [
+       5872,
+       5881
+      ],
+      "episode_time": [
+       2407.274,
+       2409.694
+      ],
+      "offset_s": 2404.254,
+      "offset_end_s": 2404.234,
+      "pause_trims": 0,
+      "n_short_words": 9,
+      "n_matched": 9,
+      "n_exact": 9,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.02,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 11,
+       "source_gap_s": 7.62,
+       "text": "India ఒక value ప్రపంచానికి ఉందండి True ఆ మనం affordable medicines ఇవ్వటంలో"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 3,
+      "short_words": [
+       16,
+       21
+      ],
+      "short_time": [
+       5.88,
+       7.78
+      ],
+      "episode_words": [
+       5893,
+       5899
+      ],
+      "episode_time": [
+       2417.314,
+       2418.994
+      ],
+      "offset_s": 2411.434,
+      "offset_end_s": 2411.434,
+      "pause_trims": 0,
+      "n_short_words": 6,
+      "n_matched": 6,
+      "n_exact": 5,
+      "mean_sim": 0.99,
+      "timing_jitter_s": 0.02,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "backward",
+       "back_s": 461.8,
+       "overlap_words": 0
+      },
+      "in_core": true
+     },
+     {
+      "piece": 4,
+      "short_words": [
+       22,
+       35
+      ],
+      "short_time": [
+       8.06,
+       14.02
+      ],
+      "episode_words": [
+       4804,
+       4817
+      ],
+      "episode_time": [
+       1957.194,
+       1965.994
+      ],
+      "offset_s": 1949.134,
+      "offset_end_s": 1951.994,
+      "pause_trims": 2,
+      "n_short_words": 14,
+      "n_matched": 13,
+      "n_exact": 10,
+      "mean_sim": 0.982,
+      "timing_jitter_s": 0.1,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 11,
+       "source_gap_s": 6.86,
+       "text": "ఆ తృప్తి is more than enough ఉమ్ ఇప్పుడు panadol ఆ sorry"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 5,
+      "short_words": [
+       36,
+       36
+      ],
+      "short_time": [
+       14.18,
+       14.64
+      ],
+      "episode_words": [
+       4829,
+       4829
+      ],
+      "episode_time": [
+       1972.854,
+       1973.314
+      ],
+      "offset_s": 1958.674,
+      "offset_end_s": 1958.674,
+      "pause_trims": 0,
+      "n_short_words": 1,
+      "n_matched": 1,
+      "n_exact": 1,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.0,
+      "quality": "ok",
+      "issues": [
+       "tiny piece, corroborated by a neighbouring piece"
+      ],
+      "after": {
+       "type": "cut",
+       "n_words": 1,
+       "source_gap_s": 1.54,
+       "text": "అమెరికాలో"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 6,
+      "short_words": [
+       37,
+       37
+      ],
+      "short_time": [
+       14.84,
+       15.1
+      ],
+      "episode_words": [
+       4831,
+       4831
+      ],
+      "episode_time": [
+       1974.854,
+       1975.174
+      ],
+      "offset_s": 1960.014,
+      "offset_end_s": 1960.014,
+      "pause_trims": 0,
+      "n_short_words": 1,
+      "n_matched": 1,
+      "n_exact": 1,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.0,
+      "quality": "ok",
+      "issues": [
+       "tiny piece, corroborated by a neighbouring piece"
+      ],
+      "after": {
+       "type": "cut",
+       "n_words": 1,
+       "source_gap_s": 0.54,
+       "text": "ఇప్పుడే"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 7,
+      "short_words": [
+       38,
+       40
+      ],
+      "short_time": [
+       15.16,
+       16.02
+      ],
+      "episode_words": [
+       4833,
+       4835
+      ],
+      "episode_time": [
+       1975.714,
+       1976.794
+      ],
+      "offset_s": 1960.554,
+      "offset_end_s": 1960.554,
+      "pause_trims": 0,
+      "n_short_words": 3,
+      "n_matched": 3,
+      "n_exact": 2,
+      "mean_sim": 0.983,
+      "timing_jitter_s": 0.02,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 5,
+       "source_gap_s": 1.2,
+       "text": "అది కొత్తగా వచ్చింది Dolo అనేది"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 8,
+      "short_words": [
+       41,
+       64
+      ],
+      "short_time": [
+       16.239,
+       24.98
+      ],
+      "episode_words": [
+       4841,
+       4866
+      ],
+      "episode_time": [
+       1977.994,
+       1988.074
+      ],
+      "offset_s": 1961.815,
+      "offset_end_s": 1963.134,
+      "pause_trims": 4,
+      "n_short_words": 24,
+      "n_matched": 24,
+      "n_exact": 23,
+      "mean_sim": 0.998,
+      "timing_jitter_s": 0.04,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "backward",
+       "back_s": 135.04,
+       "overlap_words": 0
+      },
+      "in_core": true
+     },
+     {
+      "piece": 9,
+      "short_words": [
+       65,
+       83
+      ],
+      "short_time": [
+       25.24,
+       34.28
+      ],
+      "episode_words": [
+       4588,
+       4607
+      ],
+      "episode_time": [
+       1853.034,
+       1862.094
+      ],
+      "offset_s": 1827.794,
+      "offset_end_s": 1827.794,
+      "pause_trims": 0,
+      "n_short_words": 19,
+      "n_matched": 19,
+      "n_exact": 16,
+      "mean_sim": 0.981,
+      "timing_jitter_s": 0.04,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "skip",
+       "n_words": 1274,
+       "source_gap_s": 547.96,
+       "text": "ఉహు కొన్ని products ఉహు ఉమ్ so అది వాళ్ళది అది ఉమ్ third vertical … [1250 words] … to give it to the world we are very proud for that"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 10,
+      "short_words": [
+       84,
+       88
+      ],
+      "short_time": [
+       34.58,
+       36.88
+      ],
+      "episode_words": [
+       5882,
+       5886
+      ],
+      "episode_time": [
+       2410.054,
+       2412.374
+      ],
+      "offset_s": 2375.474,
+      "offset_end_s": 2375.494,
+      "pause_trims": 0,
+      "n_short_words": 5,
+      "n_matched": 5,
+      "n_exact": 5,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.04,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 21,
+       "source_gap_s": 10.76,
+       "text": "True ఆ మనం affordable medicines ఇవ్వటంలో quality medicines ఉమ్ At the same time Right మనం dumping అనేది అంత భయంకరంగా చేయట్లేదు so"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 11,
+      "short_words": [
+       89,
+       91
+      ],
+      "short_time": [
+       37.18,
+       38.38
+      ],
+      "episode_words": [
+       5908,
+       5910
+      ],
+      "episode_time": [
+       2423.134,
+       2424.274
+      ],
+      "offset_s": 2385.954,
+      "offset_end_s": 2385.954,
+      "pause_trims": 0,
+      "n_short_words": 3,
+      "n_matched": 3,
+      "n_exact": 3,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.0,
+      "quality": "good",
+      "issues": [],
+      "in_core": true
+     }
+    ],
+    "kept_untranscribed": [
+     {
+      "j": 5837,
+      "word": "cheap",
+      "at": "cont"
+     },
+     {
+      "j": 5872,
+      "word": "it",
+      "at": "cut"
+     },
+     {
+      "j": 5895,
+      "word": "ఉమ్",
+      "at": "cont"
+     },
+     {
+      "j": 4805,
+      "word": "ఉమ్",
+      "at": "trim"
+     },
+     {
+      "j": 4816,
+      "word": "ఇది",
+      "at": "cont"
+     },
+     {
+      "j": 4841,
+      "word": "ఉమ్",
+      "at": "cut"
+     }
+    ],
+    "unmatched_short_words": [
+     {
+      "i": 5,
+      "word": "affordable",
+      "time": 2.0,
+      "context": "inside piece 1",
+      "episode_words_at_time": [
+       {
+        "j": 5837,
+        "word": "cheap"
+       }
+      ]
+     },
+     {
+      "i": 26,
+      "word": "లు",
+      "time": 9.94,
+      "context": "inside piece 4",
+      "episode_words_at_time": []
+     }
+    ],
+    "other_text_matches": [
+     {
+      "t0": 2394.7,
+      "t1": 2423.1,
+      "n_short_words_explained": 27,
+      "used": true,
+      "duplicate_share": 0.0,
+      "lost_to_nearer_copy": false
+     },
+     {
+      "t0": 89.8,
+      "t1": 101.6,
+      "n_short_words_explained": 17,
+      "used": false,
+      "duplicate_share": 0.94,
+      "lost_to_nearer_copy": false
+     },
+     {
+      "t0": 1832.7,
+      "t1": 1860.7,
+      "n_short_words_explained": 10,
+      "used": true,
+      "duplicate_share": 0.0,
+      "lost_to_nearer_copy": false
+     }
+    ],
+    "boundary": {
+     "start_natural": false,
+     "start_natural_t4": false,
+     "start_note": "",
+     "start_context": "about all this అండి | we are able to",
+     "end_natural": true,
+     "end_context": "so మన value మనకుంది | ఉమ్ So India for",
+     "piece_edges_natural": 11,
+     "piece_edges_total": 22
+    }
+   }
+  },
+  {
+   "id": "Qb4_-B-Re74",
+   "short_id": "Qb4_-B-Re74",
+   "short_duration_secs": 32.733,
+   "pieces": [
+    {
+     "start_word": 5373,
+     "end_word": 5392,
+     "start": 2218.134,
+     "end": 2225.654
+    },
+    {
+     "start_word": 5394,
+     "end_word": 5396,
+     "start": 2226.854,
+     "end": 2228.034
+    },
+    {
+     "start_word": 5398,
+     "end_word": 5398,
+     "start": 2228.294,
+     "end": 2229.094
+    },
+    {
+     "start_word": 5402,
+     "end_word": 5403,
+     "start": 2230.834,
+     "end": 2231.834
+    },
+    {
+     "start_word": 5409,
+     "end_word": 5423,
+     "start": 2233.454,
+     "end": 2239.234
+    },
+    {
+     "start_word": 5430,
+     "end_word": 5439,
+     "start": 2243.054,
+     "end": 2246.494
+    },
+    {
+     "start_word": 5441,
+     "end_word": 5456,
+     "start": 2247.034,
+     "end": 2254.014
+    },
+    {
+     "start_word": 5458,
+     "end_word": 5467,
+     "start": 2254.974,
+     "end": 2260.053
+    }
+   ],
+   "region": {
+    "start_word": 5373,
+    "end_word": 5467,
+    "start": 2218.134,
+    "end": 2260.053
+   },
+   "edited_duration": 31.779,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "కొన్ని medicines for example paracetamol ఇలాంటివి తీసుకోండి ten rupees కి దొరుకుతాయి కొన్ని medicine ten thousand పెట్టినా దొరకదు ఏంటి difference ఉంటది? research and development చాలా చాలా పెట్టాలి ఎన్ని steps ఉంటాయండి దాంట్లో ఇవ్వాళ మొదలు పెడితే బయటికి రావడానికి పదేళ్లు పన్నెండేళ్లు కూడా ఉండే products ఉంటాయి ఆ తర్వాత చేయటం కూడా easy కాదు very tricky products ఉంటాయి సో అలాంటప్పుడు ఆ overheads అంత cover చేయటం of course advantage కూడా తీసుకుంటది companies అది కూడా ఉంటుందనుకోండి ఆ ఇది cover చేయాలంటే ఒక్కొక్కసారి అవుతుంది తప్పదు Got it సో",
+   "kept_episode_words": [
+    [
+     5373,
+     5392
+    ],
+    [
+     5394,
+     5396
+    ],
+    [
+     5398,
+     5398
+    ],
+    [
+     5402,
+     5403
+    ],
+    [
+     5409,
+     5423
+    ],
+    [
+     5430,
+     5439
+    ],
+    [
+     5441,
+     5456
+    ],
+    [
+     5458,
+     5467
+    ]
+   ],
+   "n_kept_episode_words": 77,
+   "mapping": {
+    "method": "eval.map_shorts v2: 3-gram seed clusters (opening teaser demoted, later copy wins ties) -> timing-constrained Viterbi over fuzzy word candidates -> chance-excursion filter -> playback-speed fit and rescale -> timing-checked fuzzy gap fill; doubtful pieces kept out of the clip core",
+    "confidence": 0.974,
+    "short_words": 77,
+    "matched_words": 75,
+    "notes": "coverage 97.4% of Short words matched by text (98.7% of non-filler words); 2 fuzzy matches; confidence high. Flags: piece 3: tiny piece, corroborated by a neighbouring piece | piece 4: tiny piece, corroborated by a neighbouring piece | 1 chance text match(es) far away ignored (same audio continues around them): పన్నెండేళ్లు",
+    "coverage": 0.974,
+    "coverage_non_filler": 0.987,
+    "n_fuzzy_matches": 2,
+    "confidence_label": "high",
+    "time_scale": 1.0,
+    "flags": [
+     "piece 3: tiny piece, corroborated by a neighbouring piece",
+     "piece 4: tiny piece, corroborated by a neighbouring piece",
+     "1 chance text match(es) far away ignored (same audio continues around them): పన్నెండేళ్లు"
+    ],
+    "pieces": [
+     {
+      "piece": 1,
+      "short_words": [
+       0,
+       19
+      ],
+      "short_time": [
+       0.06,
+       6.64
+      ],
+      "episode_words": [
+       5373,
+       5392
+      ],
+      "episode_time": [
+       2218.134,
+       2225.654
+      ],
+      "offset_s": 2218.074,
+      "offset_end_s": 2218.994,
+      "pause_trims": 1,
+      "n_short_words": 20,
+      "n_matched": 20,
+      "n_exact": 20,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.16,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 1,
+       "source_gap_s": 1.2,
+       "text": "అది"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 2,
+      "short_words": [
+       20,
+       22
+      ],
+      "short_time": [
+       6.82,
+       7.98
+      ],
+      "episode_words": [
+       5394,
+       5396
+      ],
+      "episode_time": [
+       2226.854,
+       2228.034
+      ],
+      "offset_s": 2220.034,
+      "offset_end_s": 2220.033,
+      "pause_trims": 0,
+      "n_short_words": 3,
+      "n_matched": 3,
+      "n_exact": 3,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.001,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 1,
+       "source_gap_s": 0.26,
+       "text": "కి"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 3,
+      "short_words": [
+       23,
+       23
+      ],
+      "short_time": [
+       8.1,
+       8.64
+      ],
+      "episode_words": [
+       5398,
+       5398
+      ],
+      "episode_time": [
+       2228.294,
+       2229.094
+      ],
+      "offset_s": 2220.194,
+      "offset_end_s": 2220.194,
+      "pause_trims": 0,
+      "n_short_words": 1,
+      "n_matched": 1,
+      "n_exact": 1,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.0,
+      "quality": "ok",
+      "issues": [
+       "tiny piece, corroborated by a neighbouring piece"
+      ],
+      "after": {
+       "type": "cut",
+       "n_words": 3,
+       "source_gap_s": 1.74,
+       "text": "ఉమ్ ఉమ్ చాలా"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 4,
+      "short_words": [
+       24,
+       25
+      ],
+      "short_time": [
+       8.76,
+       9.74
+      ],
+      "episode_words": [
+       5402,
+       5403
+      ],
+      "episode_time": [
+       2230.834,
+       2231.834
+      ],
+      "offset_s": 2222.074,
+      "offset_end_s": 2222.094,
+      "pause_trims": 0,
+      "n_short_words": 2,
+      "n_matched": 2,
+      "n_exact": 2,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.02,
+      "quality": "ok",
+      "issues": [
+       "tiny piece, corroborated by a neighbouring piece"
+      ],
+      "after": {
+       "type": "cut",
+       "n_words": 5,
+       "source_gap_s": 1.62,
+       "text": "Yeah ఒక ఒక medicine అంటే"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 5,
+      "short_words": [
+       26,
+       40
+      ],
+      "short_time": [
+       9.82,
+       15.74
+      ],
+      "episode_words": [
+       5409,
+       5423
+      ],
+      "episode_time": [
+       2233.454,
+       2239.234
+      ],
+      "offset_s": 2223.634,
+      "offset_end_s": 2223.234,
+      "pause_trims": 0,
+      "n_short_words": 15,
+      "n_matched": 14,
+      "n_exact": 13,
+      "mean_sim": 0.968,
+      "timing_jitter_s": 0.16,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 6,
+       "source_gap_s": 3.82,
+       "text": "అదే ఆ దాని మీద investment ఎంతుంటుంది"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 6,
+      "short_words": [
+       41,
+       50
+      ],
+      "short_time": [
+       15.82,
+       19.02
+      ],
+      "episode_words": [
+       5430,
+       5439
+      ],
+      "episode_time": [
+       2243.054,
+       2246.494
+      ],
+      "offset_s": 2227.234,
+      "offset_end_s": 2227.474,
+      "pause_trims": 1,
+      "n_short_words": 10,
+      "n_matched": 10,
+      "n_exact": 10,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.02,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 1,
+       "source_gap_s": 0.54,
+       "text": "ఉహు"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 7,
+      "short_words": [
+       52,
+       67
+      ],
+      "short_time": [
+       19.32,
+       25.3
+      ],
+      "episode_words": [
+       5441,
+       5456
+      ],
+      "episode_time": [
+       2247.034,
+       2254.014
+      ],
+      "offset_s": 2227.714,
+      "offset_end_s": 2228.674,
+      "pause_trims": 2,
+      "n_short_words": 16,
+      "n_matched": 16,
+      "n_exact": 15,
+      "mean_sim": 0.997,
+      "timing_jitter_s": 0.1,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 1,
+       "source_gap_s": 0.96,
+       "text": "ఆ"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 8,
+      "short_words": [
+       68,
+       76
+      ],
+      "short_time": [
+       25.38,
+       29.48
+      ],
+      "episode_words": [
+       5458,
+       5467
+      ],
+      "episode_time": [
+       2254.974,
+       2260.053
+      ],
+      "offset_s": 2229.754,
+      "offset_end_s": 2230.554,
+      "pause_trims": 1,
+      "n_short_words": 9,
+      "n_matched": 9,
+      "n_exact": 9,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.18,
+      "quality": "good",
+      "issues": [],
+      "in_core": true
+     }
+    ],
+    "kept_untranscribed": [
+     {
+      "j": 5421,
+      "word": "ఉండే",
+      "at": "cont"
+     },
+     {
+      "j": 5422,
+      "word": "products",
+      "at": "cont"
+     },
+     {
+      "j": 5458,
+      "word": "ఆ",
+      "at": "cut"
+     }
+    ],
+    "unmatched_short_words": [
+     {
+      "i": 37,
+      "word": "పదేళ్లు",
+      "time": 14.5,
+      "context": "inside piece 5",
+      "episode_words_at_time": [
+       {
+        "j": 5420,
+        "word": "కూడా"
+       },
+       {
+        "j": 5421,
+        "word": "ఉండే"
+       }
+      ]
+     },
+     {
+      "i": 51,
+      "word": "ఉమ్",
+      "time": 19.3,
+      "context": "between pieces 6 and 7"
+     }
+    ],
+    "other_text_matches": [
+     {
+      "t0": 41.3,
+      "t1": 45.1,
+      "n_short_words_explained": 15,
+      "used": false,
+      "duplicate_share": 1.0,
+      "lost_to_nearer_copy": false
+     }
+    ],
+    "boundary": {
+     "start_natural": true,
+     "start_natural_t4": true,
+     "start_note": "",
+     "start_context": "person దీనికి answer చేయడానికి | కొన్ని medicines for example",
+     "end_natural": true,
+     "end_context": "తప్పదు Got it సో | అంటే ఒక medicine తయారు",
+     "piece_edges_natural": 9,
+     "piece_edges_total": 16
+    }
+   }
+  },
+  {
+   "id": "qgfnG5EUsuI",
+   "short_id": "qgfnG5EUsuI",
+   "short_duration_secs": 57.853,
+   "pieces": [
+    {
+     "start_word": 8020,
+     "end_word": 8037,
+     "start": 3265.186,
+     "end": 3273.026
+    },
+    {
+     "start_word": 8061,
+     "end_word": 8065,
+     "start": 3284.246,
+     "end": 3286.506
+    },
+    {
+     "start_word": 8069,
+     "end_word": 8075,
+     "start": 3287.946,
+     "end": 3290.686
+    },
+    {
+     "start_word": 8038,
+     "end_word": 8040,
+     "start": 3273.786,
+     "end": 3274.866
+    },
+    {
+     "start_word": 8332,
+     "end_word": 8337,
+     "start": 3411.514,
+     "end": 3413.614
+    },
+    {
+     "start_word": 8152,
+     "end_word": 8157,
+     "start": 3330.174,
+     "end": 3332.114
+    },
+    {
+     "start_word": 8186,
+     "end_word": 8189,
+     "start": 3346.414,
+     "end": 3347.714
+    },
+    {
+     "start_word": 8192,
+     "end_word": 8197,
+     "start": 3349.154,
+     "end": 3351.434
+    },
+    {
+     "start_word": 8200,
+     "end_word": 8200,
+     "start": 3352.734,
+     "end": 3353.214
+    },
+    {
+     "start_word": 8203,
+     "end_word": 8204,
+     "start": 3355.534,
+     "end": 3356.734
+    },
+    {
+     "start_word": 8208,
+     "end_word": 8220,
+     "start": 3359.614,
+     "end": 3366.174
+    },
+    {
+     "start_word": 8257,
+     "end_word": 8271,
+     "start": 3385.214,
+     "end": 3390.874
+    },
+    {
+     "start_word": 8110,
+     "end_word": 8117,
+     "start": 3310.294,
+     "end": 3314.374
+    },
+    {
+     "start_word": 8273,
+     "end_word": 8284,
+     "start": 3391.474,
+     "end": 3394.334
+    },
+    {
+     "start_word": 8298,
+     "end_word": 8301,
+     "start": 3398.914,
+     "end": 3400.094
+    },
+    {
+     "start_word": 8303,
+     "end_word": 8309,
+     "start": 3401.574,
+     "end": 3405.234
+    },
+    {
+     "start_word": 8352,
+     "end_word": 8367,
+     "start": 3420.174,
+     "end": 3424.974
+    }
+   ],
+   "region": {
+    "start_word": 8020,
+    "end_word": 8367,
+    "start": 3265.186,
+    "end": 3424.974
+   },
+   "edited_duration": 52.02,
+   "reordered": true,
+   "n_blocks": 6,
+   "text": "Seven continents లోని seven different marathons చేశారు ఓ అయితే ఇంకోటి కూడా చెప్పాలి మా marathons గురించి అడిగితే. 2015 లో ఏడు ఖండాల్లో run ఏడు రోజుల్లో అంతకు ముందు ఎవ్వరూ చేయలేదు, ఎవరు attempt చేయలేదు. కృష్ణ ప్రసాద్ గారు a sixty I was fifty two Seven days straight? Seven days straight Antarctica లో start అయ్యి Punta Arenas అనేది South America continent Miami Madrid Europe Marrakech African continent ఆ తర్వాత Dubai African continent ఆ తర్వాత Sydney Australian continent. midnight అయితే midnight ముందే measure చేసి పెడతారు. Do your run complete again getting into it అంటే Antarctica లో మొదలుపెట్టి Sydney లో end చేసాము total గా two times marathons చేసారు seven continents లో Two times చేసాను అది చేసి వచ్చిన తర్వాత ఇంక ఇట్లాంటి పిచ్చి runs లేదు you know చాలా great ఆ peak లో let us retire అని we have taken a step back అనమాట",
+   "kept_episode_words": [
+    [
+     8020,
+     8040
+    ],
+    [
+     8061,
+     8065
+    ],
+    [
+     8069,
+     8075
+    ],
+    [
+     8110,
+     8117
+    ],
+    [
+     8152,
+     8157
+    ],
+    [
+     8186,
+     8189
+    ],
+    [
+     8192,
+     8197
+    ],
+    [
+     8200,
+     8200
+    ],
+    [
+     8203,
+     8204
+    ],
+    [
+     8208,
+     8220
+    ],
+    [
+     8257,
+     8271
+    ],
+    [
+     8273,
+     8284
+    ],
+    [
+     8298,
+     8301
+    ],
+    [
+     8303,
+     8309
+    ],
+    [
+     8332,
+     8337
+    ],
+    [
+     8352,
+     8367
+    ]
+   ],
+   "n_kept_episode_words": 133,
+   "mapping": {
+    "method": "eval.map_shorts v2: 3-gram seed clusters (opening teaser demoted, later copy wins ties) -> timing-constrained Viterbi over fuzzy word candidates -> chance-excursion filter -> playback-speed fit and rescale -> timing-checked fuzzy gap fill; doubtful pieces kept out of the clip core",
+    "confidence": 0.9779,
+    "short_words": 135,
+    "matched_words": 133,
+    "notes": "coverage 98.5% of Short words matched by text (98.5% of non-filler words); 7 fuzzy matches; confidence high; 1 doubtful piece(s) kept out of the clip core. Flags: piece 5: tiny piece (<=2 matched words), not near another piece | piece 10: tiny piece, corroborated by a neighbouring piece | piece 11: tiny piece, corroborated by a neighbouring piece",
+    "coverage": 0.9852,
+    "coverage_non_filler": 0.9852,
+    "n_fuzzy_matches": 7,
+    "confidence_label": "high",
+    "time_scale": 1.0,
+    "flags": [
+     "piece 5: tiny piece (<=2 matched words), not near another piece",
+     "piece 10: tiny piece, corroborated by a neighbouring piece",
+     "piece 11: tiny piece, corroborated by a neighbouring piece"
+    ],
+    "pieces": [
+     {
+      "piece": 1,
+      "short_words": [
+       0,
+       17
+      ],
+      "short_time": [
+       0.22,
+       8.06
+      ],
+      "episode_words": [
+       8020,
+       8037
+      ],
+      "episode_time": [
+       3265.186,
+       3273.026
+      ],
+      "offset_s": 3264.966,
+      "offset_end_s": 3264.946,
+      "pause_trims": 0,
+      "n_short_words": 18,
+      "n_matched": 18,
+      "n_exact": 18,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.04,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 23,
+       "source_gap_s": 11.22,
+       "text": "కృష్ణ ప్రసాద్ గారు నన్ను నా six ఆయన he was turning sixty in that year ఉహు నా sixtieth birthday present ఏమిస్తావు అని అడిగి చూపించారు."
+      },
+      "in_core": true
+     },
+     {
+      "piece": 2,
+      "short_words": [
+       18,
+       22
+      ],
+      "short_time": [
+       8.66,
+       10.92
+      ],
+      "episode_words": [
+       8061,
+       8065
+      ],
+      "episode_time": [
+       3284.246,
+       3286.506
+      ],
+      "offset_s": 3275.586,
+      "offset_end_s": 3275.566,
+      "pause_trims": 0,
+      "n_short_words": 5,
+      "n_matched": 5,
+      "n_exact": 5,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.02,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 3,
+       "source_gap_s": 1.44,
+       "text": "seven seven seven."
+      },
+      "in_core": true
+     },
+     {
+      "piece": 3,
+      "short_words": [
+       23,
+       29
+      ],
+      "short_time": [
+       11.08,
+       13.78
+      ],
+      "episode_words": [
+       8069,
+       8075
+      ],
+      "episode_time": [
+       3287.946,
+       3290.686
+      ],
+      "offset_s": 3276.866,
+      "offset_end_s": 3276.846,
+      "pause_trims": 0,
+      "n_short_words": 7,
+      "n_matched": 7,
+      "n_exact": 7,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.02,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "backward",
+       "back_s": 16.9,
+       "overlap_words": 0
+      },
+      "in_core": true
+     },
+     {
+      "piece": 4,
+      "short_words": [
+       30,
+       32
+      ],
+      "short_time": [
+       13.94,
+       15.02
+      ],
+      "episode_words": [
+       8038,
+       8040
+      ],
+      "episode_time": [
+       3273.786,
+       3274.866
+      ],
+      "offset_s": 3259.846,
+      "offset_end_s": 3259.826,
+      "pause_trims": 0,
+      "n_short_words": 3,
+      "n_matched": 3,
+      "n_exact": 3,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.02,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "skip",
+       "n_words": 141,
+       "source_gap_s": 68.11,
+       "text": "నన్ను నా six ఆయన he was turning sixty in that year ఉహు … [117 words] … చేసినప్పుడు clock tick అవటం మొదలు పెట్టింది that includes the run, that includes"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 5,
+      "short_words": [
+       33,
+       33
+      ],
+      "short_time": [
+       15.24,
+       15.28
+      ],
+      "episode_words": [
+       8182,
+       8182
+      ],
+      "episode_time": [
+       3342.974,
+       3343.094
+      ],
+      "offset_s": 3327.734,
+      "offset_end_s": 3327.734,
+      "pause_trims": 0,
+      "n_short_words": 1,
+      "n_matched": 1,
+      "n_exact": 0,
+      "mean_sim": 0.8,
+      "timing_jitter_s": 0.0,
+      "quality": "doubtful",
+      "issues": [
+       "tiny piece (<=2 matched words), not near another piece"
+      ],
+      "after": {
+       "type": "skip",
+       "n_words": 149,
+       "source_gap_s": 68.42,
+       "text": "travel. మొత్తం ముందు Antarctica లో start అయ్యి ఆ తర్వాత Punta Arenas అనేది … [125 words] … we have a age difference of eight years Okay I was-- than"
+      },
+      "in_core": false
+     },
+     {
+      "piece": 6,
+      "short_words": [
+       35,
+       39
+      ],
+      "short_time": [
+       15.38,
+       17.38
+      ],
+      "episode_words": [
+       8332,
+       8337
+      ],
+      "episode_time": [
+       3411.514,
+       3413.614
+      ],
+      "offset_s": 3396.214,
+      "offset_end_s": 3396.214,
+      "pause_trims": 0,
+      "n_short_words": 5,
+      "n_matched": 5,
+      "n_exact": 5,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.02,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "backward",
+       "back_s": 83.44,
+       "overlap_words": 0
+      },
+      "in_core": true
+     },
+     {
+      "piece": 7,
+      "short_words": [
+       40,
+       45
+      ],
+      "short_time": [
+       17.64,
+       19.82
+      ],
+      "episode_words": [
+       8152,
+       8157
+      ],
+      "episode_time": [
+       3330.174,
+       3332.114
+      ],
+      "offset_s": 3312.534,
+      "offset_end_s": 3312.174,
+      "pause_trims": 0,
+      "n_short_words": 6,
+      "n_matched": 6,
+      "n_exact": 6,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.04,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 28,
+       "source_gap_s": 14.3,
+       "text": "actually six days eighteen hours లో Complete చేసారా మొత్తం Antarctica లో start … [4 words] … మొదలు పెట్టింది that includes the run, that includes the travel. మొత్తం ముందు"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 8,
+      "short_words": [
+       46,
+       49
+      ],
+      "short_time": [
+       19.96,
+       21.14
+      ],
+      "episode_words": [
+       8186,
+       8189
+      ],
+      "episode_time": [
+       3346.414,
+       3347.714
+      ],
+      "offset_s": 3326.454,
+      "offset_end_s": 3326.474,
+      "pause_trims": 0,
+      "n_short_words": 4,
+      "n_matched": 4,
+      "n_exact": 4,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.02,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 2,
+       "source_gap_s": 1.44,
+       "text": "ఆ తర్వాత"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 9,
+      "short_words": [
+       50,
+       55
+      ],
+      "short_time": [
+       21.24,
+       23.48
+      ],
+      "episode_words": [
+       8192,
+       8197
+      ],
+      "episode_time": [
+       3349.154,
+       3351.434
+      ],
+      "offset_s": 3327.914,
+      "offset_end_s": 3327.914,
+      "pause_trims": 0,
+      "n_short_words": 6,
+      "n_matched": 6,
+      "n_exact": 6,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.04,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 2,
+       "source_gap_s": 1.3,
+       "text": "ఆ తర్వాత"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 10,
+      "short_words": [
+       56,
+       56
+      ],
+      "short_time": [
+       23.72,
+       24.18
+      ],
+      "episode_words": [
+       8200,
+       8200
+      ],
+      "episode_time": [
+       3352.734,
+       3353.214
+      ],
+      "offset_s": 3329.014,
+      "offset_end_s": 3329.014,
+      "pause_trims": 0,
+      "n_short_words": 1,
+      "n_matched": 1,
+      "n_exact": 1,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.0,
+      "quality": "ok",
+      "issues": [
+       "tiny piece, corroborated by a neighbouring piece"
+      ],
+      "after": {
+       "type": "cut",
+       "n_words": 2,
+       "source_gap_s": 2.32,
+       "text": "ఆ తర్వాత"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 11,
+      "short_words": [
+       57,
+       58
+      ],
+      "short_time": [
+       24.32,
+       25.28
+      ],
+      "episode_words": [
+       8203,
+       8204
+      ],
+      "episode_time": [
+       3355.534,
+       3356.734
+      ],
+      "offset_s": 3331.214,
+      "offset_end_s": 3331.214,
+      "pause_trims": 0,
+      "n_short_words": 2,
+      "n_matched": 2,
+      "n_exact": 2,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.0,
+      "quality": "ok",
+      "issues": [
+       "tiny piece, corroborated by a neighbouring piece"
+      ],
+      "after": {
+       "type": "cut",
+       "n_words": 3,
+       "source_gap_s": 2.88,
+       "text": "ఆ తర్వాత ఆ"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 12,
+      "short_words": [
+       59,
+       71
+      ],
+      "short_time": [
+       25.54,
+       32.08
+      ],
+      "episode_words": [
+       8208,
+       8220
+      ],
+      "episode_time": [
+       3359.614,
+       3366.174
+      ],
+      "offset_s": 3334.074,
+      "offset_end_s": 3334.073,
+      "pause_trims": 0,
+      "n_short_words": 13,
+      "n_matched": 13,
+      "n_exact": 12,
+      "mean_sim": 0.991,
+      "timing_jitter_s": 0.04,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 36,
+       "source_gap_s": 19.04,
+       "text": "ఇవన్నీ run చేయటం వెళ్ళటం airport కి వెళ్ళటం flight ఎక్కటం దొరికింది ఏదో airport … [12 words] … Right నిద్ర important కాబట్టి ఒక pill వేసుకుని try to sleep ఉహు దిగటం"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 13,
+      "short_words": [
+       72,
+       86
+      ],
+      "short_time": [
+       32.18,
+       38.02
+      ],
+      "episode_words": [
+       8257,
+       8271
+      ],
+      "episode_time": [
+       3385.214,
+       3390.874
+      ],
+      "offset_s": 3353.034,
+      "offset_end_s": 3353.034,
+      "pause_trims": 0,
+      "n_short_words": 15,
+      "n_matched": 15,
+      "n_exact": 15,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.02,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "backward",
+       "back_s": 80.58,
+       "overlap_words": 0
+      },
+      "in_core": true
+     },
+     {
+      "piece": 14,
+      "short_words": [
+       87,
+       94
+      ],
+      "short_time": [
+       38.12,
+       42.26
+      ],
+      "episode_words": [
+       8110,
+       8117
+      ],
+      "episode_time": [
+       3310.294,
+       3314.374
+      ],
+      "offset_s": 3272.174,
+      "offset_end_s": 3272.154,
+      "pause_trims": 0,
+      "n_short_words": 8,
+      "n_matched": 8,
+      "n_exact": 7,
+      "mean_sim": 0.994,
+      "timing_jitter_s": 0.02,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "skip",
+       "n_words": 155,
+       "source_gap_s": 77.1,
+       "text": "ప్రతి చోట forty two అదే ఆ అదేంటి ఈ run చేయాలి ఉమ్ You … [131 words] … measure చేసి పెడతారు. Do your run complete again getting into it మీరు"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 15,
+      "short_words": [
+       95,
+       106
+      ],
+      "short_time": [
+       42.88,
+       45.66
+      ],
+      "episode_words": [
+       8273,
+       8284
+      ],
+      "episode_time": [
+       3391.474,
+       3394.334
+      ],
+      "offset_s": 3348.594,
+      "offset_end_s": 3348.754,
+      "pause_trims": 0,
+      "n_short_words": 12,
+      "n_matched": 12,
+      "n_exact": 10,
+      "mean_sim": 0.98,
+      "timing_jitter_s": 0.08,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 13,
+       "source_gap_s": 4.58,
+       "text": "and this is one of the, I think beyond that మనం చేయలేం అని"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 16,
+      "short_words": [
+       107,
+       110
+      ],
+      "short_time": [
+       45.74,
+       46.92
+      ],
+      "episode_words": [
+       8298,
+       8301
+      ],
+      "episode_time": [
+       3398.914,
+       3400.094
+      ],
+      "offset_s": 3353.174,
+      "offset_end_s": 3353.174,
+      "pause_trims": 0,
+      "n_short_words": 4,
+      "n_matched": 4,
+      "n_exact": 4,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.0,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 1,
+       "source_gap_s": 1.48,
+       "text": "okay"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 17,
+      "short_words": [
+       111,
+       117
+      ],
+      "short_time": [
+       47.08,
+       50.76
+      ],
+      "episode_words": [
+       8303,
+       8309
+      ],
+      "episode_time": [
+       3401.574,
+       3405.234
+      ],
+      "offset_s": 3354.494,
+      "offset_end_s": 3354.474,
+      "pause_trims": 0,
+      "n_short_words": 7,
+      "n_matched": 7,
+      "n_exact": 7,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.02,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 42,
+       "source_gap_s": 14.94,
+       "text": "Sixty years లో అసలు అలా చేయడం itself I was fifty we have … [18 words] … done that. ఆ తర్వాత ఇంత adventure marathons we maintain our fitness but"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 18,
+      "short_words": [
+       118,
+       134
+      ],
+      "short_time": [
+       50.84,
+       55.08
+      ],
+      "episode_words": [
+       8352,
+       8367
+      ],
+      "episode_time": [
+       3420.174,
+       3424.974
+      ],
+      "offset_s": 3369.334,
+      "offset_end_s": 3369.914,
+      "pause_trims": 1,
+      "n_short_words": 17,
+      "n_matched": 16,
+      "n_exact": 14,
+      "mean_sim": 0.975,
+      "timing_jitter_s": 0.14,
+      "quality": "good",
+      "issues": [],
+      "in_core": true
+     }
+    ],
+    "kept_untranscribed": [
+     {
+      "j": 8332,
+      "word": "a",
+      "at": "cut"
+     },
+     {
+      "j": 8354,
+      "word": "ఆ",
+      "at": "cont"
+     }
+    ],
+    "unmatched_short_words": [
+     {
+      "i": 34,
+      "word": "is",
+      "time": 15.3,
+      "context": "between pieces 5 and 6"
+     },
+     {
+      "i": 120,
+      "word": "family",
+      "time": 51.24,
+      "context": "inside piece 18",
+      "episode_words_at_time": [
+       {
+        "j": 8354,
+        "word": "ఆ"
+       }
+      ]
+     }
+    ],
+    "other_text_matches": [
+     {
+      "t0": 63.5,
+      "t1": 74.8,
+      "n_short_words_explained": 22,
+      "used": false,
+      "duplicate_share": 0.95,
+      "lost_to_nearer_copy": false
+     },
+     {
+      "t0": 2616.8,
+      "t1": 2649.2,
+      "n_short_words_explained": 6,
+      "used": false,
+      "duplicate_share": 1.0,
+      "lost_to_nearer_copy": false
+     }
+    ],
+    "boundary": {
+     "start_natural": true,
+     "start_natural_t4": true,
+     "start_note": "",
+     "start_context": "experiences in life అండి. | Seven continents లోని seven",
+     "end_natural": true,
+     "end_context": "a step back అనమాట | సో ఈ marathons, ఈ",
+     "piece_edges_natural": 25,
+     "piece_edges_total": 34
+    }
+   }
+  },
+  {
+   "id": "U39ZhvBd550",
+   "short_id": "U39ZhvBd550",
+   "short_duration_secs": 47.953,
+   "pieces": [
+    {
+     "start_word": 13128,
+     "end_word": 13137,
+     "start": 5409.142,
+     "end": 5412.822
+    },
+    {
+     "start_word": 13161,
+     "end_word": 13182,
+     "start": 5421.982,
+     "end": 5430.842
+    },
+    {
+     "start_word": 13184,
+     "end_word": 13204,
+     "start": 5432.242,
+     "end": 5439.522
+    },
+    {
+     "start_word": 13242,
+     "end_word": 13255,
+     "start": 5454.202,
+     "end": 5461.702
+    },
+    {
+     "start_word": 13258,
+     "end_word": 13270,
+     "start": 5463.502,
+     "end": 5468.482
+    },
+    {
+     "start_word": 13277,
+     "end_word": 13310,
+     "start": 5470.902,
+     "end": 5483.562
+    }
+   ],
+   "region": {
+    "start_word": 13128,
+    "end_word": 13310,
+    "start": 5409.142,
+    "end": 5483.562
+   },
+   "edited_duration": 44.96,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "three things society లో change అవ్వాలి to empower women in మీరు చేయలేరులే అని అనే attitude చాలామందికి ఉంటుంది అది change అవుతుంది కానీ కొంచెం అది ఒకటి ఇంకా better అవ్వాలి అది అది ఇంకా better అవ్వాలి definitely గా family support అనేది అవసరం అండి చాలా అవసరం చాలా అవసరం ఎందుకంటే ఫస్ట్ వాళ్ళే build చేసుకొని Ultimately women are the caretakers అనుకోకుండా elder parents ని కూడా parents కూడా ఎక్కువ depend అవ్వాల్సి వస్తుంది so ఇవన్నీ కావాలంటే whether from the partner or whether from the family ఉమ్ support is required ఉమ్ ఇంకోటి women should support other women అండి that is very important when she is climbing the ladder పైకి women పైకి వెళ్ళేటప్పుడు ఇంకా నలుగురు women ని పైకి తీసుకెళ్లడానికి try చేయాలి అది కూడా చాలా important",
+   "kept_episode_words": [
+    [
+     13128,
+     13137
+    ],
+    [
+     13161,
+     13182
+    ],
+    [
+     13184,
+     13204
+    ],
+    [
+     13242,
+     13255
+    ],
+    [
+     13258,
+     13270
+    ],
+    [
+     13277,
+     13310
+    ]
+   ],
+   "n_kept_episode_words": 114,
+   "mapping": {
+    "method": "eval.map_shorts v2: 3-gram seed clusters (opening teaser demoted, later copy wins ties) -> timing-constrained Viterbi over fuzzy word candidates -> chance-excursion filter -> playback-speed fit and rescale -> timing-checked fuzzy gap fill; doubtful pieces kept out of the clip core",
+    "confidence": 1.0,
+    "short_words": 113,
+    "matched_words": 113,
+    "notes": "coverage 100.0% of Short words matched by text (100.0% of non-filler words); 8 fuzzy matches; confidence high",
+    "coverage": 1.0,
+    "coverage_non_filler": 1.0,
+    "n_fuzzy_matches": 8,
+    "confidence_label": "high",
+    "time_scale": 1.0,
+    "flags": [],
+    "pieces": [
+     {
+      "piece": 1,
+      "short_words": [
+       0,
+       8
+      ],
+      "short_time": [
+       0.1,
+       2.88
+      ],
+      "episode_words": [
+       13128,
+       13137
+      ],
+      "episode_time": [
+       5409.142,
+       5412.822
+      ],
+      "offset_s": 5409.042,
+      "offset_end_s": 5409.582,
+      "pause_trims": 1,
+      "n_short_words": 9,
+      "n_matched": 9,
+      "n_exact": 7,
+      "mean_sim": 0.989,
+      "timing_jitter_s": 0.02,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 23,
+       "source_gap_s": 9.16,
+       "text": "terms of entrepreneurship అవ్వనివ్వండి వాళ్ళకి ఏం కావాలి అది చేయం-- చేయడంలో అవ్వనివ్వండి అలా ఏం change అవ్వాలి society లో for a better tomorrow అంటే ఒకటండి"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 2,
+      "short_words": [
+       9,
+       31
+      ],
+      "short_time": [
+       3.18,
+       11.92
+      ],
+      "episode_words": [
+       13161,
+       13182
+      ],
+      "episode_time": [
+       5421.982,
+       5430.842
+      ],
+      "offset_s": 5418.802,
+      "offset_end_s": 5418.822,
+      "pause_trims": 0,
+      "n_short_words": 23,
+      "n_matched": 23,
+      "n_exact": 21,
+      "mean_sim": 0.974,
+      "timing_jitter_s": 0.08,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 1,
+       "source_gap_s": 1.4,
+       "text": "ఆ"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 3,
+      "short_words": [
+       32,
+       52
+      ],
+      "short_time": [
+       12.12,
+       19.38
+      ],
+      "episode_words": [
+       13184,
+       13204
+      ],
+      "episode_time": [
+       5432.242,
+       5439.522
+      ],
+      "offset_s": 5420.122,
+      "offset_end_s": 5420.102,
+      "pause_trims": 1,
+      "n_short_words": 21,
+      "n_matched": 21,
+      "n_exact": 17,
+      "mean_sim": 0.979,
+      "timing_jitter_s": 0.16,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 37,
+       "source_gap_s": 14.68,
+       "text": "men నేను చెప్తున్నది men చేయరు అని కాదు ఉమ్ I don't know you … [13 words] … you know వాళ్ళ feeds దగ్గర నుంచి అది ఆ చేయాల్సింది women ఏ కదా"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 4,
+      "short_words": [
+       53,
+       66
+      ],
+      "short_time": [
+       19.56,
+       26.22
+      ],
+      "episode_words": [
+       13242,
+       13255
+      ],
+      "episode_time": [
+       5454.202,
+       5461.702
+      ],
+      "offset_s": 5434.642,
+      "offset_end_s": 5435.442,
+      "pause_trims": 1,
+      "n_short_words": 14,
+      "n_matched": 14,
+      "n_exact": 14,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.08,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 2,
+       "source_gap_s": 1.8,
+       "text": "support అనేది"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 5,
+      "short_words": [
+       67,
+       78
+      ],
+      "short_time": [
+       26.54,
+       31.58
+      ],
+      "episode_words": [
+       13258,
+       13270
+      ],
+      "episode_time": [
+       5463.502,
+       5468.482
+      ],
+      "offset_s": 5436.962,
+      "offset_end_s": 5436.962,
+      "pause_trims": 0,
+      "n_short_words": 12,
+      "n_matched": 12,
+      "n_exact": 12,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.02,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 6,
+       "source_gap_s": 2.42,
+       "text": "that is also one important thing"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 6,
+      "short_words": [
+       79,
+       112
+      ],
+      "short_time": [
+       31.62,
+       43.82
+      ],
+      "episode_words": [
+       13277,
+       13310
+      ],
+      "episode_time": [
+       5470.902,
+       5483.562
+      ],
+      "offset_s": 5439.282,
+      "offset_end_s": 5439.722,
+      "pause_trims": 1,
+      "n_short_words": 34,
+      "n_matched": 34,
+      "n_exact": 34,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.04,
+      "quality": "good",
+      "issues": [],
+      "in_core": true
+     }
+    ],
+    "kept_untranscribed": [
+     {
+      "j": 13137,
+      "word": "in",
+      "at": "cut"
+     },
+     {
+      "j": 13163,
+      "word": "అని",
+      "at": "cont"
+     },
+     {
+      "j": 13171,
+      "word": "కానీ",
+      "at": "cont"
+     },
+     {
+      "j": 13267,
+      "word": "ఉమ్",
+      "at": "cont"
+     }
+    ],
+    "unmatched_short_words": [],
+    "other_text_matches": [],
+    "boundary": {
+     "start_natural": true,
+     "start_natural_t4": true,
+     "start_note": "",
+     "start_context": "to build something so | three things society లో",
+     "end_natural": true,
+     "end_context": "అది కూడా చాలా important | ఉమ్ సో I think",
+     "piece_edges_natural": 6,
+     "piece_edges_total": 12
+    }
+   }
+  },
+  {
+   "id": "VApuq93yxeA",
+   "short_id": "VApuq93yxeA",
+   "short_duration_secs": 59.894,
+   "pieces": [
+    {
+     "start_word": 2245,
+     "end_word": 2258,
+     "start": 898.8,
+     "end": 903.96
+    },
+    {
+     "start_word": 1755,
+     "end_word": 1760,
+     "start": 704.64,
+     "end": 706.6
+    },
+    {
+     "start_word": 1763,
+     "end_word": 1777,
+     "start": 707.1,
+     "end": 711.74
+    },
+    {
+     "start_word": 1781,
+     "end_word": 1797,
+     "start": 713.88,
+     "end": 722.6
+    },
+    {
+     "start_word": 1799,
+     "end_word": 1821,
+     "start": 722.98,
+     "end": 731.28
+    },
+    {
+     "start_word": 2488,
+     "end_word": 2494,
+     "start": 991.12,
+     "end": 992.88
+    },
+    {
+     "start_word": 2500,
+     "end_word": 2504,
+     "start": 995.02,
+     "end": 996.0
+    },
+    {
+     "start_word": 2508,
+     "end_word": 2512,
+     "start": 998.04,
+     "end": 999.4
+    },
+    {
+     "start_word": 2525,
+     "end_word": 2542,
+     "start": 1006.46,
+     "end": 1010.86
+    },
+    {
+     "start_word": 2597,
+     "end_word": 2600,
+     "start": 1028.38,
+     "end": 1029.82
+    },
+    {
+     "start_word": 4160,
+     "end_word": 4161,
+     "start": 1679.344,
+     "end": 1680.464
+    },
+    {
+     "start_word": 4166,
+     "end_word": 4192,
+     "start": 1683.964,
+     "end": 1694.944
+    },
+    {
+     "start_word": 4336,
+     "end_word": 4361,
+     "start": 1750.884,
+     "end": 1759.304
+    }
+   ],
+   "region": {
+    "start_word": 1755,
+    "end_word": 4361,
+    "start": 704.64,
+    "end": 1759.304
+   },
+   "edited_duration": 59.24,
+   "reordered": true,
+   "n_blocks": 5,
+   "text": "మీరు 1984లోనే ఒక pharma company build చేద్దాము, medicines manufacture చేద్దాము అన్న thought ఎలా వచ్చింది? very self-made person. ఈయన first- కృష్ణ కృష్ణ ప్రసాద్ గారు అసలు ఉహు Nineteen, twenty years కే ఇంటి దగ్గర నుంచి పైసా తీసుకోవటం మానేశారు. చెన్నైలో ఏదో small business start చేసి తర్వాత ఉ 82 లో ఆ he shifted to హైదరాబాద్. ఓకే అప్పుడు partners తో pharmaceutical company, Pharmasia అని ఒకటి start చేశారు. After one year పెళ్లి కాంగానే మేము separate అయ్యి Triton Laboratories అని start చేశాం. ఓకే ఈయనేదో start చేశారు okay let me support. I was the first chemist నా chemistry background ఉంది కదా I am the first analytical chemist లాగా register చేశాను drugs and దీనితో. ఓ Got it got it. So నేను అట్లా involve అయ్యాను. ఏం చేశామంటే ఈ powder దగ్గర నుంచి granulation ఎవరికి వాళ్లే చేసుకుంటారు. ఏ company వాళ్ళు వాళ్ళు చేసేసుకుని own గా పని చేసుకుంటారు. Granules చేసి export చేయటం అనేది idea కృష్ణం ప్రసాద్ గారికి వచ్చింది. ఆ granules export అనేది మనం మొదలు పెట్టాం. ఉహు అందుకే ఆ తర్వాత Granules India అని ఆ Triton Laboratories పేరు కూడా మార్చింది. Granules అని మార్చారు. ఆహా అందుకని మార్చాం.",
+   "kept_episode_words": [
+    [
+     1755,
+     1760
+    ],
+    [
+     1763,
+     1777
+    ],
+    [
+     1781,
+     1797
+    ],
+    [
+     1799,
+     1821
+    ],
+    [
+     2245,
+     2258
+    ],
+    [
+     2488,
+     2494
+    ],
+    [
+     2500,
+     2504
+    ],
+    [
+     2508,
+     2512
+    ],
+    [
+     2525,
+     2542
+    ],
+    [
+     2597,
+     2600
+    ],
+    [
+     4160,
+     4161
+    ],
+    [
+     4166,
+     4192
+    ],
+    [
+     4336,
+     4361
+    ]
+   ],
+   "n_kept_episode_words": 169,
+   "mapping": {
+    "method": "eval.map_shorts v2: 3-gram seed clusters (opening teaser demoted, later copy wins ties) -> timing-constrained Viterbi over fuzzy word candidates -> chance-excursion filter -> playback-speed fit and rescale -> timing-checked fuzzy gap fill; doubtful pieces kept out of the clip core",
+    "confidence": 0.9877,
+    "short_words": 163,
+    "matched_words": 161,
+    "notes": "coverage 98.8% of Short words matched by text (98.8% of non-filler words); 11 fuzzy matches; confidence high. Flags: piece 11: tiny piece, corroborated by a neighbouring piece",
+    "coverage": 0.9877,
+    "coverage_non_filler": 0.9877,
+    "n_fuzzy_matches": 11,
+    "confidence_label": "high",
+    "time_scale": 1.0,
+    "flags": [
+     "piece 11: tiny piece, corroborated by a neighbouring piece"
+    ],
+    "pieces": [
+     {
+      "piece": 1,
+      "short_words": [
+       0,
+       13
+      ],
+      "short_time": [
+       0.0,
+       5.1
+      ],
+      "episode_words": [
+       2245,
+       2258
+      ],
+      "episode_time": [
+       898.8,
+       903.96
+      ],
+      "offset_s": 898.8,
+      "offset_end_s": 898.78,
+      "pause_trims": 0,
+      "n_short_words": 14,
+      "n_matched": 14,
+      "n_exact": 12,
+      "mean_sim": 0.983,
+      "timing_jitter_s": 0.04,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "backward",
+       "back_s": 199.32,
+       "overlap_words": 0
+      },
+      "in_core": true
+     },
+     {
+      "piece": 2,
+      "short_words": [
+       14,
+       20
+      ],
+      "short_time": [
+       5.2,
+       7.14
+      ],
+      "episode_words": [
+       1755,
+       1760
+      ],
+      "episode_time": [
+       704.64,
+       706.6
+      ],
+      "offset_s": 699.44,
+      "offset_end_s": 699.52,
+      "pause_trims": 0,
+      "n_short_words": 7,
+      "n_matched": 6,
+      "n_exact": 6,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.08,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 2,
+       "source_gap_s": 0.5,
+       "text": "ప్రసాద్ గారు"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 3,
+      "short_words": [
+       21,
+       34
+      ],
+      "short_time": [
+       7.18,
+       11.42
+      ],
+      "episode_words": [
+       1763,
+       1777
+      ],
+      "episode_time": [
+       707.1,
+       711.74
+      ],
+      "offset_s": 699.92,
+      "offset_end_s": 700.24,
+      "pause_trims": 1,
+      "n_short_words": 14,
+      "n_matched": 14,
+      "n_exact": 14,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.04,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 3,
+       "source_gap_s": 2.14,
+       "text": "ఉహు ఆ ఆ"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 4,
+      "short_words": [
+       35,
+       49
+      ],
+      "short_time": [
+       11.52,
+       18.7
+      ],
+      "episode_words": [
+       1781,
+       1797
+      ],
+      "episode_time": [
+       713.88,
+       722.6
+      ],
+      "offset_s": 702.36,
+      "offset_end_s": 703.94,
+      "pause_trims": 1,
+      "n_short_words": 15,
+      "n_matched": 15,
+      "n_exact": 15,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.04,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 1,
+       "source_gap_s": 0.38,
+       "text": "ఎవరో"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 5,
+      "short_words": [
+       50,
+       72
+      ],
+      "short_time": [
+       18.74,
+       26.24
+      ],
+      "episode_words": [
+       1799,
+       1821
+      ],
+      "episode_time": [
+       722.98,
+       731.28
+      ],
+      "offset_s": 704.24,
+      "offset_end_s": 705.04,
+      "pause_trims": 3,
+      "n_short_words": 23,
+      "n_matched": 23,
+      "n_exact": 20,
+      "mean_sim": 0.983,
+      "timing_jitter_s": 0.04,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "skip",
+       "n_words": 666,
+       "source_gap_s": 259.84,
+       "text": "సో ఆ చిన్న దీంట్లో struggle అవుతూ investment నెమ్మదిగా అటు ఇటు చూసుకుని ఎన్ని … [642 words] … business acumen అనేది అసలు start చేయాలని ఆ రోజుల్లో లేదు. అర్ధం అయ్యింది ఉహు"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 6,
+      "short_words": [
+       73,
+       80
+      ],
+      "short_time": [
+       26.76,
+       28.5
+      ],
+      "episode_words": [
+       2488,
+       2494
+      ],
+      "episode_time": [
+       991.12,
+       992.88
+      ],
+      "offset_s": 964.36,
+      "offset_end_s": 964.36,
+      "pause_trims": 0,
+      "n_short_words": 8,
+      "n_matched": 8,
+      "n_exact": 6,
+      "mean_sim": 0.976,
+      "timing_jitter_s": 0.02,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 5,
+       "source_gap_s": 2.14,
+       "text": "Okay Like that beginning లోనే"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 7,
+      "short_words": [
+       81,
+       85
+      ],
+      "short_time": [
+       28.8,
+       29.7
+      ],
+      "episode_words": [
+       2500,
+       2504
+      ],
+      "episode_time": [
+       995.02,
+       996.0
+      ],
+      "offset_s": 966.22,
+      "offset_end_s": 966.24,
+      "pause_trims": 0,
+      "n_short_words": 5,
+      "n_matched": 5,
+      "n_exact": 5,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.02,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 3,
+       "source_gap_s": 2.04,
+       "text": "because అంటే నేను"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 8,
+      "short_words": [
+       86,
+       90
+      ],
+      "short_time": [
+       29.76,
+       31.06
+      ],
+      "episode_words": [
+       2508,
+       2512
+      ],
+      "episode_time": [
+       998.04,
+       999.4
+      ],
+      "offset_s": 968.28,
+      "offset_end_s": 968.28,
+      "pause_trims": 0,
+      "n_short_words": 5,
+      "n_matched": 5,
+      "n_exact": 5,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.0,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 12,
+       "source_gap_s": 7.06,
+       "text": "నా microbiology MSC disclose చేయకుండా ఆ chemistry BSC ది disclose చేసి Okay"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 9,
+      "short_words": [
+       91,
+       108
+      ],
+      "short_time": [
+       31.3,
+       36.0
+      ],
+      "episode_words": [
+       2525,
+       2542
+      ],
+      "episode_time": [
+       1006.46,
+       1010.86
+      ],
+      "offset_s": 975.16,
+      "offset_end_s": 974.98,
+      "pause_trims": 0,
+      "n_short_words": 18,
+      "n_matched": 18,
+      "n_exact": 15,
+      "mean_sim": 0.971,
+      "timing_jitter_s": 0.18,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 54,
+       "source_gap_s": 17.52,
+       "text": "అట్లా అప్పుడు registration కి ఎవరైనా అలా ఉండాలా ఒకటి? ఆ ఉం-ఉం-ఉండాలి. ఉండాలి. Okay … [30 words] … చాలా చిన్నగా చెప్పాను కదా Okay We started from scratch అని. ఉహు So"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 10,
+      "short_words": [
+       109,
+       112
+      ],
+      "short_time": [
+       36.06,
+       37.4
+      ],
+      "episode_words": [
+       2597,
+       2600
+      ],
+      "episode_time": [
+       1028.38,
+       1029.82
+      ],
+      "offset_s": 992.32,
+      "offset_end_s": 992.32,
+      "pause_trims": 0,
+      "n_short_words": 4,
+      "n_matched": 4,
+      "n_exact": 4,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.0,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "skip",
+       "n_words": 1559,
+       "source_gap_s": 649.52,
+       "text": "ఈ six months అయిన తర్వాత నా professor కి పిలిచేసరికి I already involved … [1535 words] … చేశాక తర్వాత మనల్ని చూసి మిగిలిన వాళ్ళు కూడా మొదలు పెడతారు నెమ్మదిగా. ఉమ్ సో"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 11,
+      "short_words": [
+       113,
+       114
+      ],
+      "short_time": [
+       37.58,
+       38.46
+      ],
+      "episode_words": [
+       4160,
+       4161
+      ],
+      "episode_time": [
+       1679.344,
+       1680.464
+      ],
+      "offset_s": 1641.764,
+      "offset_end_s": 1641.764,
+      "pause_trims": 0,
+      "n_short_words": 2,
+      "n_matched": 2,
+      "n_exact": 2,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.0,
+      "quality": "ok",
+      "issues": [
+       "tiny piece, corroborated by a neighbouring piece"
+      ],
+      "after": {
+       "type": "cut",
+       "n_words": 4,
+       "source_gap_s": 3.5,
+       "text": "ఈ granules నుంచి ఆ"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 12,
+      "short_words": [
+       115,
+       140
+      ],
+      "short_time": [
+       38.6,
+       48.64
+      ],
+      "episode_words": [
+       4166,
+       4192
+      ],
+      "episode_time": [
+       1683.964,
+       1694.944
+      ],
+      "offset_s": 1645.364,
+      "offset_end_s": 1646.384,
+      "pause_trims": 2,
+      "n_short_words": 26,
+      "n_matched": 25,
+      "n_exact": 24,
+      "mean_sim": 0.996,
+      "timing_jitter_s": 0.04,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "skip",
+       "n_words": 143,
+       "source_gap_s": 55.94,
+       "text": "ఓకే He is pioneer. We did not patent that. అవునా? But I … [119 words] … ఉమ్ ఎంత cheap లో అయిపోద్ది ఇది తీసుకుంటే product. Product యా యా అని"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 13,
+      "short_words": [
+       141,
+       162
+      ],
+      "short_time": [
+       48.72,
+       57.12
+      ],
+      "episode_words": [
+       4336,
+       4361
+      ],
+      "episode_time": [
+       1750.884,
+       1759.304
+      ],
+      "offset_s": 1702.164,
+      "offset_end_s": 1702.164,
+      "pause_trims": 0,
+      "n_short_words": 22,
+      "n_matched": 22,
+      "n_exact": 22,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.04,
+      "quality": "good",
+      "issues": [],
+      "in_core": true
+     }
+    ],
+    "kept_untranscribed": [
+     {
+      "j": 1767,
+      "word": "ఉహు",
+      "at": "cont"
+     },
+     {
+      "j": 1788,
+      "word": "ఉ",
+      "at": "trim"
+     },
+     {
+      "j": 1791,
+      "word": "ఆ",
+      "at": "cont"
+     },
+     {
+      "j": 1803,
+      "word": "Pharmasia",
+      "at": "cont"
+     },
+     {
+      "j": 2537,
+      "word": "ఓ",
+      "at": "cont"
+     },
+     {
+      "j": 4179,
+      "word": "own",
+      "at": "cont"
+     },
+     {
+      "j": 4180,
+      "word": "గా",
+      "at": "cont"
+     },
+     {
+      "j": 4356,
+      "word": "Granules",
+      "at": "cont"
+     },
+     {
+      "j": 4357,
+      "word": "అని",
+      "at": "cont"
+     },
+     {
+      "j": 4358,
+      "word": "మార్చారు.",
+      "at": "cont"
+     },
+     {
+      "j": 4359,
+      "word": "ఆహా",
+      "at": "cont"
+     }
+    ],
+    "unmatched_short_words": [
+     {
+      "i": 20,
+      "word": "నుంచి",
+      "time": 6.9,
+      "context": "inside piece 2, timing-only match at a cut edge",
+      "episode_words_at_time": [
+       {
+        "j": 1760,
+        "word": "కృష్ణ"
+       }
+      ]
+     },
+     {
+      "i": 128,
+      "word": "ఏమంటే",
+      "time": 43.42,
+      "context": "inside piece 12",
+      "episode_words_at_time": [
+       {
+        "j": 4179,
+        "word": "own"
+       },
+       {
+        "j": 4180,
+        "word": "గా"
+       }
+      ]
+     }
+    ],
+    "other_text_matches": [
+     {
+      "t0": 705.4,
+      "t1": 729.9,
+      "n_short_words_explained": 49,
+      "used": true,
+      "duplicate_share": 0.0,
+      "lost_to_nearer_copy": false
+     },
+     {
+      "t0": 1679.3,
+      "t1": 1757.3,
+      "n_short_words_explained": 46,
+      "used": true,
+      "duplicate_share": 0.04,
+      "lost_to_nearer_copy": false
+     },
+     {
+      "t0": 4723.8,
+      "t1": 4757.9,
+      "n_short_words_explained": 6,
+      "used": false,
+      "duplicate_share": 1.0,
+      "lost_to_nearer_copy": false
+     },
+     {
+      "t0": 4066.6,
+      "t1": 4072.1,
+      "n_short_words_explained": 6,
+      "used": false,
+      "duplicate_share": 1.0,
+      "lost_to_nearer_copy": false
+     }
+    ],
+    "boundary": {
+     "start_natural": false,
+     "start_natural_t4": false,
+     "start_note": "",
+     "start_context": "thought ఎవరికీ లేదు. అలాంటిది | మీరు 1984లోనే ఒక pharma",
+     "end_natural": true,
+     "end_context": "మార్చారు. ఆహా అందుకని మార్చాం. | సో దాంతో చాలా you",
+     "piece_edges_natural": 12,
+     "piece_edges_total": 26
+    }
+   }
+  },
+  {
+   "id": "yZ9ulvTAtWY",
+   "short_id": "yZ9ulvTAtWY",
+   "short_duration_secs": 26.953,
+   "pieces": [
+    {
+     "start_word": 1532,
+     "end_word": 1537,
+     "start": 624.52,
+     "end": 626.52
+    },
+    {
+     "start_word": 1539,
+     "end_word": 1545,
+     "start": 627.24,
+     "end": 630.2
+    },
+    {
+     "start_word": 1547,
+     "end_word": 1583,
+     "start": 630.44,
+     "end": 644.02
+    }
+   ],
+   "region": {
+    "start_word": 1532,
+    "end_word": 1583,
+    "start": 624.52,
+    "end": 644.02
+   },
+   "edited_duration": 18.54,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "మా business scratch నుంచి start చేశాం. I think చాలా తక్కువ amount తీసుకుని I ఆ రోజుల్లో one lakh ఏమో మా husband- You talking about granules ఆ granules husband తీసుకుంది. ఓకే So beginning days even though successful father-in-law ఇట్లా ఉన్నా కూడా మేము వాళ్ళ మీద depend అవకుండా total self-made అని చెప్పుకోగలం చాలా ధైర్యంగా.",
+   "kept_episode_words": [
+    [
+     1532,
+     1537
+    ],
+    [
+     1539,
+     1545
+    ],
+    [
+     1547,
+     1583
+    ]
+   ],
+   "n_kept_episode_words": 50,
+   "mapping": {
+    "method": "eval.map_shorts v2: 3-gram seed clusters (opening teaser demoted, later copy wins ties) -> timing-constrained Viterbi over fuzzy word candidates -> chance-excursion filter -> playback-speed fit and rescale -> timing-checked fuzzy gap fill; doubtful pieces kept out of the clip core",
+    "confidence": 0.98,
+    "short_words": 50,
+    "matched_words": 49,
+    "notes": "coverage 98.0% of Short words matched by text (98.0% of non-filler words); 1 fuzzy matches; confidence high",
+    "coverage": 0.98,
+    "coverage_non_filler": 0.98,
+    "n_fuzzy_matches": 1,
+    "confidence_label": "high",
+    "time_scale": 1.0,
+    "flags": [],
+    "pieces": [
+     {
+      "piece": 1,
+      "short_words": [
+       0,
+       5
+      ],
+      "short_time": [
+       0.14,
+       2.1
+      ],
+      "episode_words": [
+       1532,
+       1537
+      ],
+      "episode_time": [
+       624.52,
+       626.52
+      ],
+      "offset_s": 624.38,
+      "offset_end_s": 624.38,
+      "pause_trims": 0,
+      "n_short_words": 6,
+      "n_matched": 6,
+      "n_exact": 6,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.02,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 1,
+       "source_gap_s": 0.72,
+       "text": "ఉహు"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 2,
+      "short_words": [
+       6,
+       11
+      ],
+      "short_time": [
+       2.52,
+       5.04
+      ],
+      "episode_words": [
+       1539,
+       1545
+      ],
+      "episode_time": [
+       627.24,
+       630.2
+      ],
+      "offset_s": 624.72,
+      "offset_end_s": 624.68,
+      "pause_trims": 0,
+      "n_short_words": 6,
+      "n_matched": 6,
+      "n_exact": 6,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.04,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 1,
+       "source_gap_s": 0.24,
+       "text": "think"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 3,
+      "short_words": [
+       12,
+       49
+      ],
+      "short_time": [
+       5.42,
+       19.08
+      ],
+      "episode_words": [
+       1547,
+       1583
+      ],
+      "episode_time": [
+       630.44,
+       644.02
+      ],
+      "offset_s": 625.02,
+      "offset_end_s": 625.02,
+      "pause_trims": 0,
+      "n_short_words": 38,
+      "n_matched": 37,
+      "n_exact": 36,
+      "mean_sim": 0.999,
+      "timing_jitter_s": 0.16,
+      "quality": "good",
+      "issues": [],
+      "in_core": true
+     }
+    ],
+    "kept_untranscribed": [
+     {
+      "j": 1545,
+      "word": "I",
+      "at": "cut"
+     }
+    ],
+    "unmatched_short_words": [
+     {
+      "i": 20,
+      "word": "are",
+      "time": 7.52,
+      "context": "inside piece 3",
+      "episode_words_at_time": []
+     }
+    ],
+    "other_text_matches": [],
+    "boundary": {
+     "start_natural": false,
+     "start_natural_t4": false,
+     "start_note": "",
+     "start_context": "ఉన్నా కూడా మేము ఆ | మా business scratch నుంచి",
+     "end_natural": true,
+     "end_context": "అని చెప్పుకోగలం చాలా ధైర్యంగా. | ఓకే. అంటే పెళ్ళైన తర్వాత",
+     "piece_edges_natural": 3,
+     "piece_edges_total": 6
+    }
+   }
+  },
+  {
+   "id": "Z6gDXXoC-MY",
+   "short_id": "Z6gDXXoC-MY",
+   "short_duration_secs": 38.453,
+   "pieces": [
+    {
+     "start_word": 2828,
+     "end_word": 2831,
+     "start": 1125.427,
+     "end": 1126.548
+    },
+    {
+     "start_word": 2833,
+     "end_word": 2837,
+     "start": 1127.988,
+     "end": 1129.728
+    },
+    {
+     "start_word": 2839,
+     "end_word": 2850,
+     "start": 1129.908,
+     "end": 1134.968
+    },
+    {
+     "start_word": 2952,
+     "end_word": 2959,
+     "start": 1174.908,
+     "end": 1177.368
+    },
+    {
+     "start_word": 3020,
+     "end_word": 3031,
+     "start": 1203.468,
+     "end": 1207.508
+    },
+    {
+     "start_word": 3068,
+     "end_word": 3088,
+     "start": 1224.548,
+     "end": 1232.468
+    },
+    {
+     "start_word": 3090,
+     "end_word": 3090,
+     "start": 1232.928,
+     "end": 1233.308
+    },
+    {
+     "start_word": 3096,
+     "end_word": 3108,
+     "start": 1235.848,
+     "end": 1238.708
+    },
+    {
+     "start_word": 3115,
+     "end_word": 3121,
+     "start": 1241.368,
+     "end": 1243.748
+    },
+    {
+     "start_word": 3136,
+     "end_word": 3157,
+     "start": 1249.728,
+     "end": 1258.008
+    }
+   ],
+   "region": {
+    "start_word": 2828,
+    "end_word": 3157,
+    "start": 1125.427,
+    "end": 1258.008
+   },
+   "edited_duration": 36.241,
+   "reordered": false,
+   "n_blocks": 2,
+   "text": "India లాంటి country లోనే medicines manufacture unit plan చేద్దాం అంటే high end labs కావాలి heavy machinery కావాలి, అవన్నీ ఎక్కడి నుండి తెప్పించారు? Machinery local గా Bombay లో వెళ్లి తెచ్చుకునే వాళ్ళు. At the age of nineteen he started his business line in Madras. మా పెళ్లి అయిన few hours లో వచ్చేసారండి Hyderabad. అక్కడ first batch start అవుతుంది I have to go అని అంటే అంత enthusiastic ఇదన్నమాట ఆ తర్వాత పది రోజులు అయిన తర్వాత ఎక్కడ నా husband అని వెతుక్కుంటూ నేను వచ్చాను. అంత traditional ఇది అసలు ఏం follow అవలేదు. ఆయనే design చేయించారు ఆయనే start అయ్యారు four, five years of heavy struggle almost bankruptcy stage కి వెళ్ళింది Okay So ఆ stage లో",
+   "kept_episode_words": [
+    [
+     2828,
+     2831
+    ],
+    [
+     2833,
+     2837
+    ],
+    [
+     2839,
+     2850
+    ],
+    [
+     2952,
+     2959
+    ],
+    [
+     3020,
+     3031
+    ],
+    [
+     3068,
+     3088
+    ],
+    [
+     3090,
+     3090
+    ],
+    [
+     3096,
+     3108
+    ],
+    [
+     3115,
+     3121
+    ],
+    [
+     3136,
+     3157
+    ]
+   ],
+   "n_kept_episode_words": 105,
+   "mapping": {
+    "method": "eval.map_shorts v2: 3-gram seed clusters (opening teaser demoted, later copy wins ties) -> timing-constrained Viterbi over fuzzy word candidates -> chance-excursion filter -> playback-speed fit and rescale -> timing-checked fuzzy gap fill; doubtful pieces kept out of the clip core",
+    "confidence": 0.9903,
+    "short_words": 103,
+    "matched_words": 102,
+    "notes": "coverage 99.0% of Short words matched by text (99.0% of non-filler words); 8 fuzzy matches; confidence high. Flags: piece 7: tiny piece, corroborated by a neighbouring piece",
+    "coverage": 0.9903,
+    "coverage_non_filler": 0.9903,
+    "n_fuzzy_matches": 8,
+    "confidence_label": "high",
+    "time_scale": 1.0,
+    "flags": [
+     "piece 7: tiny piece, corroborated by a neighbouring piece"
+    ],
+    "pieces": [
+     {
+      "piece": 1,
+      "short_words": [
+       0,
+       3
+      ],
+      "short_time": [
+       0.1,
+       1.24
+      ],
+      "episode_words": [
+       2828,
+       2831
+      ],
+      "episode_time": [
+       1125.427,
+       1126.548
+      ],
+      "offset_s": 1125.327,
+      "offset_end_s": 1125.328,
+      "pause_trims": 0,
+      "n_short_words": 4,
+      "n_matched": 4,
+      "n_exact": 3,
+      "mean_sim": 0.97,
+      "timing_jitter_s": 0.02,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 1,
+       "source_gap_s": 1.44,
+       "text": "ఒక"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 2,
+      "short_words": [
+       4,
+       8
+      ],
+      "short_time": [
+       1.44,
+       3.18
+      ],
+      "episode_words": [
+       2833,
+       2837
+      ],
+      "episode_time": [
+       1127.988,
+       1129.728
+      ],
+      "offset_s": 1126.548,
+      "offset_end_s": 1126.548,
+      "pause_trims": 0,
+      "n_short_words": 5,
+      "n_matched": 5,
+      "n_exact": 4,
+      "mean_sim": 0.991,
+      "timing_jitter_s": 0.02,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 1,
+       "source_gap_s": 0.18,
+       "text": "అని"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 3,
+      "short_words": [
+       9,
+       20
+      ],
+      "short_time": [
+       3.22,
+       7.08
+      ],
+      "episode_words": [
+       2839,
+       2850
+      ],
+      "episode_time": [
+       1129.908,
+       1134.968
+      ],
+      "offset_s": 1126.688,
+      "offset_end_s": 1127.968,
+      "pause_trims": 3,
+      "n_short_words": 12,
+      "n_matched": 12,
+      "n_exact": 10,
+      "mean_sim": 0.971,
+      "timing_jitter_s": 0.021,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "skip",
+       "n_words": 101,
+       "source_gap_s": 39.94,
+       "text": "అప్పటికి అవన్నీ India లో ఉన్నాయా? లేదా ఎక్కడి నుంచి అయినా export చేసి, ఎంత … [77 words] … అవ్వాలని చాలా చాలా చాలా ఒక three, four years చాలా చాలా కష్టపడ్డాం ఉహు"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 4,
+      "short_words": [
+       21,
+       26
+      ],
+      "short_time": [
+       7.14,
+       9.54
+      ],
+      "episode_words": [
+       2952,
+       2959
+      ],
+      "episode_time": [
+       1174.908,
+       1177.368
+      ],
+      "offset_s": 1167.768,
+      "offset_end_s": 1167.768,
+      "pause_trims": 0,
+      "n_short_words": 6,
+      "n_matched": 5,
+      "n_exact": 4,
+      "mean_sim": 0.956,
+      "timing_jitter_s": 0.02,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 60,
+       "source_gap_s": 26.1,
+       "text": "ఆ అంటే చెప్పాను కదా because of his exposure to voracious reader my … [36 words] … jumped into business life at that time at the age of nineteen."
+      },
+      "in_core": true
+     },
+     {
+      "piece": 5,
+      "short_words": [
+       27,
+       38
+      ],
+      "short_time": [
+       9.76,
+       13.22
+      ],
+      "episode_words": [
+       3020,
+       3031
+      ],
+      "episode_time": [
+       1203.468,
+       1207.508
+      ],
+      "offset_s": 1193.708,
+      "offset_end_s": 1194.188,
+      "pause_trims": 1,
+      "n_short_words": 12,
+      "n_matched": 12,
+      "n_exact": 12,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.02,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 36,
+       "source_gap_s": 17.04,
+       "text": "So, చెప్పాను కదా prawn culture అని ఒకటి తర్వాత ఇంకేదో ఇంకేదో ఆ తర్వాత … [12 words] … వచ్చి joint venture ఒకటి pharma company ఒక one year దాంట్లో ఉన్నారు ఉహు"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 6,
+      "short_words": [
+       39,
+       59
+      ],
+      "short_time": [
+       13.42,
+       20.28
+      ],
+      "episode_words": [
+       3068,
+       3088
+      ],
+      "episode_time": [
+       1224.548,
+       1232.468
+      ],
+      "offset_s": 1211.128,
+      "offset_end_s": 1212.168,
+      "pause_trims": 3,
+      "n_short_words": 21,
+      "n_matched": 21,
+      "n_exact": 20,
+      "mean_sim": 0.998,
+      "timing_jitter_s": 0.021,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 1,
+       "source_gap_s": 0.46,
+       "text": "in"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 7,
+      "short_words": [
+       60,
+       60
+      ],
+      "short_time": [
+       20.34,
+       21.16
+      ],
+      "episode_words": [
+       3090,
+       3090
+      ],
+      "episode_time": [
+       1232.928,
+       1233.308
+      ],
+      "offset_s": 1212.588,
+      "offset_end_s": 1212.588,
+      "pause_trims": 0,
+      "n_short_words": 1,
+      "n_matched": 1,
+      "n_exact": 1,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.0,
+      "quality": "ok",
+      "issues": [
+       "tiny piece, corroborated by a neighbouring piece"
+      ],
+      "after": {
+       "type": "cut",
+       "n_words": 5,
+       "source_gap_s": 2.54,
+       "text": "Okay Few hours లో వచ్చేసేసారు."
+      },
+      "in_core": true
+     },
+     {
+      "piece": 8,
+      "short_words": [
+       61,
+       73
+      ],
+      "short_time": [
+       21.32,
+       24.16
+      ],
+      "episode_words": [
+       3096,
+       3108
+      ],
+      "episode_time": [
+       1235.848,
+       1238.708
+      ],
+      "offset_s": 1214.528,
+      "offset_end_s": 1214.548,
+      "pause_trims": 0,
+      "n_short_words": 13,
+      "n_matched": 13,
+      "n_exact": 13,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.02,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 6,
+       "source_gap_s": 2.66,
+       "text": "So its like, like that అన్నమాట."
+      },
+      "in_core": true
+     },
+     {
+      "piece": 9,
+      "short_words": [
+       74,
+       80
+      ],
+      "short_time": [
+       24.62,
+       26.84
+      ],
+      "episode_words": [
+       3115,
+       3121
+      ],
+      "episode_time": [
+       1241.368,
+       1243.748
+      ],
+      "offset_s": 1216.748,
+      "offset_end_s": 1216.768,
+      "pause_trims": 0,
+      "n_short_words": 7,
+      "n_matched": 7,
+      "n_exact": 5,
+      "mean_sim": 0.961,
+      "timing_jitter_s": 0.02,
+      "quality": "good",
+      "issues": [],
+      "after": {
+       "type": "cut",
+       "n_words": 14,
+       "source_gap_s": 5.98,
+       "text": "So తానే కొన్న దీంట్లో చేశారు. నాకు business acumen at that time is nil. So"
+      },
+      "in_core": true
+     },
+     {
+      "piece": 10,
+      "short_words": [
+       81,
+       102
+      ],
+      "short_time": [
+       26.96,
+       35.2
+      ],
+      "episode_words": [
+       3136,
+       3157
+      ],
+      "episode_time": [
+       1249.728,
+       1258.008
+      ],
+      "offset_s": 1222.768,
+      "offset_end_s": 1222.788,
+      "pause_trims": 0,
+      "n_short_words": 22,
+      "n_matched": 22,
+      "n_exact": 22,
+      "mean_sim": 1.0,
+      "timing_jitter_s": 0.04,
+      "quality": "good",
+      "issues": [],
+      "in_core": true
+     }
+    ],
+    "kept_untranscribed": [
+     {
+      "j": 2954,
+      "word": "గా",
+      "at": "cont"
+     },
+     {
+      "j": 2955,
+      "word": "Bombay",
+      "at": "cont"
+     },
+     {
+      "j": 2956,
+      "word": "లో",
+      "at": "cont"
+     },
+     {
+      "j": 2958,
+      "word": "తెచ్చుకునే",
+      "at": "cont"
+     },
+     {
+      "j": 3119,
+      "word": "ఏం",
+      "at": "cont"
+     }
+    ],
+    "unmatched_short_words": [
+     {
+      "i": 23,
+      "word": "బొంబాయిలో",
+      "time": 8.14,
+      "context": "inside piece 4",
+      "episode_words_at_time": [
+       {
+        "j": 2955,
+        "word": "Bombay"
+       },
+       {
+        "j": 2956,
+        "word": "లో"
+       }
+      ]
+     }
+    ],
+    "other_text_matches": [
+     {
+      "t0": 1048.6,
+      "t1": 1134.0,
+      "n_short_words_explained": 20,
+      "used": true,
+      "duplicate_share": 0.2,
+      "lost_to_nearer_copy": false
+     },
+     {
+      "t0": 10.2,
+      "t1": 13.4,
+      "n_short_words_explained": 12,
+      "used": false,
+      "duplicate_share": 1.0,
+      "lost_to_nearer_copy": false
+     }
+    ],
+    "boundary": {
+     "start_natural": false,
+     "start_natural_t4": false,
+     "start_note": "",
+     "start_context": "it. ఆ time లోని | India లాంటి country లోనే",
+     "end_natural": true,
+     "end_context": "So ఆ stage లో | ఉమ్ ఇద్దరం అప్పుడు నేను",
+     "piece_edges_natural": 14,
+     "piece_edges_total": 20
+    }
+   }
+  }
+ ],
+ "unmapped": [
+  {
+   "short_id": "FE-14LkvJNI",
+   "coverage": 0.1622,
+   "reason": "coverage 16% < 60%: probably not from this episode"
+  }
+ ]
+}

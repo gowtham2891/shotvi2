@@ -1,0 +1,581 @@
+{
+ "asr_model": "elevenlabs/scribe_v2",
+ "language": "tel",
+ "language_probability": 0.9971254467964172,
+ "sentences": [
+  {
+   "id": 0,
+   "text": "ఇండియా ఎప్పుడూ కూడా ఎందుకు scratch నుంచి ఒక medicine ని build చేయడానికి try చేయదు?",
+   "start": 4.64,
+   "end": 8.72,
+   "speaker": "speaker_1",
+   "words": [
+    0,
+    12
+   ]
+  },
+  {
+   "id": 1,
+   "text": "అంటే...",
+   "start": 8.86,
+   "end": 9.12,
+   "speaker": "speaker_0",
+   "words": [
+    13,
+    13
+   ]
+  },
+  {
+   "id": 2,
+   "text": "ఇప్పుడు ఇండియా గాని ఒక medicine scratch నుంచి build చేయాలంటే ఇండియాకి actually ఏం కావాలి?",
+   "start": 9.46,
+   "end": 13.34,
+   "speaker": "speaker_1",
+   "words": [
+    14,
+    26
+   ]
+  },
+  {
+   "id": 3,
+   "text": "Correct question అడిగారు.",
+   "start": 13.44,
+   "end": 14.56,
+   "speaker": "speaker_0",
+   "words": [
+    27,
+    29
+   ]
+  },
+  {
+   "id": 4,
+   "text": "1991 వరకు ఇండియాలో అలాంటి business thought ఎవరికీ లేదు.",
+   "start": 14.76,
+   "end": 18.06,
+   "speaker": "speaker_1",
+   "words": [
+    30,
+    37
+   ]
+  },
+  {
+   "id": 5,
+   "text": "అలాంటిది మీరు 1984లోనే ఒక pharma company build చేద్దాం, medicines manufacture చేద్దాము అనే thought ఎలా వచ్చింది?",
+   "start": 18.4,
+   "end": 23.82,
+   "speaker": "speaker_1",
+   "words": [
+    38,
+    52
+   ]
+  },
+  {
+   "id": 6,
+   "text": "అది-",
+   "start": 23.98,
+   "end": 24.22,
+   "speaker": "speaker_0",
+   "words": [
+    53,
+    53
+   ]
+  },
+  {
+   "id": 7,
+   "text": "ఇంత పెద్ద company build చేయడానికి, ఇంత పెద్ద successful person అవ్వడానికి story ఏంటి?",
+   "start": 24.5,
+   "end": 28.76,
+   "speaker": "speaker_1",
+   "words": [
+    54,
+    65
+   ]
+  }
+ ],
+ "word_timestamps": [
+  {
+   "word": "ఇండియా",
+   "start": 4.64,
+   "end": 4.92,
+   "speaker": "speaker_1",
+   "logprob": -0.012
+  },
+  {
+   "word": "ఎప్పుడూ",
+   "start": 4.94,
+   "end": 5.22,
+   "speaker": "speaker_1",
+   "logprob": -0.115
+  },
+  {
+   "word": "కూడా",
+   "start": 5.26,
+   "end": 5.56,
+   "speaker": "speaker_1",
+   "logprob": -0.002
+  },
+  {
+   "word": "ఎందుకు",
+   "start": 5.62,
+   "end": 5.9,
+   "speaker": "speaker_1",
+   "logprob": -0.004
+  },
+  {
+   "word": "scratch",
+   "start": 5.94,
+   "end": 6.26,
+   "speaker": "speaker_1",
+   "logprob": -0.327
+  },
+  {
+   "word": "నుంచి",
+   "start": 6.34,
+   "end": 6.58,
+   "speaker": "speaker_1",
+   "logprob": -0.0
+  },
+  {
+   "word": "ఒక",
+   "start": 6.62,
+   "end": 6.7,
+   "speaker": "speaker_1",
+   "logprob": -0.001
+  },
+  {
+   "word": "medicine",
+   "start": 7.0,
+   "end": 7.32,
+   "speaker": "speaker_1",
+   "logprob": -0.058
+  },
+  {
+   "word": "ని",
+   "start": 7.36,
+   "end": 7.42,
+   "speaker": "speaker_1",
+   "logprob": -0.028
+  },
+  {
+   "word": "build",
+   "start": 7.46,
+   "end": 7.62,
+   "speaker": "speaker_1",
+   "logprob": -0.001
+  },
+  {
+   "word": "చేయడానికి",
+   "start": 7.68,
+   "end": 8.16,
+   "speaker": "speaker_1",
+   "logprob": -0.075
+  },
+  {
+   "word": "try",
+   "start": 8.2,
+   "end": 8.38,
+   "speaker": "speaker_1",
+   "logprob": -0.011
+  },
+  {
+   "word": "చేయదు?",
+   "start": 8.46,
+   "end": 8.72,
+   "speaker": "speaker_1",
+   "logprob": -0.023
+  },
+  {
+   "word": "అంటే...",
+   "start": 8.86,
+   "end": 9.12,
+   "speaker": "speaker_0",
+   "logprob": -0.298
+  },
+  {
+   "word": "ఇప్పుడు",
+   "start": 9.46,
+   "end": 9.8,
+   "speaker": "speaker_1",
+   "logprob": -0.0
+  },
+  {
+   "word": "ఇండియా",
+   "start": 9.84,
+   "end": 10.1,
+   "speaker": "speaker_1",
+   "logprob": -0.001
+  },
+  {
+   "word": "గాని",
+   "start": 10.14,
+   "end": 10.36,
+   "speaker": "speaker_1",
+   "logprob": -0.321
+  },
+  {
+   "word": "ఒక",
+   "start": 10.44,
+   "end": 10.56,
+   "speaker": "speaker_1",
+   "logprob": -0.003
+  },
+  {
+   "word": "medicine",
+   "start": 10.6,
+   "end": 10.94,
+   "speaker": "speaker_1",
+   "logprob": -0.016
+  },
+  {
+   "word": "scratch",
+   "start": 10.98,
+   "end": 11.24,
+   "speaker": "speaker_1",
+   "logprob": -0.012
+  },
+  {
+   "word": "నుంచి",
+   "start": 11.28,
+   "end": 11.42,
+   "speaker": "speaker_1",
+   "logprob": -0.001
+  },
+  {
+   "word": "build",
+   "start": 11.44,
+   "end": 11.64,
+   "speaker": "speaker_1",
+   "logprob": -0.001
+  },
+  {
+   "word": "చేయాలంటే",
+   "start": 11.68,
+   "end": 12.32,
+   "speaker": "speaker_1",
+   "logprob": -0.003
+  },
+  {
+   "word": "ఇండియాకి",
+   "start": 12.38,
+   "end": 12.64,
+   "speaker": "speaker_1",
+   "logprob": -0.001
+  },
+  {
+   "word": "actually",
+   "start": 12.7,
+   "end": 12.96,
+   "speaker": "speaker_1",
+   "logprob": -0.578
+  },
+  {
+   "word": "ఏం",
+   "start": 13.0,
+   "end": 13.08,
+   "speaker": "speaker_1",
+   "logprob": -0.027
+  },
+  {
+   "word": "కావాలి?",
+   "start": 13.12,
+   "end": 13.34,
+   "speaker": "speaker_1",
+   "logprob": -0.013
+  },
+  {
+   "word": "Correct",
+   "start": 13.44,
+   "end": 13.74,
+   "speaker": "speaker_0",
+   "logprob": -0.457
+  },
+  {
+   "word": "question",
+   "start": 13.78,
+   "end": 14.04,
+   "speaker": "speaker_0",
+   "logprob": -0.012
+  },
+  {
+   "word": "అడిగారు.",
+   "start": 14.1,
+   "end": 14.56,
+   "speaker": "speaker_0",
+   "logprob": -0.002
+  },
+  {
+   "word": "1991",
+   "start": 14.76,
+   "end": 15.56,
+   "speaker": "speaker_1",
+   "logprob": -0.0
+  },
+  {
+   "word": "వరకు",
+   "start": 15.62,
+   "end": 15.94,
+   "speaker": "speaker_1",
+   "logprob": -0.008
+  },
+  {
+   "word": "ఇండియాలో",
+   "start": 16.0,
+   "end": 16.3,
+   "speaker": "speaker_1",
+   "logprob": -0.007
+  },
+  {
+   "word": "అలాంటి",
+   "start": 16.34,
+   "end": 16.58,
+   "speaker": "speaker_1",
+   "logprob": -0.0
+  },
+  {
+   "word": "business",
+   "start": 16.6,
+   "end": 16.96,
+   "speaker": "speaker_1",
+   "logprob": -0.004
+  },
+  {
+   "word": "thought",
+   "start": 17.06,
+   "end": 17.28,
+   "speaker": "speaker_1",
+   "logprob": -0.014
+  },
+  {
+   "word": "ఎవరికీ",
+   "start": 17.38,
+   "end": 17.7,
+   "speaker": "speaker_1",
+   "logprob": -0.011
+  },
+  {
+   "word": "లేదు.",
+   "start": 17.74,
+   "end": 18.06,
+   "speaker": "speaker_1",
+   "logprob": -0.001
+  },
+  {
+   "word": "అలాంటిది",
+   "start": 18.4,
+   "end": 18.62,
+   "speaker": "speaker_1",
+   "logprob": -0.002
+  },
+  {
+   "word": "మీరు",
+   "start": 18.64,
+   "end": 18.74,
+   "speaker": "speaker_1",
+   "logprob": -0.001
+  },
+  {
+   "word": "1984లోనే",
+   "start": 18.76,
+   "end": 19.6,
+   "speaker": "speaker_1",
+   "logprob": -0.007
+  },
+  {
+   "word": "ఒక",
+   "start": 19.62,
+   "end": 19.76,
+   "speaker": "speaker_1",
+   "logprob": -0.0
+  },
+  {
+   "word": "pharma",
+   "start": 19.78,
+   "end": 20.08,
+   "speaker": "speaker_1",
+   "logprob": -0.04
+  },
+  {
+   "word": "company",
+   "start": 20.12,
+   "end": 20.38,
+   "speaker": "speaker_1",
+   "logprob": -0.0
+  },
+  {
+   "word": "build",
+   "start": 20.42,
+   "end": 20.6,
+   "speaker": "speaker_1",
+   "logprob": -0.001
+  },
+  {
+   "word": "చేద్దాం,",
+   "start": 20.66,
+   "end": 21.0,
+   "speaker": "speaker_1",
+   "logprob": -0.011
+  },
+  {
+   "word": "medicines",
+   "start": 21.26,
+   "end": 21.58,
+   "speaker": "speaker_1",
+   "logprob": -0.0
+  },
+  {
+   "word": "manufacture",
+   "start": 21.64,
+   "end": 22.08,
+   "speaker": "speaker_1",
+   "logprob": -0.001
+  },
+  {
+   "word": "చేద్దాము",
+   "start": 22.1,
+   "end": 22.52,
+   "speaker": "speaker_1",
+   "logprob": -0.009
+  },
+  {
+   "word": "అనే",
+   "start": 22.94,
+   "end": 23.06,
+   "speaker": "speaker_1",
+   "logprob": -0.637
+  },
+  {
+   "word": "thought",
+   "start": 23.08,
+   "end": 23.24,
+   "speaker": "speaker_1",
+   "logprob": -0.001
+  },
+  {
+   "word": "ఎలా",
+   "start": 23.28,
+   "end": 23.38,
+   "speaker": "speaker_1",
+   "logprob": -0.005
+  },
+  {
+   "word": "వచ్చింది?",
+   "start": 23.42,
+   "end": 23.82,
+   "speaker": "speaker_1",
+   "logprob": -0.0
+  },
+  {
+   "word": "అది-",
+   "start": 23.98,
+   "end": 24.22,
+   "speaker": "speaker_0",
+   "logprob": -0.029
+  },
+  {
+   "word": "ఇంత",
+   "start": 24.5,
+   "end": 24.62,
+   "speaker": "speaker_1",
+   "logprob": -0.002
+  },
+  {
+   "word": "పెద్ద",
+   "start": 24.66,
+   "end": 25.04,
+   "speaker": "speaker_1",
+   "logprob": -0.001
+  },
+  {
+   "word": "company",
+   "start": 25.2,
+   "end": 25.48,
+   "speaker": "speaker_1",
+   "logprob": -0.007
+  },
+  {
+   "word": "build",
+   "start": 25.5,
+   "end": 25.66,
+   "speaker": "speaker_1",
+   "logprob": -0.001
+  },
+  {
+   "word": "చేయడానికి,",
+   "start": 25.72,
+   "end": 26.2,
+   "speaker": "speaker_1",
+   "logprob": -0.01
+  },
+  {
+   "word": "ఇంత",
+   "start": 26.36,
+   "end": 26.52,
+   "speaker": "speaker_1",
+   "logprob": -0.0
+  },
+  {
+   "word": "పెద్ద",
+   "start": 26.56,
+   "end": 26.72,
+   "speaker": "speaker_1",
+   "logprob": -0.0
+  },
+  {
+   "word": "successful",
+   "start": 26.76,
+   "end": 27.08,
+   "speaker": "speaker_1",
+   "logprob": -0.0
+  },
+  {
+   "word": "person",
+   "start": 27.14,
+   "end": 27.38,
+   "speaker": "speaker_1",
+   "logprob": -0.0
+  },
+  {
+   "word": "అవ్వడానికి",
+   "start": 27.44,
+   "end": 27.92,
+   "speaker": "speaker_1",
+   "logprob": -0.063
+  },
+  {
+   "word": "story",
+   "start": 28.1,
+   "end": 28.42,
+   "speaker": "speaker_1",
+   "logprob": -0.003
+  },
+  {
+   "word": "ఏంటి?",
+   "start": 28.5,
+   "end": 28.76,
+   "speaker": "speaker_1",
+   "logprob": -0.0
+  }
+ ],
+ "audio_events": [
+  {
+   "text": "[ఇంట్రో మ్యూజిక్]",
+   "start": 0.0,
+   "end": 4.58
+  },
+  {
+   "text": "[ఇంట్రో మ్యూజిక్]",
+   "start": 28.76,
+   "end": 31.24
+  }
+ ],
+ "n_speakers": 2,
+ "speakers": [
+  "speaker_1",
+  "speaker_0"
+ ],
+ "ghost_speakers": [],
+ "total_sentences": 8,
+ "total_words": 66,
+ "audio_duration_secs": 31.2935,
+ "text": "[ఇంట్రో మ్యూజిక్] ఇండియా ఎప్పుడూ కూడా ఎందుకు scratch నుంచి ఒక medicine ని build చేయడానికి try చేయదు? అంటే... ఇప్పుడు ఇండియా గాని ఒక medicine scratch నుంచి build చేయాలంటే ఇండియాకి actually ఏం కావాలి? Correct question అడిగారు. 1991 వరకు ఇండియాలో అలాంటి business thought ఎవరికీ లేదు. అలాంటిది మీరు 1984లోనే ఒక pharma company build చేద్దాం, medicines manufacture చేద్దాము అనే thought ఎలా వచ్చింది? అది- ఇంత పెద్ద company build చేయడానికి, ఇంత పెద్ద successful person అవ్వడానికి story ఏంటి? [ఇంట్రో మ్యూజిక్]"
+}

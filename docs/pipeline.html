@@ -1,0 +1,658 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shotvi Pipeline Walkthrough</title>
+<style>
+:root{
+  --bg:#f5f4f0; --panel:#fff; --ink:#1c1b19; --muted:#6c6a64; --line:#e3e0d8; --soft:#efece5;
+  --accent:#c2410c; --accent-soft:#fdeee6; --blue:#2563eb; --blue-soft:#e8efff;
+  --good:#15803d; --good-soft:#e7f6ec; --bad:#b91c1c; --bad-soft:#fdecec; --warn:#a16207; --warn-soft:#fdf6e3;
+  --mono:"Cascadia Code","Consolas","SFMono-Regular",monospace;
+  --shadow:0 1px 2px rgba(0,0,0,.05),0 8px 24px rgba(0,0,0,.05);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#131311; --panel:#1c1b19; --ink:#ecebe6; --muted:#a29f97; --line:#2f2e2a; --soft:#262522;
+  --accent:#fb923c; --accent-soft:#3b2416; --blue:#7aa2ff; --blue-soft:#1b2540;
+  --good:#4ade80; --good-soft:#14301f; --bad:#f87171; --bad-soft:#3a1717; --warn:#fbbf24; --warn-soft:#352a10; --shadow:none;}}
+:root[data-theme="dark"]{
+  --bg:#131311; --panel:#1c1b19; --ink:#ecebe6; --muted:#a29f97; --line:#2f2e2a; --soft:#262522;
+  --accent:#fb923c; --accent-soft:#3b2416; --blue:#7aa2ff; --blue-soft:#1b2540;
+  --good:#4ade80; --good-soft:#14301f; --bad:#f87171; --bad-soft:#3a1717; --warn:#fbbf24; --warn-soft:#352a10; --shadow:none;}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);
+  font:15px/1.55 "Segoe UI","Nirmala UI","Noto Sans Telugu","Gautami",system-ui,-apple-system,sans-serif}
+.te{font-family:"Nirmala UI","Noto Sans Telugu","Gautami","Segoe UI",sans-serif}
+button{font:inherit;cursor:pointer}
+code,.mono{font-family:var(--mono);font-size:12.5px}
+.wrap{max-width:1240px;margin:0 auto;padding:0 20px}
+header{background:var(--panel);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}
+.top{display:flex;align-items:center;gap:12px;padding:12px 0;flex-wrap:wrap}
+.top h1{font-size:17px;margin:0;letter-spacing:-.01em}
+.top .sub{color:var(--muted);font-size:13px}
+.sp{flex:1}
+.btn{border:1px solid var(--line);background:var(--panel);color:var(--ink);padding:7px 13px;border-radius:9px;font-size:13px;font-weight:600}
+.btn:hover:not(:disabled){border-color:var(--muted)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.big{padding:11px 20px;font-size:15px;border-radius:11px}
+.rail{display:flex;gap:6px;overflow-x:auto;padding:0 0 12px;scrollbar-width:thin}
+.chip{flex:none;display:flex;align-items:center;gap:7px;border:1px solid var(--line);background:var(--panel);
+  border-radius:999px;padding:5px 12px 5px 6px;font-size:12.5px;color:var(--muted);white-space:nowrap;transition:.25s}
+.chip b{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--soft);color:var(--muted);font-size:11px}
+.chip.ready{color:var(--ink);border-color:var(--accent)} .chip.ready b{background:var(--accent);color:#fff}
+.chip.done{color:var(--ink)} .chip.done b{background:var(--good);color:#fff}
+.chip.on{box-shadow:0 0 0 2px var(--accent) inset}
+.chip.locked{cursor:not-allowed;opacity:.6}
+.intro{padding:22px 0 6px}
+.intro h2{font-size:24px;margin:0 0 6px;letter-spacing:-.02em}
+.intro p{margin:0;color:var(--muted);max-width:860px}
+.flow{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:16px 0 4px;font-size:12.5px}
+.flow span{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:4px 9px}
+.flow i{color:var(--muted);font-style:normal}
+.stage{background:var(--panel);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);margin:16px 0 40px;overflow:hidden}
+.shead{display:flex;gap:14px;align-items:flex-start;padding:18px 22px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.badge{display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:var(--accent-soft);color:var(--accent);font-weight:800;font-size:18px;flex:none}
+.shead h3{margin:0;font-size:20px;letter-spacing:-.01em}
+.shead .what{color:var(--muted);margin-top:2px;max-width:720px}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.tag{font-size:11.5px;border-radius:999px;padding:2px 9px;background:var(--soft);color:var(--muted)}
+.tag.ai{background:var(--blue-soft);color:var(--blue)} .tag.free{background:var(--good-soft);color:var(--good)} .tag.cost{background:var(--warn-soft);color:var(--warn)}
+.actions{display:flex;gap:8px;align-items:center;margin-left:auto}
+.cols{display:grid;grid-template-columns:minmax(0,1fr) 54px minmax(0,1.15fr) 54px minmax(0,1.25fr)}
+.col{padding:18px 20px;min-width:0}
+.col h4{margin:0 0 10px;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.arrow{display:grid;place-items:center;color:var(--line);font-size:26px}
+.arrow.live{color:var(--accent);animation:pulse 1s infinite}
+@keyframes pulse{50%{transform:translateX(4px);opacity:.6}}
+.box{border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--bg)}
+.box+.box{margin-top:8px}
+.hide{display:none!important}
+.fade{animation:fadeup .45s both}
+@keyframes fadeup{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.log{font-family:var(--mono);font-size:12px;background:#111;color:#cfe8cf;border-radius:10px;padding:10px 12px;min-height:120px;max-height:220px;overflow:auto;white-space:pre-wrap}
+.bar{height:10px;background:var(--soft);border-radius:6px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--accent);border-radius:6px;transition:width 1.2s ease}
+.bar.g i{background:var(--good)} .bar.b i{background:var(--blue)} .bar.r i{background:var(--bad)}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:3px 12px;font-size:13.5px}
+.kv dt{color:var(--muted)} .kv dd{margin:0}
+.stat{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px}
+.stat div{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+.stat b{display:block;font-size:22px;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.stat span{font-size:12px;color:var(--muted)}
+pre.json{font-family:var(--mono);font-size:11.8px;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px;max-height:250px;overflow:auto;margin:0;white-space:pre-wrap}
+.sent{display:flex;gap:8px;font-size:13.5px;padding:3px 6px;border-radius:6px}
+.sent .t{color:var(--muted);font-family:var(--mono);font-size:11.5px;min-width:38px;padding-top:2px}
+.sent .s{font-weight:700;font-size:11.5px;min-width:16px;padding-top:2px}
+.sent.frag{background:var(--bad-soft)}
+.sent.frag .tx::after{content:" ← fragment";color:var(--bad);font-size:11px}
+.unit{font-size:13.5px;border-left:3px solid var(--accent);background:var(--bg);border-radius:0 8px 8px 0;padding:7px 10px;margin-bottom:7px}
+.unit .uid{font-family:var(--mono);font-size:11.5px;color:var(--accent);font-weight:700}
+.steps li{margin:3px 0;opacity:.35;transition:.3s}
+.steps li.on{opacity:1}
+.steps li.on::marker{color:var(--good)}
+.timeline{position:relative;height:30px;background:var(--soft);border-radius:8px;overflow:hidden;margin:6px 0 2px}
+.timeline .teaser{position:absolute;left:0;top:0;bottom:0;width:0;background:repeating-linear-gradient(45deg,var(--bad) 0 6px,transparent 6px 12px);opacity:.7;transition:width 1s}
+.timeline .ours{position:absolute;top:0;bottom:0;background:var(--accent);opacity:0;transition:opacity .6s}
+.tl-l{display:flex;justify-content:space-between;font-size:11px;color:var(--muted)}
+.wave{display:flex;align-items:center;gap:3px;height:70px}
+.wave i{flex:1;background:var(--blue);border-radius:3px;height:20%;opacity:.8}
+.wave.on i{animation:wv .9s ease-in-out infinite}
+@keyframes wv{50%{height:90%}}
+.chunks{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.chunk{position:relative;border:1px solid var(--line);border-radius:10px;padding:10px;background:var(--bg);height:120px;overflow:hidden;font-size:12px}
+.chunk .scan{position:absolute;left:0;right:0;height:3px;background:var(--blue);box-shadow:0 0 12px var(--blue);top:-4px;opacity:0}
+.chunk.on .scan{animation:scan 1.4s ease-in-out infinite;opacity:1}
+@keyframes scan{0%{top:0}100%{top:116px}}
+.chunk .ln{height:5px;border-radius:3px;background:var(--line);margin:6px 0}
+.mom{display:flex;gap:8px;align-items:flex-start;font-size:12.5px;padding:6px 8px;border-radius:8px;border:1px solid var(--line);background:var(--bg);margin-bottom:5px}
+.mom.ours{border-color:var(--accent);background:var(--accent-soft)}
+.dots{color:var(--accent);letter-spacing:1px;white-space:nowrap;font-size:11px}
+.mom .ty{font-size:11px;color:var(--muted);min-width:64px}
+.stream{font-family:var(--mono);font-size:11.8px;line-height:1.75;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px;max-height:260px;overflow:auto;white-space:pre-wrap}
+.stream .n{color:var(--muted);font-size:10px}
+.tokens{font-size:13.5px;line-height:2;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px;max-height:330px;overflow:auto}
+.tok{transition:color .3s,background .3s,opacity .3s;border-radius:3px;padding:0 1px}
+.tok.cut{text-decoration:line-through;color:var(--bad);background:var(--bad-soft);opacity:.7}
+.reason{display:inline-block;font-size:10.5px;font-weight:700;color:#fff;background:var(--bad);border-radius:4px;padding:0 5px;margin:0 3px;line-height:1.6;vertical-align:1px;animation:pop .35s both}
+@keyframes pop{from{transform:scale(.4);opacity:0}}
+table.cuts{width:100%;border-collapse:collapse;font-size:12.5px}
+table.cuts td{border-top:1px solid var(--line);padding:5px 6px;vertical-align:top}
+table.cuts td:first-child{white-space:nowrap;font-weight:700;color:var(--bad)}
+table.cuts td:nth-child(2){white-space:nowrap;color:var(--muted);font-family:var(--mono)}
+.joins{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}
+.joins i{width:18px;height:18px;border-radius:50%;background:var(--soft);border:2px solid var(--line);transition:.25s}
+.joins i.ok{background:var(--good-soft);border-color:var(--good)}
+.joins i.badj{background:var(--bad);border-color:var(--bad);transform:scale(1.25)}
+.joins i.scan{border-color:var(--blue);box-shadow:0 0 0 3px var(--blue-soft)}
+.add{background:var(--good-soft);color:var(--good);border-radius:4px;padding:0 3px}
+.strike{text-decoration:line-through;color:var(--bad);opacity:.75}
+.score{display:grid;grid-template-columns:120px 1fr 34px;gap:8px;align-items:center;font-size:13px;margin:5px 0}
+.score .v{font-weight:800;text-align:right;font-variant-numeric:tabular-nums}
+.check{font-size:13px;display:flex;gap:8px;align-items:center;margin:3px 0}
+.check .x{color:var(--good);font-weight:800}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.opt{border:2px solid var(--line);border-radius:12px;padding:12px;background:var(--bg);transition:.4s}
+.opt.win{border-color:var(--good);background:var(--good-soft)}
+.opt.lose{opacity:.55}
+.opt h5{margin:0 0 4px;font-size:14px}
+.opt p{margin:0 0 8px;font-size:12.5px;color:var(--muted)}
+.crown{float:right;font-size:12px;font-weight:800;color:var(--good)}
+.title-big{font-size:22px;font-weight:700;letter-spacing:-.01em;min-height:34px}
+.caret::after{content:"▍";animation:blink 1s steps(1) infinite;color:var(--accent)}
+@keyframes blink{50%{opacity:0}}
+.rk{display:grid;grid-template-columns:30px 1fr 44px 70px 46px;gap:8px;align-items:center;font-size:13px;padding:5px 8px;border-radius:8px;transition:.4s}
+.rk.ours{background:var(--accent-soft);font-weight:700}
+.rk .t{color:var(--muted);font-size:11.5px}
+.rej{font-size:12.5px;padding:5px 8px;border-left:3px solid var(--bad);background:var(--bad-soft);border-radius:0 6px 6px 0;margin-bottom:5px}
+video{width:100%;border-radius:10px;background:#000;display:block;aspect-ratio:16/9}
+.lines{max-height:260px;overflow:auto;font-size:13.5px}
+.lines div{padding:3px 6px;border-bottom:1px dashed var(--line)}
+.lines .src{font-family:var(--mono);font-size:11px;color:var(--muted);margin-right:6px}
+.stars{display:flex;gap:10px;flex-wrap:wrap}
+.stars div{background:var(--good-soft);color:var(--good);border-radius:10px;padding:8px 12px;font-size:13px}
+.stars b{display:block;font-size:22px}
+.chart{display:grid;grid-template-columns:90px 1fr 40px;gap:8px;align-items:center;font-size:13px;margin:6px 0}
+.note{font-size:13px;color:var(--muted);background:var(--soft);border-radius:10px;padding:10px 12px;margin-top:10px}
+.note b{color:var(--ink)}
+.note code{word-break:break-all;white-space:normal}
+.warnbox{font-size:13px;background:var(--warn-soft);color:var(--warn);border-radius:10px;padding:10px 12px;margin-bottom:10px}
+.pill{display:inline-block;font-size:11px;font-weight:700;border-radius:999px;padding:1px 8px;margin-right:4px}
+.pill.g{background:var(--good-soft);color:var(--good)} .pill.r{background:var(--bad-soft);color:var(--bad)} .pill.b{background:var(--blue-soft);color:var(--blue)}
+.foot{color:var(--muted);font-size:12.5px;padding:10px 0 40px}
+@media (max-width:1000px){
+  .cols{grid-template-columns:1fr} .arrow{transform:rotate(90deg);height:34px}
+  .vs{grid-template-columns:1fr} .chunks{grid-template-columns:1fr}
+}
+@media (max-width:560px){ .wrap{padding:0 12px} .shead{padding:14px} .col{padding:14px} .actions{margin-left:0;width:100%} }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="top">
+      <h1>Shotvi · how one clip is made</h1>
+      <span class="sub">real data · offline</span>
+      <span class="sp"></span>
+      <label class="sub"><input type="checkbox" id="fast"> skip animations</label>
+      <button class="btn" id="runall">▶▶ Run everything</button>
+      <button class="btn" id="reset">Reset</button>
+      <button class="btn" id="theme" title="light / dark">◐</button>
+    </div>
+    <div class="rail" id="rail"></div>
+  </div>
+</header>
+
+<div class="wrap">
+  <section class="intro">
+    <h2>From a YouTube link to a ready-to-review Short</h2>
+    <p>Follow one real clip through every step: Arjun Sarja's <span class="te">"Total zero అయిపోయింది"</span> comeback story from the
+      Raw Talks film interview, which you rated <b>5/5 · would post</b>. Press <b>▶ Run</b> on each step. Everything you see is the actual input
+      and output our code and Gemini produced for this clip, not a mock-up.</p>
+    <div class="flow" id="flow"></div>
+  </section>
+  <div id="stage"></div>
+  <div class="foot">Built by <code>tools/build_pipeline_explainer.py</code> from runs/sel_r5_flash (film) and runs/sel_r6_flash (health ending example). Costs use ₹90 = $1.</div>
+</div>
+
+<script id="data" type="application/json">{"download": {"url": "https://youtu.be/FS1DI5D_hUk", "title": "🔥🤩 HIS VIBE IN THIS EPISODE 👌🏻 | FT ARJUN SARJA GARU | Telugu Podcast | Raw Talks With VK | EP - 118", "channel": "Raw Talks With VK", "duration": 3270.2135, "mp4_mb": 190, "wav_mb": 105, "chapters": [{"t": "0:00", "title": "Trailer"}, {"t": "2:30", "title": "Start of the podcast"}, {"t": "3:43", "title": "Conflict between a director and producer"}, {"t": "4:58", "title": "Struggle period, becoming a director, importance of money"}, {"t": "13:56", "title": "What is friendship?"}, {"t": "14:49", "title": "Acting both hero and villain roles"}, {"t": "20:10", "title": "Euphoric moments as an actor"}, {"t": "22:58", "title": "Fans (mobbing)"}], "n_chapters": 22, "video_src": "../scribe_dataset/FS1DI5D_hUk/FS1DI5D_hUk.mp4"}, "transcribe": {"n_words": 7883, "n_sentences": 1419, "speakers": ["speaker_0", "speaker_1"], "events": [["[నవ్వు]", 54], ["[గొంతు సవరించిన శబ్దం]", 4], ["[పాట]", 1], ["[నిశబ్దం]", 1]], "credits": 3635, "sample_words": [{"word": "నాకు", "start": 321.24, "end": 321.46, "speaker": "speaker_0", "logprob": -0.021, "i": 787}, {"word": "అదే", "start": 321.48, "end": 321.64, "speaker": "speaker_0", "logprob": -0.0, "i": 788}, {"word": "stage", "start": 321.66, "end": 321.96, "speaker": "speaker_0", "logprob": -0.0, "i": 789}, {"word": "almost", "start": 321.98, "end": 322.46, "speaker": "speaker_0", "logprob": -0.0, "i": 790}, {"word": "అయిపోయింది", "start": 322.86, "end": 323.22, "speaker": "speaker_0", "logprob": -0.019, "i": 791}, {"word": "కదా", "start": 323.26, "end": 323.46, "speaker": "speaker_0", "logprob": -0.0, "i": 792}, {"word": "ఏ", "start": 323.62, "end": 323.78, "speaker": "speaker_0", "logprob": -0.001, "i": 793}, {"word": "cinema", "start": 323.8, "end": 324.06, "speaker": "speaker_0", "logprob": -0.918, "i": 794}], "sentences": [{"t": "5:17", "spk": "0", "text": "ఉమ్"}, {"t": "5:17", "spk": "1", "text": "so what was your stage like అంటే ఆ time లో మీకు ఎట్లా ఉండింది"}, {"t": "5:21", "spk": "0", "text": "నాకు అదే stage almost అయిపోయింది కదా ఏ cinema లేదేం లేవు"}, {"t": "5:24", "spk": "1", "text": "ఉమ్"}, {"t": "5:25", "spk": "0", "text": "and I wanted to"}, {"t": "5:28", "spk": "0", "text": "friends అంతా వెళ్లిపోయారు"}, {"t": "5:31", "spk": "0", "text": "ఎవరు ఎవడు friends అని అప్పుడు తెలిసింది"}, {"t": "5:33", "spk": "1", "text": "ఆహా"}, {"t": "5:33", "spk": "0", "text": "nobody used to talk to me also"}, {"t": "5:35", "spk": "1", "text": "అయ్యా"}, {"t": "5:36", "spk": "0", "text": "and పెద్ద పెద్ద production houses వాళ్ళంతా నా phone తీసుకోవడమే మానేశారు"}, {"t": "5:41", "spk": "0", "text": "and immediate గా ఆ లోలో ఉన్నాను అలా అయిపోయాను"}, {"t": "5:45", "spk": "0", "text": "then I thought what what can I do next"}, {"t": "5:48", "spk": "1", "text": "ఉమ్"}, {"t": "5:49", "spk": "0", "text": "ఇంకేం తెలుసు నాకు driving తెలుసు driver అయి అవ్వచ్చా"}, {"t": "5:56", "spk": "0", "text": "అనుకున్నాను"}]}, "segment": {"pauses": {"p50": 0.04, "p90": 0.34, "p97": 0.96, "minor": 0.34, "major": 0.96}, "n_turns": 202, "n_units": 209, "n_backchannels": 345, "n_links": 54, "host": {"speaker": "speaker_1", "confidence": 0.461}, "speakers": [{"id": "speaker_0", "role": "guest", "share": 0.698}, {"id": "speaker_1", "role": "host", "share": 0.302}], "teaser": {"start": "0:00", "end": "2:37", "n": 19}, "units": ["U18 [4:55] H: makes sense (laugh) and మీరన్నట్టు ఆ మీరు almost deep stage లో ఉన్నప్పుడు కదా మీరు మళ్ళీ bounce back అయ్యి direction గాని production లో గాని వచ్చింది how was that stage sir అంటే generally గా చాలామంది ఆ stage తగలగానే ఏదో మొత్తం lose అయిపోయాను అన్న feel లో వెళ్ళిపోతారు లేకపోతే ఇప్పుడున్న youngsters గాని ఆ పెద్ద దె-దెబ్బ తలగ్గానే అది దెబ్బలాగ కాదు ఇంకా అయిపోయింది full stop అన్నట్టు అలా-అలా చేస్తారు కదా so what was your stage like అంటే ఆ time లో మీకు ఎట్లా ఉండింది", "U19 [5:21] G: నాకు అదే stage almost అయిపోయింది కదా ఏ cinema లేదేం లేవు and I wanted to friends అంతా వెళ్లిపోయారు ఎవరు ఎవడు friends అని అప్పుడు తెలిసింది nobody used to talk to me also and పెద్ద పెద్ద production houses వాళ్ళంతా నా phone తీసుకోవడమే మానేశారు and immediate గా ఆ లోలో ఉన్నాను అలా అయిపోయాను then I thought what what can I do next", "U20 [5:49] G: ఇంకేం తెలుసు నాకు driving తెలుసు driver అయి అవ్వచ్చా (laugh) అనుకున్నాను లేదు లేదు fights composing అంతా నాకు వచ్చు కదా fight master అయిపోతాన ఏంటి ఏదైనా ఒకటి చేయాలి కదా నేను I mean survival కదా ఇంకేమేం తెలుసును ఇలా ఆలోచన వచ్చింది because సినిమాలేమి లేవు కదా", "U21 [6:12] G: ఎవ్-ఎవరికీ నమ్మకం లేదు నా మీద Then I thought okay ఎందుకు direction చేయకూడదు. ఇంతకు ముందు చాలా సినిమాలు directors వదిలేసి వెళ్లిపోయేవారు. అర్జున్ ఇది రెండు scene తీసేయ్ నాకు కొంచెం పని ఉందని మ్ అవునని అది తీసేవాడిని నేను. So ఆ scenes కి appreciation వచ్చేది అప్పుడు ఏయ్ బాగా చేశారు కదా ఈ scene | H: Freshness ఉండేదేమో దాంట్లో ఆ freshness ఉండేదేమో దాంట్లో"], "link": {"q": "so what was your stage like అంటే ఆ time లో మీకు ఎట్లా ఉండింది", "a_start": "5:21", "a_dur": 201}, "unit_p50": 13.2}, "discover": {"n_chunks": 3, "chunks": [{"id": 0, "units": [8, 85], "tok": 6007, "n": 5}, {"id": 1, "units": [74, 150], "tok": 5986, "n": 7}, {"id": 2, "units": [139, 208], "tok": 4514, "n": 6}], "n_raw": 18, "n_merged": 17, "moments": [{"type": "comeback", "strength": 5, "hook": "నాకు అదే stage almost అయిపోయింది కదా ఏ cinema లేదేం లేవు and I wanted to friends అంతా వెళ్", "units": "U18–U29", "ours": true}, {"type": "emotional", "strength": 5, "hook": "ఆ picture లో climax compose చేస్తున్నాను Compose చేస్తున్నప్పుడు I was mentally, financial", "units": "U32–U38", "ours": false}, {"type": "bold_claim", "strength": 4, "hook": "Money according to me ఏమీ లేదు అని చెప్పలేము ఎందుకంటే ఎక్కడికి వెళ్ళినా the the people and", "units": "U40–U49", "ours": false}, {"type": "bold_claim", "strength": 4, "hook": "ఒక actor గా ఇంకేదో చేయాలి హీరో అంటే ఇంతే ఒక dances, songs ఆ తర్వాత ఈ ఒక limitations ఉంటుంద", "units": "U65–U70", "ours": false}, {"type": "incident", "strength": 5, "hook": "ఒక్కసారి ఏమైపోయింది అంటే ఈ ప్రేమ విచిత్రంగా మారింది. నెల్లూరు అనుకుంటాను అక్కడ So hotel ను", "units": "U75–U83", "ours": false}, {"type": "incident", "strength": 4, "hook": "వారు కొన్ని సార్లు మరీ wild గా ఉంటారండి.", "units": "U84–U90", "ours": false}, {"type": "confession", "strength": 4, "hook": "I am very very normal. ఇంటికి వెళ్తే నేను actor అని ఎవరికీ తెలియదు.", "units": "U95–U104", "ours": false}, {"type": "practical_tip", "strength": 5, "hook": "Money money ఏ అవసరం ఉండదు time ఏమీ ఏమీ trainer ఎవరు వద్దు motivation ఉండాలి", "units": "U106–U111", "ours": false}, {"type": "insider_anecdote", "strength": 4, "hook": "సుయంవరం అనే ఒక movie అది one day లో shoot చేశారు", "units": "U118–U125", "ours": false}, {"type": "insider_anecdote", "strength": 4, "hook": "that was again a very great experience సౌందర్య was like my very very closest friend", "units": "U127–U133", "ours": false}, {"type": "insider_anecdote", "strength": 4, "hook": "లేదు నేను ఇంతవరకు act చేసిన సినిమాల్లో ఆ character కేనే ఎక్కువ నేను I was thinking", "units": "U138–U141", "ours": false}, {"type": "confession", "strength": 4, "hook": "ఇక్కడ ది-ది I mean పరకాయ ప్రవేశం అనేదంతా ఏం లేదు.", "units": "U143–U148", "ours": false}], "ours": {"start_unit": 18, "end_unit": 29, "setup_unit": -1, "type": "comeback", "point": "Arjun recalls hitting rock bottom when no one answered his calls, contemplating driving or fight mastering, before self-directing and bouncing back.", "hook_quote": "నాకు అదే stage almost అయిపోయింది కదా ఏ cinema లేదేం లేవు and I wanted to friends అంతా వెళ్లిపోయారు", "payoff_quote": "నా fans prove చేశారు and again it was a big bang Come-comeback.", "strength": 5, "risk": "", "chunk": 0, "id": "m000"}}, "tighten": {"window": [576, 1322], "plan": "Hook with Arjun describing hitting rock bottom when films stopped and friends abandoned him. Setup his desperation (thinking of driving or stunt work) before deciding to direct and mortgage his property. Payoff: distributors returning with bags of cash after interval buzz, leading to a massive box office comeback.", "point": "Arjun recounts hitting rock bottom with zero films and empty pockets, taking a massive gamble by directing his own movie, and bouncing back.", "region": [787, 1201], "region_t": ["5:21", "8:33"], "region_secs": 192, "cuts": [{"a": 798, "b": 801, "why": "false start", "text": "and I wanted to", "secs": 0.7}, {"a": 830, "b": 837, "why": "filler", "text": "and immediate గా ఆ లోలో ఉన్నాను అలా అయిపోయాను", "secs": 2.9}, {"a": 842, "b": 842, "why": "stutter", "text": "what", "secs": 0.1}, {"a": 876, "b": 895, "why": "repeat", "text": "I mean survival కదా ఇంకేమేం తెలుసును ఇలా ఆలోచన వచ్చింది because సినిమాలేమి లేవు కదా మ్ ఎవ్-ఎవరికీ నమ్మకం లేదు నా మీద మ్", "secs": 9.1}, {"a": 903, "b": 977, "why": "tangent", "text": "ఇంతకు ముందు చాలా సినిమాలు directors వదిలేసి వెళ్లిపోయేవారు. అర్జున్ ఇది రెండు scene తీసేయ్ నాకు కొంచెం పని ఉందని ఆహా మ్ అవునని అది తీసేవాడిని నేను. So ఆ scenes కి appreciation వచ్చేది అప్పుడు మ్-హ్మ్ ఏయ్ బాగా చేశారు కదా ఈ scene Freshness ఉండేదేమో దాంట్లో ఆ ఆ freshness ఉండేదేమో దాంట్లో అదేదో so అప్పుడు నా confidence మ్ I mean technically కొంచెం I am technical oriented person. ఏం ca-ఏం lens వేస్తారో, lens ఈ lens వేస్తే ఎలా ఉంటుంది camera మ్ ఇవన్నీ observe చేసేవాడిని. So", "secs": 34.4}, {"a": 1002, "b": 1002, "why": "stutter", "text": "o-only", "secs": 0.8}, {"a": 1021, "b": 1055, "why": "tangent", "text": "And ఆహ్ పైసా అంతా అయిపోయింది ఏం చేస్తారట ఆ time లో ఏ-ఏమి ఎవరు రావట్లేదు నా office కి కూడా ఎవరూ రావట్లేదు. ఆ office లో ఇలా కూర్చొని ఉండేవాడిని same ఇలాగే table లో ఏ distributor రావట్లేదు picture కొనడానికి అని.", "secs": 16.0}, {"a": 1075, "b": 1075, "why": "false start", "text": "మ-people", "secs": 0.5}, {"a": 1078, "b": 1108, "why": "tangent", "text": "సరే ఇదేంట్రా నేనే first time as a director చూస్తున్నాను ఆ సినిమాని I was excited as a director but producer గా ఇంకా చాలా nervous గా ఉంది. మ్ ఎవడు చూసి తర్వాత వెళ్లిపోతున్నారు అని.", "secs": 13.5}, {"a": 1144, "b": 1146, "why": "host aside", "text": "దానికోసం wait చేస్తున్నా", "secs": 0.8}, {"a": 1151, "b": 1156, "why": "filler", "text": "And then people liked it మ్", "secs": 3.8}, {"a": 1161, "b": 1183, "why": "tangent", "text": "అయినా నేను కూడా distribute చేశాను city, I said \"City I am not giving, I want to do the publicity\" అని చెప్పి release చేశాను.", "secs": 5.3}, {"a": 1184, "b": 1188, "why": "filler", "text": "And people proved the movie.", "secs": 2.3}], "stream": "[5:18.7] H: 0 ఆ 1 time 2 లో 3 మీకు 4 ఎట్లా 5 ఉండింది\n[5:21.2] G: 6 నాకు 7 అదే 8 stage 9 almost / 10 అయిపోయింది 11 కదా 12 ఏ 13 cinema 14 లేదేం 15 లేవు [H ack: 16 ఉమ్] / 17 and 18 I 19 wanted 20 to // 21 friends 22 అంతా 23 వెళ్లిపోయారు // 24 ఎవరు 25 ఎవడు 26 friends 27 అని 28 అప్పుడు 29 తెలిసింది / [H ack: 30 ఆహా] 31 nobody 32 used 33 to 34 talk 35 to 36 me 37 also / [H ack: 38 అయ్యా] 39 and / 40 పెద్ద 41 పెద్ద 42 production 43 houses 44 వాళ్ళంతా 45 నా 46 phone 47 తీసుకోవడమే 48 మానేశారు // 49 and 50 immediate 51 గా 52 ఆ 53 లోలో 54 ఉన్నాను / 55 అలా", "tokens": [{"w": "నాకు", "c": -1}, {"w": "అదే", "c": -1}, {"w": "stage", "c": -1}, {"w": "almost", "c": -1}, {"w": "అయిపోయింది", "c": -1}, {"w": "కదా", "c": -1}, {"w": "ఏ", "c": -1}, {"w": "cinema", "c": -1}, {"w": "లేదేం", "c": -1}, {"w": "లేవు", "c": -1}, {"w": "ఉమ్", "c": -1}, {"w": "and", "c": 0}, {"w": "I", "c": 0}, {"w": "wanted", "c": 0}, {"w": "to", "c": 0}, {"w": "friends", "c": -1}, {"w": "అంతా", "c": -1}, {"w": "వెళ్లిపోయారు", "c": -1}, {"w": "ఎవరు", "c": -1}, {"w": "ఎవడు", "c": -1}, {"w": "friends", "c": -1}, {"w": "అని", "c": -1}, {"w": "అప్పుడు", "c": -1}, {"w": "తెలిసింది", "c": -1}, {"w": "ఆహా", "c": -1}, {"w": "nobody", "c": -1}, {"w": "used", "c": -1}, {"w": "to", "c": -1}, {"w": "talk", "c": -1}, {"w": "to", "c": -1}, {"w": "me", "c": -1}, {"w": "also", "c": -1}, {"w": "అయ్యా", "c": -1}, {"w": "and", "c": -1}, {"w": "పెద్ద", "c": -1}, {"w": "పెద్ద", "c": -1}, {"w": "production", "c": -1}, {"w": "houses", "c": -1}, {"w": "వాళ్ళంతా", "c": -1}, {"w": "నా", "c": -1}, {"w": "phone", "c": -1}, {"w": "తీసుకోవడమే", "c": -1}, {"w": "మానేశారు", "c": -1}, {"w": "and", "c": 1}, {"w": "immediate", "c": 1}, {"w": "గా", "c": 1}, {"w": "ఆ", "c": 1}, {"w": "లోలో", "c": 1}, {"w": "ఉన్నాను", "c": 1}, {"w": "అలా", "c": 1}, {"w": "అయిపోయాను", "c": 1}, {"w": "then", "c": -1}, {"w": "I", "c": -1}, {"w": "thought", "c": -1}, {"w": "what", "c": -1}, {"w": "what", "c": 2}, {"w": "can", "c": -1}, {"w": "I", "c": -1}, {"w": "do", "c": -1}, {"w": "next", "c": -1}, {"w": "ఉమ్", "c": -1}, {"w": "ఇంకేం", "c": -1}, {"w": "తెలుసు", "c": -1}, {"w": "నాకు", "c": -1}, {"w": "driving", "c": -1}, {"w": "తెలుసు", "c": -1}, {"w": "driver", "c": -1}, {"w": "అయి", "c": -1}, {"w": "అవ్వచ్చా", "c": -1}, {"w": "అనుకున్నాను", "c": -1}, {"w": "లేదు", "c": -1}, {"w": "లేదు", "c": -1}, {"w": "fights", "c": -1}, {"w": "composing", "c": -1}, {"w": "అంతా", "c": -1}, {"w": "నాకు", "c": -1}, {"w": "వచ్చు", "c": -1}, {"w": "కదా", "c": -1}, {"w": "right", "c": -1}, {"w": "fight", "c": -1}, {"w": "master", "c": -1}, {"w": "అయిపోతాన", "c": -1}, {"w": "ఏంటి", "c": -1}, {"w": "ఉమ్", "c": -1}, {"w": "ఏదైనా", "c": -1}, {"w": "ఒకటి", "c": -1}, {"w": "చేయాలి", "c": -1}, {"w": "కదా", "c": -1}, {"w": "నేను", "c": -1}, {"w": "I", "c": 3}, {"w": "mean", "c": 3}, {"w": "survival", "c": 3}, {"w": "కదా", "c": 3}, {"w": "ఇంకేమేం", "c": 3}, {"w": "తెలుసును", "c": 3}, {"w": "ఇలా", "c": 3}, {"w": "ఆలోచన", "c": 3}, {"w": "వచ్చింది", "c": 3}, {"w": "because", "c": 3}, {"w": "సినిమాలేమి", "c": 3}, {"w": "లేవు", "c": 3}, {"w": "కదా", "c": 3}, {"w": "మ్", "c": 3}, {"w": "ఎవ్-ఎవరికీ", "c": 3}, {"w": "నమ్మకం", "c": 3}, {"w": "లేదు", "c": 3}, {"w": "నా", "c": 3}, {"w": "మీద", "c": 3}, {"w": "మ్", "c": 3}, {"w": "Then", "c": -1}, {"w": "I", "c": -1}, {"w": "thought", "c": -1}, {"w": "okay", "c": -1}, {"w": "ఎందుకు", "c": -1}, {"w": "direction", "c": -1}, {"w": "చేయకూడదు.", "c": -1}, {"w": "ఇంతకు", "c": 4}, {"w": "ముందు", "c": 4}, {"w": "చాలా", "c": 4}, {"w": "సినిమాలు", "c": 4}, {"w": "directors", "c": 4}, {"w": "వదిలేసి", "c": 4}, {"w": "వెళ్లిపోయేవారు.", "c": 4}, {"w": "అర్జున్", "c": 4}, {"w": "ఇది", "c": 4}, {"w": "రెండు", "c": 4}, {"w": "scene", "c": 4}, {"w": "తీసేయ్", "c": 4}, {"w": "నాకు", "c": 4}, {"w": "కొంచెం", "c": 4}, {"w": "పని", "c": 4}, {"w": "ఉందని", "c": 4}, {"w": "ఆహా", "c": 4}, {"w": "మ్", "c": 4}, {"w": "అవునని", "c": 4}, {"w": "అది", "c": 4}, {"w": "తీసేవాడిని", "c": 4}, {"w": "నేను.", "c": 4}, {"w": "So", "c": 4}, {"w": "ఆ", "c": 4}, {"w": "scenes", "c": 4}, {"w": "కి", "c": 4}, {"w": "appreciation", "c": 4}, {"w": "వచ్చేది", "c": 4}, {"w": "అప్పుడు", "c": 4}, {"w": "మ్-హ్మ్", "c": 4}, {"w": "ఏయ్", "c": 4}, {"w": "బాగా", "c": 4}, {"w": "చేశారు", "c": 4}, {"w": "కదా", "c": 4}, {"w": "ఈ", "c": 4}, {"w": "scene", "c": 4}, {"w": "Freshness", "c": 4}, {"w": "ఉండేదేమో", "c": 4}, {"w": "దాంట్లో", "c": 4}, {"w": "ఆ", "c": 4}, {"w": "ఆ", "c": 4}, {"w": "freshness", "c": 4}, {"w": "ఉండేదేమో", "c": 4}, {"w": "దాంట్లో", "c": 4}, {"w": "అదేదో", "c": 4}, {"w": "so", "c": 4}, {"w": "అప్పుడు", "c": 4}, {"w": "నా", "c": 4}, {"w": "confidence", "c": 4}, {"w": "మ్", "c": 4}, {"w": "I", "c": 4}, {"w": "mean", "c": 4}, {"w": "technically", "c": 4}, {"w": "కొంచెం", "c": 4}, {"w": "I", "c": 4}, {"w": "am", "c": 4}, {"w": "technical", "c": 4}, {"w": "oriented", "c": 4}, {"w": "person.", "c": 4}, {"w": "ఏం", "c": 4}, {"w": "ca-ఏం", "c": 4}, {"w": "lens", "c": 4}, {"w": "వేస్తారో,", "c": 4}, {"w": "lens", "c": 4}, {"w": "ఈ", "c": 4}, {"w": "lens", "c": 4}, {"w": "వేస్తే", "c": 4}, {"w": "ఎలా", "c": 4}, {"w": "ఉంటుంది", "c": 4}, {"w": "camera", "c": 4}, {"w": "మ్", "c": 4}, {"w": "ఇవన్నీ", "c": 4}, {"w": "observe", "c": 4}, {"w": "చేసేవాడిని.", "c": 4}, {"w": "So", "c": 4}, {"w": "then", "c": -1}, {"w": "I", "c": -1}, {"w": "thought", "c": -1}, {"w": "I", "c": -1}, {"w": "will", "c": -1}, {"w": "direct", "c": -1}, {"w": "a", "c": -1}, {"w": "film", "c": -1}, {"w": "మ్", "c": -1}, {"w": "Then", "c": -1}, {"w": "I", "c": -1}, {"w": "have", "c": -1}, {"w": "to", "c": -1}, {"w": "produce", "c": -1}, {"w": "the", "c": -1}, {"w": "film", "c": -1}, {"w": "Right", "c": -1}, {"w": "Then", "c": -1}, {"w": "I", "c": -1}, {"w": "have", "c": -1}, {"w": "to", "c": -1}, {"w": "sell", "c": -1}, {"w": "my", "c": -1}, {"w": "only", "c": -1}, {"w": "o-only", "c": 5}, {"w": "property", "c": -1}, {"w": "I", "c": -1}, {"w": "have", "c": -1}, {"w": "to", "c": -1}, {"w": "sell.", "c": -1}, {"w": "అంతా", "c": -1}, {"w": "అయిపోయి", "c": -1}, {"w": "total", "c": -1}, {"w": "zero", "c": -1}, {"w": "అయిపోయింది", "c": -1}, {"w": "picture", "c": -1}, {"w": "almost", "c": -1}, {"w": "finish", "c": -1}, {"w": "అయింది.", "c": -1}, {"w": "మ్", "c": -1}, {"w": "ఎవరూ", "c": -1}, {"w": "తీసుకోరు", "c": -1}, {"w": "అయ్యో", "c": -1}, {"w": "And", "c": 6}, {"w": "ఆహ్", "c": 6}, {"w": "పైసా", "c": 6}, {"w": "అంతా", "c": 6}, {"w": "అయిపోయింది", "c": 6}, {"w": "ఏం", "c": 6}, {"w": "చేస్తారట", "c": 6}, {"w": "ఆ", "c": 6}, {"w": "time", "c": 6}, {"w": "లో", "c": 6}, {"w": "ఏ-ఏమి", "c": 6}, {"w": "ఎవరు", "c": 6}, {"w": "రావట్లేదు", "c": 6}, {"w": "నా", "c": 6}, {"w": "office", "c": 6}, {"w": "కి", "c": 6}, {"w": "కూడా", "c": 6}, {"w": "ఎవరూ", "c": 6}, {"w": "రావట్లేదు.", "c": 6}, {"w": "ఆ", "c": 6}, {"w": "office", "c": 6}, {"w": "లో", "c": 6}, {"w": "ఇలా", "c": 6}, {"w": "కూర్చొని", "c": 6}, {"w": "ఉండేవాడిని", "c": 6}, {"w": "same", "c": 6}, {"w": "ఇలాగే", "c": 6}, {"w": "table", "c": 6}, {"w": "లో", "c": 6}, {"w": "ఏ", "c": 6}, {"w": "distributor", "c": 6}, {"w": "రావట్లేదు", "c": 6}, {"w": "picture", "c": 6}, {"w": "కొనడానికి", "c": 6}, {"w": "అని.", "c": 6}, {"w": "And", "c": -1}, {"w": "then", "c": -1}, {"w": "ఒక్కసారి", "c": -1}, {"w": "projection", "c": -1}, {"w": "వేశాను.", "c": -1}, {"w": "అందులో", "c": -1}, {"w": "కూడా", "c": -1}, {"w": "first", "c": -1}, {"w": "half", "c": -1}, {"w": "కొంతమంది", "c": -1}, {"w": "చూసి", "c": -1}, {"w": "వెళ్లిపోయారు.", "c": -1}, {"w": "మ్-హ్మ్", "c": -1}, {"w": "Second", "c": -1}, {"w": "half", "c": -1}, {"w": "చూడడానికి", "c": -1}, {"w": "ఒక", "c": -1}, {"w": "ten,", "c": -1}, {"w": "twelve", "c": -1}, {"w": "మ-people", "c": 7}, {"w": "మాత్రమే", "c": -1}, {"w": "ఉన్నారు.", "c": -1}, {"w": "సరే", "c": 8}, {"w": "ఇదేంట్రా", "c": 8}, {"w": "నేనే", "c": 8}, {"w": "first", "c": 8}, {"w": "time", "c": 8}, {"w": "as", "c": 8}, {"w": "a", "c": 8}, {"w": "director", "c": 8}, {"w": "చూస్తున్నాను", "c": 8}, {"w": "ఆ", "c": 8}, {"w": "సినిమాని", "c": 8}, {"w": "I", "c": 8}, {"w": "was", "c": 8}, {"w": "excited", "c": 8}, {"w": "as", "c": 8}, {"w": "a", "c": 8}, {"w": "director", "c": 8}, {"w": "but", "c": 8}, {"w": "producer", "c": 8}, {"w": "గా", "c": 8}, {"w": "ఇంకా", "c": 8}, {"w": "చాలా", "c": 8}, {"w": "nervous", "c": 8}, {"w": "గా", "c": 8}, {"w": "ఉంది.", "c": 8}, {"w": "మ్", "c": 8}, {"w": "ఎవడు", "c": 8}, {"w": "చూసి", "c": 8}, {"w": "తర్వాత", "c": 8}, {"w": "వెళ్లిపోతున్నారు", "c": 8}, {"w": "అని.", "c": 8}, {"w": "ఆ", "c": -1}, {"w": "పన్నెండు", "c": -1}, {"w": "మంది", "c": -1}, {"w": "సినిమా", "c": -1}, {"w": "చూసి", "c": -1}, {"w": "వెళ్లి", "c": -1}, {"w": "బయట", "c": -1}, {"w": "చెప్పేశారు", "c": -1}, {"w": "second", "c": -1}]}, "joins": {"n": 26, "flagged": 1, "example": {"join": "START", "problem": "orphan_answer", "note": "The clip begins with 'నాకు అదే stage almost అయిపోయింది కదా', directly answering the host's question about how that stage was. Prepend the host's question starting from 'ఆ time లో' to provide proper context.", "action": "move_right_start", "to": 781}, "before": "నాకు అదే stage almost అయిపోయింది కదా ఏ cinema లేదేం లేవు", "added": "ఆ time లో మీకు ఎట్లా ఉండింది", "round2": 0}, "opener": {"weak": "ఆ time లో మీకు ఎట్లా ఉండింది నాకు అదే", "cold": {"reason": "Starts on a shocking, dramatic reality of hitting rock bottom: big production houses refusing to even pick up his calls.", "scores": {"hook": 5.0, "standalone": 5.0, "payoff": 5.0, "value_emotion": 5.0, "overall": 5.0}, "line": "పెద్ద పెద్ద production houses వాళ్ళంతా నా phone తీసుకోవడమే మానేశారు"}, "earlier": {"reason": "Host explicitly sets up the context: hitting a deep stage in career, losing everything, and asking how he bounced back.", "scores": {"hook": 2.0, "standalone": 4.5, "payoff": 4.5, "value_emotion": 4.0, "overall": 2.0}}, "struck": "ఆ time లో మీకు ఎట్లా ఉండింది", "kept": "cold_open"}, "score": {"hook": 5.0, "standalone": 5.0, "payoff": 5.0, "value_emotion": 5.0, "overall": 5.0, "first_words": "పెద్ద పెద్ద production houses వాళ్ళంతా నా phone తీసుకోవడమే", "last_words": "నా fans prove చేశారు and again it was a big bang Come-comeback.", "opener_problem": "none", "ending_problem": "none", "critique": "A gripping, emotionally complete rags-to-redemption story that scrollers will instantly engage with. The hook establishes rock-bottom stakes immediately, and the pacing builds up smoothly to an explosive payoff line.", "relatable": true}, "ending": {"title": "రోజుకి ఎన్ని సార్లు తింటే healthy?", "question": "ఒకసారి తింటే యోగి రెండు సార్లు తింటే భోగి అన్నది ఎంతవరకు correct?", "last_before": "first priority is the quantity and quality / ఎప్పుడు తిన్నా third priority", "kind": "framework", "verdict": "see quantity and quality of food / ఈ రెండే మీ health ని dictate చేస్తాయి", "action": "end_at", "reason": "The clip answers whether meal frequency matters by stating that quantity and quality of food dictate health, while the current ending trails into a priority hierarchy framework.", "scores": {"hook": 5.0, "standalone": 5.0, "payoff": 5.0, "value_emotion": 4.5, "overall": 5.0}, "human": {"before": {"payoff": "3", "overall": "3", "note": "payoff is weak"}, "after": {"payoff": "5", "overall": "5"}}}, "write": {"title": "\"Total zero అయిపోయింది, ఎవరూ తీసుకోరు\"", "why_it_works": "Hits hard with hitting rock bottom ('friends అంతా వెళ్లిపోయారు') and delivers an inspiring emotional payoff with the film's unexpected comeback.", "category": "story", "standalone_risks": [], "flags": ["over_chopped"]}, "themes": {"groups": [{"ids": ["c000", "c001"], "relation": "similar_theme"}]}, "rank": {"cutoff": {"t_show": 3.5, "t_rec": 4.0, "n_candidates": 17, "n_passed_hard_rules": 15, "n_shown": 11, "warnings": []}, "shown": [{"rank": 1, "title": "\"Total zero అయిపోయింది, ఎవరూ తీసుకోరు\"", "overall": 5.0, "tier": "recommended", "dur": 69, "ours": true}, {"rank": 2, "title": "\"డబ్బు అంతా అయిపోయింది, రేపు shooting ఎలా?\"", "overall": 4.5, "tier": "recommended", "dur": 43, "ours": false}, {"rank": 3, "title": "\"ఈ సమాజం అర్థం చేసుకునేది Success, Money మాత్రమే\"", "overall": 4.5, "tier": "recommended", "dur": 18, "ours": false}, {"rank": 4, "title": "\"లేదు Sir మేమున్నాం\" అని Assistants ఎటో వెళ్లిపోయారు!", "overall": 4.5, "tier": "recommended", "dur": 81, "ours": false}, {"rank": 5, "title": "\"ఇంటికి వెళ్తే నేను actor అని ఎవరికీ తెలీదు\"", "overall": 4.0, "tier": "recommended", "dur": 36, "ours": false}, {"rank": 6, "title": "24 గంటల్లో సినిమా: సెట్స్ మధ్యలో actors juggling!", "overall": 4.0, "tier": "recommended", "dur": 69, "ours": false}, {"rank": 7, "title": "\"హీరో అంటే కేవలం డాన్సులు, ఫైట్లేనా?\"", "overall": 4.0, "tier": "recommended", "dur": 47, "ours": false}, {"rank": 8, "title": "32 అడుగుల విగ్రహం, కట్టడానికి 17 ఏళ్లు!", "overall": 4.0, "tier": "recommended", "dur": 18, "ours": false}, {"rank": 9, "title": "సినిమా బడ్జెట్ ఎందుకు అంత పెరిగిపోతుంది?", "overall": 4.0, "tier": "recommended", "dur": 20, "ours": false}, {"rank": 10, "title": "అందుకే నేను Patriotic సినిమాలు తీస్తాను: Arjun", "overall": 3.5, "tier": "worth_a_look", "dur": 49, "ours": false}, {"rank": 11, "title": "\"ఆన్సర్ తిప్పి చెప్పే talent మనకు లేదు\"", "overall": 3.5, "tier": "worth_a_look", "dur": 27, "ours": false}], "rejected": [{"id": "c007", "why": ["T3: garbled join at an inner cut (judge)"], "overall": 3.5, "at": "28:12", "dur": 78}, {"id": "c005", "why": ["T3: garbled join at an inner cut (judge)", "C5: hook/standalone/payoff 2.0/3.0/4.0 has a part <= 2"], "overall": 2.0, "at": "23:42", "dur": 33}, {"id": "c009", "why": ["Q1: overall 2.5 < t_show 3.5"], "overall": 2.5, "at": "35:07", "dur": 88}, {"id": "c010", "why": ["C5: hook/standalone/payoff 2.0/4.0/3.0 has a part <= 2"], "overall": 2.0, "at": "37:45", "dur": 59}, {"id": "c011", "why": ["C5: hook/standalone/payoff 2.0/4.0/3.0 has a part <= 2"], "overall": 2.0, "at": "39:47", "dur": 50}, {"id": "c016", "why": ["C5: hook/standalone/payoff 2.0/3.0/3.0 has a part <= 2"], "overall": 2.0, "at": "51:42", "dur": 28}], "cost_usd": 0.30919, "calls": 87}, "final": {"title": "\"Total zero అయిపోయింది, ఎవరూ తీసుకోరు\"", "duration": 68.6, "n_pieces": 24, "region_secs": 184, "keep_ratio": 0.37, "lines": [{"src": "5:36", "text": "పెద్ద పెద్ద production houses వాళ్ళంతా నా phone తీసుకోవడమే మానేశారు"}, {"src": "5:28", "text": "friends అంతా వెళ్లిపోయారు ఎవరు ఎవడు friends అని అప్పుడు తెలిసింది"}, {"src": "5:33", "text": "nobody used to talk to me also"}, {"src": "5:36", "text": "and"}, {"src": "5:45", "text": "then I thought what"}, {"src": "5:47", "text": "can I do next"}, {"src": "5:49", "text": "ఇంకేం తెలుసు నాకు driving తెలుసు driver అయి అవ్వచ్చా అనుకున్నాను లేదు లేదు fights composing అంతా నాకు వచ్చు కదా"}, {"src": "6:01", "text": "fight master అయిపోతాన ఏంటి"}, {"src": "6:03", "text": "ఏదైనా ఒకటి చేయాలి కదా నేను"}, {"src": "6:14", "text": "Then I thought okay ఎందుకు direction చేయకూడదు."}, {"src": "6:53", "text": "then I thought I will direct a film"}, {"src": "6:56", "text": "Then I have to produce the film"}, {"src": "6:58", "text": "Then I have to sell my only"}, {"src": "7:01", "text": "property I have to sell. అంతా అయిపోయి total zero అయిపోయింది picture almost finish అయింది."}, {"src": "7:06", "text": "ఎవరూ తీసుకోరు"}, {"src": "7:27", "text": "And then ఒక్కసారి projection వేశాను. అందులో కూడా first half కొంతమంది చూసి వెళ్లిపోయారు."}, {"src": "7:35", "text": "Second half చూడడానికి ఒక ten, twelve మ-people మాత్రమే ఉన్నారు."}, {"src": "7:53", "text": "ఆ పన్నెండు మంది సినిమా చూసి వెళ్లి బయట చెప్పేశారు second half extraordinary గా ఉందని."}, {"src": "7:59", "text": "తర్వాత next day వచ్చారు నా office కి, ఒక ఇద్దరు వచ్చారు ఒక bag పట్టుకుని. సార్ ఈ area ఇస్తారా అని"}, {"src": "8:07", "text": "రావయ్యా ఇస్తానురా"}, {"src": "8:10", "text": "దానికోసం wait చేస్తున్నాను అని."}, {"src": "8:16", "text": "Release చేశాను సినిమా"}, {"src": "8:28", "text": "నా fans prove చేశారు and again it was a big bang"}, {"src": "8:32", "text": "Come-comeback."}], "video_src": "../runs/previews/sel_r5_flash/FS1DI5D_hUk/01_c000.mp4", "src_start": 321.24, "src_end": 513.26, "pieces_json": [{"start_word": 821, "end_word": 829, "start": 336.64, "end": 340.84}, {"start_word": 802, "end_word": 810, "start": 328.96, "end": 332.9}, {"start_word": 812, "end_word": 818, "start": 333.76, "end": 335.12}], "human": {"hook_1to5": "5", "standalone_1to5": "5", "payoff_1to5": "5", "overall_1to5": "5", "would_post": "yes"}}, "evaluate": {"rounds": [{"r": "Round 2", "yes": 5, "film": 3.0, "health": 3.6}, {"r": "Round 3", "yes": 3, "film": 4.0, "health": 2.8}, {"r": "Round 4", "yes": 7, "film": 4.8, "health": 3.6}, {"r": "Round 5", "yes": 9, "film": 4.8, "health": 4.4}]}}</script>
+<script>
+const D = JSON.parse(document.getElementById("data").textContent);
+const $ = (s, el = document) => el.querySelector(s);
+const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const mmss = t => `${Math.floor(t / 60)}:${String(Math.floor(t % 60)).padStart(2, "0")}`;
+let FAST = false, RUNID = 0;
+const sleep = ms => FAST ? Promise.resolve() : new Promise(r => setTimeout(r, ms));
+const show = (el, cls = "fade") => { if (!el) return; el.classList.remove("hide"); if (!FAST) { el.classList.remove(cls); void el.offsetWidth; el.classList.add(cls); } };
+async function countUp(el, to, ms = 900, fmt = v => Math.round(v).toLocaleString()) {
+  if (FAST) { el.textContent = fmt(to); return; }
+  const t0 = performance.now();
+  await new Promise(res => { const f = now => { const k = Math.min(1, (now - t0) / ms); el.textContent = fmt(to * (1 - Math.pow(1 - k, 3))); k < 1 ? requestAnimationFrame(f) : res(); }; requestAnimationFrame(f); });
+}
+async function type(el, text, cps = 70) {
+  el.classList.add("caret");
+  if (FAST) { el.textContent = text; el.classList.remove("caret"); return; }
+  el.textContent = "";
+  for (const ch of [...text]) { el.textContent += ch; await sleep(1000 / cps); }
+  el.classList.remove("caret");
+}
+async function logLines(el, lines, gap = 260) { for (const l of lines) { el.textContent += l + "\n"; el.scrollTop = 1e9; await sleep(gap); } }
+const bar = (pct, cls = "") => `<div class="bar ${cls}"><i data-w="${pct}"></i></div>`;
+const fillBars = root => $$(".bar i", root).forEach(i => i.style.width = i.dataset.w + "%");
+const scoreRow = (lab, v, cls = "g") => `<div class="score"><span>${lab}</span>${bar(v / 5 * 100, cls)}<span class="v">${(+v).toFixed(1)}</span></div>`;
+const dots = n => "●".repeat(n) + "○".repeat(5 - n);
+const inr = usd => "₹" + Math.round(usd * 90);
+
+/* ------------------------------------------------------------------ stages */
+const S = [];
+
+S.push({ key: "A", name: "Download", what: "Fetch the episode from YouTube and pull out a clean audio track.",
+  tags: [["tool", "yt-dlp + ffmpeg"], ["free", "free"], ["", "~1–3 min"]],
+  html() { const d = D.download; return `
+  <div class="cols">
+    <div class="col"><h4>Goes in</h4>
+      <div class="box"><div class="mono">${esc(d.url)}</div></div>
+      <div class="note">Just a link. <b>yt-dlp</b> asks YouTube for the best H.264 video ≤720p plus the audio, then <b>ffmpeg</b> merges them and extracts a mono 16 kHz WAV (what speech recognition wants).</div>
+    </div>
+    <div class="arrow">➜</div>
+    <div class="col"><h4>Happening</h4>
+      <div class="log" id="dl-log"></div>
+      <div style="margin-top:10px;font-size:12.5px">video.mp4 · ${d.mp4_mb} MB ${bar(100, "b").replace('class="bar b"', 'class="bar b" id="dl-b1"')}</div>
+      <div style="margin-top:6px;font-size:12.5px">audio.wav · ${d.wav_mb} MB ${bar(100, "g").replace('class="bar g"', 'class="bar g" id="dl-b2"')}</div>
+    </div>
+    <div class="arrow">➜</div>
+    <div class="col"><h4>Comes out</h4>
+      <div class="hide" id="dl-out">
+        <video src="${esc(d.video_src)}" controls preload="metadata" muted></video>
+        <div style="margin-top:8px;font-weight:700" class="te">${esc(d.title)}</div>
+        <dl class="kv" style="margin-top:6px"><dt>channel</dt><dd>${esc(d.channel)}</dd><dt>length</dt><dd>${mmss(d.duration)}</dd>
+        <dt>files</dt><dd><code>FS1DI5D_hUk.mp4</code>, <code>FS1DI5D_hUk_audio.wav</code></dd></dl>
+        <div class="note"><b>Bonus: YouTube chapters</b> (${d.n_chapters}) are saved too. We use them later as a free answer key, e.g. "Trailer" tells us where the teaser ends.
+          <div style="margin-top:6px">${d.chapters.map(c => `<div><span class="mono">${c.t}</span> ${esc(c.title)}</div>`).join("")}</div></div>
+      </div>
+    </div>
+  </div>`; },
+  async run(el) { const d = D.download, log = $("#dl-log", el);
+    await logLines(log, [`$ python download_youtube.py ${d.url}`, `[youtube] FS1DI5D_hUk: Downloading webpage`, `[info] Downloading 1 format(s): 136+251  (720p H.264 + opus audio)`]);
+    $("#dl-b1 i", el).style.width = "100%"; await sleep(1300);
+    $("#dl-b2 i", el).style.width = "100%";
+    await logLines(log, [`[Merger] Merging formats into "FS1DI5D_hUk.mp4"`, `$ ffmpeg -i FS1DI5D_hUk.mp4 -vn -ac 1 -ar 16000 FS1DI5D_hUk_audio.wav`, `✔ done: ${d.mp4_mb} MB video, ${d.wav_mb} MB audio, ${d.n_chapters} chapters`]);
+    show($("#dl-out", el)); }
+});
+
+S.push({ key: "B", name: "Transcribe", what: "ElevenLabs Scribe listens to the audio and writes down every word, with its exact time, who said it, and sounds like laughter.",
+  tags: [["tool", "ElevenLabs Scribe v2"], ["cost", "~67 credits / min"], ["", "~5–15 min"]],
+  html() { const d = D.transcribe; return `
+  <div class="cols">
+    <div class="col"><h4>Goes in</h4>
+      <div class="box">🔊 <code>FS1DI5D_hUk_audio.wav</code> (${D.download.wav_mb} MB, compressed to mp3 for upload)</div>
+      <div class="box" style="font-size:13px"><b>Settings</b><br>model <code>scribe_v2</code> · speaker separation on · word-level timestamps · audio-event tags on · temperature 0</div>
+    </div>
+    <div class="arrow">➜</div>
+    <div class="col"><h4>Happening</h4>
+      <div class="wave" id="tr-wave">${Array.from({length: 36}, (_, i) => `<i style="animation-delay:${(i % 9) * .1}s"></i>`).join("")}</div>
+      <div style="font-size:13px;margin-top:8px">Credits used: <b id="tr-cred">0</b> <span class="sub">(54.5 min × ~67)</span></div>
+      <div class="note">Scribe returns a JSON with one entry per word. <b>logprob</b> = how sure it was (closer to 0 = surer). Speakers are just <code>speaker_0</code> / <code>speaker_1</code>; it doesn't know who's the host.</div>
+    </div>
+    <div class="arrow">➜</div>
+    <div class="col"><h4>Comes out</h4>
+      <div class="hide" id="tr-out">
+        <div class="stat"><div><b id="tr-w">0</b><span>words</span></div><div><b id="tr-s">0</b><span>"sentences"</span></div>
+          <div><b>${d.speakers.length}</b><span>speakers</span></div><div><b>${d.events[0][1]}</b><span>${esc(d.events[0][0])} laughs</span></div></div>
+        <h4 style="margin-top:12px">Raw words (real JSON at 5:21)</h4>
+        <pre class="json te" id="tr-json"></pre>
+      </div>
+    </div>
+  </div>
+  <div class="col hide" id="tr-prob" style="border-top:1px solid var(--line)">
+    <h4>The problem with raw output: 30 seconds around our moment</h4>
+    <div class="te">${d.sentences.map(s => `<div class="sent ${s.text.split(" ").length <= 2 ? "frag" : ""}"><span class="t">${s.t}</span><span class="s" style="color:${s.spk === "1" ? "var(--blue)" : "var(--accent)"}">${s.spk === "1" ? "S1" : "S0"}</span><span class="tx">${esc(s.text)}</span></div>`).join("")}</div>
+    <div class="note">The host's <span class="te">"ఉమ్"</span> and one-word pieces chop the guest's story into fragments, and nothing says who the host is. That's what step C fixes.</div>
+  </div>`; },
+  async run(el) { const d = D.transcribe;
+    $("#tr-wave", el).classList.add("on"); countUp($("#tr-cred", el), d.credits, FAST ? 0 : 2200); await sleep(2300);
+    $("#tr-wave", el).classList.remove("on"); show($("#tr-out", el));
+    countUp($("#tr-w", el), d.n_words); countUp($("#tr-s", el), d.n_sentences);
+    const js = "[\n" + d.sample_words.map(w => `  {"word": "${w.word}", "start": ${w.start}, "end": ${w.end}, "speaker": "${w.speaker}", "logprob": ${w.logprob}}`).join(",\n") + ",\n  …7,875 more\n]";
+    await type($("#tr-json", el), js, 260);
+    await sleep(300); show($("#tr-prob", el)); }
+});
+
+S.push({ key: "C", name: "Segment", what: "Plain code (no AI) turns Scribe's fragments into whole thoughts, works out who the host is, links questions to answers, and hides the teaser.",
+  tags: [["free", "free · no AI"], ["", "~1 s"], ["tool", "shotvi/segment"]],
+  html() { const d = D.segment; const p = d.pauses; return `
+  <div class="cols">
+    <div class="col"><h4>Goes in</h4>
+      <div class="box" style="font-size:13px">${D.transcribe.n_words.toLocaleString()} timed words + ${D.transcribe.n_sentences.toLocaleString()} fragmentary "sentences" + speaker_0/1 + laugh/beep/song tags</div>
+      <div class="note">Rule of this step: <b>nothing is tuned to one video</b>. Pause thresholds come from <i>this</i> video's own pause distribution.</div>
+    </div>
+    <div class="arrow">➜</div>
+    <div class="col"><h4>Happening: 7 passes</h4>
+      <ol class="steps" id="sg-steps" style="font-size:13.5px;padding-left:20px;margin:0">
+        <li><b>Pause profile</b>: typical gap ${p.p50}s; "short pause" ≥ ${p.minor}s, "long pause" ≥ ${p.major}s</li>
+        <li><b>Turns</b>: fold listener noises (<span class="te">ఉమ్, అవును, Very deep</span>) into the speaker's turn: <b>${d.n_backchannels}</b> absorbed</li>
+        <li><b>Thought units</b>: split turns where a thought ends (pause + punctuation + next question − "sentence continues" cues): <b>${d.n_units}</b> units</li>
+        <li><b>Opening</b>: teaser montage ${d.teaser ? d.teaser.start + "–" + d.teaser.end : "none"} (${d.teaser ? d.teaser.n : 0} excerpts said again later)</li>
+        <li><b>Host vs guest</b> from behaviour: who asks, who talks less, whose lines get long answers</li>
+        <li><b>Question → answer links</b>: <b>${d.n_links}</b></li>
+        <li><b>Signals</b> per unit: laughter, beeps, low-confidence words, English share, pace</li>
+      </ol>
+    </div>
+    <div class="arrow">➜</div>
+    <div class="col"><h4>Comes out</h4>
+      <div class="hide" id="sg-out">
+        <div style="font-size:12.5px">Episode timeline: <span style="color:var(--bad)">teaser hidden</span> · <span style="color:var(--accent)">our moment</span></div>
+        <div class="timeline"><div class="teaser" id="sg-teaser"></div><div class="ours" id="sg-ours"></div></div>
+        <div class="tl-l"><span>0:00</span><span>${mmss(D.download.duration)}</span></div>
+        <div style="margin-top:10px">${d.speakers.map(s => `<div class="score"><span>${s.id} → <b>${s.role === "host" ? "Host (H)" : "Guest (G)"}</b></span>${bar(Math.round(s.share * 100), s.role === "host" ? "b" : "")}<span class="v">${Math.round(s.share * 100)}%</span></div>`).join("")}</div>
+        ${d.link ? `<div class="box" style="margin-top:8px;font-size:13px">🔗 <b>Q→A link</b>: <span class="te">"${esc(d.link.q)}"</span> → guest answers from ${d.link.a_start} for ${d.link.a_dur}s</div>` : ""}
+      </div>
+    </div>
+  </div>
+  <div class="col hide" id="sg-units" style="border-top:1px solid var(--line)">
+    <h4>Same 30 seconds, now as whole thoughts (exactly what the AI reads in step D1)</h4>
+    <div class="te">${d.units.map(u => { const m = u.match(/^(U\d+) (\[[^\]]+\]) (\w+):(.*)$/); return m ? `<div class="unit"><span class="uid">${m[1]} ${m[2]} ${m[3]}</span> ${esc(m[4]).replace(/\[(H|G): ([^\]]*)\]/g, '<span style="color:var(--muted)">[$1: $2]</span>')}</div>` : `<div class="unit">${esc(u)}</div>`; }).join("")}</div>
+    <div class="note">The fragments became <b>whole thoughts</b> labelled H/G, the host's <span class="te">"ఉమ్"</span> are folded in, and each unit has an id the AI can point at.</div>
+  </div>`; },
+  async run(el) { const lis = $$("#sg-steps li", el);
+    for (const li of lis) { li.classList.add("on"); await sleep(380); }
+    show($("#sg-out", el)); await sleep(150);
+    const dur = D.download.duration, teaserEnd = D.segment.teaser ? (+D.segment.teaser.end.split(":")[0] * 60 + +D.segment.teaser.end.split(":")[1]) : 0;
+    $("#sg-teaser", el).style.width = (teaserEnd / dur * 100) + "%";
+    const o = $("#sg-ours", el); o.style.left = (D.final.src_start / dur * 100) + "%"; o.style.width = Math.max(0.8, (D.final.src_end - D.final.src_start) / dur * 100) + "%";
+    await sleep(500); o.style.opacity = .9; fillBars(el); await sleep(700); show($("#sg-units", el)); }
+});
+
+S.push({ key: "D1", name: "Discover moments", what: "Gemini reads the whole episode as thought units, chunk by chunk, and nominates moments that could become Shorts, each with its hook, payoff and a strength from 1 to 5.",
+  tags: [["ai", "gemini-3.8-flash · thinking low"], ["cost", "~₹2 / episode"]],
+  html() { const d = D.discover; return `
+  <div class="cols">
+    <div class="col"><h4>Goes in</h4>
+      <div class="chunks" id="ds-chunks">${d.chunks.map(c => `<div class="chunk"><div class="scan"></div><b>chunk ${c.id + 1}</b><div class="sub">U${c.units[0]}–U${c.units[1]} · ${c.tok.toLocaleString()} tokens</div>${'<div class="ln"></div>'.repeat(9)}</div>`).join("")}</div>
+      <div class="note">The episode map (step C) in ~6k-token chunks that overlap a little, so no moment is cut in half. Question→answer links are given as hints. The teaser is not included.</div>
+    </div>
+    <div class="arrow">➜</div>
+    <div class="col"><h4>Happening</h4>
+      <div class="box" style="font-size:13px"><b>The instruction, in short:</b> "You're a Telugu Shorts editor. Find moments a stranger scrolling Reels would stop for: a story, a strong claim, a laugh, a reveal. For each: the unit span, the hook line and payoff line <i>quoted exactly</i>, why it works, strength 1–5."</div>
+      <div style="margin-top:10px;font-size:13px">Nominated <b id="ds-raw">0</b> · after merging overlaps <b id="ds-m">0</b> · strength ≥3 go on to editing</div>
+    </div>
+    <div class="arrow">➜</div>
+    <div class="col"><h4>Comes out</h4><div id="ds-list"></div>
+      <div class="box hide" id="ds-ours" style="margin-top:8px;font-size:13px;border-color:var(--accent)">
+        <b>★ The one we follow</b> · ${esc(d.ours.type)} · strength ${d.ours.strength}/5 · U${d.ours.start_unit}–U${d.ours.end_unit}<br>
+        <span class="sub">${esc(d.ours.point)}</span><br>
+        <b>hook:</b> <span class="te">"${esc(d.ours.hook_quote)}"</span><br><b>payoff:</b> <span class="te">"${esc(d.ours.payoff_quote)}"</span>
+      </div>
+    </div>
+  </div>`; },
+  async run(el) { const d = D.discover, ch = $$(".chunk", el), list = $("#ds-list", el);
+    for (let i = 0; i < ch.length; i++) { ch[i].classList.add("on"); await sleep(1100); ch[i].classList.remove("on"); }
+    countUp($("#ds-raw", el), d.n_raw); countUp($("#ds-m", el), d.n_merged);
+    for (const m of d.moments) { const div = document.createElement("div");
+      div.className = "mom" + (m.ours ? " ours" : ""); div.innerHTML = `<span class="ty">${esc(m.type)}<br><span class="dots">${dots(m.strength)}</span></span><span class="te">${esc(m.hook)}…</span>`;
+      list.appendChild(div); show(div); await sleep(120); }
+    show($("#ds-ours", el)); }
+});
+
+S.push({ key: "D2", name: "Tighten", what: "For each moment, Gemini sees every word numbered and decides exactly which words play, editing by flow like a regional editor: it cuts false starts, repeats and tangents, even mid-sentence.",
+  tags: [["ai", "gemini-3.8-flash · thinking low"], ["cost", "~₹0.5 / moment"]],
+  html() { const d = D.tighten; return `
+  <div class="cols">
+    <div class="col"><h4>Goes in: the numbered word stream</h4>
+      <div class="stream te" id="tg-stream"></div>
+      <div class="note"><b>Numbers</b> let the AI point at exact words. <b>/</b> = short pause, <b>//</b> = long pause. <b>[H ack]</b> = listener noise. Source window: words ${d.window[0]}–${d.window[1]}.</div>
+    </div>
+    <div class="arrow">➜</div>
+    <div class="col"><h4>Happening: its plan</h4>
+      <div class="box" style="font-size:13px" id="tg-plan"></div>
+      <div class="box" style="font-size:13px;margin-top:8px">Region chosen: <b>${d.region_t[0]}–${d.region_t[1]}</b> (${d.region_secs}s of talk) · <b id="tg-n">0</b> cuts · removing <b id="tg-sec">0</b>s</div>
+      <div class="note">Rules it follows: start on the hook, end on the payoff, keep every story beat (names, numbers, dialogue), keep negations like <span class="te">కాదు / లేదు</span>, cut anywhere in the flow, no slivers under ~1.5s.</div>
+    </div>
+    <div class="arrow">➜</div>
+    <div class="col"><h4>Comes out: what gets cut</h4>
+      <table class="cuts te" id="tg-table"></table>
+    </div>
+  </div>
+  <div class="col" style="border-top:1px solid var(--line)">
+    <h4>Watch the edit happen on the real text (first ~330 words of the region)</h4><div class="sub" style="margin:-4px 0 8px;font-size:12.5px">Red = cut by the AI, with its reason. The listener <span class="te">"ఉమ్ / ఆహా"</span> still visible here are removed afterwards by code, not by the AI.</div>
+    <div class="tokens te" id="tg-tokens">${d.tokens.map((t, i) => `<span class="tok" data-c="${t.c}" data-i="${i}">${esc(t.w)}</span>`).join(" ")}</div>
+  </div>`; },
+  async run(el) { const d = D.tighten;
+    await type($("#tg-stream", el), d.stream, 900);
+    await type($("#tg-plan", el), d.plan, 160);
+    const table = $("#tg-table", el); let secs = 0;
+    for (let k = 0; k < d.cuts.length; k++) { const c = d.cuts[k];
+      const toks = $$(`.tok[data-c="${k}"]`, el);
+      if (toks.length) { toks[0].insertAdjacentHTML("beforebegin", `<span class="reason">${esc(c.why)}</span>`); toks.forEach(t => t.classList.add("cut"));
+        if (!FAST) toks[0].scrollIntoView({block: "nearest", behavior: "smooth"}); }
+      table.insertAdjacentHTML("beforeend", `<tr class="fade"><td>${esc(c.why)}</td><td>${c.secs}s</td><td>${esc(c.text.length > 110 ? c.text.slice(0, 110) + "…" : c.text)}</td></tr>`);
+      secs += c.secs; $("#tg-n", el).textContent = k + 1; $("#tg-sec", el).textContent = Math.round(secs);
+      await sleep(520); } }
+});
+
+S.push({ key: "D3", name: "Check joins", what: "Every cut is a jump in the video. Gemini reads ~8 words either side of each join: does it sound like one person talking, same topic, question kept with its answer, thought finished? Bad joins get repaired.",
+  tags: [["ai", "gemini-3.8-flash · 1 call per clip"], ["cost", "~₹0.3 / clip"]],
+  html() { const d = D.joins; return `
+  <div class="cols">
+    <div class="col"><h4>Goes in</h4>
+      <div style="font-size:13px">${d.n} joins in this clip (start, every cut, end):</div>
+      <div class="joins" id="jn-dots">${Array.from({length: d.n}, () => "<i></i>").join("")}</div>
+      <div class="note">For each join it sees the last words before, the removed words, and the first words after. At the start it also sees the whole previous speaker turn.</div>
+    </div>
+    <div class="arrow">➜</div>
+    <div class="col"><h4>Happening</h4>
+      <div class="box hide te" id="jn-flag" style="font-size:13px;border-color:var(--bad)">
+        <span class="pill r">${esc(d.example.join)}</span><span class="pill r">${esc(d.example.problem.replace("_", " "))}</span><br>${esc(d.example.note)}
+      </div>
+      <div class="box hide" id="jn-fix" style="font-size:13px;margin-top:8px">🔧 Repair: <code>${esc(d.example.action)}</code> → start at word ${d.example.to}</div>
+    </div>
+    <div class="arrow">➜</div>
+    <div class="col"><h4>Comes out</h4>
+      <div class="hide" id="jn-out">
+        <div class="box te" style="font-size:13.5px"><span class="sub">before:</span><br>${esc(d.before)}…</div>
+        <div class="box te" style="font-size:13.5px"><span class="sub">after:</span><br><span class="add">${esc(d.added)}</span> ${esc(d.before)}…</div>
+        <div class="note">Now the answer comes with its question. <b>Round 2</b> re-checks every join: <b>${d.round2}</b> problems left.</div>
+      </div>
+    </div>
+  </div>`; },
+  async run(el) { const ds = $$("#jn-dots i", el);
+    ds[0].classList.add("scan"); await sleep(500); ds[0].classList.remove("scan"); ds[0].classList.add("badj");
+    show($("#jn-flag", el)); await sleep(500);
+    for (let i = 1; i < ds.length; i++) { ds[i].classList.add("scan"); await sleep(70); ds[i].classList.remove("scan"); ds[i].classList.add("ok"); }
+    show($("#jn-fix", el)); await sleep(600); ds[0].classList.remove("badj"); ds[0].classList.add("ok"); show($("#jn-out", el)); }
+});
+
+S.push({ key: "D4", name: "Score", what: "A strict scorer rates the edited clip as a viewer would. It must quote the first words and the last sentence and name any problem before it scores, and code caps the score for each named problem.",
+  tags: [["ai", "gemini-3.8-flash"], ["cost", "~₹0.2 / clip"]],
+  html() { const s = D.score, o = D.opener; return `
+  <div class="cols">
+    <div class="col"><h4>Goes in</h4>
+      <div class="box" style="font-size:13px">The edited clip's text in playback order, plus 5 source words around every cut, so a dropped <span class="te">"కాదు"</span> that flips the meaning is visible.</div>
+      <div class="box" style="font-size:13px"><b>Rubric (1–5):</b> hook (first 3 s) · stands alone · payoff · value/emotion · overall. Calibrated to be harsh: about 5% of clips should get a 5.</div>
+    </div>
+    <div class="arrow">➜</div>
+    <div class="col"><h4>Happening: first look</h4>
+      <div class="box te hide" id="sc-q" style="font-size:13px"><b>Opens with:</b> "${esc(o.weak)}…"<br><span class="pill r">opener problem</span> it starts mid-answer, so a stranger doesn't know what "అదే stage" is.</div>
+      <div id="sc-checks" style="margin-top:8px">
+        ${[["meaning changed", 0], ["garbled join", 0], ["ends mid-thought", 0], ["padded / too slow", 0]].map(([k]) => `<div class="check hide"><span class="x">✓ no</span> ${k}</div>`).join("")}
+      </div>
+      <div class="note hide" id="sc-next">A named opener problem sends the clip to <b>step D5</b> to fix the opening, so a great story isn't ranked low for a weak first line.</div>
+    </div>
+    <div class="arrow">➜</div>
+    <div class="col"><h4>Comes out (final score after the fix)</h4>
+      <div class="hide" id="sc-out">
+        ${scoreRow("hook", s.hook)}${scoreRow("stands alone", s.standalone)}${scoreRow("payoff", s.payoff)}${scoreRow("value / emotion", s.value_emotion)}${scoreRow("<b>overall</b>", s.overall, "")}
+        <div class="box te" style="font-size:12.5px;margin-top:8px"><b>last words:</b> "${esc(s.last_words)}"<br><span class="sub">${esc(s.critique)}</span></div>
+      </div>
+    </div>
+  </div>`; },
+  async run(el) { show($("#sc-q", el)); await sleep(700);
+    for (const c of $$("#sc-checks .check", el)) { show(c); await sleep(250); }
+    show($("#sc-next", el)); await sleep(600); show($("#sc-out", el)); await sleep(50); fillBars($("#sc-out", el)); }
+});
+
+S.push({ key: "D5", name: "Fix the opening", what: "When the opening is weak, Gemini proposes two repairs. Each is built, join-checked and re-scored, and the better version wins.",
+  tags: [["ai", "gemini-3.8-flash"], ["cost", "~₹0.5 / clip that needs it"]],
+  html() { const o = D.opener; const sc = (x) => x ? scoreRow("hook", x.hook, "b") + scoreRow("overall", x.overall, "b") : ""; return `
+  <div class="cols">
+    <div class="col"><h4>Goes in</h4>
+      <div class="box te" style="font-size:13.5px;border-color:var(--bad)">"${esc(o.weak)} stage almost అయిపోయింది కదా…"</div>
+      <div class="note">This was the exact clip you rated <b>hook 1</b> in round 2: <i>"if we could have removed this it could have been good"</i>.</div>
+    </div>
+    <div class="arrow">➜</div>
+    <div class="col"><h4>Happening: two tries race</h4>
+      <div class="vs">
+        <div class="opt" id="op-a"><span class="crown hide">✓ WINNER</span><h5>Cold open</h5><p>${esc(o.cold.reason)}</p>${sc(o.cold.scores)}</div>
+        <div class="opt" id="op-b"><h5>Earlier start</h5><p>${esc(o.earlier.reason)}</p>${sc(o.earlier.scores)}</div>
+      </div>
+    </div>
+    <div class="arrow">➜</div>
+    <div class="col"><h4>Comes out</h4>
+      <div class="hide" id="op-out">
+        <div class="box te" style="font-size:13.5px"><span class="sub">new first line (moved from later in the story):</span><br><b class="add">${esc(o.cold.line)}</b></div>
+        <div class="box te" style="font-size:13.5px"><span class="sub">old weak opener, removed:</span><br><span class="strike">${esc(o.struck)}</span></div>
+        <div class="note">In round 4, the earlier version added the cold open but <b>left the weak line in</b>, which was your note. Now the replaced opener is struck.</div>
+      </div>
+    </div>
+  </div>`; },
+  async run(el) { await sleep(300); fillBars($("#op-a", el)); fillBars($("#op-b", el)); await sleep(1400);
+    $("#op-a", el).classList.add("win"); $("#op-b", el).classList.add("lose"); show($(".crown", el)); await sleep(400); show($("#op-out", el)); }
+});
+
+S.push({ key: "D6", name: "Fix the ending", what: "Added for advice and myth-bust clips. Their payoff is the one-line answer to the question they opened with, not a tip, a moral, a framework or a hedge. Our comeback story already ended on its punchline, so here's the real case that needed it, from the health podcast.",
+  tags: [["ai", "gemini-3.8-flash"], ["cost", "~₹0.3 / clip"], ["", "health podcast example"]],
+  html() { const e = D.ending; return `
+  <div class="cols">
+    <div class="col"><h4>Goes in</h4>
+      <div class="box te" style="font-size:13.5px"><span class="sub">clip:</span> <b>${esc(e.title)}</b><br><span class="sub">opening question:</span><br>"${esc(e.question)}"</div>
+      <div class="box te" style="font-size:13.5px;border-color:var(--bad)"><span class="sub">old last sentence:</span><br>"${esc(e.last_before)}"</div>
+    </div>
+    <div class="arrow">➜</div>
+    <div class="col"><h4>Happening</h4>
+      <div class="box hide" id="en-1" style="font-size:13px">1. Classify the last sentence: <span class="pill r">${esc(e.kind)}</span> (tip / moral / framework / metaphor / hedge are <b>not</b> payoffs)</div>
+      <div class="box hide te" id="en-2" style="font-size:13px">2. Find the verdict that answers the opening question:<br><b>"${esc(e.verdict)}"</b></div>
+      <div class="box hide" id="en-3" style="font-size:13px">3. Action <code>${esc(e.action)}</code>: end right after the verdict. ${esc(e.reason)}</div>
+    </div>
+    <div class="arrow">➜</div>
+    <div class="col"><h4>Comes out</h4>
+      <div class="hide" id="en-out">
+        <div class="box te" style="font-size:13.5px"><span class="sub">new last line:</span><br><b class="add">${esc(e.verdict)}</b></div>
+        ${scoreRow("payoff (AI)", e.scores.payoff)}${scoreRow("overall (AI)", e.scores.overall)}
+        <div class="stars" style="margin-top:8px">
+          <div><span>your payoff before</span><b>${e.human.before ? e.human.before.payoff : "?"}/5</b><span class="te">"${esc(e.human.before ? e.human.before.note : "")}"</span></div>
+          <div><span>your payoff after</span><b>${e.human.after ? e.human.after.payoff : "?"}/5</b><span>overall ${e.human.after ? e.human.after.overall : "?"}/5</span></div>
+        </div>
+      </div>
+    </div>
+  </div>`; },
+  async run(el) { for (const id of ["#en-1", "#en-2", "#en-3"]) { show($(id, el)); await sleep(800); }
+    show($("#en-out", el)); await sleep(50); fillBars($("#en-out", el)); }
+});
+
+S.push({ key: "D7", name: "Write & link", what: "For clips that will be shown, Gemini writes a Telugu title, the hook line, why it works, a category and risk flags. Clips on the same topic get linked, so you don't post two versions of one story.",
+  tags: [["ai", "gemini-3.8-flash"], ["cost", "~₹0.1 / clip"]],
+  html() { const w = D.write; const g = (D.themes && D.themes.groups || [])[0]; return `
+  <div class="cols">
+    <div class="col"><h4>Goes in</h4><div class="box" style="font-size:13px">The final edited text + the scorer's notes.</div>
+      <div class="note">Titles are written in natural Telugu/Tenglish, the way creators actually title Shorts, not formal Telugu.</div></div>
+    <div class="arrow">➜</div>
+    <div class="col"><h4>Happening</h4><div class="title-big te" id="wr-title"></div>
+      <div class="box hide" id="wr-why" style="font-size:13px;margin-top:8px"><b>why it works:</b> <span class="te">${esc(w.why_it_works)}</span></div></div>
+    <div class="arrow">➜</div>
+    <div class="col"><h4>Comes out</h4><div class="hide" id="wr-out">
+      <div><span class="pill b">category: ${esc(w.category)}</span>${(w.flags || []).map(f => `<span class="pill r">${esc(f.replace(/_/g, " "))}</span>`).join("")}</div>
+      ${g ? `<div class="box" style="font-size:13px;margin-top:8px">🔗 <b>linked</b>: ${g.ids.join(" ↔ ")} (${esc(g.relation.replace("_", " "))}). The other is <span class="te">"డబ్బు అంతా అయిపోయింది…"</span>, from the same period of his life.</div>` : ""}
+    </div></div>
+  </div>`; },
+  async run(el) { await type($("#wr-title", el), D.write.title.replace(/^"|"$/g, ""), 28); show($("#wr-why", el)); await sleep(500); show($("#wr-out", el)); }
+});
+
+S.push({ key: "D8", name: "Rank", what: "Plain code checks the spec's hard rules, drops near-duplicates, and orders by score. Clips scoring ≥3.5 are shown, and ≥4.0 are marked recommended. No fixed number of clips: it depends on the episode.",
+  tags: [["free", "code"], ["", `this episode: ${inr(D.rank.cost_usd)} total`]],
+  html() { const r = D.rank, c = r.cutoff; return `
+  <div class="cols">
+    <div class="col"><h4>Goes in</h4>
+      <div class="stat"><div><b id="rk-c">0</b><span>edited candidates</span></div><div><b id="rk-h">0</b><span>pass hard rules</span></div><div><b id="rk-s">0</b><span>shown</span></div></div>
+      <div class="note"><b>Hard rules</b>: 15–150 s long · ≤3 jumps · nothing from the teaser or beeped audio · no meaning change · hook, standalone and payoff all &gt; 2.</div>
+    </div>
+    <div class="arrow">➜</div>
+    <div class="col"><h4>Happening: filtered out</h4><div id="rk-rej"></div></div>
+    <div class="arrow">➜</div>
+    <div class="col"><h4>Comes out: the list you review</h4><div id="rk-list"></div>
+      <div class="note">Whole episode (54 min): <b>${r.calls}</b> AI calls · <b>${inr(r.cost_usd)}</b> (~$${(+r.cost_usd).toFixed(2)}) · about 30 s of processing.</div></div>
+  </div>`; },
+  async run(el) { const r = D.rank, c = r.cutoff;
+    countUp($("#rk-c", el), c.n_candidates); await sleep(500); countUp($("#rk-h", el), c.n_passed_hard_rules); await sleep(500); countUp($("#rk-s", el), c.n_shown);
+    for (const x of r.rejected) { const d = document.createElement("div"); d.className = "rej";
+      d.innerHTML = `<b>${esc(x.id)}</b> · ${x.at} · ${x.dur}s · overall ${x.overall}<br><span class="sub">${esc((x.why || []).join("; "))}</span>`; $("#rk-rej", el).appendChild(d); show(d); await sleep(260); }
+    for (const p of r.shown) { const d = document.createElement("div"); d.className = "rk" + (p.ours ? " ours" : "");
+      d.innerHTML = `<span>#${p.rank}</span><span class="te">${esc(p.title.replace(/^"|"$/g, ""))}</span><span>${p.overall.toFixed(1)}</span><span class="t">${p.tier.replace("_", " ")}</span><span class="t">${p.dur}s</span>`;
+      $("#rk-list", el).appendChild(d); show(d); await sleep(160); } }
+});
+
+S.push({ key: "E", name: "Review", what: "A preview MP4 is cut locally with ffmpeg (free) and shown in the review page, next to its transcript. You watch, rate and download the ratings.",
+  tags: [["free", "ffmpeg, local"], ["tool", "tools/preview_clips.py"]],
+  html() { const f = D.final, h = f.human; return `
+  <div class="cols">
+    <div class="col"><h4>Goes in: the original talk</h4>
+      <video id="rv-src" src="${esc(D.download.video_src)}#t=${Math.floor(f.src_start)}" controls preload="metadata"></video>
+      <div class="note">${mmss(f.src_start)}–${mmss(f.src_end)} in the episode: <b>${f.region_secs}s</b> of raw conversation the final clip draws from (after the opener fix, so slightly different from the 192s the tightener first chose), with the host's interruptions, repeats and tangents.</div>
+    </div>
+    <div class="arrow">➜</div>
+    <div class="col"><h4>Happening: the edit, piece by piece</h4>
+      <div class="lines te" id="rv-lines">${f.lines.map((l, i) => `<div class="hide" data-i="${i}"><span class="src">@${l.src}</span>${esc(l.text)}</div>`).join("")}</div>
+      <div class="note"><b>${f.n_pieces}</b> pieces stitched in order, jumping back once (the cold open). Kept <b>${Math.round(f.keep_ratio * 100)}%</b> of the region.</div>
+    </div>
+    <div class="arrow">➜</div>
+    <div class="col"><h4>Comes out: the Short</h4>
+      <div class="hide" id="rv-out">
+        <video src="${esc(f.video_src)}" controls preload="metadata"></video>
+        <div style="margin-top:6px;font-weight:700" class="te">${esc(f.title.replace(/^"|"$/g, ""))} · ${f.duration}s</div>
+        <div class="stars" style="margin-top:8px">${[["hook", h.hook_1to5], ["stands alone", h.standalone_1to5], ["payoff", h.payoff_1to5], ["overall", h.overall_1to5]].map(([k, v]) => `<div><span>${k}</span><b>${v}/5</b></div>`).join("")}<div><span>would post</span><b>${esc(h.would_post)}</b></div></div>
+        <div class="note">Your rating, from round 4. The clip's data is stored as exact word ranges, e.g. <code>${esc(JSON.stringify(f.pieces_json[0]))}</code>, so a creator can nudge any cut.</div>
+      </div>
+    </div>
+  </div>`; },
+  async run(el) { for (const d of $$("#rv-lines div", el)) { show(d); await sleep(110); } show($("#rv-out", el)); }
+});
+
+S.push({ key: "F", name: "Evaluate & improve", what: "Your ratings and notes, plus a comparison with the creator's own published Shorts, decide what the next round fixes. Each round fixed what your notes pointed at.",
+  tags: [["free", "eval/"], ["", "your ratings in data/human/"]],
+  html() { const R = D.evaluate.rounds; return `
+  <div class="cols">
+    <div class="col"><h4>Goes in</h4><div class="box" style="font-size:13px">• your 1–5 ratings + notes on each cut<br>• the creator's 19 published Shorts, mapped word-by-word onto the episodes<br>• code checks against the clip spec</div></div>
+    <div class="arrow">➜</div>
+    <div class="col"><h4>Happening: what each round fixed</h4>
+      <div class="box" style="font-size:13px">R3: <b>fix the opening</b> (you rated a great story's hook 1)<br>R4: <b>edit by flow + join checker</b> (your "cut feels off" notes)<br>R5: <b>fix the ending</b> ("health payoffs are weak")</div></div>
+    <div class="arrow">➜</div>
+    <div class="col"><h4>Comes out: your top-10 ratings over time</h4>
+      ${R.map(r => `<div class="chart"><span>${r.r}</span>${bar(r.yes * 10, "g")}<span><b>${r.yes}</b>/10</span></div>`).join("")}
+      <div class="note"><b>"would post: yes"</b> out of the top 5 film + top 5 health clips. Next: new podcasts from other shows, to prove this holds beyond these two.</div></div>
+  </div>`; },
+  async run(el) { await sleep(200); fillBars(el); }
+});
+
+/* ------------------------------------------------------------------ engine */
+const state = S.map((_, i) => i === 0 ? "ready" : "locked");
+let current = 0;
+function renderRail() {
+  $("#rail").innerHTML = S.map((s, i) => `<button class="chip ${state[i]} ${i === current ? "on" : ""}" data-i="${i}" ${state[i] === "locked" ? 'title="Run the previous step first"' : ""}><b>${state[i] === "done" ? "✓" : s.key}</b>${s.name}</button>`).join("");
+  $("#flow").innerHTML = S.map((s, i) => `<span>${s.key} ${s.name}</span>${i < S.length - 1 ? "<i>→</i>" : ""}`).join("");
+}
+$("#rail").onclick = e => { const b = e.target.closest(".chip"); if (!b) return; const i = +b.dataset.i; if (state[i] === "locked") return; open(i); };
+function open(i, autorun = false) {
+  current = i; RUNID++; const s = S[i];
+  $("#stage").innerHTML = `<div class="stage"><div class="shead"><div class="badge">${s.key}</div><div style="flex:1;min-width:240px"><h3>${s.name}</h3><div class="what">${s.what}</div>
+    <div class="tags">${s.tags.map(([k, v]) => `<span class="tag ${k}">${esc(v)}</span>`).join("")}</div></div>
+    <div class="actions"><button class="btn primary big" id="go">${state[i] === "done" ? "↻ Run again" : "▶ Run " + s.name}</button>
+    <button class="btn big" id="next" ${state[i] === "done" && i < S.length - 1 ? "" : "disabled"}>Next →</button></div></div><div id="body">${s.html()}</div></div>`;
+  renderRail();
+  $("#go").onclick = () => run(i);
+  $("#next").onclick = () => open(i + 1);
+  window.scrollTo({top: 0, behavior: FAST ? "auto" : "smooth"});
+  if (autorun) return run(i);
+  if (state[i] === "done") { FAST = true; return S[i].run($("#body")).then(() => { FAST = $("#fast").checked; }); }
+}
+async function run(i) {
+  const my = ++RUNID; FAST = $("#fast").checked;
+  $("#body").innerHTML = S[i].html();
+  $("#go").disabled = true; $$(".arrow").forEach(a => a.classList.add("live"));
+  try { await S[i].run($("#body")); } catch (e) { console.error(e); }
+  if (my !== RUNID) return;
+  $$(".arrow").forEach(a => a.classList.remove("live"));
+  state[i] = "done"; if (i + 1 < S.length && state[i + 1] === "locked") state[i + 1] = "ready";
+  $("#go").disabled = false; $("#go").textContent = "↻ Run again";
+  $("#next").disabled = i >= S.length - 1;
+  renderRail();
+}
+$("#runall").onclick = async () => { for (let i = 0; i < S.length; i++) { await open(i, true); if (!FAST) await new Promise(r => setTimeout(r, 900)); } };
+$("#reset").onclick = () => { for (let i = 0; i < S.length; i++) state[i] = i === 0 ? "ready" : "locked"; open(0); };
+$("#fast").onchange = e => { FAST = e.target.checked; };
+const root = document.documentElement;
+$("#theme").onclick = () => { const dark = root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches; root.dataset.theme = dark ? "light" : "dark"; };
+open(0);
+</script>
+</body>
+</html>

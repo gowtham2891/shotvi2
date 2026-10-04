@@ -1,0 +1,588 @@
+{
+ "asr_model": "elevenlabs/scribe_v2",
+ "language": "tel",
+ "language_probability": 0.9881436228752136,
+ "sentences": [
+  {
+   "id": 0,
+   "text": "Girls ki it is not easy andi and let me tell you.",
+   "start": 0.18,
+   "end": 2.52,
+   "speaker": "speaker_0",
+   "words": [
+    0,
+    11
+   ]
+  },
+  {
+   "id": 1,
+   "text": "చాలా చాలా tough.",
+   "start": 2.94,
+   "end": 3.86,
+   "speaker": "speaker_0",
+   "words": [
+    12,
+    14
+   ]
+  },
+  {
+   "id": 2,
+   "text": "ఒక మగవాళ్ళు పెట్టే effort కంటే ఆడవాళ్ళు పెట్టాల్సిన effort one and half, two times ఎక్కువ ఉంటుంది.",
+   "start": 4.16,
+   "end": 9.94,
+   "speaker": "speaker_0",
+   "words": [
+    15,
+    29
+   ]
+  },
+  {
+   "id": 3,
+   "text": "Recognition తెచ్చుకోవాలి అంటే young girl అనేది disadvantage.",
+   "start": 10.16,
+   "end": 13.62,
+   "speaker": "speaker_0",
+   "words": [
+    30,
+    36
+   ]
+  },
+  {
+   "id": 4,
+   "text": "A girl acceptance అనేది very disadvantage.",
+   "start": 14.2,
+   "end": 16.8,
+   "speaker": "speaker_0",
+   "words": [
+    37,
+    42
+   ]
+  },
+  {
+   "id": 5,
+   "text": "ఇక్కడ కాదు US లో ఇంకా ఎక్కువ ఉంది అది.",
+   "start": 17.46,
+   "end": 19.44,
+   "speaker": "speaker_0",
+   "words": [
+    43,
+    50
+   ]
+  },
+  {
+   "id": 6,
+   "text": "ఉహు",
+   "start": 19.72,
+   "end": 19.94,
+   "speaker": "speaker_1",
+   "words": [
+    51,
+    51
+   ]
+  },
+  {
+   "id": 7,
+   "text": "అది అన్నీ ఎదిరించి swim చేయాలంటే effort ఇంకా ఎక్కువ ఉంటుంది.",
+   "start": 20.44,
+   "end": 24.3,
+   "speaker": "speaker_0",
+   "words": [
+    52,
+    60
+   ]
+  },
+  {
+   "id": 8,
+   "text": "So it's not easy andi.",
+   "start": 25.18,
+   "end": 26.52,
+   "speaker": "speaker_0",
+   "words": [
+    61,
+    65
+   ]
+  }
+ ],
+ "word_timestamps": [
+  {
+   "word": "Girls",
+   "start": 0.18,
+   "end": 0.52,
+   "speaker": "speaker_0",
+   "logprob": -0.008
+  },
+  {
+   "word": "ki",
+   "start": 0.6,
+   "end": 0.76,
+   "speaker": "speaker_0",
+   "logprob": -0.291
+  },
+  {
+   "word": "it",
+   "start": 0.88,
+   "end": 0.96,
+   "speaker": "speaker_0",
+   "logprob": -0.004
+  },
+  {
+   "word": "is",
+   "start": 1.0,
+   "end": 1.1,
+   "speaker": "speaker_0",
+   "logprob": -0.0
+  },
+  {
+   "word": "not",
+   "start": 1.14,
+   "end": 1.3,
+   "speaker": "speaker_0",
+   "logprob": -0.0
+  },
+  {
+   "word": "easy",
+   "start": 1.34,
+   "end": 1.58,
+   "speaker": "speaker_0",
+   "logprob": -0.0
+  },
+  {
+   "word": "andi",
+   "start": 1.64,
+   "end": 1.82,
+   "speaker": "speaker_0",
+   "logprob": -0.123
+  },
+  {
+   "word": "and",
+   "start": 1.84,
+   "end": 1.92,
+   "speaker": "speaker_0",
+   "logprob": -0.191
+  },
+  {
+   "word": "let",
+   "start": 1.96,
+   "end": 2.08,
+   "speaker": "speaker_0",
+   "logprob": -0.0
+  },
+  {
+   "word": "me",
+   "start": 2.12,
+   "end": 2.2,
+   "speaker": "speaker_0",
+   "logprob": -0.0
+  },
+  {
+   "word": "tell",
+   "start": 2.24,
+   "end": 2.38,
+   "speaker": "speaker_0",
+   "logprob": -0.0
+  },
+  {
+   "word": "you.",
+   "start": 2.42,
+   "end": 2.52,
+   "speaker": "speaker_0",
+   "logprob": -0.083
+  },
+  {
+   "word": "చాలా",
+   "start": 2.94,
+   "end": 3.24,
+   "speaker": "speaker_0",
+   "logprob": -0.006
+  },
+  {
+   "word": "చాలా",
+   "start": 3.3,
+   "end": 3.5,
+   "speaker": "speaker_0",
+   "logprob": -0.0
+  },
+  {
+   "word": "tough.",
+   "start": 3.6,
+   "end": 3.86,
+   "speaker": "speaker_0",
+   "logprob": -0.004
+  },
+  {
+   "word": "ఒక",
+   "start": 4.16,
+   "end": 4.28,
+   "speaker": "speaker_0",
+   "logprob": -0.0
+  },
+  {
+   "word": "మగవాళ్ళు",
+   "start": 4.44,
+   "end": 4.86,
+   "speaker": "speaker_0",
+   "logprob": -0.013
+  },
+  {
+   "word": "పెట్టే",
+   "start": 4.9,
+   "end": 5.14,
+   "speaker": "speaker_0",
+   "logprob": -0.019
+  },
+  {
+   "word": "effort",
+   "start": 5.18,
+   "end": 5.44,
+   "speaker": "speaker_0",
+   "logprob": -0.001
+  },
+  {
+   "word": "కంటే",
+   "start": 5.52,
+   "end": 5.86,
+   "speaker": "speaker_0",
+   "logprob": -0.0
+  },
+  {
+   "word": "ఆడవాళ్ళు",
+   "start": 6.4,
+   "end": 6.78,
+   "speaker": "speaker_0",
+   "logprob": -0.07
+  },
+  {
+   "word": "పెట్టాల్సిన",
+   "start": 6.82,
+   "end": 7.22,
+   "speaker": "speaker_0",
+   "logprob": -0.001
+  },
+  {
+   "word": "effort",
+   "start": 7.28,
+   "end": 7.62,
+   "speaker": "speaker_0",
+   "logprob": -0.001
+  },
+  {
+   "word": "one",
+   "start": 7.96,
+   "end": 8.08,
+   "speaker": "speaker_0",
+   "logprob": -0.0
+  },
+  {
+   "word": "and",
+   "start": 8.1,
+   "end": 8.22,
+   "speaker": "speaker_0",
+   "logprob": -0.0
+  },
+  {
+   "word": "half,",
+   "start": 8.26,
+   "end": 8.42,
+   "speaker": "speaker_0",
+   "logprob": -0.011
+  },
+  {
+   "word": "two",
+   "start": 8.58,
+   "end": 8.68,
+   "speaker": "speaker_0",
+   "logprob": -0.0
+  },
+  {
+   "word": "times",
+   "start": 8.76,
+   "end": 9.06,
+   "speaker": "speaker_0",
+   "logprob": -0.0
+  },
+  {
+   "word": "ఎక్కువ",
+   "start": 9.42,
+   "end": 9.64,
+   "speaker": "speaker_0",
+   "logprob": -0.019
+  },
+  {
+   "word": "ఉంటుంది.",
+   "start": 9.68,
+   "end": 9.94,
+   "speaker": "speaker_0",
+   "logprob": -0.064
+  },
+  {
+   "word": "Recognition",
+   "start": 10.16,
+   "end": 10.7,
+   "speaker": "speaker_0",
+   "logprob": -0.227
+  },
+  {
+   "word": "తెచ్చుకోవాలి",
+   "start": 10.76,
+   "end": 11.38,
+   "speaker": "speaker_0",
+   "logprob": -0.0
+  },
+  {
+   "word": "అంటే",
+   "start": 11.44,
+   "end": 11.74,
+   "speaker": "speaker_0",
+   "logprob": -0.0
+  },
+  {
+   "word": "young",
+   "start": 12.0,
+   "end": 12.24,
+   "speaker": "speaker_0",
+   "logprob": -0.0
+  },
+  {
+   "word": "girl",
+   "start": 12.36,
+   "end": 12.54,
+   "speaker": "speaker_0",
+   "logprob": -0.0
+  },
+  {
+   "word": "అనేది",
+   "start": 12.58,
+   "end": 12.88,
+   "speaker": "speaker_0",
+   "logprob": -0.0
+  },
+  {
+   "word": "disadvantage.",
+   "start": 12.92,
+   "end": 13.62,
+   "speaker": "speaker_0",
+   "logprob": -0.0
+  },
+  {
+   "word": "A",
+   "start": 14.2,
+   "end": 14.26,
+   "speaker": "speaker_0",
+   "logprob": -0.0
+  },
+  {
+   "word": "girl",
+   "start": 14.38,
+   "end": 14.66,
+   "speaker": "speaker_0",
+   "logprob": -0.001
+  },
+  {
+   "word": "acceptance",
+   "start": 14.82,
+   "end": 15.3,
+   "speaker": "speaker_0",
+   "logprob": -0.006
+  },
+  {
+   "word": "అనేది",
+   "start": 15.36,
+   "end": 15.66,
+   "speaker": "speaker_0",
+   "logprob": -0.0
+  },
+  {
+   "word": "very",
+   "start": 15.86,
+   "end": 16.059,
+   "speaker": "speaker_0",
+   "logprob": -0.0
+  },
+  {
+   "word": "disadvantage.",
+   "start": 16.1,
+   "end": 16.8,
+   "speaker": "speaker_0",
+   "logprob": -0.0
+  },
+  {
+   "word": "ఇక్కడ",
+   "start": 17.46,
+   "end": 17.68,
+   "speaker": "speaker_0",
+   "logprob": -0.001
+  },
+  {
+   "word": "కాదు",
+   "start": 17.72,
+   "end": 17.96,
+   "speaker": "speaker_0",
+   "logprob": -0.0
+  },
+  {
+   "word": "US",
+   "start": 18.1,
+   "end": 18.3,
+   "speaker": "speaker_0",
+   "logprob": -0.015
+  },
+  {
+   "word": "లో",
+   "start": 18.36,
+   "end": 18.44,
+   "speaker": "speaker_0",
+   "logprob": -0.029
+  },
+  {
+   "word": "ఇంకా",
+   "start": 18.48,
+   "end": 18.78,
+   "speaker": "speaker_0",
+   "logprob": -0.0
+  },
+  {
+   "word": "ఎక్కువ",
+   "start": 18.86,
+   "end": 19.06,
+   "speaker": "speaker_0",
+   "logprob": -0.254
+  },
+  {
+   "word": "ఉంది",
+   "start": 19.08,
+   "end": 19.26,
+   "speaker": "speaker_0",
+   "logprob": -0.085
+  },
+  {
+   "word": "అది.",
+   "start": 19.26,
+   "end": 19.44,
+   "speaker": "speaker_0",
+   "logprob": -0.0
+  },
+  {
+   "word": "ఉహు",
+   "start": 19.72,
+   "end": 19.94,
+   "speaker": "speaker_1",
+   "logprob": -0.981
+  },
+  {
+   "word": "అది",
+   "start": 20.44,
+   "end": 20.58,
+   "speaker": "speaker_0",
+   "logprob": -0.309
+  },
+  {
+   "word": "అన్నీ",
+   "start": 20.64,
+   "end": 21.04,
+   "speaker": "speaker_0",
+   "logprob": -0.029
+  },
+  {
+   "word": "ఎదిరించి",
+   "start": 21.12,
+   "end": 21.58,
+   "speaker": "speaker_0",
+   "logprob": -0.131
+  },
+  {
+   "word": "swim",
+   "start": 21.74,
+   "end": 21.9,
+   "speaker": "speaker_0",
+   "logprob": -0.011
+  },
+  {
+   "word": "చేయాలంటే",
+   "start": 21.96,
+   "end": 22.5,
+   "speaker": "speaker_0",
+   "logprob": -0.004
+  },
+  {
+   "word": "effort",
+   "start": 22.92,
+   "end": 23.26,
+   "speaker": "speaker_0",
+   "logprob": -0.001
+  },
+  {
+   "word": "ఇంకా",
+   "start": 23.32,
+   "end": 23.64,
+   "speaker": "speaker_0",
+   "logprob": -0.0
+  },
+  {
+   "word": "ఎక్కువ",
+   "start": 23.7,
+   "end": 23.88,
+   "speaker": "speaker_0",
+   "logprob": -0.004
+  },
+  {
+   "word": "ఉంటుంది.",
+   "start": 23.94,
+   "end": 24.3,
+   "speaker": "speaker_0",
+   "logprob": -0.001
+  },
+  {
+   "word": "So",
+   "start": 25.18,
+   "end": 25.44,
+   "speaker": "speaker_0",
+   "logprob": -0.052
+  },
+  {
+   "word": "it's",
+   "start": 25.52,
+   "end": 25.68,
+   "speaker": "speaker_0",
+   "logprob": -0.158
+  },
+  {
+   "word": "not",
+   "start": 25.74,
+   "end": 25.9,
+   "speaker": "speaker_0",
+   "logprob": -0.0
+  },
+  {
+   "word": "easy",
+   "start": 25.96,
+   "end": 26.2,
+   "speaker": "speaker_0",
+   "logprob": -0.0
+  },
+  {
+   "word": "andi.",
+   "start": 26.24,
+   "end": 26.52,
+   "speaker": "speaker_0",
+   "logprob": -0.054
+  }
+ ],
+ "audio_events": [
+  {
+   "text": "[ఇంట్రో సంగీతం]",
+   "start": 26.62,
+   "end": 29.74
+  }
+ ],
+ "n_speakers": 1,
+ "speakers": [
+  "speaker_0"
+ ],
+ "ghost_speakers": [
+  "speaker_1"
+ ],
+ "total_sentences": 9,
+ "total_words": 66,
+ "audio_duration_secs": 29.8135,
+ "text": "Girls ki it is not easy andi and let me tell you. చాలా చాలా tough. ఒక మగవాళ్ళు పెట్టే effort కంటే ఆడవాళ్ళు పెట్టాల్సిన effort one and half, two times ఎక్కువ ఉంటుంది. Recognition తెచ్చుకోవాలి అంటే young girl అనేది disadvantage. A girl acceptance అనేది very disadvantage. ఇక్కడ కాదు US లో ఇంకా ఎక్కువ ఉంది అది. ఉహు అది అన్నీ ఎదిరించి swim చేయాలంటే effort ఇంకా ఎక్కువ ఉంటుంది. So it's not easy andi. [ఇంట్రో సంగీతం]"
+}

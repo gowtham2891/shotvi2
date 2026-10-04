@@ -1,0 +1,3385 @@
+{
+ "schema_version": "1.0",
+ "kind": "gold",
+ "video_id": "TBlm6wcij94",
+ "transcript": {
+  "path": "scribe_dataset/TBlm6wcij94/TBlm6wcij94_scribe_transcript.json",
+  "sha256": "5263af578bd027efea9778cb6d3c581b7c35b47d89565cf627acfcca7fd95690",
+  "n_words": 22066,
+  "audio_duration_secs": 8074.36775
+ },
+ "labeler": "telugu-content-strategist",
+ "created_at": "2026-09-26",
+ "independence": "Picked from the episode transcript only; creator_shorts/ was not opened before these picks were final.",
+ "coverage": {
+  "start": 0.0,
+  "end": 8074.4,
+  "complete": true,
+  "note": "Whole episode read. 0-117s is a teaser montage with censor beeps and 117-386s is the intro; both skipped (spec R3, A4)."
+ },
+ "notes": "Fitness/nutrition podcast (host + fitness coach). Clips ordered by my rank. Health claims are the guest's; every medical-sounding clip carries sensitive_content so the creator decides. Backchannels dropped in pieces.",
+ "clips": [
+  {
+   "id": "t01",
+   "pieces": [
+    {
+     "start_word": 7860,
+     "end_word": 7864,
+     "start": 3000.78,
+     "end": 3002.84
+    },
+    {
+     "start_word": 7866,
+     "end_word": 7870,
+     "start": 3003.0,
+     "end": 3004.44
+    },
+    {
+     "start_word": 8199,
+     "end_word": 8221,
+     "start": 3120.96,
+     "end": 3129.5
+    },
+    {
+     "start_word": 8223,
+     "end_word": 8237,
+     "start": 3130.52,
+     "end": 3135.56
+    },
+    {
+     "start_word": 8239,
+     "end_word": 8241,
+     "start": 3137.3,
+     "end": 3138.16
+    },
+    {
+     "start_word": 8243,
+     "end_word": 8260,
+     "start": 3139.2,
+     "end": 3145.28
+    },
+    {
+     "start_word": 8437,
+     "end_word": 8444,
+     "start": 3214.06,
+     "end": 3215.96
+    },
+    {
+     "start_word": 8450,
+     "end_word": 8458,
+     "start": 3218.98,
+     "end": 3222.62
+    },
+    {
+     "start_word": 8494,
+     "end_word": 8515,
+     "start": 3233.6,
+     "end": 3241.06
+    },
+    {
+     "start_word": 8516,
+     "end_word": 8522,
+     "start": 3242.04,
+     "end": 3243.48
+    },
+    {
+     "start_word": 8523,
+     "end_word": 8539,
+     "start": 3244.5,
+     "end": 3250.24
+    }
+   ],
+   "region": {
+    "start_word": 7860,
+    "end_word": 8539,
+    "start": 3000.78,
+    "end": 3250.24
+   },
+   "edited_duration": 44.2,
+   "reordered": false,
+   "n_blocks": 3,
+   "text": "బిర్యాని నాకు చాలా ఇష్టం అండి. నా cheat meal బిర్యానీ ఉంటాది. ఇప్పుడు ఇదే బిర్యానీని నువ్వు ఇంట్లో limited oil, limited గీ తోని, నీ proportion లో, నీ rice లో, నీ spices కూడా ఇప్పుడు బయట బిర్యానీ దంచుతారు. మన spice taste ప్రకారం, మన tolerance ప్రకారం తక్కువ వేసుకుని tasty గా చేసుకుని తిన్నప్పుడు అది బిర్యానీయే. అదెందుకు చెడు అవుతుంది? నువ్వు limit లో తింటున్నావ్. అన్నీ control చేస్తున్నావ్. నీ calories six hundred calories ki limit చేసేసావ్. ఎందుకు చెడు అవ్వాలి? నేను అదే కదా బిర్యానీ burger challenge అన్నప్పుడు చేశా. simple ఇంట్లోనే బిర్యానీ వండుకుంటే, ఇంట్లోనే burger వండుకుంటా, ఇంట్లోనే తింటా. అట్లా healthy గా ఒక burger చేసుకుని, బిర్యానీ చేసుకుని, మధ్యాహ్నం బిర్యానీ, సాయంత్రం burger చేసి two months లో almost six, seven kgs తగ్గి చూపించా. every day నేను తింటుంది clear గా చూపించి, నా health parameters blood reports బయటికి తీసి before, after కూడా చూపించి health parameter ఇంకా better అవ్వడం చూపించా.",
+   "labeler": "telugu-content-strategist",
+   "tightening_labeled": true,
+   "scores": {
+    "hook": 5,
+    "standalone": 4,
+    "payoff": 5,
+    "value_emotion": 5,
+    "overall": 5
+   },
+   "publishable": true,
+   "title": "రోజూ బిర్యానీ తిని 2 నెలల్లో 7 kgs తగ్గా",
+   "on_screen_hook": "బిర్యానీ unhealthy అని ఎవరు చెప్పారు?",
+   "hook_line": {
+    "text": "బిర్యాని నాకు చాలా ఇష్టం అండి.",
+    "start_word": 7860,
+    "end_word": 7864
+   },
+   "why_it_works": "Opens on 'బిర్యాని నాకు చాలా ఇష్టం, నా cheat meal బిర్యానీ', argues home biryani isn't bad, pays off with his biryani-burger challenge: 6-7 kg lost with blood reports.",
+   "category": "advice",
+   "standalone_risks": [],
+   "edit_notes": [
+    {
+     "type": "skip",
+     "after_piece": 1,
+     "reason": "Jumped from his biryani confession to the home-cooked argument; the Thums Up and idli asides are dropped."
+    },
+    {
+     "type": "skip",
+     "after_piece": 5,
+     "reason": "Joined the argument to its proof, the biryani-burger challenge, 3 minutes later."
+    }
+   ],
+   "flags": [
+    "sensitive_content"
+   ]
+  },
+  {
+   "id": "t02",
+   "pieces": [
+    {
+     "start_word": 14382,
+     "end_word": 14396,
+     "start": 5345.06,
+     "end": 5350.22
+    },
+    {
+     "start_word": 14398,
+     "end_word": 14419,
+     "start": 5351.32,
+     "end": 5360.66
+    },
+    {
+     "start_word": 14426,
+     "end_word": 14432,
+     "start": 5363.14,
+     "end": 5364.78
+    },
+    {
+     "start_word": 14454,
+     "end_word": 14455,
+     "start": 5374.9,
+     "end": 5375.68
+    },
+    {
+     "start_word": 14458,
+     "end_word": 14458,
+     "start": 5376.5,
+     "end": 5376.98
+    },
+    {
+     "start_word": 14479,
+     "end_word": 14487,
+     "start": 5383.78,
+     "end": 5387.1
+    },
+    {
+     "start_word": 14489,
+     "end_word": 14499,
+     "start": 5387.66,
+     "end": 5390.559
+    },
+    {
+     "start_word": 14515,
+     "end_word": 14524,
+     "start": 5396.8,
+     "end": 5400.12
+    },
+    {
+     "start_word": 14526,
+     "end_word": 14543,
+     "start": 5400.84,
+     "end": 5406.2
+    },
+    {
+     "start_word": 14545,
+     "end_word": 14553,
+     "start": 5407.34,
+     "end": 5410.14
+    },
+    {
+     "start_word": 14555,
+     "end_word": 14568,
+     "start": 5410.5,
+     "end": 5414.24
+    },
+    {
+     "start_word": 14570,
+     "end_word": 14576,
+     "start": 5414.6,
+     "end": 5416.22
+    },
+    {
+     "start_word": 14578,
+     "end_word": 14581,
+     "start": 5416.44,
+     "end": 5417.22
+    },
+    {
+     "start_word": 14583,
+     "end_word": 14612,
+     "start": 5417.82,
+     "end": 5426.34
+    },
+    {
+     "start_word": 14614,
+     "end_word": 14623,
+     "start": 5427.22,
+     "end": 5430.08
+    },
+    {
+     "start_word": 14625,
+     "end_word": 14629,
+     "start": 5431.12,
+     "end": 5433.04
+    }
+   ],
+   "region": {
+    "start_word": 14382,
+    "end_word": 14629,
+    "start": 5345.06,
+    "end": 5433.04
+   },
+   "edited_duration": 54.539,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "steroid invention was in 1930. Body building as a sport was there even from 1800s. India లో body builders before 1930 అని కొడితే god level body లు తయారు చేసిన జనాల్ని మనకి black and white photo లో కనబడతారు. మరి steroids లేకుండా అలా ఎలా build చేశారు? ఓపిక ఉండదన్నా తొందరపాటు నాకు తొందరగా result వచ్చేయాలి, తొందరగా result వచ్చేయాలి, తొందరగా కనబడిపోవాలి తొందరగా చేసేద్దాం అన్న దీని మీదే they end up getting into steroids. thirteen age ado-ado-adolescent ages ఏవైతే ఉన్నాయో చాలా naive ages అవి. ఇప్పుడు పొరపాటున ఒక trainer దగ్గరికి వచ్చాడు. అరే తమ్ముడు ఇంత కష్టపడుతున్నావు పెరగట్లే కదా, నేను ఒక injection ఇస్తాను పెరిగిపోతాది అంటాడు. వీడేం ఆలోచిస్తాడు? అన్న ఏం safe కాదు కదా అని అంటాడు. సూపర్ safe రా నేను వాడుతున్నాను కదా నాకేమైనా అయ్యిందా, నీకేమవుతదిరా అని అవునా ఎంతవుతది అన్న అంటాడు. అరే injection కి ₹2000, ₹3000 అవుతది అంట. వీడు వెళ్ళి ఇంట్లోకి వెళ్ళి మంచిగా అమ్మా అమ్మా నాకు ₹2000 కావాలి, ₹3000 కావాలి supplement కావాలి body ఇలాగే build అవుతది అంట అని చెప్పి వాళ్ళ అమ్మ దగ్గర, నాన్న దగ్గర డబ్బులు తీసుకొని వెళ్ళి వాడు కట్టి injectionలు తెచ్చుకొని గుచ్చుకుంటుంటాడు. దాని side effects ఏంటి? దాని ఇదేంటి? ఇలా చాలామంది ఉన్నారన్నా బయట. ఎంతో మంది ఇలా-ఇలా బలి-బలైపోయినోళ్ళు ఉన్నారు.",
+   "labeler": "telugu-content-strategist",
+   "tightening_labeled": true,
+   "scores": {
+    "hook": 5,
+    "standalone": 5,
+    "payoff": 5,
+    "value_emotion": 5,
+    "overall": 5
+   },
+   "publishable": true,
+   "title": "'అమ్మా ₹2000 కావాలి supplement కి' – gym లో steroid trap",
+   "on_screen_hook": "Steroids 1930 లో వచ్చాయి… body building 1800s నుంచే ఉంది",
+   "hook_line": {
+    "text": "steroid invention was in 1930. Body building as a sport was there even from 1800s.",
+    "start_word": 14382,
+    "end_word": 14396
+   },
+   "why_it_works": "Myth-busting fact hook (steroids 1930 vs bodybuilders since 1800s), then an all-too-real scene: trainer offers a 'safe' injection, teen takes ₹2000 from mom.",
+   "category": "story",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [
+    "sensitive_content"
+   ]
+  },
+  {
+   "id": "t03",
+   "pieces": [
+    {
+     "start_word": 5625,
+     "end_word": 5674,
+     "start": 2179.82,
+     "end": 2200.684
+    },
+    {
+     "start_word": 5675,
+     "end_word": 5687,
+     "start": 2202.084,
+     "end": 2205.744
+    },
+    {
+     "start_word": 5697,
+     "end_word": 5751,
+     "start": 2209.464,
+     "end": 2229.324
+    },
+    {
+     "start_word": 5752,
+     "end_word": 5811,
+     "start": 2229.924,
+     "end": 2248.003
+    }
+   ],
+   "region": {
+    "start_word": 5625,
+    "end_word": 5811,
+    "start": 2179.82,
+    "end": 2248.003
+   },
+   "edited_duration": 62.463,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "మన ఇళ్ళల్లో పనివాళ్ళు మన-మనకంటే ఎందుకు strong గా ఉంటారు most houses లో Is because మనం చేయాల్సిన పనులన్నీ వాళ్ళు చేస్తున్నారు కాబట్టి activity. Right? And పొలంలో పనిచేసే వాళ్ళు మనకంటే ఎక్కువ బలంగా ఉంటారు. వాళ్ళకి ఎంతెంత కండలు లేకపోవచ్చు but strength wise గాని దీని wise గాని వాళ్ళు అరవై ఏళ్ళకు కూడా బస్తాలు మోయగలరుగా ఇంకా చేయగలరు. మనం చేయలేం. So the whole point is ఆ physical labour అన్నది మన body కి అవసరం. ఇప్పుడు Nagarjuna గారిది తీసుకున్నా సరే Nagarjuna గారనే కాదు Nagarjuna గారి లాంటి age group లో ఉన్నవాళ్ళు normal people కూడా చాలామంది ఇప్పటికీ కూడా నాకు gym లో కనబడుతూ ఉంటారు. fifty five years, sixty years inspiration అనిపిస్తారు నాకు. ఆ age కి thirty five years వాళ్ళలా తిరుగుతున్నారు because వాళ్ళకి ఎప్పుడో అలవాటైపోయింది gym కి వెళ్ళడం exercise చేయడం అక్కడి నుంచి maintain చేసుకుంటున్నారు. So resistance training on a philosophical level is also అంటే gym కి వెళ్లి weights ఎత్తడం అన్నది or any form of exercise which can activate your muscle is considered to be the fountain of youth. మనోళ్ళు తాపత్రయ పడతారు అది తాగేస్తే young అయిపోతాం, ఇది తాగేస్తే young అయిపోతాం అని. నువ్వు రోజుకి ఒక ముప్పై నిమిషాలు workout చేయి చాలు that is your fountain of youth.",
+   "labeler": "telugu-content-strategist",
+   "tightening_labeled": true,
+   "scores": {
+    "hook": 5,
+    "standalone": 5,
+    "payoff": 5,
+    "value_emotion": 4,
+    "overall": 5
+   },
+   "publishable": true,
+   "title": "మన ఇంట్లో పనివాళ్ళు మనకంటే ఎందుకు strong గా ఉంటారు?",
+   "on_screen_hook": "మన ఇంట్లో పనివాళ్ళు మనకంటే strong – ఎందుకు?",
+   "hook_line": {
+    "text": "మన ఇళ్ళల్లో పనివాళ్ళు మన-మనకంటే ఎందుకు strong గా ఉంటారు most houses లో Is because మనం",
+    "start_word": 5625,
+    "end_word": 5638
+   },
+   "why_it_works": "Relatable provocative question, simple answer (physical labour), Nagarjuna-age gym-goers as proof, ends on 'రోజుకి 30 నిమిషాలు workout – that is your fountain of youth'.",
+   "category": "insight",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": []
+  },
+  {
+   "id": "t04",
+   "pieces": [
+    {
+     "start_word": 17163,
+     "end_word": 17202,
+     "start": 6319.348,
+     "end": 6336.048
+    },
+    {
+     "start_word": 17487,
+     "end_word": 17494,
+     "start": 6434.628,
+     "end": 6436.028
+    },
+    {
+     "start_word": 17496,
+     "end_word": 17498,
+     "start": 6437.368,
+     "end": 6438.588
+    }
+   ],
+   "region": {
+    "start_word": 17163,
+    "end_word": 17498,
+    "start": 6319.348,
+    "end": 6438.588
+   },
+   "edited_duration": 19.32,
+   "reordered": false,
+   "n_blocks": 2,
+   "text": "Ego lifting ఇప్పుడు కొంతమంది youth normal గా. ఆ అమ్మాయి కనపడితే చాలు రెండు plates ఎక్కి వేసేయడం, లేపాలి. అర్థం చేసుకోవాల్సింది ఏంటంటే, నేను అడ్డం తిరిగితే ఆ అమ్మాయి అయితే రాదు, నీకు సేవలు చేయడానికి. పవిత్ర బంధం. పవిత్ర బంధం. పవిత్ర బంధం లాంటి scenes ఇప్పుడు జరగట్లేదు నాన్న. నీ ego ని gym బయట వదిలేసి లోపల రా. పైసాకి పనికిరాని ego.",
+   "labeler": "telugu-content-strategist",
+   "tightening_labeled": true,
+   "scores": {
+    "hook": 5,
+    "standalone": 4,
+    "payoff": 4,
+    "value_emotion": 4,
+    "overall": 4
+   },
+   "publishable": true,
+   "title": "అమ్మాయి కనపడగానే 2 plates ఎక్కువ వేస్తే?",
+   "on_screen_hook": "అమ్మాయి కనపడితే చాలు weights పెంచేస్తారు",
+   "hook_line": {
+    "text": "Ego lifting ఇప్పుడు కొంతమంది youth normal గా.",
+    "start_word": 17163,
+    "end_word": 17169
+   },
+   "why_it_works": "Instant laugh: 'నేను అడ్డం తిరిగితే ఆ అమ్మాయి సేవలు చేయడానికి రాదు', 'పవిత్ర బంధం scenes ఇప్పుడు జరగట్లేదు'; lands on 'ego ని gym బయట వదిలేసి రా'.",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [
+    {
+     "type": "skip",
+     "after_piece": 0,
+     "reason": "Joke joined to his one-line rule about ego, said 90s later in the same answer; the joint-mechanics explanation between is dropped."
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "t05",
+   "pieces": [
+    {
+     "start_word": 17539,
+     "end_word": 17546,
+     "start": 6458.728,
+     "end": 6461.908
+    },
+    {
+     "start_word": 17549,
+     "end_word": 17562,
+     "start": 6464.048,
+     "end": 6468.208
+    },
+    {
+     "start_word": 17564,
+     "end_word": 17598,
+     "start": 6469.528,
+     "end": 6479.268
+    },
+    {
+     "start_word": 17600,
+     "end_word": 17607,
+     "start": 6480.088,
+     "end": 6482.568
+    },
+    {
+     "start_word": 17609,
+     "end_word": 17618,
+     "start": 6483.708,
+     "end": 6485.968
+    },
+    {
+     "start_word": 17620,
+     "end_word": 17622,
+     "start": 6486.808,
+     "end": 6487.688
+    },
+    {
+     "start_word": 17624,
+     "end_word": 17648,
+     "start": 6489.328,
+     "end": 6495.948
+    },
+    {
+     "start_word": 17650,
+     "end_word": 17662,
+     "start": 6496.688,
+     "end": 6499.708
+    },
+    {
+     "start_word": 17664,
+     "end_word": 17671,
+     "start": 6500.728,
+     "end": 6502.148
+    },
+    {
+     "start_word": 17673,
+     "end_word": 17690,
+     "start": 6502.768,
+     "end": 6505.988
+    },
+    {
+     "start_word": 17692,
+     "end_word": 17694,
+     "start": 6506.768,
+     "end": 6507.828
+    },
+    {
+     "start_word": 17696,
+     "end_word": 17701,
+     "start": 6508.668,
+     "end": 6510.388
+    },
+    {
+     "start_word": 17703,
+     "end_word": 17715,
+     "start": 6510.768,
+     "end": 6515.968
+    },
+    {
+     "start_word": 17722,
+     "end_word": 17727,
+     "start": 6519.428,
+     "end": 6522.568
+    },
+    {
+     "start_word": 17729,
+     "end_word": 17741,
+     "start": 6524.168,
+     "end": 6528.148
+    },
+    {
+     "start_word": 17743,
+     "end_word": 17755,
+     "start": 6528.888,
+     "end": 6532.368
+    },
+    {
+     "start_word": 17757,
+     "end_word": 17778,
+     "start": 6533.208,
+     "end": 6537.508
+    }
+   ],
+   "region": {
+    "start_word": 17539,
+    "end_word": 17778,
+    "start": 6458.728,
+    "end": 6537.508
+   },
+   "edited_duration": 59.86,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ఒక్క injury అయిందంటే మీ జీవితం మొత్తం తారుమారు అయిపోతుంది. ఇప్పుడు నాకు అయింది. నా lower disc L3, L4, L5 నాకు disc bulges అయినాయి ఒకప్పుడు. అయింది కూడా gym లో it is not even heavy weight but it is a wrong form ఓ లేకపోతే ఆ రోజు కొంచెం lower back stiff ఉండటం వల్ల దాని మీద injury అయిందో మనకు తెలీదు. ఆ విధమైతే అయింది. That taught me life. మూడు రోజులు పడుకోబెట్టిసింది మనిషిని. కిందే నాకు room లో bed కూడా ఉండదు కింద పడుకునే వాడిని. కింద పడుకొని లెగలాపాను. మూడు రోజులు washroom లేదు, తిండి లేదు, ఏమీ లేదు. అలాగే ఉండేవాడిని. ఆ అదే time కి long weekend రావడం వల్ల room లో ఉన్న అందరూ vacation కి వెళ్ళిపోయారు. నేను వెళ్లాల్సి ఉండే, ఆ injury అవడం వల్ల నేను ఆగిపోయాను, మా friends కూడా వెళ్ళిపోయారు. So three days I was suffering with myself. Then I understood this is not what I want to live with life. నాకు ఇది కాదు life అంటే. పాతికేళ్ళు అన్నప్పుడు నాకు. ఒక active person, ఒక active kid. ఒక active, ఒక proper సాధించాల్సిన వయసులో నేను బెడ్ మీద పడుకొని washroom కి వెళ్లలేకపోతున్నా. అర్త్-అప్పుడు అర్థం చేసుకున్నా. Technique is important. Ego lifting ego నన్నని బయట పెట్టిసి technique తోనే నువ్వు ఎంతవరకో చేయగలవో అంతవరకే చేయాలి. And దీన్నుంచి recover అవడానికి ఏం చేయాలి నేను అని I started reading about it. And that's when I understood that slip disc I can reverse it, I can recover from it, I can get stronger అని.",
+   "labeler": "telugu-content-strategist",
+   "tightening_labeled": true,
+   "scores": {
+    "hook": 4,
+    "standalone": 5,
+    "payoff": 4,
+    "value_emotion": 5,
+    "overall": 4
+   },
+   "publishable": true,
+   "title": "25 ఏళ్ళకే 3 రోజులు bed మీద… washroom కి కూడా వెళ్ళలేకపోయా",
+   "on_screen_hook": "ఒక్క injury మీ జీవితం మొత్తం తారుమారు చేస్తుంది",
+   "hook_line": {
+    "text": "ఒక్క injury అయిందంటే మీ జీవితం మొత్తం తారుమారు అయిపోతుంది.",
+    "start_word": 17539,
+    "end_word": 17546
+   },
+   "why_it_works": "Coach's own slip-disc story told vividly (alone in the room, friends on vacation, can't reach the washroom); ends on the lesson and recovery.",
+   "category": "story",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": []
+  },
+  {
+   "id": "t06",
+   "pieces": [
+    {
+     "start_word": 18289,
+     "end_word": 18302,
+     "start": 6715.124,
+     "end": 6720.684
+    },
+    {
+     "start_word": 18115,
+     "end_word": 18138,
+     "start": 6660.463,
+     "end": 6666.204
+    },
+    {
+     "start_word": 18140,
+     "end_word": 18154,
+     "start": 6667.064,
+     "end": 6672.484
+    },
+    {
+     "start_word": 18156,
+     "end_word": 18179,
+     "start": 6673.364,
+     "end": 6680.264
+    },
+    {
+     "start_word": 18181,
+     "end_word": 18192,
+     "start": 6681.044,
+     "end": 6684.304
+    },
+    {
+     "start_word": 18194,
+     "end_word": 18209,
+     "start": 6685.124,
+     "end": 6690.084
+    },
+    {
+     "start_word": 18221,
+     "end_word": 18226,
+     "start": 6694.764,
+     "end": 6695.884
+    },
+    {
+     "start_word": 18228,
+     "end_word": 18242,
+     "start": 6696.504,
+     "end": 6699.144
+    },
+    {
+     "start_word": 18244,
+     "end_word": 18254,
+     "start": 6700.244,
+     "end": 6704.444
+    },
+    {
+     "start_word": 18256,
+     "end_word": 18257,
+     "start": 6704.984,
+     "end": 6705.664
+    },
+    {
+     "start_word": 18264,
+     "end_word": 18277,
+     "start": 6707.864,
+     "end": 6710.644
+    },
+    {
+     "start_word": 18279,
+     "end_word": 18287,
+     "start": 6711.984,
+     "end": 6714.244
+    },
+    {
+     "start_word": 18304,
+     "end_word": 18310,
+     "start": 6722.324,
+     "end": 6723.744
+    },
+    {
+     "start_word": 18312,
+     "end_word": 18326,
+     "start": 6724.164,
+     "end": 6728.864
+    },
+    {
+     "start_word": 18328,
+     "end_word": 18340,
+     "start": 6729.324,
+     "end": 6731.564
+    }
+   ],
+   "region": {
+    "start_word": 18115,
+    "end_word": 18340,
+    "start": 6660.463,
+    "end": 6731.564
+   },
+   "edited_duration": 53.881,
+   "reordered": true,
+   "n_blocks": 2,
+   "text": "ఎక్కితే నా పక్కన నుంచుని eighteen years old అంట ఆడేమో ఇంతున్నాడు. వాడు గుచ్చుకోకుండా పని అవ్వదు. నేను initially గా నేను start చేసింది కూడా natural body building లో నేను చేద్దాం, muscle man అయినా competition చేద్దాం అది ఇది అని start చేసినా అన్నీ. దాంట్ దీంట్లోకి shift అయిపోవడానికి కారణం ఏంటంటే, నేను అక్కడ stage మీదకి వెళ్ళిన తర్వాత backhand లో పొడుచుకుంటున్నారు. \"అరే నువ్వు natural body building competition అన్నావు. వీళ్ళు backhand లో syringes పొడుచుకుంటున్నారు. నువ్వు dope testing కూడా చేయట్లేదు. నువ్వు natural body building competition ఎలాగా అన్నావ్?\" నాకు ఇది వచ్చింది. ఒక certificate కూడా ఇవ్వలేదు నాకు participant certificate కూడా ఇవ్వలా. ఆ రోజు నాకు natural body building అయిన competition ఖర్చు, ఆ రోజుల్లో which is 2017 - 18. twenty five thousand ఖర్చు పెట్టాను నేను. అది కూడా ఆ time లో నా girlfriend who is my wife now by the way తను sponsor చేసింది. సకం నేను పెట్టుకున్నా, ఎందుకంటే mid month సకం అన్నా అయిపోయినాయి డబ్బులు Body, natural body building because I don't want to get into steroids and all. మొత్తం lean అయిపోయి super lean అయిపోయి మొత్తం stage ఎక్కా. సో అప్పుడు అనిపించింది this is not fair. So, నేను ఎందుకు వచ్చాను fitness లోకి? To inspire anyone to get into a fit lifestyle. Then body building is not the way what I want to get into.",
+   "labeler": "telugu-content-strategist",
+   "tightening_labeled": true,
+   "scores": {
+    "hook": 4,
+    "standalone": 4,
+    "payoff": 4,
+    "value_emotion": 4,
+    "overall": 4
+   },
+   "publishable": true,
+   "title": "'Natural' bodybuilding stage వెనక syringes!",
+   "on_screen_hook": "18 ఏళ్ళ వాడు… గుచ్చుకోకుండా ఆ body రాదు",
+   "hook_line": {
+    "text": "ఎక్కితే నా పక్కన నుంచుని eighteen years old అంట ఆడేమో ఇంతున్నాడు.",
+    "start_word": 18289,
+    "end_word": 18298
+   },
+   "why_it_works": "Inside story from his only competition: 'natural' contestants injecting backstage, ₹25k spent (half sponsored by his then-girlfriend, now wife), no certificate; why he quit bodybuilding.",
+   "category": "reveal",
+   "standalone_risks": [],
+   "edit_notes": [
+    {
+     "type": "cold_open",
+     "reason": "The 18-year-old 'గుచ్చుకోకుండా పని అవ్వదు' line is lifted to the front and removed from its original position."
+    }
+   ],
+   "flags": [
+    "sensitive_content"
+   ]
+  },
+  {
+   "id": "t07",
+   "pieces": [
+    {
+     "start_word": 7406,
+     "end_word": 7417,
+     "start": 2833.224,
+     "end": 2839.064
+    },
+    {
+     "start_word": 7419,
+     "end_word": 7420,
+     "start": 2839.344,
+     "end": 2840.024
+    },
+    {
+     "start_word": 7422,
+     "end_word": 7426,
+     "start": 2840.304,
+     "end": 2841.764
+    },
+    {
+     "start_word": 7428,
+     "end_word": 7436,
+     "start": 2842.284,
+     "end": 2844.604
+    },
+    {
+     "start_word": 7438,
+     "end_word": 7440,
+     "start": 2844.924,
+     "end": 2845.604
+    },
+    {
+     "start_word": 7459,
+     "end_word": 7473,
+     "start": 2852.144,
+     "end": 2857.424
+    },
+    {
+     "start_word": 7558,
+     "end_word": 7565,
+     "start": 2884.824,
+     "end": 2888.144
+    },
+    {
+     "start_word": 7590,
+     "end_word": 7594,
+     "start": 2897.684,
+     "end": 2899.104
+    },
+    {
+     "start_word": 7631,
+     "end_word": 7633,
+     "start": 2913.664,
+     "end": 2914.424
+    },
+    {
+     "start_word": 7635,
+     "end_word": 7638,
+     "start": 2915.124,
+     "end": 2916.244
+    },
+    {
+     "start_word": 7642,
+     "end_word": 7660,
+     "start": 2918.08,
+     "end": 2923.54
+    },
+    {
+     "start_word": 7668,
+     "end_word": 7677,
+     "start": 2927.2,
+     "end": 2930.62
+    },
+    {
+     "start_word": 7679,
+     "end_word": 7685,
+     "start": 2931.76,
+     "end": 2933.82
+    },
+    {
+     "start_word": 7687,
+     "end_word": 7709,
+     "start": 2934.4,
+     "end": 2940.24
+    },
+    {
+     "start_word": 7711,
+     "end_word": 7725,
+     "start": 2940.78,
+     "end": 2947.3
+    },
+    {
+     "start_word": 7806,
+     "end_word": 7858,
+     "start": 2981.98,
+     "end": 2998.4
+    }
+   ],
+   "region": {
+    "start_word": 7406,
+    "end_word": 7858,
+    "start": 2833.224,
+    "end": 2998.4
+   },
+   "edited_duration": 62.6,
+   "reordered": false,
+   "n_blocks": 3,
+   "text": "ఇప్పుడు మనకి ఈ zero sugar coke తెగ తాగుతుంటారండి. దాంట్లో అసలు sugar లేదు. Sugar ఉండదు. Zero. Scientifically గా prove అయ్యింది. అని చెప్పి తెగ తాగుతుంటారు. నా friends కూడా వాదిస్తుంటారు నాతోటి. ఎంతవరకు correct అది? First thing diet coke ఎవడూ health కి తాగడు. ఎవడూ health పెంచుకోవడానికి తాగడు diet coke ని. Diet coke concept ఏంటంటే దాంట్లో ఒక sweetener ఉంది. మీ gut దాన్ని absorb చేసుకోలేదు. Taste ఇస్తాయి అంతే. లోపలికి వెళ్ళాక బయటకి వెళ్ళిపోతాయి. సో ఎప్పుడైతే నీకు అది absorb అవ్వట్లేదో that's how it became zero calorie because your body doesn't even absorb it. ఇప్పుడు ఇవి healthy ఆ అంటే, దీన్ని ఎవడైతే health కోసం తాగకూడదు. నీకు Coke తాగే అలవాటు ఉంది regular గా రోజుకు మూడు Coke లు తాగుతావ్, మూడు Coke Tin లు తాగుతావ్. అంటే అక్కడే ఒక ఐదు వందల, ఆరు వందల calories just simple sugar తాగుతున్నావ్ నువ్వు. దాన్ని నువ్వు ఒక diet Coke తో replace చేశావ్ అనుకో, నీకు జరిగే damage ని కొద్దిగా తగ్గించగలుగుతున్నావ్. So I would say if you really want to drink a soda pop or something keep it only one per day. మళ్ళీ ఇంకా తాగాలి అనిపిస్తే నాకు ఒక diet Coke ఇవ్వండి చాలు అన్నట్టు limit చేసేసుకోండి. maximum అయితే అక్కర్లేదు. అసలు actually మనకది అక్కర్లేదు. water తాగినా చాలు. Soda గాని diet Coke గాని keep it very limited.",
+   "labeler": "telugu-content-strategist",
+   "tightening_labeled": true,
+   "scores": {
+    "hook": 4,
+    "standalone": 5,
+    "payoff": 4,
+    "value_emotion": 4,
+    "overall": 4
+   },
+   "publishable": true,
+   "title": "Diet Coke healthy నా? 'ఎవడూ health కోసం తాగడు'",
+   "on_screen_hook": "Zero sugar coke – నిజంగా safe నా?",
+   "hook_line": {
+    "text": "ఇప్పుడు మనకి ఈ zero sugar coke",
+    "start_word": 7406,
+    "end_word": 7411
+   },
+   "why_it_works": "Everyday debate, punchy answer ('diet coke ఎవడూ health కి తాగడు'), simple mechanism, practical rule: 1 a day max, water is enough.",
+   "category": "advice",
+   "standalone_risks": [],
+   "edit_notes": [
+    {
+     "type": "skip",
+     "after_piece": 5,
+     "reason": "Jumped from the punchline to the sweetener explanation; the regular-Coke calorie math is dropped."
+    },
+    {
+     "type": "skip",
+     "after_piece": 14,
+     "reason": "Jumped to his practical limit (one a day); the aspartame research aside is dropped."
+    }
+   ],
+   "flags": [
+    "sensitive_content"
+   ]
+  },
+  {
+   "id": "t08",
+   "pieces": [
+    {
+     "start_word": 1328,
+     "end_word": 1403,
+     "start": 521.972,
+     "end": 551.332
+    },
+    {
+     "start_word": 1404,
+     "end_word": 1429,
+     "start": 552.572,
+     "end": 563.552
+    },
+    {
+     "start_word": 1551,
+     "end_word": 1571,
+     "start": 609.612,
+     "end": 618.092
+    },
+    {
+     "start_word": 1573,
+     "end_word": 1617,
+     "start": 618.871,
+     "end": 638.752
+    },
+    {
+     "start_word": 1618,
+     "end_word": 1635,
+     "start": 639.972,
+     "end": 646.752
+    },
+    {
+     "start_word": 1660,
+     "end_word": 1665,
+     "start": 655.772,
+     "end": 656.932
+    },
+    {
+     "start_word": 1666,
+     "end_word": 1681,
+     "start": 658.832,
+     "end": 663.992
+    }
+   ],
+   "region": {
+    "start_word": 1328,
+    "end_word": 1681,
+    "start": 521.972,
+    "end": 663.992
+   },
+   "edited_duration": 81.801,
+   "reordered": false,
+   "n_blocks": 2,
+   "text": "మనం డబ్బును ఎందుకు account చేసుకుంటాం? ఇప్పుడు మీకు నెలకి ఇంత వస్తుంది అని చెప్పి ఒక లెక్క ఉంటది. ఒక లక్ష రూపాయలు సంపాదిస్తున్నారు మీరు. లక్ష రూపాయలు సంపాదిస్తున్నాను కదా అని చెప్పేసి ఇష్టమొచ్చినట్టు ఏరోజుకారోజు ఖర్చు పెడుతూ వెళ్లిపోతే నెలాఖరికి మళ్ళీ మీరు broke అయిపోతారు. like అప్పులపాలు అయిపోతారు. నెలాఖరు గడపడానికి మళ్ళీ అప్పు చేయాల్సి ఉంటది. ఆ cycle లోనే నడుస్తాది. అదే మీరు నెల starting లోనే నేను ఎంత సంపాదిస్తున్నాను, ఎంత ఖర్చు పెడుతున్నాను, ఎంత save చేస్తున్నాను అని ఒక లెక్క ఉందనుకోండి, మీ financial status ఏంటో మీకు చాలా clear గా ఉంటది. ఎందుకు లెక్క పెట్టాలి అంటే ఎంత ఖర్చు పెడుతున్నామో లెక్క లేనప్పుడు లెక్క పెట్టాలి. ఇప్పుడు నేను ఎంత తింటున్నానో నాకు అల నాకు ఒక అవగాహన లేనప్పుడు అది కొంచెం లెక్క పెట్టుకోవడంలో తప్పులేదు. మా తాత ఉండేవారు. ఆయన ఏరోజు calorie లెక్కపెట్టుకోలేదు grams లెక్కపెట్టుకోలేదు ఏమీ లెక్కపెట్టుకోలేదు. గానీ ఆయన అనుకున్నది ఒకటే, నేను నా plate లో ఇంతే తింటా. ఇంతే అన్నం తింటా, ఇంతే కూర తింటా, ఇంతే కూరగాయలు తింటా, ఇన్ని రకాల కూరగాయలు తింటా అని చెప్పి ఒక లెక్క పెట్టుకున్నాడు. నా కడుపు నిండిపోయి ఇంతే తింటా. చిరుతిళ్ళు తినేవారు కాదు. Swiggy లు Zomato లు లేవు ఆ time లోని. so ఆయనకేంటి subconsciously ఇంత quantity చాలు నాకు అని ఒక అవగాహన వచ్చింది. అవగాహన ఉంటే మీకు లెక్క పెట్టుకోవాల్సిన అవసరం లేదు. అవగాహన లేదు కాబట్టే జాగ్రత్త లేదు కాబట్టే లెక్క పెట్టుకోవడం అనే concept వస్తుంది. కానీ మన జనాలు అలా తినరు కదా. కూర్చుంటే అయిపోవాలి ఒక మండి అయిపోవాలి ఒక biryani కూడా family pack లు వల్లే family pack లు లేపారు.",
+   "labeler": "telugu-content-strategist",
+   "tightening_labeled": true,
+   "scores": {
+    "hook": 4,
+    "standalone": 5,
+    "payoff": 4,
+    "value_emotion": 4,
+    "overall": 4
+   },
+   "publishable": true,
+   "title": "డబ్బులకి లెక్క ఉంటే తిండికి ఎందుకు ఉండదు?",
+   "on_screen_hook": "మనం డబ్బును ఎందుకు account చేసుకుంటాం?",
+   "hook_line": {
+    "text": "మనం డబ్బును ఎందుకు account చేసుకుంటాం?",
+    "start_word": 1328,
+    "end_word": 1332
+   },
+   "why_it_works": "Money-budget analogy for portion control, then his grandfather who never counted calories ('నా plate లో ఇంతే తింటా'); lands on 'family packs' laugh.",
+   "category": "insight",
+   "standalone_risks": [],
+   "edit_notes": [
+    {
+     "type": "skip",
+     "after_piece": 1,
+     "reason": "Joined the money analogy to the grandfather example; the gram-weighing tangent in between is dropped."
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "t09",
+   "pieces": [
+    {
+     "start_word": 2947,
+     "end_word": 2962,
+     "start": 1155.412,
+     "end": 1161.432
+    },
+    {
+     "start_word": 2864,
+     "end_word": 2945,
+     "start": 1122.992,
+     "end": 1154.632
+    },
+    {
+     "start_word": 2947,
+     "end_word": 2973,
+     "start": 1155.412,
+     "end": 1166.812
+    },
+    {
+     "start_word": 2979,
+     "end_word": 2983,
+     "start": 1168.272,
+     "end": 1169.252
+    },
+    {
+     "start_word": 2985,
+     "end_word": 2995,
+     "start": 1169.932,
+     "end": 1174.692
+    },
+    {
+     "start_word": 2996,
+     "end_word": 3008,
+     "start": 1175.112,
+     "end": 1181.512
+    },
+    {
+     "start_word": 3044,
+     "end_word": 3056,
+     "start": 1196.692,
+     "end": 1200.892
+    },
+    {
+     "start_word": 3058,
+     "end_word": 3086,
+     "start": 1202.212,
+     "end": 1212.392
+    }
+   ],
+   "region": {
+    "start_word": 2864,
+    "end_word": 3086,
+    "start": 1122.992,
+    "end": 1212.392
+   },
+   "edited_duration": 75.58,
+   "reordered": true,
+   "n_blocks": 2,
+   "text": "నేను just అన్నం వేసుకుని పచ్చడి వేసుకుని తింటా కొడుకు husband భర్త తింటే చాలు అన్నట్లు కూడా ఉంటారు చాలామంది. ఎక్కువ మీరు observe చేయండి gym కి ఎవరు వస్తారు అంటే అమ్మాయిలు ముఖ్యంగా పెళ్లి అయిపోయి పిల్లలు ఉండి ఆ middle aged women's doctor దగ్గరికి వెళ్లి doctor gym కి వెళ్ళమంటాడు కొద్దిగా activity చేయి అంటే అప్పుడు వస్తున్నారు అంటే వాళ్ళ life అంతా ఏందంటే పిల్లలు husband వాళ్ళని చూసుకుంటూ అసలు వీళ్ళ గురించి వీళ్ళు ఆలోచించడమే మర్చిపోతారు. ఆ మన భర్తలు భార్యల గురించి ఆలోచించరు పిల్లలు కూడా అమ్మల గురించి ఆలోచించరు సో వాళ్ళు complete wonder అయిపోతారు వాళ్ళకి ఏమి కొద్దిగా knowledge ఉండదు Nutrition గురించి ఏం తినాలి ఏం తినకూడదు అని కొద్దిగా chicken ఏమన్నా మిగిలితే కొడుకు తింటే చాలు నేను just అన్నం వేసుకుని పచ్చడి వేసుకుని తింటా కొడుకు husband భర్త తింటే చాలు అన్నట్లు కూడా ఉంటారు చాలామంది. సో వాళ్ళ intake చూసుకుంటే వాళ్ళు తినేది ఎక్కువ rice పచ్చడు లేకపోతే ఏదన్నా అంతకు మించి ఏమి తినట్లే వాళ్ళు last కి diabetes ఎక్కువ వీళ్ళకే effect అవుతుంది తర్వాత చాలా ఇబ్బందులు పడుతున్నారు. సో వీళ్ళకి ఏం చెప్పాలి వీళ్ళకి కూడా చెప్పండి ఎవరైతే కొడుకులు ఉన్నారో వాళ్ళు ఎలా చూసుకోవాలో. నేను నా life లో implement చేసింది కూడా my wife and my ఆ mother ఇద్దరూ కూడా ప్రతిరోజూ compulsory workout మీరు చేసుకోవాలి అన్నది నేను implement implement అవడం కాదు నేను initially push చేశాను now they are in automated mode they understand the importance of it.",
+   "labeler": "telugu-content-strategist",
+   "tightening_labeled": true,
+   "scores": {
+    "hook": 4,
+    "standalone": 4,
+    "payoff": 4,
+    "value_emotion": 5,
+    "overall": 4
+   },
+   "publishable": true,
+   "title": "'Chicken మిగిలితే కొడుకు తింటే చాలు' – అమ్మల health ఎవరు చూస్తారు?",
+   "on_screen_hook": "నేను పచ్చడి అన్నం తింటా, కొడుకు తింటే చాలు",
+   "hook_line": {
+    "text": "నేను just అన్నం వేసుకుని పచ్చడి వేసుకుని తింటా కొడుకు husband భర్త తింటే చాలు అన్నట్లు కూడా ఉంటారు",
+    "start_word": 2947,
+    "end_word": 2961
+   },
+   "why_it_works": "Host's painfully relatable picture of Telugu mothers eating last and least; coach answers he made daily workout compulsory for his wife and mother.",
+   "category": "emotional",
+   "standalone_risks": [],
+   "edit_notes": [
+    {
+     "type": "cold_open",
+     "reason": "The mother's 'పచ్చడి వేసుకుని తింటా, కొడుకు తింటే చాలు' line opens the clip and replays in place."
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "t10",
+   "pieces": [
+    {
+     "start_word": 3147,
+     "end_word": 3162,
+     "start": 1238.672,
+     "end": 1244.372
+    },
+    {
+     "start_word": 3163,
+     "end_word": 3192,
+     "start": 1245.832,
+     "end": 1254.332
+    },
+    {
+     "start_word": 3215,
+     "end_word": 3263,
+     "start": 1260.692,
+     "end": 1279.052
+    },
+    {
+     "start_word": 3302,
+     "end_word": 3361,
+     "start": 1293.592,
+     "end": 1315.112
+    },
+    {
+     "start_word": 3362,
+     "end_word": 3386,
+     "start": 1316.392,
+     "end": 1326.592
+    }
+   ],
+   "region": {
+    "start_word": 3147,
+    "end_word": 3386,
+    "start": 1238.672,
+    "end": 1326.592
+   },
+   "edited_duration": 64.28,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "child birth అన్నది అందరూ ఎనిమిది నెలలే చూస్తారు ఎనిమిది నెలలు మోసుకుని ఉంది అంటారు. అదొక three year project ఎందుకు three year project అంటే ఇప్పుడు okay మీరు child birth కి ready అయ్యారు ఇప్పుడున్న condition లు ఏంటి చాలామంది women అసలు child birth కి ready అవ్వడానికి వాళ్ళ body ready కూడా లేదు సో ఒక ఎనిమిది తొమ్మిది నెలలు తీసేసేయండి. ఆ తర్వాత per say pregnant అయ్యారు pregnancy ఒక ఎనిమిది తొమ్మిది నెలలు pregnancy అయిన తర్వాత బిడ్డ పుట్టాక ఒక సంవత్సరం, సంవత్సరంన్నర పాటు నిద్రలు ఉండవు. అంటే ఏంటి నిద్ర లేకుండా ఎనిమిది తొమ్మిది నెలలు నువ్వు గడుపుతున్నావు. Your insulin sensitivity will go for a toss right నిద్ర లేకపోవడం వల్ల. సో వాళ్ళు ఏం దొరికితే అది తినడం start చేస్తారు sedentary గా ఉంటారు and ఇదే time లో ఎప్పుడైతే లావు అవ్వడం start అవుతారో mentally they will get instable saying that image issues body image issues. సో అదొక mental trauma నడుస్తూ ఉంటది దాన్నే postpartum depression అంటాం. ఇదంతా అయిపోయేసరికి పిల్లోడు పెరిగే time కి చా ఎంత లావు అయిపోయి కూర్చున్నారంటే ఒక పెద్ద కొండకి కూర్చున్నారు ఒక steep కొండ. దిగచ్చు కానీ దిగడానికి తొందర పడితే బోర్లా పడతారు దిగడానికి అడుగులో అడుగు వేసుకుంటూ దిగాలి. అడుగులో అడుగు వేసుకుంటూ దిగడానికి వాళ్ళకి facilities ఉన్నాయా లేవా అన్నది కూడా ఒక question mark.",
+   "labeler": "telugu-content-strategist",
+   "tightening_labeled": true,
+   "scores": {
+    "hook": 4,
+    "standalone": 4,
+    "payoff": 4,
+    "value_emotion": 4,
+    "overall": 4
+   },
+   "publishable": true,
+   "title": "Child birth 9 నెలలు కాదు… అదొక 3 year project",
+   "on_screen_hook": "అందరూ 9 నెలలే చూస్తారు",
+   "hook_line": {
+    "text": "child birth అన్నది అందరూ ఎనిమిది నెలలే చూస్తారు ఎనిమిది నెలలు మోసుకుని ఉంది అంటారు.",
+    "start_word": 3147,
+    "end_word": 3158
+   },
+   "why_it_works": "Reframes pregnancy as a 3-year strain (sleepless year, insulin resistance, postpartum body image); ends on the 'steep hill, step by step' metaphor.",
+   "category": "insight",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [
+    "sensitive_content"
+   ]
+  },
+  {
+   "id": "t11",
+   "pieces": [
+    {
+     "start_word": 2352,
+     "end_word": 2358,
+     "start": 924.012,
+     "end": 926.732
+    },
+    {
+     "start_word": 2359,
+     "end_word": 2377,
+     "start": 927.932,
+     "end": 933.852
+    },
+    {
+     "start_word": 2397,
+     "end_word": 2419,
+     "start": 940.392,
+     "end": 947.892
+    },
+    {
+     "start_word": 2420,
+     "end_word": 2431,
+     "start": 949.612,
+     "end": 954.652
+    },
+    {
+     "start_word": 2433,
+     "end_word": 2484,
+     "start": 955.552,
+     "end": 974.572
+    },
+    {
+     "start_word": 2486,
+     "end_word": 2497,
+     "start": 976.452,
+     "end": 981.552
+    },
+    {
+     "start_word": 2499,
+     "end_word": 2532,
+     "start": 982.812,
+     "end": 993.112
+    },
+    {
+     "start_word": 2535,
+     "end_word": 2558,
+     "start": 996.432,
+     "end": 1006.652
+    }
+   ],
+   "region": {
+    "start_word": 2352,
+    "end_word": 2558,
+    "start": 924.012,
+    "end": 1006.652
+   },
+   "edited_duration": 65.82,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "For example lately I have spoken with one client of mine client అంటే వాళ్ళ అక్క వాళ్ళ sister ki PCOS PCOD issue ఉందని చెప్పి they approached us she is just sixteen years old school going kid sixteen కూడా కాదు fourteen fifteen years old school going kid ఇంకా inter start అవుతుంది she has PCOS PCOD ఎందుకు అంటే first thing ఎప్పుడూ school ఆటలకి వెళ్ళలేదు విపరీతంగా బయట తినేది obesity visceral fat ఎక్కువ muscle తక్కువ ఉంది body fat ఎక్కువ ఉంది and the conditions are very clear that she is insulin resistant and PCOS PCOD వచ్చింది periods time కి రావటానికి వచ్చిన అంటే తన తన menstruation start అయిన రోజు నుంచి ఈరోజు వరకు కూడా ఏ రోజు periods సరిగా time కి రాలా Twist ఏంటంటే అన్నీ అడుగుతున్న అడుగుతున్న కొద్ది ఇంట్లో నచ్చలేదు అని చెప్పి బయట తినడం ఈ అలవాట్లు ఎక్కువ నేను చెప్పా ఒకసారి workout start చేయించండి మెల్లగా food control start చేయించండి కొంచెం fat loss అవ్వండి ఒక three months తర్వాత she came back and said నా periods time కి వస్తున్నాయి ఇప్పుడు అని అదే food కానీ పద్ధతులు మార్చింది exercise మార్చింది so insulin resistance control అయింది she got back on track నేను ఒకటే చెప్పా ఇది నువ్వు జీవితాంతం చేయాలి",
+   "labeler": "telugu-content-strategist",
+   "tightening_labeled": true,
+   "scores": {
+    "hook": 3,
+    "standalone": 4,
+    "payoff": 5,
+    "value_emotion": 4,
+    "overall": 4
+   },
+   "publishable": true,
+   "title": "15 ఏళ్ళ అమ్మాయికి PCOS… 3 నెలల్లో periods on time",
+   "on_screen_hook": "School కి వెళ్ళే 15 ఏళ్ళ అమ్మాయికి PCOS",
+   "hook_line": {
+    "text": "For example lately I have spoken with",
+    "start_word": 2352,
+    "end_word": 2358
+   },
+   "why_it_works": "Concrete case: teen with PCOS from junk food and no play; workout plus food control, periods regular in 3 months; ends 'ఇది జీవితాంతం చేయాలి'.",
+   "category": "story",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [
+    "sensitive_content"
+   ]
+  },
+  {
+   "id": "t12",
+   "pieces": [
+    {
+     "start_word": 1896,
+     "end_word": 1928,
+     "start": 747.092,
+     "end": 759.992
+    },
+    {
+     "start_word": 1930,
+     "end_word": 1973,
+     "start": 761.352,
+     "end": 777.012
+    }
+   ],
+   "region": {
+    "start_word": 1896,
+    "end_word": 1973,
+    "start": 747.092,
+    "end": 777.012
+   },
+   "edited_duration": 28.56,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ఇంకొక విషయం ఏంటంటే ఆ మా అమ్మానాన్నలకు లేదు కదా మా అమ్మానాన్నలకు forty fifty వరకు లేదు నాకిప్పుడే ఎందుకు వస్తది అని ఒక మూఢనమ్మకంలో ఉంటారు జనాలు మూఢనమ్మకం ఎందుకంటానంటే మీ అమ్మగారు నాన్నగారు నలభై ఏళ్ల వరకు అసలు test చేయించలేదు ఆ నలభై ఏళ్లలో diabetes ముదిరింది diabetes levels ఎక్కువ ఉన్నాయని బయటపడింది అంటే ఏంటి వాళ్లకు ఒక పదేళ్ల ముందు నుంచి ఉండి ఉండొచ్చు పదేళ్ల ముందే start అయ్యి ఉండి ఉండొచ్చు so నీ lifestyle ప్రకారం నువ్వు తినే food ప్రకారం నీ stress levels ప్రకారం నీ glucose control అని depend అయ్యి ఉంటది",
+   "labeler": "telugu-content-strategist",
+   "tightening_labeled": true,
+   "scores": {
+    "hook": 4,
+    "standalone": 5,
+    "payoff": 4,
+    "value_emotion": 4,
+    "overall": 4
+   },
+   "publishable": true,
+   "title": "'మా అమ్మానాన్నలకి 40 వరకు sugar లేదు' – ఇది మూఢనమ్మకం",
+   "on_screen_hook": "మా parents కి 40 వరకు diabetes లేదు… నాకెందుకు వస్తుంది?",
+   "hook_line": {
+    "text": "ఇంకొక విషయం ఏంటంటే ఆ మా అమ్మానాన్నలకు లేదు కదా మా అమ్మానాన్నలకు forty fifty వరకు లేదు",
+    "start_word": 1896,
+    "end_word": 1909
+   },
+   "why_it_works": "Busts a very common belief in 30 seconds: parents were never tested, so diabetes likely started a decade earlier.",
+   "category": "insight",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [
+    "sensitive_content"
+   ]
+  },
+  {
+   "id": "t13",
+   "pieces": [
+    {
+     "start_word": 4729,
+     "end_word": 4733,
+     "start": 1827.28,
+     "end": 1830.1
+    },
+    {
+     "start_word": 4734,
+     "end_word": 4743,
+     "start": 1831.44,
+     "end": 1835.24
+    },
+    {
+     "start_word": 4750,
+     "end_word": 4775,
+     "start": 1837.82,
+     "end": 1846.7
+    },
+    {
+     "start_word": 4777,
+     "end_word": 4835,
+     "start": 1847.48,
+     "end": 1870.08
+    },
+    {
+     "start_word": 4837,
+     "end_word": 4851,
+     "start": 1871.22,
+     "end": 1877.34
+    },
+    {
+     "start_word": 4853,
+     "end_word": 4866,
+     "start": 1878.12,
+     "end": 1882.38
+    },
+    {
+     "start_word": 4868,
+     "end_word": 4870,
+     "start": 1883.18,
+     "end": 1884.5
+    },
+    {
+     "start_word": 4872,
+     "end_word": 4892,
+     "start": 1885.02,
+     "end": 1893.68
+    },
+    {
+     "start_word": 4894,
+     "end_word": 4908,
+     "start": 1894.24,
+     "end": 1899.2
+    },
+    {
+     "start_word": 4910,
+     "end_word": 4912,
+     "start": 1899.7,
+     "end": 1900.88
+    },
+    {
+     "start_word": 4914,
+     "end_word": 4918,
+     "start": 1901.5,
+     "end": 1903.74
+    }
+   ],
+   "region": {
+    "start_word": 4729,
+    "end_word": 4918,
+    "start": 1827.28,
+    "end": 1903.74
+   },
+   "edited_duration": 66.84,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ఇంకొంతమంది recent ఒక lady చనిపోయింది. నమ్మలకి chain marketing ఒకటి నడుస్తూ ఉంటది. తీసుకొచ్చేసి products అమ్ముతూ ఉంటారు ఇది-ఇది మీరు తాగితే ఆ ఇన్ని ఇన్ని kgs తగ్గిపోతారు అని చెప్పేసి ఎవరో ఒకళ్ళు తగ్గాం అని చెప్పేసి ఇంకా join చేస్తూ ఉంటారన్నమాట chain marketing లాగా ఉంటది products అమ్ముతా ఉంటారు అట్లా ఇలాగే ఒక lady కి ఇచ్చారన్నమాట కొద్దిగా old ఆమె కూడా ఇలా తాగేసింది సో ఆమె చనిపోయింది. sweet liquid diet అనేది ఎంతవరకు correct అంటారు? ఏం లేదండి you are controlling your lot of food intake. food intake మొత్తం ఆపేసి just వాళ్ళు ఇచ్చిన products తాగుతున్నారు. వాళ్ళు ఇచ్చిన products కూడా మొత్తం eats అంటే may be ఒక ఎనిమిది వందల calories ఓ వేయ్ calories ఉంటాయి రోజుకి. ఇప్పుడు ఒక వంద kg ఉన్న మనిషి ఆ తన ma-maintenance calories ఒక మూడు వేల పైన ఉంటాయి అంటే మూడు వేలు పైన ఉన్న ఒక మనిషికి calories నువ్వు ఎనిమిది వందల calories రోజుకి ఇస్తున్నావ్ అమాంతంగా weight తగ్గిపోతారు ఈ తగ్గే క్రమంలో nutrition deficiencies రావచ్చు low sugar కి వెళ్లిపోవచ్చు multiple తీస్-- అందరూ ఏంటి బరువు తగ్గిపోతున్నా బరువు తగ్గిపోతున్నా నాకు తెలియకగా ఉంది అన్న ఒక ఆ ఎలాంటి short term దీన్నే చూస్తున్నారు తప్ప long term నాకు నా muscle పోతుంది నాకు deficiencies వస్తున్నాయి ఇవేమీ ఆలోచించట్లేదు ఎందుకంటే result కనబడిపోతుంది.",
+   "labeler": "telugu-content-strategist",
+   "tightening_labeled": true,
+   "scores": {
+    "hook": 4,
+    "standalone": 4,
+    "payoff": 4,
+    "value_emotion": 4,
+    "overall": 4
+   },
+   "publishable": true,
+   "title": "Liquid diet తాగి ఒక lady చనిపోయింది… ఎందుకు?",
+   "on_screen_hook": "Chain marketing liquid diet – ఒక lady చనిపోయింది",
+   "hook_line": {
+    "text": "ఇంకొంతమంది recent ఒక lady చనిపోయింది.",
+    "start_word": 4729,
+    "end_word": 4733
+   },
+   "why_it_works": "Shocking real case, then a clear numbers answer: 800 kcal for someone who needs 3000 gives fast loss but deficiencies, low sugar, muscle loss.",
+   "category": "controversy",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [
+    "sensitive_content"
+   ]
+  },
+  {
+   "id": "t14",
+   "pieces": [
+    {
+     "start_word": 10803,
+     "end_word": 10817,
+     "start": 4062.68,
+     "end": 4067.82
+    },
+    {
+     "start_word": 10819,
+     "end_word": 10835,
+     "start": 4068.32,
+     "end": 4076.42
+    },
+    {
+     "start_word": 10837,
+     "end_word": 10846,
+     "start": 4076.94,
+     "end": 4082.74
+    },
+    {
+     "start_word": 10849,
+     "end_word": 10917,
+     "start": 4085.32,
+     "end": 4112.82
+    },
+    {
+     "start_word": 10918,
+     "end_word": 10919,
+     "start": 4114.08,
+     "end": 4114.94
+    },
+    {
+     "start_word": 10921,
+     "end_word": 10924,
+     "start": 4115.76,
+     "end": 4116.64
+    },
+    {
+     "start_word": 10926,
+     "end_word": 10945,
+     "start": 4116.92,
+     "end": 4124.28
+    },
+    {
+     "start_word": 10948,
+     "end_word": 10962,
+     "start": 4125.48,
+     "end": 4132.26
+    },
+    {
+     "start_word": 10964,
+     "end_word": 10968,
+     "start": 4133.26,
+     "end": 4134.86
+    }
+   ],
+   "region": {
+    "start_word": 10803,
+    "end_word": 10968,
+    "start": 4062.68,
+    "end": 4134.86
+   },
+   "edited_duration": 64.02,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ఇప్పుడు చికెన్ లో కూడా మనకి నాటు కోడి, broiler కోడి ఏం difference ఉంటదా? పెద్ద difference ఉండదన్నా. అంటే it's, it's all frankly speaking scientifically పక్క పక్కన compare చేసినప్పుడు nutrition profile పక్కన పెద్ద difference ఉండదు. కానీ broiler కోడితో వచ్చిన problem ఏంటంటే is the antibiotic residue. Which is really issue in the industry right now. కొన్ని brands antibiotics మేము వాడట్లేదు antibiotic free వాడుతున్నాం అని చెప్తున్నారు. కొన్ని brands నిజంగా చేస్తున్నాయ్. అంటే antibiotic free, free అని కాదు fundamentally ఏం చేస్తారంటే ఒక level వరకు antibiotics వాళ్ళకి పొరపాటున ఒక కోడికి జబ్బు వచ్చింది అనుకో antibiotics వాడతారు. వాడిన తర్వాత కొన్ని రోజుల పాటు దానికి ఆ clearance period ఉంటది. antibiotics తన body లోంచి వెళ్ళిపోయేవరకు. ఆ clearance period వరకు ఆగి ఆగిన తర్వాత ఆ కోళ్ళని అమ్మకానికి పెడతారు. ఈ process అయితే ఉంది poultry లో. కొంతమంది అది follow అవరు. antibiotic ఏసేసాం జ్వరం తగ్గిపోయింది, కోడి పెరిగిపోయింది పంపించేస్తారు. country chicken లో ఏంటంటే antibiotics వాడరు కదా. ఆ నాటు కోడి. కాకపోతే అప్పుడు ఇంత మంది population కి, ఇన్ని వేల జనాభా, ఇన్ని కోట్ల జనాభాకి ఎన్ని country chicken లు పుట్టించాలి?",
+   "labeler": "telugu-content-strategist",
+   "tightening_labeled": true,
+   "scores": {
+    "hook": 4,
+    "standalone": 5,
+    "payoff": 4,
+    "value_emotion": 4,
+    "overall": 4
+   },
+   "publishable": true,
+   "title": "నాటు కోడి vs broiler కోడి – అసలు తేడా ఏంటి?",
+   "on_screen_hook": "నాటు కోడి, broiler కోడి – ఏది better?",
+   "hook_line": {
+    "text": "ఇప్పుడు చికెన్ లో కూడా మనకి నాటు కోడి, broiler కోడి ఏం difference ఉంటదా?",
+    "start_word": 10803,
+    "end_word": 10814
+   },
+   "why_it_works": "Everyday question, surprising answer (nutrition nearly the same, real issue is antibiotic residue), ends on 'కోట్ల జనాభాకి ఎన్ని నాటు కోళ్ళు పుట్టించాలి?'",
+   "category": "insight",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": []
+  },
+  {
+   "id": "t15",
+   "pieces": [
+    {
+     "start_word": 11778,
+     "end_word": 11781,
+     "start": 4415.376,
+     "end": 4416.476
+    },
+    {
+     "start_word": 11666,
+     "end_word": 11671,
+     "start": 4368.74,
+     "end": 4370.48
+    },
+    {
+     "start_word": 11673,
+     "end_word": 11678,
+     "start": 4370.72,
+     "end": 4373.26
+    },
+    {
+     "start_word": 11680,
+     "end_word": 11680,
+     "start": 4373.8,
+     "end": 4374.34
+    },
+    {
+     "start_word": 11682,
+     "end_word": 11690,
+     "start": 4374.82,
+     "end": 4377.16
+    },
+    {
+     "start_word": 11693,
+     "end_word": 11696,
+     "start": 4377.96,
+     "end": 4379.36
+    },
+    {
+     "start_word": 11742,
+     "end_word": 11764,
+     "start": 4400.696,
+     "end": 4410.236
+    },
+    {
+     "start_word": 11770,
+     "end_word": 11777,
+     "start": 4413.236,
+     "end": 4415.296
+    },
+    {
+     "start_word": 11785,
+     "end_word": 11807,
+     "start": 4418.156,
+     "end": 4425.576
+    },
+    {
+     "start_word": 11809,
+     "end_word": 11827,
+     "start": 4426.376,
+     "end": 4433.496
+    },
+    {
+     "start_word": 11829,
+     "end_word": 11884,
+     "start": 4434.096,
+     "end": 4453.416
+    },
+    {
+     "start_word": 11886,
+     "end_word": 11888,
+     "start": 4453.856,
+     "end": 4454.576
+    },
+    {
+     "start_word": 11890,
+     "end_word": 11895,
+     "start": 4455.056,
+     "end": 4456.356
+    },
+    {
+     "start_word": 11897,
+     "end_word": 11903,
+     "start": 4456.936,
+     "end": 4458.976
+    }
+   ],
+   "region": {
+    "start_word": 11666,
+    "end_word": 11903,
+    "start": 4368.74,
+    "end": 4458.976
+   },
+   "edited_duration": 59.18,
+   "reordered": true,
+   "n_blocks": 3,
+   "text": "Mutton తింటే cancer వస్తది. అందరూ red meat అనేసరికి confuse అయిపోతారు. Processed red meat అంటే ఏంటి? Sausages. Salamies. మనకి pizza toppings మీద round గా ఎర్రగా వేస్తారు కదా. ఇవి, ఇవి processed meat. So ఈ processed meat ఏదైతే ఉందో it has some evidence to say that this processed meat can be cancer causing specifically intestinal cancer. అది జనాలు red meat అనేసరికి దీనికి relate చేసుకుంటారు. Mutton తిన్నా సరే it is very very very very low instance that చాలా research evidence కూడా చాలా తక్కువగా ఉంది mutton తింటే cancer వచ్చేసిందనడానికి. But one advice ఏంటంటే any day people who are eating high amount of good amount of fiber, fiber diversity. Like అంటే పప్పుల నుంచి, కూరల నుంచి, రకరకాల కూరల నుంచి, రకరకాల పప్పుల నుంచి దాంతో పాటు తింటూ mutton తింటున్న వాళ్ళకి problem కాదు. Fiber add చేసినప్పుడు మీరు ఆ cancer risk ని కూడా తగ్గించుకుంటున్నారు. So fiber add చేసుకొని తిన్నప్పుడు పెద్ద issue కాదు. So simple గా చెప్పాలంటే normal man కి అర్థం అయినట్టు మీరు mutton తినాలనుకుంటే వారానికి ఒక రోజు రెండు రోజులు పెట్టుకోండి. Limit లో పెట్టుకోండి. Mutton లో already చాలా fat ఉంటది. దాంట్లో మీరు మళ్ళీ నూనెలు నూనెలు వేసుకుని వండుకోకండి.",
+   "labeler": "telugu-content-strategist",
+   "tightening_labeled": true,
+   "scores": {
+    "hook": 5,
+    "standalone": 4,
+    "payoff": 4,
+    "value_emotion": 4,
+    "overall": 4
+   },
+   "publishable": true,
+   "title": "Mutton తింటే cancer వస్తుందా? అసలు నిజం ఇదే",
+   "on_screen_hook": "Mutton తింటే cancer వస్తది?",
+   "hook_line": {
+    "text": "Mutton తింటే cancer వస్తది.",
+    "start_word": 11778,
+    "end_word": 11781
+   },
+   "why_it_works": "Opens on the fear itself, separates processed meat (sausages, salami) from mutton, gives a simple rule (1-2 days a week, fiber alongside) and a laugh about extra oil.",
+   "category": "insight",
+   "standalone_risks": [],
+   "edit_notes": [
+    {
+     "type": "cold_open",
+     "reason": "Host's 'Mutton తింటే cancer వస్తది' is lifted to the front as the question the clip answers."
+    },
+    {
+     "type": "skip",
+     "after_piece": 5,
+     "reason": "Dropped how processed meat is made; kept only the evidence line on cancer risk."
+    }
+   ],
+   "flags": [
+    "sensitive_content"
+   ]
+  },
+  {
+   "id": "t16",
+   "pieces": [
+    {
+     "start_word": 15231,
+     "end_word": 15236,
+     "start": 5660.392,
+     "end": 5662.412
+    },
+    {
+     "start_word": 15238,
+     "end_word": 15254,
+     "start": 5663.292,
+     "end": 5669.512
+    },
+    {
+     "start_word": 15257,
+     "end_word": 15262,
+     "start": 5670.292,
+     "end": 5673.372
+    },
+    {
+     "start_word": 15264,
+     "end_word": 15271,
+     "start": 5674.812,
+     "end": 5677.852
+    },
+    {
+     "start_word": 15273,
+     "end_word": 15280,
+     "start": 5679.072,
+     "end": 5681.132
+    },
+    {
+     "start_word": 15282,
+     "end_word": 15293,
+     "start": 5682.532,
+     "end": 5686.732
+    },
+    {
+     "start_word": 15295,
+     "end_word": 15305,
+     "start": 5687.592,
+     "end": 5690.992
+    },
+    {
+     "start_word": 15307,
+     "end_word": 15310,
+     "start": 5692.652,
+     "end": 5694.072
+    },
+    {
+     "start_word": 15318,
+     "end_word": 15339,
+     "start": 5696.072,
+     "end": 5702.512
+    },
+    {
+     "start_word": 15340,
+     "end_word": 15353,
+     "start": 5702.612,
+     "end": 5706.032
+    },
+    {
+     "start_word": 15355,
+     "end_word": 15358,
+     "start": 5706.812,
+     "end": 5707.592
+    },
+    {
+     "start_word": 15360,
+     "end_word": 15374,
+     "start": 5708.652,
+     "end": 5712.432
+    },
+    {
+     "start_word": 15376,
+     "end_word": 15380,
+     "start": 5713.212,
+     "end": 5714.332
+    },
+    {
+     "start_word": 15382,
+     "end_word": 15385,
+     "start": 5715.072,
+     "end": 5716.212
+    },
+    {
+     "start_word": 15406,
+     "end_word": 15415,
+     "start": 5723.072,
+     "end": 5725.532
+    },
+    {
+     "start_word": 15417,
+     "end_word": 15433,
+     "start": 5727.052,
+     "end": 5731.432
+    },
+    {
+     "start_word": 15435,
+     "end_word": 15437,
+     "start": 5731.492,
+     "end": 5732.052
+    },
+    {
+     "start_word": 15439,
+     "end_word": 15452,
+     "start": 5732.692,
+     "end": 5736.332
+    },
+    {
+     "start_word": 15458,
+     "end_word": 15472,
+     "start": 5738.712,
+     "end": 5742.692
+    },
+    {
+     "start_word": 15474,
+     "end_word": 15485,
+     "start": 5743.092,
+     "end": 5748.132
+    }
+   ],
+   "region": {
+    "start_word": 15231,
+    "end_word": 15485,
+    "start": 5660.392,
+    "end": 5748.132
+   },
+   "edited_duration": 62.18,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "Whey protein చాలామంది ఏందంటే ఇది unhealthy. మీకు future లో problem వస్తది అని కూడా కొన్ని కొంతమంది. ఇంకేం కొంతమంది doctors కూడా చెప్తుంటారన్నమాట whey protein గురించి. Surprisingly doctors అన్నట్టుగా చెప్తున్నానన్నా abroad లో. Even lactating, lactating women అంటే breast feed ఇస్తున్న- Women కి కూడా whey protein తాగండి suggest చేస్తారు. Breast feeding, pregnancy ఉన్నవాళ్ళకు కూడా protein రావట్లేదంటే whey protein తీసుకోవాలని suggest చేస్తారు. మన దగ్గర వచ్చేసరికి మాత్రం whey protein తీసుకుంటే పిల్లలు పుట్టరని suggest చేస్తారు. ఎందుకంటే ఎందుకు అలా వెళ్ళిపోతుంది? see whey protein అన్నది మనకి India లో కూడా it started off as the fitness supplement. Body building industry లో whey protein వాడతారు. ఓ వాళ్ళు whey protein వాడతారు కాబట్టి మజిల్ ఎక్కువ పెరిగిపోతుంది కాబట్టి whey protein మజిల్ పెంచుతాది. అని అక్కడ start అయ్యి- Body building industry లో whey protein తో పాటు steroids కూడా వాడతారు. సో రెండూ steroids ఏ. అన్న ఒక అపోహతో start అయ్యి- ఇప్పటికి జనాలు అదే నమ్ముతున్నారు. Milk లో మనకి రెండు రకాల proteins ఉంటాయి. Whey and casein. దాన్ని extract చేసి అంటే పన్నీరు ఉందా? నువ్వు పన్నీరు ఇంట్లో చేసుకున్నప్పుడు whey water వస్తది కదా white color ది. అది whey water. దాన్ని process చేసి extract చేసి దాంట్లో నుంచి protein లాగితే అది whey protein powder అవుతది. Very good quality whey protein is never a concern. Whey protein లో heavy metals లేవు- ఎటువంటి allergens లేవు, alfa-aflatoxins లేవు. ఇట్లాంటివి pure whey protein is definitely healthy.",
+   "labeler": "telugu-content-strategist",
+   "tightening_labeled": true,
+   "scores": {
+    "hook": 4,
+    "standalone": 5,
+    "payoff": 4,
+    "value_emotion": 4,
+    "overall": 4
+   },
+   "publishable": true,
+   "title": "Whey protein తాగితే పిల్లలు పుట్టరా?",
+   "on_screen_hook": "Abroad doctors breastfeeding mothers కి whey suggest చేస్తారు… మన దగ్గర?",
+   "hook_line": {
+    "text": "Whey protein చాలామంది ఏందంటే ఇది unhealthy.",
+    "start_word": 15231,
+    "end_word": 15236
+   },
+   "why_it_works": "Strong contrast hook (abroad it's advised for lactating mothers, here people say you won't have kids), traces the myth to bodybuilding, ends 'పన్నీర్ నీళ్ళే whey'.",
+   "category": "insight",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [
+    "sensitive_content"
+   ]
+  },
+  {
+   "id": "t17",
+   "pieces": [
+    {
+     "start_word": 14669,
+     "end_word": 14674,
+     "start": 5448.04,
+     "end": 5451.42
+    },
+    {
+     "start_word": 14676,
+     "end_word": 14679,
+     "start": 5452.28,
+     "end": 5453.82
+    },
+    {
+     "start_word": 14680,
+     "end_word": 14686,
+     "start": 5454.08,
+     "end": 5456.08
+    },
+    {
+     "start_word": 14688,
+     "end_word": 14694,
+     "start": 5456.66,
+     "end": 5458.74
+    },
+    {
+     "start_word": 14696,
+     "end_word": 14702,
+     "start": 5459.18,
+     "end": 5461.2
+    },
+    {
+     "start_word": 14704,
+     "end_word": 14714,
+     "start": 5462.42,
+     "end": 5465.56
+    },
+    {
+     "start_word": 14715,
+     "end_word": 14717,
+     "start": 5466.78,
+     "end": 5467.6
+    },
+    {
+     "start_word": 14719,
+     "end_word": 14749,
+     "start": 5468.18,
+     "end": 5476.04
+    },
+    {
+     "start_word": 14751,
+     "end_word": 14768,
+     "start": 5476.94,
+     "end": 5482.94
+    },
+    {
+     "start_word": 14822,
+     "end_word": 14837,
+     "start": 5502.192,
+     "end": 5507.812
+    },
+    {
+     "start_word": 14885,
+     "end_word": 14929,
+     "start": 5524.832,
+     "end": 5535.732
+    },
+    {
+     "start_word": 14930,
+     "end_word": 14945,
+     "start": 5536.852,
+     "end": 5544.312
+    },
+    {
+     "start_word": 15022,
+     "end_word": 15031,
+     "start": 5576.812,
+     "end": 5580.992
+    },
+    {
+     "start_word": 15032,
+     "end_word": 15040,
+     "start": 5581.252,
+     "end": 5584.512
+    },
+    {
+     "start_word": 15042,
+     "end_word": 15060,
+     "start": 5585.532,
+     "end": 5589.792
+    }
+   ],
+   "region": {
+    "start_word": 14669,
+    "end_word": 15060,
+    "start": 5448.04,
+    "end": 5589.792
+   },
+   "edited_duration": 64.52,
+   "reordered": false,
+   "n_blocks": 2,
+   "text": "ఈ pre-workout ఉంటది. pre-workout, BCAA, creatine అవి ఎంతవరకు useful అవి? BCAA waste of money అన్నా, costly రస్నా. ఎందుకంటే BCAA is like three amino acids Leucine, isoleucine and valine మూడు amino acids. ఈ మూడు amino acids తో మీకు muscle protein synthesis complete అవ్వదు. మీకు తొమ్మిది కావాలి. Muscle protein synthesis complete కావాలంటే. తొమ్మిది మీకు already food resources లో వచ్చేస్తున్నాయి కదా. ఇప్పుడు నువ్వు BCAA మీద ఖర్చు పెడతావా, whey protein మీద ఖర్చు పెడతావా అంటే నేను whey protein ఖర్చు పెట్టుకో అంటాను. ఎందుకంటే whey protein complete protein వస్తుంది. BCAA లో మూడు వస్తుంది. So ఇది costly రస్నా అంటాను నేను. అవసరం లేదు. Creatine, yeah it definitely have good amount of research that it can help you lift better. So three to five grams per day something on a safe limit you can use it. But creatine is not a superpower or something తీసుకొని వెంటనే ఓ superpower వచ్చింది. It is just an add on to your existing nutrition which can help you better అంతే. ఇంకోటి pre-workout అన్నారు కదా, basically caffeine. Right? Any pre-workout the primary ingredient is high dosage caffeine. So is it necessary అంటే అది లేకపోయినా కూడా workout చేయొచ్చు. Caffeine అదే coffee black coffee ఒకటే ఇస్తే. కూడా చేయొచ్చు. Just ఒక twenty minutes ముందు black coffee తీసుకుంటే ఆ time కి bloodstream లో caffeine వెళ్తది it will help you.",
+   "labeler": "telugu-content-strategist",
+   "tightening_labeled": true,
+   "scores": {
+    "hook": 4,
+    "standalone": 5,
+    "payoff": 4,
+    "value_emotion": 4,
+    "overall": 4
+   },
+   "publishable": true,
+   "title": "BCAA = costly రస్నా! Creatine, pre-workout నిజంగా అవసరమా?",
+   "on_screen_hook": "BCAA waste of money – costly రస్నా",
+   "hook_line": {
+    "text": "ఈ pre-workout ఉంటది. pre-workout, BCAA, creatine",
+    "start_word": 14669,
+    "end_word": 14674
+   },
+   "why_it_works": "Funny, quotable verdict on BCAA, a clear yes on creatine (3-5 g, not a superpower), and pre-workout is basically caffeine: black coffee 20 minutes before works.",
+   "category": "advice",
+   "standalone_risks": [],
+   "edit_notes": [
+    {
+     "type": "skip",
+     "after_piece": 11,
+     "reason": "Dropped the caffeine receptor explanation; went straight to 'not necessary, black coffee works'."
+    }
+   ],
+   "flags": [
+    "sensitive_content"
+   ]
+  },
+  {
+   "id": "t18",
+   "pieces": [
+    {
+     "start_word": 15810,
+     "end_word": 15831,
+     "start": 5853.812,
+     "end": 5862.252
+    },
+    {
+     "start_word": 15907,
+     "end_word": 15958,
+     "start": 5887.768,
+     "end": 5905.868
+    },
+    {
+     "start_word": 15996,
+     "end_word": 16009,
+     "start": 5921.428,
+     "end": 5925.108
+    },
+    {
+     "start_word": 16010,
+     "end_word": 16054,
+     "start": 5926.188,
+     "end": 5941.948
+    },
+    {
+     "start_word": 16338,
+     "end_word": 16357,
+     "start": 6044.248,
+     "end": 6051.968
+    }
+   ],
+   "region": {
+    "start_word": 15810,
+    "end_word": 16357,
+    "start": 5853.812,
+    "end": 6051.968
+   },
+   "edited_duration": 53.7,
+   "reordered": false,
+   "n_blocks": 3,
+   "text": "Gym join అయిన తర్వాత heavy workout చేసేస్తారు high intensity workout. Sudden గా heart attacks వచ్చి gym లోనే collapse అవ్వడం ఇట్లాంటివి మనం చూస్తుంటాం. So నేను చెప్పేది ఏంటంటే if you are thirty plus gym join అవుతున్నా first time gym చేస్తున్నా అంటే first ఒకసారి మీ blood work change చేయించండి. Which is nothing but your lipid profile, thyroid profile, uh liver profile, kidney profile and basic vitamin and mineral deficiency and CBP complete blood picture. ఇవి basic చేయించుకోవాల్సినవి. heart health అది బానే ఉంది అనుకుంటే you can start with your workout and nutrition. First thing workout పరంగా కూడా ఎప్పుడైనా ఒక beginner గా start చేసేటప్పుడు చాలామందికి ఏంటంటే day one start చేస్తున్నాం కదా కుమ్మేద్దాం మనం అన్న mood లో చేస్తారు. ఆ తప్పులు చేయకండి. కనీసం ఒక వ- నెల రోజులైనా body కి ముందు మెల్లమెల్లగా మెల్లమెల్లగా మెల్లమెల్లగా అలవాటు చేయాలి కాబట్టి take it very light. See most of this gym లో కల్తీరి పడిపోయి heart-heart stop అయిపోవడం అనేది ఏదైతే ఉందో most reason is dehydration. Sleep lack.",
+   "labeler": "telugu-content-strategist",
+   "tightening_labeled": true,
+   "scores": {
+    "hook": 4,
+    "standalone": 5,
+    "payoff": 4,
+    "value_emotion": 4,
+    "overall": 4
+   },
+   "publishable": true,
+   "title": "Gym లో heart attack ఎందుకు? join అయ్యే ముందు ఇవి చేయించండి",
+   "on_screen_hook": "Gym లోనే collapse అవ్వడం – ఎందుకు?",
+   "hook_line": {
+    "text": "Gym join అయిన తర్వాత heavy workout చేసేస్తారు high intensity workout.",
+    "start_word": 15810,
+    "end_word": 15819
+   },
+   "why_it_works": "Timely fear, concrete checklist (30+: lipid, thyroid, liver, kidney, CBP), 'first month take it light', and the surprising main cause: dehydration and no sleep.",
+   "category": "advice",
+   "standalone_risks": [],
+   "edit_notes": [
+    {
+     "type": "skip",
+     "after_piece": 0,
+     "reason": "Host's question joined to the test checklist; the 'who can afford tests' aside is dropped."
+    },
+    {
+     "type": "skip",
+     "after_piece": 3,
+     "reason": "Jumped to his closing point on dehydration and sleep; heart-rate tracker details dropped."
+    }
+   ],
+   "flags": [
+    "sensitive_content"
+   ]
+  },
+  {
+   "id": "t19",
+   "pieces": [
+    {
+     "start_word": 16760,
+     "end_word": 16770,
+     "start": 6183.028,
+     "end": 6187.468
+    },
+    {
+     "start_word": 16811,
+     "end_word": 16912,
+     "start": 6201.508,
+     "end": 6237.208
+    },
+    {
+     "start_word": 17037,
+     "end_word": 17099,
+     "start": 6277.948,
+     "end": 6296.847
+    },
+    {
+     "start_word": 17101,
+     "end_word": 17161,
+     "start": 6298.028,
+     "end": 6318.188
+    }
+   ],
+   "region": {
+    "start_word": 16760,
+    "end_word": 17161,
+    "start": 6183.028,
+    "end": 6318.188
+   },
+   "edited_duration": 79.199,
+   "reordered": false,
+   "n_blocks": 2,
+   "text": "Even alcohol, smoking ఈ రెండూ మనం transformation లో ఎంత effect చూపిస్తాయి? For example, ఈరోజు రాత్రి ఒక రెండు పెగ్గులు తాగాం అనుకోండి మనం ఉమ్ రెండు పెగ్గులు తాగిన తర్వాత మనం ఏమనుకుంటాం మత్తెక్కింది కదా మనం పడుకుని పోతాము మంచిగా నిద్ర పడుతుందనుకుంటాం కదా ఉమ్ కానీ మీ resting heart rate elevate అయిపోతాది, మీ heart rate variability తగ్గిపోతాది ఉమ్ మీరు healthy గా ఉండాలంటే heart rate variability ఎక్కువ ఉండాలి ఉమ్ Resting heart rate తక్కువ ఉండాలి ఉమ్ ఇది ఒక night sleep లో reverse అయిపోతాది ఉమ్ మీ core body temperature మారిపోతాది ఉమ్ దాని వల్ల మీరు నిద్రపోయినా మీ నిద్ర complete అవ్వదు ఉహు So next రోజు మళ్ళీ మీరు cranky గా లేస్తారు Imagine ఒక పెగ్ తీసుకున్నా రెండు పెగ్గులు తీసుకున్నా this will happen. Imagine జనాలు quarter పైన తాగుతారు Recently I have heard about one person who I know, who is not very close to me but from Vizag. ఉమ్ My age. ఉమ్ Who over drinks. ఉమ్ Over eats. ఉమ్ No sleep, nothing. Died with heart failure. ఆహ్ ఎంత age? My age. I am thirty five. Thirty five. He is also thirty four, thirty five. ఉమ్ Someone I know from my friend. So the reason I am telling you this is because the only difference is I maintain lifestyle, he didn't maintain a lifestyle. ఉమ్ కోరుకుని తెచ్చుకున్నాడు అది అన్నది. ఉమ్ రాత్రలు నిద్రలు పోకుండా, రాత్రలు రెండు గంటలు, మూడు గంటలు వరకు తాగి మళ్లీ పొద్దున లేసి. ఉమ్ Smoke. ఇంక abuse, body abuse. ఉమ్ ఒక point of time దాకా body తీసుకోలేడు కదా, ఎంత young గా ఉన్నా సరే.",
+   "labeler": "telugu-content-strategist",
+   "tightening_labeled": true,
+   "scores": {
+    "hook": 4,
+    "standalone": 5,
+    "payoff": 5,
+    "value_emotion": 5,
+    "overall": 4
+   },
+   "publishable": true,
+   "title": "35 ఏళ్ళకే heart failure… 2 pegs మీ body కి ఏం చేస్తాయి?",
+   "on_screen_hook": "రెండు pegs తాగితే మంచి నిద్ర పడుతుంది అనుకుంటాం… కానీ",
+   "hook_line": {
+    "text": "Even alcohol, smoking ఈ రెండూ మనం transformation లో ఎంత effect చూపిస్తాయి?",
+    "start_word": 16760,
+    "end_word": 16770
+   },
+   "why_it_works": "Myth ('drinks help me sleep') busted with resting heart rate and HRV, then a sobering real case: a 35-year-old who drank, overate and skipped sleep died of heart failure.",
+   "category": "emotional",
+   "standalone_risks": [],
+   "edit_notes": [
+    {
+     "type": "skip",
+     "after_piece": 1,
+     "reason": "Dropped the WHO and Nagarjuna beer tangent; jumped to his real-life example."
+    }
+   ],
+   "flags": [
+    "sensitive_content"
+   ]
+  },
+  {
+   "id": "t20",
+   "pieces": [
+    {
+     "start_word": 18512,
+     "end_word": 18529,
+     "start": 6789.744,
+     "end": 6797.564
+    },
+    {
+     "start_word": 18540,
+     "end_word": 18543,
+     "start": 6802.264,
+     "end": 6803.684
+    },
+    {
+     "start_word": 18545,
+     "end_word": 18547,
+     "start": 6804.264,
+     "end": 6805.264
+    },
+    {
+     "start_word": 18549,
+     "end_word": 18551,
+     "start": 6806.084,
+     "end": 6807.204
+    },
+    {
+     "start_word": 18553,
+     "end_word": 18563,
+     "start": 6808.524,
+     "end": 6811.704
+    },
+    {
+     "start_word": 18565,
+     "end_word": 18567,
+     "start": 6813.064,
+     "end": 6813.884
+    },
+    {
+     "start_word": 18578,
+     "end_word": 18604,
+     "start": 6818.464,
+     "end": 6829.184
+    },
+    {
+     "start_word": 18606,
+     "end_word": 18607,
+     "start": 6829.944,
+     "end": 6830.344
+    },
+    {
+     "start_word": 18609,
+     "end_word": 18614,
+     "start": 6831.484,
+     "end": 6833.064
+    },
+    {
+     "start_word": 18676,
+     "end_word": 18716,
+     "start": 6854.843,
+     "end": 6867.624
+    },
+    {
+     "start_word": 18751,
+     "end_word": 18807,
+     "start": 6880.384,
+     "end": 6898.544
+    },
+    {
+     "start_word": 18808,
+     "end_word": 18813,
+     "start": 6900.084,
+     "end": 6901.344
+    },
+    {
+     "start_word": 18814,
+     "end_word": 18849,
+     "start": 6902.664,
+     "end": 6912.584
+    },
+    {
+     "start_word": 18851,
+     "end_word": 18897,
+     "start": 6913.304,
+     "end": 6930.564
+    },
+    {
+     "start_word": 18899,
+     "end_word": 18919,
+     "start": 6931.804,
+     "end": 6938.684
+    },
+    {
+     "start_word": 18921,
+     "end_word": 18926,
+     "start": 6939.444,
+     "end": 6940.744
+    }
+   ],
+   "region": {
+    "start_word": 18512,
+    "end_word": 18926,
+    "start": 6789.744,
+    "end": 6940.744
+   },
+   "edited_duration": 95.621,
+   "reordered": false,
+   "n_blocks": 2,
+   "text": "ఇప్పుడు మీరు IT job వదిలేసి ఇటు వచ్చారు. ఇది ఎలా అనిపించింది? అక్కడ ఉంటే బాగుండా? లేకపోతే ఇక్కడ అంటే money పరంగా. Masters in Manufacturing చేశా. SRM University, Chennai. చేశాక job వచ్చింది. Masters ఏమో Mechanical Manufacturing లో చేశా, job ఏమో IT లో వచ్చింది. ఏం చేయాలో తెలీదు. సరే అని చెప్పి ఇంకేదో ఒకటి చేద్దాం కదా. సరే job అయితే వచ్చింది. ఇంట్లో depend అవకుండా బతకాలి. Individually గా బతకాలి. అప్పుడు Masters చేసినోడికి నా జీతం 2.7 lakhs per annum. month కా. అంటే పదిహేడు వేల ఎనిమిది వందలు నెలకి. After a point of time నాకు అర్థమైంది I cannot take IT. అంటే I am not fit for being an IT person. లేదా ఆ IT politics ఓ లేకపోతే ఆ వాళ్ళు కోరుకునే విధంగా పనిచేయడం అన్నది maybe నేను చేయలేనేమో అన్న ఒక clarity నాకు వచ్చింది. మా అక్క కవిత అక్క అని చెప్పి she is a pulmonologist but right now she passed away covid లో. తను \"అరేయ్ నీకు ఇంత interest కదా, why don't you try online fitness coaching with so and so company. వాళ్ళు intake తీసుకుంటున్నారు\" అని చెప్పి ఒక Pune based company గురించి suggest చేస్తే అక్కడ internship join అయ్యి ఇంకో పక్క నేను అప్పుడే నాకు relationship లోకి వెళ్ళా మా wife తో. She was also earning a certain amount of money. నాది ఏంటి ఇద్దరూ ఒక certain amount of money earn చేస్తే రేపు పొద్దున మనం పెళ్లి చేసుకున్నా equal గా share చేసుకోవచ్చు. I know I was earning lesser than her. So, నేను ఏదో ఒకటి చదువో, ఏదో ఒకటి చేసో experience చూపించి shift కొట్టి job పెంచుకుందాము అన్న దీంట్లో ఉండా. Then I started my online fitness coaching. Clients రావడం start అయ్యాయి. అంతా బానే ఉంది. One year తర్వాత ఇదా ఇదా, ఇటువైపు వెళ్ళాలా, ఇటువైపు వెళ్ళాలా అని decision వచ్చింది. ఇంక I left this. ఏది చేసినా దీంట్లోనే చేసుకుందాం. ఆ basic నేను సంపాదించుకోగలను నేను బ్రతికించుకోవడానికి. నా ఖర్చుల కోసం నేను ఇంట్లో depend అవకుండా సంపాదించుకోగలను అని ఇటు వచ్చేశా. ఇంక అక్కడి నుంచి it's a hustle.",
+   "labeler": "telugu-content-strategist",
+   "tightening_labeled": true,
+   "scores": {
+    "hook": 3,
+    "standalone": 4,
+    "payoff": 4,
+    "value_emotion": 5,
+    "overall": 4
+   },
+   "publishable": true,
+   "title": "₹17,800 IT job వదిలి fitness coach అయ్యా",
+   "on_screen_hook": "Masters చేసి నెలకి ₹17,800 జీతం",
+   "hook_line": {
+    "text": "ఇప్పుడు మీరు IT job వదిలేసి ఇటు వచ్చారు. ఇది ఎలా అనిపించింది?",
+    "start_word": 18512,
+    "end_word": 18521
+   },
+   "why_it_works": "Relatable career story: mechanical masters, low IT salary, not fit for IT politics, late sister's nudge to try online coaching, earning less than his girlfriend; he takes the leap.",
+   "category": "story",
+   "standalone_risks": [],
+   "edit_notes": [
+    {
+     "type": "skip",
+     "after_piece": 8,
+     "reason": "Skipped his SAP-consultant level details; went to the realisation that IT wasn't for him."
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "t21",
+   "pieces": [
+    {
+     "start_word": 19515,
+     "end_word": 19528,
+     "start": 7163.172,
+     "end": 7168.012
+    },
+    {
+     "start_word": 19530,
+     "end_word": 19540,
+     "start": 7169.072,
+     "end": 7171.812
+    },
+    {
+     "start_word": 19542,
+     "end_word": 19548,
+     "start": 7172.312,
+     "end": 7174.832
+    },
+    {
+     "start_word": 19555,
+     "end_word": 19570,
+     "start": 7179.352,
+     "end": 7186.032
+    },
+    {
+     "start_word": 19572,
+     "end_word": 19594,
+     "start": 7186.612,
+     "end": 7193.012
+    },
+    {
+     "start_word": 19598,
+     "end_word": 19606,
+     "start": 7194.872,
+     "end": 7197.012
+    },
+    {
+     "start_word": 19608,
+     "end_word": 19614,
+     "start": 7198.072,
+     "end": 7200.912
+    },
+    {
+     "start_word": 19649,
+     "end_word": 19658,
+     "start": 7210.792,
+     "end": 7212.952
+    },
+    {
+     "start_word": 19660,
+     "end_word": 19667,
+     "start": 7213.452,
+     "end": 7215.572
+    },
+    {
+     "start_word": 19670,
+     "end_word": 19679,
+     "start": 7216.452,
+     "end": 7219.712
+    }
+   ],
+   "region": {
+    "start_word": 19515,
+    "end_word": 19679,
+    "start": 7163.172,
+    "end": 7219.712
+   },
+   "edited_duration": 35.7,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ఇప్పుడు celebrity fitness coach అంటే వాళ్ళకి ఎంతవరకు సంపాదించవచ్చు వాళ్ళు Depends on what they charge To each celebrity కొన్ని కొన్ని సార్లు ఏంటంటే production houses నుంచి వస్తాయి కొన్ని కొన్ని సార్లు celebrities ఏ pay చేస్తారు it ranges bro అంటే for example one to two lakhs per month depending upon the celebrity కొన్ని కొన్ని సార్లు I have heard about few people big stars in the industry paying five six lakhs or eight lakhs per month So అట్లా కూడా ఉంటది depending upon what you charge నాకంత ఇంకా ఏమి చెప్పలేదు నన్ను అలా కనుక్కోకండి ఇప్పుడు Paradise కి Nani sir pay చేశారా లేకపోతే లేదు లేదు Paradise కి it is solely from Nani అన్న So Nani అన్న తన స్వంతంగా నన్ను hire చేసుకున్నట్టే తను చేసుకుంటున్నారు",
+   "labeler": "telugu-content-strategist",
+   "tightening_labeled": true,
+   "scores": {
+    "hook": 4,
+    "standalone": 5,
+    "payoff": 4,
+    "value_emotion": 4,
+    "overall": 4
+   },
+   "publishable": true,
+   "title": "Celebrity fitness coach fees ఎంత? నెలకి 8 lakhs వరకు",
+   "on_screen_hook": "Celebrity fitness coach కి నెలకి ఎంత?",
+   "hook_line": {
+    "text": "ఇప్పుడు celebrity fitness coach అంటే వాళ్ళకి ఎంతవరకు సంపాదించవచ్చు వాళ్ళు",
+    "start_word": 19515,
+    "end_word": 19523
+   },
+   "why_it_works": "Money reveal viewers love (₹1-2 lakh a month, big stars up to ₹8 lakh), a coy 'నన్ను అలా అడగకండి', and the inside detail that Nani paid for his Paradise coaching himself.",
+   "category": "reveal",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": []
+  },
+  {
+   "id": "t22",
+   "pieces": [
+    {
+     "start_word": 20578,
+     "end_word": 20589,
+     "start": 7538.012,
+     "end": 7542.612
+    },
+    {
+     "start_word": 20593,
+     "end_word": 20697,
+     "start": 7544.492,
+     "end": 7577.392
+    },
+    {
+     "start_word": 20699,
+     "end_word": 20729,
+     "start": 7578.692,
+     "end": 7587.352
+    },
+    {
+     "start_word": 20733,
+     "end_word": 20747,
+     "start": 7588.472,
+     "end": 7593.571
+    }
+   ],
+   "region": {
+    "start_word": 20578,
+    "end_word": 20747,
+    "start": 7538.012,
+    "end": 7593.571
+   },
+   "edited_duration": 51.259,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "కొంతమంది fat burn చేయడానికి Clen అదా పెపెర్మెంట్ లా వేసుకుంటూ ఉంటారు fat burners. That's completely illegal drug అండి అది. That's a very banned drug అది. అస్సలు వాడకూడదు కూడా. ఆ కాకపోతే దానికి అసలు ఈ Clen అన్నది ఏంటంటే, ఇది ఆస్తమా patients కి like for example గుర్రాలకి కూడా ఆస్తమా దీని పరంగా ఇస్తారు. కొంచెమైనా respiratory issues ఉంటే ఇస్తారు. So, దాని తత్వం ఏంటంటే వేసుకున్న వెంటనే మీ heart rate ని increase చేస్తది. దాని తాలూకా మీ తాలూకా BMR ని కొంచెం boost చేస్తది. And చాలామంది దీనికి fat burning అంటే ఏం కాదు, మీ metabolism కొంచెం boost చేస్తది కాబట్టి you will be burning more energy. So, దాని వల్ల fat loss కొంచెం తొందరగా అవుతది అని చెప్పి చేసుకుంటారు కానీ, ఇలా Clen overdose చేసి heart attack వచ్చి చచ్చిపోయిన వాళ్ళు కూడా ఉన్నారు. So, Clen is a very banned drug. ఎవరైనా stranger మీ దగ్గరికి వచ్చి, \"అరేయ్ ఇది Clen రా, ఇది నువ్వు తీసుకుంటే నువ్వు super గా fat burn అయిపోతావ్\" అంటే మీరు ఎంత దూరం పరిగెడతారో పరిగెత్తండి. వెనక్కి తిరిగి చూడకుండా. అసలు అవసరం కూడా లేదు please. మీ health ని మీ చేతులారా పాడు చేసుకోకండి.",
+   "labeler": "telugu-content-strategist",
+   "tightening_labeled": true,
+   "scores": {
+    "hook": 4,
+    "standalone": 5,
+    "payoff": 4,
+    "value_emotion": 4,
+    "overall": 4
+   },
+   "publishable": true,
+   "title": "Clen fat burner ఇస్తే… వెనక్కి చూడకుండా పరిగెత్తండి",
+   "on_screen_hook": "Fat burn కోసం Clen వేసుకుంటున్నారా?",
+   "hook_line": {
+    "text": "కొంతమంది fat burn చేయడానికి Clen అదా పెపెర్మెంట్ లా వేసుకుంటూ ఉంటారు fat burners.",
+    "start_word": 20578,
+    "end_word": 20589
+   },
+   "why_it_works": "Clear warning on a banned drug (made for asthmatic horses, heart attacks from overdose) with a memorable line: if a stranger offers Clen, run.",
+   "category": "advice",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [
+    "sensitive_content"
+   ]
+  },
+  {
+   "id": "t23",
+   "pieces": [
+    {
+     "start_word": 7124,
+     "end_word": 7147,
+     "start": 2724.804,
+     "end": 2736.424
+    },
+    {
+     "start_word": 7149,
+     "end_word": 7153,
+     "start": 2737.024,
+     "end": 2739.064
+    },
+    {
+     "start_word": 7155,
+     "end_word": 7167,
+     "start": 2739.544,
+     "end": 2743.824
+    },
+    {
+     "start_word": 7169,
+     "end_word": 7175,
+     "start": 2743.884,
+     "end": 2746.064
+    },
+    {
+     "start_word": 7177,
+     "end_word": 7179,
+     "start": 2746.884,
+     "end": 2747.804
+    },
+    {
+     "start_word": 7181,
+     "end_word": 7204,
+     "start": 2748.244,
+     "end": 2756.664
+    },
+    {
+     "start_word": 7215,
+     "end_word": 7227,
+     "start": 2761.164,
+     "end": 2765.544
+    },
+    {
+     "start_word": 7229,
+     "end_word": 7231,
+     "start": 2766.044,
+     "end": 2766.944
+    },
+    {
+     "start_word": 7233,
+     "end_word": 7245,
+     "start": 2767.544,
+     "end": 2770.724
+    },
+    {
+     "start_word": 7247,
+     "end_word": 7319,
+     "start": 2771.264,
+     "end": 2797.924
+    }
+   ],
+   "region": {
+    "start_word": 7124,
+    "end_word": 7319,
+    "start": 2724.804,
+    "end": 2797.924
+   },
+   "edited_duration": 64.58,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "మనకిప్పుడు చాలా ఇండియాలో food తినగానే sweets తింటారు. అంటే అదొకటి అలవాటు అన్నమాట. తిన-తినకపోతే మనకి నిద్ర పట్టదు. Sweets, ice creams. ఆ ఇలాంటివి diet లో చేసుకుంటూ ఉంటారు. ఇవెంత limit చేయాలి? అంటే తినాలి. Daily తినాలంటే ఎంత తినాలి? అది simple. Five percent of your calorie intake అనుకోవచ్చు. So, అలా, అలా అందరికీ అర్థం కాకపోవచ్చు కాబట్టి నేను చేసి చెప్తా. నేను ఇప్పుడు మంచిగా నాకొక sixty grams of cooked rice అట్లా పెట్టుకొని ఒక one fifty grams of chicken, మళ్ళా మంచి కూర, కూర మంచిగా వేసుకుంటా నేను అలా తిన్న తర్వాత ఒక ముప్పై, నలభై గ్రాములు మాత్రమే ice cream తీసుకుని తింటా నేను. నేను ప్రతిరోజూ తింటా. ఇప్పుడు నాగార్జున గారు కూడా ఒక interview లో చెప్పారు. నా-అఖిల్ చెప్పాడు నాగార్జున గారి గురించి. ప్రతిరోజూ సాయంత్రం పూట ఆయన ఇంత amount of ice cream ఓ cheesecake ఓ తింటాడు. ఆయన అంతే amount ఏ తింటాడు. నేను follow అయ్యేది అదే. ఇంత amount అంటే ఇంతే తింటా నేను, అంతకుమించి తినను అని ఒక portion పెట్టుకుంటా. So I know అదే నేను healthy యే కదా అనుకుని మళ్ళీ పడి పడి తింటే మళ్ళీ నాకు calories ఎక్కువైతాయి, over అయి తినడం body fat పెరుగుతది. It's a spiral round. తినాలి అనుకుంటున్నప్పుడు ఆ portion ని control చేసి ప్రతిరోజూ తినండి but కొంచమే తినండి.",
+   "labeler": "telugu-content-strategist",
+   "tightening_labeled": true,
+   "scores": {
+    "hook": 3,
+    "standalone": 5,
+    "payoff": 4,
+    "value_emotion": 4,
+    "overall": 4
+   },
+   "publishable": true,
+   "title": "Nagarjuna రోజూ ice cream తింటారు… మరి మనం?",
+   "on_screen_hook": "తిన్న తర్వాత sweet లేకపోతే నిద్ర పట్టదా?",
+   "hook_line": {
+    "text": "మనకిప్పుడు చాలా ఇండియాలో food తినగానే sweets తింటారు.",
+    "start_word": 7124,
+    "end_word": 7130
+   },
+   "why_it_works": "Permission-giving answer (5% of calories), shown with his own plate and daily 30-40 g ice cream, backed by Nagarjuna's evening dessert habit; rule: small portion daily or skip it.",
+   "category": "advice",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": []
+  },
+  {
+   "id": "t24",
+   "pieces": [
+    {
+     "start_word": 8995,
+     "end_word": 9027,
+     "start": 3425.08,
+     "end": 3435.42
+    },
+    {
+     "start_word": 9028,
+     "end_word": 9146,
+     "start": 3436.02,
+     "end": 3480.26
+    },
+    {
+     "start_word": 9148,
+     "end_word": 9177,
+     "start": 3481.64,
+     "end": 3490.14
+    }
+   ],
+   "region": {
+    "start_word": 8995,
+    "end_word": 9177,
+    "start": 3425.08,
+    "end": 3490.14
+   },
+   "edited_duration": 63.08,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "రోజుకి రెండు సార్లు తినడం లేకపోతే ఒకసారి తినడం ఇప్పుడు అల్లరి నరేష్ గారు చెప్పారు నేను ఒక్కసారే తింటాను ఉమ్ మధ్యాహ్నం full గా తినేస్తాను ఇంకా తినను నాక ఉమ్ ఇది ఎంతవరకు correct మనం రోజుకి అసలు ఎన్ని సార్లు తినాలి దానికి individual answer అన్న దానికి ఏదో ఒక specific answer అయితే లేదు నువ్వు ఒక్కసారి తింటేనే healthy గా ఉంటావు రెండు సార్లు తింటే తక్కువ healthy గా ఉంటావు అన్నది అయితే లేదు first thing మీరు ఒక్కసారి తిన్నా రెండు సార్లు తిన్నా మూడు సార్లు తిన్నా మీరు ఎంత quantity తింటున్నారు ఎలాంటి quantity తింటున్నారు అంటే ఎలాంటి food తింటున్నారు దాని మీదే మీ health depend అయి ఉంటుంది see quantity and quality of food ఈ రెండే మీ health ని detect dictate చేస్తాయి ఎప్పుడు తింటున్నారు అన్నది comes the third priority first priority is the quantity and quality ఎప్పుడు తిన్నా third priority now ఇప్పుడు for example someone like అల్లరి నరేష్ గారే తీసుకుందాం ఆయన ఏం చెప్పారు నేను ఒక్కసారే తింటా but ఆ ఒక్కసారే full గా తినేస్తాను అంటే రోజు మొత్తానికి తినాల్సిన calories అన్నీ ఆయన ఒక్కసారే తింటున్నాడు అది తనకు workout అవుతుంది as an individual ఒక routine building లో నేను ఒక్కసారి తింటే I am happy నాకు ఇది set అవుతుంది నాకు ఈ routine set అవుతుంది అని తనకి help అవుతుంది",
+   "labeler": "telugu-content-strategist",
+   "tightening_labeled": true,
+   "scores": {
+    "hook": 4,
+    "standalone": 4,
+    "payoff": 3,
+    "value_emotion": 3,
+    "overall": 3
+   },
+   "publishable": true,
+   "title": "Allari Naresh రోజుకి ఒక్కసారే తింటారు – అది correct నా?",
+   "on_screen_hook": "రోజుకి ఎన్ని సార్లు తినాలి?",
+   "hook_line": {
+    "text": "రోజుకి రెండు సార్లు తినడం లేకపోతే ఒకసారి తినడం ఇప్పుడు అల్లరి నరేష్ గారు చెప్పారు నేను ఒక్కసారే తింటాను",
+    "start_word": 8995,
+    "end_word": 9009
+   },
+   "why_it_works": "Celebrity habit as the hook; answer is balanced (quantity and quality first, timing third; one big meal works for him as a routine). Soft ending.",
+   "category": "insight",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": []
+  },
+  {
+   "id": "t25",
+   "pieces": [
+    {
+     "start_word": 21654,
+     "end_word": 21669,
+     "start": 7922.176,
+     "end": 7927.176
+    },
+    {
+     "start_word": 21503,
+     "end_word": 21519,
+     "start": 7860.556,
+     "end": 7867.896
+    },
+    {
+     "start_word": 21520,
+     "end_word": 21562,
+     "start": 7868.316,
+     "end": 7886.156
+    },
+    {
+     "start_word": 21563,
+     "end_word": 21669,
+     "start": 7887.536,
+     "end": 7927.176
+    },
+    {
+     "start_word": 21672,
+     "end_word": 21692,
+     "start": 7928.636,
+     "end": 7936.836
+    }
+   ],
+   "region": {
+    "start_word": 21503,
+    "end_word": 21692,
+    "start": 7860.556,
+    "end": 7936.836
+   },
+   "edited_duration": 78.02,
+   "reordered": true,
+   "n_blocks": 2,
+   "text": "మీరు ఇరవై నుంచి ముప్పైకి బానే నెట్టుకొస్తారు. ముప్పై దాటిన తర్వాత ఈ పనులు చేస్తే మాత్రం hospital చుట్టూ తిరుగుతారు. వాళ్ళకి అర్థమైపోద్ది నేను unhealthy lifestyle lead చేస్తున్నానని. అక్కడి నుంచి healthy కి రావాలనుకుంటున్నారు. ఎలా start చేయాలి? మీరిచ్చే advice. ఒకటి ఏంటంటే మెల్లగా first బయట తినే dependency ని తగ్గించేసేయండి. ఆ బయట తినడం అన్నది ఎప్పుడో ఒక్కసారి అయి ఉండాలి తప్ప అది రోజూ అవుతుందంటే మాత్రం definitely మీ body కి ఇవ్వాల్సిన మంచి ముడి సరుకును మీరు ఇవ్వట్లేదు. So ఇంట్లోనే వండుకొని తినేలాగా మెల్లమెల్లగా మెల్లమెల్లగా అలవాటు చేసి-- bachelors అయినా సరే. రెండో విషయం ఏంటంటే as I said వారానికి మూడు రోజులైనా basic workout అది gym కి వెళ్లి చేస్తారా, ఇంట్లో రెండు dumbbells తో చేసుకుంటారా, body weight training చేసుకుంటారా అన్నది మీ ఇష్టం. three days అయినా basic workout చేసి simple గా ఒక eight thousand step count అయినా పెట్టుకోండి రోజుకి. Food ని control కొంచెం control లో తినండి. మీరు తినే దాంట్లో three fourth తినండి పోనీ simple గా చెప్పాలంటే మీరు ఒక one portion తింటున్నారనుకోండి three fourth portion ఏ తినండి చాలు. అట్లా పెట్టుకున్నప్పుడు అక్కడ start చేస్తే ముందు మీరు ఎటు వెళ్తున్నారో అర్థమవుతుంది. అర్ధరాత్రులు లేచి Netflix లు చూసుకుంటూ సినిమాలు చూసుకుంటూ నిద్రలు పోకుండా మీరు ఇరవై నుంచి ముప్పైకి బానే నెట్టుకొస్తారు. ముప్పై దాటిన తర్వాత ఈ పనులు చేస్తే మాత్రం hospital చుట్టూ తిరుగుతారు. Simple your glu-- sorry glucose control go off. Metabolic disorders ఏవైతే ఉన్నాయో మీరు ఆహ్వానిస్తున్నారు ఈ అలవాట్ల వల్ల. BP, sugar, fatty liver.",
+   "labeler": "telugu-content-strategist",
+   "tightening_labeled": true,
+   "scores": {
+    "hook": 5,
+    "standalone": 5,
+    "payoff": 4,
+    "value_emotion": 4,
+    "overall": 4
+   },
+   "publishable": true,
+   "title": "30 దాటాక ఈ అలవాట్లు ఉంటే hospital చుట్టూ తిరుగుతారు",
+   "on_screen_hook": "20 నుంచి 30 వరకు నెట్టుకొస్తారు… 30 దాటాక?",
+   "hook_line": {
+    "text": "మీరు ఇరవై నుంచి ముప్పైకి బానే నెట్టుకొస్తారు.",
+    "start_word": 21654,
+    "end_word": 21659
+   },
+   "why_it_works": "Blunt warning up front, then a 4-step starter plan (cut eating out, 3 workouts a week, 8000 steps, eat 3/4 portion) and why late nights bring BP, sugar, fatty liver.",
+   "category": "advice",
+   "standalone_risks": [],
+   "edit_notes": [
+    {
+     "type": "cold_open",
+     "reason": "The '30 దాటిన తర్వాత hospital చుట్టూ తిరుగుతారు' line opens the clip and replays in place."
+    }
+   ],
+   "flags": [
+    "sensitive_content"
+   ]
+  },
+  {
+   "id": "t26",
+   "pieces": [
+    {
+     "start_word": 17807,
+     "end_word": 17829,
+     "start": 6547.568,
+     "end": 6556.148
+    },
+    {
+     "start_word": 17831,
+     "end_word": 17835,
+     "start": 6557.228,
+     "end": 6558.488
+    },
+    {
+     "start_word": 17837,
+     "end_word": 17838,
+     "start": 6559.528,
+     "end": 6560.288
+    },
+    {
+     "start_word": 17840,
+     "end_word": 17854,
+     "start": 6561.608,
+     "end": 6565.748
+    },
+    {
+     "start_word": 17856,
+     "end_word": 17867,
+     "start": 6567.148,
+     "end": 6570.768
+    },
+    {
+     "start_word": 17869,
+     "end_word": 17892,
+     "start": 6571.408,
+     "end": 6578.468
+    },
+    {
+     "start_word": 17894,
+     "end_word": 17909,
+     "start": 6579.408,
+     "end": 6582.968
+    },
+    {
+     "start_word": 17911,
+     "end_word": 17921,
+     "start": 6583.688,
+     "end": 6587.148
+    },
+    {
+     "start_word": 17923,
+     "end_word": 17933,
+     "start": 6587.808,
+     "end": 6591.528
+    },
+    {
+     "start_word": 17935,
+     "end_word": 17939,
+     "start": 6592.128,
+     "end": 6593.688
+    },
+    {
+     "start_word": 17941,
+     "end_word": 17947,
+     "start": 6594.328,
+     "end": 6595.668
+    },
+    {
+     "start_word": 17948,
+     "end_word": 18003,
+     "start": 6596.224,
+     "end": 6617.484
+    },
+    {
+     "start_word": 18005,
+     "end_word": 18016,
+     "start": 6618.364,
+     "end": 6622.404
+    },
+    {
+     "start_word": 18018,
+     "end_word": 18021,
+     "start": 6623.464,
+     "end": 6625.884
+    },
+    {
+     "start_word": 18023,
+     "end_word": 18028,
+     "start": 6626.764,
+     "end": 6628.924
+    },
+    {
+     "start_word": 18030,
+     "end_word": 18034,
+     "start": 6629.404,
+     "end": 6631.224
+    },
+    {
+     "start_word": 18036,
+     "end_word": 18042,
+     "start": 6631.864,
+     "end": 6634.084
+    }
+   ],
+   "region": {
+    "start_word": 17807,
+    "end_word": 18042,
+    "start": 6547.568,
+    "end": 6634.084
+   },
+   "edited_duration": 72.98,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "నా dead lift I went till 175 kgs and all and everything. 2023 లో నాకు అనిపించింది, నా జీవితంలో నేను రెండు వందల kgs ఎప్పుడెత్తుతాను? Practical గా అయితే ఎత్తాను నేను. అవసరం ఏంటి? రెండు వందల kgs ఎత్తాల్సిన అవసరం ఏంటి నాకు? అంటే నా ego నేను boost చేసుకోవడానికే కదా చేస్తున్నాను. అంటే maximum ఇప్పుడు నేను కింద పడేని బస్తా ఒక పదిహేను kgs బస్తా ఎత్తుతానేమో. అది ఎత్తగలిగితే చాలు కదా నేను నా జీవితంలోనే. లేదు ఒక ఇటు ఒక పదిహేను kgs, ఇటు ఒక పది kgs ఏదో మోయాలి. అది మోయగలిగితే చాలు కదా నేను. So every time I am increasing weight on the bar and the heavier I am going. The chances of getting injured I am increasing. Injury అయిపోతాదని కాదు. Injury అయ్యే chances ని పెంచుకుంటున్నాను. దాని వల్ల ఏమవుతుంది? One bad day. One bad rep, one injury. Is take me back three, four years. ఈవెన్ రొనీ కోల్మాన్ ఆ పాపం ఇప్పుడు పరిస్థితి injuries వల్ల Exactly! అంటే అతను అన్ని సార్లు Mr. Olympia అంత పెద్ద body build చేసిన అతను ఇప్పుడు washroom కి కూడా వెళ్ళలేని పరిస్థితి అయింది. ఉమ్ కానీ చాలామంది inspire చేస్తారు Inspire చేస్తారు కానీ that is not quality of life కదా. Fitness అన్నది, అందుకే fitness and body building are two different things అన్నా. Fitness అన్నది నీ quality of life ని improve చేయాలి తప్ప deteriorate చేయకూడదు. నీ బతికే విధానాన్ని పెంచగలగాలి. నీ experiences ని పెంచగలగాలి fitness అన్నది. Deteriorate చేయకూడదు. That is fitness. Body building is a sport. రెండింటిని కలపకూడదు.",
+   "labeler": "telugu-content-strategist",
+   "tightening_labeled": true,
+   "scores": {
+    "hook": 4,
+    "standalone": 5,
+    "payoff": 4,
+    "value_emotion": 4,
+    "overall": 4
+   },
+   "publishable": true,
+   "title": "200 kgs deadlift ఎవరి కోసం? Fitness vs Bodybuilding",
+   "on_screen_hook": "నా జీవితంలో 200 kgs ఎత్తాల్సిన అవసరం ఏంటి?",
+   "hook_line": {
+    "text": "నా dead lift I went till 175 kgs and all and everything.",
+    "start_word": 17807,
+    "end_word": 17818
+   },
+   "why_it_works": "Coach questions his own ego goal (15 kg sack is all life needs), 'one bad rep takes you back 3-4 years', Ronnie Coleman as proof; ends 'fitness improves life, bodybuilding is a sport'.",
+   "category": "insight",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": []
+  },
+  {
+   "id": "t27",
+   "pieces": [
+    {
+     "start_word": 6371,
+     "end_word": 6385,
+     "start": 2452.844,
+     "end": 2456.244
+    },
+    {
+     "start_word": 6255,
+     "end_word": 6286,
+     "start": 2402.144,
+     "end": 2414.204
+    },
+    {
+     "start_word": 6288,
+     "end_word": 6292,
+     "start": 2416.224,
+     "end": 2418.384
+    },
+    {
+     "start_word": 6294,
+     "end_word": 6296,
+     "start": 2419.224,
+     "end": 2420.104
+    },
+    {
+     "start_word": 6298,
+     "end_word": 6310,
+     "start": 2421.144,
+     "end": 2426.544
+    },
+    {
+     "start_word": 6312,
+     "end_word": 6329,
+     "start": 2427.244,
+     "end": 2435.704
+    },
+    {
+     "start_word": 6331,
+     "end_word": 6337,
+     "start": 2437.644,
+     "end": 2439.284
+    },
+    {
+     "start_word": 6339,
+     "end_word": 6347,
+     "start": 2439.963,
+     "end": 2441.984
+    },
+    {
+     "start_word": 6349,
+     "end_word": 6357,
+     "start": 2443.903,
+     "end": 2446.344
+    },
+    {
+     "start_word": 6359,
+     "end_word": 6369,
+     "start": 2447.484,
+     "end": 2451.664
+    },
+    {
+     "start_word": 6371,
+     "end_word": 6385,
+     "start": 2452.844,
+     "end": 2456.244
+    }
+   ],
+   "region": {
+    "start_word": 6255,
+    "end_word": 6385,
+    "start": 2402.144,
+    "end": 2456.244
+   },
+   "edited_duration": 46.042,
+   "reordered": true,
+   "n_blocks": 2,
+   "text": "Why will India be the capital of obesity if apple cider vinegar తాగేస్తేనే అంతా అయిపోతాయి? See నేను ఒక్కటే any information on social media నేను ఒక నాకు ఒక framework ఉంది. అందరికీ ఇదే చెప్తా. ఈ framework ని follow అవుతా first. నేను first time ఏదైనా చూసినా సరే. ఎందుకు? ఏమిటి? ఎలా? వాడు ఎందుకు చెప్తున్నాడు? ఏం చెప్తున్నాడు? ఇలా ఎందుకు అవుతుంది? ఈ fundamental framework వేసుకుంటే వాడు చెప్పేది logical ఆ కాదా అనే విషయం మీకు అర్థమవుతుంది. రెండవ విషయం ఏంటంటే ఆ ఇప్పుడు చాలా చాలా వరకు misinformation ను social media లో మనం common sense తో కొట్టేయొచ్చు. ఇది తాగితే ఇది అయిపోతది అంట అని చెప్పాడు. మరి తాగితే అంత easy గా అయిపోతే ఎంతమంది లావు ఎందుకుంటారు? Apple cider vinegar తాగేస్తే మనకి మొత్తం reverse అయిపోతది అంట. మరి అంత why will India be type one-- capital of type-diabetes? Why will India be the capital of obesity if apple cider vinegar తాగేస్తేనే అంతా అయిపోతాయి?",
+   "labeler": "telugu-content-strategist",
+   "tightening_labeled": true,
+   "scores": {
+    "hook": 5,
+    "standalone": 5,
+    "payoff": 4,
+    "value_emotion": 4,
+    "overall": 4
+   },
+   "publishable": true,
+   "title": "Apple cider vinegar తో అన్నీ తగ్గితే India diabetes capital ఎందుకు?",
+   "on_screen_hook": "ACV తాగితే అంతా reverse అయితే… India obesity capital ఎందుకు?",
+   "hook_line": {
+    "text": "Why will India be the capital of obesity if apple cider vinegar తాగేస్తేనే అంతా అయిపోతాయి?",
+    "start_word": 6371,
+    "end_word": 6385
+   },
+   "why_it_works": "Rhetorical common-sense punch up front, then a usable 3-question filter for any health reel (ఎందుకు, ఏమిటి, ఎలా); bookends on the same line.",
+   "category": "advice",
+   "standalone_risks": [],
+   "edit_notes": [
+    {
+     "type": "cold_open",
+     "reason": "The ACV/obesity-capital line opens the clip and replays at the end where he says it."
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "t28",
+   "pieces": [
+    {
+     "start_word": 4189,
+     "end_word": 4214,
+     "start": 1618.288,
+     "end": 1628.808
+    },
+    {
+     "start_word": 4274,
+     "end_word": 4323,
+     "start": 1654.288,
+     "end": 1673.888
+    },
+    {
+     "start_word": 4488,
+     "end_word": 4554,
+     "start": 1736.608,
+     "end": 1763.828
+    }
+   ],
+   "region": {
+    "start_word": 4189,
+    "end_word": 4554,
+    "start": 1618.288,
+    "end": 1763.828
+   },
+   "edited_duration": 57.34,
+   "reordered": false,
+   "n_blocks": 3,
+   "text": "ఇప్పుడు మీరు exercise చేయాల్సింది మీకు choice కాదు ఆడవాళ్లకు అసలు choice ఏ కాదు అది. అది mandate. ఎందుకంటే ముప్పై నుంచి every year దాటుతున్న కొద్ది మీ bone density తగ్గిపోతుంది. ఇప్పుడు అందుకే thirty దాటే కొద్ది ఎప్పుడైతే మీరు మీ body కి bones, muscles strong గా ఉండాలి అని ఒక need కలిపించట్లేదో అది eventually deteriorate అవుతూ పోతాది. అందుకే forty అయ్యేసరికి మీరు గమనించి ఉంటే మీ అమ్మగారికి కూడా forty అయ్యేసరికి కీళ్ల నొప్పులు గాని hip pains గాని అడుగు తీసి అడుగేయడం ఇబ్బంది గాని ఇవన్నీ start అయి ఉంటాయి. And the only thing which can help them to control it or at least make their bones and muscles stronger is any form of strength training. అది బిందెలే మోస్తారా, బావిలో నుంచి నీళ్లే తోడుతారా, లేదా మంచిగా ఇంట్లో పనులు కింద కూర్చుని మంచిగా పైకి లేచి ఇంట్లో పనులు బరువులు తీసి పక్కన పెడతారా, లేదా ఇంట్లో రెండు dumbbells కొనుక్కొని weight training చేస్తారా, లేదా మంచిగా కొంచెం high qual-- high intensity yoga చేస్తారా మీ ఇష్టం.",
+   "labeler": "telugu-content-strategist",
+   "tightening_labeled": true,
+   "scores": {
+    "hook": 5,
+    "standalone": 5,
+    "payoff": 4,
+    "value_emotion": 4,
+    "overall": 4
+   },
+   "publishable": true,
+   "title": "ఆడవాళ్ళకి exercise choice కాదు, mandate!",
+   "on_screen_hook": "ఆడవాళ్ళకి exercise choice కాదు – mandate",
+   "hook_line": {
+    "text": "ఇప్పుడు మీరు exercise చేయాల్సింది మీకు choice కాదు ఆడవాళ్లకు అసలు choice ఏ కాదు అది.",
+    "start_word": 4189,
+    "end_word": 4201
+   },
+   "why_it_works": "Bold opener, one clear reason (bone density drops every year after 30; mothers' knee and hip pain at 40), and a practical menu from carrying water pots to dumbbells.",
+   "category": "advice",
+   "standalone_risks": [],
+   "edit_notes": [
+    {
+     "type": "skip",
+     "after_piece": 0,
+     "reason": "Dropped the bone-density definition; went from the claim to what it means for mothers at 40."
+    },
+    {
+     "type": "skip",
+     "after_piece": 1,
+     "reason": "Dropped the host's story about his mother's fracture; jumped to the fix (strength training)."
+    }
+   ],
+   "flags": [
+    "sensitive_content"
+   ]
+  },
+  {
+   "id": "t29",
+   "pieces": [
+    {
+     "start_word": 12554,
+     "end_word": 12558,
+     "start": 4695.936,
+     "end": 4698.276
+    },
+    {
+     "start_word": 12574,
+     "end_word": 12582,
+     "start": 4702.216,
+     "end": 4704.176
+    },
+    {
+     "start_word": 12600,
+     "end_word": 12607,
+     "start": 4710.156,
+     "end": 4712.756
+    },
+    {
+     "start_word": 12632,
+     "end_word": 12665,
+     "start": 4722.696,
+     "end": 4732.796
+    },
+    {
+     "start_word": 12790,
+     "end_word": 12808,
+     "start": 4781.184,
+     "end": 4786.544
+    },
+    {
+     "start_word": 12810,
+     "end_word": 12879,
+     "start": 4787.564,
+     "end": 4810.344
+    }
+   ],
+   "region": {
+    "start_word": 12554,
+    "end_word": 12879,
+    "start": 4695.936,
+    "end": 4810.344
+   },
+   "edited_duration": 45.14,
+   "reordered": false,
+   "n_blocks": 2,
+   "text": "Nani గారిది transformation చేశారు Paradise. ఇప్పటివరకు ఎప్పుడూ అంత bulk ఏసి చూడలే Nani గారి body. ఎన్ని ఎన్ని months పట్టిందండి transformation? Eighteen months అన్నా. Hit three అంటే Adhishesgkar గారు ఉన్నారు కదా ఆ ఇద్దరు కలిపి చేశారా? That was my goose bumps moment అంటే ఆ Two of my clients ఆ Worked in the same movie ఉమ్ Which is a blockbuster. He was very clear నాకు I shouldn't look like a body builder విశ్వ ఉమ్ నేను fit person లా కనపడాలి అలా ఉంటే చాలు నాకు body builderలాగ వద్దు అంటే అంత huge huge గా వద్దు నాకు natural గా చూసిననే అరె fit గా ఉన్నాడు మనిషి అన్నట్టు కనపడాలి నాకు అని he was also very thin at the same time శ్రీకాంత్ director also శ్రీకాంత్ ఒడ్డెళ్ళ also is very clear that అన్న muscle కనపడాలన్నా గాని నమ్ కొడితే అంటే fight చేస్తున్నప్పుడు తెలియాలి మనకి ఉమ్ మనిషి కొడితే అవతలోడికి తగులుతాది అన్న ఆ లా body కనపడాలి నాకు bond లా body",
+   "labeler": "telugu-content-strategist",
+   "tightening_labeled": true,
+   "scores": {
+    "hook": 4,
+    "standalone": 4,
+    "payoff": 3,
+    "value_emotion": 4,
+    "overall": 4
+   },
+   "publishable": true,
+   "title": "Nani Paradise body కి 18 నెలలు – 'bodybuilder లా వద్దు'",
+   "on_screen_hook": "Nani Paradise transformation – ఎన్ని నెలలు పట్టింది?",
+   "hook_line": {
+    "text": "Nani గారిది transformation చేశారు Paradise.",
+    "start_word": 12554,
+    "end_word": 12558
+   },
+   "why_it_works": "Film-fan catnip: 18 months for Nani's Paradise look, 'goosebumps' when two of his clients (Nani, Adivi Sesh) led the same blockbuster, and the brief: fit, not bodybuilder, punches should look real.",
+   "category": "reveal",
+   "standalone_risks": [],
+   "edit_notes": [
+    {
+     "type": "skip",
+     "after_piece": 3,
+     "reason": "Joined the goosebumps moment to Nani's brief for the look; the Hit schedule chat is dropped."
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "t30",
+   "pieces": [
+    {
+     "start_word": 13495,
+     "end_word": 13506,
+     "start": 5006.504,
+     "end": 5010.664
+    },
+    {
+     "start_word": 13507,
+     "end_word": 13514,
+     "start": 5012.084,
+     "end": 5013.884
+    },
+    {
+     "start_word": 13516,
+     "end_word": 13526,
+     "start": 5014.824,
+     "end": 5017.364
+    },
+    {
+     "start_word": 13528,
+     "end_word": 13545,
+     "start": 5018.404,
+     "end": 5028.204
+    },
+    {
+     "start_word": 13547,
+     "end_word": 13547,
+     "start": 5028.624,
+     "end": 5029.084
+    },
+    {
+     "start_word": 13549,
+     "end_word": 13554,
+     "start": 5030.484,
+     "end": 5033.164
+    },
+    {
+     "start_word": 13556,
+     "end_word": 13569,
+     "start": 5033.504,
+     "end": 5036.384
+    },
+    {
+     "start_word": 13572,
+     "end_word": 13596,
+     "start": 5037.864,
+     "end": 5047.624
+    },
+    {
+     "start_word": 13598,
+     "end_word": 13604,
+     "start": 5048.524,
+     "end": 5049.944
+    },
+    {
+     "start_word": 13606,
+     "end_word": 13615,
+     "start": 5050.984,
+     "end": 5054.244
+    },
+    {
+     "start_word": 13617,
+     "end_word": 13644,
+     "start": 5054.944,
+     "end": 5064.524
+    }
+   ],
+   "region": {
+    "start_word": 13495,
+    "end_word": 13644,
+    "start": 5006.504,
+    "end": 5064.524
+   },
+   "edited_duration": 48.34,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "Because it's been see దసరాకి పనిచేశా నాని అంతా అని దసరాకి పని చేసినప్పుడు shoot busy అయిపోయి మళ్ళీ two weeks తర్వాత ఆపేసాడు Because శ్రీకాంత్ want to అన్నా నువ్వు fit అయిపోతు fit అవుతు నాకు దసరాలో మంచిగా ఏమంటాం ఏం బుడ్డిలు అవి తెలంగాణ side ఏమంటాం అది ఏవో drinks ఏవో తాగుతుంటారు Basically అది some alcohol బుడ్డిలు ఏసుకొట్టి బోటి కొర్రీ తిని బతుకుతాడు అన్నా పట్టేసుకొని ఉండాలి ఏంటి నువ్వు fit అయిపోతావు లెక్క అని చెప్పి then he stopped it off ఆ ఆపేసాడు ఆ తర్వాత నాకు ఈ Paradise start అదే hit అయ్యి మధ్యలో he approached he he messaged me విశ్వలా ఒక transformation ఉంది పదా చేద్దాం అని చెప్ప అన్నా it's a long term thing ఎందుకంటే ఒకటి నేను steroids ఎప్పుడు వాడలా నేను ఎవరికీ ఇవ్వను కూడా Same నీ విషయంలో అదే జరుగుతది మనం ఆ జోలికి వెళ్ళం ఎవరూ enhanced అయితే కాదు ఎవరు? మీరు transform చేసినవారు No one ఉమ్ ఎవ్వరూ కూడా కాదు నేను personally కూడా ఎప్పుడూ వాడలే",
+   "labeler": "telugu-content-strategist",
+   "tightening_labeled": true,
+   "scores": {
+    "hook": 3,
+    "standalone": 3,
+    "payoff": 4,
+    "value_emotion": 4,
+    "overall": 3
+   },
+   "publishable": true,
+   "title": "Dasara టైంలో Nani training ఎందుకు ఆపేశారు?",
+   "on_screen_hook": "'బుడ్డిలు ఏసుకొట్టి బోటి కూర తిని బతుకుతాడు' – Dasara character",
+   "hook_line": {
+    "text": "Because it's been see దసరాకి పనిచేశా నాని అంతా అని దసరాకి పని చేసినప్పుడు",
+    "start_word": 13495,
+    "end_word": 13506
+   },
+   "why_it_works": "Fun inside detail: director wanted Nani unfit for Dasara's character, so training stopped; then Paradise brought him back, with a clear no-steroids line.",
+   "category": "reveal",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "notes": "Opens on a loose 'Because it's been see…'; film fans will still stay. Pairs with t29."
+  },
+  {
+   "id": "t31",
+   "pieces": [
+    {
+     "start_word": 19688,
+     "end_word": 19700,
+     "start": 7222.652,
+     "end": 7228.992
+    },
+    {
+     "start_word": 19701,
+     "end_word": 19736,
+     "start": 7229.172,
+     "end": 7240.832
+    },
+    {
+     "start_word": 19738,
+     "end_word": 19770,
+     "start": 7241.892,
+     "end": 7252.592
+    },
+    {
+     "start_word": 19772,
+     "end_word": 19779,
+     "start": 7254.112,
+     "end": 7255.712
+    },
+    {
+     "start_word": 19781,
+     "end_word": 19796,
+     "start": 7256.372,
+     "end": 7261.432
+    },
+    {
+     "start_word": 19798,
+     "end_word": 19813,
+     "start": 7262.192,
+     "end": 7266.212
+    },
+    {
+     "start_word": 19815,
+     "end_word": 19820,
+     "start": 7267.172,
+     "end": 7268.592
+    },
+    {
+     "start_word": 19822,
+     "end_word": 19852,
+     "start": 7269.452,
+     "end": 7276.612
+    },
+    {
+     "start_word": 19854,
+     "end_word": 19867,
+     "start": 7277.392,
+     "end": 7280.412
+    },
+    {
+     "start_word": 19869,
+     "end_word": 19878,
+     "start": 7281.012,
+     "end": 7284.892
+    },
+    {
+     "start_word": 19881,
+     "end_word": 19898,
+     "start": 7286.792,
+     "end": 7291.252
+    },
+    {
+     "start_word": 19900,
+     "end_word": 19903,
+     "start": 7292.132,
+     "end": 7292.772
+    },
+    {
+     "start_word": 19904,
+     "end_word": 19907,
+     "start": 7294.432,
+     "end": 7296.112
+    },
+    {
+     "start_word": 19908,
+     "end_word": 19912,
+     "start": 7297.832,
+     "end": 7299.032
+    },
+    {
+     "start_word": 19913,
+     "end_word": 19944,
+     "start": 7300.412,
+     "end": 7309.992
+    },
+    {
+     "start_word": 19955,
+     "end_word": 19966,
+     "start": 7315.032,
+     "end": 7317.112
+    },
+    {
+     "start_word": 19968,
+     "end_word": 19984,
+     "start": 7319.012,
+     "end": 7323.892
+    },
+    {
+     "start_word": 19992,
+     "end_word": 19997,
+     "start": 7326.852,
+     "end": 7327.992
+    }
+   ],
+   "region": {
+    "start_word": 19688,
+    "end_word": 19997,
+    "start": 7222.652,
+    "end": 7327.992
+   },
+   "edited_duration": 80.52,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "Gym కి వస్తుంటారు gym లో చూసినా గాని చేసే తక్కువ photos tripod ఒకటి తెచ్చుకుంటున్నారు ఆ దానికి అది పెట్టేస్తున్నారు phone పెట్టేస్తున్నారు videos record చేయడం అంటే వాళ్ళు ఒక variation కి variation మధ్య చాలా gap తీసుకుంటున్నారు ఎంత gap తీసుకోవాలి ఒక variation కి ఒక variation Two to three minutes is the sweet spot అన్నా అంటే ఒక variation కి variation కి మధ్యలో gap ఎందుకిస్తాం అంటే నువ్వు workout ఒక variation ఒక simple variation ఒక set లో పదిహేను repetitions చేశావు ఒక పది repetitions చేసిన తర్వాత నీ heart rate raise అవుతుంది Just for your heart rate to come down And అదొక్కటే కాదు అది కాకుండా నువ్వు workout చేస్తున్నప్పుడు నీ muscles మీద కొంచెం fatigue పెడుతున్నావు pressure పెడుతున్నావు అది recover అయ్యి మళ్ళీ next bout కి ready అవ్వడానికి నీకు two minutes is the sweet spot If you are lifting too heavy Dead lifts ఓ squats ఓ bench press చేస్తున్నప్పుడు three minutes is the sweet spot sometime three and a half minutes also for some people depending upon the weight they are pushing But for general population two minutes is the sweet spot two to three minutes Right మన జనాలు ఏంటంటే doom scrolling కూడా చేస్తూ ఉంటారు మధ్యలో సప్ సప్ సప్ messages doom scrolling so ఆ two minutes కాస్త five six minutes seven minutes కూడా అవుతది I have a client enter అవుతాడు phone ముట్టుకోడు సప సప సప సప సప variation వేసి two minutes gap ఇస్తాడు లేపేస్తాడు forty five minutes లో gym నుంచి బయటికి వెళ్ళిపోతాడు He is a very hi-fi client I am hi-fi అంటే ఆ very well established client in Hyderabad నేను gym లో ఇంతకంటే ఎక్కువ spend చేస్తే I am wasting my time నాకు కావల్సిన workout forty five minutes to fifty minutes లో అయిపోతుంది అయిపోయాక నేను ఇల్ల పనులు చేసుకుంటాను నాన్న But workout is important for me",
+   "labeler": "telugu-content-strategist",
+   "tightening_labeled": true,
+   "scores": {
+    "hook": 3,
+    "standalone": 5,
+    "payoff": 3,
+    "value_emotion": 3,
+    "overall": 3
+   },
+   "publishable": true,
+   "title": "Sets మధ్యలో ఎంత rest? Doom scrolling తో 7 నిమిషాలు!",
+   "on_screen_hook": "Gym లో tripod, phone… workout తక్కువ photos ఎక్కువ",
+   "hook_line": {
+    "text": "Gym కి వస్తుంటారు gym లో చూసినా గాని చేసే తక్కువ",
+    "start_word": 19688,
+    "end_word": 19696
+   },
+   "why_it_works": "Relatable gym behaviour, a clear rule (2-3 min between sets), and a client who finishes in 45 minutes without touching his phone.",
+   "category": "advice",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": []
+  },
+  {
+   "id": "t32",
+   "pieces": [
+    {
+     "start_word": 9819,
+     "end_word": 9873,
+     "start": 3715.996,
+     "end": 3735.836
+    },
+    {
+     "start_word": 9875,
+     "end_word": 9884,
+     "start": 3736.356,
+     "end": 3738.976
+    },
+    {
+     "start_word": 9886,
+     "end_word": 9899,
+     "start": 3739.916,
+     "end": 3742.436
+    },
+    {
+     "start_word": 9901,
+     "end_word": 9903,
+     "start": 3743.216,
+     "end": 3744.136
+    },
+    {
+     "start_word": 9905,
+     "end_word": 9943,
+     "start": 3745.436,
+     "end": 3760.156
+    },
+    {
+     "start_word": 9945,
+     "end_word": 9952,
+     "start": 3760.956,
+     "end": 3762.716
+    },
+    {
+     "start_word": 9954,
+     "end_word": 10014,
+     "start": 3764.316,
+     "end": 3782.176
+    },
+    {
+     "start_word": 10015,
+     "end_word": 10029,
+     "start": 3783.636,
+     "end": 3786.936
+    },
+    {
+     "start_word": 10031,
+     "end_word": 10046,
+     "start": 3787.756,
+     "end": 3793.636
+    }
+   ],
+   "region": {
+    "start_word": 9819,
+    "end_word": 10046,
+    "start": 3715.996,
+    "end": 3793.636
+   },
+   "edited_duration": 69.42,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ఇప్పుడు చాలామంది ఇప్పుడు dinner seven PM లోపు చేసేయాలి. ఉమ్ దాని తర్వాత చేస్తే అది digest అవ్వదు, ఏదో problems వస్తుంటాయి అని, అది-అది కూడా myth ఏనా? లేదు, అది రెండు విధాలుగా divide చేస్తా నేను. biologically at the same time మన circadian rhythm పరంగా చూసుకుంటే having an early dinner is a really good thing for your body, no questions asked. నీ biological clock నీ organic clock దానికి sync అయి ఉంటాయి. నువ్వు seven o'clock కల్లా dinner చేసి, seven o'clock అని seven o'clock అని కాదు గాని- sunset కి దగ్గర్లో- dinner చేసేసి తొందరగా పడుకుని పోయి తొందరగా లేచిపోతే, నీ body clock అలవాటు పడి happy గా తిరి- happy గా healthy గా ఉంటది. అదే నువ్వు \"లేదు లేదు నేను six thirty కే తినేస్తాను sunrise- sunset కి దగ్గర్లోనే but నేను పడుకునేది పదకొండు అవుతుంది\" అంటే- ఐదు గంటల gap లో ఎవరికైనా ఆకలి వేస్తది కదమ్మా. So it is not a right advice for him. Someone who has so much of work and has to sleep only till eleven o'clock, you can't ask him to sleep at seven thirty or nine or eight thirty for that sake. So అలాంటప్పుడు ఏంటి? ఆ ఆకలి control లో ఉంచాలి కాబట్టి maybe నువ్వు six thirty బదులు maybe eight thirty, nine కి తిని ten thirty, eleven కల్లా నువ్వు bed ఎక్కేస్తున్నావ్ అంటే at least నీ ఆకలి control లో ఉంటుంది. So మనం పడుకుని లేచిన దాన్ని ఒక routine ఏదైతే create చేసుకుంటున్నామో దాని ప్రకారంగా కూడా meals ని పెట్టుకోవచ్చు.",
+   "labeler": "telugu-content-strategist",
+   "tightening_labeled": true,
+   "scores": {
+    "hook": 3,
+    "standalone": 5,
+    "payoff": 3,
+    "value_emotion": 3,
+    "overall": 3
+   },
+   "publishable": true,
+   "title": "Dinner 7 PM లోపే చేయాలా? ఇది myth ఆ?",
+   "on_screen_hook": "7 PM తర్వాత తింటే digest అవ్వదా?",
+   "hook_line": {
+    "text": "ఇప్పుడు చాలామంది ఇప్పుడు dinner seven PM లోపు చేసేయాలి.",
+    "start_word": 9819,
+    "end_word": 9826
+   },
+   "why_it_works": "Nuanced answer to a common rule: early dinner is ideal, but if you sleep at 11, a 5-hour gap only makes you hungry; eat by routine.",
+   "category": "advice",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [
+    "sensitive_content"
+   ]
+  },
+  {
+   "id": "t33",
+   "pieces": [
+    {
+     "start_word": 15645,
+     "end_word": 15656,
+     "start": 5793.172,
+     "end": 5797.812
+    },
+    {
+     "start_word": 15659,
+     "end_word": 15668,
+     "start": 5798.612,
+     "end": 5801.072
+    },
+    {
+     "start_word": 15671,
+     "end_word": 15684,
+     "start": 5802.012,
+     "end": 5806.452
+    },
+    {
+     "start_word": 15686,
+     "end_word": 15688,
+     "start": 5807.212,
+     "end": 5808.152
+    },
+    {
+     "start_word": 15690,
+     "end_word": 15695,
+     "start": 5808.952,
+     "end": 5811.072
+    },
+    {
+     "start_word": 15699,
+     "end_word": 15716,
+     "start": 5813.952,
+     "end": 5820.572
+    },
+    {
+     "start_word": 15718,
+     "end_word": 15724,
+     "start": 5821.852,
+     "end": 5824.992
+    },
+    {
+     "start_word": 15726,
+     "end_word": 15729,
+     "start": 5826.272,
+     "end": 5827.912
+    }
+   ],
+   "region": {
+    "start_word": 15645,
+    "end_word": 15729,
+    "start": 5793.172,
+    "end": 5827.912
+   },
+   "edited_duration": 26.0,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "Basic గా అందరూ use చేసేది basic MuscleBlaze ఒకటి, ON ఇలాంటివి use చేస్తుంటారు. MuscleBlaze right now they improved a lot of the quality. ON చాలా duplication issues ఉన్నాయన్న. ఉమ్ ఎక్కువ ఇవే వాడుతారన్నమాట. First thing Amazon లో కొనకండి. Flipkart లో కొనకండి. Direct వాళ్ళ own website లోకే కొనండి. Duplication issues ఎక్కువ. Okay అది అసలు complete brand వాడి stickered ఆ- ఆ చాలామందికి ఇప్పుడు ON ఉందా ON కొనుక్కుంటారు. ఇడ్లీ పిండి దోశ పిండి వస్తది. పొడి వస్తది. So అలాంటి duplications ఉంటాయి.",
+   "labeler": "telugu-content-strategist",
+   "tightening_labeled": true,
+   "scores": {
+    "hook": 4,
+    "standalone": 4,
+    "payoff": 4,
+    "value_emotion": 3,
+    "overall": 3
+   },
+   "publishable": true,
+   "title": "Online లో protein కొంటే ఇడ్లీ పిండి వస్తుంది!",
+   "on_screen_hook": "Amazon, Flipkart లో protein కొనకండి",
+   "hook_line": {
+    "text": "Basic గా అందరూ use చేసేది basic MuscleBlaze ఒకటి, ON ఇలాంటివి use చేస్తుంటారు.",
+    "start_word": 15645,
+    "end_word": 15656
+   },
+   "why_it_works": "Short, funny, practical: buy supplements from the brand's own site because fakes are common ('ఇడ్లీ పిండి దోశ పిండి వస్తది').",
+   "category": "humour",
+   "standalone_risks": [
+    {
+     "type": "other",
+     "note": "Names brands (MuscleBlaze, ON) and alleges duplication issues; creator should decide.",
+     "word_index": 15671
+    }
+   ],
+   "edit_notes": [],
+   "flags": [
+    "sensitive_content"
+   ]
+  },
+  {
+   "id": "t34",
+   "pieces": [
+    {
+     "start_word": 20748,
+     "end_word": 20790,
+     "start": 7593.912,
+     "end": 7610.032
+    },
+    {
+     "start_word": 20791,
+     "end_word": 20799,
+     "start": 7611.832,
+     "end": 7614.732
+    },
+    {
+     "start_word": 20800,
+     "end_word": 20940,
+     "start": 7616.272,
+     "end": 7659.332
+    },
+    {
+     "start_word": 20943,
+     "end_word": 20993,
+     "start": 7660.252,
+     "end": 7674.172
+    }
+   ],
+   "region": {
+    "start_word": 20748,
+    "end_word": 20993,
+    "start": 7593.912,
+    "end": 7674.172
+   },
+   "edited_duration": 76.0,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ప్రతి ఒక్కళ్ళకి six pack ఇష్టం అనమాట. Six pack లో చూసుకోవాలి మనల్ని మనం అని చెప్తారు. దానిలో చేసే భాగంలో అందరూ చాలామంది face లు పాడైపోతాయి. Faces చాలా దారుణంగా తయారవుతుంటాయి. Face పాడవకుండా ఎలా చేయాలి? అది అవ్వదమ్మా. అంటే fat percentage ఎంత రావాలి six pack, abs చూడాలంటే? See, fundamentally, below fifteen percent వచ్చేసరికి మీకు ab lining మెల్లగా కనబడతది. The more leaner you start getting, the more body fat you are losing అంటే fifteen percent నుంచి twelve percent, ten percent అట్లా ten percent కి వచ్చేసరికి ఏంటంటే ఇంకా నరాలన్నీ బయటకు వచ్చేసి కనబడతది. So, అంత lean అవుతున్నప్పుడు even facial fat కూడా లోపలికి వెళ్ళిపోతది. Like jawline అంతా కూడా sharp అయిపోతది, లోపలికి వెళ్ళిపోతది facial fat. నాకైతే ఇక్కడ, ఇక్కడో నరం బయటకు వచ్చింది ఇలాగ when I was ten percent body fat. ఇప్పుడు కనబడట్లేదు చూసారా. So, అవన్నీ బయటకు వచ్చి ఇలా లోపలికి, ఇక్కడికి వెళ్ళిపోతది. That is bound to happen when you are going too low in terms of body fat. So, ten percent కంటే లోపలికి ఇంకా లోపలికి ఇంకా లోపలికి ఒక eight percent తో seven percent కి వెళ్ళినప్పుడు that is when ఇంకా the purest shred form అనుకోవచ్చు but that's not healthy for most people. ఎంత body fat percentage ఉంటే కొద్దిగా better healthy మనం? Fifteen percent is the sweet spot. Ten to twenty much less healthy. Being at fifteen you look muscular, you look lean, you look fit and you, you will be healthy. Fifteen percent maintain చేస్తారు. Fifteen percent and you are regularly working out అంటే that is a good body fat for men. For women it is twenty five.",
+   "labeler": "telugu-content-strategist",
+   "tightening_labeled": true,
+   "scores": {
+    "hook": 3,
+    "standalone": 4,
+    "payoff": 4,
+    "value_emotion": 3,
+    "overall": 3
+   },
+   "publishable": true,
+   "title": "Six pack కోసం face పాడవుతుందా? 15% body fat sweet spot",
+   "on_screen_hook": "Six pack వస్తే face ఎందుకు పాడవుతుంది?",
+   "hook_line": {
+    "text": "ప్రతి ఒక్కళ్ళకి six pack ఇష్టం అనమాట. Six pack లో చూసుకోవాలి మనల్ని మనం అని చెప్తారు.",
+    "start_word": 20748,
+    "end_word": 20761
+   },
+   "why_it_works": "Answers a real worry: below 10% body fat the face hollows (he shows his own veins); 15% for men and 25% for women is the healthy sweet spot.",
+   "category": "advice",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "notes": "Long host question up front; could start at 'Face పాడవకుండా ఎలా చేయాలి?' if the creator wants it tighter."
+  }
+ ]
+}
