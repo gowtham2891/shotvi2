@@ -20,7 +20,7 @@
   "complete": true,
   "note": "Whole episode read in order. 0:00-2:14 is a song montage (morning after the wedding, no dialogue); 20:57-21:52 credits/end card."
  },
- "notes": "Telugu romcom web series (Infinitum Media), Couple Goals episode 2. Clips are in my rank order. Option-2 cutting: each clip is 1-2 continuous stretches; time_segments (seconds, play order) are the actual cut and include silent visual beats/reaction holds; pieces are the words inside them (no words trimmed inside a segment). edited_duration = word span sum (schema); video_duration = time_segments sum. Speaker ids are unreliable (speaker_0 = hero AND his father AND the office friend in places); speakers were assigned from frames and content. Brand-collab lower-thirds appear at ~4:35-4:43, ~11:15 and ~15:32-15:40; no clip includes them.",
+ "notes": "Telugu romcom web series (Infinitum Media), Couple Goals episode 2. Clips are in my rank order. Option-2 cutting: each clip is 1-2 continuous stretches; time_segments (seconds, play order) are the actual cut and include silent visual beats/reaction holds; pieces are the words inside them (no words trimmed inside a segment). edited_duration = word span sum (schema); video_duration = time_segments sum. Speaker ids are unreliable (speaker_0 = hero AND his father AND the office friend in places); speakers were assigned from frames and content. Brand-collab lower-thirds appear at ~4:35-4:43, ~11:15 and ~15:32-15:40; no clip includes them. || Round 2 (2026-10-05): openings re-cut after the founder's round-1 ratings (hook 3.4, payoff 4.4): every clip starts on its first spoken word (<=0.3s pad); weak first lines get a cold open (cold_open: true, lifted moment first in time_segments and pieces). Endings unchanged.",
  "clips": [
   {
    "id": "w01",
@@ -70,22 +70,29 @@
    "confidence": 5,
    "time_segments": [
     {
-     "start": 946.583,
+     "start": 948.63,
      "end": 1020.958
     }
    ],
-   "video_duration": 74.38,
+   "video_duration": 72.33,
    "standalone_risks": [],
    "edit_notes": [],
    "flags": [],
    "tags": [
     "relatable"
    ],
-   "notes": "Silent hug 16:13-16:39 kept whole (frames 976 arms open, 988-1004 her head on his chest, he strokes her hair). This is the point of the clip, so the word pieces alone would lose it. Ends on 1018-1021, him grinning shyly as he leaves (reaction held). 'దేనికో waiting' is tagged speaker_1 (Amrutha); I read it as her teasing him at the door. 'hop off' (logprob -0.8) is probably 'half' (ఇలా half చేస్తే ఎలా = a half/side hug). 'Night escape అయినట్టు' calls back to the previous night (w06), but the clip explains itself: he wants a hug before work. Hook is soft in words; the first frames (him waiting at the door with his bag) carry it."
+   "notes": "Silent hug 16:13-16:39 kept whole (frames 976 arms open, 988-1004 her head on his chest, he strokes her hair). This is the point of the clip, so the word pieces alone would lose it. Ends on 1018-1021, him grinning shyly as he leaves (reaction held). 'దేనికో waiting' is tagged speaker_1 (Amrutha); I read it as her teasing him at the door. 'hop off' (logprob -0.8) is probably 'half' (ఇలా half చేస్తే ఎలా = a half/side hug). 'Night escape అయినట్టు' calls back to the previous night (w06), but the clip explains itself: he wants a hug before work. Hook is soft in words; the first frames (him waiting at the door with his bag) carry it. || Round 2: start moved from 946.58 to the shot change at 948.63 (2.3s lead-in of him waiting at the door removed); first word 'దేనికో waiting' 0.2s in, on Amrutha. No cold open: hook was rated 4, and lifting 'This is why I love short girls' would spend the payoff. Ending unchanged.",
+   "cold_open": false
   },
   {
    "id": "w02",
    "pieces": [
+    {
+     "start_word": 1268,
+     "end_word": 1276,
+     "start": 1198.424,
+     "end": 1202.684
+    },
     {
      "start_word": 1176,
      "end_word": 1218,
@@ -105,16 +112,16 @@
     "start": 1128.044,
     "end": 1252.624
    },
-   "edited_duration": 84.86,
-   "reordered": false,
-   "n_blocks": 2,
-   "text": "ఏంటి ఈరోజు office నుంచి త్వరగా వచ్చారు. బయట climate అదిరిపోయింది తెలుసా అందుకే snacks గా మిర్చి బజ్జి తినడానికి వచ్చాను. ఆ సరే మీరు room కి వెళ్లి fresh అయ్యి అక్కడే ఉండండి. నేను చేసి తీసుకొస్తాను. No no no no ఈసారి మాత్రం నువ్వు చేస్తూ ఉంటే నేను చూద్దామని fix అయిపోయాను. వసేయ్ మంగమ్మత్త ఏమన్నావే నీకు వచ్చిన పెళ్ళాం కనీసం gas stove off చేయడం on చేయడం కూడా రాదన్నావ్ కదా. అందరూ నీ కూతుర్లా ఉంటారనుకున్నావ్ ఏంటే నాకు వచ్చిన పెళ్ళాం నాకోసం మిర్చి బజ్జీలు వేస్తుందే మిర్చి బజ్జీలు రేయ్ ప్రకాశం ఆరోజు పులిహోర ఇవ్వరా అంటే ఏమన్నావ్ రా నా పెళ్ళాం నాకోసం ప్రేమతో వండింది నేను ఇవ్వనని చెప్పావు కదరా. అదేదో నీ పెళ్ళాంతో నేను పులిహోర కలిపినట్టు. రేయ్ ఇప్పుడు నాకు కూడా పెళ్ళాం వచ్చిందిరా. ఇప్పుడది పులిహోర కాదు బిర్యాని నుంచి బిస్మిల్లా బాత్ దాకా ప్రతీది వండుతది. Flashman కన్నా speed గా Kumari Anty కన్నా tasty గా అదిరిపోయేలా వండుతదిరా. ఇంక మీ పెళ్ళాలందరూ తన వంట చూసి తట్టాబుట్టా సర్దేసుకోవడమే. కమాన్ అమృత కమాన్ నువ్వు చెయ్ నువ్వు చేయడం నేను చూడాలి. నువ్వు చెయ్ నువ్వు చెయ్ నువ్వు చెయ్ నువ్వు చేయడం నేను చూడాలి. Please చెయ్ చెయ్ నేను red handed గా దొరికిపోయానేంటి ఇప్పుడు నేను ఏం చేయాలి",
+   "edited_duration": 89.12,
+   "reordered": true,
+   "n_blocks": 3,
+   "text": "నాకు వచ్చిన పెళ్ళాం నాకోసం మిర్చి బజ్జీలు వేస్తుందే మిర్చి బజ్జీలు ఏంటి ఈరోజు office నుంచి త్వరగా వచ్చారు. బయట climate అదిరిపోయింది తెలుసా అందుకే snacks గా మిర్చి బజ్జి తినడానికి వచ్చాను. ఆ సరే మీరు room కి వెళ్లి fresh అయ్యి అక్కడే ఉండండి. నేను చేసి తీసుకొస్తాను. No no no no ఈసారి మాత్రం నువ్వు చేస్తూ ఉంటే నేను చూద్దామని fix అయిపోయాను. వసేయ్ మంగమ్మత్త ఏమన్నావే నీకు వచ్చిన పెళ్ళాం కనీసం gas stove off చేయడం on చేయడం కూడా రాదన్నావ్ కదా. అందరూ నీ కూతుర్లా ఉంటారనుకున్నావ్ ఏంటే నాకు వచ్చిన పెళ్ళాం నాకోసం మిర్చి బజ్జీలు వేస్తుందే మిర్చి బజ్జీలు రేయ్ ప్రకాశం ఆరోజు పులిహోర ఇవ్వరా అంటే ఏమన్నావ్ రా నా పెళ్ళాం నాకోసం ప్రేమతో వండింది నేను ఇవ్వనని చెప్పావు కదరా. అదేదో నీ పెళ్ళాంతో నేను పులిహోర కలిపినట్టు. రేయ్ ఇప్పుడు నాకు కూడా పెళ్ళాం వచ్చిందిరా. ఇప్పుడది పులిహోర కాదు బిర్యాని నుంచి బిస్మిల్లా బాత్ దాకా ప్రతీది వండుతది. Flashman కన్నా speed గా Kumari Anty కన్నా tasty గా అదిరిపోయేలా వండుతదిరా. ఇంక మీ పెళ్ళాలందరూ తన వంట చూసి తట్టాబుట్టా సర్దేసుకోవడమే. కమాన్ అమృత కమాన్ నువ్వు చెయ్ నువ్వు చేయడం నేను చూడాలి. నువ్వు చెయ్ నువ్వు చెయ్ నువ్వు చెయ్ నువ్వు చేయడం నేను చూడాలి. Please చెయ్ చెయ్ నేను red handed గా దొరికిపోయానేంటి ఇప్పుడు నేను ఏం చేయాలి",
    "labeler": "clip-gt-editor",
    "tightening_labeled": true,
    "hook_line": {
-    "text": "ఏంటి ఈరోజు office నుంచి త్వరగా వచ్చారు.",
-    "start_word": 1176,
-    "end_word": 1181
+    "text": "నాకు వచ్చిన పెళ్ళాం నాకోసం మిర్చి బజ్జీలు వేస్తుందే మిర్చి బజ్జీలు",
+    "start_word": 1268,
+    "end_word": 1276
    },
    "scores": {
     "hook": 4,
@@ -124,7 +131,7 @@
     "overall": 4.5
    },
    "title": "మిర్చి బజ్జీలు నువ్వే వెయ్, నేను చూడాలి! Red handed గా దొరికిపోయిందా?",
-   "why_it_works": "He insists on watching her fry mirchi bajji and brags on calls she out-cooks Kumari Aunty. Cliffhanger: 'red handed గా దొరికిపోయానేంటి… ఇప్పుడు ఏం చేయాలి'.",
+   "why_it_works": "Cold open on his phone brag 'నా పెళ్ళాం నాకోసం మిర్చి బజ్జీలు వేస్తుందే'; he insists on watching her cook. Cliffhanger: 'red handed గా దొరికిపోయానేంటి… ఇప్పుడు ఏం చేయాలి'.",
    "category": "story",
    "content_type": "web_series",
    "clip_purpose": "promo",
@@ -139,7 +146,11 @@
    "confidence": 5,
    "time_segments": [
     {
-     "start": 1127.6,
+     "start": 1198.2,
+     "end": 1202.9
+    },
+    {
+     "start": 1127.8,
      "end": 1150.9
     },
     {
@@ -147,18 +158,24 @@
      "end": 1257.45
     }
    ],
-   "video_duration": 92.15,
+   "video_duration": 96.65,
    "standalone_risks": [],
    "edit_notes": [
     {
-     "type": "skip",
+     "type": "cold_open",
      "after_piece": 0,
-     "reason": "Drops 38s: her 'మీరు tired అయి ఉంటారు, లోపలికి వెళ్ళండి' / his 'నిన్ను చూస్తూ ఉంటే tiredness పోతాది' (a repeat of the same insistence), her praying to the stove (19:25), her first 'ఇప్పుడు ఏం చేయాలి' (kept only the final one so the button isn't used twice) and him dialing. Lands on a cut to the kitchen wide with him already on the phone."
+     "reason": "Cold open: his brag on the phone 'నాకు వచ్చిన పెళ్ళాం నాకోసం మిర్చి బజ్జీలు వేస్తుందే మిర్చి బజ్జీలు' over her worried close-up (19:58.2), then the scene from its start."
+    },
+    {
+     "type": "skip",
+     "after_piece": 1,
+     "reason": "Drops the walk to the kitchen and her 'ఇప్పుడు ఏం చేయాలి' (unchanged from round 1)."
     }
    ],
    "flags": [],
    "tags": [],
-   "notes": "Episode cliffhanger. Ends 4.8s after the last word, holding on her panicked close-up (frames 1247-1256) until just before the 20:57 credits (popcorn/bajji/egg close-ups). 92s is over the usual 75s. If the founder wants it shorter, drop the whole Prakasam call (20:09-20:36) for ~64s. The Mangamma call ('gas stove on/off చేయడం కూడా రాదన్నావ్') is the sharper irony, but the Prakasam call has the biggest brag lines. 'వసేయ్' = 'ఒసేయ్'. 'బిస్మిల్లా బాత్' is almost certainly 'బిసిబేళ బాత్' (bisi bele bath; 'biryani to bisi bele bath'). 'Kumari Anty' = Kumari Aunty, the viral Hyderabad street-food vendor (a real person, mentioned as praise, not mocked). 'పులిహోర కలిపినట్టు' is slang for flirting, a mild double meaning. The second piece starts mid-shot (one long wide shot runs 19:25-19:56). No spoiler: it stops before we see what she does."
+   "notes": "Episode cliffhanger. Ends 4.8s after the last word, holding on her panicked close-up (frames 1247-1256) until just before the 20:57 credits (popcorn/bajji/egg close-ups). 92s is over the usual 75s. If the founder wants it shorter, drop the whole Prakasam call (20:09-20:36) for ~64s. The Mangamma call ('gas stove on/off చేయడం కూడా రాదన్నావ్') is the sharper irony, but the Prakasam call has the biggest brag lines. 'వసేయ్' = 'ఒసేయ్'. 'బిస్మిల్లా బాత్' is almost certainly 'బిసిబేళ బాత్' (bisi bele bath; 'biryani to bisi bele bath'). 'Kumari Anty' = Kumari Aunty, the viral Hyderabad street-food vendor (a real person, mentioned as praise, not mocked). 'పులిహోర కలిపినట్టు' is slang for flirting, a mild double meaning. The second piece starts mid-shot (one long wide shot runs 19:25-19:56). No spoiler: it stops before we see what she does. || Round 2: COLD OPEN added. Round 1 opened on 'ఏంటి ఈరోజు office నుంచి త్వరగా వచ్చారు' (small talk, rated hook 3). Now opens on his phone brag 'నాకు వచ్చిన పెళ్ళాం నాకోసం మిర్చి బజ్జీలు వేస్తుందే మిర్చి బజ్జీలు' (4.7s, starts on her worried close-up, then him boasting), which sets up the irony without giving away the red-handed cliffhanger; it repeats in place. Main stretch now starts 0.24s before 'ఏంటి'. Ending unchanged. Length ~97s, over the usual 75s; dropping the Prakasam call (20:09-20:36) gives ~70s.",
+   "cold_open": true
   },
   {
    "id": "w03",
@@ -208,20 +225,27 @@
    "confidence": 5,
    "time_segments": [
     {
-     "start": 647.5,
+     "start": 651.15,
      "end": 669.5
     }
    ],
-   "video_duration": 22.0,
+   "video_duration": 18.35,
    "standalone_risks": [],
    "edit_notes": [],
    "flags": [],
    "tags": [],
-   "notes": "Starts mid-shot (the hero chewing close-up runs 10:44-10:52) so the line comes 4s in. The 10:00-10:24 dinner small talk ('మీరు రాకుండా నేను ఎలా తింటాను') is setup an editor could prepend, but the over-denial makes the lie obvious without it. Frames: 657-663 her frantic ఒట్టు gestures (hand on head), 666-669 his puzzled look; the clip ends on the wide two-shot after it (reaction held). 'నీ అమ్మ!' is a mild exasperated curse, normal in Telugu comedy, but noting it."
+   "notes": "Starts mid-shot (the hero chewing close-up runs 10:44-10:52) so the line comes 4s in. The 10:00-10:24 dinner small talk ('మీరు రాకుండా నేను ఎలా తింటాను') is setup an editor could prepend, but the over-denial makes the lie obvious without it. Frames: 657-663 her frantic ఒట్టు gestures (hand on head), 666-669 his puzzled look; the clip ends on the wide two-shot after it (reaction held). 'నీ అమ్మ!' is a mild exasperated curse, normal in Telugu comedy, but noting it. || Round 2: start moved from 647.5 to 651.15 (3.9s of chewing close-up removed); opens directly on 'అమ్మ చేతి వంటలా ఉంది.' No cold open: the clip is 18s and the only lift would be part of her frantic ఒట్టు line (trimming inside an actor's line) or the 'నీ అమ్మ!' button (spends the payoff). The compliment itself is the trigger line. Ending unchanged.",
+   "cold_open": false
   },
   {
    "id": "w04",
    "pieces": [
+    {
+     "start_word": 387,
+     "end_word": 394,
+     "start": 404.76,
+     "end": 408.02
+    },
     {
      "start_word": 328,
      "end_word": 441,
@@ -235,16 +259,16 @@
     "start": 366.16,
     "end": 439.6
    },
-   "edited_duration": 73.44,
-   "reordered": false,
-   "n_blocks": 1,
-   "text": "ఆ మావోడు food విషయంలో చాలా particular గా ఉంటాడమ్మా. వాళ్ళ అమ్మ చనిపోయిన తర్వాత ఇంట్లో కుక్కను పెట్టుకుందాం అని వాడు అడిగితే డబ్బులు దండగ ఎందుకని చెప్పి I am master in cooking అని చెప్పా. ఆ గోరించు. ఆ తర్వాత కొన్ని రోజులకి వాడికే అర్థమైంది I am master in అబద్ధాలు అని. అంతే అప్పటి నుంచి ఎవరైనా అబద్ధాలు చెప్తే మండే పడిపోతాడు. నాతో వాడు నాలుగేళ్ళు మాట్లాడలేదు. ఆ పెళ్ళికి ముందు ఏమన్నావే? అమ్మా! ఉమ్ అబద్ధాలు చెప్పి పెళ్లి చేసుకోవడం correct ఏనా? ఊ ఊ వెయ్యి అబద్ధాలు ఆడి అయినా ఓ పెళ్లి చేయమన్నారే ఎక్కువగా ఆలోచించకు. నువ్వేమో వంద అబద్ధాలు ఆడినా తప్పులేదంటావ్ ఆయనేమో అబద్ధం అన్న parent ఏనే fire అయిపోతున్నాడు. ఇలా ఎరికిన్చేసావెంటమ్మా. అదంతా సరిపోదన్నట్టు ఇప్పుడొచ్చి క్యారేజ్ పెడతది dinner చేస్తది అని శివగామిలా హామీలు ఇస్తున్నావ్. ఇప్పుడు నన్ను ఏం చేయమంటావ్? ఉమ్ Idea! హుమ్ ఏంటి? చెప్పను చేసి చూపిస్తానే.",
+   "edited_duration": 76.7,
+   "reordered": true,
+   "n_blocks": 2,
+   "text": "అమ్మా! ఉమ్ అబద్ధాలు చెప్పి పెళ్లి చేసుకోవడం correct ఏనా? ఆ మావోడు food విషయంలో చాలా particular గా ఉంటాడమ్మా. వాళ్ళ అమ్మ చనిపోయిన తర్వాత ఇంట్లో కుక్కను పెట్టుకుందాం అని వాడు అడిగితే డబ్బులు దండగ ఎందుకని చెప్పి I am master in cooking అని చెప్పా. ఆ గోరించు. ఆ తర్వాత కొన్ని రోజులకి వాడికే అర్థమైంది I am master in అబద్ధాలు అని. అంతే అప్పటి నుంచి ఎవరైనా అబద్ధాలు చెప్తే మండే పడిపోతాడు. నాతో వాడు నాలుగేళ్ళు మాట్లాడలేదు. ఆ పెళ్ళికి ముందు ఏమన్నావే? అమ్మా! ఉమ్ అబద్ధాలు చెప్పి పెళ్లి చేసుకోవడం correct ఏనా? ఊ ఊ వెయ్యి అబద్ధాలు ఆడి అయినా ఓ పెళ్లి చేయమన్నారే ఎక్కువగా ఆలోచించకు. నువ్వేమో వంద అబద్ధాలు ఆడినా తప్పులేదంటావ్ ఆయనేమో అబద్ధం అన్న parent ఏనే fire అయిపోతున్నాడు. ఇలా ఎరికిన్చేసావెంటమ్మా. అదంతా సరిపోదన్నట్టు ఇప్పుడొచ్చి క్యారేజ్ పెడతది dinner చేస్తది అని శివగామిలా హామీలు ఇస్తున్నావ్. ఇప్పుడు నన్ను ఏం చేయమంటావ్? ఉమ్ Idea! హుమ్ ఏంటి? చెప్పను చేసి చూపిస్తానే.",
    "labeler": "clip-gt-editor",
    "tightening_labeled": true,
    "hook_line": {
-    "text": "ఆ మావోడు food విషయంలో చాలా particular గా ఉంటాడమ్మా.",
-    "start_word": 328,
-    "end_word": 335
+    "text": "అమ్మా! ఉమ్ అబద్ధాలు చెప్పి పెళ్లి చేసుకోవడం correct ఏనా?",
+    "start_word": 387,
+    "end_word": 394
    },
    "scores": {
     "hook": 4,
@@ -254,7 +278,7 @@
     "overall": 4.2
    },
    "title": "అబద్ధం అంటేనే fire అయిపోతాడు… అమృత పరిస్థితి ఏంటి?",
-   "why_it_works": "Father: his son stopped talking to him for 4 years over one cooking lie. Amrutha blasts her mother, who ends on 'Idea! చెప్పను, చేసి చూపిస్తానే'.",
+   "why_it_works": "Cold open: 'అబద్ధాలు చెప్పి పెళ్లి చేసుకోవడం correct ఏనా?'. Father: his son stopped talking to him 4 years over a cooking lie. Mother ends on 'Idea! చేసి చూపిస్తానే'.",
    "category": "story",
    "content_type": "web_series",
    "clip_purpose": "promo",
@@ -268,16 +292,27 @@
    "confidence": 4,
    "time_segments": [
     {
-     "start": 365.417,
+     "start": 404.4,
+     "end": 408.13
+    },
+    {
+     "start": 365.9,
      "end": 441.125
     }
    ],
-   "video_duration": 75.71,
+   "video_duration": 78.96,
    "standalone_risks": [],
-   "edit_notes": [],
+   "edit_notes": [
+    {
+     "type": "cold_open",
+     "after_piece": 0,
+     "reason": "Cold open: young Amrutha in the flashback, 'అమ్మా! అబద్ధాలు చెప్పి పెళ్లి చేసుకోవడం correct ఏనా?' (6:44.4-6:48.1, cut on shot changes), then the scene from the father's line."
+    }
+   ],
    "flags": [],
    "tags": [],
-   "notes": "Continuous. Ends 1.5s after 'చూపిస్తానే' on the mother's sly look, before the cut to the office. Includes the 6:29-6:41 beat (mother and daughter exchange alarmed looks, then the kitchen) and the 6:44-6:50 flashback insert (mother, in a green saree, combing young Amrutha's hair: 'వెయ్యి అబద్ధాలు ఆడైనా ఒక పెళ్లి చేయమన్నారు'). ASR: 'కుక్కను పెట్టుకుందాం' is almost certainly 'cook ను పెట్టుకుందాం' (hire a cook; 'dog' makes no sense with 'master in cooking'). Also 'మండే పడిపోతాడు' = 'మండిపడిపోతాడు', 'parent ఏనే' = 'పదానికే', 'ఎరికిన్చేసావెంటమ్మా' = 'ఇరికించేసావేంటమ్మా'. '6:17 ఆ గోరించు' is unclear (an aside, maybe Amrutha). The open question ('what's the idea?') is answered in w08 (the mother pre-cooks everything), so post this before that one."
+   "notes": "Continuous. Ends 1.5s after 'చూపిస్తానే' on the mother's sly look, before the cut to the office. Includes the 6:29-6:41 beat (mother and daughter exchange alarmed looks, then the kitchen) and the 6:44-6:50 flashback insert (mother, in a green saree, combing young Amrutha's hair: 'వెయ్యి అబద్ధాలు ఆడైనా ఒక పెళ్లి చేయమన్నారు'). ASR: 'కుక్కను పెట్టుకుందాం' is almost certainly 'cook ను పెట్టుకుందాం' (hire a cook; 'dog' makes no sense with 'master in cooking'). Also 'మండే పడిపోతాడు' = 'మండిపడిపోతాడు', 'parent ఏనే' = 'పదానికే', 'ఎరికిన్చేసావెంటమ్మా' = 'ఇరికించేసావేంటమ్మా'. '6:17 ఆ గోరించు' is unclear (an aside, maybe Amrutha). The open question ('what's the idea?') is answered in w08 (the mother pre-cooks everything), so post this before that one. || Round 2: COLD OPEN added. Round 1 opened on the father's exposition 'ఆ మావోడు food విషయంలో చాలా particular గా ఉంటాడమ్మా' (rated hook 3). Now opens on the flashback question 'అమ్మా! అబద్ధాలు చెప్పి పెళ్లి చేసుకోవడం correct ఏనా?' (3.7s; frames: mother in the green saree combing young Amrutha's hair). It poses the episode's question without answering it (the mother's 'వెయ్యి అబద్ధాలు' answer stays in place), so the promo stays spoiler-free. Main stretch now starts 0.26s before the father's first word. Ending unchanged.",
+   "cold_open": true
   },
   {
    "id": "w05",
@@ -338,15 +373,22 @@
    "tags": [
     "relatable"
    ],
-   "notes": "Starts on a shot change right before the father's question. Speakers from frames: father on camera 4:10-4:17, hero at 4:18 ('ఎకసెక్కాలే వద్దనేది' = don't mock me, ASR 'ఏకసకాలే'). ASR 'blood గుర పడితే' = 'blood group అడిగితే', which hides half the joke in the transcript. Ends right after the hero's retort; Amrutha's 'చాయ్' starts 0.1s later, so there's no longer hold. Left out: her 'doubt clarified చాయే ఇది' button at 4:31, because it needs her chai-or-coffee confusion from 3:30 and would push the clip past 75s."
+   "notes": "Starts on a shot change right before the father's question. Speakers from frames: father on camera 4:10-4:17, hero at 4:18 ('ఎకసెక్కాలే వద్దనేది' = don't mock me, ASR 'ఏకసకాలే'). ASR 'blood గుర పడితే' = 'blood group అడిగితే', which hides half the joke in the transcript. Ends right after the hero's retort; Amrutha's 'చాయ్' starts 0.1s later, so there's no longer hold. Left out: her 'doubt clarified చాయే ఇది' button at 4:31, because it needs her chai-or-coffee confusion from 3:30 and would push the clip past 75s. || Round 2: unchanged. Already starts on a shot change 0.23s before the father's question 'అయినా నీకు చాయ్ గోలేంట్రా?' (hook rated 4).",
+   "cold_open": false
   },
   {
    "id": "w06",
    "pieces": [
     {
-     "start_word": 725,
+     "start_word": 773,
+     "end_word": 780,
+     "start": 742.684,
+     "end": 746.224
+    },
+    {
+     "start_word": 726,
      "end_word": 746,
-     "start": 709.26,
+     "start": 710.48,
      "end": 720.18
     },
     {
@@ -357,21 +399,21 @@
     }
    ],
    "region": {
-    "start_word": 725,
+    "start_word": 726,
     "end_word": 856,
-    "start": 709.26,
+    "start": 710.48,
     "end": 798.824
    },
-   "edited_duration": 74.68,
-   "reordered": false,
-   "n_blocks": 1,
-   "text": "సరే నేను కొన్ని most important topic మాట్లాడాలనుకుంటున్నాను అదే మన శోభనం గురించి మన first night అనేది నీ ఇష్టమే I am not that desperate But I want one thing. ఏంటది? రోజూ నువ్వు నా heart తో communicate అవ్వాలి. ఆ! ఇంకా అర్థం కాలేదా. రోజు నాకు hug కావాలంటున్నాను. అంటే husbands ఇంటి నుంచి బయటికి వెళ్ళేటప్పుడు wives send off ఇస్తారు కదా. అలానే send off అనేది hug రూపంలో కావాలంటున్నాను. Okay నా. Send off ఎప్పుడన్నా ఇరుకుదా, ఇప్పుడు కాదు కదా. అయ్యో send off అని fix చెయ్యనే అనాసరం గా. ఛా, ఛా, బుర్ర లేని మదక్, బుర్ర లేని మదక్. అనవసరంగా send off అని చెప్పావు కదరా. hug direct గా అడగొచ్చు కదరా. చెత్త అదబ్బా, చెత్త అదబ్బా. కనీసం అడగడం కూడా రాదు కదరా నీకు. ఎందుకురా నువ్వు పుట్టి? ఛీ. రేయ్.",
+   "edited_duration": 77.0,
+   "reordered": true,
+   "n_blocks": 2,
+   "text": "రోజూ నువ్వు నా heart తో communicate అవ్వాలి. ఆ! నేను కొన్ని most important topic మాట్లాడాలనుకుంటున్నాను అదే మన శోభనం గురించి మన first night అనేది నీ ఇష్టమే I am not that desperate But I want one thing. ఏంటది? రోజూ నువ్వు నా heart తో communicate అవ్వాలి. ఆ! ఇంకా అర్థం కాలేదా. రోజు నాకు hug కావాలంటున్నాను. అంటే husbands ఇంటి నుంచి బయటికి వెళ్ళేటప్పుడు wives send off ఇస్తారు కదా. అలానే send off అనేది hug రూపంలో కావాలంటున్నాను. Okay నా. Send off ఎప్పుడన్నా ఇరుకుదా, ఇప్పుడు కాదు కదా. అయ్యో send off అని fix చెయ్యనే అనాసరం గా. ఛా, ఛా, బుర్ర లేని మదక్, బుర్ర లేని మదక్. అనవసరంగా send off అని చెప్పావు కదరా. hug direct గా అడగొచ్చు కదరా. చెత్త అదబ్బా, చెత్త అదబ్బా. కనీసం అడగడం కూడా రాదు కదరా నీకు. ఎందుకురా నువ్వు పుట్టి? ఛీ. రేయ్.",
    "labeler": "clip-gt-editor",
    "tightening_labeled": true,
    "hook_line": {
-    "text": "సరే నేను కొన్ని most important topic మాట్లాడాలనుకుంటున్నాను",
-    "start_word": 725,
-    "end_word": 731
+    "text": "రోజూ నువ్వు నా heart తో communicate అవ్వాలి. ఆ!",
+    "start_word": 773,
+    "end_word": 780
    },
    "scores": {
     "hook": 4,
@@ -381,7 +423,7 @@
     "overall": 4.1
    },
    "title": "First night నీ ఇష్టమే… But I want one thing!",
-   "why_it_works": "'First night నీ ఇష్టమే… But I want one thing' builds tension; it's a daily send-off hug. Her 'ఇప్పుడు కాదు కదా' makes him face-plant and curse himself.",
+   "why_it_works": "Cold open on his odd 'రోజూ నువ్వు నా heart తో communicate అవ్వాలి' and her baffled 'ఆ!'; first-night talk turns out to mean a daily hug; her 'ఇప్పుడు కాదు కదా' makes him face-plant.",
    "category": "humour",
    "content_type": "web_series",
    "clip_purpose": "standalone",
@@ -394,7 +436,11 @@
    "confidence": 4,
    "time_segments": [
     {
-     "start": 707.833,
+     "start": 742.45,
+     "end": 746.75
+    },
+    {
+     "start": 710.2,
      "end": 720.542
     },
     {
@@ -402,16 +448,34 @@
      "end": 802.5
     }
    ],
-   "video_duration": 80.75,
+   "video_duration": 82.68,
    "standalone_risks": [],
-   "edit_notes": [],
+   "edit_notes": [
+    {
+     "type": "cold_open",
+     "after_piece": 0,
+     "reason": "Cold open: 'రోజూ నువ్వు నా heart తో communicate అవ్వాలి.' (wide shot) + her baffled close-up and 'ఆ!' (12:22.5-12:26.8, ends on a shot change)."
+    },
+    {
+     "type": "skip",
+     "after_piece": 1,
+     "reason": "Drops 'పెళ్లి చూపుల నుంచి ప్రతిదీ రష్ రష్ గా... అంతా నీ ఇష్టంతోనే' (repeats 'నీ ఇష్టమే'); cut on shot changes (unchanged)."
+    }
+   ],
    "flags": [],
    "tags": [],
-   "notes": "One cut on shot changes (12:00.5 to 12:14.5) drops 'పెళ్లి చూపుల నుంచి ప్రతిదీ రష్ రష్ గా అయిపోయింది… అంతా నీ ఇష్టంతోనే', which repeats 'నీ ఇష్టమే'. Kept: the 9s silent beat after 'Okay నా' (her shy smile, 12:47-12:55), his face-plant 13:02-13:18 (frames 784-826, pop-up SFX), and her smile 13:19-13:22 as the end hold. ASR: 'ఇరుకుదా' = 'ఇవ్వొచ్చు కదా', 'అనాసరం గా' = 'అనవసరంగా'; 'బుర్ర లేని మదక్' and 'చెత్త అదబ్బా' are unclear self-insults. Mentions శోభనం/first night, nothing explicit."
+   "notes": "One cut on shot changes (12:00.5 to 12:14.5) drops 'పెళ్లి చూపుల నుంచి ప్రతిదీ రష్ రష్ గా అయిపోయింది… అంతా నీ ఇష్టంతోనే', which repeats 'నీ ఇష్టమే'. Kept: the 9s silent beat after 'Okay నా' (her shy smile, 12:47-12:55), his face-plant 13:02-13:18 (frames 784-826, pop-up SFX), and her smile 13:19-13:22 as the end hold. ASR: 'ఇరుకుదా' = 'ఇవ్వొచ్చు కదా', 'అనాసరం గా' = 'అనవసరంగా'; 'బుర్ర లేని మదక్' and 'చెత్త అదబ్బా' are unclear self-insults. Mentions శోభనం/first night, nothing explicit. || Round 2: COLD OPEN added and start trimmed. Round 1 opened 1.4s before 'సరే', then 'నేను కొన్ని most important topic మాట్లాడాలనుకుంటున్నాను' (plain setup, rated hook 3; 'శోభనం' only arrives ~5s in). Now opens on his odd demand 'రోజూ నువ్వు నా heart తో communicate అవ్వాలి.' and her baffled 'ఆ!' close-up (4.3s), then plays from 'నేను కొన్ని most important topic...' (dropped the lone 'సరే'). The demand repeats in place after 'ఏంటది?'. Ending unchanged.",
+   "cold_open": true
   },
   {
    "id": "w07",
    "pieces": [
+    {
+     "start_word": 55,
+     "end_word": 68,
+     "start": 173.82,
+     "end": 177.34
+    },
     {
      "start_word": 4,
      "end_word": 92,
@@ -425,16 +489,16 @@
     "start": 141.36,
     "end": 195.28
    },
-   "edited_duration": 53.92,
-   "reordered": false,
-   "n_blocks": 1,
-   "text": "అవును ఎందుకింత త్వరగా లేచారు నేనెందుకింత తొందరగా లేచానో నాకు తెలియదు గానీ, నువ్వెందుకింత తొందరగా లేచావో నాకు తెలుసు ఎందుకు? నేను లేచేలోపు నాకు చాయ్ పెట్టడానికే కదా చాయా? యా అయ్యా యా చాయ్ చాయ్ మరి పెట్టావా? ఆ ఆ అదే పనిలో ఉన్నా ఓ సరే first day నే దొరికిపోయేలా ఉన్నావు కదా. ఏం చేయాలి? నేను పెట్టే చాయ్ తాగేయ్ అన్నా అయితే, పెళ్లి చేసుకొని next day న మొగుడికి చాయ్ ఇచ్చి చంపేసిన భార్య అని paper లో వస్తే. అమ్మో! అమృత ఇప్పుడెలా అనే. అమ్మా అమృత ఊ ఇదిగో ఊ ఇది నీకు, ఇది మా వాడికి ప్రతికించారు ఏంటమ్మా ఆ మా-మావయ్య మీకెందుకు శ్రమ నేను చేసేదాన్ని కదా పర్లేదమ్మా",
+   "edited_duration": 57.44,
+   "reordered": true,
+   "n_blocks": 2,
+   "text": "పెళ్లి చేసుకొని next day న మొగుడికి చాయ్ ఇచ్చి చంపేసిన భార్య అని paper లో వస్తే. అవును ఎందుకింత త్వరగా లేచారు నేనెందుకింత తొందరగా లేచానో నాకు తెలియదు గానీ, నువ్వెందుకింత తొందరగా లేచావో నాకు తెలుసు ఎందుకు? నేను లేచేలోపు నాకు చాయ్ పెట్టడానికే కదా చాయా? యా అయ్యా యా చాయ్ చాయ్ మరి పెట్టావా? ఆ ఆ అదే పనిలో ఉన్నా ఓ సరే first day నే దొరికిపోయేలా ఉన్నావు కదా. ఏం చేయాలి? నేను పెట్టే చాయ్ తాగేయ్ అన్నా అయితే, పెళ్లి చేసుకొని next day న మొగుడికి చాయ్ ఇచ్చి చంపేసిన భార్య అని paper లో వస్తే. అమ్మో! అమృత ఇప్పుడెలా అనే. అమ్మా అమృత ఊ ఇదిగో ఊ ఇది నీకు, ఇది మా వాడికి ప్రతికించారు ఏంటమ్మా ఆ మా-మావయ్య మీకెందుకు శ్రమ నేను చేసేదాన్ని కదా పర్లేదమ్మా",
    "labeler": "clip-gt-editor",
    "tightening_labeled": true,
    "hook_line": {
-    "text": "అవును ఎందుకింత త్వరగా లేచారు",
-    "start_word": 4,
-    "end_word": 7
+    "text": "పెళ్లి చేసుకొని next day న మొగుడికి చాయ్ ఇచ్చి చంపేసిన భార్య అని paper లో వస్తే.",
+    "start_word": 55,
+    "end_word": 68
    },
    "scores": {
     "hook": 4,
@@ -444,7 +508,7 @@
     "overall": 4.0
    },
    "title": "నాకు చాయ్ పెట్టడానికే కదా లేచావ్? First day నే దొరికిపోయిందా!",
-   "why_it_works": "He thinks she's up early to make him chai; she can't, and pictures 'చాయ్ ఇచ్చి మొగుడిని చంపేసిన భార్య' headlines. Father-in-law brings chai: 'బ్రతికించారు'.",
+   "why_it_works": "Cold open on her panic 'చాయ్ ఇచ్చి చంపేసిన భార్య అని paper లో వస్తే'; he thinks she's up early to make him chai. Father-in-law brings chai: 'బ్రతికించారు'.",
    "category": "humour",
    "content_type": "web_series",
    "clip_purpose": "standalone",
@@ -455,19 +519,30 @@
    ],
    "visual_dependency": "medium",
    "spoiler": false,
-   "confidence": 4,
+   "confidence": 2,
    "time_segments": [
     {
-     "start": 140.792,
+     "start": 173.6,
+     "end": 177.6
+    },
+    {
+     "start": 141.1,
      "end": 196.5
     }
    ],
-   "video_duration": 55.71,
+   "video_duration": 59.4,
    "standalone_risks": [],
-   "edit_notes": [],
+   "edit_notes": [
+    {
+     "type": "cold_open",
+     "after_piece": 0,
+     "reason": "Cold open: her aside 'పెళ్లి చేసుకొని next day న మొగుడికి చాయ్ ఇచ్చి చంపేసిన భార్య అని paper లో వస్తే.' (2:53.6-2:57.6, her alone in the aside close-up)."
+    }
+   ],
    "flags": [],
    "tags": [],
-   "notes": "Starts on the shot change before her question, skipping the 'మీకెందుకండీ ఇవన్నీ' exchange. ASR 'ప్రతికించారు' = 'బ్రతికించారు' (you saved me), a mishearing that hides the punch. Her 2:47-3:00 lines are an aside, alone in a separate shot (frames 170-180), not said to him. Ends after the father's 'పర్లేదమ్మా' on the next shot (her relieved face). The coffee/chai confusion that follows (3:16-3:40) is left out because its speaker turns are unclear in the audio."
+   "notes": "Starts on the shot change before her question, skipping the 'మీకెందుకండీ ఇవన్నీ' exchange. ASR 'ప్రతికించారు' = 'బ్రతికించారు' (you saved me), a mishearing that hides the punch. Her 2:47-3:00 lines are an aside, alone in a separate shot (frames 170-180), not said to him. Ends after the father's 'పర్లేదమ్మా' on the next shot (her relieved face). The coffee/chai confusion that follows (3:16-3:40) is left out because its speaker turns are unclear in the audio. || Round 2: COLD OPEN added; start trimmed 0.3s. Round 1 opened on 'అవును ఎందుకింత త్వరగా లేచారు' (small talk, rated 3/3/3/3 maybe). Now opens on her panicked aside 'పెళ్లి చేసుకొని next day న మొగుడికి చాయ్ ఇచ్చి చంపేసిన భార్య అని paper లో వస్తే.' (4.0s), which states the premise (she can't make chai, day one) and is the clip's funniest line. Alternative lift: 'first day నే దొరికిపోయేలా ఉన్నావు కదా. ఏం చేయాలి?' (3.1s, vaguer). Honest verdict: the cold open should lift the HOOK (3 → 4), but not the payoff/standalone 3s: the rescue (father brings chai, 'బ్రతికించారు', ASR 'ప్రతికించారు') is a relief beat, not a laugh, and it plays in a reaction more than in words. Still a 'maybe'; keep it below the others.",
+   "cold_open": true
   },
   {
    "id": "w08",
@@ -518,16 +593,17 @@
    "confidence": 4,
    "time_segments": [
     {
-     "start": 806.3,
+     "start": 808.0,
      "end": 882.458
     }
    ],
-   "video_duration": 76.16,
+   "video_duration": 74.46,
    "standalone_risks": [],
    "edit_notes": [],
    "flags": [],
    "tags": [],
-   "notes": "Continuous across the night-to-morning transition (13:46-13:54, with his smug reaction and laugh track). 'book అయిపోయాను' is slang for 'I'm caught'. Frames 855-876 cross-cut Mom on the phone with Amrutha opening the boxes. This reveals the mother's 'Idea' from w04 (a minor plot reveal, not the episode twist), so I kept spoiler false; post it after w04. Left out: the 'ఒక్క egg ఏ ఉంది / So talented' follow-up (14:43-15:25), which is weaker."
+   "notes": "Continuous across the night-to-morning transition (13:46-13:54, with his smug reaction and laugh track). 'book అయిపోయాను' is slang for 'I'm caught'. Frames 855-876 cross-cut Mom on the phone with Amrutha opening the boxes. This reveals the mother's 'Idea' from w04 (a minor plot reveal, not the episode twist), so I kept spoiler false; post it after w04. Left out: the 'ఒక్క egg ఏ ఉంది / So talented' follow-up (14:43-15:25), which is weaker. || Round 2: start moved from 806.3 to 808.0 (1.9s lead-in removed); opens on her 'రేపు morning tiffin and lunch ఏం చెయ్యాలి?' and the 'చెయ్యించాలి కదా' slip (rated hook 4). No cold open. Ending unchanged.",
+   "cold_open": false
   },
   {
    "id": "w09",
@@ -577,11 +653,11 @@
    "confidence": 4,
    "time_segments": [
     {
-     "start": 444.875,
+     "start": 445.7,
      "end": 512.167
     }
    ],
-   "video_duration": 67.29,
+   "video_duration": 66.47,
    "standalone_risks": [],
    "edit_notes": [],
    "flags": [
@@ -590,7 +666,8 @@
    "tags": [
     "relatable"
    ],
-   "notes": "Sensitive: mild adult theme (first night, 'night బొమ్మ blockbuster ఆ?'), no explicit content. The founder decides. ASR: 'మే ఇద్దరికీ' = 'మీ ఇద్దరికీ', 'మండపం ఓడకి' = 'మండపం వాడికి'. Ends on 'వీడికి చెప్పినా waste' plus his shrug, before the scene change."
+   "notes": "Sensitive: mild adult theme (first night, 'night బొమ్మ blockbuster ఆ?'), no explicit content. The founder decides. ASR: 'మే ఇద్దరికీ' = 'మీ ఇద్దరికీ', 'మండపం ఓడకి' = 'మండపం వాడికి'. Ends on 'వీడికి చెప్పినా waste' plus his shrug, before the scene change. || Round 2: start moved from 444.875 to 445.7 (1.0s lead-in removed); opens on 'ఏయ్ ఏంటి matter?' then 'night బొమ్మ blockbuster ఆ?' (rated hook 4). No cold open. Ending unchanged.",
+   "cold_open": false
   },
   {
    "id": "w10",
@@ -642,20 +719,27 @@
    "confidence": 3,
    "time_segments": [
     {
-     "start": 288.8,
+     "start": 289.5,
      "end": 357.542
     }
    ],
-   "video_duration": 68.74,
+   "video_duration": 68.04,
    "standalone_risks": [],
    "edit_notes": [],
    "flags": [],
    "tags": [],
-   "notes": "Speakers in the first 15s are unclear. The hero asks 'నాకోసం ఏం వండావు?' (ASR 'వండవు'), and 'తోటకూర పప్పు ఆవకాయ' is either the father listing what he cooked or Amrutha. Frames 290-315 show hero, father and Amrutha at the stove, and the hero gestures to the father on 'ఇది కూడా నువ్వే వండావా'. The 5:19-5:26 silent beat (her panicked face before Mom enters) is kept. Mom carries a red tiffin box (frames 358-364): she brought food. Starts mid-shot (one wide shot 4:36-4:58; the brand-collab lower third is gone by 4:44). Weaker than the others; included for the mother-daughter jab."
+   "notes": "Speakers in the first 15s are unclear. The hero asks 'నాకోసం ఏం వండావు?' (ASR 'వండవు'), and 'తోటకూర పప్పు ఆవకాయ' is either the father listing what he cooked or Amrutha. Frames 290-315 show hero, father and Amrutha at the stove, and the hero gestures to the father on 'ఇది కూడా నువ్వే వండావా'. The 5:19-5:26 silent beat (her panicked face before Mom enters) is kept. Mom carries a red tiffin box (frames 358-364): she brought food. Starts mid-shot (one wide shot 4:36-4:58; the brand-collab lower third is gone by 4:44). Weaker than the others; included for the mother-daughter jab. || Round 2: start moved from 288.8 to 289.5 (1.0s of celebration music removed); opens on 'నాకోసం ఏం వండావు?' (rated hook 4). No cold open. Ending unchanged.",
+   "cold_open": false
   },
   {
    "id": "w11",
    "pieces": [
+    {
+     "start_word": 1118,
+     "end_word": 1127,
+     "start": 1095.444,
+     "end": 1099.924
+    },
     {
      "start_word": 1095,
      "end_word": 1117,
@@ -675,16 +759,16 @@
     "start": 1047.564,
     "end": 1120.804
    },
-   "edited_duration": 41.54,
-   "reordered": false,
-   "n_blocks": 2,
-   "text": "ప్రతిసారి వంటల కోసం అమ్మనేమడుగుతాం. మనం కూడా try చేద్దాం. First easy with try చేద్దాం. ఉమ్ popcorn. two minutes లో అయిపోద్ది. popcorn I am coming. అమ్మే! నాకు తెలియదా ఏంటి నా కూతురు kitchen లోకి వెళితే ఏమవుతుందో ముందు నేను అనాలే ఆ lockdown లో Big Boss లో సీరియల్ లో చూపించే చిడగొట్ట బదులు ఏవంటల program లు చూపించాల్సింది కదా ఇది మరీ బాగుంది. నీకు interest లేకపోతే నేనేం చేస్తాను. అయినా ఇప్పుడేమైందే నువ్వు order పెట్టే chance లేకుండా పొద్దున్నే tea, breakfast మధ్యాహ్నం lunch night కి dinner అన్నీ set చేస్తున్నానుగా. ఇంకా ఏంటి problem",
+   "edited_duration": 46.02,
+   "reordered": true,
+   "n_blocks": 3,
+   "text": "అమ్మే! నాకు తెలియదా ఏంటి నా కూతురు kitchen లోకి వెళితే ఏమవుతుందో ప్రతిసారి వంటల కోసం అమ్మనేమడుగుతాం. మనం కూడా try చేద్దాం. First easy with try చేద్దాం. ఉమ్ popcorn. two minutes లో అయిపోద్ది. popcorn I am coming. అమ్మే! నాకు తెలియదా ఏంటి నా కూతురు kitchen లోకి వెళితే ఏమవుతుందో ముందు నేను అనాలే ఆ lockdown లో Big Boss లో సీరియల్ లో చూపించే చిడగొట్ట బదులు ఏవంటల program లు చూపించాల్సింది కదా ఇది మరీ బాగుంది. నీకు interest లేకపోతే నేనేం చేస్తాను. అయినా ఇప్పుడేమైందే నువ్వు order పెట్టే chance లేకుండా పొద్దున్నే tea, breakfast మధ్యాహ్నం lunch night కి dinner అన్నీ set చేస్తున్నానుగా. ఇంకా ఏంటి problem",
    "labeler": "clip-gt-editor",
    "tightening_labeled": true,
    "hook_line": {
-    "text": "ప్రతిసారి వంటల కోసం అమ్మనేమడుగుతాం.",
-    "start_word": 1095,
-    "end_word": 1098
+    "text": "అమ్మే! నాకు తెలియదా ఏంటి నా కూతురు kitchen లోకి వెళితే ఏమవుతుందో",
+    "start_word": 1118,
+    "end_word": 1127
    },
    "scores": {
     "hook": 3,
@@ -694,7 +778,7 @@
     "overall": 3.3
    },
    "title": "First easy వంట try చేద్దాం… popcorn I am coming!",
-   "why_it_works": "She tries the 'easiest' dish, popcorn; kernels fly, next she's on the phone nursing her cheek. Mom: 'నా కూతురు kitchen లోకి వెళితే ఏమవుతుందో నాకు తెలియదా'.",
+   "why_it_works": "Cold open on the aftermath (ice pack, 'అమ్మే!', mom: 'kitchen లోకి వెళితే ఏమవుతుందో నాకు తెలియదా'); then her 'easiest' dish, popcorn, and the kernels flying.",
    "category": "humour",
    "content_type": "web_series",
    "clip_purpose": "standalone",
@@ -707,7 +791,11 @@
    "confidence": 3,
    "time_segments": [
     {
-     "start": 1045.0,
+     "start": 1095.2,
+     "end": 1100.08
+    },
+    {
+     "start": 1047.3,
      "end": 1066.792
     },
     {
@@ -715,22 +803,34 @@
      "end": 1123.167
     }
    ],
-   "video_duration": 64.29,
+   "video_duration": 66.87,
    "standalone_risks": [],
    "edit_notes": [
     {
-     "type": "skip",
+     "type": "cold_open",
      "after_piece": 0,
-     "reason": "Drops 14s of silent cooking (lighting the stove, stirring, tasting from the ladle; 17:47-18:01, shot change to shot change) and keeps the pour and the kernels flying out of the pot (18:01-18:15)."
+     "reason": "Cold open: Amrutha on the phone with an ice pack to her cheek, 'అమ్మే!', and mom's 'నాకు తెలియదా ఏంటి నా కూతురు kitchen లోకి వెళితే ఏమవుతుందో' (18:15.2-18:20.1, ends on a shot change)."
+    },
+    {
+     "type": "skip",
+     "after_piece": 1,
+     "reason": "Drops 14s of popcorn prep with no dialogue (unchanged from round 1)."
     }
    ],
    "flags": [],
    "tags": [],
-   "notes": "Visual gag: frames 1089-1093 show kernels popping out of the uncovered pot, and 1094-1121 her on the phone holding a blue pack/cloth to her cheek. I read it as an ice pack (she got hit), but I'm not certain. ASR: 'First easy with' = 'First easy ది'; 'చిడగొట్ట' is unclear (probably 'చెత్త'). The 'lockdown లో Bigg Boss, serials కి బదులు వంటల programs చూపించాల్సింది' line is a decent jab. Ends on the laugh after Mom's 'ఇంకా ఏంటి problem' and Amrutha's look, before he walks in."
+   "notes": "Visual gag: frames 1089-1093 show kernels popping out of the uncovered pot, and 1094-1121 her on the phone holding a blue pack/cloth to her cheek. I read it as an ice pack (she got hit), but I'm not certain. ASR: 'First easy with' = 'First easy ది'; 'చిడగొట్ట' is unclear (probably 'చెత్త'). The 'lockdown లో Bigg Boss, serials కి బదులు వంటల programs చూపించాల్సింది' line is a decent jab. Ends on the laugh after Mom's 'ఇంకా ఏంటి problem' and Amrutha's look, before he walks in. || Round 2: COLD OPEN added. Round 1 started 2.6s before her first word and on the tail of the office scene, then the plain setup 'ప్రతిసారి వంటల కోసం అమ్మనేమడుగుతాం' (rated hook 3). Now opens on the aftermath: her crying 'అమ్మే!' with the ice pack and mom's 'నాకు తెలియదా ఏంటి నా కూతురు kitchen లోకి వెళితే ఏమవుతుందో' (4.9s, a bit over the 2-4s target because mom's line can't be cut). It raises 'what happened?' without showing the pot explode, which stays the visual punch. Main stretch now starts 0.26s before 'ప్రతిసారి'. Ending unchanged.",
+   "cold_open": true
   },
   {
    "id": "w12",
    "pieces": [
+    {
+     "start_word": 616,
+     "end_word": 626,
+     "start": 547.2,
+     "end": 552.02
+    },
     {
      "start_word": 579,
      "end_word": 631,
@@ -744,16 +844,16 @@
     "start": 521.78,
     "end": 556.74
    },
-   "edited_duration": 34.96,
-   "reordered": false,
-   "n_blocks": 1,
-   "text": "అరే కూర్చో husband అంటే respect ఉమ్ అవును office లో మీ day ఎలా గడిచింది? చ్ ఎప్పట్లానే అయింది. అవును ఎందుకు నీ day ఎలా అయింది boring ఆ? అలా ఏం లేదు. అవును మా నాన్న ఎక్కడ ఇంకా work నుంచి రాలే. రాలేదు. ఉమ్ nail polish వేస్తున్నావా? ఉమ్ సరే నేను వెయ్యనా? వద్దు వద్దు పర్లేదు వద్దు. అంత వద్దు. అరే! ఏం పర్లేదు.",
+   "edited_duration": 39.78,
+   "reordered": true,
+   "n_blocks": 2,
+   "text": "nail polish వేస్తున్నావా? ఉమ్ సరే నేను వెయ్యనా? వద్దు వద్దు పర్లేదు వద్దు. అరే కూర్చో husband అంటే respect ఉమ్ అవును office లో మీ day ఎలా గడిచింది? చ్ ఎప్పట్లానే అయింది. అవును ఎందుకు నీ day ఎలా అయింది boring ఆ? అలా ఏం లేదు. అవును మా నాన్న ఎక్కడ ఇంకా work నుంచి రాలే. రాలేదు. ఉమ్ nail polish వేస్తున్నావా? ఉమ్ సరే నేను వెయ్యనా? వద్దు వద్దు పర్లేదు వద్దు. అంత వద్దు. అరే! ఏం పర్లేదు.",
    "labeler": "clip-gt-editor",
    "tightening_labeled": true,
    "hook_line": {
-    "text": "అరే కూర్చో",
-    "start_word": 579,
-    "end_word": 580
+    "text": "nail polish వేస్తున్నావా? ఉమ్ సరే నేను వెయ్యనా? వద్దు వద్దు పర్లేదు వద్దు.",
+    "start_word": 616,
+    "end_word": 626
    },
    "scores": {
     "hook": 3,
@@ -763,7 +863,7 @@
     "overall": 3.4
    },
    "title": "Husband అంటే respect… nail polish నేను వెయ్యనా?",
-   "why_it_works": "'husband అంటే respect' tease, awkward newlywed small talk, then he paints her toenails: 30s of silent close-ups and shy smiles. Soft-romance beat.",
+   "why_it_works": "Cold open on 'nail polish వేస్తున్నావా? నేను వెయ్యనా?' / her shy 'వద్దు'; then the 'husband అంటే respect' tease and 30s of him painting her toenails. Soft romance.",
    "category": "emotional",
    "content_type": "web_series",
    "clip_purpose": "standalone",
@@ -776,16 +876,27 @@
    "confidence": 3,
    "time_segments": [
     {
-     "start": 519.0,
+     "start": 547.05,
+     "end": 552.1
+    },
+    {
+     "start": 521.5,
      "end": 589.5
     }
    ],
-   "video_duration": 70.5,
+   "video_duration": 73.05,
    "standalone_risks": [],
-   "edit_notes": [],
+   "edit_notes": [
+    {
+     "type": "cold_open",
+     "after_piece": 0,
+     "reason": "Cold open: 'nail polish వేస్తున్నావా? ఉమ్. సరే నేను వెయ్యనా?' / 'వద్దు వద్దు పర్లేదు వద్దు.' (9:07.0-9:12.1), then the scene from his 'అరే కూర్చో'."
+    }
+   ],
    "flags": [],
    "tags": [],
-   "notes": "The second half (9:16-9:49) has no dialogue: close-ups of him painting her toenails (frames 557-585) and her smile, ending just before the dissolve to dinner. Starts mid-shot as he reaches her (one wide shot 8:34-8:47). 'మా నాన్న ఎక్కడ' small talk is inside one static wide shot, so cutting it would show a visible jump; kept it. Depends entirely on music and acting; good for a soft-romance Reel, weak as a hook."
+   "notes": "The second half (9:16-9:49) has no dialogue: close-ups of him painting her toenails (frames 557-585) and her smile, ending just before the dissolve to dinner. Starts mid-shot as he reaches her (one wide shot 8:34-8:47). 'మా నాన్న ఎక్కడ' small talk is inside one static wide shot, so cutting it would show a visible jump; kept it. Depends entirely on music and acting; good for a soft-romance Reel, weak as a hook. || Round 2: COLD OPEN added. Round 1 started 2.8s early and opened on 'అరే కూర్చో, husband అంటే respect' and office small talk (rated hook 3). Now opens on him offering 'nail polish వేస్తున్నావా? సరే నేను వెయ్యనా?' and her shy 'వద్దు వద్దు పర్లేదు వద్దు.' (5.0s; the 2.6s 'ఉమ్' hum before it is left out). It repeats in place ~25s later; the small talk stays because it sits in one static wide shot. Main stretch now starts 0.28s before 'అరే'. Ending unchanged.",
+   "cold_open": true
   }
  ]
 }
