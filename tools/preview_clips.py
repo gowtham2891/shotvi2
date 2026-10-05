@@ -177,7 +177,9 @@ def main():
         page.append({"video_id": vid, "n_total": len(doc["proposals"]), "clips": []})
         for c in sorted(doc["proposals"], key=lambda c: c["rank"])[:args.top]:
             out = out_dir / f"{c['rank']:02d}_{c['id']}.mp4"
-            segs = padded_segments(c["pieces"], words)
+            # web-series GT clips carry time_segments (may include silent visual beats): play those as is
+            segs = ([(t["start"], t["end"]) for t in c["time_segments"]] if c.get("time_segments")
+                    else padded_segments(c["pieces"], words))
             if not (out.exists() and args.skip_existing):
                 render(vdir / f"{vid}.mp4", segs, out)
             meta, lines = clip_meta(c), transcript_lines(c, segs, words, labels)
