@@ -127,6 +127,13 @@ def _grounding(cand: dict) -> dict | None:
 
 
 def _media_part(m: dict) -> dict:
+    """``{file_uri, ...}`` -> a Files API part (with optional video clipping);
+    ``{data, mime_type}`` -> an inline part (``data`` = base64 str, for short audio snippets; < 20 MB per request);
+    ``{text}`` -> a text part (labels interleaved between media parts)."""
+    if "data" in m:
+        return {"inline_data": {"mime_type": m["mime_type"], "data": m["data"]}}
+    if "text" in m and "file_uri" not in m:
+        return {"text": m["text"]}
     part = {"file_data": {"mime_type": m.get("mime_type", "video/mp4"), "file_uri": m["file_uri"]}}
     vm = {}
     if m.get("start_s") is not None:

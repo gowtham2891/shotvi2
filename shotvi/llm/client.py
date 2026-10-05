@@ -36,6 +36,15 @@ def _load_provider(name: str) -> Provider:
     raise LLMError(f"unknown LLM provider {name!r} (implemented: gemini; add others in shotvi/llm/)")
 
 
+def _media_key(m: dict) -> dict:
+    """Cache identity of one media part: everything but the expiring upload uri and the inline bytes. Inline bytes
+    without a caller-supplied "key" enter by their hash, so two different snippets never share a cache entry."""
+    k = {a: b for a, b in m.items() if a not in ("file_uri", "data")}
+    if "data" in m and "key" not in m:
+        k["data_sha"] = hashlib.sha256(str(m["data"]).encode()).hexdigest()
+    return k
+
+
 PROVIDERS: dict[str, Provider] = {}
 _prov_lock = threading.Lock()
 
@@ -186,9 +195,8 @@ class LLMClient:
         for attempt in range(self.schema_retries + 1):
             # attempt > 0 uses a salted key so a cached-but-invalid answer is never replayed
             # media enters the cache key by its stable "key" (file content id + offsets + fps), never by the
-            # expiring upload uri
-            mkey = json.dumps([{k: v for k, v in m.items() if k not in ("file_uri",)} for m in media or []],
-                              sort_keys=True) if media else ""
+            # expiring upload uri; inline media ("data") enter by their "key" too, never by the bytes
+            mkey = json.dumps([_media_key(m) for m in media or []], sort_keys=True) if media else ""
             key = self.cache_key(spec, system, prompt + mkey, schema,
                                  salt="" if attempt == 0 else f"retry{attempt}")
             hit = self._cache_get(spec, key)
