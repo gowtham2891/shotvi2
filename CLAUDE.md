@@ -11,10 +11,12 @@ decision must generalize to any Telugu podcast a creator uploads.
 - Clip purpose differs by type: podcast/comedy clips must stand alone (payoff inside the clip); web-series clips are
   either `standalone` beats or `promo` clips that end on a cliffhanger to pull viewers to the full episode (no
   spoilers).
-- **Web series are cut CONTINUOUSLY (founder, 2026-10-05):** one unbroken stretch per clip (start → end, padded
-  and snapped to shot changes), no word-level jump cuts inside acted scenes. A clip may include non-dialogue
-  visual beats (looks, gestures, music) because boundaries are times, not only word ranges. Podcasts keep
-  flow-based word-level tightening.
+- **Web series: mostly continuous, with a few chunk-level trims (founder, "option 2", 2026-10-05).** A clip is
+  one stretch of the episode with at most ~3 internal cuts, each removing a WHOLE unnecessary chunk (side
+  conversation, dead air, song bridge, repeated line). Cuts land between lines, ideally on a shot change; never
+  trim words inside an actor's line (acting timing, picture and music would jump). Boundaries are TIMES (padded,
+  snapped to shot changes), so a clip can include non-dialogue visual beats (looks, gestures, music).
+  Podcasts keep flow-based word-level tightening.
 - **The podcast pipeline is preserved** at git tag `podcast-pipeline-v1`; web-series work must not break it.
 - **Ground truth for these types comes from the `clip-gt-editor` agent** reading the whole episode (plus keyframes
   for web series), reviewed by the founder. The channel's own published Shorts/Reels are NOT used as ground truth.

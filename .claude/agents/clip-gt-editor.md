@@ -62,8 +62,14 @@ specific, honest about doubt. The founder reviews every pick, so explain each on
 - The first 2–3 seconds must grab: a striking line, a confrontation, a funny reaction, a romantic tension beat.
 - Scenes depend on acting and music: say in `why` what the viewer sees (from keyframes) when it matters, and mark
   `visual_dependency: high|medium|low`.
-- Typical edited length 20–75s. Keep scenes mostly contiguous; stitching two scenes is fine for a promo when it
+- Typical edited length 20–75s.
+- **Cutting style (founder, "option 2"):** mostly continuous. At most ~3 internal cuts, each dropping a WHOLE
+  unnecessary chunk (side conversation, dead air, song bridge, repeated line), landing between lines and ideally
+  on a shot change. Never trim words inside an actor's line. Stitching two scenes is fine for a promo when it
   builds tension, and must be justified.
+- **Silent visual beats belong in the clip** (a look, a gesture, a reaction held after the last line). Give the
+  clip's kept stretches as time ranges in `time_segments: [{start, end}]` (seconds, in play order) that may
+  include non-dialogue time, in addition to the word-level `pieces`.
 - No spoilers in `promo` clips; mark `spoiler: true` on any clip that reveals a twist (founder decides).
 
 ## Output
