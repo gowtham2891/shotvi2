@@ -67,6 +67,18 @@ class GapSpan(unittest.TestCase):
         self.assertTrue(g["capped"])
         self.assertLessEqual(g["end"], 54.0 + MAX_BEAT_S)
 
+    def test_dialogue_lines_around_a_song_capped_even_with_shot_lines(self):
+        g = ix(True).gap_span("L0001", "L0003")                # model ignored the shot lines
+        self.assertTrue(g["capped"])
+
+    def test_beat_spanning_dialogue_is_invalid(self):
+        x = LineIndex(lines=[sp(i, 10.0 * i, 10.0 * i + 2) for i in range(1, 8)], cuts=CUTS)
+        self.assertIn("invalid", x.gap_span("L0001", "L0007"))
+        c = convert(x, {"start": {"at": {"line": "L0001"}},
+                        "end": {"at": {"line": "", "after_line": "L0001", "before_line": "L0007"}},
+                        "visual_beats_to_include": []})
+        self.assertIn("invalid", c["end"])
+
     def test_beat_into_long_event_is_capped(self):
         g = ix().gap_span("L0001", "L0002")                    # before the song: reached 15 s into it
         self.assertTrue(g["capped"])

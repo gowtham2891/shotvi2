@@ -243,7 +243,9 @@ def convert(ix, obj: dict) -> dict:
             conv[k] = {"time": round(r["start"] if k == "start" else r["end"], 2)}
             continue
         gap = ix.gap_span(r["id"], r["id"]) if r else ix.gap_span(at.get("after_line"), at.get("before_line"))
-        if gap:
+        if gap and "invalid" in gap:
+            conv[k] = {"invalid": gap["invalid"]}
+        elif gap:
             conv[k] = {"time": gap["start"] if k == "start" else gap["end"], "gap": gap}
     for b in obj.get("visual_beats_to_include", []):
         b["time"] = ix.gap_span(b.get("after_line"), b.get("before_line"))

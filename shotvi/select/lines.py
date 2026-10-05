@@ -11,7 +11,8 @@ silence) is also listed shot by shot as ``S0131 [8:08.5] (shot, no dialogue)``, 
 model can place a silent beat on the exact shots instead of "somewhere inside a 44 s song line".
 Times are snapped to shot cuts (runs/video/<id>/shots.json) when a cut lies within ``SNAP_S``. A span is imprecise
 without shot lines, or when an edge is a long event line or missing; it is capped at ``MAX_BEAT_S`` (ending on the last
-shot cut inside the cap) and flagged ``capped`` with the ``full`` span kept for the reviewer.
+shot cut inside the cap) and flagged ``capped`` with the ``full`` span kept for the reviewer. A "silent" beat that
+spans more than ``MAX_TALK_LINES`` dialogue lines is returned as ``{"invalid": reason}``.
 """
 from __future__ import annotations
 
@@ -24,6 +25,7 @@ SPLIT_S = 6.0       # silent stretches longer than this get shot lines
 MAX_BEAT_S = 12.0   # cap on an imprecise beat / hold
 MIN_HOLD_S = 2.0    # a capped span ends on a shot cut at least this far in
 MIN_SHOT_S = 1.0    # shot lines shorter than this merge into a neighbour
+MAX_TALK_LINES = 2  # a "silent" beat containing more dialogue lines than this is rejected
 
 
 def fmt(t: float) -> str:
@@ -133,11 +135,18 @@ class LineIndex:
             # an audio-event line (music, laughter) can span the silent beat itself: the beat then covers the event
             t0 = (a["start"] if a["kind"] == "event" else a["end"]) if a else max(0.0, b["start"] - hold_s)
             t1 = (min(b["end"], b["start"] + 15.0) if b["kind"] == "event" else b["start"]) if b else a["end"] + hold_s
-            # without shot lines the model had no anchor inside a long silent stretch, so a long span is a guess
-            precise = self.shot_lines and all(r is not None and (r["kind"] != "event" or r["end"] - r["start"]
-                                                                 <= SPLIT_S) for r in (a, b))
+            # a long span is a guess unless the model placed it on shot lines (it can ignore them and answer with
+            # the dialogue lines around a whole song), or bounded it by a long event line / nothing
+            precise = (any(r is not None and r["kind"] == "shot" for r in (a, b))
+                       and all(r is not None and (r["kind"] != "event" or r["end"] - r["start"] <= SPLIT_S)
+                               for r in (a, b)))
         if t1 < t0:
             t0, t1 = t1, t0
+        talk = [r["id"] for r in self.lines if r["kind"] == "speech" and r["start"] >= t0 - 0.05
+                and r["end"] <= t1 + 0.05]
+        if len(talk) > MAX_TALK_LINES:   # not a silent beat: the model bridged two distant lines
+            return {"invalid": f"spans {len(talk)} dialogue lines ({fmt(t0)}-{fmt(t1)})",
+                    "raw": [round(t0, 2), round(t1, 2)]}
         full = None
         if not precise and t1 - t0 > MAX_BEAT_S:
             full = [round(t0, 2), round(t1, 2)]
