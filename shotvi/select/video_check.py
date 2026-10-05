@@ -3,6 +3,8 @@
 usage:
   python -m shotvi.select.video_check map   <video_id> [--budget-usd 0.15]
   python -m shotvi.select.video_check clips <video_id> [--only w03,w05] [--fps 1] [--budget-usd 0.25]
+  python -m shotvi.select.video_check clips2 <video_id> --arm A [--shot-lines] [--only w03] [--budget-usd 0.03]
+  python -m shotvi.select.video_check reconvert <video_id> <results.json> [--shot-lines]   (free: line ids -> times)
 
 map:   one call over the full episode (low media resolution, 1 fps): scenes, visual beats, spans.
 clips: one call per gold clip; windows = the clip's pieces merged across gaps <= MERGE_GAP_S, padded -1 s / +8 s
@@ -202,10 +204,10 @@ def clip2_windows(pieces):
     return out
 
 
-def clip2_prompt(ix, clip, wins, memory_md):
+def clip2_prompt(ix, clip, wins, memory_md, prompt_name="video_clip"):
     """(system, user) for arm A (memory_md None) or arm B (identical plus one marked memory block)."""
     from .lines import render
-    p = load_prompt("video_clip")
+    p = load_prompt(prompt_name)
     c0, c1 = clip["pieces"][0]["start"], clip["pieces"][-1]["end"]
     tags, parts = {}, []
     for w0, w1 in wins:
@@ -231,6 +233,44 @@ def clip2_prompt(ix, clip, wins, memory_md):
     return p.system, p.render(memory_block=block, clip_id=clip["id"], title=clip.get("title", ""), lines=lines_txt)
 
 
+def convert(ix, obj: dict) -> dict:
+    """Model positions (line ids only) -> times. An end on a long event line goes through gap_span so it is capped."""
+    conv = {}
+    for k in ("start", "end"):
+        at = obj[k]["at"]
+        r = ix.by_id.get(ix.norm(at.get("line"))) if at.get("line") else None
+        if r and (k == "start" or r["kind"] != "event"):
+            conv[k] = {"time": round(r["start"] if k == "start" else r["end"], 2)}
+            continue
+        gap = ix.gap_span(r["id"], r["id"]) if r else ix.gap_span(at.get("after_line"), at.get("before_line"))
+        if gap:
+            conv[k] = {"time": gap["start"] if k == "start" else gap["end"], "gap": gap}
+    for b in obj.get("visual_beats_to_include", []):
+        b["time"] = ix.gap_span(b.get("after_line"), b.get("before_line"))
+    return conv
+
+
+def main_reconvert(argv=None):
+    from .lines import LineIndex
+    ap = argparse.ArgumentParser()
+    ap.add_argument("video_id")
+    ap.add_argument("results")
+    ap.add_argument("--shot-lines", action="store_true")
+    a = ap.parse_args(argv)
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8")
+    ix = LineIndex(a.video_id, shot_lines=a.shot_lines)
+    path = Path(a.results)
+    res = json.loads(path.read_text(encoding="utf-8"))
+    for cid, r in res.items():
+        old = {k: v.get("time") for k, v in r.get("converted", {}).items()}
+        r["converted"] = convert(ix, r)
+        new = {k: v.get("time") for k, v in r["converted"].items()}
+        caps = [b["time"]["label"] for b in r.get("visual_beats_to_include", []) if (b.get("time") or {}).get("capped")]
+        print(f"{cid}: {old} -> {new}" + (f" | capped beats {caps}" if caps else ""))
+    path.write_text(json.dumps(res, ensure_ascii=False, indent=1), encoding="utf-8")
+
+
 def main_clips2(argv=None):
     import difflib
     ap = argparse.ArgumentParser()
@@ -240,6 +280,8 @@ def main_clips2(argv=None):
     ap.add_argument("--fps", type=float, default=1.0)
     ap.add_argument("--budget-usd", type=float, default=0.03)
     ap.add_argument("--diff-only", action="store_true", help="print the A-vs-B prompt diff and exit (free)")
+    ap.add_argument("--shot-lines", action="store_true",
+                    help="list long silent stretches shot by shot (prompt video_clip_shots, output clips_v3_<arm>)")
     a = ap.parse_args(argv)
     load_dotenv()
     if hasattr(sys.stdout, "reconfigure"):
@@ -247,7 +289,8 @@ def main_clips2(argv=None):
     from .lines import LineIndex
     vid = a.video_id
     out = Path("runs/video") / vid
-    ix = LineIndex(vid)
+    ix = LineIndex(vid, shot_lines=a.shot_lines)
+    pname, ver = ("video_clip_shots", "v3") if a.shot_lines else ("video_clip", "v2")
     gold = json.loads(Path(f"data/gold/{vid}.json").read_text(encoding="utf-8"))
     mem_md = (out / "memory.md").read_text(encoding="utf-8")
     only = set(a.only.split(",")) if a.only else None
@@ -255,8 +298,8 @@ def main_clips2(argv=None):
     if a.diff_only:
         c = clips[0]
         wins = clip2_windows(c["pieces"])
-        sa, ua = clip2_prompt(ix, c, wins, None)
-        sb, ub = clip2_prompt(ix, c, wins, mem_md)
+        sa, ua = clip2_prompt(ix, c, wins, None, pname)
+        sb, ub = clip2_prompt(ix, c, wins, mem_md, pname)
         diff = list(difflib.unified_diff(ua.splitlines(), ub.splitlines(), lineterm="", n=1))
         added = [l for l in diff if l.startswith("+") and not l.startswith("+++")]
         removed = [l for l in diff if l.startswith("-") and not l.startswith("---")]
@@ -268,26 +311,16 @@ def main_clips2(argv=None):
     ledger = Ledger(max_usd=a.budget_usd)
     llm = LLMClient(ledger, cache_dir="runs/cache")
     spec = ModelSpec("gemini", "gemini-3.8-flash", {"thinking_level": "low"})
-    resf = out / f"clips_v2_{a.arm}.json"
+    resf = out / f"clips_{ver}_{a.arm}.json"
     results = json.loads(resf.read_text(encoding="utf-8")) if resf.exists() else {}
     for c in clips:
         wins = clip2_windows(c["pieces"])
-        system, user = clip2_prompt(ix, c, wins, mem_md if a.arm == "B" else None)
+        system, user = clip2_prompt(ix, c, wins, mem_md if a.arm == "B" else None, pname)
         media = [{"file_uri": f["uri"], "mime_type": "video/mp4", "key": f"{vid}.mp4:{f['size']}",
                   "start_s": round(s0, 2), "end_s": round(s1, 2), "fps": a.fps} for s0, s1 in wins]
-        obj, raw = llm.generate_json("video_clip_v2", spec, system, user, CLIP2_SCHEMA, media=media, want_raw=True,
+        obj, raw = llm.generate_json(f"video_clip_{ver}", spec, system, user, CLIP2_SCHEMA, media=media, want_raw=True,
                                      meta={"video": vid, "clip": c["id"], "arm": a.arm})
-        conv = {}
-        for k in ("start", "end"):
-            at = obj[k]["at"]
-            sp = ix.line_span(at.get("line")) if at.get("line") else None
-            gap = None if sp else ix.gap_span(at.get("after_line"), at.get("before_line"))
-            if sp:
-                conv[k] = {"time": round(sp[0] if k == "start" else sp[1], 2)}
-            elif gap:
-                conv[k] = {"time": gap["start"] if k == "start" else gap["end"], "gap": gap}
-        for b in obj.get("visual_beats_to_include", []):
-            b["time"] = ix.gap_span(b.get("after_line"), b.get("before_line"))
+        conv = convert(ix, obj)
         results[c["id"]] = {"windows": wins, "fps": a.fps, "usage": {
             "input": raw.input_tokens, "cached": raw.cached_tokens, "output": raw.output_tokens + raw.thought_tokens,
             "modalities": raw.prompt_modalities}, "converted": conv, **obj}
@@ -299,5 +332,7 @@ def main_clips2(argv=None):
 if __name__ == "__main__":
     if len(sys.argv) > 1 and sys.argv[1] == "clips2":
         main_clips2(sys.argv[2:])
+    elif len(sys.argv) > 1 and sys.argv[1] == "reconvert":
+        main_reconvert(sys.argv[2:])
     else:
         main()
