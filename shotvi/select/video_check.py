@@ -157,5 +157,147 @@ def main(argv=None):
               f"out {raw.output_tokens + raw.thought_tokens} | run ${ledger.summary()['usd']:.4f}")
 
 
+# ------------------------------------------------------------------ clip check v2: line ids only, wide windows
+POS = {"type": "object", "properties": {
+    "line": {"type": "string", "description": "a line id, or '' when the position is between two lines"},
+    "after_line": {"type": "string"}, "before_line": {"type": "string"}},
+    "required": ["line", "after_line", "before_line"]}
+CLIP2_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "start": {"type": "object", "properties": {
+            "verdict": {"type": "string", "enum": ["ok", "too_early", "too_late"]}, "at": POS,
+            "why": {"type": "string"}}, "required": ["verdict", "at", "why"]},
+        "end": {"type": "object", "properties": {
+            "verdict": {"type": "string", "enum": ["ok", "too_early", "too_late"]}, "at": POS,
+            "why": {"type": "string"}}, "required": ["verdict", "at", "why"]},
+        "visual_beats_to_include": {"type": "array", "items": {"type": "object", "properties": {
+            "after_line": {"type": "string"}, "before_line": {"type": "string"}, "what": {"type": "string"},
+            "why": {"type": "string"}}, "required": ["after_line", "before_line", "what", "why"]}},
+        "reaction": {"type": "object", "properties": {
+            "after_line": {"type": "string"}, "what": {"type": "string"}}, "required": ["after_line", "what"]},
+        "clean_edges": {"type": "object", "properties": {
+            "start": {"type": "boolean"}, "end": {"type": "boolean"}, "note": {"type": "string"}},
+            "required": ["start", "end", "note"]},
+    },
+    "required": ["start", "end", "visual_beats_to_include", "reaction", "clean_edges"],
+}
+BEFORE_S, AFTER_S, INNER_PAD_S = 40.0, 20.0, 5.0
+
+
+def clip2_windows(pieces):
+    """Blocks = pieces merged across gaps <= MERGE_GAP_S. The first window starts 40 s before the clip and the last
+    ends 20 s after it (so a late start or an early end can be judged); inner block edges get 5 s."""
+    ps = sorted((p["start"], p["end"]) for p in pieces)
+    blocks = [list(ps[0])]
+    for a, b in ps[1:]:
+        if a - blocks[-1][1] <= MERGE_GAP_S:
+            blocks[-1][1] = max(blocks[-1][1], b)
+        else:
+            blocks.append([a, b])
+    out = []
+    for k, (a, b) in enumerate(blocks):
+        out.append((max(0.0, a - (BEFORE_S if k == 0 else INNER_PAD_S)),
+                    b + (AFTER_S if k == len(blocks) - 1 else INNER_PAD_S)))
+    return out
+
+
+def clip2_prompt(ix, clip, wins, memory_md):
+    """(system, user) for arm A (memory_md None) or arm B (identical plus one marked memory block)."""
+    from .lines import render
+    p = load_prompt("video_clip")
+    c0, c1 = clip["pieces"][0]["start"], clip["pieces"][-1]["end"]
+    tags, parts = {}, []
+    for w0, w1 in wins:
+        cur = []
+        for r in ix.in_range(w0, w1):
+            if r["id"] in tags:
+                continue
+            mid = (r["start"] + r["end"]) / 2
+            if mid < c0:
+                tags[r["id"]] = "BEFORE CLIP"
+            elif mid > c1:
+                tags[r["id"]] = "AFTER CLIP"
+            elif any(q["start"] - 0.05 <= mid <= q["end"] + 0.05 for q in clip["pieces"]):
+                tags[r["id"]] = "IN CLIP"
+            else:
+                tags[r["id"]] = "CUT"
+            cur.append(r)
+        if cur:
+            parts.append(render(cur, tags))
+    lines_txt = "\n... [next video window] ...\n".join(parts)
+    block = ("EPISODE MEMORY (what the editor knows from watching the whole episode; line ids refer to the same "
+             "transcript):\n<memory>\n" + memory_md.strip() + "\n</memory>\n") if memory_md else ""
+    return p.system, p.render(memory_block=block, clip_id=clip["id"], title=clip.get("title", ""), lines=lines_txt)
+
+
+def main_clips2(argv=None):
+    import difflib
+    ap = argparse.ArgumentParser()
+    ap.add_argument("video_id")
+    ap.add_argument("--arm", choices=["A", "B"], required=True)
+    ap.add_argument("--only", default=None)
+    ap.add_argument("--fps", type=float, default=1.0)
+    ap.add_argument("--budget-usd", type=float, default=0.03)
+    ap.add_argument("--diff-only", action="store_true", help="print the A-vs-B prompt diff and exit (free)")
+    a = ap.parse_args(argv)
+    load_dotenv()
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8")
+    from .lines import LineIndex
+    vid = a.video_id
+    out = Path("runs/video") / vid
+    ix = LineIndex(vid)
+    gold = json.loads(Path(f"data/gold/{vid}.json").read_text(encoding="utf-8"))
+    mem_md = (out / "memory.md").read_text(encoding="utf-8")
+    only = set(a.only.split(",")) if a.only else None
+    clips = [c for c in gold["clips"] if not only or c["id"] in only]
+    if a.diff_only:
+        c = clips[0]
+        wins = clip2_windows(c["pieces"])
+        sa, ua = clip2_prompt(ix, c, wins, None)
+        sb, ub = clip2_prompt(ix, c, wins, mem_md)
+        diff = list(difflib.unified_diff(ua.splitlines(), ub.splitlines(), lineterm="", n=1))
+        added = [l for l in diff if l.startswith("+") and not l.startswith("+++")]
+        removed = [l for l in diff if l.startswith("-") and not l.startswith("---")]
+        print("system identical:", sa == sb, "| windows:", [(round(x), round(y)) for x, y in wins])
+        print("\n".join(diff[:6]))
+        print(f"... {len(added)} added lines (the memory block), {len(removed)} removed lines")
+        return
+    f = upload_file(f"scribe_dataset/{vid}/{vid}.mp4")
+    ledger = Ledger(max_usd=a.budget_usd)
+    llm = LLMClient(ledger, cache_dir="runs/cache")
+    spec = ModelSpec("gemini", "gemini-3.8-flash", {"thinking_level": "low"})
+    resf = out / f"clips_v2_{a.arm}.json"
+    results = json.loads(resf.read_text(encoding="utf-8")) if resf.exists() else {}
+    for c in clips:
+        wins = clip2_windows(c["pieces"])
+        system, user = clip2_prompt(ix, c, wins, mem_md if a.arm == "B" else None)
+        media = [{"file_uri": f["uri"], "mime_type": "video/mp4", "key": f"{vid}.mp4:{f['size']}",
+                  "start_s": round(s0, 2), "end_s": round(s1, 2), "fps": a.fps} for s0, s1 in wins]
+        obj, raw = llm.generate_json("video_clip_v2", spec, system, user, CLIP2_SCHEMA, media=media, want_raw=True,
+                                     meta={"video": vid, "clip": c["id"], "arm": a.arm})
+        conv = {}
+        for k in ("start", "end"):
+            at = obj[k]["at"]
+            sp = ix.line_span(at.get("line")) if at.get("line") else None
+            gap = None if sp else ix.gap_span(at.get("after_line"), at.get("before_line"))
+            if sp:
+                conv[k] = {"time": round(sp[0] if k == "start" else sp[1], 2)}
+            elif gap:
+                conv[k] = {"time": gap["start"] if k == "start" else gap["end"], "gap": gap}
+        for b in obj.get("visual_beats_to_include", []):
+            b["time"] = ix.gap_span(b.get("after_line"), b.get("before_line"))
+        results[c["id"]] = {"windows": wins, "fps": a.fps, "usage": {
+            "input": raw.input_tokens, "cached": raw.cached_tokens, "output": raw.output_tokens + raw.thought_tokens,
+            "modalities": raw.prompt_modalities}, "converted": conv, **obj}
+        resf.write_text(json.dumps(results, ensure_ascii=False, indent=1), encoding="utf-8")
+        print(f"{c['id']} [{a.arm}]: in {raw.input_tokens} cached {raw.cached_tokens} out "
+              f"{raw.output_tokens + raw.thought_tokens} | run ${ledger.summary()['usd']:.4f}")
+
+
 if __name__ == "__main__":
-    main()
+    if len(sys.argv) > 1 and sys.argv[1] == "clips2":
+        main_clips2(sys.argv[2:])
+    else:
+        main()
