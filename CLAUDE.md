@@ -17,6 +17,11 @@ decision must generalize to any Telugu podcast a creator uploads.
   trim words inside an actor's line (acting timing, picture and music would jump). Boundaries are TIMES (padded,
   snapped to shot changes), so a clip can include non-dialogue visual beats (looks, gestures, music).
   Podcasts keep flow-based word-level tightening.
+- **Web-series openings: cold open when needed (founder, 2026-10-05).** First GT round: endings rated well (payoff
+  4.0–4.4) but hooks weak (3.3–3.4). Clips must start on the first spoken word (no music/silence lead-in, ≤0.3 s
+  pad); silent beats belong inside or at the end, never as the opener. If the opening line is setup or small talk,
+  lift ONE 2–4 s strong moment from inside the clip (punchline line or reaction) to the front, then play the scene
+  from its setup; don't drop setup the payoff needs. Don't stitch scenes far apart (a 15-min stitch rated 1/5).
 - **The podcast pipeline is preserved** at git tag `podcast-pipeline-v1`; web-series work must not break it.
 - **Ground truth for these types comes from the `clip-gt-editor` agent** reading the whole episode (plus keyframes
   for web series), reviewed by the founder. The channel's own published Shorts/Reels are NOT used as ground truth.

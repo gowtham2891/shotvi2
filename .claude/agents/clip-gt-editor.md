@@ -60,6 +60,20 @@ specific, honest about doubt. The founder reviews every pick, so explain each on
   2. `standalone`: a self-contained romantic, comedic or emotional beat that works alone (a sharp dialogue
      exchange, a funny scene, a relatable moment) and makes people curious about the characters.
 - The first 2–3 seconds must grab: a striking line, a confrontation, a funny reaction, a romantic tension beat.
+- **Openings (founder, 2026-10-05; round 1: endings rated 4.0–4.4, hooks only 3.3–3.4):**
+  - Start ON the first spoken word (≤0.3 s pad). Never open on music, silence or an establishing shot: the
+    founder found those openings don't hook. Silent beats go inside the clip or at its end, not first.
+  - Judge the opening line honestly: small talk or plain setup ("ఏంటి ఈరోజు office నుంచి త్వరగా వచ్చారు")
+    rated 3; a punchy question or line ("ఏరా ఆ అమ్మాయి అంత నచ్చిందా?") rated 4.
+  - If the opening line is weak, **cold open**: lift ONE 2–4 s moment from inside the clip (the punchline line, or
+    a strong reaction) to the very front, then play the scene from its setup. It may repeat later in place. Put it
+    first in `time_segments` and first in `pieces` (cut on line boundaries). Don't drop setup the payoff needs to
+    make the start punchier. For a `promo`, the lifted moment must not give away the cliffhanger.
+  - Mark `cold_open: true` and give the lifted line in `hook_line`.
+- **Don't stitch scenes far apart** (a promo joining two scenes 15 min apart was rated 1/5 on everything). Stay
+  inside one scene or two adjacent ones.
+- **End on the payoff and its reaction**, not on a stray next line (round 1: a clip ended on an unrelated line
+  that suddenly came in).
 - Scenes depend on acting and music: say in `why` what the viewer sees (from keyframes) when it matters, and mark
   `visual_dependency: high|medium|low`.
 - Typical edited length 20–75s.

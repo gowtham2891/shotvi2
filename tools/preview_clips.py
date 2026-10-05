@@ -68,9 +68,11 @@ def transcript_lines(c, segs, words, labels):
     for a, b in segs:
         starts.append(acc)
         acc += b - a
-    out, prev = [], None
+    out, prev, k = [], None, 0
     for p in c["pieces"]:
-        k = next(i for i, (a, b) in enumerate(segs) if a - 0.01 <= p["start"] <= b + 0.01)
+        # search forward from the last segment: a cold open plays a moment twice (lifted to the front, then in place)
+        k = next((i for i in range(k, len(segs)) if segs[i][0] - 0.01 <= p["start"] <= segs[i][1] + 0.01),
+                 next(i for i, (a, b) in enumerate(segs) if a - 0.01 <= p["start"] <= b + 0.01))
         if prev is not None:
             if p["start_word"] > prev["end_word"] + 1:
                 gap = words[prev["end_word"] + 1:p["start_word"]]
