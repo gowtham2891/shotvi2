@@ -47,6 +47,7 @@ class RawResponse:
     finish_reason: str | None = None
     cached_tokens: int = 0      # part of input_tokens served from Gemini's implicit cache (billed at the cache rate)
     grounding: dict | None = None  # google_search: {queries: [...], chunks: [{uri, title}], supports: [...]}
+    prompt_modalities: dict | None = None  # input tokens by modality (TEXT / VIDEO / AUDIO / IMAGE)
 
 
 class Provider:
@@ -55,7 +56,9 @@ class Provider:
 
     name = "base"
 
-    def generate(self, spec: ModelSpec, system: str, prompt: str, schema: dict | None) -> RawResponse:
+    def generate(self, spec: ModelSpec, system: str, prompt: str, schema: dict | None,
+                 media: list[dict] | None = None) -> RawResponse:
+        """``media``: optional list of {file_uri, mime_type, start_s?, end_s?, fps?} parts placed before the text."""
         raise NotImplementedError
 
     def count_tokens(self, spec: ModelSpec, text: str) -> int:

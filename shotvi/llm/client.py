@@ -177,14 +177,20 @@ class LLMClient:
         return obj
 
     def generate_json(self, role: str, spec: ModelSpec, system: str, prompt: str, schema: dict | None,
-                      meta: dict | None = None, want_raw: bool = False, text_ok: bool = False):
+                      meta: dict | None = None, want_raw: bool = False, text_ok: bool = False,
+                      media: list[dict] | None = None):
         """Return the parsed JSON object (``(obj, RawResponse)`` if want_raw, e.g. for grounding metadata).
         Raises LLMError after retries, BudgetExceeded at the cap."""
         prov = get_provider(spec.provider)
         last_err = None
         for attempt in range(self.schema_retries + 1):
             # attempt > 0 uses a salted key so a cached-but-invalid answer is never replayed
-            key = self.cache_key(spec, system, prompt, schema, salt="" if attempt == 0 else f"retry{attempt}")
+            # media enters the cache key by its stable "key" (file content id + offsets + fps), never by the
+            # expiring upload uri
+            mkey = json.dumps([{k: v for k, v in m.items() if k not in ("file_uri",)} for m in media or []],
+                              sort_keys=True) if media else ""
+            key = self.cache_key(spec, system, prompt + mkey, schema,
+                                 salt="" if attempt == 0 else f"retry{attempt}")
             hit = self._cache_get(spec, key)
             if hit is not None and spec.params.get("google_search") and not hit.get("grounding"):
                 hit = None  # a grounded answer without its grounding metadata cannot be verified: call again
@@ -202,7 +208,7 @@ class LLMClient:
                 est = (len(system) + len(prompt)) // 3
                 self.misses.append({"role": role, "model": spec.model, "est_input_tokens": est})
                 raise LLMError(f"{role}/{spec.model}: cache miss (cache-only dry run)")
-            raw = self._call_with_retries(role, prov, spec, system, prompt, schema)
+            raw = self._call_with_retries(role, prov, spec, system, prompt, schema, media)
             try:
                 obj = self._parse(raw.text, schema, text_ok)
             except RetryableError as e:
@@ -212,13 +218,14 @@ class LLMClient:
             return (obj, raw) if want_raw else obj
         raise LLMError(f"{role}/{spec.model}: no valid JSON after {self.schema_retries + 1} attempts: {last_err}")
 
-    def _call_with_retries(self, role, prov, spec, system, prompt, schema) -> RawResponse:
+    def _call_with_retries(self, role, prov, spec, system, prompt, schema, media=None) -> RawResponse:
         delay = 2.0
         for attempt in range(self.max_retries + 1):
             self.ledger.check_budget()
             t = time.time()
             try:
-                raw = prov.generate(spec, system, prompt, schema)
+                raw = prov.generate(spec, system, prompt, schema, media) if media else \
+                    prov.generate(spec, system, prompt, schema)
             except RetryableError as e:
                 billed = getattr(e, "response", None)
                 if billed is not None:

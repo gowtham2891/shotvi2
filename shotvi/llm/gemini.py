@@ -50,7 +50,8 @@ class GeminiProvider(Provider):
             if lvl == "minimal" and not any(k in m for k in ("flash-lite", "3-flash", "3.5-flash", "3.6-flash")):
                 raise LLMError(f"{m}: thinking_level 'minimal' is not supported by this model; use 'low'")
 
-    def generate(self, spec: ModelSpec, system: str, prompt: str, schema: dict | None) -> RawResponse:
+    def generate(self, spec: ModelSpec, system: str, prompt: str, schema: dict | None,
+                 media: list[dict] | None = None) -> RawResponse:
         self.check_params(spec)
         p = spec.params
         gen: dict = {"maxOutputTokens": int(p.get("max_output_tokens", 16384))}
@@ -68,7 +69,11 @@ class GeminiProvider(Provider):
                 gen["thinkingConfig"] = {"thinkingBudget": budgets.get(lvl, 4096)}
             else:
                 gen["thinkingConfig"] = {"thinkingLevel": lvl}
-        body = {"contents": [{"role": "user", "parts": [{"text": prompt}]}], "generationConfig": gen}
+        res = p.get("media_resolution")
+        if res:  # "low" | "medium" | "high"; unset = model default
+            gen["mediaResolution"] = "MEDIA_RESOLUTION_" + str(res).upper()
+        parts = [_media_part(m) for m in media or []] + [{"text": prompt}]
+        body = {"contents": [{"role": "user", "parts": parts}], "generationConfig": gen}
         if system:
             body["systemInstruction"] = {"parts": [{"text": system}]}
         if p.get("google_search"):
@@ -94,7 +99,9 @@ class GeminiProvider(Provider):
                            output_tokens=int(um.get("candidatesTokenCount", 0)),
                            thought_tokens=int(um.get("thoughtsTokenCount", 0)),
                            cached_tokens=int(um.get("cachedContentTokenCount", 0)),
-                           model_version=d.get("modelVersion"), finish_reason=fin, grounding=grounding)
+                           model_version=d.get("modelVersion"), finish_reason=fin, grounding=grounding,
+                           prompt_modalities={x.get("modality"): x.get("tokenCount", 0)
+                                              for x in um.get("promptTokensDetails") or []})
         if fin not in (None, "STOP"):
             err = RetryableError(f"gemini finishReason={fin}")
             err.response = resp  # still billed: the client records the usage
@@ -117,3 +124,73 @@ def _grounding(cand: dict) -> dict | None:
                  "end": (x.get("segment") or {}).get("endIndex", 0),
                  "chunks": list(x.get("groundingChunkIndices") or [])} for x in gm.get("groundingSupports") or []]
     return {"queries": list(gm.get("webSearchQueries") or []), "chunks": chunks, "supports": supports}
+
+
+def _media_part(m: dict) -> dict:
+    part = {"file_data": {"mime_type": m.get("mime_type", "video/mp4"), "file_uri": m["file_uri"]}}
+    vm = {}
+    if m.get("start_s") is not None:
+        vm["start_offset"] = f"{float(m['start_s']):.2f}s"
+    if m.get("end_s") is not None:
+        vm["end_offset"] = f"{float(m['end_s']):.2f}s"
+    if m.get("fps"):
+        vm["fps"] = float(m["fps"])
+    if vm:
+        part["video_metadata"] = vm
+    return part
+
+
+# ------------------------------------------------------------------ Files API (resumable upload, 48 h retention)
+FILE_CACHE_HOURS = 46   # the API keeps files 48 h; re-upload a little early
+
+
+def upload_file(path: str, mime_type: str = "video/mp4", cache_dir: str = "runs/cache/files") -> dict:
+    """Upload a local file once (resumable), wait until ACTIVE, and cache {name, uri, uploaded_at} keyed by the
+    file's path, size and mtime so reruns within ~46 h reuse it. Uploading and storage are free (no tokens)."""
+    import hashlib
+    import json
+    import time
+    from pathlib import Path
+    prov = GeminiProvider()
+    fp = Path(path).resolve()
+    st = fp.stat()
+    key = hashlib.sha256(f"{fp}|{st.st_size}|{int(st.st_mtime)}".encode()).hexdigest()[:24]
+    cdir = Path(cache_dir)
+    cdir.mkdir(parents=True, exist_ok=True)
+    cf = cdir / f"{key}.json"
+    if cf.exists():
+        c = json.loads(cf.read_text(encoding="utf-8"))
+        if time.time() - c.get("uploaded_at", 0) < FILE_CACHE_HOURS * 3600:
+            r = prov.session.get(f"https://generativelanguage.googleapis.com/v1beta/{c['name']}",
+                                 headers={"x-goog-api-key": prov.api_key}, timeout=60)
+            if r.status_code == 200 and r.json().get("state") == "ACTIVE":
+                return c
+    start = prov.session.post(
+        "https://generativelanguage.googleapis.com/upload/v1beta/files",
+        headers={"x-goog-api-key": prov.api_key, "X-Goog-Upload-Protocol": "resumable",
+                 "X-Goog-Upload-Command": "start", "X-Goog-Upload-Header-Content-Length": str(st.st_size),
+                 "X-Goog-Upload-Header-Content-Type": mime_type, "Content-Type": "application/json"},
+        json={"file": {"display_name": fp.name}}, timeout=120)
+    if start.status_code != 200:
+        raise LLMError(f"upload start failed: HTTP {start.status_code}: {start.text[:300]}")
+    url = start.headers.get("x-goog-upload-url") or start.headers.get("X-Goog-Upload-URL")
+    with open(fp, "rb") as fh:
+        up = prov.session.post(url, headers={"Content-Length": str(st.st_size), "X-Goog-Upload-Offset": "0",
+                                             "X-Goog-Upload-Command": "upload, finalize"}, data=fh, timeout=1800)
+    if up.status_code != 200:
+        raise LLMError(f"upload failed: HTTP {up.status_code}: {up.text[:300]}")
+    f = up.json().get("file", {})
+    for _ in range(120):   # poll until the file is processed
+        if f.get("state") == "ACTIVE":
+            break
+        if f.get("state") == "FAILED":
+            raise LLMError(f"file processing failed: {f}")
+        time.sleep(5)
+        f = prov.session.get(f"https://generativelanguage.googleapis.com/v1beta/{f['name']}",
+                             headers={"x-goog-api-key": prov.api_key}, timeout=60).json()
+    if f.get("state") != "ACTIVE":
+        raise LLMError(f"file not ACTIVE after polling: {f.get('state')}")
+    c = {"name": f["name"], "uri": f["uri"], "mime_type": f.get("mimeType", mime_type), "uploaded_at": time.time(),
+         "size": st.st_size, "path": str(fp)}
+    cf.write_text(json.dumps(c, indent=1), encoding="utf-8")
+    return c
