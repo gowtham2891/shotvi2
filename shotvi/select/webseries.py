@@ -48,6 +48,13 @@ CLI::
         --config shotvi/select/configs/ws_r1_replay_review_high.json --prompt ws_discover=ws_discover_b_setup \
         --max-ledger-inr 1309
 
+Scene-by-scene discovery (A/B arm, OFF by default; ``--discover-mode scene`` with a scene prompt): the episode is
+split into scenes from free signals (``shotvi.select.scenes``: silences with a shot change, music events; opening
+zone and sponsor segments excluded), one discover call per scene with read-only context lines; the merged moments
+go through the unchanged cut builder, de-duplication, review, rank and cutoff::
+
+    python -m shotvi.select.webseries epZ0lbXkgWA --out runs/ws_ab_scene --dry-run --calibrate-from runs/ws_hm         --discover-mode scene --prompt ws_discover=ws_discover_b_scene --max-ledger-inr 1350
+
 Spend guard (``--max-ledger-inr``): checked before every billed attempt (retries included) against the project
 rupee ledger, plus once per episode before an uncached discover for discover + review together, so the run never
 pays for a discover whose review the limit would then refuse.
@@ -1177,7 +1184,9 @@ def calibration_of(run_dir: str | Path | None, vid: str) -> dict | None:
             "n_reviewed": (doc.get("cutoff") or {}).get("n_passed_hard_rules"),
             "prompt_versions": pipe.get("prompt_versions") or {},
             "prompt_files": pipe.get("prompt_files") or {},
-            "models": (pipe.get("config") or {}).get("models") or {}}
+            "models": (pipe.get("config") or {}).get("models") or {},
+            "discover_mode": (pipe.get("config") or {}).get("discover_mode", "episode"),
+            "calls_chars": (doc.get("discover_scenes") or {}).get("calls_chars")}
 
 
 def review_out_guard(params: dict, n_clips: int) -> int:
@@ -1242,6 +1251,227 @@ def spec_of(cfg, role):
     return ModelSpec.from_dict(cfg["models"][role])
 
 
+# ======================================================================================== scene-by-scene discovery
+# A/B arm (OFF by default: cfg["discover_mode"] "episode"). With "scene", discovery is one ws_discover call per scene
+# (shotvi.select.scenes: free signals, opening zone and sponsor segments excluded); each call sees its scene plus
+# read-only context lines and a prompt whose user part has the scene placeholders (prompts/ws_discover_b_scene.md).
+# A moment must start and end on lines the call showed and contain lines of its scene (scenes.check_moment); the
+# moments of all calls then go through the unchanged cut builder, de-duplication (> dup_overlap shared time: the
+# stronger nomination stays), review, rank and cutoff.
+SCENE_PLACEHOLDER = "$scene_no"
+# Projection per scene call (output = visible + thinking, thinking_level high). No scene call has run yet, so these
+# are reasoned, not measured: visible ~300 tokens per moment + ~300 of notes (measured on whole-episode discover:
+# 2.1-2.7k visible for 5-8 moments); thinking between ws_review medium on 4-6k input tokens (2.0-5.7k measured) and
+# ws_review high on 5.3k (12.6k measured). A scene-mode calibration run (--calibrate-from) replaces them.
+SCENE_OUT_EXPECTED = 8000
+SCENE_OUT_WORST = 16000
+SCENE_MOMENTS_EXPECTED = 2.0    # moments per scene reaching the review (whole-episode discover: 0.6-1.1 per scene)
+SCENE_MOMENTS_WORST = 3.0
+
+
+def scene_mode(cfg: dict) -> bool:
+    return (cfg or {}).get("discover_mode", "episode") == "scene"
+
+
+def check_prompt_mode(cfg: dict) -> None:
+    """A scene-mode run needs a discover prompt with the scene placeholders, and an episode run one without."""
+    from shotvi.select.prompts import load_prompt
+    name = prompt_file(cfg, "ws_discover")
+    has = SCENE_PLACEHOLDER in load_prompt(name).user
+    if scene_mode(cfg) and not has:
+        raise ValueError(f"discover_mode scene needs a scene prompt (prompts/{name}.md has no {SCENE_PLACEHOLDER}); "
+                         f"use --prompt ws_discover=ws_discover_b_scene")
+    if not scene_mode(cfg) and has:
+        raise ValueError(f"prompts/{name}.md is a scene prompt: use --discover-mode scene")
+
+
+def scene_plan(ep: Episode, tr: dict, cfg: dict, zones: dict | None = None) -> dict:
+    """Scenes and context windows of the episode (free: transcript, shot cuts, YouTube metadata, sibling episodes)."""
+    from shotvi.select import scenes as SC
+    zones = zones if zones is not None else SC.load_zones(ep.video_id, tr, ep.cuts)
+    ex = SC.excluded_of(zones)
+    params = {**SC.PARAMS, **(cfg.get("scenes") or {})}
+    scs = SC.split_scenes(ep, ex, params)
+    return {"excluded": ex, "params": params, "scenes": scs, "windows": SC.scene_windows(ep, scs, ex, params)}
+
+
+def render_window(ep: Episode, win: dict, tags: dict) -> str:
+    from shotvi.select.lines import render
+
+    def block(name, ps):
+        rows = [ep.lines[q] for q in ps]
+        return f"<{name}>\n{render(rows, tags) if rows else '(none)'}\n</{name}>"
+    sc = win["scene"]
+    return "\n".join([block("context_before", win["before"]), block("scene", range(sc["p0"], sc["p1"] + 1)),
+                      block("context_after", win["after"])])
+
+
+def scene_prompts(ep: Episode, cfg: dict, plan: dict) -> list[tuple[str, str]]:
+    """(system, user) per scene call: the same system prompt; the user part shows the episode length, which scene
+    this is (number, line ids, time span) and the scene between its read-only context blocks."""
+    from shotvi.select.lines import ASR_LEGEND
+    from shotvi.select.prompts import load_prompt
+    p = load_prompt(prompt_file(cfg, "ws_discover"))
+    tags = {lid: "lift-ok" for lid in liftable_lines(ep, cfg["cut"])}
+    n = len(plan["scenes"])
+    out = []
+    for win in plan["windows"]:
+        sc = win["scene"]
+        out.append((p.system, p.render(
+            episode_len=fmt(ep.duration), n_lines=len(ep.lines), asr_legend=ASR_LEGEND, scene_no=sc["no"],
+            n_scenes=n, scene_first=sc["first_line"], scene_last=sc["last_line"],
+            scene_span=f"{fmt(sc['start'])}-{fmt(sc['end'])}", transcript=render_window(ep, win, tags))))
+    return out
+
+
+def _review_proj(rspec, calib_review: dict | None, n_calib: int | None, n: int) -> tuple[int, int, str]:
+    """Review (input, output) tokens for n clips: per clip as in a calibration run with the same review settings,
+    else the defaults; output never above the call's output budget."""
+    cap = int(rspec.params.get("max_output_tokens") or 10 ** 9)
+    if calib_review and n_calib:
+        return (int(round(calib_review["input_tokens"] * n / n_calib)),
+                min(cap, int(round(calib_review["output_tokens"] * n / n_calib))), "calibration, per clip")
+    return 1200 + REVIEW_IN_PER_CLIP * n, review_out_guard(rspec.params, n), "defaults"
+
+
+def project_scenes(ep: Episode, ix, cfg: dict, calls: list[tuple[str, str]], calib: dict | None = None) -> dict:
+    """Projected cost of a scene-mode episode (free, no call): every scene call repeats the system prompt and its
+    context lines; more moments means a bigger review. Three numbers per stage:
+      ``inr_expected``  input calibrated on a run of the same episode (tokens per prompt character), output
+                        SCENE_OUT_EXPECTED per call (or the mean per call of a scene-mode calibration run),
+                        SCENE_MOMENTS_EXPECTED moments per scene reviewed;
+      ``inr_worst``     SCENE_OUT_WORST per call, SCENE_MOMENTS_WORST moments per scene;
+      ``inr``           guard value: every call at its whole output budget (what the spend guard checks)."""
+    from shotvi.segment.render import estimate_tokens
+    spec, rspec = spec_of(cfg, "ws_discover"), spec_of(cfg, "ws_review")
+    cb = (calib or {}).get("by_role") or {}
+    cd = cb.get("ws_discover") or {}
+    if cd.get("input_tokens") and calib.get("discover_mode", "episode") == "episode":
+        role_file = (calib.get("prompt_files") or {}).get("ws_discover", "ws_discover")
+        bs, bu = discover_prompt(ep, ix, deep_merge(cfg, {"prompts": {"ws_discover": role_file}}))
+        ratio = cd["input_tokens"] / max(1, len(bs + "\n" + bu))
+        src = f"calibrated on {calib['run']} ({cd['input_tokens']} tokens for its whole-episode prompt)"
+    elif cd.get("input_tokens") and calib.get("calls_chars"):
+        ratio, src = cd["input_tokens"] / calib["calls_chars"], f"calibrated on {calib['run']} (scene mode)"
+    else:
+        ratio, src = None, "character estimate x1.25"
+    out_exp, out_src = SCENE_OUT_EXPECTED, "assumed (no scene-mode run yet)"
+    if calib and calib.get("discover_mode") == "scene" and cd.get("output_tokens") and cd.get("n_llm_calls"):
+        out_exp = int(round(cd["output_tokens"] / cd["n_llm_calls"]))
+        out_src = f"mean per call of {calib['run']}"
+    out_worst, out_guard = max(SCENE_OUT_WORST, out_exp), int(spec.params.get("max_output_tokens", 32768))
+    rows = []
+    for k, (s, u) in enumerate(calls):
+        n_in = int(round(len(s + "\n" + u) * ratio)) if ratio else int(estimate_tokens(s + u) * 1.25)
+        rows.append({"call": k + 1, "in": n_in,
+                     "inr_expected": round(inr(project_usd(n_in, out_exp)), 2),
+                     "inr_worst": round(inr(project_usd(n_in, out_worst)), 2),
+                     "inr": round(inr(project_usd(n_in, out_guard)), 2)})
+    disc = {"calls": len(calls), "in_total": sum(r["in"] for r in rows), "in_source": src,
+            "out_expected_per_call": out_exp, "out_expected_source": out_src, "out_worst_per_call": out_worst,
+            "out_guard_per_call": out_guard, "per_call": rows,
+            **{k: round(sum(r[k] for r in rows), 2) for k in ("inr_expected", "inr_worst", "inr")}}
+    same = (calib or {}).get("models", {}).get("ws_review") == cfg["models"]["ws_review"]
+    rcb = cb.get("ws_review") if same else None
+    n_cal = (calib or {}).get("n_reviewed")
+    n_exp = int(-(-SCENE_MOMENTS_EXPECTED * len(calls) // 1))
+    n_worst = int(-(-SCENE_MOMENTS_WORST * len(calls) // 1))
+    e_in, e_out, e_src = _review_proj(rspec, rcb, n_cal, n_exp)
+    w_in, w_out, _ = _review_proj(rspec, rcb, n_cal, n_worst)
+    g_in, g_out = 1200 + REVIEW_IN_PER_CLIP * n_worst, review_out_guard(rspec.params, n_worst)
+    cap = int(rspec.params.get("max_output_tokens") or 10 ** 9)
+    rev = {"assumes_clips_expected": n_exp, "assumes_clips_worst": n_worst, "expected_from": e_src,
+           "in_expected": e_in, "out_expected": e_out, "inr_expected": round(inr(project_usd(e_in, e_out)), 2),
+           "in_worst": w_in, "out_worst": w_out, "inr_worst": round(inr(project_usd(w_in, w_out)), 2),
+           "in_guard": g_in, "out_guard": g_out, "inr": round(inr(project_usd(g_in, g_out)), 2),
+           **({"warning": f"{n_worst} clips may need ~{rcb['output_tokens'] * n_worst // max(1, n_cal or 1)} output "
+                          f"tokens, above the review's max_output_tokens {cap}: a truncated answer fails"}
+              if rcb and n_cal and rcb["output_tokens"] * n_worst / n_cal > cap else {})}
+    ve = bool(cfg["video_end_check"]["enabled"])
+    vend = {"enabled": ve, "assumes_clips": n_exp,
+            "inr_expected": round(VIDEO_END_INR_EXPECTED * n_exp, 2) if ve else 0.0,
+            "inr_worst": round(VIDEO_END_INR_PER_CLIP * n_worst, 2) if ve else 0.0,
+            "inr": round(VIDEO_END_INR_PER_CLIP * n_worst, 2) if ve else 0.0}
+    return {"mode": "scene", "ws_discover": disc, "ws_review": rev, "video_end_check": vend,
+            "episode": {k: round(disc[k] + rev[k] + vend[k], 2) for k in ("inr_expected", "inr_worst", "inr")}}
+
+
+def discover_by_scene(ep: Episode, ix, tr: dict, cfg: dict, llm, guard: Guard, vid: str, log=print,
+                      dry_run: bool = False, calib_dir=None, zones: dict | None = None) -> dict:
+    """Scene-mode discovery: one ws_discover call per scene, moments checked against the call's window and merged
+    in scene order. Returns {"dry": dry_result} for a dry run that would bill, else {"moments", "rejected"
+    (S1/S2 moments, never built), "debug", "proj", "call_proj"}. Sets ``llm.before_call`` (the spend guard on every
+    billed attempt) and, before the first uncached call, checks the whole episode (every uncached scene call +
+    review + optional end check) against the limit."""
+    from shotvi.select import scenes as SC
+    plan = scene_plan(ep, tr, cfg, zones)
+    calls = scene_prompts(ep, cfg, plan)
+    spec = spec_of(cfg, "ws_discover")
+    calib = calibration_of(calib_dir, vid)
+    proj = project_scenes(ep, ix, cfg, calls, calib)
+    log(f"{vid}: scenes ({', '.join(plan['excluded']['why']) or 'nothing excluded'}): "
+        + SC.scene_table(ep, plan["scenes"]))
+    log(f"{vid}: projection {json.dumps({k: v for k, v in proj.items() if k != 'ws_discover'}, ensure_ascii=False)}; "
+        f"discover {json.dumps({k: v for k, v in proj['ws_discover'].items() if k != 'per_call'})}")
+    uncached = [k for k, (s, u) in enumerate(calls) if not is_cached(llm, spec, s, u, DISCOVER_SCHEMA)]
+    pc = proj["ws_discover"]["per_call"]
+    rest = {k: proj["ws_review"][k] + proj["video_end_check"][k] for k in ("inr_expected", "inr_worst", "inr")}
+    bill = {k: sum(pc[j][k] for j in uncached) + rest[k] for k in rest}
+    # Spend guard. Every call at its whole output budget (bill["inr"], the hard maximum) is ~3x the realistic worst
+    # case once an episode needs 7-12 calls, so the episode pre-check uses the worst case for the discover calls
+    # and the guard value for the review; each discover ATTEMPT then needs room for itself at its whole budget
+    # PLUS the review (and end check) at theirs, so no discover call is ever paid whose review the limit would
+    # refuse. A run stopped between scene calls keeps the paid calls in the cache: a rerun resumes for free.
+    tail_guard = proj["ws_review"]["inr"] + proj["video_end_check"]["inr"]
+    precheck = sum(pc[j]["inr_worst"] for j in uncached) + tail_guard
+    if dry_run:
+        if uncached:
+            log(f"{vid}: DRY RUN: {len(uncached)} of {len(calls)} scene calls uncached; expected "
+                f"₹{bill['inr_expected']:.2f}, worst case ₹{bill['inr_worst']:.2f}, the limit must allow "
+                f"₹{precheck:.2f} (hard maximum, every call at its whole output budget: ₹{bill['inr']:.2f})")
+            return {"dry": dry_result(vid, proj, "ws_discover", bill["inr_expected"], precheck, log,
+                                      prompt_files={r: prompt_file(cfg, r) for r in PROMPTS},
+                                      would_bill_inr_worst=round(bill["inr_worst"], 2),
+                                      would_bill_inr_hard_max=round(bill["inr"], 2), n_scenes=len(calls),
+                                      uncached_calls=len(uncached))}
+        llm.cache_only = True
+    call_proj = {"ws_discover": max((r["inr"] for r in pc), default=0.0) + tail_guard,
+                 "ws_review": proj["ws_review"]["inr"], "video_end": VIDEO_END_INR_PER_CLIP}
+    llm.before_call = lambda role, _spec: guard.check(f"{vid} {role}", call_proj.get(role, max(call_proj.values())))
+    if uncached:
+        guard.check(f"{vid} episode ({len(uncached)} scene discover calls at the worst case + review"
+                    f"{' + video end' if cfg['video_end_check']['enabled'] else ''})", precheck)
+    moments, rejected, per_call, notes = [], [], [], []
+    for win, (s, u) in zip(plan["windows"], calls):
+        sc = win["scene"]
+        d = llm.generate_json("ws_discover", spec, s, u, DISCOVER_SCHEMA, meta={"video": vid, "scene": sc["no"]})
+        ids = SC.window_ids(ep, win)
+        rec = {"scene": sc["no"], "lines": [sc["first_line"], sc["last_line"]],
+               "context_before": ids["before"][:1] + ids["before"][-1:], "context_after": ids["after"][:1]
+               + ids["after"][-1:], "episode_notes": d.get("episode_notes", ""), "moments": d["moments"],
+               "taken": 0, "rejected": []}
+        notes.append(f"[scene {sc['no']} {sc['first_line']}-{sc['last_line']}] {d.get('episode_notes', '')}")
+        for j, m in enumerate(d["moments"]):
+            m = {**m, "scene": sc["no"]}
+            why = SC.check_moment(ep, m, win)
+            if why:
+                rejected.append({"id": f"s{sc['no']:02d}m{j + 1}", "moment": m, "reject_reasons": [why]})
+                rec["rejected"].append(why)
+                log(f"  scene {sc['no']} moment {j + 1}: {why}")
+                continue
+            moments.append(m)
+            rec["taken"] += 1
+        per_call.append(rec)
+    log(f"{vid}: {len(moments)} moments nominated in {len(calls)} scene calls "
+        f"({len(rejected)} outside their scene window)")
+    scenes_doc = {"params": plan["params"], "excluded": plan["excluded"], "scenes": plan["scenes"],
+                  "calls_chars": sum(len(s + "\n" + u) for s, u in calls)}
+    debug = {"video_id": vid, "projection": proj, "warnings": [], "scenes": scenes_doc,
+             "discover": {"mode": "scene", "episode_notes": "\n".join(notes), "calls": per_call,
+                          "moments": moments}}
+    return {"moments": moments, "rejected": rejected, "debug": debug, "proj": proj, "call_proj": call_proj}
+
+
 def hard_rules(ep: Episode, c: dict, cfg) -> list[str]:
     g = cfg["guardrails"]
     out = []
@@ -1284,36 +1514,46 @@ def run_episode(vid: str, cfg: dict, llm, guard: Guard, out_dir: Path, log=print
     if cfg["cut"].get("exchange_max_play_s") is None:
         cfg["cut"]["exchange_max_play_s"] = cfg["guardrails"]["soft_max_s"]
     ep, ix, tr, tp = load_episode(vid)
-    system, user = discover_prompt(ep, ix, cfg)
-    spec = spec_of(cfg, "ws_discover")
-    calib = calibration_of(calib_dir, vid)
-    proj = project_episode(ep, ix, cfg, system, user, llm=None if (dry_run or llm.cache_only) else llm,
-                           calib=calib, log=log)
-    log(f"{vid}: projection {json.dumps(proj, ensure_ascii=False)}")
-    disc_cached = is_cached(llm, spec, system, user, DISCOVER_SCHEMA)
-    if dry_run:
+    check_prompt_mode(cfg)
+    pre_rejected: list = []
+    if scene_mode(cfg):
+        sd = discover_by_scene(ep, ix, tr, cfg, llm, guard, vid, log, dry_run, calib_dir)
+        if "dry" in sd:
+            return sd["dry"]
+        moments, pre_rejected, debug, proj, call_proj = \
+            sd["moments"], sd["rejected"], sd["debug"], sd["proj"], sd["call_proj"]
+    else:
+        system, user = discover_prompt(ep, ix, cfg)
+        spec = spec_of(cfg, "ws_discover")
+        calib = calibration_of(calib_dir, vid)
+        proj = project_episode(ep, ix, cfg, system, user, llm=None if (dry_run or llm.cache_only) else llm,
+                               calib=calib, log=log)
+        log(f"{vid}: projection {json.dumps(proj, ensure_ascii=False)}")
+        disc_cached = is_cached(llm, spec, system, user, DISCOVER_SCHEMA)
+        if dry_run:
+            if not disc_cached:
+                return dry_result(vid, proj, "ws_discover", proj["episode"]["inr_expected"], proj["episode"]["inr"],
+                                  log, prompt_files={r: prompt_file(cfg, r) for r in PROMPTS})
+            llm.cache_only = True     # walk the cached stages; the first miss is where the bill starts
+        # spend guard on EVERY billed attempt (retries and schema retries included; cache hits never reach it)
+        call_proj = {"ws_discover": proj["ws_discover"]["inr"], "ws_review": proj["ws_review"]["inr"],
+                     "video_end": VIDEO_END_INR_PER_CLIP}
+        llm.before_call = lambda role, _spec: guard.check(f"{vid} {role}",
+                                                          call_proj.get(role, max(call_proj.values())))
         if not disc_cached:
-            return dry_result(vid, proj, "ws_discover", proj["episode"]["inr_expected"], proj["episode"]["inr"], log,
-                              prompt_files={r: prompt_file(cfg, r) for r in PROMPTS})
-        llm.cache_only = True     # walk the cached stages; the first miss is where the bill starts
-    # spend guard on EVERY billed attempt (retries and schema retries included; cache hits never reach it)
-    call_proj = {"ws_discover": proj["ws_discover"]["inr"], "ws_review": proj["ws_review"]["inr"],
-                 "video_end": VIDEO_END_INR_PER_CLIP}
-    llm.before_call = lambda role, _spec: guard.check(f"{vid} {role}", call_proj.get(role, max(call_proj.values())))
-    if not disc_cached:
-        # never pay for a discover whose review (and end check) would then be stopped by the limit
-        guard.check(f"{vid} episode (discover + review"
-                    f"{' + video end' if cfg['video_end_check']['enabled'] else ''})", proj["episode"]["inr"])
+            # never pay for a discover whose review (and end check) would then be stopped by the limit
+            guard.check(f"{vid} episode (discover + review"
+                        f"{' + video end' if cfg['video_end_check']['enabled'] else ''})", proj["episode"]["inr"])
 
-    debug = {"video_id": vid, "projection": proj, "warnings": []}
-    # ---------------------------------------------------------------- 2. discover
-    disc = llm.generate_json("ws_discover", spec, system, user, DISCOVER_SCHEMA, meta={"video": vid})
-    moments = disc["moments"]
-    debug["discover"] = disc
-    log(f"{vid}: {len(moments)} moments nominated")
+        debug = {"video_id": vid, "projection": proj, "warnings": []}
+        # ------------------------------------------------------------ 2. discover
+        disc = llm.generate_json("ws_discover", spec, system, user, DISCOVER_SCHEMA, meta={"video": vid})
+        moments = disc["moments"]
+        debug["discover"] = disc
+        log(f"{vid}: {len(moments)} moments nominated")
 
     # ---------------------------------------------------------------- 3. build
-    cands, rejected = [], []
+    cands, rejected = [], list(pre_rejected)
     for k, m in enumerate(moments):
         cid = f"w{k + 1:02d}"
         bpos = barrier_for(ep, moments, m)
@@ -1403,7 +1643,8 @@ def run_episode(vid: str, cfg: dict, llm, guard: Guard, out_dir: Path, log=print
     out_rej = [rejected_doc(ep, x, cfg) for x in rejected]
     debug["rejected"] = rejected
     debug["clips"] = {x["id"]: x["clip"] for x in kept}
-    doc = run_document(ep, tp, out_props, out_rej, cfg, llm, len(moments), len(kept), t_start, debug)
+    doc = run_document(ep, tp, out_props, out_rej, cfg, llm, len(moments) + len(pre_rejected), len(kept), t_start,
+                       debug)
     out_dir.mkdir(parents=True, exist_ok=True)
     (out_dir / f"{vid}.json").write_text(json.dumps(doc, ensure_ascii=False, indent=1), encoding="utf-8")
     (out_dir / "debug").mkdir(exist_ok=True)
@@ -1616,7 +1857,8 @@ def proposal_doc(ep: Episode, x: dict, rank: int, cfg, line_of_word) -> dict:
                             "why": cu["why"]} for cu in c["cuts"]],
            "discovery": {"strength": m.get("strength"), "what_happens": m.get("what_happens"),
                          "hook": m.get("hook"), "payoff": m.get("payoff"),
-                         "opening_strength": m.get("opening_strength")},
+                         "opening_strength": m.get("opening_strength"),
+                         **({"scene": m["scene"]} if "scene" in m else {})},
            "review": {"cold_open_note": r.get("cold_open_note"), "cut_note": r.get("cut_note"),
                       "bad_cuts": r.get("bad_cuts"), "changes": c.get("review_changes") or []},
            "needs_rescore": bool(x.get("needs_rescore")),
@@ -1683,6 +1925,7 @@ def run_document(ep, tp, props, rejected, cfg, llm, n_moments, n_passed, t_start
                    "n_candidates": n_moments, "n_passed_hard_rules": n_passed, "n_shown": len(props),
                    "warnings": debug.get("warnings", [])},
         "episode_notes": (debug.get("discover") or {}).get("episode_notes", ""),
+        **({"discover_scenes": debug["scenes"]} if debug.get("scenes") else {}),
         "proposals": props,
         "rejected": [r for r in rejected if r],
     }
@@ -1747,6 +1990,9 @@ def main(argv=None):
                     help="never call the provider: rebuild outputs from cached responses (free); a miss fails")
     ap.add_argument("--no-retry", action="store_true",
                     help="no automatic retries (a retry is billed again and bypasses the ledger guard)")
+    ap.add_argument("--discover-mode", choices=("episode", "scene"), default=None,
+                    help="A/B arm: 'scene' = one discover call per scene (needs a scene prompt, e.g. "
+                         "--prompt ws_discover=ws_discover_b_scene); default: the config's (episode)")
     a = ap.parse_args(argv)
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8")
@@ -1762,6 +2008,12 @@ def main(argv=None):
         if role not in PROMPTS or not name or not (ROOT / "prompts" / f"{name}.md").exists():
             ap.error(f"--prompt {kv}: expected ROLE=FILE with ROLE in {PROMPTS} and prompts/FILE.md present")
         cfg["prompts"][role] = name
+    if a.discover_mode:
+        cfg["discover_mode"] = a.discover_mode
+    try:
+        check_prompt_mode(cfg)
+    except ValueError as e:
+        ap.error(str(e))
     out = Path(a.out)
     cfg["run_id"] = out.name
     guard = Guard(a.max_ledger_inr)
@@ -1783,6 +2035,9 @@ def main(argv=None):
     if a.dry_run:
         exp = sum(r.get("would_bill_inr_expected", 0.0) for r in results)
         grd = sum(r.get("would_bill_inr_guard", 0.0) for r in results)
+        if any("would_bill_inr_worst" in r for r in results):
+            wst = sum(r.get("would_bill_inr_worst", r.get("would_bill_inr_expected", 0.0)) for r in results)
+            print(f"DRY RUN worst case (scene mode): ₹{wst:.2f}")
         print(f"DRY RUN total: ₹{exp:.2f} expected (guard projection ₹{grd:.2f}); ledger would go "
               f"₹{led0:.2f} -> ~₹{led0 + exp:.2f}"
               + (f" (limit ₹{a.max_ledger_inr:.2f}: {'fits' if led0 + grd <= a.max_ledger_inr else 'the guard may stop a later episode'})"
