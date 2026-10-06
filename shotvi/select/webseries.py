@@ -12,10 +12,16 @@ Stages (per episode):
        drops   whole lines, at most 3 internal cuts in total (lift skip included), each <= 45 s, edges snapped to
                shot cuts within 1.5 s (inside the gap only: never into a kept word)
        end     payoff line end + reaction hold to the next shot cut (2-8 s; through a laugh event), never into the
-               next spoken line; capped at 4 s before a long silence (song, credits, scene change)
+               next spoken line; capped at 4 s before a long silence (song, credits, scene change). ws/0.2: when the
+               next line starts before the minimum hold, a short reaction line is played and held to the shot
+               change after it; else the clip ends on a shot change before the next line; else just before it
+       flashes ws/0.2: any segment edge showing < 0.3 s of another shot moves to the shot change unless that
+               clips a played word (then it stays and is reported in ``shot_flags``)
      -> ``time_segments`` (play order, may include silent picture) + word ``pieces``.
   3b. review (one text call, prompt ``ws_review``): scores the clips AS BUILT (play order, cut markers), may veto
      a cold open or flag bad cuts (code then rebuilds without them; no further call), writes title / why.
+     A clip repaired this way keeps its reviewer tier (worth_a_look if that tier is not shown) and is flagged
+     ``needs_rescore``: its scores belong to the broken cut, so they never reject it.
   4. (optional, off by default) video end check: ``video_check`` clip2 with shot lines; only the END suggestion
      is applied, capped and flagged.
   5. rank by score, quality cutoff (no fixed N), write ``<out>/<video_id>.json`` (schema 1.1 + web-series fields).
@@ -24,6 +30,11 @@ CLI::
 
     python -m shotvi.select.webseries <video_id> [...] --out runs/ws_r1 --dry-run
     SHOTVI_SPEND_SOURCE=ws_r1 python -m shotvi.select.webseries QWIvgoTQGKk --out runs/ws_r1 --max-ledger-inr 1286
+    # free rebuild of ws_r1 from its cached responses (the review saw the ws/0.1 ending):
+    python -m shotvi.select.webseries j14Om1SaFYE --out runs/ws_r1 --cache-only \
+        --config shotvi/select/configs/ws_r1_replay.json
+    python -m shotvi.select.webseries QWIvgoTQGKk --out runs/ws_r1 --cache-only \
+        --config shotvi/select/configs/ws_r1_replay_review_high.json
 """
 from __future__ import annotations
 
@@ -40,7 +51,7 @@ from pathlib import Path
 from typing import Callable
 
 ROOT = Path(__file__).resolve().parents[2]
-PIPELINE_VERSION = "ws/0.1"
+PIPELINE_VERSION = "ws/0.2"
 PROMPTS = ("ws_discover", "ws_review")
 
 _FLASH = {"provider": "gemini", "model": "gemini-3.8-flash"}
@@ -67,7 +78,19 @@ DEFAULTS: dict = {
         "hold_min_s": 2.0, "hold_max_s": 8.0, "hold_short_min_s": 0.5, "hold_default_s": 2.0,
         "next_speech_margin_s": 0.1,
         "long_silence_s": 20.0, "long_silence_hold_max_s": 4.0,
+        # ws/0.2 end when the next line comes before the minimum hold (see end_hold)
+        "react_max_s": 1.5, "react_max_words": 3,   # a next line this short is a reaction / interjection
+        "react_clear_s": 1.0,        # ... only if nobody speaks for this long after it (else it opens an exchange)
+        "quick_cut_min_s": 0.02,     # a shot change at least this far after the last word can end the clip
+        "quick_end_margin_s": 0.05,  # no shot change: end this far before the next line's first word
+        # ws/0.2 flash repair (every segment edge, lift and in-place skips included)
+        "flash_s": 0.3,              # a sliver of another shot shorter than this at a segment edge is a flash
+        "shot_tol_s": 0.05,          # "on a shot change" = within this of a detected cut
+        "word_clip_tol_s": 0.02,     # moving an edge more than this into a played word = clipping speech
     },
+    # what the review call sees: "final" = the clip as built; "ws/0.1" = the ws/0.1 end hold without flash repair
+    # (replays run ws_r1's cached reviews; the finished clip is still what is written)
+    "review_view": "final",
     "guardrails": {"min_s": 15.0, "soft_max_s": 120.0, "hard_max_s": 150.0, "skip_s": 30.0, "dup_overlap": 0.5,
                    "blocks_flag_above": 3},
     "thresholds": {"t_show": 3.5, "t_rec": 4.0, "below_threshold_max": 3, "below_min_overall": 3.0},
@@ -121,6 +144,15 @@ class Episode:
         self.by_id = {r["id"]: r for r in self.lines}
         self.pos = {r["id"]: k for k, r in enumerate(self.lines)}
         self.events = [r for r in self.lines if r["kind"] == "event"]
+        self.speech = sorted((r for r in self.lines if self.is_speech(r)), key=lambda r: r["words"][0])
+        self._sp_w0 = [r["words"][0] for r in self.speech]
+
+    def speech_line_at(self, i: int):
+        """The spoken line that contains word i (None if no line does)."""
+        k = bisect.bisect_right(self._sp_w0, i) - 1
+        if k >= 0 and self.speech[k]["words"][0] <= i <= self.speech[k]["words"][1]:
+            return self.speech[k]
+        return None
 
     def is_speech(self, r) -> bool:
         return r is not None and r["kind"] == "speech" and bool(r.get("words"))
@@ -189,9 +221,70 @@ def join_in(ep: Episode, first_word: int, cfg) -> tuple[float, bool]:
     return round(s - min(cfg["join_pad_s"], max(0.0, (s - h) / 2)), 3), False
 
 
+def _laughs_after(ep: Episode, e: float) -> list:
+    return [ev for ev in ep.events if any(t in ev["text"] for t in LAUGH_TOKENS) and e - 0.5 <= ev["start"] <= e + 1.5]
+
+
 def end_hold(ep: Episode, last_word: int, cfg) -> dict:
-    """Payoff end + reaction hold, extended to a shot cut, capped; never into the next spoken word; short before a
-    long silence (song, credits, scene change)."""
+    """Payoff end + reaction hold (ws/0.2).
+
+    When the next spoken line leaves room for the minimum hold, this is the ws/0.1 hold (``end_hold_v1``: to a shot
+    cut 2-8 s after the payoff, through a laugh, never into the next line, short before a long silence). When the
+    next line starts sooner ("quick"), in this order:
+      a. reaction: the next line is short (<= react_max_s and <= react_max_words), nobody speaks for react_clear_s
+         after it, and a shot change follows it within the caps: play it and hold to that shot change;
+      b. else end on the last shot change before the next line starts;
+      c. else end just before the next line: max(last word end + small pad, next line start - quick_end_margin_s).
+    ``rule`` in the result says which one applied."""
+    e = ep.words[last_word]["end"]
+    nx = ep.next_start(last_word)
+    margin, eps = cfg["next_speech_margin_s"], cfg["lift_cut_eps_s"]
+    if nx is None or nx - margin >= e + cfg["hold_min_s"]:
+        return {**end_hold_v1(ep, last_word, cfg), "rule": "hold"}
+    laugh = _laughs_after(ep, e)
+    base = {"payoff_end": round(e, 3), "next_speech": round(nx, 3), "long_silence_after": False,
+            "laugh_after": bool(laugh)}
+
+    # a. a short reaction / interjection right after the payoff
+    r = ep.speech_line_at(last_word + 1)
+    if r is not None and r["words"][0] == last_word + 1:
+        i0, i1 = r["words"]
+        e2 = ep.words[i1]["end"]
+        dur, nw = e2 - ep.words[i0]["start"], i1 - i0 + 1
+        n2 = ep.next_start(i1)
+        # short in time AND in words: "or" would take a fast 6-word sentence or a stretched 3-word line
+        if dur <= cfg["react_max_s"] and nw <= cfg["react_max_words"] and \
+                (n2 is None or n2 - e2 >= cfg["react_clear_s"]):
+            lim = e + cfg["hold_max_s"]
+            lim = min(lim, n2 - margin) if n2 is not None else min(lim, ep.duration)
+            long2 = n2 is None or n2 - e2 > cfg["long_silence_s"]
+            if long2:
+                lim = min(lim, e2 + cfg["long_silence_hold_max_s"])
+            cs = ep.cuts_in(e2 + 0.05, lim + eps)
+            if cs:
+                want = max([e + cfg["hold_min_s"]] + [ev["end"] + 0.3 for ev in laugh])
+                pref = [c for c in cs if c >= want]
+                end = (pref[0] if pref else cs[-1]) - eps
+                return {**base, "end": round(end, 3), "hold_s": round(end - e, 2), "on_shot_cut": True,
+                        "next_speech": None if n2 is None else round(n2, 3), "long_silence_after": long2,
+                        "rule": "reaction",
+                        "reaction": {"line": r["id"], "text": ep.text(r), "end": round(e2, 3)}}
+    # b. a shot change before the next line starts
+    cs = ep.cuts_in(e + cfg["quick_cut_min_s"], nx - cfg["quick_end_margin_s"] + eps)
+    if cs:
+        end = cs[-1] - eps
+        return {**base, "end": round(end, 3), "hold_s": round(end - e, 2), "on_shot_cut": True,
+                "rule": "shot_change_before_next_line", "note": "next line starts quickly: ends on the shot change"}
+    # c. just before the next line
+    end = max(e + min(0.05, (nx - e) / 2), nx - cfg["quick_end_margin_s"])
+    return {**base, "end": round(end, 3), "hold_s": round(end - e, 2), "on_shot_cut": False,
+            "rule": "before_next_line", "note": "next line starts quickly and no shot change before it"}
+
+
+def end_hold_v1(ep: Episode, last_word: int, cfg) -> dict:
+    """ws/0.1 end: payoff end + reaction hold, extended to a shot cut, capped; never into the next spoken word;
+    short before a long silence (song, credits, scene change). Kept as the full rule when the minimum hold fits
+    before the next line, and as the ``review_view: ws/0.1`` ending."""
     e = ep.words[last_word]["end"]
     nx = ep.next_start(last_word)
     limit = e + cfg["hold_max_s"]
@@ -201,8 +294,7 @@ def end_hold(ep: Episode, last_word: int, cfg) -> dict:
         limit = min(limit, e + cfg["long_silence_hold_max_s"])
     limit = max(limit, e + 0.05)
     min_end = e + cfg["hold_min_s"]
-    laugh = [ev for ev in ep.events if any(t in ev["text"] for t in LAUGH_TOKENS)
-             and e - 0.5 <= ev["start"] <= e + 1.5]
+    laugh = _laughs_after(ep, e)
     for ev in laugh:        # hold through a laugh that follows the payoff
         min_end = max(min_end, ev["end"] + 0.3)
     min_end = min(min_end, limit)
@@ -292,8 +384,83 @@ def _loudness_gap(ep: Episode, lift: dict, scene_start: float, cfg) -> float | N
     return None if a is None or b is None else round(a - b, 1)
 
 
-def build_clip(ep: Episode, m: dict, cfg: dict, no_lift: bool = False, skip_drops: set | None = None) -> dict:
-    """Moment (line ids) -> clip with time_segments and word pieces. Raises Reject for an unusable moment."""
+def fix_flashes(ep: Episode, segs: list[dict], cfg) -> list[dict]:
+    """Repair shot flashes at segment edges, in place (ws/0.2).
+
+    A flash: a segment edge that shows a sliver (< flash_s) of a shot the edit opens or closes, i.e. a shot change
+    within flash_s inside the segment's start or end, and that shot is not itself a short source shot played whole.
+    The edge moves to the shot change (an end to 0.005 s before it) when no word played in the segment loses more
+    than word_clip_tol_s; otherwise the edge stays (speech is never clipped) and the flash is reported. Covers starts
+    and ends of every segment: the cold open, the scene start, chunk-drop joins, in-place lift skips and the end
+    hold. Returns one record per flash found: {seg, kind, edge, cut, sliver_s, from, to, fixed[, word, word_s]}."""
+    fs, tol, eps, wt = cfg["flash_s"], cfg["shot_tol_s"], cfg["lift_cut_eps_s"], cfg["word_clip_tol_s"]
+    C, W = ep.cuts, ep.words
+    starts = [w["start"] for w in W]
+    out = []
+    for k, s in enumerate(segs):
+        a, b = s["start"], s["end"]
+        inside = C[bisect.bisect_right(C, a + tol):bisect.bisect_left(C, b - tol)]
+        if not inside:
+            continue
+        lo = bisect.bisect_left(starts, a - 0.01)
+        played = []
+        for i in range(lo, len(W)):
+            if W[i]["start"] > b + 0.01:
+                break
+            if W[i]["end"] <= b + 0.01:
+                played.append(i)
+        # end: a sliver after the last shot change inside the segment
+        c = inside[-1]
+        j = bisect.bisect_right(C, c)
+        if b - c < fs and (j >= len(C) or C[j] > b + tol):
+            new = round(c - eps, 3)
+            hit = [i for i in played if W[i]["end"] > new + wt]
+            rec = {"seg": k, "kind": s.get("kind", "scene"), "edge": "end", "cut": round(c, 3),
+                   "sliver_s": round(b - c, 3), "from": b}
+            if hit and new > a:
+                rec.update(fixed=False, to=b, word=W[hit[0]]["word"], word_s=round(W[hit[0]]["end"] - c, 3))
+            elif new > a:
+                s["end"] = new
+                rec.update(fixed=True, to=new)
+            else:
+                rec.update(fixed=False, to=b)
+            out.append(rec)
+        # start: a sliver before the first shot change inside the segment
+        b = s["end"]
+        inside = [x for x in inside if x < b - tol]
+        if not inside:
+            continue
+        c = inside[0]
+        j = bisect.bisect_left(C, c) - 1
+        if c - a < fs and (j < 0 or C[j] < a - tol):
+            hit = [i for i in played if W[i]["start"] < c - wt and W[i]["end"] <= b + 0.01]
+            rec = {"seg": k, "kind": s.get("kind", "scene"), "edge": "start", "cut": round(c, 3),
+                   "sliver_s": round(c - a, 3), "from": a}
+            if hit:
+                rec.update(fixed=False, to=a, word=W[hit[0]]["word"], word_s=round(c - W[hit[0]]["start"], 3))
+            else:
+                s["start"] = round(c, 3)
+                rec.update(fixed=True, to=round(c, 3))
+            out.append(rec)
+    return out
+
+
+def flash_text(f: dict) -> str:
+    where = f"seg{f['seg']} ({f['kind']}) {f['edge']}"
+    side = "after" if f["edge"] == "end" else "before"
+    if f["fixed"]:
+        return f"flash repaired: {where} moved {f['from']:.3f} -> {f['to']:.3f} (was a {f['sliver_s']:.2f} s sliver " \
+               f"{side} the shot change at {f['cut']:.2f} s)"
+    if "word" in f:
+        return f"flash kept: {where} shows {f['sliver_s']:.2f} s {side} the shot change at {f['cut']:.2f} s; " \
+               f"moving it would clip '{f['word']}' ({f['word_s']:.2f} s of the word lies {side} the cut)"
+    return f"flash kept: {where} shows {f['sliver_s']:.2f} s {side} the shot change at {f['cut']:.2f} s"
+
+
+def build_clip(ep: Episode, m: dict, cfg: dict, no_lift: bool = False, skip_drops: set | None = None,
+               view: str = "final") -> dict:
+    """Moment (line ids) -> clip with time_segments and word pieces. Raises Reject for an unusable moment.
+    ``view="ws/0.1"`` builds the ws/0.1 version (end hold v1, no flash repair): what run ws_r1's review saw."""
     warns: list[str] = []
     sid, eid = norm_id(m.get("start_line")), norm_id(m.get("end_line"))
     if sid not in ep.by_id or eid not in ep.by_id:
@@ -422,7 +589,7 @@ def build_clip(ep: Episode, m: dict, cfg: dict, no_lift: bool = False, skip_drop
             a, on = join_in(ep, r_first["words"][0], cfg)
             joins[-1]["in_on_cut"] = on
         if j == len(runs) - 1:
-            hold = end_hold(ep, r_last["words"][1], cfg)
+            hold = (end_hold_v1 if view == "ws/0.1" else end_hold)(ep, r_last["words"][1], cfg)
             b = hold["end"]
         else:
             b, on = join_out(ep, r_last["words"][1], cfg)
@@ -431,6 +598,17 @@ def build_clip(ep: Episode, m: dict, cfg: dict, no_lift: bool = False, skip_drop
     for k in range(1 + bool(lift), len(segs)):
         if segs[k]["start"] < segs[k - 1]["end"] - 1e-6:
             raise Reject("overlapping segments (internal error)")
+    flashes = []
+    if view != "ws/0.1":
+        flashes = fix_flashes(ep, segs, cfg)
+        for f in flashes:
+            warns.append(flash_text(f))
+        if lift and (segs[0]["start"] != lift["start"] or segs[0]["end"] != lift["end"]):
+            lift["start"], lift["end"] = segs[0]["start"], segs[0]["end"]
+            lift["duration"] = round(lift["end"] - lift["start"], 2)
+        if segs[-1]["end"] != hold["end"]:
+            hold = {**hold, "end": segs[-1]["end"], "hold_s": round(segs[-1]["end"] - hold["payoff_end"], 2),
+                    "on_shot_cut": True, "note": "end moved to the shot change (flash repair)"}
 
     # ---- cut descriptions (what each internal cut removes)
     cuts_info = []
@@ -458,7 +636,7 @@ def build_clip(ep: Episode, m: dict, cfg: dict, no_lift: bool = False, skip_drop
            "cold_open": lift, "lift_rejected": lift_reject if lift_ids and not lift and not no_lift else None,
            "cuts": cuts_info, "end": hold, "warnings": warns,
            "video_duration": round(sum(s["end"] - s["start"] for s in segs), 2),
-           "drops_used": [d["j"] for d in active]}
+           "drops_used": [d["j"] for d in active], "flashes": flashes, "view": view}
     if lift:
         gap = _loudness_gap(ep, lift, segs[1]["start"], cfg)
         if gap is not None:
@@ -802,7 +980,20 @@ def run_episode(vid: str, cfg: dict, llm, guard: Guard, out_dir: Path, log=print
     kept.sort(key=lambda x: x["clip"]["time_segments"][-1]["start"])
 
     # ---------------------------------------------------------------- 3b. review the built clips
-    texts = [play_text(ep, x["id"], x["moment"], x["clip"]) for x in kept]
+    view = cfg.get("review_view", "final")
+    texts = []
+    for x in kept:
+        shown = x["clip"]
+        if view != "final":
+            shown = build_clip(ep, x["moment"], cfg["cut"], view=view)
+            if [(a["after_line"], a["before_line"]) for a in shown["cuts"]] != \
+                    [(a["after_line"], a["before_line"]) for a in x["clip"]["cuts"]]:
+                raise RuntimeError(f"{x['id']}: review view {view} has different cuts than the built clip")
+        texts.append(play_text(ep, x["id"], x["moment"], shown))
+        for a, b in zip(shown["cuts"], x["clip"]["cuts"]):     # the review names cuts by these markers
+            if a.get("marker"):
+                b["marker"] = a["marker"]
+        x["review_saw"] = shown
     reviews = {}
     if kept:
         rs, ru = review_prompt(texts)
@@ -820,7 +1011,36 @@ def run_episode(vid: str, cfg: dict, llm, guard: Guard, out_dir: Path, log=print
         debug["review_input"] = texts
         reviews = {str(r["id"]).strip(): r for r in rv["clips"]}
 
-    # apply the review: veto cold opens, restore badly joined drops (code rebuild, no call)
+    apply_review(ep, kept, reviews, cfg)
+
+    # ---------------------------------------------------------------- 4. optional video end check
+    if cfg["video_end_check"]["enabled"] and kept:
+        video_end_check(ep, kept, cfg, llm, guard, log)
+
+    # ---------------------------------------------------------------- 5. rank, cut off, write
+    line_of_word = {}
+    for r in ep.lines:
+        if ep.is_speech(r):
+            line_of_word[r["words"][0]] = r
+    shown = rank_clips(kept, rejected, cfg)
+    out_props = [proposal_doc(ep, x, k + 1, cfg, line_of_word) for k, x in enumerate(shown)]
+    out_rej = [rejected_doc(ep, x, cfg) for x in rejected]
+    debug["rejected"] = rejected
+    debug["clips"] = {x["id"]: x["clip"] for x in kept}
+    doc = run_document(ep, tp, out_props, out_rej, cfg, llm, len(moments), len(kept), t_start, debug)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    (out_dir / f"{vid}.json").write_text(json.dumps(doc, ensure_ascii=False, indent=1), encoding="utf-8")
+    (out_dir / "debug").mkdir(exist_ok=True)
+    (out_dir / "debug" / f"{vid}.json").write_text(json.dumps(debug, ensure_ascii=False, indent=1, default=str),
+                                                   encoding="utf-8")
+    (out_dir / f"{vid}.md").write_text(clips_md(ep, doc), encoding="utf-8")
+    log(f"{vid}: {len(out_props)} shown, {len(out_rej)} rejected -> {out_dir / (vid + '.json')}")
+    return doc
+
+
+def apply_review(ep: Episode, kept: list, reviews: dict, cfg: dict) -> None:
+    """Apply the review to the built clips, in place: veto cold opens and restore drops the reviewer called bad
+    joins (a code rebuild, no call); note end words the review did not see."""
     for x in kept:
         r = reviews.get(x["id"])
         x["review"] = r
@@ -857,17 +1077,24 @@ def run_episode(vid: str, cfg: dict, llm, guard: Guard, out_dir: Path, log=print
             except Reject as e:
                 x["warnings_review"] = f"rebuild after review failed ({e}); kept the reviewed cut"
 
-    # ---------------------------------------------------------------- 4. optional video end check
-    if cfg["video_end_check"]["enabled"] and kept:
-        video_end_check(ep, kept, cfg, llm, guard, log)
+    # words at the end the review did not see (review_view ws/0.1 replays: a reaction line added by the ws/0.2 end)
+    for x in kept:
+        c, saw = x["clip"], x.get("review_saw")
+        if saw is None or saw is c:
+            continue
+        seen = {i for p in saw["pieces"] for i in range(p["start_word"], p["end_word"] + 1)}
+        last = ep.by_id[c["end_line"]]["words"][1]
+        extra = [i for p in c["pieces"] for i in range(p["start_word"], p["end_word"] + 1) if i > last and i not in seen]
+        if extra:
+            c["warnings"].append("end plays words the review did not see (it reviewed the ws/0.1 ending): "
+                                 + " ".join(ep.words[i]["word"] for i in extra))
+            c["unreviewed_end_words"] = extra
 
-    # ---------------------------------------------------------------- 5. rank, cut off, write
-    line_of_word = {}
-    for r in ep.lines:
-        if ep.is_speech(r):
-            line_of_word[r["words"][0]] = r
-    proposals, below = [], []
+
+def rank_clips(kept: list, rejected: list, cfg: dict) -> list:
+    """Scores -> shown clips in rank order (quality cutoff, no fixed N); appends the cut ones to ``rejected``."""
     th = cfg["thresholds"]
+    proposals, below = [], []
     for x in kept:
         r, c, m = x["review"], x["clip"], x["moment"]
         if not r:
@@ -879,36 +1106,35 @@ def run_episode(vid: str, cfg: dict, llm, guard: Guard, out_dir: Path, log=print
         if min(sc["hook"], sc["standalone"], sc["payoff"]) <= 2:
             sc["overall"] = min(sc["overall"], 2.0)
         x["scores"] = sc
+        if x.get("restored_drops"):
+            # the code repaired the clip after the review (put back drops the reviewer called bad joins): the
+            # scores are for the broken cut, so they must not reject or bury the repaired clip. It keeps the
+            # reviewer's tier when that tier is shown, else it is shown as worth_a_look; either way needs_rescore.
+            tier = tier_of(sc["overall"], th)
+            x["needs_rescore"] = one_line(
+                f"repaired after review (restored drop(s) {x['restored_drops']}: {r.get('cut_note', '')}); scores "
+                f"(overall {sc['overall']}, hook {sc['hook']}, standalone {sc['standalone']}, payoff {sc['payoff']}) "
+                f"are for the cut before the repair", 300)
+            if tier == "below_threshold":     # includes every score Q1 would reject (overall < t_show)
+                x["tier_override"] = "worth_a_look"
+            proposals.append(x)
+            continue
         if min(sc["hook"], sc["standalone"], sc["payoff"]) <= 2 or sc["overall"] < th["below_min_overall"]:
             why = [f"Q1: below the quality bar (overall {sc['overall']}, hook {sc['hook']}, standalone "
                    f"{sc['standalone']}, payoff {sc['payoff']})"]
-            if x.get("restored_drops"):
-                why.append("note: scores are for the reviewed cut; the review's fix (" +
-                           "; ".join(c.get("review_changes") or []) + ") was applied but not re-scored")
             rejected.append({"id": x["id"], "moment": m, "clip": c, "scores": sc, "reject_reasons": why})
             continue
         (proposals if sc["overall"] >= th["t_show"] else below).append(x)
-    key = lambda x: (-x["scores"]["overall"], -x["scores"]["hook"], -x["scores"]["payoff"],  # noqa: E731
-                     -int(x["moment"].get("strength", 3)))
+    # a repaired clip shown as worth_a_look ranks as if its overall were t_show (bottom of that tier, above
+    # below_threshold clips) until it is re-scored
+    key = lambda x: (-(th["t_show"] if x.get("tier_override") else x["scores"]["overall"]),  # noqa: E731
+                     -x["scores"]["hook"], -x["scores"]["payoff"], -int(x["moment"].get("strength", 3)))
     proposals.sort(key=key)
     below.sort(key=key)
     for x in below[th["below_threshold_max"]:]:
         rejected.append({"id": x["id"], "moment": x["moment"], "clip": x["clip"], "scores": x["scores"],
                          "reject_reasons": [f"Q2: below t_show, not in the top {th['below_threshold_max']} of those"]})
-    shown = proposals + below[:th["below_threshold_max"]]
-    out_props = [proposal_doc(ep, x, k + 1, cfg, line_of_word) for k, x in enumerate(shown)]
-    out_rej = [rejected_doc(ep, x, cfg) for x in rejected]
-    debug["rejected"] = rejected
-    debug["clips"] = {x["id"]: x["clip"] for x in kept}
-    doc = run_document(ep, tp, out_props, out_rej, cfg, llm, len(moments), len(kept), t_start, debug)
-    out_dir.mkdir(parents=True, exist_ok=True)
-    (out_dir / f"{vid}.json").write_text(json.dumps(doc, ensure_ascii=False, indent=1), encoding="utf-8")
-    (out_dir / "debug").mkdir(exist_ok=True)
-    (out_dir / "debug" / f"{vid}.json").write_text(json.dumps(debug, ensure_ascii=False, indent=1, default=str),
-                                                   encoding="utf-8")
-    (out_dir / f"{vid}.md").write_text(clips_md(ep, doc), encoding="utf-8")
-    log(f"{vid}: {len(out_props)} shown, {len(out_rej)} rejected -> {out_dir / (vid + '.json')}")
-    return doc
+    return proposals + below[:th["below_threshold_max"]]
 
 
 def video_end_check(ep: Episode, kept: list, cfg, llm, guard: Guard, log):
@@ -949,13 +1175,17 @@ def video_end_check(ep: Episode, kept: list, cfg, llm, guard: Guard, log):
         log(f"  {x['id']}: video end {res}")
 
 
+def tier_of(overall: float, th: dict) -> str:
+    return "recommended" if overall >= th["t_rec"] else "worth_a_look" if overall >= th["t_show"] \
+        else "below_threshold"
+
+
 def proposal_doc(ep: Episode, x: dict, rank: int, cfg, line_of_word) -> dict:
     c, m, r, sc = x["clip"], x["moment"], x["review"], x["scores"]
     th, g = cfg["thresholds"], cfg["guardrails"]
     pieces = c["pieces"]
     core = core_fields(ep, pieces, g["skip_s"])
-    tier = "recommended" if sc["overall"] >= th["t_rec"] else "worth_a_look" if sc["overall"] >= th["t_show"] \
-        else "below_threshold"
+    tier = x.get("tier_override") or tier_of(sc["overall"], th)
     notes = []
     if c["cold_open"]:
         notes.append({"type": "cold_open", "after_piece": 0,
@@ -1002,6 +1232,11 @@ def proposal_doc(ep: Episode, x: dict, rank: int, cfg, line_of_word) -> dict:
                          "opening_strength": m.get("opening_strength")},
            "review": {"cold_open_note": r.get("cold_open_note"), "cut_note": r.get("cut_note"),
                       "bad_cuts": r.get("bad_cuts"), "changes": c.get("review_changes") or []},
+           "needs_rescore": bool(x.get("needs_rescore")),
+           **({"rescore_reason": x["needs_rescore"]} if x.get("needs_rescore") else {}),
+           # shot flashes at segment edges the builder could not repair without clipping a word (the schema's
+           # `flags` enum has no such value; repaired ones are listed in build_warnings)
+           "shot_flags": [flash_text(f) for f in c.get("flashes") or [] if not f["fixed"]],
            "build_warnings": c["warnings"]}
     if c.get("video_end_check"):
         doc["video_end_check"] = c["video_end_check"]
@@ -1077,8 +1312,15 @@ def clips_md(ep: Episode, doc: dict) -> str:
             out.append(f"- cold open: {p['cold_open_detail']['text']} ({p['cold_open_detail']['duration']} s)")
         elif p.get("cold_open_rejected"):
             out.append(f"- cold open rejected: {p['cold_open_rejected']}")
-        out.append(f"- end: payoff ends {fmt(p['end_hold']['payoff_end'])}, hold {p['end_hold']['hold_s']} s "
-                   f"({'on a shot cut' if p['end_hold']['on_shot_cut'] else 'not on a shot cut'})")
+        eh = p["end_hold"]
+        out.append(f"- end: payoff ends {fmt(eh['payoff_end'])}, hold {eh['hold_s']} s "
+                   f"({'on a shot cut' if eh['on_shot_cut'] else 'not on a shot cut'}; rule {eh.get('rule', '-')})"
+                   + (f"; plays the reaction {eh['reaction']['line']} '{eh['reaction']['text']}'"
+                      if eh.get("reaction") else ""))
+        if p.get("needs_rescore"):
+            out.append(f"- NEEDS RESCORE: {p['rescore_reason']}")
+        for s in p.get("shot_flags") or []:
+            out.append(f"- shot flag: {s}")
         out.append(f"- why: {p['why_it_works']}")
         out.append(f"- hook line: {p['hook_line']['text']}")
         for cu in p["chunk_drops"]:

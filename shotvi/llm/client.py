@@ -248,4 +248,8 @@ class LLMClient:
         raise LLMError("unreachable")
 
     def count_tokens(self, spec: ModelSpec, text: str) -> int:
+        """Provider token count. This is a network call (Gemini countTokens), so cache-only mode refuses it:
+        callers fall back to an estimate."""
+        if self.cache_only:
+            raise LLMError("count_tokens: cache-only mode makes no provider calls")
         return get_provider(spec.provider).count_tokens(spec, text)

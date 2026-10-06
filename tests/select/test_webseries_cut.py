@@ -2,7 +2,8 @@
 import unittest
 
 from eval.schema_check import check_clip_core
-from shotvi.select.webseries import (DEFAULTS, Episode, Reject, build_clip, core_fields, end_hold, play_text)
+from shotvi.select.webseries import (DEFAULTS, Episode, Reject, apply_review, build_clip, core_fields, end_hold,
+                                     end_hold_v1, fix_flashes, play_text, rank_clips)
 
 CFG = DEFAULTS["cut"]
 
@@ -262,10 +263,12 @@ class EndHold(unittest.TestCase):
         self.assertAlmostEqual(h["hold_s"], CFG["hold_default_s"], places=2)
 
     def test_hold_never_reaches_next_speech(self):
-        spec = SCENE[:8] + [(32.8, 34.0, "stray next line")]
+        # ws/0.2: a real next line (not a short reaction) is never played; the end stops just before it
+        spec = SCENE[:8] + [(32.8, 34.0, "a stray next line comes in")]
         ep = make_ep(spec, [9.9, 36.0])
         h = end_hold(ep, ep.by_id["L0008"]["words"][1], CFG)
-        self.assertLessEqual(h["end"], 32.8 - CFG["next_speech_margin_s"] + 1e-6)
+        self.assertLessEqual(h["end"], 32.8 - CFG["quick_end_margin_s"] + 1e-6)
+        self.assertEqual(h["rule"], "before_next_line")
 
     def test_hold_short_before_long_silence(self):
         spec = SCENE[:8]                    # nothing after the payoff: credits / end of episode
