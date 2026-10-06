@@ -20,7 +20,9 @@ Three parts:
 2. Pair metrics on matched pairs: start/end deltas, payoff + reaction hold kept, setup dropped, word-level
    agreement, length ratio, cut counts, purpose, cold open.
 3. Rule checks on every clip (GT clips too, as a sanity test of the checks): lead-in, replay, cold-open lift,
-   internal cuts, shot flashes, mid-word cuts, reaction hold, length, recap/credits zones.
+   internal cuts, shot flashes, mid-word cuts, reaction hold, length, opening/credits zones, sponsor overlap.
+   The opening zone (title cards, song montage, recap/teaser) and sponsor segments come from the generic
+   detector `shotvi.segment.episode_zones` (no fixed "first N seconds" rule).
 """
 from __future__ import annotations
 
@@ -30,6 +32,8 @@ import json
 import sys
 from dataclasses import dataclass, field
 from pathlib import Path
+
+from shotvi.segment import episode_zones as EZ
 
 from .common import HARD_MAX_S, HARD_MIN_S, ROOT, SOFT_MAX_S, load_json, resolve, utf8_stdout, write_json
 
@@ -55,7 +59,6 @@ FLASH_S = 0.3            # a shot fragment shorter than this at a segment edge i
 HOLD_MIN = 1.0           # reaction hold after the last word
 MID_WORD_TOL = 0.08      # boundary this far inside a word's timing = mid-word cut (Scribe edges jitter ~0.05 s)
 STRETCHED_WORD = 1.0     # a "word" longer than this is a Scribe timing artifact (stretched over silence): warn only
-RECAP_S = 60.0           # the episode's first 60 s (recap / title)
 CREDITS_MIN_TAIL = 20.0  # a speechless tail at least this long is treated as end card / credits
 END_HOLD_ALLOW = 10.0    # story beats may run this long past the last spoken word before credits are assumed
 CADENCE_RUN = 3          # credits roll as evenly timed cards: this many equal shot intervals in the tail ...
@@ -89,6 +92,9 @@ class Ctx:
     sentences: list = field(default_factory=list)    # [{words: [first, last]}]
     cuts: list | None = None      # shot-change times, or None if unknown
     shots_source: str = ""
+    meta: dict | None = None      # YouTube metadata (description, chapters), optional
+    references: list = field(default_factory=list)   # sibling-episode transcript dicts (recap detection)
+    reference_ids: list = field(default_factory=list)
 
     def __post_init__(self):
         self.starts = [w["start"] for w in self.words]
@@ -111,8 +117,20 @@ class Ctx:
             self.cuts = sorted(self.cuts)
         self.first_word = self.words[0]["start"] if self.words else 0.0
         self.last_word = self.words[-1]["end"] if self.words else 0.0
-        self.intro_zone = (0.0, max(RECAP_S, self.first_word - 0.5))
         self.credits_zone, self.credits_status = self._credits()
+        self._zones()
+
+    def _zones(self):
+        """Opening zone (hard = never story, soft = uncertain) and sponsor segments, from free signals."""
+        if not self.words:
+            self.opening, self.sponsors = {"status": "no words", "story_start": None, "hard": [], "soft": [],
+                                           "parts": [], "head_end": 0.0}, []
+        else:
+            d = {"word_timestamps": self.words, "sentences": self.sentences, "audio_events": self.events,
+                 "audio_duration_secs": self.duration}
+            z = EZ.episode_zones(d, self.cuts, self.meta, self.references, self.video_id)
+            self.opening, self.sponsors = z["opening"], z["sponsors"]
+        self.intro_zone = (0.0, self.opening["head_end"])   # contiguous hard zone from 0 (report only)
 
     def _credits(self):
         tail = self.duration - self.last_word
@@ -167,7 +185,40 @@ def load_ctx(video_id, transcript_path=None, shots_dir=None):
     if sp.exists():
         s = load_json(sp)
         cuts, src = list(s.get("cuts") or []), str(sp.relative_to(ROOT) if sp.is_relative_to(ROOT) else sp)
-    return Ctx(video_id, W, dur, d.get("audio_events") or [], d.get("sentences") or [], cuts, src)
+    meta = _meta(video_id)
+    refs, ref_ids = siblings(video_id, meta)
+    return Ctx(video_id, W, dur, d.get("audio_events") or [], d.get("sentences") or [], cuts, src, meta, refs, ref_ids)
+
+
+def _meta(video_id):
+    p = ROOT / "scribe_dataset" / video_id / "youtube_meta.json"
+    return load_json(p) if p.exists() else None
+
+
+def _series_key(meta):
+    """(channel, series name) from YouTube metadata: the title's first '|'-separated part, e.g.
+    'Couple Goals || Episode - 2 || ...' -> 'couple goals'."""
+    if not meta or not meta.get("title"):
+        return None
+    name = " ".join(meta["title"].split("|")[0].lower().split())
+    return (meta.get("channel") or "", name) if name else None
+
+
+def siblings(video_id, meta=None):
+    """Transcripts of other episodes of the same series (same channel and title prefix) in scribe_dataset/, used to
+    spot a 'previously on' recap that replays an earlier episode's lines."""
+    key = _series_key(meta)
+    if key is None:
+        return [], []
+    refs, ids = [], []
+    for mp in sorted((ROOT / "scribe_dataset").glob("*/youtube_meta.json")):
+        vid = mp.parent.name
+        tp = mp.parent / f"{vid}_scribe_transcript.json"
+        if vid == video_id or not tp.exists() or _series_key(load_json(mp)) != key:
+            continue
+        refs.append(load_json(tp))
+        ids.append(vid)
+    return refs, ids
 
 
 # ---- clip geometry ------------------------------------------------------------------------------------
@@ -398,10 +449,24 @@ def check_clip(clip, ctx):
         st = "warn" if st == "pass" else st
     R["length"] = _res(st, round(d, 2), det)
 
-    # recap / credits zones
-    iz = inter(segs, [ctx.intro_zone])
-    R["recap_zone"] = _res("fail" if iz > OVERLAP_TOL else "pass", round(iz, 2),
-                           f"{iz:.1f}s inside the opening {ctx.intro_zone[1]:.0f}s (recap/title)" if iz > OVERLAP_TOL else "")
+    # opening zone (named recap_zone for continuity with earlier reports): hard parts fail, uncertain parts warn
+    hz, sz = inter(segs, ctx.opening["hard"]), inter(segs, ctx.opening["soft"])
+    if hz > OVERLAP_TOL or sz > OVERLAP_TOL:
+        lvl = "hard" if hz > OVERLAP_TOL else "soft"
+        kinds = [f"{p['kind']} {p['start']:.1f}-{p['end']:.1f}s" for p in ctx.opening["parts"]
+                 if p["level"] == lvl and inter(segs, [(p["start"], p["end"])]) > OVERLAP_TOL]
+        R["recap_zone"] = _res("fail" if lvl == "hard" else "warn", round(hz if lvl == "hard" else sz, 2),
+                               f"{(hz if lvl == 'hard' else sz):.1f}s inside the opening zone ({'; '.join(kinds)})"
+                               + ("" if lvl == "hard" else ", uncertain: check it is story"))
+    else:
+        R["recap_zone"] = _res("pass", 0.0)
+    # sponsor segments (warn: detection is lexical)
+    spo = [(s["start"], s["end"]) for s in ctx.sponsors]
+    so = inter(segs, spo)
+    R["sponsor"] = _res("warn" if so > OVERLAP_TOL else "pass", round(so, 2),
+                        f"{so:.1f}s overlaps a likely sponsor segment "
+                        + ", ".join(f"{a:.1f}-{b:.1f}s" for a, b in spo if inter(segs, [(a, b)]) > OVERLAP_TOL)
+                        if so > OVERLAP_TOL else "")
     if ctx.credits_zone is None:
         R["credits_zone"] = _res("unchecked", None, ctx.credits_status)
     else:
@@ -583,6 +648,7 @@ def evaluate_episode(gold, prop_doc, ctx):
         "status_counts": {s: sum(r["status"] == s for r in prop_rows) for s in ("matched", "duplicate", "partial", "new")},
         "fail_counts": _count([f for r in prop_rows for f in r["fails"]]),
         "credits": ctx.credits_status, "credits_zone": ctx.credits_zone, "intro_zone": ctx.intro_zone,
+        "opening": ctx.opening, "sponsors": ctx.sponsors, "sibling_episodes": ctx.reference_ids,
         "shots": ctx.shots_source,
     }
     return {"summary": summary, "gt": gt_rows, "proposals": prop_rows, "gt_checks": gt_checks}
@@ -608,6 +674,22 @@ def _pct(a, b):
 
 def _yn(x):
     return "yes" if x else "no"
+
+
+def _opening_md(s):
+    o = s.get("opening") or {}
+    parts = ", ".join(f"{p['kind']} {_t(p['start'])}-{_t(p['end'])}" + ("" if p["level"] == "hard" else " (uncertain)")
+                      for p in o.get("parts", []))
+    st = o.get("story_start")
+    txt = f"Opening zone: {parts or 'none'}; " + (f"story starts {_t(st)}." if st is not None else f"{o.get('status')}.")
+    sib = s.get("sibling_episodes")
+    if sib:
+        txt += f" Recap check vs {', '.join(sib)}."
+    sp = s.get("sponsors") or []
+    txt += " Sponsor: " + ("; ".join(f"{_t(x['start'])}-{_t(x['end'])} ({', '.join(x['evidence']['cues'][:4])}"
+                                     + (", #ad brand" if x["evidence"]["brand_from_meta"] else "") + ")" for x in sp)
+                           if sp else "none detected") + "."
+    return txt
 
 
 def render_markdown(results, run_dir):
@@ -636,7 +718,7 @@ def render_markdown(results, run_dir):
     for r in results:
         s = r["summary"]
         L += ["", f"## {s['video_id']}", "",
-              f"Shots: `{s['shots']}`. Recap zone: 0-{s['intro_zone'][1]:.0f}s. Credits: {s['credits']}.", "",
+              f"Shots: `{s['shots']}`. {_opening_md(s)} Credits: {s['credits']}.", "",
               "### GT clips", "",
               "| GT | purpose | src | len | match rank | cov / IoU | dstart | dend | payoff / hold | drops setup | len ratio | word P/R | cuts P/GT | same purpose | cold P/GT |",
               "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
@@ -713,7 +795,9 @@ def run(run_dir, video=None, gold_dir=None, out_dir=None, shots_dir=None, write=
         tpath = (gold.get("transcript") or {}).get("path")
         ctx = load_ctx(vid, tpath, shots_dir)
         results.append(evaluate_episode(gold, load_json(pp), ctx))
-    out = {"run_dir": str(run_dir), "params": {k: v for k, v in globals().items() if k.isupper() and isinstance(v, (int, float, tuple))},
+    params = {k: v for k, v in globals().items() if k.isupper() and isinstance(v, (int, float, tuple))}
+    params["zones"] = {k: v for k, v in vars(EZ).items() if k.isupper() and isinstance(v, (int, float))}
+    out = {"run_dir": str(run_dir), "params": params,
            "skipped_no_proposals": skipped, "episodes": results}
     if write and results:
         od = resolve(out_dir) if out_dir else run_dir

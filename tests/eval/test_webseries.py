@@ -10,6 +10,7 @@ from eval import webseries as W
 from eval.common import ROOT, load_json
 
 GT_IDS = ("j14Om1SaFYE", "QWIvgoTQGKk")
+HM = "epZ0lbXkgWA"   # Hello Madam Ep6: held-out series; GT pending founder review
 
 
 # ---- synthetic episode ----------------------------------------------------------------------------------
@@ -164,8 +165,16 @@ class TestRuleChecks(unittest.TestCase):
         self.assertIn("declared", self.st(bad, "length")["detail"])
 
     def test_zones(self):
+        # words start at 62 s: the speechless lead is the opening zone, story from the first word (no fixed 60 s)
         r = self.st(clip([(55.0, 80.0)]), "recap_zone")
         self.assertEqual(r["status"], "fail")
+        self.assertIn("lead", r["detail"])
+        self.assertEqual(self.st(clip([(61.8, 80.0)]), "recap_zone")["status"], "pass")
+        self.assertEqual(self.ctx.opening["story_start"], 62.0)
+        soft = W.Ctx("s", self.ctx.words, self.ctx.duration, self.ctx.events, self.ctx.sentences, [])
+        soft.opening = dict(soft.opening, soft=[(61.5, 70.0)],
+                            parts=soft.opening["parts"] + [{"kind": "isolated", "level": "soft", "start": 61.5, "end": 70.0}])
+        self.assertEqual(self.st(clip([(61.8, 80.0)]), "recap_zone", soft)["status"], "warn")
         ctx = synth_ctx()
         self.assertIsNotNone(ctx.credits_zone)
         self.assertIn("evenly timed", ctx.credits_status)
@@ -177,6 +186,16 @@ class TestRuleChecks(unittest.TestCase):
         self.assertEqual(self.st(ok, "credits_zone", ctx)["status"], "pass")
         short_tail = synth_ctx(cuts=None, duration=ctx.words[-1]["end"] + 5)
         self.assertEqual(self.st(ok, "credits_zone", short_tail)["status"], "unchecked")
+
+    def test_sponsor_overlap_warns(self):
+        ctx = no_cuts_ctx()
+        self.assertEqual(ctx.sponsors, [])
+        ctx.sponsors = [{"start": 100.0, "end": 120.0, "evidence": {"cues": []}}]
+        far = clip([body(ctx, 30, 37)])   # ~227-270 s
+        self.assertEqual(self.st(far, "sponsor", ctx)["status"], "pass")
+        near = clip([(95.0, 101.0)])
+        self.assertEqual(self.st(near, "sponsor", ctx)["status"], "warn")
+        self.assertIn("100.0-120.0", self.st(near, "sponsor", ctx)["detail"])
 
     def test_mid_word_and_mid_line(self):
         a, b = sentence_span(self.ctx, 30)
@@ -297,8 +316,11 @@ def perturb(gold, ctx):
 
 @unittest.skipUnless(all(_have(v) for v in GT_IDS), "web-series GT data not present")
 class TestRealGT(unittest.TestCase):
+    def ids(self):
+        return GT_IDS + ((HM,) if _have(HM) else ())
+
     def test_gold_vs_gold(self):
-        for vid in GT_IDS:
+        for vid in self.ids():
             gold = load_json(ROOT / "data" / "gold" / f"{vid}.json")
             ctx = W.load_ctx(vid)
             r = W.evaluate_episode(gold, gold, ctx)
@@ -320,9 +342,32 @@ class TestRealGT(unittest.TestCase):
                 for name in ("segments", "replay", "cold_open_lift", "internal_cuts", "flash", "length",
                              "recap_zone", "credits_zone"):
                     self.assertNotEqual(g["checks"][name]["status"], "fail", f"{vid} {g['id']} {name}")
+                self.assertEqual(g["checks"]["recap_zone"]["status"], "pass", f"{vid} {g['id']}")
+                self.assertEqual(g["checks"]["sponsor"]["status"], "pass", f"{vid} {g['id']}")
+
+    def test_opening_and_sponsor_zones(self):
+        """Detected openings: Ep1 music then dialogue at 24-34 s, Ep2 a 134 s song montage, Hello Madam cards then
+        the frame scene at 17.8 s; the Hello Madam ad (map.md: 57.27-113.32 s) is found, nothing elsewhere."""
+        ctx = W.load_ctx("QWIvgoTQGKk")
+        self.assertGreater(ctx.opening["head_end"], 130.0)
+        self.assertEqual(ctx.sponsors, [])
+        self.assertEqual(W.check_clip(clip([(120.0, 150.0)]), ctx)["recap_zone"]["status"], "fail")
+        ctx = W.load_ctx("j14Om1SaFYE")
+        self.assertLess(ctx.opening["head_end"], 34.0)
+        self.assertEqual(ctx.sponsors, [])
+        if _have(HM):
+            ctx = W.load_ctx(HM)
+            self.assertLess(ctx.opening["story_start"], 17.9)
+            self.assertGreater(ctx.opening["head_end"], 10.0)    # the subscribe card is zoned
+            self.assertEqual(len(ctx.sponsors), 1)
+            self.assertAlmostEqual(ctx.sponsors[0]["start"], 57.27, delta=0.1)
+            self.assertAlmostEqual(ctx.sponsors[0]["end"], 113.32, delta=0.1)
+            ad = W.check_clip(clip([(98.0, 125.0)]), ctx)
+            self.assertEqual(ad["sponsor"]["status"], "warn")
+            self.assertEqual(ad["recap_zone"]["status"], "pass")
 
     def test_perturbations_are_caught(self):
-        for vid in GT_IDS:
+        for vid in self.ids():
             gold = load_json(ROOT / "data" / "gold" / f"{vid}.json")
             ctx = W.load_ctx(vid)
             doc, faults = perturb(gold, ctx)
