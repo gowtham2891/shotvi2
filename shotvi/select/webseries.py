@@ -118,6 +118,13 @@ DEFAULTS: dict = {
                                      # a found opener; a cap-limited start is just another mid-exchange line) or
                                      # "stop" at the cap
         "exchange_recap_s": 60.0,    # never walk into the episode's opening recap / title (same as eval RECAP_S)
+        # exchange_mode "walk" = exchange_walk (above); "qreply" = qreply_walk: extend only when the start line
+        # REPLIES to a question just before it; start on that question (+ <= 2 lines of the asker's own lead-in)
+        "exchange_mode": "walk",
+        "qreply_require_speaker_change": False,  # speaker labels are unreliable in drama: a soft signal, off
+        "qreply_setup_lines": 2,     # asker's lead-in lines (same speaker label as the question, same turn)
+        "qreply_max_lines": 3,       # question + lead-in; fillers in between not counted
+        "qreply_max_s": 12.0,        # a question plus one line of lead-in is ~3-8 s of speech
         "exchange_max_play_s": None,  # extended clip must play <= this, else the original start is kept
                                       # (None = guardrails.soft_max_s)
     },
@@ -514,6 +521,89 @@ def _only_fillers(text: str) -> bool:
     return bool(toks) and all(is_filler(t) for t in toks)
 
 
+def _step_break(ep: Episode, prev, cur, cfg: dict, barrier_pos: int) -> str | None:
+    """Why spoken line ``prev`` is NOT part of the same continuous exchange as the next spoken line ``cur``
+    (gap / music / another clip's payoff / recap zone / sponsor plug), or None when it is."""
+    a, b = ep.w1(prev), ep.w0(cur)
+    if b - a > cfg["exchange_gap_s"]:
+        return f"gap: {b - a:.2f} s silence before {cur['id']} (> {cfg['exchange_gap_s']} s)"
+    mus = [ev for ev in ep.events if _is_music(ev["text"]) and (
+        ep.pos[prev["id"]] < ep.pos[ev["id"]] < ep.pos[cur["id"]] or (ev["start"] < b and ev["end"] > a))]
+    if mus:
+        return f"music: {mus[0]['text']} between {prev['id']} and {cur['id']}"
+    if ep.pos[prev["id"]] <= barrier_pos:
+        return f"payoff: {prev['id']} is at or before another clip's payoff line"
+    if ep.w0(prev) < cfg["exchange_recap_s"]:
+        return f"recap: {prev['id']} starts inside the opening {cfg['exchange_recap_s']:.0f} s"
+    if any(c in ep.text(prev).lower() for c in SPONSOR_CUES):
+        return f"sponsor: {prev['id']} is a sponsor / channel plug"
+    return None
+
+
+def raw_text(ep: Episode, r) -> str:
+    """A spoken line's raw Scribe words (no ASR-check marks such as "(?)", which would read as a question mark)."""
+    i0, i1 = r["words"]
+    return " ".join(ep.words[i]["word"] for i in range(i0, i1 + 1))
+
+
+def is_question_line(text: str) -> bool:
+    """RAW line text (``raw_text``). The segment module's question heuristic (``question_score`` >= its QUESTION_THRESHOLD): a '?' at the end,
+    a Telugu interrogative near the end (verb-final), or an English question opening. A bare yes/no '-ా' verb or
+    a 'కదా' tag alone stays below the threshold (often rhetorical)."""
+    from shotvi.segment.text import QUESTION_THRESHOLD, question_score
+    return question_score(text.split()) >= QUESTION_THRESHOLD
+
+
+def qreply_walk(ep: Episode, first, cfg: dict, barrier_pos: int = -1) -> dict:
+    """Reply-to-a-question start (exchange_mode "qreply"): extend ONLY when the clip's first spoken line answers
+    the line before it.
+      1. Look back past filler-only lines (a filler is not a turn) to the previous spoken line Q, inside the same
+         exchange (``_step_break`` barriers on every step). No Q, or Q is not a question (``is_question_line``),
+         or (qreply_require_speaker_change) Q has the same speaker label as the reply: keep the start.
+      2. Start on Q. Then add up to qreply_setup_lines lines just before Q that carry the SAME speaker label as Q
+         (the asker's own lead-in, same turn), again inside the exchange, while the extension stays within
+         qreply_max_lines (fillers not counted) and qreply_max_s (first word to first word). Never further.
+      3. If Q alone does not fit qreply_max_s, keep the start. Leading filler lines are never the opener.
+    Same result shape as ``exchange_walk``."""
+    k = bisect.bisect_left(ep._sp_w0, first["words"][0])
+    t0 = ep.w0(first)
+    keep = {"line": first["id"], "lines": 0, "walked": [], "skipped_fillers": []}
+    cur, between = first, []
+    while True:                 # 1. previous non-filler spoken line, through filler-only lines
+        if k == 0:
+            return {**keep, "stop": "start: no earlier spoken line"}
+        prev = ep.speech[k - 1]
+        why = _step_break(ep, prev, cur, cfg, barrier_pos)
+        if why:
+            return {**keep, "stop": f"no question before the start ({why})"}
+        k -= 1
+        if _only_fillers(ep.text(prev)):
+            between.insert(0, prev["id"])
+            cur = prev
+            continue
+        break
+    q = prev
+    if not is_question_line(raw_text(ep, q)):
+        return {**keep, "stop": f"not a reply: {q['id']} is not a question"}
+    if cfg.get("qreply_require_speaker_change") and q["speaker"] == first["speaker"]:
+        return {**keep, "stop": f"not a reply: {q['id']} has the same speaker label as the start line"}
+    if t0 - ep.w0(q) > cfg["qreply_max_s"]:
+        return {**keep, "stop": f"question {q['id']} starts {t0 - ep.w0(q):.1f} s back (> {cfg['qreply_max_s']} s)"}
+    walked, n, cur = [q["id"]] + between, 1, q
+    stop = f"reply: start answers question {q['id']}"
+    while n < min(cfg["qreply_max_lines"], 1 + cfg["qreply_setup_lines"]) and k > 0:   # 2. the asker's lead-in
+        prev = ep.speech[k - 1]
+        if _only_fillers(ep.text(prev)) or prev["speaker"] != q["speaker"]:
+            break
+        if _step_break(ep, prev, cur, cfg, barrier_pos) or t0 - ep.w0(prev) > cfg["qreply_max_s"]:
+            break
+        walked.insert(0, prev["id"])
+        n, k, cur = n + 1, k - 1, prev
+    if n > 1:
+        stop += f" + {n - 1} setup line(s) of the same turn"
+    return {"line": walked[0], "lines": len(walked), "stop": stop, "walked": walked, "skipped_fillers": []}
+
+
 def exchange_walk(ep: Episode, first, cfg: dict, barrier_pos: int = -1) -> dict:
     """Exchange start: from the clip's first spoken line, walk back one spoken line at a time while the previous
     line belongs to the same continuous exchange. Stops (the previous line is NOT taken) at the first of:
@@ -537,23 +627,8 @@ def exchange_walk(ep: Episode, first, cfg: dict, barrier_pos: int = -1) -> dict:
             stop = "start: no earlier spoken line"
             break
         prev = ep.speech[k - 1]
-        a, b = ep.w1(prev), ep.w0(cur)
-        if b - a > cfg["exchange_gap_s"]:
-            stop = f"gap: {b - a:.2f} s silence before {cur['id']} (> {cfg['exchange_gap_s']} s)"
-            break
-        mus = [ev for ev in ep.events if _is_music(ev["text"]) and (
-            ep.pos[prev["id"]] < ep.pos[ev["id"]] < ep.pos[cur["id"]] or (ev["start"] < b and ev["end"] > a))]
-        if mus:
-            stop = f"music: {mus[0]['text']} between {prev['id']} and {cur['id']}"
-            break
-        if ep.pos[prev["id"]] <= barrier_pos:
-            stop = f"payoff: {prev['id']} is at or before another clip's payoff line"
-            break
-        if ep.w0(prev) < cfg["exchange_recap_s"]:
-            stop = f"recap: {prev['id']} starts inside the opening {cfg['exchange_recap_s']:.0f} s"
-            break
-        if any(c in ep.text(prev).lower() for c in SPONSOR_CUES):
-            stop = f"sponsor: {prev['id']} is a sponsor / channel plug"
+        stop = _step_break(ep, prev, cur, cfg, barrier_pos)
+        if stop:
             break
         if t0 - ep.w0(prev) > cfg["exchange_back_max_s"] or len(walked) + 1 > cfg["exchange_back_max_lines"]:
             stop = (f"cap: no exchange break within {cfg['exchange_back_max_s']:.0f} s / "
@@ -588,7 +663,7 @@ def build_clip(ep: Episode, m: dict, cfg: dict, no_lift: bool = False, skip_drop
     if not cfg.get("exchange_start") or view != "final":
         return base
     first = ep.by_id[base["start_line"]]
-    w = exchange_walk(ep, first, cfg, barrier_pos)
+    w = (qreply_walk if cfg.get("exchange_mode", "walk") == "qreply" else exchange_walk)(ep, first, cfg, barrier_pos)
     info = {"s": 0.0, "lines": 0, "from_line": first["id"], "to_line": first["id"], "stop": w["stop"]}
     base["start_extended_by"] = info
     if w["line"] == first["id"]:

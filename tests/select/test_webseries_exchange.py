@@ -170,3 +170,102 @@ def ep_id(ep: Episode, prefix: str) -> str:
 
 if __name__ == "__main__":
     unittest.main()
+
+
+# ---------------------------------------------------------------- exchange_mode "qreply"
+QR = {**ON, "exchange_mode": "qreply"}
+
+
+def qep(spec, speakers, cuts=(), text_override=None):
+    """spec as make_ep; speakers: label per spoken line; text_override: {line_no: shown text} (ASR marks)."""
+    ep = make_ep(spec, list(cuts))
+    sp = [r for r in ep.lines if r["kind"] == "speech"]
+    for r, s in zip(sp, speakers):
+        r["speaker"] = s
+    for n, t in (text_override or {}).items():
+        sp[n]["text"] = t
+    return ep
+
+
+QSCENE = [(100.0, 102.0, "old scene line"),           # L0001
+          (106.0, 108.0, "listen to this one"),        # L0002 asker's lead-in (same label as the question)
+          (108.5, 110.0, "where were you yesterday?"),  # L0003 question
+          (110.5, 112.5, "at the market with raju"),   # L0004 model's start: the reply
+          (113.0, 115.0, "payoff line lands here")]    # L0005
+QSPK = ["a", "b", "b", "c", "c"]
+
+
+def qm(**kw):
+    return moment(start_line="L0004", end_line="L0005", **kw)
+
+
+class QReply(unittest.TestCase):
+    def test_off_unless_mode_qreply(self):
+        self.assertEqual(DEFAULTS["cut"]["exchange_mode"], "walk")
+        self.assertFalse(DEFAULTS["cut"]["exchange_start"])
+
+    def test_reply_starts_on_the_question_and_its_lead_in(self):
+        c = build_clip(qep(QSCENE, QSPK), qm(), QR)
+        self.assertEqual(c["start_line"], "L0002")
+        self.assertEqual(c["start_extended_by"]["walked"], ["L0002", "L0003"])
+
+    def test_no_lead_in_with_setup_lines_zero(self):
+        c = build_clip(qep(QSCENE, QSPK), qm(), {**QR, "qreply_setup_lines": 0})
+        self.assertEqual(c["start_line"], "L0003")
+
+    def test_lead_in_needs_the_askers_label(self):
+        c = build_clip(qep(QSCENE, ["a", "x", "b", "c", "c"]), qm(), QR)
+        self.assertEqual(c["start_line"], "L0003")
+
+    def test_time_cap_drops_the_lead_in(self):
+        c = build_clip(qep(QSCENE, QSPK), qm(), {**QR, "qreply_max_s": 4.0})
+        self.assertEqual(c["start_line"], "L0003")
+
+    def test_not_a_question_keeps_the_start(self):
+        spec = list(QSCENE)
+        spec[2] = (108.5, 110.0, "i was at home.")
+        c = build_clip(qep(spec, QSPK), qm(), QR)
+        self.assertEqual(c["start_line"], "L0004")
+        self.assertIn("not a question", c["start_extended_by"]["stop"])
+
+    def test_asr_mark_is_not_a_question_mark(self):
+        spec = list(QSCENE)
+        spec[2] = (108.5, 110.0, "i was at home.")
+        ep = qep(spec, QSPK, text_override={2: "i was(?) at home."})
+        self.assertEqual(build_clip(ep, qm(), QR)["start_line"], "L0004")
+
+    def test_telugu_wh_question_without_qmark(self):
+        spec = list(QSCENE)
+        spec[2] = (108.5, 110.0, "నువ్వు నిన్న ఎక్కడ")
+        self.assertEqual(build_clip(qep(spec, QSPK), qm(), {**QR, "qreply_setup_lines": 0})["start_line"], "L0003")
+
+    def test_filler_between_question_and_reply_is_transparent(self):
+        spec = QSCENE[:3] + [(110.2, 110.4, "ఆ")] + [(110.8, 112.5, "at the market with raju"),
+                                                     (113.0, 115.0, "payoff line lands here")]
+        ep = qep(spec, ["a", "b", "b", "c", "c", "c"])
+        c = build_clip(ep, moment(start_line="L0005", end_line="L0006"), {**QR, "qreply_setup_lines": 0})
+        self.assertEqual(c["start_line"], "L0003")
+
+    def test_speaker_change_signal(self):
+        ep = qep(QSCENE, ["a", "b", "b", "b", "b"])           # asker and replier share a label
+        self.assertEqual(build_clip(ep, qm(), QR)["start_line"], "L0002")
+        c = build_clip(ep, qm(), {**QR, "qreply_require_speaker_change": True})
+        self.assertEqual(c["start_line"], "L0004")
+
+    def test_gap_before_the_reply_keeps_the_start(self):
+        spec = list(QSCENE)
+        spec[3] = (113.0, 114.5, "at the market with raju")    # 3 s after the question
+        spec[4] = (115.0, 117.0, "payoff line lands here")
+        c = build_clip(qep(spec, QSPK), qm(), QR)
+        self.assertEqual(c["start_line"], "L0004")
+        self.assertIn("gap", c["start_extended_by"]["stop"])
+
+    def test_music_before_the_question_stops_the_lead_in(self):
+        ep = qep(QSCENE, QSPK)
+        ep2 = make_ep(QSCENE, [], events=[(108.05, 108.45, "[సంగీతం]")])
+        for r, s in zip([r for r in ep2.lines if r["kind"] == "speech"], QSPK):
+            r["speaker"] = s
+        self.assertEqual(build_clip(ep, qm(), QR)["start_line"], "L0002")
+        c = build_clip(ep2, moment(start_line=ep_id(ep2, "at the"), end_line=ep_id(ep2, "payoff")), QR)
+        self.assertEqual(ep2.text(ep2.by_id[c["start_line"]]), "where were you yesterday?")
+        self.assertGreaterEqual(c["time_segments"][0]["start"], 108.45 - 1e-6)
