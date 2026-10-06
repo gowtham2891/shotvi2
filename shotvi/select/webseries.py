@@ -7,6 +7,10 @@ Stages (per episode):
      whole-chunk drops (line ranges) and a spoiler flag.
   3. cut builder (deterministic, no model): line ids -> times.
        start   first spoken word of the start line, pad <= 0.3 s (a shot cut in that pad wins); never music/silence
+       exchange start (cut.exchange_start, OFF by default): walk back from the start line to the line that opens
+               the exchange (stops at a > 2 s gap, music, another clip's payoff, the recap zone, a sponsor plug;
+               no break within 30 s / 12 lines = keep the start; plays > soft max = keep the start); drops and
+               the lift stay as the moment's own start gives them; recorded as ``start_extended_by``
        lift    1-3.6 s, ends 0.005 s before a shot cut right after the line, not mid-laugh, not a quiet tail, not a
                question/answer orphan, not ending on a comma; skipped IN PLACE later (never replayed)
        drops   whole lines, at most 3 internal cuts in total (lift skip included), each <= 45 s, edges snapped to
@@ -99,6 +103,23 @@ DEFAULTS: dict = {
         "flash_s": 0.3,              # a sliver of another shot shorter than this at a segment edge is a flash
         "shot_tol_s": 0.05,          # "on a shot change" = within this of a detected cut
         "word_clip_tol_s": 0.02,     # moving an edge more than this into a played word = clipping speech
+        # exchange start (OFF by default; founder decides). After start_line resolves, walk back line by line while
+        # the previous spoken line belongs to the same continuous exchange, so the clip opens on the question or
+        # remark that starts the exchange instead of a few lines into it. Defaults chosen from first principles
+        # BEFORE any run (see exchange_walk):
+        "exchange_start": False,
+        "exchange_gap_s": 2.0,       # silence between two lines above this = exchange / scene break. Conversational
+                                     # turn gaps are mostly < 0.5 s, acted pauses inside a scene 1-2 s; a transition
+                                     # (new place, establishing shot, music sting) runs longer. ~3x Scribe's 0.7 s
+                                     # sentence gap.
+        "exchange_back_max_s": 30.0,  # never walk back further than this (first word to first word): an opening
+        "exchange_back_max_lines": 12,  # exchange is a fraction of a 20-75 s clip (30 s ~ 40% of 75 s)
+        "exchange_on_cap": "keep",   # cap reached with no break found: "keep" the model's start (we only move to
+                                     # a found opener; a cap-limited start is just another mid-exchange line) or
+                                     # "stop" at the cap
+        "exchange_recap_s": 60.0,    # never walk into the episode's opening recap / title (same as eval RECAP_S)
+        "exchange_max_play_s": None,  # extended clip must play <= this, else the original start is kept
+                                      # (None = guardrails.soft_max_s)
     },
     # what the review call sees: "final" = the clip as built; "ws/0.1" = the ws/0.1 end hold without flash repair
     # (replays run ws_r1's cached reviews; the finished clip is still what is written)
@@ -115,6 +136,12 @@ CATEGORIES = ["story", "advice", "humour", "controversy", "emotional", "insight"
 LAUGH_TOKENS = ("నవ్వు", "laugh")
 CENSOR_TOKENS = ("సెన్సార్డ్", "censor")
 SONG_TOKENS = ("పాట", "song")
+# any music in the gap between two lines ends an exchange (Scribe puts music events in the gaps between lines,
+# never over speech: a song bridge, a transition, or a comedy sting that closes a beat). Same keys as eval MUSIC_KEYS.
+MUSIC_TOKENS = ("మ్యూజిక్", "పాట", "సంగీత", "గీతం", "music", "song")
+# a spoken sponsor / channel plug is not part of a scene: the walk-back never crosses one (lexical cues only)
+SPONSOR_CUES = ("sponsor", "presented by", "powered by", "brought to you", "in association with", "subscribe",
+                "link in", "use code", "promo code", "coupon code", "download the app")
 
 
 def deep_merge(a: dict, b: dict) -> dict:
@@ -200,11 +227,16 @@ def _ends_q(text: str) -> bool:
     return text.rstrip(" \"'”’.!…").endswith("?") or text.rstrip().endswith("?")
 
 
-def clip_start(ep: Episode, r, cfg) -> float:
+def clip_start(ep: Episode, r, cfg, avoid_music: bool = False) -> float:
     """First spoken word of line r with <= start_pad_s lead-in; a shot cut inside that pad (and after the previous
-    word) is used instead, so the clip opens on a clean picture, never on music or silence."""
+    word) is used instead, so the clip opens on a clean picture, never on music or silence. ``avoid_music``
+    (exchange start, which often stops right after a music event): the pad never reaches into a music event."""
     i0 = r["words"][0]
     w0, pe = ep.words[i0]["start"], ep.prev_end(i0)
+    if avoid_music:
+        for ev in ep.events:
+            if _is_music(ev["text"]) and ev["end"] > w0 - cfg["start_pad_s"] and ev["start"] < w0:
+                pe = max(pe, min(ev["end"], w0 - 0.02))
     lo = max(pe + 0.02, w0 - cfg["start_pad_s"])
     cs = ep.cuts_in(lo, w0)
     if cs:
@@ -471,10 +503,142 @@ def flash_text(f: dict) -> str:
     return f"flash kept: {where} shows {f['sliver_s']:.2f} s {side} the shot change at {f['cut']:.2f} s"
 
 
+def _is_music(text: str) -> bool:
+    t = text.lower()
+    return any(k in t for k in MUSIC_TOKENS)
+
+
+def _only_fillers(text: str) -> bool:
+    from shotvi.segment.text import is_filler, norm
+    toks = [t for t in text.split() if norm(t)]
+    return bool(toks) and all(is_filler(t) for t in toks)
+
+
+def exchange_walk(ep: Episode, first, cfg: dict, barrier_pos: int = -1) -> dict:
+    """Exchange start: from the clip's first spoken line, walk back one spoken line at a time while the previous
+    line belongs to the same continuous exchange. Stops (the previous line is NOT taken) at the first of:
+      gap      silence between the two lines > exchange_gap_s
+      music    a music / song audio event between them (song bridge, transition, a sting closing a beat)
+      payoff   the previous line is (at or before) another nominated clip's payoff line (``barrier_pos``)
+      recap    the previous line starts inside the opening recap / title zone (< exchange_recap_s)
+      sponsor  the previous line is a spoken sponsor / channel plug (SPONSOR_CUES)
+      start    no earlier spoken line
+      cap      the previous line starts > exchange_back_max_s before the clip's first word, or would be line
+               number exchange_back_max_lines + 1: no break found, so with exchange_on_cap "keep" the clip keeps
+               its own start (we only move to a FOUND opener)
+    Leading lines that are only fillers ("ఆ", "ఉమ్") are then skipped forward (a clip never opens on one).
+    Returns {"line": new first line id, "lines": spoken lines added, "stop": reason, "walked": [ids added],
+    "skipped_fillers": [filler-only ids walked over and then left out]}."""
+    k = bisect.bisect_left(ep._sp_w0, first["words"][0])
+    t0 = ep.w0(first)
+    cur, walked, stop = first, [], None
+    while True:
+        if k == 0:
+            stop = "start: no earlier spoken line"
+            break
+        prev = ep.speech[k - 1]
+        a, b = ep.w1(prev), ep.w0(cur)
+        if b - a > cfg["exchange_gap_s"]:
+            stop = f"gap: {b - a:.2f} s silence before {cur['id']} (> {cfg['exchange_gap_s']} s)"
+            break
+        mus = [ev for ev in ep.events if _is_music(ev["text"]) and (
+            ep.pos[prev["id"]] < ep.pos[ev["id"]] < ep.pos[cur["id"]] or (ev["start"] < b and ev["end"] > a))]
+        if mus:
+            stop = f"music: {mus[0]['text']} between {prev['id']} and {cur['id']}"
+            break
+        if ep.pos[prev["id"]] <= barrier_pos:
+            stop = f"payoff: {prev['id']} is at or before another clip's payoff line"
+            break
+        if ep.w0(prev) < cfg["exchange_recap_s"]:
+            stop = f"recap: {prev['id']} starts inside the opening {cfg['exchange_recap_s']:.0f} s"
+            break
+        if any(c in ep.text(prev).lower() for c in SPONSOR_CUES):
+            stop = f"sponsor: {prev['id']} is a sponsor / channel plug"
+            break
+        if t0 - ep.w0(prev) > cfg["exchange_back_max_s"] or len(walked) + 1 > cfg["exchange_back_max_lines"]:
+            stop = (f"cap: no exchange break within {cfg['exchange_back_max_s']:.0f} s / "
+                    f"{cfg['exchange_back_max_lines']} lines")
+            if cfg.get("exchange_on_cap", "keep") == "keep":
+                cur, walked = first, []
+                stop += " (kept the clip's own start)"
+            break
+        walked.insert(0, prev["id"])
+        cur, k = prev, k - 1
+    fillers = []
+    while cur["id"] != first["id"] and _only_fillers(ep.text(cur)):
+        fillers.append(walked.pop(0))
+        k += 1
+        cur = ep.speech[k]
+    return {"line": cur["id"], "lines": len(walked), "stop": stop, "walked": walked, "skipped_fillers": fillers}
+
+
+def _cut_pairs(c: dict) -> list:
+    return [(a["after_line"], a["before_line"]) for a in c["cuts"]]
+
+
 def build_clip(ep: Episode, m: dict, cfg: dict, no_lift: bool = False, skip_drops: set | None = None,
-               view: str = "final") -> dict:
+               view: str = "final", barrier_pos: int = -1) -> dict:
     """Moment (line ids) -> clip with time_segments and word pieces. Raises Reject for an unusable moment.
-    ``view="ws/0.1"`` builds the ws/0.1 version (end hold v1, no flash repair): what run ws_r1's review saw."""
+    ``view="ws/0.1"`` builds the ws/0.1 version (end hold v1, no flash repair): what run ws_r1's review saw.
+    With ``cfg["exchange_start"]`` (final view only) the start moves back to the line that opens the exchange
+    (``exchange_walk``); drops and the cold-open lift are the ones the moment's own start gives, so the cuts are
+    unchanged. The extension is undone when the clip would then play longer than exchange_max_play_s or its cuts
+    would change. ``barrier_pos``: position (ep.lines) of the latest other clip's payoff line before this clip."""
+    base = _build_clip(ep, m, cfg, no_lift, skip_drops, view)
+    if not cfg.get("exchange_start") or view != "final":
+        return base
+    first = ep.by_id[base["start_line"]]
+    w = exchange_walk(ep, first, cfg, barrier_pos)
+    info = {"s": 0.0, "lines": 0, "from_line": first["id"], "to_line": first["id"], "stop": w["stop"]}
+    base["start_extended_by"] = info
+    if w["line"] == first["id"]:
+        return base
+    try:
+        c = _build_clip(ep, m, cfg, no_lift, skip_drops, view, start_override=w["line"])
+    except Reject as e:
+        info["kept_original"] = f"extended build rejected: {e}"
+        return base
+    cap = cfg.get("exchange_max_play_s") or DEFAULTS["guardrails"]["soft_max_s"]
+    new_line = ep.by_id[w["line"]]
+    tried = {"to_line": w["line"], "lines": w["lines"], "text": ep.text(new_line),
+             "plays_s": c["video_duration"]}
+    if c["video_duration"] > cap:
+        info["kept_original"] = (f"extension to {w['line']} would play {c['video_duration']:.1f} s "
+                                 f"(> {cap:.0f} s soft max)")
+        info["tried"] = tried
+        return base
+    if _cut_pairs(c) != _cut_pairs(base) or bool(c["cold_open"]) != bool(base["cold_open"]):
+        info["kept_original"] = "extension would change the internal cuts / cold open"
+        info["tried"] = tried
+        return base
+    scene0 = lambda x: next(s for s in x["time_segments"] if s["kind"] == "scene")  # noqa: E731
+    c["start_extended_by"] = {**info, "s": round(scene0(base)["start"] - scene0(c)["start"], 2),
+                              "lines": w["lines"], "to_line": w["line"], "first_new_line": ep.text(new_line),
+                              "walked": w["walked"], "skipped_fillers": w["skipped_fillers"],
+                              "plays_s_before": base["video_duration"], "plays_s_after": c["video_duration"]}
+    return c
+
+
+def barrier_for(ep: Episode, moments: list, m: dict) -> int:
+    """Position (ep.lines) of the latest payoff line of ANOTHER nominated moment that lies before this moment's
+    start: the exchange-start walk never crosses it. -1 when there is none."""
+    sid = norm_id(m.get("start_line"))
+    if sid not in ep.pos:
+        return -1
+    out = -1
+    for o in moments:
+        if o is m:
+            continue
+        e = norm_id(o.get("end_line"))
+        if e in ep.pos and ep.pos[e] < ep.pos[sid]:
+            out = max(out, ep.pos[e])
+    return out
+
+
+def _build_clip(ep: Episode, m: dict, cfg: dict, no_lift: bool = False, skip_drops: set | None = None,
+                view: str = "final", start_override: str | None = None) -> dict:
+    """The cut builder proper (see build_clip). ``start_override``: an earlier spoken line the clip starts on
+    (exchange start); the moment's own start line still bounds the drops and the lift."""
     warns: list[str] = []
     sid, eid = norm_id(m.get("start_line")), norm_id(m.get("end_line"))
     if sid not in ep.by_id or eid not in ep.by_id:
@@ -489,7 +653,14 @@ def build_clip(ep: Episode, m: dict, cfg: dict, no_lift: bool = False, skip_drop
         warns.append(f"start line {sid} is not speech: starts at {S[0]['id']}")
     if not ep.is_speech(ep.by_id[eid]):
         warns.append(f"end line {eid} is an audio event: payoff = {S[-1]['id']}, the hold covers the event")
+    anchor = S[0]       # the moment's own first spoken line: drops and the lift are judged against it
+    if start_override is not None:
+        po = ep.pos[start_override]
+        if po > ep.pos[anchor["id"]] or not ep.is_speech(ep.by_id[start_override]):
+            raise Reject(f"start override {start_override} is not a spoken line before {anchor['id']}")
+        S = [r for r in ep.lines[po:pe + 1] if ep.is_speech(r)]
     idx = {r["id"]: k for k, r in enumerate(S)}
+    k_anchor = idx[anchor["id"]]
 
     # ---- drops: whole lines strictly inside the clip
     drops = []
@@ -502,7 +673,7 @@ def build_clip(ep: Episode, m: dict, cfg: dict, no_lift: bool = False, skip_drop
             continue
         pa, pb = sorted((ep.pos[a], ep.pos[b]))
         sp = [idx[r["id"]] for r in ep.lines[pa:pb + 1] if r["id"] in idx]
-        if pa <= ep.pos[S[0]["id"]] or pb >= ep.pos[S[-1]["id"]]:
+        if pa <= ep.pos[anchor["id"]] or pb >= ep.pos[S[-1]["id"]]:
             warns.append(f"drop {j + 1} ({a}..{b}) touches the start/end line or lies outside; ignored")
             continue
         gap_k = None
@@ -526,6 +697,8 @@ def build_clip(ep: Episode, m: dict, cfg: dict, no_lift: bool = False, skip_drop
         else:
             lift_ks = sorted({idx[x] for x in lift_ids})
             try:
+                if lift_ks[0] <= k_anchor:
+                    raise Reject("lift is the start line")
                 lift_position_check(S, lift_ks, m.get("purpose", "standalone"))
             except Reject as e:
                 lift_reject, lift_ks = str(e), []
@@ -598,7 +771,7 @@ def build_clip(ep: Episode, m: dict, cfg: dict, no_lift: bool = False, skip_drop
     for j, run in enumerate(runs):
         r_first, r_last = S[run[0]], S[run[-1]]
         if j == 0:
-            a = clip_start(ep, r_first, cfg)
+            a = clip_start(ep, r_first, cfg, avoid_music=start_override is not None)
         else:
             a, on = join_in(ep, r_first["words"][0], cfg)
             joins[-1]["in_on_cut"] = on
@@ -1031,6 +1204,8 @@ def run_episode(vid: str, cfg: dict, llm, guard: Guard, out_dir: Path, log=print
     free (so a run that only adds a stage, e.g. the video end check, is projected exactly) and the result says
     which stage would bill first and how many rupees the rest would cost. Nothing is written."""
     t_start = time.time()
+    if cfg["cut"].get("exchange_max_play_s") is None:
+        cfg["cut"]["exchange_max_play_s"] = cfg["guardrails"]["soft_max_s"]
     ep, ix, tr, tp = load_episode(vid)
     system, user = discover_prompt(ep, ix, cfg)
     spec = spec_of(cfg, "ws_discover")
@@ -1064,8 +1239,9 @@ def run_episode(vid: str, cfg: dict, llm, guard: Guard, out_dir: Path, log=print
     cands, rejected = [], []
     for k, m in enumerate(moments):
         cid = f"w{k + 1:02d}"
+        bpos = barrier_for(ep, moments, m)
         try:
-            c = build_clip(ep, m, cfg["cut"])
+            c = build_clip(ep, m, cfg["cut"], barrier_pos=bpos)
         except Reject as e:
             rejected.append({"id": cid, "moment": m, "reject_reasons": [f"B1: {e}"]})
             log(f"  {cid}: rejected by the cut builder: {e}")
@@ -1075,7 +1251,10 @@ def run_episode(vid: str, cfg: dict, llm, guard: Guard, out_dir: Path, log=print
             rejected.append({"id": cid, "moment": m, "clip": c, "reject_reasons": rr})
             log(f"  {cid}: rejected: {rr}")
             continue
-        cands.append({"id": cid, "moment": m, "clip": c})
+        cands.append({"id": cid, "moment": m, "clip": c, "barrier_pos": bpos})
+        se = c.get("start_extended_by")
+        if se and se["lines"]:
+            log(f"  {cid}: exchange start {se['from_line']} -> {se['to_line']} (+{se['s']} s, {se['lines']} lines)")
     # de-duplicate on shared source time (keep the stronger nomination, then the earlier one)
     cands.sort(key=lambda x: -int(x["moment"].get("strength", 3)))
     kept = []
@@ -1180,7 +1359,7 @@ def apply_review(ep: Episode, kept: list, reviews: dict, cfg: dict) -> None:
         if no_lift or restore:
             try:
                 c2 = build_clip(ep, x["moment"], cfg["cut"], no_lift=no_lift,
-                                skip_drops=restore | set(x.get("restored", ())))
+                                skip_drops=restore | set(x.get("restored", ())), barrier_pos=x.get("barrier_pos", -1))
                 rr = hard_rules(ep, c2, cfg)
                 if rr:
                     raise Reject("; ".join(rr))
@@ -1209,6 +1388,15 @@ def apply_review(ep: Episode, kept: list, reviews: dict, cfg: dict) -> None:
             c["warnings"].append("end plays words the review did not see (it reviewed the ws/0.1 ending): "
                                  + " ".join(ep.words[i]["word"] for i in extra))
             c["unreviewed_end_words"] = extra
+        # exchange start: lines added at the front that the review did not see (review_view ws/0.1 replays)
+        first = min(seen) if seen else None
+        lead = [i for p in c["pieces"] for i in range(p["start_word"], p["end_word"] + 1)
+                if first is not None and i < first and i not in seen]
+        if lead:
+            c["warnings"].append(f"start plays {len(lead)} words the review did not see (exchange start; scores "
+                                 f"judged the later start): " + " ".join(ep.words[i]["word"] for i in lead[:25])
+                                 + (" …" if len(lead) > 25 else ""))
+            c["unreviewed_start_words"] = lead
 
 
 def rank_clips(kept: list, rejected: list, cfg: dict) -> list:
@@ -1343,6 +1531,8 @@ def proposal_doc(ep: Episode, x: dict, rank: int, cfg, line_of_word) -> dict:
            "video_duration": c["video_duration"], "spoiler": bool(m.get("spoiler")),
            "characters": m.get("characters") or [], "visual_dependency": m.get("visual_dependency", "medium"),
            "start_line": c["start_line"], "end_line": c["end_line"], "end_hold": c["end"],
+           **({"start_extended_by": c["start_extended_by"],
+               "review_saw_start": not c.get("unreviewed_start_words")} if c.get("start_extended_by") else {}),
            "chunk_drops": [{"after_line": cu["after_line"], "before_line": cu["before_line"],
                             "removed_lines": cu["removed_lines"], "lift_skip": cu["lift_skip"],
                             "start": cu["start"], "end": cu["end"], "removed_s": cu["removed_s"],
@@ -1438,6 +1628,12 @@ def clips_md(ep: Episode, doc: dict) -> str:
                    f"({'on a shot cut' if eh['on_shot_cut'] else 'not on a shot cut'}; rule {eh.get('rule', '-')})"
                    + (f"; plays the reaction {eh['reaction']['line']} '{eh['reaction']['text']}'"
                       if eh.get("reaction") else ""))
+        se = p.get("start_extended_by")
+        if se and se["lines"]:
+            out.append(f"- exchange start: {se['from_line']} -> {se['to_line']} (+{se['s']} s, {se['lines']} lines; "
+                       f"stopped by {se['stop']}): {se['first_new_line']}")
+        elif se and se.get("kept_original"):
+            out.append(f"- exchange start not applied: {se['kept_original']}")
         if p.get("needs_rescore"):
             out.append(f"- NEEDS RESCORE: {p['rescore_reason']}")
         for s in p.get("shot_flags") or []:
