@@ -22,6 +22,9 @@ decision must generalize to any Telugu podcast a creator uploads.
   pad); silent beats belong inside or at the end, never as the opener. If the opening line is setup or small talk,
   lift ONE 2–4 s strong moment from inside the clip (punchline line or reaction) to the front, then play the scene
   from its setup; don't drop setup the payoff needs. Don't stitch scenes far apart (a 15-min stitch rated 1/5).
+  Founder, 2026-10-06: cold opens "sometimes feel off". Never replay the lifted line word for word later in the
+  clip (skip it in place, or lift a reaction instead of a line); the lift is a complete thought or one reaction,
+  1–3 s, ending on a shot change and not on a quiet tail or mid-laugh; it must make sense with no context.
 - **The podcast pipeline is preserved** at git tag `podcast-pipeline-v1`; web-series work must not break it.
 - **Ground truth for these types comes from the `clip-gt-editor` agent** reading the whole episode (plus keyframes
   for web series), reviewed by the founder. The channel's own published Shorts/Reels are NOT used as ground truth.

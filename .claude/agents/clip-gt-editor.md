@@ -70,6 +70,21 @@ specific, honest about doubt. The founder reviews every pick, so explain each on
     first in `time_segments` and first in `pieces` (cut on line boundaries). Don't drop setup the payoff needs to
     make the start punchier. For a `promo`, the lifted moment must not give away the cliffhanger.
   - Mark `cold_open: true` and give the lifted line in `hook_line`.
+  - **Cold opens must not feel off (founder, 2026-10-06).** Round 2 cold opens felt off because:
+    - 6 of 7 replayed the same line word for word 15–38 s later.
+    - The jump back had no cue: big volume changes, lifts ending mid-shot or on a quiet tail.
+    - Some lifts made no sense alone (an unfinished "if…" sentence; "who is talking about what?").
+
+    So:
+    1. **No word-for-word replay.** When the scene reaches the lifted line, skip it there. It's a whole-line
+       chunk cut on a line boundary, ideally a shot change, and the scene must still read naturally across it.
+       Or lift a reaction or look instead of a line.
+    2. **Lift 1–3 s:** one complete thought, or one reaction or look, that makes sense with zero context.
+    3. **End the lift on a shot change**, on the line's last word or its reaction. Never end on a quiet tail,
+       mid-laugh or mid-music phrase.
+    4. **Prefer a scene start with energy after the lift.** A loud punchline followed by flat small talk feels
+       like a drop.
+    5. **If no lift meets 1–4, don't cold open.** Start tight on the best first line instead.
 - **Don't stitch scenes far apart** (a promo joining two scenes 15 min apart was rated 1/5 on everything). Stay
   inside one scene or two adjacent ones.
 - **End on the payoff and its reaction**, not on a stray next line (round 1: a clip ended on an unrelated line

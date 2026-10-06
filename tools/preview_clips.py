@@ -32,6 +32,9 @@ PRE_PAD = 0.10    # s before a piece's first word
 POST_PAD = 0.20   # s after a piece's last word
 FADE = 0.03       # s audio fade at every join
 LEAD_S = 2.0      # input seek margin
+JUMP_FADE = 0.12      # s audio fade on both sides of a cold-open jump (a softer join than a plain cut)
+JUMP_MATCH_S = 4.0    # a cold-open segment is levelled to this much of the scene that follows it
+JUMP_MAX_GAIN = 9.0   # dB, cap on that levelling
 
 
 def padded_segments(pieces, words):
@@ -198,15 +201,45 @@ def transcript_text(meta, lines, video_name):
     return "\n".join(out) + "\n"
 
 
+def mean_db(src, a, b):
+    """Mean loudness (dB) of the source audio in [a, b] (ffmpeg volumedetect)."""
+    r = subprocess.run(["ffmpeg", "-hide_banner", "-ss", f"{a:.3f}", "-t", f"{max(0.1, b - a):.3f}", "-i", str(src),
+                        "-vn", "-af", "volumedetect", "-f", "null", "-"], capture_output=True, text=True)
+    for line in r.stderr.splitlines():
+        if "mean_volume:" in line:
+            return float(line.split("mean_volume:")[1].split("dB")[0])
+    return None
+
+
+def jump_gains(src, segs):
+    """Gain (dB) per segment: a segment followed by a backward jump (a cold open lifted from later in the scene) is
+    levelled to the first JUMP_MATCH_S of the segment that follows, so the cut back into the scene doesn't jump in
+    volume. Other segments are untouched."""
+    gains = [0.0] * len(segs)
+    for k in range(len(segs) - 1):
+        (s, e), (s2, e2) = segs[k], segs[k + 1]
+        if s2 >= s:
+            continue
+        own, nxt = mean_db(src, s, e), mean_db(src, s2, min(e2, s2 + JUMP_MATCH_S))
+        if own is not None and nxt is not None:
+            gains[k] = max(-JUMP_MAX_GAIN, min(JUMP_MAX_GAIN, nxt - own))
+    return gains
+
+
 def render(src, segs, out):
     t0 = max(0.0, min(s for s, _ in segs) - LEAD_S)
     t1 = max(e for _, e in segs) + LEAD_S
+    gains = jump_gains(src, segs)
     parts, labels = [], []
     for k, (s, e) in enumerate(segs):
         a, b, d = s - t0, e - t0, e - s
+        jump_in = k > 0 and s < segs[k - 1][0]            # entering the scene after a cold open
+        jump_out = k + 1 < len(segs) and segs[k + 1][0] < s
+        fi, fo = (JUMP_FADE if jump_in else FADE), (JUMP_FADE if jump_out else FADE)
+        vol = f"volume={gains[k]:.1f}dB," if abs(gains[k]) >= 0.5 else ""
         parts.append(f"[0:v]trim=start={a:.3f}:end={b:.3f},setpts=PTS-STARTPTS[v{k}]")
-        parts.append(f"[0:a]atrim=start={a:.3f}:end={b:.3f},asetpts=PTS-STARTPTS,"
-                     f"afade=t=in:d={FADE},afade=t=out:st={max(0, d - FADE):.3f}:d={FADE}[a{k}]")
+        parts.append(f"[0:a]atrim=start={a:.3f}:end={b:.3f},asetpts=PTS-STARTPTS,{vol}"
+                     f"afade=t=in:d={fi},afade=t=out:st={max(0, d - fo):.3f}:d={fo}[a{k}]")
         labels.append(f"[v{k}][a{k}]")
     parts.append(f"{''.join(labels)}concat=n={len(segs)}:v=1:a=1[v][a]")
     cmd = ["ffmpeg", "-y", "-loglevel", "error", "-ss", f"{t0:.3f}", "-t", f"{t1 - t0:.3f}", "-i", str(src),
