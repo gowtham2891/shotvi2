@@ -12,7 +12,7 @@
   "skip_s": 30.0
  },
  "labeler": "clip-gt-editor",
- "created_at": "2026-10-06",
+ "created_at": "2026-10-07",
  "independence": "Picked from the episode transcript, video keyframes and metadata only; no creator Shorts/Reels, no pipeline outputs (runs/ws_*), no pipeline code or prompts were opened. Held-out test episode.",
  "coverage": {
   "start": 0.0,
@@ -20,68 +20,8 @@
   "complete": true,
   "note": "Whole episode read in order. 0:00-0:16 location-courtesy cards, subscribe card and Infinitum logo; 0:57.3-1:53.3 Himalaya Purifying Neem Face Wash sponsored segment (excluded); 8:52-9:00 'Hello Madam' title card; 25:42-26:48 credits and end card. No clip touches any of them."
  },
- "notes": "Telugu romantic drama web series (Infinitum Media), Hello Madam episode 6. No earlier episodes were available: names come from dialogue (Hamsini, from the mother's 'హంసిని'; Scribe also writes అంసిని/అన్సుని/హన్స్ని/అంశ), and backstory is inferred. Clips are in my rank order. Option-2 cutting: each clip is 1-2 continuous stretches; time_segments (seconds, play order) are the actual cut and include silent visual beats and reaction holds; pieces are the words inside them (no words trimmed inside a segment). edited_duration = word span sum (schema); video_duration = time_segments sum. Every clip starts 0.24-0.28 s before its first word. No cold opens in this episode: 11 of 12 openers are already a punchy line, and the only workable lift (w07) failed the 2026-10-06 loudness/energy rule. Speaker ids are unreliable: speaker_0 is Hamsini AND Keerthi; speaker_3 is Soham, the receptionist AND Aravind; speaker_5 is Hamsini at school. Speakers were assigned from frames and content. Spoilers: only w12 (Soham is dead). No ASR correction layer exists for this episode, so mishearings are listed per clip in notes.",
+ "notes": "Telugu romantic drama web series (Infinitum Media), Hello Madam episode 6. No earlier episodes were available: names come from dialogue (Hamsini, from the mother's 'హంసిని'; Scribe also writes అంసిని/అన్సుని/హన్స్ని/అంశ), and backstory is inferred. Clips are in my rank order. Option-2 cutting: each clip is 1-2 continuous stretches; time_segments (seconds, play order) are the actual cut and include silent visual beats and reaction holds; pieces are the words inside them (no words trimmed inside a segment). edited_duration = word span sum (schema); video_duration = time_segments sum. Every clip starts 0.24-0.28 s before its first word. No cold opens in this episode: 11 of 12 openers are already a punchy line, and the only workable lift (w07) failed the 2026-10-06 loudness/energy rule. Speaker ids are unreliable: speaker_0 is Hamsini AND Keerthi; speaker_3 is Soham, the receptionist AND Aravind; speaker_5 is Hamsini at school. Speakers were assigned from frames and content. Spoilers: only w12 (Soham is dead). No ASR correction layer exists for this episode, so mishearings are listed per clip in notes. || Round 2 (2026-10-07), after the founder's ratings (data/human/ratings_gt_hm_r1.csv) and the judge's fixes (runs/judge/epZ0lbXkgWA/gold_hm_blind.md): kept w02, w03, w06 (light touches); rebuilt w01 to end on the reveal (absorbs w12); re-ended w07, w09, w10 on their punchlines; dropped w04, w05, w08, w11, w12; added w13 (w04+w05 merged, ends on the clinic reveal), w14 (beard banter), w15 (leg-pains punchline). Every clip now ends on a punchline, a reveal, a quotable conclusion or a reaction hold. || Round 2 (2026-10-07), after the founder's ratings (data/human/ratings_gt_hm_r1.csv) and the judge's fixes (runs/judge/epZ0lbXkgWA/gold_hm_blind.md): kept w02, w03, w06 (light touches); rebuilt w01 to end on the reveal (absorbs w12); re-ended w07, w09, w10 on their punchlines; dropped w04, w05, w08, w11, w12; added w13 (w04+w05 merged, ends on the clinic reveal), w14 (beard banter), w15 (leg-pains punchline). Every clip now ends on a punchline, a reveal, a quotable conclusion or a reaction hold.",
  "clips": [
-  {
-   "id": "w01",
-   "pieces": [
-    {
-     "start_word": 1583,
-     "end_word": 1697,
-     "start": 1386.368,
-     "end": 1448.488
-    }
-   ],
-   "region": {
-    "start_word": 1583,
-    "end_word": 1697,
-    "start": 1386.368,
-    "end": 1448.488
-   },
-   "edited_duration": 62.12,
-   "reordered": false,
-   "n_blocks": 1,
-   "text": "నాకు తెలుసు ఏంటి మీరు ఎందుకు వేరే వాడిని మీ life లోకి రానివ్వట్లేదో నాకు తెలుసు ఏం తెలుసు మీరు ఒకరిని sincerely గా love చేశారు. వాడు మిమ్మల్ని మోసం చేశాడు. అందుకే వేరెవరినీ మీ life లోకి రానివ్వట్లేదు. అంతేగా. చూడండి madam. ఈ ప్రపంచంలో ఉన్న అబ్బాయిలందరూ మీరు love చేసిన అబ్బాయిలా ఉండరు. కొందరు నాలాంటి మంచివాళ్ళు కూడా ఉంటారు. మీరు తిట్టినా, కొట్టినా ఏం చేసినా కూడా పడేవాళ్ళు. మమ్మల్ని కూడా పట్టించుకోండి. అయినా ఎవడికి మనసేలో వచ్చిందండి. మీలాంటి మంచి మనిషిని ఇబ్బంది పెట్టడానికి. మీరు అలా చూస్తూ ఉండండి. వాడు అస్సలు happy గా ఉండలేడు. ఆపు ఇంకా. ఇంకొక్క మాట కూడా మాట్లాడకు. ఉమ్ అర్థమైందిలెండి. మనం true గా love చేసినోడు ఎవరైనా ఏమైనా అంటే మనం అస్సలు తట్టుకోలేం. కానీ మీ విషయంలో జరిగింది మాత్రం నిజంగా తప్పేనండి. నువ్వు ఆపుతావా ఆపవా? నీకు సోహం గురించి ఏం తెలుసు అని మాట్లాడుతున్నావ్ రా. ఆ ఆ",
-   "labeler": "clip-gt-editor",
-   "tightening_labeled": true,
-   "hook_line": {
-    "text": "నాకు తెలుసు ఏంటి మీరు ఎందుకు వేరే వాడిని మీ life లోకి రానివ్వట్లేదో నాకు తెలుసు",
-    "start_word": 1583,
-    "end_word": 1595
-   },
-   "scores": {
-    "hook": 5,
-    "standalone": 4,
-    "payoff": 5,
-    "value_emotion": 5,
-    "overall": 4.7
-   },
-   "title": "మీరు ఎవరినీ ఎందుకు రానివ్వట్లేదో నాకు తెలుసు madam… నీకు సోహం గురించి ఏం తెలుసు?",
-   "why_it_works": "Aravind lectures Hamsini on why she shuts men out ('the guy cheated you, not all boys are like him') until she snaps: 'what do you even know about Soham?' Open question, no spoiler.",
-   "category": "emotional",
-   "content_type": "web_series",
-   "clip_purpose": "promo",
-   "characters": [
-    "Hamsini (heroine, school teacher)",
-    "Aravind (her suitor)"
-   ],
-   "visual_dependency": "medium",
-   "spoiler": false,
-   "confidence": 5,
-   "time_segments": [
-    {
-     "start": 1386.1,
-     "end": 1449.53
-    }
-   ],
-   "video_duration": 63.43,
-   "standalone_risks": [],
-   "edit_notes": [],
-   "flags": [],
-   "tags": [],
-   "notes": "School grounds, 23:06-24:09. Starts on his 'నాకు తెలుసు' (0.27 s pad); her 'ఏంటి' and his full claim land within 5 s. Ends on her furious 'నీకు సోహం గురించి ఏం తెలుసు అని మాట్లాడుతున్నావ్ రా' and his stunned 'ఆ', cut on the shot change at 24:09.53 (frames: she is in a purple saree, he stands over her; at 24:03 she turns on him). Stops before the episode twist ('Soham చనిపోయాడురా!' at 24:33), so it works as the episode's main promo. Speaker ids: Aravind is speaker_3, Hamsini speaker_5 here. ASR: 'మనసేలో వచ్చిందండి' = 'మనసెలా వచ్చిందండి'. Continuous, no cuts. The small talk before it ('students syllabus ఇంకా అవ్వలేదా', 'evening ... చీకటి అవుతుంది') is left out.",
-   "cold_open": false
-  },
   {
    "id": "w02",
    "pieces": [
@@ -131,15 +71,15 @@
    "time_segments": [
     {
      "start": 1001.95,
-     "end": 1072.0
+     "end": 1070.1
     }
    ],
-   "video_duration": 70.05,
+   "video_duration": 68.15,
    "standalone_risks": [],
    "edit_notes": [],
    "flags": [],
    "tags": [],
-   "notes": "Living room, 16:42-17:52. Self-contained: needs no earlier episode. Opens on 'తోడు లేని జీవితం waste అన్నట్టు అన్నావు కదా, మరి నీకు తోడు అవసరం లేదా'. Her lead-in 'I agree, నువ్వు చెప్పినవన్నీ facts ఏ' is dropped by starting later; the line still reads alone because it quotes the mother. Ends with a 7.5 s silent hold, which is the point: frames 17:45-17:49 show the mother get up, stroke Hamsini's cheek and walk out, then Hamsini's thoughtful close-up (17:50-17:52); out before the sunset establishing shot at 17:55. Comic beats inside: 'నాకు అదే కదా కావాలి' and 'నేను మీతో వచ్చేస్తాను'. ASR: 'నీక తోడు' = 'నీకు తోడు'. Mother is consistently speaker_4.",
+   "notes": "Living room, 16:42-17:52. Self-contained: needs no earlier episode. Opens on 'తోడు లేని జీవితం waste అన్నట్టు అన్నావు కదా, మరి నీకు తోడు అవసరం లేదా'. Her lead-in 'I agree, నువ్వు చెప్పినవన్నీ facts ఏ' is dropped by starting later; the line still reads alone because it quotes the mother. Ends with a 7.5 s silent hold, which is the point: frames 17:45-17:49 show the mother get up, stroke Hamsini's cheek and walk out, then Hamsini's thoughtful close-up (17:50-17:52); out before the sunset establishing shot at 17:55. Comic beats inside: 'నాకు అదే కదా కావాలి' and 'నేను మీతో వచ్చేస్తాను'. ASR: 'నీక తోడు' = 'నీకు తోడు'. Mother is consistently speaker_4. || Round 2: KEEP (founder yes). Light touch: end moved 1072.0 -> 1070.1, the shot change after the mother strokes Hamsini's cheek and walks out of frame (frames 17:45-17:50); drops the 1.9 s close-up tail. Hold after the last word 7.5 s -> 5.55 s. The judge's ~4 s (17:48.5) would cut mid-walk inside one shot, so I took the next cut instead. || Round 2: KEEP (founder yes). Light touch: end moved 1072.0 -> 1070.1, the shot change after the mother strokes Hamsini's cheek and walks out of frame (frames 17:45-17:50); drops the 1.9 s close-up tail. Hold after the last word 7.5 s -> 5.55 s. The judge's ~4 s (17:48.5) would cut mid-walk inside one shot, so I took the next cut instead.",
    "cold_open": false
   },
   {
@@ -221,160 +161,7 @@
    ],
    "flags": [],
    "tags": [],
-   "notes": "Mother's house, 20:06-20:33 + 21:23-21:55. Starts on the shot change 0.25 s before his apology. His first try 'ఆ రోజు నైట్ జరిగిన దానికి' and her 'దాని గురించి ఎప్పుడో మర్చిపోయాం' are dropped; the repeated line is complete. The first stretch ends on his stunned close-up after her wine line (20:29.8-20:33, frames). Join: stunned face, then him walking to the door, 2.6 s before his aside 'వాళ్ళ అమ్మాయిని love చేస్తున్నా అంటే చెప్పు తిరగేసి కొడుతుంది అనుకుంటే chill గా మాట్లాడుతుందేంటి', which reads as his reaction to the drinking offer. Ends 0.5 s after 'దండం అండి' on the cut to the school. ASR: 'మధ్య మత్తులో' = 'మందు మత్తులో', 'దండనండి' = 'దండం అండి', 'హన్స్ని' = Hamsini. The dropped middle (20:35-21:23) could be a second clip if the founder wants one.",
-   "cold_open": false
-  },
-  {
-   "id": "w04",
-   "pieces": [
-    {
-     "start_word": 387,
-     "end_word": 421,
-     "start": 318.58,
-     "end": 330.7
-    },
-    {
-     "start_word": 434,
-     "end_word": 505,
-     "start": 341.14,
-     "end": 394.704
-    }
-   ],
-   "region": {
-    "start_word": 387,
-    "end_word": 505,
-    "start": 318.58,
-    "end": 394.704
-   },
-   "edited_duration": 65.684,
-   "reordered": false,
-   "n_blocks": 1,
-   "text": "నీకు already చెప్పాను కదా. I am not interested in you and this relationship anymore అని. అసలు ఏం జరిగిందని? sudden గా breakup అంటే నేను ఎలా తీసుకోవాలి? నువ్వు ఎలా అయినా తీసుకో. I am just done with you. ఎందుకు చేస్తున్నావ్ ఇదంతా? నేను చెప్పాల్సిన అవసరం లేదనుకుంటా. నేను గుట్టిగా నమ్మాను చూడు, నేను మోసపోయాను. మోసం చేశానా? నువ్వేం మాట్లాడుతున్నావో నాకు అర్థం కావట్లేదు. నాకన్నీ అర్థమయ్యాయి కాబట్టే నీతో ఇంకా ఉండాలనుకోవట్లేదు. అసలు ఏం జరిగిందో చెప్పొచ్చు కదా ఎందుకు చుట్టి చుట్టి మాట్లాడుతున్నావు సోహం ఇంక వదిలే నాకింక ఓపిక లేదు అన్సుని నేను ఒక్కసారి ఇంక నన్ను కలవడానికి try చేయొద్దు అసలు ఏం ఇంకొక మాట మాట్లాడి నన్ను ఇబ్బంది పెట్టకు సోహం. నాకు నిన్ను చూడడానికి ఇష్టం లేదు నువ్ ఇచ్చిన five minutes time అయిపోయింది. ఇంక నువ్వు వెళ్ళొచ్చు.",
-   "labeler": "clip-gt-editor",
-   "tightening_labeled": true,
-   "hook_line": {
-    "text": "నీకు already చెప్పాను కదా. I am not interested in you and this relationship anymore అని.",
-    "start_word": 387,
-    "end_word": 401
-   },
-   "scores": {
-    "hook": 5,
-    "standalone": 4,
-    "payoff": 4,
-    "value_emotion": 4,
-    "overall": 4.3
-   },
-   "title": "I am just done with you… నేను గుడ్డిగా నమ్మి మోసపోయాను",
-   "why_it_works": "Hamsini coldly ends it with Soham ('I am not interested in you and this relationship anymore'), says she was cheated but won't say how. He's lost; ends on his bitter 'you can go' and her shaken look.",
-   "category": "emotional",
-   "content_type": "web_series",
-   "clip_purpose": "promo",
-   "characters": [
-    "Hamsini (heroine, school teacher)",
-    "Soham (Hamsini's ex, flashback)"
-   ],
-   "visual_dependency": "medium",
-   "spoiler": false,
-   "confidence": 4,
-   "time_segments": [
-    {
-     "start": 318.3,
-     "end": 331.07
-    },
-    {
-     "start": 340.22,
-     "end": 399.4
-    }
-   ],
-   "video_duration": 71.95,
-   "standalone_risks": [],
-   "edit_notes": [
-    {
-     "type": "skip",
-     "after_piece": 0,
-     "reason": "Drops his repeat 'done ఆ? I am done with you అంటే నేను ఎలా తీసుకోవాలి?' (9 s); 'I am just done with you' goes straight to 'ఎందుకు చేస్తున్నావ్ ఇదంతా?', both shot changes."
-    }
-   ],
-   "flags": [],
-   "tags": [],
-   "notes": "Flashback, street outside (Keerthi brought her), 5:18-6:39. Opens on her line, not on his 'ఏమైంది అంశ? ఎందుకు ఒక వారం నుంచి నరకం చూపిస్తున్నావ్'. That is also a good opener, but starting there adds 15 s. Ends 4.7 s after his last line. 'నువ్ ఇచ్చిన five minutes time అయిపోయింది. ఇంక నువ్వు వెళ్ళొచ్చు' is Soham (frames: his close-up at 6:32), followed by her stunned close-up (6:36.6-6:39.4); out before the black-and-white echo at 6:45. Speaker ids: Soham is speaker_2 then speaker_3 in the same scene. ASR: 'గుట్టిగా నమ్మాను' = 'గుడ్డిగా నమ్మాను', 'వదిలే' = 'వదిలేయ్', 'అన్సుని/అంశ' = Hamsini. Promo: the open question is what she found out. w05 answers it, so post this first.",
-   "cold_open": false
-  },
-  {
-   "id": "w05",
-   "pieces": [
-    {
-     "start_word": 526,
-     "end_word": 548,
-     "start": 449.404,
-     "end": 462.564
-    },
-    {
-     "start_word": 549,
-     "end_word": 568,
-     "start": 483.024,
-     "end": 495.304
-    }
-   ],
-   "region": {
-    "start_word": 526,
-    "end_word": 568,
-    "start": 449.404,
-    "end": 495.304
-   },
-   "edited_duration": 25.44,
-   "reordered": false,
-   "n_blocks": 1,
-   "text": "Hello Hello సోహం ఆ చెప్పు అన్సుని ఎక్కడున్నావ్ నేను ఇప్పుడే ఇంటి నుంచి బయలుదేరాను friend ని కలవడానికి. ఏమైంది? Normal గా చేశాను ఏం లేదు సరే bye. Hi Hello ma'am ఆ ఇతను హా సోహం సర్ ఆ సోహం సర్ తో ఎవరు సోహం సర్ వాళ్ళ wife and వాళ్ళ పాప.",
-   "labeler": "clip-gt-editor",
-   "tightening_labeled": true,
-   "hook_line": {
-    "text": "Hello Hello సోహం ఆ చెప్పు అన్సుని ఎక్కడున్నావ్ నేను ఇప్పుడే ఇంటి నుంచి బయలుదేరాను friend ని కలవడానికి.",
-    "start_word": 526,
-    "end_word": 540
-   },
-   "scores": {
-    "hook": 3,
-    "standalone": 5,
-    "payoff": 5,
-    "value_emotion": 4,
-    "overall": 4.2
-   },
-   "title": "Friend ని కలవడానికి వెళ్తున్నా అన్నాడు… కానీ wife, పాపతో కనిపించాడు",
-   "why_it_works": "From a dentist's chair Hamsini phones Soham while watching him hold a little girl next to a woman; he says he just left home to meet a friend. The receptionist: 'Soham sir's wife and daughter'.",
-   "category": "reveal",
-   "content_type": "web_series",
-   "clip_purpose": "promo",
-   "characters": [
-    "Hamsini (heroine, school teacher)",
-    "Soham (Hamsini's ex, flashback)",
-    "dental clinic receptionist"
-   ],
-   "visual_dependency": "high",
-   "spoiler": false,
-   "confidence": 4,
-   "time_segments": [
-    {
-     "start": 449.15,
-     "end": 471.21
-    },
-    {
-     "start": 478.11,
-     "end": 499.45
-    }
-   ],
-   "video_duration": 43.4,
-   "standalone_risks": [],
-   "edit_notes": [
-    {
-     "type": "skip",
-     "after_piece": 0,
-     "reason": "Drops 7 s of her getting up and leaving the chair; from his laughing family shot to the wide of her reaching reception, both shot changes."
-    }
-   ],
-   "flags": [],
-   "tags": [],
-   "notes": "Flashback, dental clinic, 7:29-8:19. Visual: the opening words are plain ('Hello', 'Hello సోహం', 'ఎక్కడున్నావ్'); the hook is what we see: the first frame is Soham answering her call with the girl in his arms (7:29), and frames 7:32-7:45 show Soham in a checked shirt holding the girl beside a woman in white while he lies on the phone, and she watches. No cold open: the only lifts were his lie (a 5.2 s shot, meaningless without the picture) or the receptionist's line (the payoff). At reception she shows his photo on her phone (8:06-8:08). Ends on her shocked reaction, 4.2 s after the line, on the shot change at 8:19.5. Not marked spoiler: this is why she broke up (the flashback's answer). The episode later hints it was not what it looked like (mother: 'సోహంకి అలా జరిగిందని', then 'Soham చనిపోయాడురా!'), so the clip plays the misdirect the episode itself sets up. Founder may disagree. Speaker ids: Soham and the receptionist are both speaker_3.",
+   "notes": "Mother's house, 20:06-20:33 + 21:23-21:55. Starts on the shot change 0.25 s before his apology. His first try 'ఆ రోజు నైట్ జరిగిన దానికి' and her 'దాని గురించి ఎప్పుడో మర్చిపోయాం' are dropped; the repeated line is complete. The first stretch ends on his stunned close-up after her wine line (20:29.8-20:33, frames). Join: stunned face, then him walking to the door, 2.6 s before his aside 'వాళ్ళ అమ్మాయిని love చేస్తున్నా అంటే చెప్పు తిరగేసి కొడుతుంది అనుకుంటే chill గా మాట్లాడుతుందేంటి', which reads as his reaction to the drinking offer. Ends 0.5 s after 'దండం అండి' on the cut to the school. ASR: 'మధ్య మత్తులో' = 'మందు మత్తులో', 'దండనండి' = 'దండం అండి', 'హన్స్ని' = Hamsini. The dropped middle (20:35-21:23) could be a second clip if the founder wants one. || Round 2: KEEP unchanged (founder payoff 5 on the exit line; the judge's earlier ending was not taken). || Round 2: KEEP unchanged (founder payoff 5 on the exit line; the judge's earlier ending was not taken).",
    "cold_open": false
   },
   {
@@ -382,8 +169,14 @@
    "pieces": [
     {
      "start_word": 1010,
-     "end_word": 1091,
+     "end_word": 1031,
      "start": 878.148,
+     "end": 895.348
+    },
+    {
+     "start_word": 1032,
+     "end_word": 1091,
+     "start": 901.508,
      "end": 957.228
     }
    ],
@@ -393,7 +186,7 @@
     "start": 878.148,
     "end": 957.228
    },
-   "edited_duration": 79.08,
+   "edited_duration": 72.92,
    "reordered": false,
    "n_blocks": 1,
    "text": "ఒకటి చెప్పు, చచ్చేంత వరకు నేను ఇలానే ఉంటాను అంటున్నావు కదా. నేను రేపో మాపో పోతే అమ్మా chill chill ఏం కాదులే. నేను పోతే ఒంటరిగా ఉండగలవా హంసిని, ఇప్పుడంటే నేనున్నాను కాబట్టి అలా అలా సాగిపోతుంది. నాకు నువ్వు, నీకు నేను అని. నేను పోయిన తర్వాత. చెప్పొచ్చు, నేనుంటాను, ఉండగలను అని. నీ వల్ల కాదు హంసిని. దేవుడేం పిచ్చోడు కాదే, అందరు మనుషులని ఒకేలా పుట్టించడానికి. ఆయనకీ తెలుసు తోడు లేకుండా మనుషులు బ్రతకడం కష్టమని. అందుకే అబ్బాయిల్ని, అమ్మాయిల్ని ఒకరికొకరిని తోడుగా పుట్టించాడు. ఇదే సృష్టి ధర్మం హంసిని. దానికి విరుద్ధంగా పోతున్నావు, చూసుకో. సోహం కలా జరిగిందని నిన్ను నువ్వు శిక్షించుకోవడం correct కాదు హంసిని.",
@@ -426,10 +219,14 @@
    "time_segments": [
     {
      "start": 877.9,
+     "end": 898.65
+    },
+    {
+     "start": 901.2,
      "end": 958.75
     }
    ],
-   "video_duration": 80.85,
+   "video_duration": 78.3,
    "standalone_risks": [
     {
      "type": "other",
@@ -437,10 +234,142 @@
      "word_index": 1083
     }
    ],
+   "edit_notes": [
+    {
+     "type": "skip",
+     "after_piece": 0,
+     "reason": "Drops 2.55 s of the silent sigh pause (898.65-901.2): keeps Hamsini's look-down (896.0-898.65) and re-enters the mother's shot 0.3 s before 'హంసిని'. Out-point is the shot change at 898.65."
+    }
+   ],
+   "flags": [],
+   "tags": [],
+   "notes": "Living room, 14:37-15:58, continuous. 81 s, over the usual 75 s. Her silent reaction shots (15:13-15:17, 15:22-15:25) sit between the mother's lines, so dropping them would leave mother-to-mother jump cuts in the same framing. A 74 s version ends at 15:52.0 on Hamsini's reaction after 'దానికి విరుద్ధంగా పోతున్నావు, చూసుకో' (drops the Soham line). The current end holds 1.5 s on Hamsini's close-up after 'శిక్షించుకోవడం correct కాదు హంసిని' and stops before the mother's 'నేను చెప్తున్నా'. ASR: 'సోహం కలా' = 'సోహంకి అలా'. Not a spoiler, but it hints at the twist. || Round 2: KEEP (founder yes). Sigh pause 5.1 s -> 3.6 s: the only clean cut. Dropping Hamsini's look (896.0-898.65) instead would join two mother close-ups in the same framing (jump cut). 80.9 s -> 78.3 s. || Round 2: KEEP (founder yes). Sigh pause 5.1 s -> 3.6 s: the only clean cut. Dropping Hamsini's look (896.0-898.65) instead would join two mother close-ups in the same framing (jump cut). 80.9 s -> 78.3 s.",
+   "cold_open": false
+  },
+  {
+   "id": "w01",
+   "pieces": [
+    {
+     "start_word": 1641,
+     "end_word": 1743,
+     "start": 1421.968,
+     "end": 1487.288
+    }
+   ],
+   "region": {
+    "start_word": 1641,
+    "end_word": 1743,
+    "start": 1421.968,
+    "end": 1487.288
+   },
+   "edited_duration": 65.32,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "అయినా ఎవడికి మనసేలో వచ్చిందండి. మీలాంటి మంచి మనిషిని ఇబ్బంది పెట్టడానికి. మీరు అలా చూస్తూ ఉండండి. వాడు అస్సలు happy గా ఉండలేడు. ఆపు ఇంకా. ఇంకొక్క మాట కూడా మాట్లాడకు. ఉమ్ అర్థమైందిలెండి. మనం true గా love చేసినోడు ఎవరైనా ఏమైనా అంటే మనం అస్సలు తట్టుకోలేం. కానీ మీ విషయంలో జరిగింది మాత్రం నిజంగా తప్పేనండి. నువ్వు ఆపుతావా ఆపవా? నీకు సోహం గురించి ఏం తెలుసు అని మాట్లాడుతున్నావ్ రా. ఆ ఆ అంటే కీర్తి చెప్పింది. వాడు నిన్ను మోసం చేశాడని. అందుకే నీ life లోకి ఎవరినీ రానివ్వట్లేదని. మిమ్మల్ని ప్రేమించి మిమ్మల్ని మోసం చేసిన వాళ్ళనంటేనే మీరు తట్టుకోలేకపోతున్నారే! మరి నేను ఇంతలా ప్రేమించిన మిమ్మల్ని ఎవడైనా ఇబ్బంది పెడితే నేను ఎలా తీసుకోవాలి? నాకు కోపం రాకూడదా? But అసలు correct కాదండి. But క- Soham చనిపోయాడురా! నన్ను వదిలేయ్ please.",
+   "labeler": "clip-gt-editor",
+   "tightening_labeled": true,
+   "hook_line": {
+    "text": "అయినా ఎవడికి మనసేలో వచ్చిందండి. మీలాంటి మంచి మనిషిని ఇబ్బంది పెట్టడానికి.",
+    "start_word": 1641,
+    "end_word": 1649
+   },
+   "scores": {
+    "hook": 4,
+    "standalone": 4,
+    "payoff": 5,
+    "value_emotion": 5,
+    "overall": 4.6
+   },
+   "title": "వాడు అస్సలు happy గా ఉండలేడు అన్నాడు… 'సోహం చనిపోయాడురా!'",
+   "why_it_works": "Aravind curses the man who 'cheated' her ('he will never be happy'), she snaps 'what do you know about Soham?', he claims his right to be angry; she grabs his shirt: 'Soham is dead!'",
+   "category": "reveal",
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "characters": [
+    "Hamsini (heroine, school teacher)",
+    "Aravind (her suitor)"
+   ],
+   "visual_dependency": "high",
+   "spoiler": true,
+   "confidence": 4,
+   "time_segments": [
+    {
+     "start": 1421.7,
+     "end": 1489.9
+    }
+   ],
+   "video_duration": 68.2,
+   "standalone_risks": [
+    {
+     "type": "inside_reference",
+     "note": "'కీర్తి చెప్పింది' (Keerthi, the friend who told him) is unexplained; harmless.",
+     "word_index": 1699
+    }
+   ],
    "edit_notes": [],
    "flags": [],
    "tags": [],
-   "notes": "Living room, 14:37-15:58, continuous. 81 s, over the usual 75 s. Her silent reaction shots (15:13-15:17, 15:22-15:25) sit between the mother's lines, so dropping them would leave mother-to-mother jump cuts in the same framing. A 74 s version ends at 15:52.0 on Hamsini's reaction after 'దానికి విరుద్ధంగా పోతున్నావు, చూసుకో' (drops the Soham line). The current end holds 1.5 s on Hamsini's close-up after 'శిక్షించుకోవడం correct కాదు హంసిని' and stops before the mother's 'నేను చెప్తున్నా'. ASR: 'సోహం కలా' = 'సోహంకి అలా'. Not a spoiler, but it hints at the twist.",
+   "notes": "School grounds, 23:41-24:50, continuous, 68.2 s. SPOILER: the episode's twist. Opens 0.27 s before Aravind's 'అయినా ఎవడికి మనసెలా వచ్చిందండి మీలాంటి మంచి మనిషిని ఇబ్బంది పెట్టడానికి. మీరు అలా చూస్తూ ఉండండి. వాడు అస్సలు happy గా ఉండలేడు' (frame 23:41: him seated on the ground, low angle, looking up at her). The premise ('he cheated you, that's why you let no one in') is restated inside the clip by his 'కీర్తి చెప్పింది. వాడు నిన్ను మోసం చేశాడని. అందుకే నీ life లోకి ఎవరినీ రానివ్వట్లేదని', so the earlier 'నాకు తెలుసు' lecture (23:06-23:41) is not needed. Ends on his frozen face at the shot change 24:49.9 after her 'నన్ను వదిలేయ్ please'. ASR: 'మనసేలో' = 'మనసెలా'. || Round 2: REBUILT. Round-1 w01 (23:06-24:09, promo ending on her question, founder payoff 3) and w12 (24:03-24:50, the reveal, founder yes) are merged into one clip that ends on the reveal; w12 is dropped as redundant (its exact cut, 1443.45-1489.9, is the last 46 s of this clip). Tried and rejected: keeping 'నాకు తెలుసు / మీరు ఒకరిని sincerely గా love చేశారు…' (needs 2 internal cuts, 77-87 s; the founder rated that opener hook 3). This version is continuous, 68 s, and 'వాడు అస్సలు happy గా ఉండలేడు' sets up the reveal.",
+   "cold_open": false
+  },
+  {
+   "id": "w09",
+   "pieces": [
+    {
+     "start_word": 862,
+     "end_word": 905,
+     "start": 743.148,
+     "end": 791.848
+    }
+   ],
+   "region": {
+    "start_word": 862,
+    "end_word": 905,
+    "start": 743.148,
+    "end": 791.848
+   },
+   "edited_duration": 48.7,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ఏదో బాధలన్నీ దేవుడు నీకే పెట్టినట్టు పెద్ద buildup ఇవ్వకు. మాకూ బాధలుంటాయి. ఆలోచించకుండా పడుకోవాలని రోజూ అనుకుంటాం. నిద్రపట్టదు. అప్పుడే ఇదిగో ఈ wine గుర్తొచ్చి, ఓ రెండు pegs వేసి పడుకుంటాం. ఎప్పటినుంచి నడుస్తుందేంటి? నీకు పొక్క తెలుసులే, ఎప్పటినుంచో నడుస్తుంది. అదే అనుకుంటున్నాను నేను. ఇంట్లో bottle ఏంటి ఖాళీ అవుతుందని. ఆ దొంగవి నువ్వే అనమాట",
+   "labeler": "clip-gt-editor",
+   "tightening_labeled": true,
+   "hook_line": {
+    "text": "ఏదో బాధలన్నీ దేవుడు నీకే పెట్టినట్టు పెద్ద buildup ఇవ్వకు.",
+    "start_word": 862,
+    "end_word": 869
+   },
+   "scores": {
+    "hook": 4,
+    "standalone": 5,
+    "payoff": 4,
+    "value_emotion": 3,
+    "overall": 4.0
+   },
+   "title": "ఇంట్లో bottle ఖాళీ అవుతుంటే ఎవరా అనుకున్నా… ఆ దొంగ అమ్మే!",
+   "why_it_works": "'Don't act like God gave all the sorrows to you; we have them too… two pegs and we sleep.' Mom admits a nightly habit; Hamsini: 'so YOU are the thief emptying the bottle!' Mom caught, glass raised.",
+   "category": "humour",
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "characters": [
+    "Hamsini (heroine, school teacher)",
+    "Hamsini's mother ('Paddu')"
+   ],
+   "visual_dependency": "low",
+   "spoiler": false,
+   "confidence": 4,
+   "time_segments": [
+    {
+     "start": 742.9,
+     "end": 793.25
+    }
+   ],
+   "video_duration": 50.35,
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "tags": [],
+   "notes": "Living room, 12:23-13:13, continuous, 50.4 s. Opens on mom's 'ఏదో బాధలన్నీ దేవుడు నీకే పెట్టినట్టు పెద్ద buildup ఇవ్వకు' (answers a dropped 'మీకేం అవసరం'; stands alone). Keeps the 8.7 s laugh/sip after 'రెండు pegs వేసి పడుకుంటాం' (frames 12:49-12:57: Hamsini grinning, mom sipping) as the reaction beat; trimming it would jump-cut same-framing shots. Ends 0.87 s into the mother's shot after 'ఆ దొంగవి నువ్వే అనమాట' (cut 13:12.4; frames 13:12-13:13 show her with the glass raised, caught), before her 'ఎప్పుడో ఒకసారని చెప్పాను కదా'. ASR: 'నీకు పొక్క తెలుసులే' unclear. || Round 2: FIXED ending. Round 1 ran 24 s past the punchline through the excuses ('doctors కూడా చెప్పారు…', 'ఆరాలు తీయడం ఆపవే', 'సరే సరే'), founder payoff 3. Now the last beat is the punchline; 74.6 s -> 50.4 s. Doubt: the hold on the mother is short (0.9 s) because her reply starts at 13:13.3; ending after her sheepish 'ఎప్పుడో ఒకసారని చెప్పాను కదా' (13:15.3) is the alternative.",
    "cold_open": false
   },
   {
@@ -451,24 +380,18 @@
      "end_word": 845,
      "start": 670.144,
      "end": 723.824
-    },
-    {
-     "start_word": 934,
-     "end_word": 951,
-     "start": 822.268,
-     "end": 829.448
     }
    ],
    "region": {
     "start_word": 764,
-    "end_word": 951,
+    "end_word": 845,
     "start": 670.144,
-    "end": 829.448
+    "end": 723.824
    },
-   "edited_duration": 60.86,
+   "edited_duration": 53.68,
    "reordered": false,
-   "n_blocks": 2,
-   "text": "ఏంటమ్మా అలా చూస్తున్నావ్ ఏం లేదు నేను ఇప్పుడు wine తాగుదాము అంటే ఏమంటావా అని ఏం మాట్లాడుతున్నావమ్మా నాకన్నీ తెలుసులేవే నువ్వు తాగుతావా తాగవా నీ health చూసుకుంటున్నావా అసలు నువ్వు. నీకు ఇప్పుడు wine అవసరమా అయితే నేనే తాగుతాను అరే Cheers ఛీ cheers చెప్పక్కమ్మ నాకు కొంచెం ఇబ్బందిగా ఉంది అబ్బా నువ్వు మొన్న కీర్తి flat కి ఎందుకు వెళ్ళావో మాకు తెలుసులే అమ్మా ఆ అది వేరు ఇది వేరు ఇదెందుకు వేరు ఎక్కడైనా అమ్మతో కలిసి తాగుతారా ఏయ్ ఇప్పుడు నేను నీకు అమ్మనని ఎవరు చెప్పారు I am now your friend పద్దు call me పద్దు సరే పద్దు Cheers Cheers ఏంటి ఆ అబ్బాయి matter నాకు తెలుసు, నువ్వు all of a sudden ఎందుకు ఈ setup పెట్టావని తెలుసు కదా, చెప్పయితే",
+   "n_blocks": 1,
+   "text": "ఏంటమ్మా అలా చూస్తున్నావ్ ఏం లేదు నేను ఇప్పుడు wine తాగుదాము అంటే ఏమంటావా అని ఏం మాట్లాడుతున్నావమ్మా నాకన్నీ తెలుసులేవే నువ్వు తాగుతావా తాగవా నీ health చూసుకుంటున్నావా అసలు నువ్వు. నీకు ఇప్పుడు wine అవసరమా అయితే నేనే తాగుతాను అరే Cheers ఛీ cheers చెప్పక్కమ్మ నాకు కొంచెం ఇబ్బందిగా ఉంది అబ్బా నువ్వు మొన్న కీర్తి flat కి ఎందుకు వెళ్ళావో మాకు తెలుసులే అమ్మా ఆ అది వేరు ఇది వేరు ఇదెందుకు వేరు ఎక్కడైనా అమ్మతో కలిసి తాగుతారా ఏయ్ ఇప్పుడు నేను నీకు అమ్మనని ఎవరు చెప్పారు I am now your friend పద్దు call me పద్దు సరే పద్దు Cheers Cheers",
    "labeler": "clip-gt-editor",
    "tightening_labeled": true,
    "hook_line": {
@@ -481,10 +404,10 @@
     "standalone": 4,
     "payoff": 4,
     "value_emotion": 4,
-    "overall": 4.0
+    "overall": 4.2
    },
    "title": "అమ్మతో కలిసి wine ఆ? 'I am now your friend… call me పద్దు'",
-   "why_it_works": "Mom suddenly offers wine; the daughter protests ('who drinks with their mom?'), mom: 'who said I'm your mom now? Call me Paddu'. Cheers, then: 'so, what's with that boy?' I knew this was a setup!",
+   "why_it_works": "Mom suddenly offers wine; the daughter protests ('who drinks with their mom?'), mom: 'who said I'm your mom now? I am your friend Paddu, call me Paddu.' 'సరే పద్దు.' Cheers, and they both drink.",
    "category": "humour",
    "content_type": "web_series",
    "clip_purpose": "standalone",
@@ -499,13 +422,9 @@
     {
      "start": 669.9,
      "end": 727.25
-    },
-    {
-     "start": 821.62,
-     "end": 831.3
     }
    ],
-   "video_duration": 67.03,
+   "video_duration": 57.35,
    "standalone_risks": [
     {
      "type": "inside_reference",
@@ -513,142 +432,10 @@
      "word_index": 805
     }
    ],
-   "edit_notes": [
-    {
-     "type": "skip",
-     "after_piece": 0,
-     "reason": "Drops 94 s (mom's 'మాకూ బాధలుంటాయి' wine confession, which is w09); from Hamsini sipping to mom's 'ఏంటి ఆ అబ్బాయి matter', both shot changes."
-    }
-   ],
-   "flags": [],
-   "tags": [],
-   "notes": "Living room, 11:10-12:07 + 13:41-13:51. Opens on 'ఏంటమ్మా అలా చూస్తున్నావ్' (mom's sly look); the wine proposal lands 4 s in. COLD OPEN CONSIDERED AND REJECTED: lift mom's 'ఏయ్ ఇప్పుడు నేను నీకు అమ్మనని ఎవరు చెప్పారు' (11:50.25-11:53.21, 2.8 s, ends on the cut, skipped in place cleanly). But it is -13.9 dB against -19.0 dB for the quiet scene start, the 'loud lift then flat start' drop from 2026-10-06, so rule 5 applies. Frames: 12:02.4 wide two-shot of the clink, then each of them sipping (12:04-12:07). The join back to 13:41.6 lands on mom asking about 'that boy', and the end holds 1.9 s on Hamsini after 'తెలుసు కదా, చెప్పయితే'. ASR: 'చెప్పక్కమ్మ' = 'చెప్పకమ్మా'. Light drinking content, not flagged.",
-   "cold_open": false
-  },
-  {
-   "id": "w08",
-   "pieces": [
-    {
-     "start_word": 6,
-     "end_word": 64,
-     "start": 17.82,
-     "end": 52.72
-    }
-   ],
-   "region": {
-    "start_word": 6,
-    "end_word": 64,
-    "start": 17.82,
-    "end": 52.72
-   },
-   "edited_duration": 34.9,
-   "reordered": false,
-   "n_blocks": 1,
-   "text": "నా మాట విని వదిలేయ్ bro తనని. అసలు తన life లో ఏం జరిగిందని bro? పెళ్లి చేసుకొనంటుంది. ఈ ఒక్క question కి answer చెప్పండి please. వాళ్ళ నాన్న వదిలేసి వెళ్ళిపోయాడా? తనకేమైనా bad past ఉందా? అసలు తన life లో ఏం జరిగిందో తెలిస్తేనే కదా, ఇంకెప్పుడు అలా జరగదు అని assurance ఇవ్వగలను. please bro అర్థం చేసుకోండి. తనతో నేను life చూశేశాను. తనని నా జీవితంలోకి తెచ్చుకోవాలనుకుంటున్నాను. అర్థం చేసుకోండి please.",
-   "labeler": "clip-gt-editor",
-   "tightening_labeled": true,
-   "hook_line": {
-    "text": "నా మాట విని వదిలేయ్ bro తనని. అసలు తన life లో ఏం జరిగిందని bro? పెళ్లి చేసుకొనంటుంది. ఈ ఒక్క question కి answer చెప్పండి please.",
-    "start_word": 6,
-    "end_word": 27
-   },
-   "scores": {
-    "hook": 4,
-    "standalone": 4,
-    "payoff": 4,
-    "value_emotion": 4,
-    "overall": 4.0
-   },
-   "title": "అసలు తన life లో ఏం జరిగింది bro? ఈ ఒక్క question కి answer చెప్పండి",
-   "why_it_works": "Told to give her up, Aravind begs Keerthi for the truth: why won't she marry? Did her father leave? A bad past? 'I've already seen my life with her.' Ends on Keerthi's silence.",
-   "category": "story",
-   "content_type": "web_series",
-   "clip_purpose": "promo",
-   "characters": [
-    "Aravind (her suitor)",
-    "Keerthi (Hamsini's friend, a doctor)"
-   ],
-   "visual_dependency": "low",
-   "spoiler": false,
-   "confidence": 4,
-   "time_segments": [
-    {
-     "start": 17.55,
-     "end": 55.8
-    }
-   ],
-   "video_duration": 38.25,
-   "standalone_risks": [
-    {
-     "type": "unresolved_referent",
-     "note": "'తను' (her) is never named here; for a promo the mystery woman is the hook.",
-     "word_index": 11
-    }
-   ],
    "edit_notes": [],
    "flags": [],
    "tags": [],
-   "notes": "Keerthi's clinic, 0:17-0:56. This is the episode's own opening scene, not a recap: Keerthi wears the same white kurta with red sleeve trim in the post-title café scene (9:09), where she tells him the story. No 'previously' card in the frames. Keeps the 7 s silent beat (0:26-0:32: she hesitates, he waits) because it motivates his escalating questions. Ends 3 s after 'అర్థం చేసుకోండి please' on her looking down at her notes, before the Himalaya ad at 0:57.27. Speaker ids: Keerthi is speaker_1, Aravind speaker_2. ASR: 'చేసుకొనంటుంది' = 'చేసుకోనంటుంది', 'చూశేశాను' = 'చూసేశాను'.",
-   "cold_open": false
-  },
-  {
-   "id": "w09",
-   "pieces": [
-    {
-     "start_word": 862,
-     "end_word": 929,
-     "start": 743.148,
-     "end": 812.268
-    }
-   ],
-   "region": {
-    "start_word": 862,
-    "end_word": 929,
-    "start": 743.148,
-    "end": 812.268
-   },
-   "edited_duration": 69.12,
-   "reordered": false,
-   "n_blocks": 1,
-   "text": "ఏదో బాధలన్నీ దేవుడు నీకే పెట్టినట్టు పెద్ద buildup ఇవ్వకు. మాకూ బాధలుంటాయి. ఆలోచించకుండా పడుకోవాలని రోజూ అనుకుంటాం. నిద్రపట్టదు. అప్పుడే ఇదిగో ఈ wine గుర్తొచ్చి, ఓ రెండు pegs వేసి పడుకుంటాం. ఎప్పటినుంచి నడుస్తుందేంటి? నీకు పొక్క తెలుసులే, ఎప్పటినుంచో నడుస్తుంది. అదే అనుకుంటున్నాను నేను. ఇంట్లో bottle ఏంటి ఖాళీ అవుతుందని. ఆ దొంగవి నువ్వే అనమాట ఎప్పుడో ఒకసారని చెప్పాను కదా. doctors కూడా చెప్పారు lightly wine తీసుకుంటే skin కి heart కి మంచిదని ఆహా! ఉమ్ అబ్బా ఆరాలు తీయడం ఆపవే please సరే సరే",
-   "labeler": "clip-gt-editor",
-   "tightening_labeled": true,
-   "hook_line": {
-    "text": "ఏదో బాధలన్నీ దేవుడు నీకే పెట్టినట్టు పెద్ద buildup ఇవ్వకు.",
-    "start_word": 862,
-    "end_word": 869
-   },
-   "scores": {
-    "hook": 4,
-    "standalone": 4,
-    "payoff": 4,
-    "value_emotion": 3,
-    "overall": 3.8
-   },
-   "title": "ఇంట్లో bottle ఖాళీ అవుతుంటే ఎవరా అనుకున్నా… ఆ దొంగ అమ్మే!",
-   "why_it_works": "'Don't act like God gave all the sorrows to you; we have them too.' Mom admits two pegs a night. 'So you're the thief emptying the bottle!' 'Doctors say wine is good for skin and heart.'",
-   "category": "humour",
-   "content_type": "web_series",
-   "clip_purpose": "standalone",
-   "characters": [
-    "Hamsini (heroine, school teacher)",
-    "Hamsini's mother ('Paddu')"
-   ],
-   "visual_dependency": "low",
-   "spoiler": false,
-   "confidence": 3,
-   "time_segments": [
-    {
-     "start": 742.9,
-     "end": 817.45
-    }
-   ],
-   "video_duration": 74.55,
-   "standalone_risks": [],
-   "edit_notes": [],
-   "flags": [],
-   "tags": [],
-   "notes": "Living room, 12:23-13:37, continuous, 74.6 s. Opens on mom's 'ఏదో బాధలన్నీ దేవుడు నీకే పెట్టినట్టు పెద్ద buildup ఇవ్వకు'. It answers Hamsini's 'మీకేం అవసరం', which is dropped; the line stands alone. Keeps the ~8 s laugh/look after 'రెండు pegs వేసి పడుకుంటాం' (12:49-12:57) as the reaction beat. Ends after their shared laugh, before mom's 'ఉమ్ సరే చెప్పు'. ASR: 'నీకు పొక్క తెలుసులే' is unclear (maybe 'నీకు ఇప్పుడు తెలుసులే'). Lower confidence: funny and relatable, but softer than w07 from the same scene.",
+   "notes": "Living room, 11:10-12:07, continuous, 57.4 s. Opens on 'ఏంటమ్మా అలా చూస్తున్నావ్' (mom's sly look); the wine proposal lands 4 s in. Ends on the shot change at 12:07.25: after the second 'Cheers' the wide clink (12:02-12:04), mom sips (12:04-12:05), Hamsini sips (12:05-12:07). 3.4 s hold after the last word; the judge's 2 s would cut before Hamsini's sip, which is the point of the scene. Cold open rejected as in round 1 (loudness drop). ASR: 'చెప్పక్కమ్మ' = 'చెప్పకమ్మా'. || Round 2: FIXED ending. Round 1 jumped to 13:41 'ఏంటి ఆ అబ్బాయి matter… తెలుసు కదా, చెప్పయితే' after the toast (a setup line as the last beat, founder payoff 3). Piece 2 dropped; that stretch is now its own clip (w15). 67.0 s -> 57.4 s.",
    "cold_open": false
   },
   {
@@ -656,27 +443,27 @@
    "pieces": [
     {
      "start_word": 1225,
-     "end_word": 1282,
+     "end_word": 1238,
      "start": 1081.168,
-     "end": 1126.388
+     "end": 1086.288
     },
     {
-     "start_word": 1284,
-     "end_word": 1303,
-     "start": 1138.728,
-     "end": 1160.408
+     "start_word": 1239,
+     "end_word": 1282,
+     "start": 1096.068,
+     "end": 1126.388
     }
    ],
    "region": {
     "start_word": 1225,
-    "end_word": 1303,
+    "end_word": 1282,
     "start": 1081.168,
-    "end": 1160.408
+    "end": 1126.388
    },
-   "edited_duration": 66.9,
+   "edited_duration": 35.44,
    "reordered": false,
    "n_blocks": 1,
-   "text": "మొన్న చేసిన పనికి, ఇప్పుడు ఆంటీకి కనిపిస్తే ఏం చేస్తదో ఏంటో. police కి call చేయదు కదా. విత్తాక్ బాబు ఆ బాగున్నావా బాబు ఆ బాన్నానండి ఎవర్రా నీకు ఆంటీ ఆ తీ ఏంటి బాబు అలా స్ట్రక్ అయిపోతున్నావ్ ఆ ఏం లేదండి అయ్యో నా మతిమండా బయట నించోబెట్టి మాట్లాడుతున్నాను చూడు లోపల రా బాబు రా రా ఆ ఆంటీకి చీమలు పడతాయేమో మరి ఏం స్వీట్ గా ఉన్నారు లోపల రా బాబు ఆ ఉమ్ కొంపతీసి కాఫీల విషయం కల్పలేదు కదా. చాలా తేడాగా బిహేవ్ చేస్తున్నారండి. ఉమ్ ఏంటి బాబు ఆలోచిస్తున్నావ్ కాఫీ బాలేదా అయ్యో చాలా బాగుందండి",
+   "text": "మొన్న చేసిన పనికి, ఇప్పుడు ఆంటీకి కనిపిస్తే ఏం చేస్తదో ఏంటో. police కి call చేయదు కదా. విత్తాక్ బాబు ఆ బాగున్నావా బాబు ఆ బాన్నానండి ఎవర్రా నీకు ఆంటీ ఆ తీ ఏంటి బాబు అలా స్ట్రక్ అయిపోతున్నావ్ ఆ ఏం లేదండి అయ్యో నా మతిమండా బయట నించోబెట్టి మాట్లాడుతున్నాను చూడు లోపల రా బాబు రా రా ఆ ఆంటీకి చీమలు పడతాయేమో మరి ఏం స్వీట్ గా ఉన్నారు లోపల రా బాబు",
    "labeler": "clip-gt-editor",
    "tightening_labeled": true,
    "hook_line": {
@@ -687,12 +474,12 @@
    "scores": {
     "hook": 4,
     "standalone": 3,
-    "payoff": 3,
+    "payoff": 4,
     "value_emotion": 4,
-    "overall": 3.6
+    "overall": 3.8
    },
    "title": "మొన్న చేసిన పనికి police కి call చేస్తుందేమో అనుకున్నా… ఆంటీ ఇంత sweet ఆ?",
-   "why_it_works": "Aravind dreads facing Hamsini's mother after last time ('she won't call the police, right?'), but she greets him sweetly. Suspicious, he wonders if she poisoned the coffee.",
+   "why_it_works": "Aravind dreads facing Hamsini's mother ('she won't call the police, right?'); she greets him so sweetly he flashes back to her yelling. Aside: 'ants will swarm her, so sweet' / 'come in, baby'.",
    "category": "humour",
    "content_type": "web_series",
    "clip_purpose": "standalone",
@@ -706,14 +493,14 @@
    "time_segments": [
     {
      "start": 1080.9,
-     "end": 1127.37
+     "end": 1086.55
     },
     {
-     "start": 1137.68,
-     "end": 1161.6
+     "start": 1090.59,
+     "end": 1127.38
     }
    ],
-   "video_duration": 70.39,
+   "video_duration": 42.44,
    "standalone_risks": [
     {
      "type": "inside_reference",
@@ -725,139 +512,246 @@
     {
      "type": "skip",
      "after_piece": 0,
-     "reason": "Drops 10 s of him walking in and sitting down; from his door-step aside to him sipping coffee, both shot changes."
+     "reason": "Drops 4 s of him scratching his head and pressing the bell (1086.55-1090.59); re-enters on the shot change to the inside of the door as the mother walks up and the bell rings (1091.9)."
     }
    ],
    "flags": [],
    "tags": [],
-   "notes": "Mother's door and living room, 18:01-18:47 + 18:57-19:21. Frames: he paces and rings the bell (18:00-18:10); 18:26 is a black-and-white flash of the mother from an earlier episode ('ఎవర్రా నీకు ఆంటీ'). ASR HIDES THE MAIN JOKE: 'కొంపతీసి కాఫీల విషయం కల్పలేదు కదా' = 'కాఫీలో విషం కలపలేదు కదా' (she didn't poison the coffee, did she?). Also 'విత్తాక్' (18:16) and 'ఆ తీ' (18:28) are garbled (probably a stammered 'ఆంటీ'). The [నవ్వు] events at 18:46-19:03 are not audience laughs; the picture shows him entering and sipping. The payoff is soft ('అయ్యో చాలా బాగుందండి'), hence confidence 3.",
+   "notes": "Mother's door, 18:01-18:47, 42.4 s, one internal cut. Opens on his 'మొన్న చేసిన పనికి, ఇప్పుడు ఆంటీకి కనిపిస్తే ఏం చేస్తదో ఏంటో. police కి call చేయదు కదా' (founder hook 4 in round 1), cuts straight to the inside shot where the bell rings (frames 18:10-18:12: back of the mother's head at the yellow door), she opens at 18:14. 18:26 is the black-and-white flash of her from an earlier episode. Ends on the shot change at 18:47.4, 1 s after 'లోపల రా బాబు', on his relieved smile; before the cut to them seated inside. ASR: 'విత్తాక్' and 'ఆ తీ' are garbled (a stammered 'ఆంటీ'). || Round 2: FIXED. Round 1 ended on 'అయ్యో చాలా బాగుందండి' (coffee small talk, founder payoff 2) and had a 5.6 s silent fidget. The judge suggested starting at the doorbell; I kept the self-talk opener instead because the doorbell start would open on 4 s with no speech (the first word is at 18:16) and the founder rated this opener hook 4. 70.4 s -> 42.4 s.",
    "cold_open": false
   },
   {
-   "id": "w11",
+   "id": "w15",
    "pieces": [
     {
-     "start_word": 581,
-     "end_word": 679,
-     "start": 549.504,
-     "end": 600.344
+     "start_word": 934,
+     "end_word": 1001,
+     "start": 822.268,
+     "end": 862.508
     }
    ],
    "region": {
-    "start_word": 581,
-    "end_word": 679,
-    "start": 549.504,
-    "end": 600.344
+    "start_word": 934,
+    "end_word": 1001,
+    "start": 822.268,
+    "end": 862.508
    },
-   "edited_duration": 50.84,
+   "edited_duration": 40.24,
    "reordered": false,
    "n_blocks": 1,
-   "text": "ఎన్ని నాటకాలు ఆడాడు. ప్రపంచం చిన్నదీ పెద్దదీ అంటూ. పాపం అన్సుని చాలా hopes పెట్టుకున్నట్టుంది. అందుకే ఇంక జీవితంలో ఏ మగాణ్ణి నమ్కకూడదని గట్టిగా fix అయినట్టుంది ఇంకా ఇంకేం చెప్తావు matter మొత్తం నాకు అర్థమైంది. ఇంక ఈ ప్రపంచంలో ఏదేమైనా సరే తనకు నేను తోడుగా ఉంటానని గట్టి నమ్మకం ఇస్తాను. ఇంక అంతా set అయిపోతుంది. నువ్వు చూస్కో పో అది కాదు Hello. ఆ ER లో పెట్టి vitals check చేస్తూ ఉండండి. నేను వస్తున్నా five minutes లో ఉంటా. bro balance జరిగిందంతా నేను మళ్ళీ వచ్చి చెప్తా. hospital నుంచి call వచ్చింది. నేను వెళ్తున్నా Balance ఆ balance ఏముంటది అర్జున్ రెడ్డి సినిమా లో lady అర్జున్ రెడ్డి లాగా ఎలా మారిందని face గురించి చెప్తాదేమో. చూడండి next time ఎట్లే ఇస్తానో",
+   "text": "ఏంటి ఆ అబ్బాయి matter నాకు తెలుసు, నువ్వు all of a sudden ఎందుకు ఈ setup పెట్టావని తెలుసు కదా, చెప్పయితే చెప్పడానికి ఏముందమ్మా, నా వెనుకబడి విసిగిస్తున్నాడు. నేను వద్దన్నా కూడా అలానే వెంటపడుతూనే ఉన్నాడు నాకు తెలుసే, నువ్వెంత గట్టిగా No చెప్తావో అయినా కూడా ఇంకా నీ వెంట పడుతున్నాడు అంటే genuine ఏమో ఆలోచించు ఏదైతే ఏముంది at the end of the day I'm not interested. వాడు వెనుకాల పడి వాడికి కాళ్ళ నొప్పులు రావడమే తప్ప నా మాట మాత్రం మారదు.",
    "labeler": "clip-gt-editor",
    "tightening_labeled": true,
    "hook_line": {
-    "text": "ఎన్ని నాటకాలు ఆడాడు. ప్రపంచం చిన్నదీ పెద్దదీ అంటూ. పాపం అన్సుని చాలా hopes పెట్టుకున్నట్టుంది.",
-    "start_word": 581,
-    "end_word": 592
+    "text": "ఏంటి ఆ అబ్బాయి matter నాకు తెలుసు, నువ్వు all of a sudden ఎందుకు ఈ setup పెట్టావని",
+    "start_word": 934,
+    "end_word": 948
    },
-   "scores": {
-    "hook": 3,
-    "standalone": 3,
-    "payoff": 4,
-    "value_emotion": 3,
-    "overall": 3.4
-   },
-   "title": "Balance story ఏముంటది? Lady Arjun Reddy అయ్యుంటుంది అంతే",
-   "why_it_works": "Having heard half of Hamsini's story, Aravind decides the ex was a fraud and plans to win her. Keerthi, called to hospital: 'I'll tell you the rest later'. He shrugs it off.",
-   "category": "story",
-   "content_type": "web_series",
-   "clip_purpose": "promo",
-   "characters": [
-    "Aravind (her suitor)",
-    "Keerthi (Hamsini's friend, a doctor)"
-   ],
-   "visual_dependency": "low",
-   "spoiler": false,
-   "confidence": 3,
    "time_segments": [
     {
-     "start": 549.25,
-     "end": 600.9
+     "start": 822.0,
+     "end": 867.37
     }
    ],
-   "video_duration": 51.65,
+   "video_duration": 45.37,
+   "content_type": "web_series",
+   "cold_open": false,
    "standalone_risks": [
     {
-     "type": "unresolved_referent",
-     "note": "'ఎన్ని నాటకాలు ఆడాడు' opens on 'he' (Soham) before the clip explains he hurt Hamsini.",
-     "word_index": 581
+     "type": "inside_reference",
+     "note": "'ఈ setup' (the wine evening) is not explained; reads as 'this talk'.",
+     "word_index": 947
     }
    ],
    "edit_notes": [],
    "flags": [],
    "tags": [],
-   "notes": "CEMNT café, 9:09-10:01, continuous. Dramatic irony: 'bro balance జరిగిందంతా నేను మళ్ళీ వచ్చి చెప్తా' is the episode's hook (the rest is that Soham died), and Aravind waves it off. No spoiler. Weak opener for a new viewer. A cold open with the receptionist's 'సోహం సర్ వాళ్ళ wife and వాళ్ళ పాప' (8:13.2-8:15.5, ends on a cut) would explain 'he' at once. It comes from the previous scene, not from inside the clip, so I did not do it. Ends on his smug wide shot before the night cityscape at 10:01. Keerthi is speaker_0 here (normally Hamsini's id). ASR: 'face గురించి' = 'phase గురించి', 'నమ్కకూడదని' = 'నమ్మకూడదని', 'next time ఎట్లే ఇస్తానో' is unclear (maybe 'entry ఇస్తానో').",
-   "cold_open": false
+   "title": "వాడికి కాళ్ళ నొప్పులు రావడమే తప్ప నా మాట మారదు… అమ్మ నవ్వుకు అర్థమేంటి?",
+   "why_it_works": "Mom asks about 'that boy'; Hamsini: he keeps pestering me. Mom: maybe he's genuine. Hamsini: 'he'll only get sore legs chasing me, my word won't change.' Mom just smiles, knowing better.",
+   "category": "humour",
+   "clip_purpose": "standalone",
+   "spoiler": false,
+   "visual_dependency": "medium",
+   "confidence": 4,
+   "scores": {
+    "hook": 3,
+    "standalone": 4,
+    "payoff": 4,
+    "value_emotion": 4,
+    "overall": 4.0
+   },
+   "characters": [
+    "Hamsini (heroine, school teacher)",
+    "Hamsini's mother ('Paddu')"
+   ],
+   "notes": "Living room, 13:42-14:27, continuous, 45.4 s (the stretch round-1 w07 used as its tail, now with its own payoff). Opens 0.27 s before mom's 'ఏంటి ఆ అబ్బాయి matter' on the shot change at 13:41.6 (frame: mom reclined with her glass). The [నవ్వు] at 14:04 is mom laughing at 'నువ్వెంత గట్టిగా No చెప్తావో'. Ends on the shot change at 14:27.4 after a 4.9 s hold on the mother's amused, knowing smile (frames 14:22-14:27: she looks at Hamsini and smiles, Hamsini's hand with the glass in the foreground); before Hamsini's 'ఆ నవ్వుకు అర్థమేంటమ్మా'. Alternative ending: include 'ఆ నవ్వుకు అర్థమేంటమ్మా / ఊహూ, ఏం లేదు' and end at 14:30.95 (cute button, but a weaker last line). Speakers: mom speaker_4, Hamsini speaker_0. || Round 2: NEW."
   },
   {
-   "id": "w12",
+   "id": "w14",
    "pieces": [
     {
-     "start_word": 1685,
-     "end_word": 1743,
-     "start": 1443.688,
-     "end": 1487.288
+     "start_word": 1413,
+     "end_word": 1474,
+     "start": 1235.208,
+     "end": 1272.428
     }
    ],
    "region": {
-    "start_word": 1685,
-    "end_word": 1743,
-    "start": 1443.688,
-    "end": 1487.288
+    "start_word": 1413,
+    "end_word": 1474,
+    "start": 1235.208,
+    "end": 1272.428
    },
-   "edited_duration": 43.6,
+   "edited_duration": 37.22,
    "reordered": false,
    "n_blocks": 1,
-   "text": "నువ్వు ఆపుతావా ఆపవా? నీకు సోహం గురించి ఏం తెలుసు అని మాట్లాడుతున్నావ్ రా. ఆ ఆ అంటే కీర్తి చెప్పింది. వాడు నిన్ను మోసం చేశాడని. అందుకే నీ life లోకి ఎవరినీ రానివ్వట్లేదని. మిమ్మల్ని ప్రేమించి మిమ్మల్ని మోసం చేసిన వాళ్ళనంటేనే మీరు తట్టుకోలేకపోతున్నారే! మరి నేను ఇంతలా ప్రేమించిన మిమ్మల్ని ఎవడైనా ఇబ్బంది పెడితే నేను ఎలా తీసుకోవాలి? నాకు కోపం రాకూడదా? But అసలు correct కాదండి. But క- Soham చనిపోయాడురా! నన్ను వదిలేయ్ please.",
+   "text": "అప్పుడప్పుడు మా హన్స్ని కొంచెం గరుగ్గా మాట్లాడుతుంది. ఏం పట్టించుకోకు బాబు. ఉమ్ పర్లేదండి నాకు అలవాటే చూస్తేనే తెలుస్తుంది ఉమ్ ఆ అదే చూడటానికి చాలా చక్కగా ఉన్నావ్ అంటున్నా. కాకపోతే ఆ జుట్టు గడ్డమే ఏం చేస్తామండి. మీ హన్స్ని వల్లనే ఇదిగో ఇవి గెబ్బాల్సి వచ్చింది. గడ్డను గీసుకోవడానికి కుట్ట ఏమీ ఇవ్వట్లేదు. ఉమ్ మా హన్స్ని పైకే గరుగ్గా ఉంటుంది కానీ లోపల చాలా సున్నితం బాబు. అందుకేనండి వదులుకోలేకపోతున్నాను. పట్టుకోవడం కూడా కష్టమే try చెయ్ ఉమ్ సరే అండి",
    "labeler": "clip-gt-editor",
    "tightening_labeled": true,
    "hook_line": {
-    "text": "నువ్వు ఆపుతావా ఆపవా? నీకు సోహం గురించి ఏం తెలుసు అని మాట్లాడుతున్నావ్ రా.",
-    "start_word": 1685,
-    "end_word": 1695
+    "text": "అప్పుడప్పుడు మా హన్స్ని కొంచెం గరుగ్గా మాట్లాడుతుంది. ఏం పట్టించుకోకు బాబు.",
+    "start_word": 1413,
+    "end_word": 1421
    },
-   "scores": {
-    "hook": 4,
-    "standalone": 4,
-    "payoff": 5,
-    "value_emotion": 5,
-    "overall": 4.5
-   },
-   "title": "నాకు కోపం రాకూడదా?… 'సోహం చనిపోయాడురా!'",
-   "why_it_works": "Aravind insists Soham cheated her and he has a right to be angry for the woman he loves. Hamsini grabs his shirt and breaks: 'Soham is dead!' SPOILER: the episode's twist.",
-   "category": "reveal",
-   "content_type": "web_series",
-   "clip_purpose": "standalone",
-   "characters": [
-    "Hamsini (heroine, school teacher)",
-    "Aravind (her suitor)"
-   ],
-   "visual_dependency": "high",
-   "spoiler": true,
-   "confidence": 3,
    "time_segments": [
     {
-     "start": 1443.45,
-     "end": 1489.9
+     "start": 1234.95,
+     "end": 1272.77
     }
    ],
-   "video_duration": 46.45,
+   "video_duration": 37.82,
+   "content_type": "web_series",
+   "cold_open": false,
    "standalone_risks": [],
    "edit_notes": [],
    "flags": [],
    "tags": [],
-   "notes": "SPOILER: reveals the episode's main twist (24:33.7). Included for the founder to decide, ranked last on purpose. w01 is the spoiler-free cut of the same scene, and the two overlap only in her 'నువ్వు ఆపుతావా ఆపవా? నీకు సోహం గురించి ఏం తెలుసు'. Visual: frames 24:32-24:34 she pulls his shirt, his shocked close-up 24:35-24:39, she wipes tears and says 'నన్ను వదిలేయ్ please' (24:46). Ends on his face, on the shot change at 24:49.9, before she walks off and the garlanded photo of Soham (25:20). Music swells from 24:35; the clip stops inside it on a cut. ASR wrote 'Soham' in Latin script.",
-   "cold_open": false
+   "title": "మీ హంసిని వల్లే ఈ గడ్డం ఆంటీ… 'పైకే గరుగ్గా ఉంటుంది, లోపల సున్నితం బాబు'",
+   "why_it_works": "Mom: 'you look nice, except that hair and beard.' 'Because of your Hamsini, no time to shave.' 'She's rough outside, soft inside.' 'That's why I can't let go.' 'Holding on is hard too. Try.'",
+   "category": "humour",
+   "clip_purpose": "standalone",
+   "spoiler": false,
+   "visual_dependency": "medium",
+   "confidence": 3,
+   "scores": {
+    "hook": 3,
+    "standalone": 4,
+    "payoff": 4,
+    "value_emotion": 4,
+    "overall": 3.9
+   },
+   "characters": [
+    "Aravind (her suitor)",
+    "Hamsini's mother ('Paddu')"
+   ],
+   "notes": "Mother's house, 20:35-21:13, continuous, 37.8 s (the stretch round-1 w03 skipped). Starts 0.26 s before 'అప్పుడప్పుడు మా హంసిని కొంచెం గరుగ్గా మాట్లాడుతుంది. ఏం పట్టించుకోకు బాబు', just after the music bridge ends (20:35.2). Laugh beats: 'చూస్తేనే తెలుస్తుంది' (20:42), 'కాకపోతే ఆ జుట్టు గడ్డమే' (20:49), him stroking his beard (frame 20:55). Payoff: 'అందుకేనండి వదులుకోలేకపోతున్నాను' / 'పట్టుకోవడం కూడా కష్టమే, try చెయ్' / his sheepish 'ఉమ్ సరే అండి'; ends on the shot change at 21:12.8, before her 'ఇంకేంటి బాబు'. ASR: 'గెబ్బాల్సి' = 'పెంచాల్సి', 'కుట్ట ఏమీ' unclear (probably 'time ఏమీ'). A tighter 27.5 s version starts at 'అదే చూడటానికి చాలా చక్కగా ఉన్నావ్ అంటున్నా. కాకపోతే ఆ జుట్టు గడ్డమే' (20:45.3) with a sharper hook but loses the 'చూస్తేనే తెలుస్తుంది' laugh. No cold open: every lift breaks the scene when skipped in place. || Round 2: NEW."
+  },
+  {
+   "id": "w13",
+   "pieces": [
+    {
+     "start_word": 387,
+     "end_word": 421,
+     "start": 318.58,
+     "end": 330.7
+    },
+    {
+     "start_word": 434,
+     "end_word": 459,
+     "start": 341.14,
+     "end": 361.9
+    },
+    {
+     "start_word": 527,
+     "end_word": 548,
+     "start": 450.424,
+     "end": 462.564
+    },
+    {
+     "start_word": 549,
+     "end_word": 568,
+     "start": 483.024,
+     "end": 495.304
+    }
+   ],
+   "region": {
+    "start_word": 387,
+    "end_word": 568,
+    "start": 318.58,
+    "end": 495.304
+   },
+   "edited_duration": 57.3,
+   "reordered": false,
+   "n_blocks": 2,
+   "text": "నీకు already చెప్పాను కదా. I am not interested in you and this relationship anymore అని. అసలు ఏం జరిగిందని? sudden గా breakup అంటే నేను ఎలా తీసుకోవాలి? నువ్వు ఎలా అయినా తీసుకో. I am just done with you. ఎందుకు చేస్తున్నావ్ ఇదంతా? నేను చెప్పాల్సిన అవసరం లేదనుకుంటా. నేను గుట్టిగా నమ్మాను చూడు, నేను మోసపోయాను. మోసం చేశానా? నువ్వేం మాట్లాడుతున్నావో నాకు అర్థం కావట్లేదు. నాకన్నీ అర్థమయ్యాయి కాబట్టే నీతో ఇంకా ఉండాలనుకోవట్లేదు. Hello సోహం ఆ చెప్పు అన్సుని ఎక్కడున్నావ్ నేను ఇప్పుడే ఇంటి నుంచి బయలుదేరాను friend ని కలవడానికి. ఏమైంది? Normal గా చేశాను ఏం లేదు సరే bye. Hi Hello ma'am ఆ ఇతను హా సోహం సర్ ఆ సోహం సర్ తో ఎవరు సోహం సర్ వాళ్ళ wife and వాళ్ళ పాప.",
+   "labeler": "clip-gt-editor",
+   "tightening_labeled": true,
+   "hook_line": {
+    "text": "నీకు already చెప్పాను కదా. I am not interested in you and this relationship anymore అని.",
+    "start_word": 387,
+    "end_word": 401
+   },
+   "time_segments": [
+    {
+     "start": 318.3,
+     "end": 331.07
+    },
+    {
+     "start": 340.22,
+     "end": 361.99
+    },
+    {
+     "start": 449.91,
+     "end": 465.42
+    },
+    {
+     "start": 482.75,
+     "end": 499.45
+    }
+   ],
+   "video_duration": 66.75,
+   "content_type": "web_series",
+   "cold_open": false,
+   "standalone_risks": [],
+   "edit_notes": [
+    {
+     "type": "skip",
+     "after_piece": 0,
+     "reason": "Drops his repeat 'done ఆ? I am done with you అంటే నేను ఎలా తీసుకోవాలి?' (9 s), both shot changes."
+    },
+    {
+     "type": "skip",
+     "after_piece": 1,
+     "reason": "Stitch, 88 s apart, inside the same flashback: from her 'నాకన్నీ అర్థమయ్యాయి కాబట్టే నీతో ఇంకా ఉండాలనుకోవట్లేదు' (shot change 6:02.0) to the clinic call (shot change 7:29.9, her phone close-up). The episode itself cuts from this fight to this flashback."
+    },
+    {
+     "type": "skip",
+     "after_piece": 2,
+     "reason": "Drops the 5.8 s family wide shot, her walk out of the chair and the 2.8 s empty lobby (7:45.4-8:02.75); re-enters 0.27 s before her 'Hi' at the reception desk."
+    }
+   ],
+   "flags": [],
+   "tags": [],
+   "title": "నేను గుడ్డిగా నమ్మి మోసపోయాను… 'సోహం సర్ వాళ్ళ wife and వాళ్ళ పాప'",
+   "why_it_works": "She ends it cold ('I trusted blindly, I was cheated'); he: 'cheated?' Cut to what she saw: he lies on the phone beside a woman and child; receptionist: 'Soham sir's wife and daughter.'",
+   "category": "reveal",
+   "clip_purpose": "standalone",
+   "spoiler": false,
+   "visual_dependency": "high",
+   "confidence": 3,
+   "scores": {
+    "hook": 4,
+    "standalone": 4,
+    "payoff": 4,
+    "value_emotion": 4,
+    "overall": 4.0
+   },
+   "characters": [
+    "Hamsini (heroine, school teacher)",
+    "Soham (Hamsini's ex, flashback)",
+    "dental clinic receptionist"
+   ],
+   "notes": "Flashback: street 5:18-6:02 + dental clinic 7:29-8:19, 66.8 s, 3 cuts. Replaces round-1 w04 (promo ending on 'ఇంక నువ్వు వెళ్ళొచ్చు', founder payoff 3) and w05 (the reveal with no stated relationship, founder no): the fight states the relationship ('this relationship', 'sudden గా breakup'), the clinic supplies the reveal, in the episode's own order. Clinic part starts on the shot change at 7:29.9 (Hamsini's phone close-up; drops Soham's 'Hello' and the wide that shows the family before the call, so the three-shot of him lying with the woman and child at 7:33.5 is the reveal image). Her lowering the phone (7:42.6-7:45.4) is kept; the family wide after it is dropped (silence 8.7 s -> 3.2 s across the cut). Ends on her stunned face 4.15 s after 'వాళ్ళ పాప', on the shot change at 8:19.5. Not marked spoiler: this is the flashback's mid-episode answer, which the episode's ending reframes (Soham is dead; the 'wife' may be a misunderstanding, inferred). Speaker ids: Soham is speaker_2/3, the receptionist speaker_3. ASR: 'గుట్టిగా' = 'గుడ్డిగా', 'అన్సుని' = Hamsini. || Round 2: NEW (merge of w04 + w05). Doubt: 3 cuts and an 88 s stitch; judge the join at 6:02 -> 7:29.9."
   }
  ]
 }
