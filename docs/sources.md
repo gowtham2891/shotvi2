@@ -15,12 +15,15 @@ they are here for research on clip selection.
 | [Jabardasth | 20th September 2026 | Full Episode | Rashmi, Nagababu, Indraja | ETV Telugu](https://www.youtube.com/watch?v=2sqpFVPc85o) | ETV Jabardasth | 63:55 | `2sqpFVPc85o` | [`2sqpFVPc85o_scribe_transcript.json`](../scribe_dataset/2sqpFVPc85o/2sqpFVPc85o_scribe_transcript.json) |
 | [Hello Madam | Episode - 6 | Sheetal Gauthaman | Mohit Pedada | Vivan Suryaa | Infinitum Media](https://www.youtube.com/watch?v=epZ0lbXkgWA) | Sheetal Gauthaman | 26:49 | `epZ0lbXkgWA` | [`epZ0lbXkgWA_scribe_transcript.json`](../scribe_dataset/epZ0lbXkgWA/epZ0lbXkgWA_scribe_transcript.json) |
 | [🔥🤩 HIS VIBE IN THIS EPISODE 👌🏻 | FT ARJUN SARJA GARU | Telugu Podcast | Raw Talks With VK | EP - 118](https://www.youtube.com/watch?v=FS1DI5D_hUk) | Raw Talks With VK | 54:30 | `FS1DI5D_hUk` | [`FS1DI5D_hUk_scribe_transcript.json`](../scribe_dataset/FS1DI5D_hUk/FS1DI5D_hUk_scribe_transcript.json) |
+| [Girls Hostel 2.0 || Episode 2 || New Telugu Web Series || Ravi Ganjam || B2PStudios](https://www.youtube.com/watch?v=gQZBXu5FAbs) | B2P Studios | 12:39 | `gQZBXu5FAbs` | [`gQZBXu5FAbs_scribe_transcript.json`](../scribe_dataset/gQZBXu5FAbs/gQZBXu5FAbs_scribe_transcript.json) |
+| [Girls Hostel 2.0 || Episode 1 || New Telugu Web Series || Ravi Ganjam || B2PStudios](https://www.youtube.com/watch?v=H41fJJJYTqo) | B2P Studios | 16:27 | `H41fJJJYTqo` | [`H41fJJJYTqo_scribe_transcript.json`](../scribe_dataset/H41fJJJYTqo/H41fJJJYTqo_scribe_transcript.json) |
 | [Couple Goals || Episode - 1 || Sushma Gopal || Mohit Pedada || Telugu Web Series || Infinitum Media](https://www.youtube.com/watch?v=j14Om1SaFYE) | Sushma Gopal | 19:27 | `j14Om1SaFYE` | [`j14Om1SaFYE_scribe_transcript.json`](../scribe_dataset/j14Om1SaFYE/j14Om1SaFYE_scribe_transcript.json) |
 | [😜🔥SISINDRI ON RAW TALKSSSS | Akhil Akkineni Opens Up About Failure, Comebacks & Family Life |](https://www.youtube.com/watch?v=LgjEP0dsQZc) | Raw Talks With VK | 111:57 | `LgjEP0dsQZc` | [`LgjEP0dsQZc_scribe_transcript.json`](../scribe_dataset/LgjEP0dsQZc/LgjEP0dsQZc_scribe_transcript.json) |
 | [🔥 ₹23,000 Crore Pharma Empire: Money, Business & The Untold Story of Granules Ft. Uma Chigurupati](https://www.youtube.com/watch?v=mdxzKJ2gTQ4) | Telugu Connects - Growth Podcast  | 95:47 | `mdxzKJ2gTQ4` | [`mdxzKJ2gTQ4_scribe_transcript.json`](../scribe_dataset/mdxzKJ2gTQ4/mdxzKJ2gTQ4_scribe_transcript.json) |
 | [The Ultimate Hair Care Guide 💇‍♂️ | Hair Fall, Growth, Dandruff & More | with Dr. John Watts](https://www.youtube.com/watch?v=N6wJ-qR8uxY) | PrasadLifeStyle | 117:14 | `N6wJ-qR8uxY` | [`N6wJ-qR8uxY_scribe_transcript.json`](../scribe_dataset/N6wJ-qR8uxY/N6wJ-qR8uxY_scribe_transcript.json) |
 | [Couple Goals || Episode - 2 || Sushma Gopal || Mohit Pedada || Telugu Web Series || Infinitum Media](https://www.youtube.com/watch?v=QWIvgoTQGKk) | Sushma Gopal | 21:52 | `QWIvgoTQGKk` | [`QWIvgoTQGKk_scribe_transcript.json`](../scribe_dataset/QWIvgoTQGKk/QWIvgoTQGKk_scribe_transcript.json) |
 | [Paradise Fitness Coach | Stop Doing These Health Mistakes ! Vodcast with Prasad Ep 5 #paradise](https://www.youtube.com/watch?v=TBlm6wcij94) | PrasadLifeStyle | 134:34 | `TBlm6wcij94` | [`TBlm6wcij94_scribe_transcript.json`](../scribe_dataset/TBlm6wcij94/TBlm6wcij94_scribe_transcript.json) |
+| [Girls Hostel 2.0 || Episode 3 || New Telugu Web Series || Ravi Ganjam || B2PStudios](https://www.youtube.com/watch?v=xmx9n4oLs-M) | B2P Studios | 13:49 | `xmx9n4oLs-M` | [`xmx9n4oLs-M_scribe_transcript.json`](../scribe_dataset/xmx9n4oLs-M/xmx9n4oLs-M_scribe_transcript.json) |
 
 ## Creator Shorts (used as recall anchors for podcasts)
 
@@ -60,6 +63,7 @@ they are here for research on clip selection.
 | [`t9LLIWCJVd8`](https://www.youtube.com/shorts/t9LLIWCJVd8) | `TBlm6wcij94` | [`t9LLIWCJVd8_scribe_transcript.json`](../scribe_dataset/TBlm6wcij94/creator_shorts/t9LLIWCJVd8_scribe_transcript.json) |
 | [`taht6q0xIRg`](https://www.youtube.com/shorts/taht6q0xIRg) | `TBlm6wcij94` | [`taht6q0xIRg_scribe_transcript.json`](../scribe_dataset/TBlm6wcij94/creator_shorts/taht6q0xIRg_scribe_transcript.json) |
 | [`zwAKRLCoe-Y`](https://www.youtube.com/shorts/zwAKRLCoe-Y) | `TBlm6wcij94` | [`zwAKRLCoe-Y_scribe_transcript.json`](../scribe_dataset/TBlm6wcij94/creator_shorts/zwAKRLCoe-Y_scribe_transcript.json) |
+| [`v0gXlq-HBHc`](https://www.youtube.com/shorts/v0gXlq-HBHc) | `W7GbdK_K5pA` | [`v0gXlq-HBHc_scribe_transcript.json`](../scribe_dataset/W7GbdK_K5pA/creator_shorts/v0gXlq-HBHc_scribe_transcript.json) |
 
 ## Ground truth
 
