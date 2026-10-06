@@ -1,6 +1,6 @@
 {
- "total_usd": 14.474625,
- "calls": 1650,
+ "total_usd": 14.614825,
+ "calls": 1657,
  "entries": [
   {
    "t": "2026-09-27T00:00:00",
@@ -13239,6 +13239,62 @@
    "out": 3691,
    "usd": 0.017348,
    "source": "ws_ab_setup"
+  },
+  {
+   "t": "2026-10-06T15:37:54",
+   "model": "gemini-3.8-flash",
+   "in": 12438,
+   "out": 639,
+   "usd": 0.011725,
+   "source": "asrfix"
+  },
+  {
+   "t": "2026-10-06T15:38:09",
+   "model": "gemini-3.8-flash",
+   "in": 1961,
+   "out": 719,
+   "usd": 0.004167,
+   "source": "asrfix"
+  },
+  {
+   "t": "2026-10-06T15:38:09",
+   "model": "gemini-3.8-flash",
+   "in": 436,
+   "out": 0,
+   "usd": 0.000327,
+   "source": "asrfix-audio-surcharge"
+  },
+  {
+   "t": "2026-10-06T15:38:19",
+   "model": "gemini-3.8-flash",
+   "in": 1562,
+   "out": 278,
+   "usd": 0.002214,
+   "source": "asrfix"
+  },
+  {
+   "t": "2026-10-06T15:38:19",
+   "model": "gemini-3.8-flash",
+   "in": 297,
+   "out": 0,
+   "usd": 0.000223,
+   "source": "asrfix-audio-surcharge"
+  },
+  {
+   "t": "2026-10-06T15:42:08",
+   "model": "gemini-3.8-flash",
+   "in": 15299,
+   "out": 25177,
+   "usd": 0.105888,
+   "source": "ws_hm"
+  },
+  {
+   "t": "2026-10-06T15:42:39",
+   "model": "gemini-3.8-flash",
+   "in": 3945,
+   "out": 3386,
+   "usd": 0.015656,
+   "source": "ws_hm"
   }
  ]
 }
