@@ -1,0 +1,664 @@
+{
+ "video_id": "j14Om1SaFYE",
+ "schema": "asr_fix/1",
+ "params": {
+  "layers": [
+   "flag",
+   "relisten"
+  ],
+  "threshold": 0.6,
+  "min_conf": 0.8,
+  "model": "gemini-3.8-flash",
+  "pad_s": 0.4,
+  "ctx_lines": 2,
+  "batch_items": 8,
+  "context_prompt": "1",
+  "relisten_prompt": "1",
+  "apply_context": false,
+  "skip_interjections": true,
+  "band_from": 0.5
+ },
+ "lines": 404,
+ "n_flagged_words": 24,
+ "n_suspects": 24,
+ "suspects": [
+  {
+   "line": "L0003",
+   "start_word": 1,
+   "end_word": 1,
+   "heard": "Hair",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.543
+  },
+  {
+   "line": "L0018",
+   "start_word": 63,
+   "end_word": 63,
+   "heard": "ready",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.506
+  },
+  {
+   "line": "L0059",
+   "start_word": 199,
+   "end_word": 199,
+   "heard": "పట్టు",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.587
+  },
+  {
+   "line": "L0088",
+   "start_word": 282,
+   "end_word": 282,
+   "heard": "Good",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.562
+  },
+  {
+   "line": "L0100",
+   "start_word": 332,
+   "end_word": 332,
+   "heard": "ఆ!",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.571
+  },
+  {
+   "line": "L0108",
+   "start_word": 354,
+   "end_word": 354,
+   "heard": "నుండి",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.531
+  },
+  {
+   "line": "L0108",
+   "start_word": 362,
+   "end_word": 362,
+   "heard": "ఏ",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.548
+  },
+  {
+   "line": "L0113",
+   "start_word": 381,
+   "end_word": 381,
+   "heard": "జాతి.",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.595
+  },
+  {
+   "line": "L0134",
+   "start_word": 434,
+   "end_word": 434,
+   "heard": "మ్",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.52
+  },
+  {
+   "line": "L0137",
+   "start_word": 445,
+   "end_word": 445,
+   "heard": "ఇప్పుడు",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.579
+  },
+  {
+   "line": "L0141",
+   "start_word": 451,
+   "end_word": 451,
+   "heard": "మ్",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.505
+  },
+  {
+   "line": "L0176",
+   "start_word": 534,
+   "end_word": 534,
+   "heard": "హ్మ్",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.561
+  },
+  {
+   "line": "L0221",
+   "start_word": 667,
+   "end_word": 667,
+   "heard": "point",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.568
+  },
+  {
+   "line": "L0241",
+   "start_word": 761,
+   "end_word": 761,
+   "heard": "ఆ",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.5
+  },
+  {
+   "line": "L0252",
+   "start_word": 793,
+   "end_word": 793,
+   "heard": "ఉమ్",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.534
+  },
+  {
+   "line": "L0281",
+   "start_word": 946,
+   "end_word": 946,
+   "heard": "ఇక",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.599
+  },
+  {
+   "line": "L0286",
+   "start_word": 982,
+   "end_word": 982,
+   "heard": "curry",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.512
+  },
+  {
+   "line": "L0288",
+   "start_word": 988,
+   "end_word": 988,
+   "heard": "it",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.531
+  },
+  {
+   "line": "L0307",
+   "start_word": 1060,
+   "end_word": 1060,
+   "heard": "So",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.591
+  },
+  {
+   "line": "L0312",
+   "start_word": 1075,
+   "end_word": 1075,
+   "heard": "హా",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.599
+  },
+  {
+   "line": "L0324",
+   "start_word": 1116,
+   "end_word": 1116,
+   "heard": "అంటే",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.578
+  },
+  {
+   "line": "L0352",
+   "start_word": 1230,
+   "end_word": 1230,
+   "heard": "అన్ని",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.531
+  },
+  {
+   "line": "L0357",
+   "start_word": 1244,
+   "end_word": 1244,
+   "heard": "నా",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.528
+  },
+  {
+   "line": "L0364",
+   "start_word": 1270,
+   "end_word": 1270,
+   "heard": "అయిష్మాన్",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.533
+  }
+ ],
+ "corrections": [
+  {
+   "start_word": 380,
+   "end_word": 381,
+   "heard": "ప్రకృతి జాతి.",
+   "corrected": "రక్తబీజ రాశి.",
+   "reason": "clearly says రక్తబీజ రాశి",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "flag"
+   ],
+   "line": "L0113",
+   "start": 319.02,
+   "end": 321.9,
+   "context_guess": null,
+   "relisten": {
+    "heard_line": "సూర్య మామది రక్తబీజ రాశి.",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 982,
+   "end_word": 982,
+   "heard": "curry",
+   "corrected": "curd",
+   "reason": "clearly says curd",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "flag"
+   ],
+   "line": "L0286",
+   "start": 816.406,
+   "end": 816.646,
+   "context_guess": null,
+   "relisten": {
+    "heard_line": "ఇక marriage లో love అనేది curd లాంటిది.",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 1244,
+   "end_word": 1244,
+   "heard": "నా",
+   "corrected": "అంటే నా",
+   "reason": "clearly hears 'ante' before 'naa'",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "flag"
+   ],
+   "line": "L0357",
+   "start": 988.406,
+   "end": 988.546,
+   "context_guess": null,
+   "relisten": {
+    "heard_line": "అంటే నా wife వంటగదికి మాత్రమే పరిమితం అయిపోడనుకో.",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 1269,
+   "end_word": 1270,
+   "heard": "వీర్గా అయిష్మాన్",
+   "corrected": "దీర్ఘాయుష్మాన్",
+   "reason": "clearly says deerghayushman",
+   "source": "relisten",
+   "confidence": 0.98,
+   "applied": true,
+   "found_by": [
+    "flag"
+   ],
+   "line": "L0364",
+   "start": 1014.246,
+   "end": 1015.066,
+   "context_guess": null,
+   "relisten": {
+    "heard_line": "దీర్ఘాయుష్మాన్ భవ!",
+    "line_ratio": 0.97
+   }
+  }
+ ],
+ "uncertain": [
+  {
+   "start_word": 1,
+   "end_word": 1,
+   "heard": "Hair",
+   "source": "flag",
+   "confidence": 0.543,
+   "verdict": "relisten_kept",
+   "line": "L0003",
+   "start": 25.26
+  },
+  {
+   "start_word": 63,
+   "end_word": 63,
+   "heard": "ready",
+   "source": "flag",
+   "confidence": 0.506,
+   "verdict": "relisten_kept",
+   "line": "L0018",
+   "start": 63.76
+  },
+  {
+   "start_word": 199,
+   "end_word": 199,
+   "heard": "పట్టు",
+   "source": "flag",
+   "confidence": 0.587,
+   "verdict": "relisten_kept",
+   "line": "L0059",
+   "start": 185.52
+  },
+  {
+   "start_word": 282,
+   "end_word": 282,
+   "heard": "Good",
+   "source": "flag",
+   "confidence": 0.562,
+   "verdict": "relisten_kept",
+   "line": "L0088",
+   "start": 257.5
+  },
+  {
+   "start_word": 332,
+   "end_word": 332,
+   "heard": "ఆ!",
+   "source": "flag",
+   "confidence": 0.571,
+   "verdict": "skipped_interjection",
+   "line": "L0100",
+   "start": 283.46
+  },
+  {
+   "start_word": 354,
+   "end_word": 354,
+   "heard": "నుండి",
+   "source": "flag",
+   "confidence": 0.531,
+   "verdict": "relisten_kept",
+   "line": "L0108",
+   "start": 302.0
+  },
+  {
+   "start_word": 362,
+   "end_word": 362,
+   "heard": "ఏ",
+   "source": "flag",
+   "confidence": 0.548,
+   "verdict": "relisten_kept",
+   "line": "L0108",
+   "start": 304.62
+  },
+  {
+   "start_word": 434,
+   "end_word": 434,
+   "heard": "మ్",
+   "source": "flag",
+   "confidence": 0.52,
+   "verdict": "skipped_interjection",
+   "line": "L0134",
+   "start": 376.07
+  },
+  {
+   "start_word": 445,
+   "end_word": 445,
+   "heard": "ఇప్పుడు",
+   "source": "flag",
+   "confidence": 0.579,
+   "verdict": "relisten_kept",
+   "line": "L0137",
+   "start": 381.87
+  },
+  {
+   "start_word": 451,
+   "end_word": 451,
+   "heard": "మ్",
+   "source": "flag",
+   "confidence": 0.505,
+   "verdict": "skipped_interjection",
+   "line": "L0141",
+   "start": 388.55
+  },
+  {
+   "start_word": 534,
+   "end_word": 534,
+   "heard": "హ్మ్",
+   "source": "flag",
+   "confidence": 0.561,
+   "verdict": "skipped_interjection",
+   "line": "L0176",
+   "start": 460.85
+  },
+  {
+   "start_word": 667,
+   "end_word": 667,
+   "heard": "point",
+   "source": "flag",
+   "confidence": 0.568,
+   "verdict": "relisten_kept",
+   "line": "L0221",
+   "start": 626.249
+  },
+  {
+   "start_word": 761,
+   "end_word": 761,
+   "heard": "ఆ",
+   "source": "flag",
+   "confidence": 0.5,
+   "verdict": "skipped_interjection",
+   "line": "L0241",
+   "start": 681.31
+  },
+  {
+   "start_word": 793,
+   "end_word": 793,
+   "heard": "ఉమ్",
+   "source": "flag",
+   "confidence": 0.534,
+   "verdict": "skipped_interjection",
+   "line": "L0252",
+   "start": 714.09
+  },
+  {
+   "start_word": 946,
+   "end_word": 946,
+   "heard": "ఇక",
+   "source": "flag",
+   "confidence": 0.599,
+   "verdict": "relisten_kept",
+   "line": "L0281",
+   "start": 801.506
+  },
+  {
+   "start_word": 988,
+   "end_word": 988,
+   "heard": "it",
+   "source": "flag",
+   "confidence": 0.531,
+   "verdict": "relisten_kept",
+   "line": "L0288",
+   "start": 819.426
+  },
+  {
+   "start_word": 1060,
+   "end_word": 1060,
+   "heard": "So",
+   "source": "flag",
+   "confidence": 0.591,
+   "verdict": "relisten_kept",
+   "line": "L0307",
+   "start": 865.706
+  },
+  {
+   "start_word": 1075,
+   "end_word": 1075,
+   "heard": "హా",
+   "source": "flag",
+   "confidence": 0.599,
+   "verdict": "skipped_interjection",
+   "line": "L0312",
+   "start": 873.946
+  },
+  {
+   "start_word": 1116,
+   "end_word": 1116,
+   "heard": "అంటే",
+   "source": "flag",
+   "confidence": 0.578,
+   "verdict": "relisten_kept",
+   "line": "L0324",
+   "start": 899.386
+  },
+  {
+   "start_word": 1230,
+   "end_word": 1230,
+   "heard": "అన్ని",
+   "source": "flag",
+   "confidence": 0.531,
+   "verdict": "relisten_kept",
+   "line": "L0352",
+   "start": 971.866
+  }
+ ],
+ "rejected": [
+  {
+   "layer": "relisten",
+   "line": "L0059",
+   "heard_line": "ఈ కాలంలో కూడా ఈ పట్టింపులేంటమ్మా.",
+   "corrected": "పట్టింపులేంటమ్మా.",
+   "confidence": 0.95,
+   "reason": "clearly says పట్టింపులేంటమ్మా",
+   "start_word": 199,
+   "end_word": 201,
+   "heard": "పట్టు ఇమ్మా ఏంటమ్మా!",
+   "why_rejected": "not on a suspect span"
+  }
+ ],
+ "threshold_report": {
+  "n_words": 1402,
+  "has_logprob": true,
+  "by_threshold": {
+   "0.5": {
+    "words": 21,
+    "lines": 19
+   },
+   "0.6": {
+    "words": 45,
+    "lines": 39
+   },
+   "0.7": {
+    "words": 80,
+    "lines": 69
+   }
+  }
+ },
+ "cost": {
+  "projected": {
+   "model": "gemini-3.8-flash",
+   "layers": {
+    "relisten": {
+     "calls": 2,
+     "items": 16,
+     "audio_s": 48.9,
+     "audio_tokens": 1563,
+     "input_tokens": 5375,
+     "output_tokens": 2400,
+     "inr": 1.28
+    }
+   },
+   "inr": 1.28
+  },
+  "actual": {
+   "relisten": {
+    "calls": 2,
+    "cached": 0,
+    "input_tokens": 4585,
+    "output_tokens": 955,
+    "audio_tokens": 1226,
+    "inr": 0.714,
+    "inr_full": 0.714
+   }
+  }
+ },
+ "stopped": null,
+ "transcript": "D:\\shotvi\\scribe_dataset\\j14Om1SaFYE\\j14Om1SaFYE_scribe_transcript.json"
+}

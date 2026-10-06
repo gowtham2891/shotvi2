@@ -1,0 +1,1376 @@
+{
+ "schema": "glossary/1",
+ "episodes": [
+  "j14Om1SaFYE"
+ ],
+ "params": {
+  "min_count": 2,
+  "min_ratio": 8.0,
+  "min_conf": 0.7,
+  "common_top_k": 300,
+  "max_terms": 300,
+  "background_words": 89374,
+  "series_words": 1399
+ },
+ "n_terms": 119,
+ "n_dropped_by_cap": 0,
+ "by_kind": {
+  "manual": 1,
+  "correction": 9,
+  "name": 4,
+  "term": 68,
+  "phrase": 22,
+  "english": 15
+ },
+ "excluded_misheard": [
+  "appalam",
+  "week",
+  "అజ్జన్",
+  "అయిష్మాన్",
+  "ఇమ్మా",
+  "ఇల్లు",
+  "ఉయ్యమ్మో",
+  "ఏంటమ్మా",
+  "కాలం",
+  "తుమ్ము",
+  "నేర్",
+  "పట్టు",
+  "విగించాలా",
+  "వీర్గా"
+ ],
+ "dropped_by_hand": [
+  {
+   "term": "కూరంటా",
+   "reason": "Ep1 mishearing of 'గోరింటాకు' (map.md scene 12); biasing toward it would repeat the error"
+  }
+ ],
+ "terms": [
+  {
+   "term": "గోరింటాకు",
+   "kind": "manual",
+   "sources": [
+    "manual:Ep1 known mishearing: Scribe wrote 'కూరంటా' for 'గోరింటాకు' (map.md scene 12 'Gongura / gorintaku mix-up'); not caught by Ep1 corrections"
+   ],
+   "count": 0,
+   "bg_count": 0,
+   "score": 200.0
+  },
+  {
+   "term": "urgent",
+   "kind": "correction",
+   "sources": [
+    "correction:j14Om1SaFYE:w1364",
+    "correction:j14Om1SaFYE:w1368",
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 2,
+   "bg_count": 4,
+   "score": 100.0
+  },
+  {
+   "term": "అప్పడాలు",
+   "kind": "correction",
+   "sources": [
+    "correction:j14Om1SaFYE:w1391"
+   ],
+   "count": 1,
+   "bg_count": 0,
+   "score": 100.0
+  },
+  {
+   "term": "ఇల్లే ఈ వీధి చివరనే",
+   "kind": "correction",
+   "sources": [
+    "correction:j14Om1SaFYE:w1324"
+   ],
+   "count": 1,
+   "bg_count": 0,
+   "score": 100.0
+  },
+  {
+   "term": "ఒరియమ్మో",
+   "kind": "correction",
+   "sources": [
+    "correction:j14Om1SaFYE:w1036"
+   ],
+   "count": 1,
+   "bg_count": 0,
+   "score": 100.0
+  },
+  {
+   "term": "కాళ్ల",
+   "kind": "correction",
+   "sources": [
+    "correction:j14Om1SaFYE:w1277"
+   ],
+   "count": 1,
+   "bg_count": 0,
+   "score": 100.0
+  },
+  {
+   "term": "తుమ్మ",
+   "kind": "correction",
+   "sources": [
+    "correction:j14Om1SaFYE:w334"
+   ],
+   "count": 1,
+   "bg_count": 0,
+   "score": 100.0
+  },
+  {
+   "term": "దీర్ఘాయుష్మాన్",
+   "kind": "correction",
+   "sources": [
+    "correction:j14Om1SaFYE:w1269"
+   ],
+   "count": 1,
+   "bg_count": 0,
+   "score": 100.0
+  },
+  {
+   "term": "పట్టింపులేంటమ్మా",
+   "kind": "correction",
+   "sources": [
+    "correction:j14Om1SaFYE:w199"
+   ],
+   "count": 1,
+   "bg_count": 0,
+   "score": 100.0
+  },
+  {
+   "term": "బిగించాలా",
+   "kind": "correction",
+   "sources": [
+    "correction:j14Om1SaFYE:w612"
+   ],
+   "count": 1,
+   "bg_count": 0,
+   "score": 100.0
+  },
+  {
+   "term": "అమృత",
+   "kind": "name",
+   "sources": [
+    "freq:j14Om1SaFYE",
+    "honorific:j14Om1SaFYE",
+    "map.md: heroine Amrutha (runs/gt/j14Om1SaFYE/map.md)"
+   ],
+   "count": 2,
+   "bg_count": 0,
+   "score": 95.0
+  },
+  {
+   "term": "పుల్లారెడ్డి",
+   "kind": "name",
+   "sources": [
+    "freq:j14Om1SaFYE",
+    "map.md: Pulla Reddy sweets gag (runs/gt/j14Om1SaFYE/map.md)"
+   ],
+   "count": 3,
+   "bg_count": 0,
+   "score": 95.0
+  },
+  {
+   "term": "పొట్టిగా",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 15,
+   "bg_count": 0,
+   "score": 90.58
+  },
+  {
+   "term": "పొట్టిగా ఉన్నారు",
+   "kind": "phrase",
+   "sources": [
+    "ngram:12"
+   ],
+   "count": 12,
+   "bg_count": 0,
+   "score": 89.58
+  },
+  {
+   "term": "ఉన్నారు పొట్టిగా",
+   "kind": "phrase",
+   "sources": [
+    "ngram:7"
+   ],
+   "count": 7,
+   "bg_count": 0,
+   "score": 84.58
+  },
+  {
+   "term": "మీరు కొంచెం పొట్టిగా ఉన్నారు",
+   "kind": "phrase",
+   "sources": [
+    "ngram:4"
+   ],
+   "count": 4,
+   "bg_count": 0,
+   "score": 83.58
+  },
+  {
+   "term": "ఏమనుకోకండి మీరు కొంచెం పొట్టిగా ఉన్నారు",
+   "kind": "phrase",
+   "sources": [
+    "ngram:2"
+   ],
+   "count": 2,
+   "bg_count": 0,
+   "score": 82.58
+  },
+  {
+   "term": "couple goals",
+   "kind": "name",
+   "sources": [
+    "meta_title:j14Om1SaFYE"
+   ],
+   "count": 0,
+   "bg_count": 0,
+   "score": 80.0
+  },
+  {
+   "term": "mohit pedada",
+   "kind": "name",
+   "sources": [
+    "meta_title:j14Om1SaFYE"
+   ],
+   "count": 0,
+   "bg_count": 0,
+   "score": 80.0
+  },
+  {
+   "term": "sorry ఏమనుకోకండి",
+   "kind": "phrase",
+   "sources": [
+    "ngram:2"
+   ],
+   "count": 2,
+   "bg_count": 0,
+   "score": 66.37
+  },
+  {
+   "term": "ఏమనుకోకండి",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 4,
+   "bg_count": 0,
+   "score": 66.37
+  },
+  {
+   "term": "పోసేయ్",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 4,
+   "bg_count": 0,
+   "score": 66.37
+  },
+  {
+   "term": "మిర్చి",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 4,
+   "bg_count": 0,
+   "score": 66.37
+  },
+  {
+   "term": "మిర్చి బజ్జి",
+   "kind": "phrase",
+   "sources": [
+    "ngram:2"
+   ],
+   "count": 2,
+   "bg_count": 0,
+   "score": 66.37
+  },
+  {
+   "term": "ఎప్పుడు కావంటే అప్పుడు",
+   "kind": "phrase",
+   "sources": [
+    "ngram:3"
+   ],
+   "count": 3,
+   "bg_count": 0,
+   "score": 65.49
+  },
+  {
+   "term": "height",
+   "kind": "term",
+   "sources": [
+    "english_rare:j14Om1SaFYE",
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 3,
+   "bg_count": 0,
+   "score": 62.49
+  },
+  {
+   "term": "అత్తమ్మ",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 3,
+   "bg_count": 0,
+   "score": 62.49
+  },
+  {
+   "term": "అబద్ధాలు",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 3,
+   "bg_count": 0,
+   "score": 62.49
+  },
+  {
+   "term": "కావంటే",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 3,
+   "bg_count": 0,
+   "score": 62.49
+  },
+  {
+   "term": "గోధుమపిండి",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 3,
+   "bg_count": 0,
+   "score": 62.49
+  },
+  {
+   "term": "పెళ్లిచూపులు",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 3,
+   "bg_count": 0,
+   "score": 62.49
+  },
+  {
+   "term": "మీరు మీ కూతుర్ని miss",
+   "kind": "phrase",
+   "sources": [
+    "ngram:2"
+   ],
+   "count": 2,
+   "bg_count": 0,
+   "score": 61.43
+  },
+  {
+   "term": "వచ్చే wife మాత్రమే కావాలనుకుంటున్నానంటే",
+   "kind": "phrase",
+   "sources": [
+    "ngram:2"
+   ],
+   "count": 2,
+   "bg_count": 0,
+   "score": 61.43
+  },
+  {
+   "term": "అమృత గారు",
+   "kind": "phrase",
+   "sources": [
+    "ngram:2"
+   ],
+   "count": 2,
+   "bg_count": 0,
+   "score": 59.43
+  },
+  {
+   "term": "ఉన్న అమ్మాయలే",
+   "kind": "phrase",
+   "sources": [
+    "ngram:2"
+   ],
+   "count": 2,
+   "bg_count": 0,
+   "score": 59.43
+  },
+  {
+   "term": "చేయాలనిపిస్తే చేయండి",
+   "kind": "phrase",
+   "sources": [
+    "ngram:2"
+   ],
+   "count": 2,
+   "bg_count": 0,
+   "score": 59.43
+  },
+  {
+   "term": "dishes",
+   "kind": "term",
+   "sources": [
+    "english_rare:j14Om1SaFYE",
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 2,
+   "bg_count": 0,
+   "score": 57.43
+  },
+  {
+   "term": "అడగాలంటే",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 2,
+   "bg_count": 0,
+   "score": 57.43
+  },
+  {
+   "term": "అనుకుంటున్నావా",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 2,
+   "bg_count": 0,
+   "score": 57.43
+  },
+  {
+   "term": "అభిమానం",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 2,
+   "bg_count": 0,
+   "score": 57.43
+  },
+  {
+   "term": "అమ్మాయలే",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 2,
+   "bg_count": 0,
+   "score": 57.43
+  },
+  {
+   "term": "అమ్మాయితో",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 2,
+   "bg_count": 0,
+   "score": 57.43
+  },
+  {
+   "term": "ఇద్దామని",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 2,
+   "bg_count": 0,
+   "score": 57.43
+  },
+  {
+   "term": "కదూ",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 2,
+   "bg_count": 0,
+   "score": 57.43
+  },
+  {
+   "term": "కావాలనుకుంటున్నానంటే",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 2,
+   "bg_count": 0,
+   "score": 57.43
+  },
+  {
+   "term": "కూతుర్ని",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 2,
+   "bg_count": 0,
+   "score": 57.43
+  },
+  {
+   "term": "చపాతీ",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 2,
+   "bg_count": 0,
+   "score": 57.43
+  },
+  {
+   "term": "చెట్టు",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 2,
+   "bg_count": 0,
+   "score": 57.43
+  },
+  {
+   "term": "చేయాలనిపిస్తే",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 2,
+   "bg_count": 0,
+   "score": 57.43
+  },
+  {
+   "term": "ఛాయ్",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 2,
+   "bg_count": 0,
+   "score": 57.43
+  },
+  {
+   "term": "తినలేక",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 2,
+   "bg_count": 0,
+   "score": 57.43
+  },
+  {
+   "term": "తీసేయండి",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 2,
+   "bg_count": 0,
+   "score": 57.43
+  },
+  {
+   "term": "నలిపినట్టు",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 2,
+   "bg_count": 0,
+   "score": 57.43
+  },
+  {
+   "term": "బజ్జి",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 2,
+   "bg_count": 0,
+   "score": 57.43
+  },
+  {
+   "term": "వంకలు",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 2,
+   "bg_count": 0,
+   "score": 57.43
+  },
+  {
+   "term": "వంటలు",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 2,
+   "bg_count": 0,
+   "score": 57.43
+  },
+  {
+   "term": "శనగపిండి",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 2,
+   "bg_count": 0,
+   "score": 57.43
+  },
+  {
+   "term": "వంట",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 10,
+   "bg_count": 6,
+   "score": 55.88
+  },
+  {
+   "term": "have the best meals with",
+   "kind": "phrase",
+   "sources": [
+    "ngram:2"
+   ],
+   "count": 2,
+   "bg_count": 0,
+   "score": 55.5
+  },
+  {
+   "term": "best meals with me",
+   "kind": "phrase",
+   "sources": [
+    "ngram:2"
+   ],
+   "count": 2,
+   "bg_count": 0,
+   "score": 54.5
+  },
+  {
+   "term": "నాకు వంట వచ్చే wife మాత్రమే",
+   "kind": "phrase",
+   "sources": [
+    "ngram:2"
+   ],
+   "count": 2,
+   "bg_count": 0,
+   "score": 52.88
+  },
+  {
+   "term": "meals",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 3,
+   "bg_count": 1,
+   "score": 51.5
+  },
+  {
+   "term": "అబ్బాయిలకి",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 3,
+   "bg_count": 1,
+   "score": 51.5
+  },
+  {
+   "term": "ఏరా",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 3,
+   "bg_count": 1,
+   "score": 51.5
+  },
+  {
+   "term": "గోంగూర",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 3,
+   "bg_count": 1,
+   "score": 51.5
+  },
+  {
+   "term": "మమ్మీ",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 3,
+   "bg_count": 1,
+   "score": 51.5
+  },
+  {
+   "term": "చేతి వంట",
+   "kind": "phrase",
+   "sources": [
+    "ngram:2"
+   ],
+   "count": 2,
+   "bg_count": 0,
+   "score": 49.88
+  },
+  {
+   "term": "call చేసి చెప్తారా",
+   "kind": "phrase",
+   "sources": [
+    "ngram:2"
+   ],
+   "count": 2,
+   "bg_count": 0,
+   "score": 49.45
+  },
+  {
+   "term": "marriage",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 6,
+   "bg_count": 5,
+   "score": 48.44
+  },
+  {
+   "term": "చెప్తారా",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 2,
+   "bg_count": 1,
+   "score": 46.45
+  },
+  {
+   "term": "చేతి",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 2,
+   "bg_count": 1,
+   "score": 46.45
+  },
+  {
+   "term": "బంగారం",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 2,
+   "bg_count": 1,
+   "score": 46.45
+  },
+  {
+   "term": "marriage లో",
+   "kind": "phrase",
+   "sources": [
+    "ngram:2"
+   ],
+   "count": 2,
+   "bg_count": 0,
+   "score": 46.44
+  },
+  {
+   "term": "recipe",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 3,
+   "bg_count": 2,
+   "score": 46.39
+  },
+  {
+   "term": "అమ్మాయిని",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 3,
+   "bg_count": 2,
+   "score": 46.39
+  },
+  {
+   "term": "hostel లో",
+   "kind": "phrase",
+   "sources": [
+    "ngram:2"
+   ],
+   "count": 2,
+   "bg_count": 0,
+   "score": 43.34
+  },
+  {
+   "term": "లాంటిది",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 3,
+   "bg_count": 3,
+   "score": 43.03
+  },
+  {
+   "term": "sweets",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 4,
+   "bg_count": 5,
+   "score": 42.39
+  },
+  {
+   "term": "cooking",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 2,
+   "bg_count": 2,
+   "score": 41.34
+  },
+  {
+   "term": "hostel",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 2,
+   "bg_count": 2,
+   "score": 41.34
+  },
+  {
+   "term": "ఆలోచించే",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 2,
+   "bg_count": 2,
+   "score": 41.34
+  },
+  {
+   "term": "ఎక్కువైతే",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 2,
+   "bg_count": 2,
+   "score": 41.34
+  },
+  {
+   "term": "కూర్చోండి",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 2,
+   "bg_count": 2,
+   "score": 41.34
+  },
+  {
+   "term": "గుడ్డు",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 2,
+   "bg_count": 2,
+   "score": 41.34
+  },
+  {
+   "term": "నూనె",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 2,
+   "bg_count": 2,
+   "score": 41.34
+  },
+  {
+   "term": "మీరేం",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 2,
+   "bg_count": 2,
+   "score": 41.34
+  },
+  {
+   "term": "order",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 3,
+   "bg_count": 4,
+   "score": 40.52
+  },
+  {
+   "term": "కాదే",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 3,
+   "bg_count": 4,
+   "score": 40.52
+  },
+  {
+   "term": "trust me you will have",
+   "kind": "phrase",
+   "sources": [
+    "ngram:2"
+   ],
+   "count": 2,
+   "bg_count": 0,
+   "score": 40.46
+  },
+  {
+   "term": "curry",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 2,
+   "bg_count": 3,
+   "score": 37.97
+  },
+  {
+   "term": "ఏంటే",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 2,
+   "bg_count": 3,
+   "score": 37.97
+  },
+  {
+   "term": "urgent గా",
+   "kind": "phrase",
+   "sources": [
+    "ngram:2"
+   ],
+   "count": 2,
+   "bg_count": 0,
+   "score": 37.46
+  },
+  {
+   "term": "trust",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 2,
+   "bg_count": 4,
+   "score": 35.46
+  },
+  {
+   "term": "బాగుంటుంది",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 2,
+   "bg_count": 4,
+   "score": 35.46
+  },
+  {
+   "term": "వచ్చా",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 2,
+   "bg_count": 4,
+   "score": 35.46
+  },
+  {
+   "term": "సంబంధం",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 2,
+   "bg_count": 4,
+   "score": 35.46
+  },
+  {
+   "term": "చిన్నప్పటి నుంచి",
+   "kind": "phrase",
+   "sources": [
+    "ngram:2"
+   ],
+   "count": 2,
+   "bg_count": 0,
+   "score": 35.45
+  },
+  {
+   "term": "తిని",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 3,
+   "bg_count": 8,
+   "score": 34.16
+  },
+  {
+   "term": "చిన్నప్పటి",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 2,
+   "bg_count": 5,
+   "score": 33.45
+  },
+  {
+   "term": "కాదండి",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 2,
+   "bg_count": 6,
+   "score": 31.78
+  },
+  {
+   "term": "వదిలేసి",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 2,
+   "bg_count": 6,
+   "score": 31.78
+  },
+  {
+   "term": "అంటారా",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 2,
+   "bg_count": 7,
+   "score": 30.35
+  },
+  {
+   "term": "వస్తారు",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 2,
+   "bg_count": 7,
+   "score": 30.35
+  },
+  {
+   "term": "ఇంటి",
+   "kind": "term",
+   "sources": [
+    "freq:j14Om1SaFYE"
+   ],
+   "count": 2,
+   "bg_count": 8,
+   "score": 29.1
+  },
+  {
+   "term": "arguments",
+   "kind": "english",
+   "sources": [
+    "english_rare:j14Om1SaFYE"
+   ],
+   "count": 1,
+   "bg_count": 0,
+   "score": 21.0
+  },
+  {
+   "term": "boiled",
+   "kind": "english",
+   "sources": [
+    "english_rare:j14Om1SaFYE"
+   ],
+   "count": 1,
+   "bg_count": 0,
+   "score": 21.0
+  },
+  {
+   "term": "chillies",
+   "kind": "english",
+   "sources": [
+    "english_rare:j14Om1SaFYE"
+   ],
+   "count": 1,
+   "bg_count": 0,
+   "score": 21.0
+  },
+  {
+   "term": "coupon",
+   "kind": "english",
+   "sources": [
+    "english_rare:j14Om1SaFYE"
+   ],
+   "count": 1,
+   "bg_count": 0,
+   "score": 21.0
+  },
+  {
+   "term": "delivery",
+   "kind": "english",
+   "sources": [
+    "english_rare:j14Om1SaFYE"
+   ],
+   "count": 1,
+   "bg_count": 0,
+   "score": 21.0
+  },
+  {
+   "term": "dish",
+   "kind": "english",
+   "sources": [
+    "english_rare:j14Om1SaFYE"
+   ],
+   "count": 1,
+   "bg_count": 0,
+   "score": 21.0
+  },
+  {
+   "term": "doubtful",
+   "kind": "english",
+   "sources": [
+    "english_rare:j14Om1SaFYE"
+   ],
+   "count": 1,
+   "bg_count": 0,
+   "score": 21.0
+  },
+  {
+   "term": "link",
+   "kind": "english",
+   "sources": [
+    "english_rare:j14Om1SaFYE"
+   ],
+   "count": 1,
+   "bg_count": 0,
+   "score": 21.0
+  },
+  {
+   "term": "petrol",
+   "kind": "english",
+   "sources": [
+    "english_rare:j14Om1SaFYE"
+   ],
+   "count": 1,
+   "bg_count": 0,
+   "score": 21.0
+  },
+  {
+   "term": "relatives",
+   "kind": "english",
+   "sources": [
+    "english_rare:j14Om1SaFYE"
+   ],
+   "count": 1,
+   "bg_count": 0,
+   "score": 21.0
+  },
+  {
+   "term": "romance",
+   "kind": "english",
+   "sources": [
+    "english_rare:j14Om1SaFYE"
+   ],
+   "count": 1,
+   "bg_count": 0,
+   "score": 21.0
+  },
+  {
+   "term": "spicy",
+   "kind": "english",
+   "sources": [
+    "english_rare:j14Om1SaFYE"
+   ],
+   "count": 1,
+   "bg_count": 0,
+   "score": 21.0
+  },
+  {
+   "term": "talented",
+   "kind": "english",
+   "sources": [
+    "english_rare:j14Om1SaFYE"
+   ],
+   "count": 1,
+   "bg_count": 0,
+   "score": 21.0
+  },
+  {
+   "term": "tasteless",
+   "kind": "english",
+   "sources": [
+    "english_rare:j14Om1SaFYE"
+   ],
+   "count": 1,
+   "bg_count": 0,
+   "score": 21.0
+  },
+  {
+   "term": "whistles",
+   "kind": "english",
+   "sources": [
+    "english_rare:j14Om1SaFYE"
+   ],
+   "count": 1,
+   "bg_count": 0,
+   "score": 21.0
+  }
+ ],
+ "target": "QWIvgoTQGKk",
+ "background_ids": [
+  "2sqpFVPc85o",
+  "FS1DI5D_hUk",
+  "LgjEP0dsQZc",
+  "mdxzKJ2gTQ4",
+  "N6wJ-qR8uxY",
+  "TBlm6wcij94"
+ ],
+ "keyterms": [
+  "గోరింటాకు",
+  "urgent",
+  "అప్పడాలు",
+  "ఇల్లే ఈ వీధి చివరనే",
+  "ఒరియమ్మో",
+  "కాళ్ల",
+  "తుమ్మ",
+  "దీర్ఘాయుష్మాన్",
+  "పట్టింపులేంటమ్మా",
+  "బిగించాలా",
+  "అమృత",
+  "పుల్లారెడ్డి",
+  "పొట్టిగా",
+  "పొట్టిగా ఉన్నారు",
+  "ఉన్నారు పొట్టిగా",
+  "మీరు కొంచెం పొట్టిగా ఉన్నారు",
+  "ఏమనుకోకండి మీరు కొంచెం పొట్టిగా ఉన్నారు",
+  "couple goals",
+  "mohit pedada",
+  "sorry ఏమనుకోకండి",
+  "ఏమనుకోకండి",
+  "పోసేయ్",
+  "మిర్చి",
+  "మిర్చి బజ్జి",
+  "ఎప్పుడు కావంటే అప్పుడు",
+  "height",
+  "అత్తమ్మ",
+  "అబద్ధాలు",
+  "కావంటే",
+  "గోధుమపిండి",
+  "పెళ్లిచూపులు",
+  "మీరు మీ కూతుర్ని miss",
+  "వచ్చే wife మాత్రమే కావాలనుకుంటున్నానంటే",
+  "అమృత గారు",
+  "ఉన్న అమ్మాయలే",
+  "చేయాలనిపిస్తే చేయండి",
+  "dishes",
+  "అడగాలంటే",
+  "అనుకుంటున్నావా",
+  "అభిమానం",
+  "అమ్మాయలే",
+  "అమ్మాయితో",
+  "ఇద్దామని",
+  "కదూ",
+  "కావాలనుకుంటున్నానంటే",
+  "కూతుర్ని",
+  "చపాతీ",
+  "చెట్టు",
+  "చేయాలనిపిస్తే",
+  "ఛాయ్",
+  "తినలేక",
+  "తీసేయండి",
+  "నలిపినట్టు",
+  "బజ్జి",
+  "వంకలు",
+  "వంటలు",
+  "శనగపిండి",
+  "వంట",
+  "have the best meals with",
+  "best meals with me",
+  "నాకు వంట వచ్చే wife మాత్రమే",
+  "meals",
+  "అబ్బాయిలకి",
+  "ఏరా",
+  "గోంగూర",
+  "మమ్మీ",
+  "చేతి వంట",
+  "call చేసి చెప్తారా",
+  "marriage",
+  "చెప్తారా",
+  "చేతి",
+  "బంగారం",
+  "marriage లో",
+  "recipe",
+  "అమ్మాయిని",
+  "hostel లో",
+  "లాంటిది",
+  "sweets",
+  "cooking",
+  "hostel",
+  "ఆలోచించే",
+  "ఎక్కువైతే",
+  "కూర్చోండి",
+  "గుడ్డు",
+  "నూనె",
+  "మీరేం",
+  "order",
+  "కాదే",
+  "trust me you will have",
+  "curry",
+  "ఏంటే",
+  "urgent గా",
+  "trust",
+  "బాగుంటుంది",
+  "వచ్చా",
+  "సంబంధం",
+  "చిన్నప్పటి నుంచి",
+  "తిని",
+  "చిన్నప్పటి",
+  "కాదండి",
+  "వదిలేసి",
+  "అంటారా",
+  "వస్తారు",
+  "ఇంటి",
+  "arguments",
+  "boiled",
+  "chillies",
+  "coupon",
+  "delivery",
+  "dish",
+  "doubtful",
+  "link",
+  "petrol",
+  "relatives",
+  "romance",
+  "spicy",
+  "talented",
+  "tasteless",
+  "whistles"
+ ]
+}

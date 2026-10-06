@@ -1,0 +1,630 @@
+{
+ "video_id": "epZ0lbXkgWA",
+ "schema": "asr_fix/1",
+ "params": {
+  "layers": [
+   "context",
+   "flag",
+   "relisten"
+  ],
+  "threshold": 0.5,
+  "min_conf": 0.8,
+  "model": "gemini-3.8-flash",
+  "pad_s": 0.4,
+  "ctx_lines": 2,
+  "batch_items": 8,
+  "context_prompt": "1",
+  "relisten_prompt": "1",
+  "apply_context": false,
+  "skip_interjections": true
+ },
+ "lines": 464,
+ "n_flagged_words": 13,
+ "n_suspects": 18,
+ "suspects": [
+  {
+   "line": "L0136",
+   "start_word": 578,
+   "end_word": 578,
+   "heard": "symptom",
+   "found_by": [
+    "context"
+   ],
+   "guess": "secret family",
+   "why": "Talking about having a secret family/second marriage",
+   "min_conf": 0.991
+  },
+  {
+   "line": "L0147",
+   "start_word": 630,
+   "end_word": 630,
+   "heard": "Hello.",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.48
+  },
+  {
+   "line": "L0196",
+   "start_word": 844,
+   "end_word": 844,
+   "heard": "Cheers",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.174
+  },
+  {
+   "line": "L0200",
+   "start_word": 856,
+   "end_word": 856,
+   "heard": "OK",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.422
+  },
+  {
+   "line": "L0209",
+   "start_word": 884,
+   "end_word": 884,
+   "heard": "pegs",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.497
+  },
+  {
+   "line": "L0312",
+   "start_word": 1239,
+   "end_word": 1239,
+   "heard": "విత్తాక్",
+   "found_by": [
+    "context"
+   ],
+   "guess": "విష్ణు",
+   "why": "Character name or calling someone outside the door",
+   "min_conf": 0.662
+  },
+  {
+   "line": "L0314",
+   "start_word": 1241,
+   "end_word": 1241,
+   "heard": "ఆ",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.469
+  },
+  {
+   "line": "L0319",
+   "start_word": 1250,
+   "end_word": 1250,
+   "heard": "తీ",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "ఆంటీ",
+   "why": "Responding to ఎవర్రా నీకు ఆంటీ",
+   "min_conf": 0.247
+  },
+  {
+   "line": "L0328",
+   "start_word": 1283,
+   "end_word": 1283,
+   "heard": "ఆ",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.273
+  },
+  {
+   "line": "L0329",
+   "start_word": 1284,
+   "end_word": 1284,
+   "heard": "ఆ",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.342
+  },
+  {
+   "line": "L0331",
+   "start_word": 1287,
+   "end_word": 1287,
+   "heard": "కాఫీల",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "కాఫీలో",
+   "why": "Referring to mixing poison in coffee",
+   "min_conf": 0.413
+  },
+  {
+   "line": "L0361",
+   "start_word": 1371,
+   "end_word": 1371,
+   "heard": "మధ్య",
+   "found_by": [
+    "context"
+   ],
+   "guess": "మద్యం",
+   "why": "Refers to alcohol/drunk state with మత్తులో",
+   "min_conf": 0.751
+  },
+  {
+   "line": "L0361",
+   "start_word": 1375,
+   "end_word": 1375,
+   "heard": "అంటే.",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.432
+  },
+  {
+   "line": "L0380",
+   "start_word": 1447,
+   "end_word": 1447,
+   "heard": "గెబ్బాల్సి",
+   "found_by": [
+    "context"
+   ],
+   "guess": "పెంచాల్సి",
+   "why": "Referring to growing hair and beard (జుట్టు గడ్డమే)",
+   "min_conf": 0.798
+  },
+  {
+   "line": "L0381",
+   "start_word": 1451,
+   "end_word": 1451,
+   "heard": "కుట్ట",
+   "found_by": [
+    "context"
+   ],
+   "guess": "కూడా",
+   "why": "Phrase meaning not even giving time to shave",
+   "min_conf": 0.728
+  },
+  {
+   "line": "L0405",
+   "start_word": 1520,
+   "end_word": 1520,
+   "heard": "urgent",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.403
+  },
+  {
+   "line": "L0439",
+   "start_word": 1643,
+   "end_word": 1643,
+   "heard": "మనసేలో",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "మనసెలా",
+   "why": "Rhetorical question 'how could anyone have the heart to'",
+   "min_conf": 0.452
+  },
+  {
+   "line": "L0459",
+   "start_word": 1733,
+   "end_word": 1733,
+   "heard": "But",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.348
+  }
+ ],
+ "corrections": [
+  {
+   "start_word": 578,
+   "end_word": 578,
+   "heard": "symptom",
+   "corrected": "secret family",
+   "reason": "Talking about having a secret family/second marriage",
+   "source": "context",
+   "confidence": null,
+   "applied": false,
+   "found_by": [
+    "context"
+   ],
+   "line": "L0136",
+   "start": 523.064,
+   "end": 523.384,
+   "context_guess": "secret family",
+   "relisten": {
+    "verdict": "relisten_kept"
+   }
+  },
+  {
+   "start_word": 884,
+   "end_word": 884,
+   "heard": "pegs",
+   "corrected": "పెగ్గులేసి",
+   "reason": "clearly says pegsలేసి",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "flag"
+   ],
+   "line": "L0209",
+   "start": 767.808,
+   "end": 768.048,
+   "context_guess": null,
+   "relisten": {
+    "heard_line": "ఓ రెండు పెగ్గులేసి పడుకుంటాం.",
+    "line_ratio": 0.926
+   }
+  },
+  {
+   "start_word": 1239,
+   "end_word": 1239,
+   "heard": "విత్తాక్",
+   "corrected": "డుం తతాక్",
+   "reason": "clearly says డుం తతాక్",
+   "source": "relisten",
+   "confidence": 0.9,
+   "applied": true,
+   "found_by": [
+    "context"
+   ],
+   "line": "L0312",
+   "start": 1096.068,
+   "end": 1096.448,
+   "context_guess": "విష్ణు",
+   "relisten": {
+    "heard_line": "డుం తతాక్",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 1250,
+   "end_word": 1250,
+   "heard": "తీ",
+   "corrected": "ఆంటీ",
+   "reason": "Responding to ఎవర్రా నీకు ఆంటీ",
+   "source": "context",
+   "confidence": null,
+   "applied": false,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0319",
+   "start": 1108.408,
+   "end": 1108.848,
+   "context_guess": "ఆంటీ",
+   "relisten": {
+    "verdict": "relisten_kept"
+   }
+  },
+  {
+   "start_word": 1287,
+   "end_word": 1287,
+   "heard": "కాఫీల",
+   "corrected": "కాఫీలో",
+   "reason": "clearly says కాఫీలో",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0331",
+   "start": 1143.668,
+   "end": 1143.968,
+   "context_guess": "కాఫీలో",
+   "relisten": {
+    "heard_line": "కొంపతీసి కాఫీలో విషం కలపలేదు కదా?",
+    "line_ratio": 0.918
+   }
+  },
+  {
+   "start_word": 1371,
+   "end_word": 1371,
+   "heard": "మధ్య",
+   "corrected": "మద్య",
+   "reason": "clearly says మద్య (madya)",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context"
+   ],
+   "line": "L0361",
+   "start": 1209.608,
+   "end": 1209.848,
+   "context_guess": "మద్యం",
+   "relisten": {
+    "heard_line": "ఏదో మద్య మత్తులో అలా మాట్లాడానంతే.",
+    "line_ratio": 0.933
+   }
+  },
+  {
+   "start_word": 1447,
+   "end_word": 1447,
+   "heard": "గెబ్బాల్సి",
+   "corrected": "ఇలా గెలవాల్సి",
+   "reason": "speaker says ఇలా గెలవాల్సి/ఇలా మోపాల్సి",
+   "source": "relisten",
+   "confidence": 0.85,
+   "applied": true,
+   "found_by": [
+    "context"
+   ],
+   "line": "L0380",
+   "start": 1255.628,
+   "end": 1255.948,
+   "context_guess": "పెంచాల్సి",
+   "relisten": {
+    "heard_line": "మీ హన్సిని వల్లనే ఇదిగో ఇలా గెలవాల్సి వచ్చింది.",
+    "line_ratio": 0.94
+   }
+  },
+  {
+   "start_word": 1451,
+   "end_word": 1452,
+   "heard": "కుట్ట ఏమీ",
+   "corrected": "కూడా టైమే",
+   "reason": "clearly says కూడా టైమే",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context"
+   ],
+   "line": "L0381",
+   "start": 1258.028,
+   "end": 1258.348,
+   "context_guess": "కూడా",
+   "relisten": {
+    "heard_line": "గడ్డం గీసుకోవడానికి కూడా టైమే ఇవ్వట్లేదు.",
+    "line_ratio": 0.959
+   }
+  },
+  {
+   "start_word": 1643,
+   "end_word": 1643,
+   "heard": "మనసేలో",
+   "corrected": "మనసెలా",
+   "reason": "clearly says మనసెలా",
+   "source": "relisten",
+   "confidence": 0.98,
+   "applied": true,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0439",
+   "start": 1422.368,
+   "end": 1422.668,
+   "context_guess": "మనసెలా",
+   "relisten": {
+    "heard_line": "అయినా ఎవడికి మనసెలా వచ్చిందండి?",
+    "line_ratio": 1.0
+   }
+  }
+ ],
+ "uncertain": [
+  {
+   "start_word": 630,
+   "end_word": 630,
+   "heard": "Hello.",
+   "source": "flag",
+   "confidence": 0.48,
+   "verdict": "relisten_kept",
+   "line": "L0147",
+   "start": 573.624
+  },
+  {
+   "start_word": 844,
+   "end_word": 844,
+   "heard": "Cheers",
+   "source": "flag",
+   "confidence": 0.174,
+   "verdict": "relisten_kept",
+   "line": "L0196",
+   "start": 722.644
+  },
+  {
+   "start_word": 856,
+   "end_word": 856,
+   "heard": "OK",
+   "source": "flag",
+   "confidence": 0.422,
+   "verdict": "skipped_interjection",
+   "line": "L0200",
+   "start": 738.828
+  },
+  {
+   "start_word": 1241,
+   "end_word": 1241,
+   "heard": "ఆ",
+   "source": "flag",
+   "confidence": 0.469,
+   "verdict": "skipped_interjection",
+   "line": "L0314",
+   "start": 1099.248
+  },
+  {
+   "start_word": 1283,
+   "end_word": 1283,
+   "heard": "ఆ",
+   "source": "flag",
+   "confidence": 0.273,
+   "verdict": "skipped_interjection",
+   "line": "L0328",
+   "start": 1136.568
+  },
+  {
+   "start_word": 1284,
+   "end_word": 1284,
+   "heard": "ఆ",
+   "source": "flag",
+   "confidence": 0.342,
+   "verdict": "skipped_interjection",
+   "line": "L0329",
+   "start": 1138.728
+  },
+  {
+   "start_word": 1375,
+   "end_word": 1375,
+   "heard": "అంటే.",
+   "source": "flag",
+   "confidence": 0.432,
+   "verdict": "relisten_kept",
+   "line": "L0361",
+   "start": 1210.728
+  },
+  {
+   "start_word": 1520,
+   "end_word": 1520,
+   "heard": "urgent",
+   "source": "flag",
+   "confidence": 0.403,
+   "verdict": "relisten_kept",
+   "line": "L0405",
+   "start": 1311.828
+  },
+  {
+   "start_word": 1733,
+   "end_word": 1733,
+   "heard": "But",
+   "source": "flag",
+   "confidence": 0.348,
+   "verdict": "relisten_kept",
+   "line": "L0459",
+   "start": 1470.768
+  }
+ ],
+ "rejected": [
+  {
+   "layer": "relisten",
+   "line": "L0136",
+   "heard_line": "కొంపతీసి ఎక్కడైనా సిన్సిన్ మెయింటైన్ చేస్తున్నాడేమో",
+   "corrected": "సింటో",
+   "confidence": 0.85,
+   "reason": "clearly says సింటో / sinto",
+   "start_word": 578,
+   "end_word": 578,
+   "heard": "symptom",
+   "why_rejected": "corrected words not in the model's heard_line"
+  },
+  {
+   "layer": "relisten",
+   "line": "L0319",
+   "heard_line": "ఆంటీ",
+   "corrected": "ఆంటీ",
+   "confidence": 0.95,
+   "reason": "speaker is stuttering ఆంటీ",
+   "start_word": 1249,
+   "end_word": 1250,
+   "heard": "ఆ తీ",
+   "why_rejected": "corrected text is the neighbouring word (audio bleed)"
+  },
+  {
+   "layer": "relisten",
+   "line": "L0361",
+   "heard_line": "ఏదో మద్య మత్తులో అలా మాట్లాడానంతే.",
+   "corrected": "అంతే.",
+   "confidence": 0.95,
+   "reason": "clearly says అంతే",
+   "start_word": 1375,
+   "end_word": 1375,
+   "heard": "అంటే.",
+   "why_rejected": "corrected words not in the model's heard_line"
+  }
+ ],
+ "threshold_report": {
+  "n_words": 1744,
+  "has_logprob": true,
+  "by_threshold": {
+   "0.5": {
+    "words": 13,
+    "lines": 13
+   },
+   "0.6": {
+    "words": 41,
+    "lines": 39
+   },
+   "0.7": {
+    "words": 71,
+    "lines": 65
+   }
+  }
+ },
+ "cost": {
+  "projected": {
+   "model": "gemini-3.8-flash",
+   "layers": {
+    "context": {
+     "calls": 1,
+     "input_tokens": 12676,
+     "output_tokens": 2490,
+     "inr": 1.7
+    },
+    "relisten": {
+     "calls": 3,
+     "items": 24,
+     "audio_s": 50.6,
+     "audio_tokens": 1620,
+     "input_tokens": 8088,
+     "output_tokens": 3600,
+     "inr": 1.87
+    }
+   },
+   "inr": 3.57
+  },
+  "actual": {
+   "context": {
+    "calls": 1,
+    "cached": 0,
+    "input_tokens": 12438,
+    "output_tokens": 639,
+    "audio_tokens": 0,
+    "inr": 1.055,
+    "inr_full": 1.055
+   },
+   "relisten": {
+    "calls": 2,
+    "cached": 0,
+    "input_tokens": 3523,
+    "output_tokens": 997,
+    "audio_tokens": 733,
+    "inr": 0.623,
+    "inr_full": 0.623
+   }
+  }
+ },
+ "stopped": null,
+ "transcript": "D:\\shotvi\\scribe_dataset\\epZ0lbXkgWA\\epZ0lbXkgWA_scribe_transcript.json"
+}

@@ -1,0 +1,768 @@
+{
+ "video_id": "j14Om1SaFYE",
+ "schema": "asr_fix/1",
+ "params": {
+  "layers": [
+   "context",
+   "flag",
+   "relisten"
+  ],
+  "threshold": 0.5,
+  "min_conf": 0.8,
+  "model": "gemini-3.8-flash",
+  "pad_s": 0.4,
+  "ctx_lines": 2,
+  "batch_items": 8,
+  "context_prompt": "1",
+  "relisten_prompt": "1",
+  "apply_context": false,
+  "skip_interjections": true
+ },
+ "lines": 404,
+ "n_flagged_words": 21,
+ "n_suspects": 24,
+ "suspects": [
+  {
+   "line": "L0052",
+   "start_word": 182,
+   "end_word": 182,
+   "heard": "బంగారం.",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.493
+  },
+  {
+   "line": "L0056",
+   "start_word": 191,
+   "end_word": 191,
+   "heard": "నేర్",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "మీరు",
+   "why": "Polite address asking why they are standing",
+   "min_conf": 0.366
+  },
+  {
+   "line": "L0059",
+   "start_word": 195,
+   "end_word": 195,
+   "heard": "ఈ",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.47
+  },
+  {
+   "line": "L0059",
+   "start_word": 199,
+   "end_word": 200,
+   "heard": "పట్టు ఇమ్మా",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "పట్టింపులేంటి",
+   "why": "Common idiom 'ఈ పట్టింపులేంటమ్మా'",
+   "min_conf": 0.275
+  },
+  {
+   "line": "L0082",
+   "start_word": 264,
+   "end_word": 264,
+   "heard": "ఆ",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.358
+  },
+  {
+   "line": "L0102",
+   "start_word": 334,
+   "end_word": 334,
+   "heard": "తుమ్ము",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "తింగరి",
+   "why": "Mild insult scolding daughter (matches L0145 'తింగరి దెయ్యం')",
+   "min_conf": 0.38
+  },
+  {
+   "line": "L0113",
+   "start_word": 379,
+   "end_word": 379,
+   "heard": "మామది",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.48
+  },
+  {
+   "line": "L0178",
+   "start_word": 535,
+   "end_word": 535,
+   "heard": "sorry",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.484
+  },
+  {
+   "line": "L0202",
+   "start_word": 612,
+   "end_word": 612,
+   "heard": "విగించాలా?",
+   "found_by": [
+    "context"
+   ],
+   "guess": "బిగించాలా?",
+   "why": "Fixing/screwing in light bulbs",
+   "min_conf": 0.862
+  },
+  {
+   "line": "L0229",
+   "start_word": 703,
+   "end_word": 703,
+   "heard": "ఆ",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.5
+  },
+  {
+   "line": "L0234",
+   "start_word": 723,
+   "end_word": 723,
+   "heard": "order",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.312
+  },
+  {
+   "line": "L0241",
+   "start_word": 755,
+   "end_word": 755,
+   "heard": "మరి",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.381
+  },
+  {
+   "line": "L0269",
+   "start_word": 887,
+   "end_word": 887,
+   "heard": "starting",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.5
+  },
+  {
+   "line": "L0299",
+   "start_word": 1036,
+   "end_word": 1036,
+   "heard": "ఉయ్యమ్మో",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "అయ్యమ్మో",
+   "why": "Common Telugu exclamation of distress/coughing",
+   "min_conf": 0.432
+  },
+  {
+   "line": "L0313",
+   "start_word": 1078,
+   "end_word": 1078,
+   "heard": "అయినా",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.485
+  },
+  {
+   "line": "L0332",
+   "start_word": 1148,
+   "end_word": 1148,
+   "heard": "మ్",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.383
+  },
+  {
+   "line": "L0364",
+   "start_word": 1269,
+   "end_word": 1270,
+   "heard": "వీర్గా అయిష్మాన్",
+   "found_by": [
+    "context"
+   ],
+   "guess": "దీర్ఘాయుష్మాన్",
+   "why": "Traditional wedding blessing 'దీర్ఘాయుష్మాన్ భవ'",
+   "min_conf": 0.533
+  },
+  {
+   "line": "L0367",
+   "start_word": 1277,
+   "end_word": 1277,
+   "heard": "కాలం",
+   "found_by": [
+    "context"
+   ],
+   "guess": "కాళ్ళ",
+   "why": "Referring to falling at feet for blessings",
+   "min_conf": 0.704
+  },
+  {
+   "line": "L0368",
+   "start_word": 1281,
+   "end_word": 1281,
+   "heard": "ఇది.",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.423
+  },
+  {
+   "line": "L0381",
+   "start_word": 1324,
+   "end_word": 1327,
+   "heard": "ఇల్లు ఈ week చివరనే",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "ఈ వీధి చివరనే",
+   "why": "Referring to house location, street corner",
+   "min_conf": 0.434
+  },
+  {
+   "line": "L0391",
+   "start_word": 1364,
+   "end_word": 1364,
+   "heard": "అజ్జన్",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "urgent",
+   "why": "English word urgent",
+   "min_conf": 0.368
+  },
+  {
+   "line": "L0392",
+   "start_word": 1368,
+   "end_word": 1368,
+   "heard": "అజ్జన్",
+   "found_by": [
+    "context"
+   ],
+   "guess": "urgent",
+   "why": "Repetition of urgent",
+   "min_conf": 1.0
+  },
+  {
+   "line": "L0399",
+   "start_word": 1391,
+   "end_word": 1391,
+   "heard": "appalam",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.386
+  },
+  {
+   "line": "L0401",
+   "start_word": 1399,
+   "end_word": 1399,
+   "heard": "గోలా",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.225
+  }
+ ],
+ "corrections": [
+  {
+   "start_word": 191,
+   "end_word": 191,
+   "heard": "నేర్",
+   "corrected": "ఏమి",
+   "reason": "clearly says ఏమి",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0056",
+   "start": 180.82,
+   "end": 180.9,
+   "context_guess": "మీరు",
+   "relisten": {
+    "heard_line": "ఏమి నిల్చున్నారేంటమ్మా, కూర్చోండి",
+    "line_ratio": 0.824
+   }
+  },
+  {
+   "start_word": 199,
+   "end_word": 201,
+   "heard": "పట్టు ఇమ్మా ఏంటమ్మా!",
+   "corrected": "పట్టింపులేంటమ్మా!",
+   "reason": "clearly says పట్టింపులేంటమ్మా",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0059",
+   "start": 185.52,
+   "end": 186.3,
+   "context_guess": "పట్టింపులేంటి",
+   "relisten": {
+    "heard_line": "ఈ కాలంలో కూడా ఈ పట్టింపులేంటమ్మా",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 334,
+   "end_word": 334,
+   "heard": "తుమ్ము",
+   "corrected": "తుమ్మ",
+   "reason": "clearly says తుమ్మ",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0102",
+   "start": 287.54,
+   "end": 288.28,
+   "context_guess": "తింగరి",
+   "relisten": {
+    "heard_line": "తుమ్మ మొహం దానా",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 612,
+   "end_word": 612,
+   "heard": "విగించాలా?",
+   "corrected": "బిగించాలా?",
+   "reason": "clearly says బిగించాలా",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context"
+   ],
+   "line": "L0202",
+   "start": 571.19,
+   "end": 571.79,
+   "context_guess": "బిగించాలా?",
+   "relisten": {
+    "heard_line": "బల్బులు బిగించాలా?",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 1036,
+   "end_word": 1036,
+   "heard": "ఉయ్యమ్మో",
+   "corrected": "ఒరియమ్మో",
+   "reason": "clearly says ఒరియమ్మో",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0299",
+   "start": 847.346,
+   "end": 847.686,
+   "context_guess": "అయ్యమ్మో",
+   "relisten": {
+    "heard_line": "ఒరియమ్మో ఇదేమిటి",
+    "line_ratio": 0.933
+   }
+  },
+  {
+   "start_word": 1269,
+   "end_word": 1270,
+   "heard": "వీర్గా అయిష్మాన్",
+   "corrected": "దీర్ఘాయుష్మాన్",
+   "reason": "clearly says దీర్ఘాయుష్మాన్",
+   "source": "relisten",
+   "confidence": 0.99,
+   "applied": true,
+   "found_by": [
+    "context"
+   ],
+   "line": "L0364",
+   "start": 1014.246,
+   "end": 1015.066,
+   "context_guess": "దీర్ఘాయుష్మాన్",
+   "relisten": {
+    "heard_line": "దీర్ఘాయుష్మాన్ భవ!",
+    "line_ratio": 0.97
+   }
+  },
+  {
+   "start_word": 1277,
+   "end_word": 1277,
+   "heard": "కాలం",
+   "corrected": "కాళ్ల",
+   "reason": "clearly says కాళ్ల",
+   "source": "relisten",
+   "confidence": 0.98,
+   "applied": true,
+   "found_by": [
+    "context"
+   ],
+   "line": "L0367",
+   "start": 1022.766,
+   "end": 1022.926,
+   "context_guess": "కాళ్ళ",
+   "relisten": {
+    "heard_line": "నా కాళ్ల మీద పడలేదు. ఏందిది",
+    "line_ratio": 0.842
+   }
+  },
+  {
+   "start_word": 1324,
+   "end_word": 1327,
+   "heard": "ఇల్లు ఈ week చివరనే",
+   "corrected": "ఇల్లే ఈ వీధి చివరనే",
+   "reason": "clearly says వీధి చివరనే instead of week చివరనే",
+   "source": "relisten",
+   "confidence": 0.97,
+   "applied": true,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0381",
+   "start": 1051.726,
+   "end": 1052.526,
+   "context_guess": "ఈ వీధి చివరనే",
+   "relisten": {
+    "heard_line": "మేము ఇల్లే ఈ వీధి చివరనే తీసుకున్నాం.",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 1364,
+   "end_word": 1364,
+   "heard": "అజ్జన్",
+   "corrected": "urgent",
+   "reason": "clearly says English word urgent",
+   "source": "relisten",
+   "confidence": 0.98,
+   "applied": true,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0391",
+   "start": 1071.946,
+   "end": 1072.166,
+   "context_guess": "urgent",
+   "relisten": {
+    "heard_line": "urgent గా తీసేయండి.",
+    "line_ratio": 0.842
+   }
+  },
+  {
+   "start_word": 1368,
+   "end_word": 1368,
+   "heard": "అజ్జన్",
+   "corrected": "urgent",
+   "reason": "clearly says English word urgent",
+   "source": "relisten",
+   "confidence": 0.98,
+   "applied": true,
+   "found_by": [
+    "context"
+   ],
+   "line": "L0392",
+   "start": 1073.146,
+   "end": 1073.366,
+   "context_guess": "urgent",
+   "relisten": {
+    "heard_line": "urgent గా తీసేయండి చెప్తున్నాను.",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 1391,
+   "end_word": 1391,
+   "heard": "appalam",
+   "corrected": "అప్పడాలు",
+   "reason": "clearly says Telugu word అప్పడాలు",
+   "source": "relisten",
+   "confidence": 0.97,
+   "applied": true,
+   "found_by": [
+    "flag"
+   ],
+   "line": "L0399",
+   "start": 1090.106,
+   "end": 1090.446,
+   "context_guess": null,
+   "relisten": {
+    "heard_line": "నాకు ఎలా అనిపిస్తాదంటే అప్పడాలు నలిపి నలిపేయాలనిపిస్తది.",
+    "line_ratio": 0.811
+   }
+  }
+ ],
+ "uncertain": [
+  {
+   "start_word": 182,
+   "end_word": 182,
+   "heard": "బంగారం.",
+   "source": "flag",
+   "confidence": 0.493,
+   "verdict": "relisten_kept",
+   "line": "L0052",
+   "start": 161.1
+  },
+  {
+   "start_word": 195,
+   "end_word": 195,
+   "heard": "ఈ",
+   "source": "flag",
+   "confidence": 0.47,
+   "verdict": "relisten_kept",
+   "line": "L0059",
+   "start": 184.82
+  },
+  {
+   "start_word": 264,
+   "end_word": 264,
+   "heard": "ఆ",
+   "source": "flag",
+   "confidence": 0.358,
+   "verdict": "skipped_interjection",
+   "line": "L0082",
+   "start": 246.66
+  },
+  {
+   "start_word": 379,
+   "end_word": 379,
+   "heard": "మామది",
+   "source": "flag",
+   "confidence": 0.48,
+   "verdict": "relisten_kept",
+   "line": "L0113",
+   "start": 317.9
+  },
+  {
+   "start_word": 535,
+   "end_word": 535,
+   "heard": "sorry",
+   "source": "flag",
+   "confidence": 0.484,
+   "verdict": "relisten_kept",
+   "line": "L0178",
+   "start": 464.61
+  },
+  {
+   "start_word": 703,
+   "end_word": 703,
+   "heard": "ఆ",
+   "source": "flag",
+   "confidence": 0.5,
+   "verdict": "skipped_interjection",
+   "line": "L0229",
+   "start": 643.57
+  },
+  {
+   "start_word": 723,
+   "end_word": 723,
+   "heard": "order",
+   "source": "flag",
+   "confidence": 0.312,
+   "verdict": "relisten_kept",
+   "line": "L0234",
+   "start": 657.41
+  },
+  {
+   "start_word": 755,
+   "end_word": 755,
+   "heard": "మరి",
+   "source": "flag",
+   "confidence": 0.381,
+   "verdict": "relisten_kept",
+   "line": "L0241",
+   "start": 679.25
+  },
+  {
+   "start_word": 887,
+   "end_word": 887,
+   "heard": "starting",
+   "source": "flag",
+   "confidence": 0.5,
+   "verdict": "relisten_kept",
+   "line": "L0269",
+   "start": 772.786
+  },
+  {
+   "start_word": 1078,
+   "end_word": 1078,
+   "heard": "అయినా",
+   "source": "flag",
+   "confidence": 0.485,
+   "verdict": "relisten_kept",
+   "line": "L0313",
+   "start": 875.546
+  },
+  {
+   "start_word": 1148,
+   "end_word": 1148,
+   "heard": "మ్",
+   "source": "flag",
+   "confidence": 0.383,
+   "verdict": "skipped_interjection",
+   "line": "L0332",
+   "start": 922.986
+  },
+  {
+   "start_word": 1281,
+   "end_word": 1281,
+   "heard": "ఇది.",
+   "source": "flag",
+   "confidence": 0.423,
+   "verdict": "relisten_kept",
+   "line": "L0368",
+   "start": 1023.886
+  },
+  {
+   "start_word": 1399,
+   "end_word": 1399,
+   "heard": "గోలా",
+   "source": "flag",
+   "confidence": 0.225,
+   "verdict": "relisten_kept",
+   "line": "L0401",
+   "start": 1094.426
+  }
+ ],
+ "rejected": [
+  {
+   "layer": "relisten",
+   "line": "L0401",
+   "heard_line": "మటన్ కొట్ట",
+   "corrected": "కొట్ట",
+   "confidence": 0.95,
+   "reason": "says కొట్ట before cut off",
+   "start_word": 1399,
+   "end_word": 1399,
+   "heard": "గోలా",
+   "why_rejected": "corrected text is the neighbouring word (audio bleed)"
+  }
+ ],
+ "threshold_report": {
+  "n_words": 1402,
+  "has_logprob": true,
+  "by_threshold": {
+   "0.5": {
+    "words": 21,
+    "lines": 19
+   },
+   "0.6": {
+    "words": 45,
+    "lines": 39
+   },
+   "0.7": {
+    "words": 80,
+    "lines": 69
+   }
+  }
+ },
+ "cost": {
+  "projected": {
+   "model": "gemini-3.8-flash",
+   "layers": {
+    "context": {
+     "calls": 1,
+     "input_tokens": 11016,
+     "output_tokens": 2850,
+     "inr": 1.71
+    },
+    "relisten": {
+     "calls": 4,
+     "items": 31,
+     "audio_s": 78.3,
+     "audio_tokens": 2504,
+     "input_tokens": 11201,
+     "output_tokens": 4700,
+     "inr": 2.51
+    }
+   },
+   "inr": 4.22
+  },
+  "actual": {
+   "context": {
+    "calls": 1,
+    "cached": 1,
+    "input_tokens": 10992,
+    "output_tokens": 816,
+    "audio_tokens": 0,
+    "inr": 0.0,
+    "inr_full": 1.017
+   },
+   "relisten": {
+    "calls": 3,
+    "cached": 3,
+    "input_tokens": 5731,
+    "output_tokens": 1625,
+    "audio_tokens": 0,
+    "inr": 0.0,
+    "inr_full": 1.05
+   }
+  }
+ },
+ "stopped": null,
+ "transcript": "D:\\shotvi\\scribe_dataset\\j14Om1SaFYE\\j14Om1SaFYE_scribe_transcript.json"
+}

@@ -1,0 +1,2171 @@
+{
+ "run_dir": "D:\\shotvi\\runs\\ws_ab_all",
+ "params": {
+  "HARD_MAX_S": 150.0,
+  "HARD_MIN_S": 15.0,
+  "SOFT_MAX_S": 120.0,
+  "MATCH_COV": 0.5,
+  "MATCH_IOU": 0.2,
+  "PARTIAL_COV": 0.15,
+  "START_TOL": 1.0,
+  "END_TOL": 0.5,
+  "PAYOFF_SHARE": 0.9,
+  "LEAD_IN_WARN": 0.3,
+  "LEAD_IN_FAIL": 0.4,
+  "LEAD_IN_SLACK": 0.01,
+  "CONTIG_TOL": 0.05,
+  "OVERLAP_TOL": 0.05,
+  "SHOT_TOL": 0.05,
+  "LIFT_MIN": 1.0,
+  "LIFT_MAX": 3.6,
+  "LIFT_SLACK": 0.02,
+  "LIFT_QUIET_TAIL": 0.7,
+  "MAX_CUTS": 3,
+  "FLASH_S": 0.3,
+  "HOLD_MIN": 1.0,
+  "MID_WORD_TOL": 0.08,
+  "STRETCHED_WORD": 1.0,
+  "CREDITS_MIN_TAIL": 20.0,
+  "END_HOLD_ALLOW": 10.0,
+  "CADENCE_RUN": 3,
+  "CADENCE_TOL": 0.12,
+  "CADENCE_RANGE": [
+   1.5,
+   6.0
+  ],
+  "MUSIC_KEYS": [
+   "మ్యూజిక్",
+   "పాట",
+   "సంగీత",
+   "గీతం",
+   "music",
+   "song"
+  ],
+  "LAUGH_KEYS": [
+   "నవ్వు",
+   "laugh"
+  ],
+  "KS_EXTRA": [
+   5,
+   10
+  ],
+  "zones": {
+   "PAD": 0.5,
+   "RUN_LINES": 4,
+   "RUN_GAP": 5.0,
+   "RUN_WORDS": 12,
+   "SCAN_MAX_S": 300.0,
+   "SCAN_FRAC": 0.25,
+   "LINE_GAP_SPLIT": 0.7,
+   "CHAPTER_MAX_WORDS": 3,
+   "RECAP_TOKENS": 4,
+   "RECAP_CONTAIN": 0.5,
+   "RECAP_MIN_LINES": 3,
+   "RECAP_CLUSTER_S": 20.0,
+   "SPONSOR_BLOCK_GAP": 3.0,
+   "SPONSOR_MAX_BLOCK_S": 180.0,
+   "SPONSOR_MERGE_GAP": 15.0,
+   "SPONSOR_MIN_POINTS": 3,
+   "SPONSOR_MONO_SHARE": 0.9,
+   "SPONSOR_MONO_S": 8.0
+  }
+ },
+ "skipped_no_proposals": [],
+ "episodes": [
+  {
+   "summary": {
+    "video_id": "epZ0lbXkgWA",
+    "n_gt": 12,
+    "k_gt": 12,
+    "n_props": 7,
+    "recall": {
+     "any": 7,
+     "@k_gt": 7,
+     "@5": 5,
+     "@10": 7
+    },
+    "recall_frac": {
+     "any": 0.583,
+     "@k_gt": 0.583,
+     "@5": 0.417,
+     "@10": 0.583
+    },
+    "missed": [
+     "w05",
+     "w09",
+     "w10",
+     "w11",
+     "w12"
+    ],
+    "mean_abs_start_delta": 2.75,
+    "mean_abs_end_delta": 26.146,
+    "payoff_and_hold_kept": 4,
+    "drops_setup": 1,
+    "mean_length_ratio": 1.212,
+    "mean_word_f1": 0.869,
+    "same_purpose": 5,
+    "n_matched": 7,
+    "props_pass_rules": 7,
+    "gt_pass_rules": 10,
+    "status_counts": {
+     "matched": 7,
+     "duplicate": 0,
+     "partial": 0,
+     "new": 0
+    },
+    "fail_counts": {},
+    "credits": "heuristic (last word 1487.3s + 10s hold allowance; speechless tail 121s)",
+    "credits_zone": [
+     1497.288,
+     1608.5335
+    ],
+    "intro_zone": [
+     0.0,
+     17.32
+    ],
+    "opening": {
+     "status": "detected",
+     "story_start": 17.82,
+     "story_line": "నా మాట విని వదిలేయ్ bro తనని.",
+     "head_end": 17.32,
+     "hard": [
+      [
+       0.0,
+       17.32
+      ]
+     ],
+     "soft": [],
+     "parts": [
+      {
+       "kind": "lead",
+       "level": "hard",
+       "start": 0.0,
+       "end": 7.28,
+       "detail": "no speech before 7.8s"
+      },
+      {
+       "kind": "cards",
+       "level": "hard",
+       "start": 7.28,
+       "end": 17.32,
+       "detail": "channel-plug line(s) before the story: 'Subscribe చేసుకొని ఆ bell icon కొట్టండి.'"
+      }
+     ],
+     "params": {
+      "run_lines": 4,
+      "run_gap": 5.0,
+      "run_words": 12,
+      "scan_end": 300.0
+     }
+    },
+    "sponsors": [
+     {
+      "start": 57.266,
+      "end": 113.322,
+      "words": [
+       65,
+       194
+      ],
+      "points": 12,
+      "evidence": {
+       "cues": [
+        "amazon",
+        "app and website",
+        "available గా",
+        "check చేయండి",
+        "clinically proven",
+        "description లో",
+        "flipkart",
+        "link description",
+        "nykaa",
+        "website లో"
+       ],
+       "brand_from_meta": true,
+       "monologue": true,
+       "n_blocks": 2,
+       "excerpt": "Morning ready అవుతూ ఈరోజు పనుల గురించి ఆలోచిస్తుంటే కొంచెం stressful గా"
+      }
+     }
+    ],
+    "sibling_episodes": [],
+    "shots": "runs\\video\\epZ0lbXkgWA\\shots.json"
+   },
+   "gt": [
+    {
+     "id": "w01",
+     "rank": 1,
+     "segments": [
+      [
+       1386.1,
+       1449.53
+      ]
+     ],
+     "src_start": 1386.1,
+     "play_end": 1449.53,
+     "duration": 63.43,
+     "purpose": "promo",
+     "cold_open": false,
+     "title": "మీరు ఎవరినీ ఎందుకు రానివ్వట్లేదో నాకు తెలుసు madam… నీకు సోహం గురించి ఏం తెలుసు?",
+     "excerpt": "నాకు తెలుసు ఏంటి మీరు ఎందుకు వేరే వాడిని మీ life లోకి రానివ్వట్లేదో నాకు ...",
+     "matched": true,
+     "prop_rank": 1,
+     "prop_id": "w07",
+     "cov": 0.943,
+     "iou": 0.575,
+     "pair": {
+      "start_delta": 3.79,
+      "end_delta": 40.37,
+      "payoff_kept": true,
+      "payoff_share": 1.0,
+      "hold_kept": true,
+      "payoff_and_hold": true,
+      "drops_setup": true,
+      "setup_words_lost": 3,
+      "setup_lost_text": "నాకు తెలుసు ఏంటి",
+      "gt_words_missed": 3,
+      "extra_words": 46,
+      "word_precision": 0.709,
+      "word_recall": 0.974,
+      "word_f1": 0.821,
+      "length_ratio": 1.577,
+      "cuts_prop": 0,
+      "cuts_gt": 0,
+      "purpose_prop": "standalone",
+      "purpose_gt": "promo",
+      "same_purpose": false,
+      "cold_prop": false,
+      "cold_gt": false
+     }
+    },
+    {
+     "id": "w02",
+     "rank": 2,
+     "segments": [
+      [
+       1001.95,
+       1072.0
+      ]
+     ],
+     "src_start": 1001.95,
+     "play_end": 1072.0,
+     "duration": 70.05,
+     "purpose": "standalone",
+     "cold_open": false,
+     "title": "For suppose నాకు పెళ్లయి వెళ్ళిపోతే… నువ్వు ఒంటరిగా ఉండగలవా అమ్మా?",
+     "excerpt": "తోడు లేని జీవితం waste అన్నట్టు అన్నావు కదా, మరి నీక తోడు అవసరం లేదా ...",
+     "matched": true,
+     "prop_rank": 4,
+     "prop_id": "w05",
+     "cov": 1.0,
+     "iou": 0.972,
+     "pair": {
+      "start_delta": -0.06,
+      "end_delta": -1.89,
+      "payoff_kept": true,
+      "payoff_share": 1.0,
+      "hold_kept": false,
+      "payoff_and_hold": false,
+      "drops_setup": false,
+      "setup_words_lost": 0,
+      "setup_lost_text": "",
+      "gt_words_missed": 0,
+      "extra_words": 0,
+      "word_precision": 1.0,
+      "word_recall": 1.0,
+      "word_f1": 1.0,
+      "length_ratio": 0.974,
+      "cuts_prop": 0,
+      "cuts_gt": 0,
+      "purpose_prop": "standalone",
+      "purpose_gt": "standalone",
+      "same_purpose": true,
+      "cold_prop": false,
+      "cold_gt": false
+     }
+    },
+    {
+     "id": "w03",
+     "rank": 3,
+     "segments": [
+      [
+       1205.915,
+       1233.02
+      ],
+      [
+       1283.16,
+       1315.0
+      ]
+     ],
+     "src_start": 1205.91,
+     "play_end": 1315.0,
+     "duration": 58.94,
+     "purpose": "standalone",
+     "cold_open": false,
+     "title": "Sorry చెప్దామని వెళ్తే… 'పెళ్లయ్యాక అందరం కలిసి తాగొచ్చు బాబు' అంది ఆంటీ",
+     "excerpt": "ఆ రోజు నైట్ జరిగిన దానికి I am really sorry అండి. ఏదో మధ్య ...",
+     "matched": true,
+     "prop_rank": 5,
+     "prop_id": "w06",
+     "cov": 0.966,
+     "iou": 0.515,
+     "pair": {
+      "start_delta": -0.0,
+      "end_delta": 1.89,
+      "payoff_kept": true,
+      "payoff_share": 1.0,
+      "hold_kept": true,
+      "payoff_and_hold": true,
+      "drops_setup": false,
+      "setup_words_lost": 0,
+      "setup_lost_text": "",
+      "gt_words_missed": 0,
+      "extra_words": 76,
+      "word_precision": 0.542,
+      "word_recall": 1.0,
+      "word_f1": 0.703,
+      "length_ratio": 1.853,
+      "cuts_prop": 0,
+      "cuts_gt": 1,
+      "purpose_prop": "standalone",
+      "purpose_gt": "standalone",
+      "same_purpose": true,
+      "cold_prop": true,
+      "cold_gt": false
+     }
+    },
+    {
+     "id": "w04",
+     "rank": 4,
+     "segments": [
+      [
+       318.3,
+       331.07
+      ],
+      [
+       340.22,
+       399.4
+      ]
+     ],
+     "src_start": 318.3,
+     "play_end": 399.4,
+     "duration": 71.95,
+     "purpose": "promo",
+     "cold_open": false,
+     "title": "I am just done with you… నేను గుడ్డిగా నమ్మి మోసపోయాను",
+     "excerpt": "నీకు already చెప్పాను కదా. I am not interested in you and this ...",
+     "matched": true,
+     "prop_rank": 6,
+     "prop_id": "w02",
+     "cov": 0.898,
+     "iou": 0.628,
+     "pair": {
+      "start_delta": -15.26,
+      "end_delta": -11.39,
+      "payoff_kept": false,
+      "payoff_share": 0.0,
+      "hold_kept": false,
+      "payoff_and_hold": false,
+      "drops_setup": false,
+      "setup_words_lost": 0,
+      "setup_lost_text": "",
+      "gt_words_missed": 9,
+      "extra_words": 33,
+      "word_precision": 0.748,
+      "word_recall": 0.916,
+      "word_f1": 0.824,
+      "length_ratio": 1.181,
+      "cuts_prop": 0,
+      "cuts_gt": 1,
+      "purpose_prop": "standalone",
+      "purpose_gt": "promo",
+      "same_purpose": false,
+      "cold_prop": false,
+      "cold_gt": false
+     }
+    },
+    {
+     "id": "w05",
+     "rank": 5,
+     "segments": [
+      [
+       449.15,
+       471.21
+      ],
+      [
+       478.11,
+       499.45
+      ]
+     ],
+     "src_start": 449.15,
+     "play_end": 499.45,
+     "duration": 43.4,
+     "purpose": "promo",
+     "cold_open": false,
+     "title": "Friend ని కలవడానికి వెళ్తున్నా అన్నాడు… కానీ wife, పాపతో కనిపించాడు",
+     "excerpt": "Hello Hello సోహం ఆ చెప్పు అన్సుని ఎక్కడున్నావ్ నేను ఇప్పుడే ఇంటి నుంచి బయలుదేరాను ...",
+     "matched": false
+    },
+    {
+     "id": "w06",
+     "rank": 6,
+     "segments": [
+      [
+       877.9,
+       958.75
+      ]
+     ],
+     "src_start": 877.9,
+     "play_end": 958.75,
+     "duration": 80.85,
+     "purpose": "standalone",
+     "cold_open": false,
+     "title": "నేను రేపో మాపో పోతే ఒంటరిగా ఉండగలవా? అమ్మ చెప్పిన సృష్టి ధర్మం",
+     "excerpt": "ఒకటి చెప్పు, చచ్చేంత వరకు నేను ఇలానే ఉంటాను అంటున్నావు కదా. నేను రేపో మాపో ...",
+     "matched": true,
+     "prop_rank": 3,
+     "prop_id": "w04",
+     "cov": 0.926,
+     "iou": 0.729,
+     "pair": {
+      "start_delta": -0.05,
+      "end_delta": 21.98,
+      "payoff_kept": true,
+      "payoff_share": 1.0,
+      "hold_kept": true,
+      "payoff_and_hold": true,
+      "drops_setup": false,
+      "setup_words_lost": 0,
+      "setup_lost_text": "",
+      "gt_words_missed": 0,
+      "extra_words": 32,
+      "word_precision": 0.719,
+      "word_recall": 1.0,
+      "word_f1": 0.837,
+      "length_ratio": 1.2,
+      "cuts_prop": 0,
+      "cuts_gt": 0,
+      "purpose_prop": "standalone",
+      "purpose_gt": "standalone",
+      "same_purpose": true,
+      "cold_prop": true,
+      "cold_gt": false
+     }
+    },
+    {
+     "id": "w07",
+     "rank": 7,
+     "segments": [
+      [
+       669.9,
+       727.25
+      ],
+      [
+       821.62,
+       831.3
+      ]
+     ],
+     "src_start": 669.9,
+     "play_end": 831.3,
+     "duration": 67.03,
+     "purpose": "standalone",
+     "cold_open": false,
+     "title": "అమ్మతో కలిసి wine ఆ? 'I am now your friend… call me పద్దు'",
+     "excerpt": "ఏంటమ్మా అలా చూస్తున్నావ్ ఏం లేదు నేను ఇప్పుడు wine తాగుదాము అంటే ఏమంటావా అని ...",
+     "matched": true,
+     "prop_rank": 2,
+     "prop_id": "w03",
+     "cov": 0.853,
+     "iou": 0.828,
+     "pair": {
+      "start_delta": -0.06,
+      "end_delta": -104.04,
+      "payoff_kept": false,
+      "payoff_share": 0.0,
+      "hold_kept": false,
+      "payoff_and_hold": false,
+      "drops_setup": false,
+      "setup_words_lost": 0,
+      "setup_lost_text": "",
+      "gt_words_missed": 18,
+      "extra_words": 0,
+      "word_precision": 1.0,
+      "word_recall": 0.82,
+      "word_f1": 0.901,
+      "length_ratio": 0.83,
+      "cuts_prop": 0,
+      "cuts_gt": 1,
+      "purpose_prop": "standalone",
+      "purpose_gt": "standalone",
+      "same_purpose": true,
+      "cold_prop": true,
+      "cold_gt": false
+     }
+    },
+    {
+     "id": "w08",
+     "rank": 8,
+     "segments": [
+      [
+       17.55,
+       55.8
+      ]
+     ],
+     "src_start": 17.55,
+     "play_end": 55.8,
+     "duration": 38.25,
+     "purpose": "promo",
+     "cold_open": false,
+     "title": "అసలు తన life లో ఏం జరిగింది bro? ఈ ఒక్క question కి answer చెప్పండి",
+     "excerpt": "నా మాట విని వదిలేయ్ bro తనని. అసలు తన life లో ఏం జరిగిందని ...",
+     "matched": true,
+     "prop_rank": 7,
+     "prop_id": "w01",
+     "cov": 0.812,
+     "iou": 0.798,
+     "pair": {
+      "start_delta": -0.03,
+      "end_delta": 1.46,
+      "payoff_kept": true,
+      "payoff_share": 1.0,
+      "hold_kept": true,
+      "payoff_and_hold": true,
+      "drops_setup": false,
+      "setup_words_lost": 0,
+      "setup_lost_text": "",
+      "gt_words_missed": 0,
+      "extra_words": 0,
+      "word_precision": 1.0,
+      "word_recall": 1.0,
+      "word_f1": 1.0,
+      "length_ratio": 0.868,
+      "cuts_prop": 1,
+      "cuts_gt": 0,
+      "purpose_prop": "promo",
+      "purpose_gt": "promo",
+      "same_purpose": true,
+      "cold_prop": false,
+      "cold_gt": false
+     }
+    },
+    {
+     "id": "w09",
+     "rank": 9,
+     "segments": [
+      [
+       742.9,
+       817.45
+      ]
+     ],
+     "src_start": 742.9,
+     "play_end": 817.45,
+     "duration": 74.55,
+     "purpose": "standalone",
+     "cold_open": false,
+     "title": "ఇంట్లో bottle ఖాళీ అవుతుంటే ఎవరా అనుకున్నా… ఆ దొంగ అమ్మే!",
+     "excerpt": "ఏదో బాధలన్నీ దేవుడు నీకే పెట్టినట్టు పెద్ద buildup ఇవ్వకు. మాకూ బాధలుంటాయి. ఆలోచించకుండా పడుకోవాలని ...",
+     "matched": false
+    },
+    {
+     "id": "w10",
+     "rank": 10,
+     "segments": [
+      [
+       1080.9,
+       1127.37
+      ],
+      [
+       1137.68,
+       1161.6
+      ]
+     ],
+     "src_start": 1080.9,
+     "play_end": 1161.6,
+     "duration": 70.39,
+     "purpose": "standalone",
+     "cold_open": false,
+     "title": "మొన్న చేసిన పనికి police కి call చేస్తుందేమో అనుకున్నా… ఆంటీ ఇంత sweet ఆ?",
+     "excerpt": "మొన్న చేసిన పనికి, ఇప్పుడు ఆంటీకి కనిపిస్తే ఏం చేస్తదో ఏంటో. police కి call ...",
+     "matched": false
+    },
+    {
+     "id": "w11",
+     "rank": 11,
+     "segments": [
+      [
+       549.25,
+       600.9
+      ]
+     ],
+     "src_start": 549.25,
+     "play_end": 600.9,
+     "duration": 51.65,
+     "purpose": "promo",
+     "cold_open": false,
+     "title": "Balance story ఏముంటది? Lady Arjun Reddy అయ్యుంటుంది అంతే",
+     "excerpt": "ఎన్ని నాటకాలు ఆడాడు. ప్రపంచం చిన్నదీ పెద్దదీ అంటూ. పాపం అన్సుని చాలా hopes పెట్టుకున్నట్టుంది. ...",
+     "matched": false
+    },
+    {
+     "id": "w12",
+     "rank": 12,
+     "segments": [
+      [
+       1443.45,
+       1489.9
+      ]
+     ],
+     "src_start": 1443.45,
+     "play_end": 1489.9,
+     "duration": 46.45,
+     "purpose": "standalone",
+     "cold_open": false,
+     "title": "నాకు కోపం రాకూడదా?… 'సోహం చనిపోయాడురా!'",
+     "excerpt": "నువ్వు ఆపుతావా ఆపవా? నీకు సోహం గురించి ఏం తెలుసు అని మాట్లాడుతున్నావ్ రా. ఆ ...",
+     "matched": false,
+     "nearest": {
+      "prop_rank": 1,
+      "prop_id": "w07",
+      "cov": 1.0,
+      "iou": 0.464,
+      "matched_elsewhere": true
+     }
+    }
+   ],
+   "proposals": [
+    {
+     "id": "w07",
+     "rank": 1,
+     "segments": [
+      [
+       1389.888,
+       1489.9
+      ]
+     ],
+     "src_start": 1389.89,
+     "play_end": 1489.9,
+     "duration": 100.01,
+     "purpose": "standalone",
+     "cold_open": false,
+     "title": "అసలు నిజం తెలిసింది!",
+     "excerpt": "మీరు ఎందుకు వేరే వాడిని మీ life లోకి రానివ్వట్లేదో నాకు తెలుసు ఏం తెలుసు ...",
+     "checks": {
+      "segments": {
+       "status": "pass",
+       "value": 1,
+       "detail": ""
+      },
+      "lead_in": {
+       "status": "pass",
+       "value": 0.3,
+       "detail": ""
+      },
+      "replay": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "cold_open_lift": {
+       "status": "n/a",
+       "value": null,
+       "detail": ""
+      },
+      "internal_cuts": {
+       "status": "pass",
+       "value": 0,
+       "detail": "0 cut(s)"
+      },
+      "flash": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "mid_word": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "mid_line": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "reaction_hold": {
+       "status": "pass",
+       "value": 2.612,
+       "detail": ""
+      },
+      "length": {
+       "status": "pass",
+       "value": 100.01,
+       "detail": ""
+      },
+      "recap_zone": {
+       "status": "pass",
+       "value": 0.0,
+       "detail": ""
+      },
+      "sponsor": {
+       "status": "pass",
+       "value": 0.0,
+       "detail": ""
+      },
+      "credits_zone": {
+       "status": "pass",
+       "value": 0.0,
+       "detail": ""
+      }
+     },
+     "pass": true,
+     "fails": [],
+     "warns": [],
+     "status": "matched",
+     "gt": "w01"
+    },
+    {
+     "id": "w03",
+     "rank": 2,
+     "segments": [
+      [
+       710.624,
+       713.207
+      ],
+      [
+       669.844,
+       710.246
+      ],
+      [
+       714.589,
+       727.263
+      ]
+     ],
+     "src_start": 669.84,
+     "play_end": 727.26,
+     "duration": 55.66,
+     "purpose": "standalone",
+     "cold_open": true,
+     "title": "కూతురితో wine తాగే cool అమ్మ",
+     "excerpt": "ఏయ్ ఇప్పుడు నేను నీకు అమ్మనని ఎవరు చెప్పారు ఏంటమ్మా అలా చూస్తున్నావ్ ఏం లేదు ...",
+     "checks": {
+      "segments": {
+       "status": "pass",
+       "value": 3,
+       "detail": ""
+      },
+      "lead_in": {
+       "status": "pass",
+       "value": 0.12,
+       "detail": ""
+      },
+      "replay": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "cold_open_lift": {
+       "status": "pass",
+       "value": 2.583,
+       "detail": ""
+      },
+      "internal_cuts": {
+       "status": "pass",
+       "value": 0,
+       "detail": "0 cut(s), +1 lift skip"
+      },
+      "flash": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "mid_word": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "mid_line": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "reaction_hold": {
+       "status": "pass",
+       "value": 3.439,
+       "detail": ""
+      },
+      "length": {
+       "status": "pass",
+       "value": 55.66,
+       "detail": ""
+      },
+      "recap_zone": {
+       "status": "pass",
+       "value": 0.0,
+       "detail": ""
+      },
+      "sponsor": {
+       "status": "pass",
+       "value": 0.0,
+       "detail": ""
+      },
+      "credits_zone": {
+       "status": "pass",
+       "value": 0.0,
+       "detail": ""
+      }
+     },
+     "pass": true,
+     "fails": [],
+     "warns": [],
+     "status": "matched",
+     "gt": "w07"
+    },
+    {
+     "id": "w04",
+     "rank": 3,
+     "segments": [
+      [
+       893.688,
+       896.015
+      ],
+      [
+       877.848,
+       893.096
+      ],
+      [
+       901.258,
+       980.728
+      ]
+     ],
+     "src_start": 877.85,
+     "play_end": 980.73,
+     "duration": 97.04,
+     "purpose": "standalone",
+     "cold_open": true,
+     "title": "తోడు లేకుండా బ్రతకడం కష్టం",
+     "excerpt": "నేను పోతే ఒంటరిగా ఉండగలవా ఒకటి చెప్పు, చచ్చేంత వరకు నేను ఇలానే ఉంటాను అంటున్నావు ...",
+     "checks": {
+      "segments": {
+       "status": "pass",
+       "value": 3,
+       "detail": ""
+      },
+      "lead_in": {
+       "status": "pass",
+       "value": 0.12,
+       "detail": ""
+      },
+      "replay": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "cold_open_lift": {
+       "status": "pass",
+       "value": 2.327,
+       "detail": ""
+      },
+      "internal_cuts": {
+       "status": "pass",
+       "value": 0,
+       "detail": "0 cut(s), +1 lift skip"
+      },
+      "flash": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "mid_word": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "mid_line": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "reaction_hold": {
+       "status": "pass",
+       "value": 2.0,
+       "detail": ""
+      },
+      "length": {
+       "status": "pass",
+       "value": 97.04,
+       "detail": ""
+      },
+      "recap_zone": {
+       "status": "pass",
+       "value": 0.0,
+       "detail": ""
+      },
+      "sponsor": {
+       "status": "pass",
+       "value": 0.0,
+       "detail": ""
+      },
+      "credits_zone": {
+       "status": "pass",
+       "value": 0.0,
+       "detail": ""
+      }
+     },
+     "pass": true,
+     "fails": [],
+     "warns": [],
+     "status": "matched",
+     "gt": "w06"
+    },
+    {
+     "id": "w05",
+     "rank": 4,
+     "segments": [
+      [
+       1001.888,
+       1070.106
+      ]
+     ],
+     "src_start": 1001.89,
+     "play_end": 1070.11,
+     "duration": 68.22,
+     "purpose": "standalone",
+     "cold_open": false,
+     "title": "నాకు కొడుకు దొరుకుతాడు",
+     "excerpt": "తోడు లేని జీవితం waste అన్నట్టు అన్నావు కదా, మరి నీక తోడు అవసరం లేదా ...",
+     "checks": {
+      "segments": {
+       "status": "pass",
+       "value": 1,
+       "detail": ""
+      },
+      "lead_in": {
+       "status": "pass",
+       "value": 0.3,
+       "detail": ""
+      },
+      "replay": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "cold_open_lift": {
+       "status": "n/a",
+       "value": null,
+       "detail": ""
+      },
+      "internal_cuts": {
+       "status": "pass",
+       "value": 0,
+       "detail": "0 cut(s)"
+      },
+      "flash": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "mid_word": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "mid_line": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "reaction_hold": {
+       "status": "pass",
+       "value": 5.558,
+       "detail": ""
+      },
+      "length": {
+       "status": "pass",
+       "value": 68.22,
+       "detail": ""
+      },
+      "recap_zone": {
+       "status": "pass",
+       "value": 0.0,
+       "detail": ""
+      },
+      "sponsor": {
+       "status": "pass",
+       "value": 0.0,
+       "detail": ""
+      },
+      "credits_zone": {
+       "status": "pass",
+       "value": 0.0,
+       "detail": ""
+      }
+     },
+     "pass": true,
+     "fails": [],
+     "warns": [],
+     "status": "matched",
+     "gt": "w02"
+    },
+    {
+     "id": "w06",
+     "rank": 5,
+     "segments": [
+      [
+       1216.688,
+       1219.296
+      ],
+      [
+       1205.913,
+       1216.478
+      ],
+      [
+       1220.845,
+       1316.894
+      ]
+     ],
+     "src_start": 1205.91,
+     "play_end": 1316.89,
+     "duration": 109.22,
+     "purpose": "standalone",
+     "cold_open": true,
+     "title": "All the best, నా support నీకే!",
+     "excerpt": "ఒక్కసారి హన్స్నితో పెళ్లయితే అందరం కలిసి తాగొచ్చు. ఆ రోజు నైట్ జరిగిన దానికి I ...",
+     "checks": {
+      "segments": {
+       "status": "pass",
+       "value": 3,
+       "detail": ""
+      },
+      "lead_in": {
+       "status": "pass",
+       "value": 0.12,
+       "detail": ""
+      },
+      "replay": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "cold_open_lift": {
+       "status": "pass",
+       "value": 2.608,
+       "detail": ""
+      },
+      "internal_cuts": {
+       "status": "pass",
+       "value": 0,
+       "detail": "0 cut(s), +1 lift skip"
+      },
+      "flash": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "mid_word": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "mid_line": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "reaction_hold": {
+       "status": "pass",
+       "value": 2.366,
+       "detail": ""
+      },
+      "length": {
+       "status": "pass",
+       "value": 109.22,
+       "detail": ""
+      },
+      "recap_zone": {
+       "status": "pass",
+       "value": 0.0,
+       "detail": ""
+      },
+      "sponsor": {
+       "status": "pass",
+       "value": 0.0,
+       "detail": ""
+      },
+      "credits_zone": {
+       "status": "pass",
+       "value": 0.0,
+       "detail": ""
+      }
+     },
+     "pass": true,
+     "fails": [],
+     "warns": [],
+     "status": "matched",
+     "gt": "w03"
+    },
+    {
+     "id": "w02",
+     "rank": 6,
+     "segments": [
+      [
+       303.04,
+       388.008
+      ]
+     ],
+     "src_start": 303.04,
+     "play_end": 388.01,
+     "duration": 84.97,
+     "purpose": "standalone",
+     "cold_open": false,
+     "title": "Sudden గా breakup చెప్తే ఎలా?",
+     "excerpt": "ఏమైంది అంశ? ఎందుకు ఒక వారం నుంచి నరకం చూపిస్తున్నావ్? phone లో block చేశావ్. ...",
+     "checks": {
+      "segments": {
+       "status": "pass",
+       "value": 1,
+       "detail": ""
+      },
+      "lead_in": {
+       "status": "pass",
+       "value": 0.3,
+       "detail": ""
+      },
+      "replay": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "cold_open_lift": {
+       "status": "n/a",
+       "value": null,
+       "detail": ""
+      },
+      "internal_cuts": {
+       "status": "pass",
+       "value": 0,
+       "detail": "0 cut(s)"
+      },
+      "flash": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "mid_word": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "mid_line": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "reaction_hold": {
+       "status": "pass",
+       "value": 0.944,
+       "detail": "ends on a shot change"
+      },
+      "length": {
+       "status": "pass",
+       "value": 84.97,
+       "detail": ""
+      },
+      "recap_zone": {
+       "status": "pass",
+       "value": 0.0,
+       "detail": ""
+      },
+      "sponsor": {
+       "status": "pass",
+       "value": 0.0,
+       "detail": ""
+      },
+      "credits_zone": {
+       "status": "pass",
+       "value": 0.0,
+       "detail": ""
+      }
+     },
+     "pass": true,
+     "fails": [],
+     "warns": [],
+     "status": "matched",
+     "gt": "w04"
+    },
+    {
+     "id": "w01",
+     "rank": 7,
+     "segments": [
+      [
+       17.52,
+       25.979
+      ],
+      [
+       32.532,
+       57.261
+      ]
+     ],
+     "src_start": 17.52,
+     "play_end": 57.26,
+     "duration": 33.19,
+     "purpose": "promo",
+     "cold_open": false,
+     "title": "తన past లో ఏం జరిగింది?",
+     "excerpt": "నా మాట విని వదిలేయ్ bro తనని. అసలు తన life లో ఏం జరిగిందని ...",
+     "checks": {
+      "segments": {
+       "status": "pass",
+       "value": 2,
+       "detail": ""
+      },
+      "lead_in": {
+       "status": "pass",
+       "value": 0.3,
+       "detail": ""
+      },
+      "replay": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "cold_open_lift": {
+       "status": "n/a",
+       "value": null,
+       "detail": ""
+      },
+      "internal_cuts": {
+       "status": "pass",
+       "value": 1,
+       "detail": "1 cut(s)"
+      },
+      "flash": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "mid_word": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "mid_line": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "reaction_hold": {
+       "status": "pass",
+       "value": 4.541,
+       "detail": ""
+      },
+      "length": {
+       "status": "pass",
+       "value": 33.19,
+       "detail": ""
+      },
+      "recap_zone": {
+       "status": "pass",
+       "value": 0.0,
+       "detail": ""
+      },
+      "sponsor": {
+       "status": "pass",
+       "value": 0.0,
+       "detail": ""
+      },
+      "credits_zone": {
+       "status": "pass",
+       "value": 0.0,
+       "detail": ""
+      }
+     },
+     "pass": true,
+     "fails": [],
+     "warns": [],
+     "status": "matched",
+     "gt": "w08"
+    }
+   ],
+   "gt_checks": [
+    {
+     "id": "w01",
+     "checks": {
+      "segments": {
+       "status": "pass",
+       "value": 1,
+       "detail": ""
+      },
+      "lead_in": {
+       "status": "pass",
+       "value": 0.268,
+       "detail": ""
+      },
+      "replay": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "cold_open_lift": {
+       "status": "n/a",
+       "value": null,
+       "detail": ""
+      },
+      "internal_cuts": {
+       "status": "pass",
+       "value": 0,
+       "detail": "0 cut(s)"
+      },
+      "flash": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "mid_word": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "mid_line": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "reaction_hold": {
+       "status": "pass",
+       "value": 1.042,
+       "detail": ""
+      },
+      "length": {
+       "status": "pass",
+       "value": 63.43,
+       "detail": ""
+      },
+      "recap_zone": {
+       "status": "pass",
+       "value": 0.0,
+       "detail": ""
+      },
+      "sponsor": {
+       "status": "pass",
+       "value": 0.0,
+       "detail": ""
+      },
+      "credits_zone": {
+       "status": "pass",
+       "value": 0.0,
+       "detail": ""
+      }
+     },
+     "pass": true,
+     "fails": [],
+     "warns": []
+    },
+    {
+     "id": "w02",
+     "checks": {
+      "segments": {
+       "status": "pass",
+       "value": 1,
+       "detail": ""
+      },
+      "lead_in": {
+       "status": "pass",
+       "value": 0.238,
+       "detail": ""
+      },
+      "replay": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "cold_open_lift": {
+       "status": "n/a",
+       "value": null,
+       "detail": ""
+      },
+      "internal_cuts": {
+       "status": "pass",
+       "value": 0,
+       "detail": "0 cut(s)"
+      },
+      "flash": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "mid_word": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "mid_line": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "reaction_hold": {
+       "status": "pass",
+       "value": 7.452,
+       "detail": ""
+      },
+      "length": {
+       "status": "pass",
+       "value": 70.05,
+       "detail": ""
+      },
+      "recap_zone": {
+       "status": "pass",
+       "value": 0.0,
+       "detail": ""
+      },
+      "sponsor": {
+       "status": "pass",
+       "value": 0.0,
+       "detail": ""
+      },
+      "credits_zone": {
+       "status": "pass",
+       "value": 0.0,
+       "detail": ""
+      }
+     },
+     "pass": true,
+     "fails": [],
+     "warns": []
+    },
+    {
+     "id": "w03",
+     "checks": {
+      "segments": {
+       "status": "pass",
+       "value": 2,
+       "detail": ""
+      },
+      "lead_in": {
+       "status": "pass",
+       "value": 0.253,
+       "detail": ""
+      },
+      "replay": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "cold_open_lift": {
+       "status": "n/a",
+       "value": null,
+       "detail": ""
+      },
+      "internal_cuts": {
+       "status": "pass",
+       "value": 1,
+       "detail": "1 cut(s)"
+      },
+      "flash": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "mid_word": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "mid_line": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "reaction_hold": {
+       "status": "fail",
+       "value": 0.472,
+       "detail": "ends 0.47s after the last word, not on a shot change"
+      },
+      "length": {
+       "status": "pass",
+       "value": 58.94,
+       "detail": ""
+      },
+      "recap_zone": {
+       "status": "pass",
+       "value": 0.0,
+       "detail": ""
+      },
+      "sponsor": {
+       "status": "pass",
+       "value": 0.0,
+       "detail": ""
+      },
+      "credits_zone": {
+       "status": "pass",
+       "value": 0.0,
+       "detail": ""
+      }
+     },
+     "pass": false,
+     "fails": [
+      "reaction_hold"
+     ],
+     "warns": []
+    },
+    {
+     "id": "w04",
+     "checks": {
+      "segments": {
+       "status": "pass",
+       "value": 2,
+       "detail": ""
+      },
+      "lead_in": {
+       "status": "pass",
+       "value": 0.28,
+       "detail": ""
+      },
+      "replay": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "cold_open_lift": {
+       "status": "n/a",
+       "value": null,
+       "detail": ""
+      },
+      "internal_cuts": {
+       "status": "pass",
+       "value": 1,
+       "detail": "1 cut(s)"
+      },
+      "flash": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "mid_word": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "mid_line": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "reaction_hold": {
+       "status": "pass",
+       "value": 4.696,
+       "detail": ""
+      },
+      "length": {
+       "status": "pass",
+       "value": 71.95,
+       "detail": ""
+      },
+      "recap_zone": {
+       "status": "pass",
+       "value": 0.0,
+       "detail": ""
+      },
+      "sponsor": {
+       "status": "pass",
+       "value": 0.0,
+       "detail": ""
+      },
+      "credits_zone": {
+       "status": "pass",
+       "value": 0.0,
+       "detail": ""
+      }
+     },
+     "pass": true,
+     "fails": [],
+     "warns": []
+    },
+    {
+     "id": "w05",
+     "checks": {
+      "segments": {
+       "status": "pass",
+       "value": 2,
+       "detail": ""
+      },
+      "lead_in": {
+       "status": "pass",
+       "value": 0.254,
+       "detail": ""
+      },
+      "replay": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "cold_open_lift": {
+       "status": "n/a",
+       "value": null,
+       "detail": ""
+      },
+      "internal_cuts": {
+       "status": "pass",
+       "value": 1,
+       "detail": "1 cut(s)"
+      },
+      "flash": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "mid_word": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "mid_line": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "reaction_hold": {
+       "status": "pass",
+       "value": 4.146,
+       "detail": ""
+      },
+      "length": {
+       "status": "pass",
+       "value": 43.4,
+       "detail": ""
+      },
+      "recap_zone": {
+       "status": "pass",
+       "value": 0.0,
+       "detail": ""
+      },
+      "sponsor": {
+       "status": "pass",
+       "value": 0.0,
+       "detail": ""
+      },
+      "credits_zone": {
+       "status": "pass",
+       "value": 0.0,
+       "detail": ""
+      }
+     },
+     "pass": true,
+     "fails": [],
+     "warns": []
+    },
+    {
+     "id": "w06",
+     "checks": {
+      "segments": {
+       "status": "pass",
+       "value": 1,
+       "detail": ""
+      },
+      "lead_in": {
+       "status": "pass",
+       "value": 0.248,
+       "detail": ""
+      },
+      "replay": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "cold_open_lift": {
+       "status": "n/a",
+       "value": null,
+       "detail": ""
+      },
+      "internal_cuts": {
+       "status": "pass",
+       "value": 0,
+       "detail": "0 cut(s)"
+      },
+      "flash": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "mid_word": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "mid_line": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "reaction_hold": {
+       "status": "pass",
+       "value": 1.522,
+       "detail": ""
+      },
+      "length": {
+       "status": "pass",
+       "value": 80.85,
+       "detail": ""
+      },
+      "recap_zone": {
+       "status": "pass",
+       "value": 0.0,
+       "detail": ""
+      },
+      "sponsor": {
+       "status": "pass",
+       "value": 0.0,
+       "detail": ""
+      },
+      "credits_zone": {
+       "status": "pass",
+       "value": 0.0,
+       "detail": ""
+      }
+     },
+     "pass": true,
+     "fails": [],
+     "warns": []
+    },
+    {
+     "id": "w07",
+     "checks": {
+      "segments": {
+       "status": "pass",
+       "value": 2,
+       "detail": ""
+      },
+      "lead_in": {
+       "status": "pass",
+       "value": 0.244,
+       "detail": ""
+      },
+      "replay": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "cold_open_lift": {
+       "status": "n/a",
+       "value": null,
+       "detail": ""
+      },
+      "internal_cuts": {
+       "status": "pass",
+       "value": 1,
+       "detail": "1 cut(s)"
+      },
+      "flash": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "mid_word": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "mid_line": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "reaction_hold": {
+       "status": "pass",
+       "value": 1.852,
+       "detail": ""
+      },
+      "length": {
+       "status": "pass",
+       "value": 67.03,
+       "detail": ""
+      },
+      "recap_zone": {
+       "status": "pass",
+       "value": 0.0,
+       "detail": ""
+      },
+      "sponsor": {
+       "status": "pass",
+       "value": 0.0,
+       "detail": ""
+      },
+      "credits_zone": {
+       "status": "pass",
+       "value": 0.0,
+       "detail": ""
+      }
+     },
+     "pass": true,
+     "fails": [],
+     "warns": []
+    },
+    {
+     "id": "w08",
+     "checks": {
+      "segments": {
+       "status": "pass",
+       "value": 1,
+       "detail": ""
+      },
+      "lead_in": {
+       "status": "pass",
+       "value": 0.27,
+       "detail": ""
+      },
+      "replay": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "cold_open_lift": {
+       "status": "n/a",
+       "value": null,
+       "detail": ""
+      },
+      "internal_cuts": {
+       "status": "pass",
+       "value": 0,
+       "detail": "0 cut(s)"
+      },
+      "flash": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "mid_word": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "mid_line": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "reaction_hold": {
+       "status": "pass",
+       "value": 3.08,
+       "detail": ""
+      },
+      "length": {
+       "status": "pass",
+       "value": 38.25,
+       "detail": ""
+      },
+      "recap_zone": {
+       "status": "pass",
+       "value": 0.0,
+       "detail": ""
+      },
+      "sponsor": {
+       "status": "pass",
+       "value": 0.0,
+       "detail": ""
+      },
+      "credits_zone": {
+       "status": "pass",
+       "value": 0.0,
+       "detail": ""
+      }
+     },
+     "pass": true,
+     "fails": [],
+     "warns": []
+    },
+    {
+     "id": "w09",
+     "checks": {
+      "segments": {
+       "status": "pass",
+       "value": 1,
+       "detail": ""
+      },
+      "lead_in": {
+       "status": "pass",
+       "value": 0.248,
+       "detail": ""
+      },
+      "replay": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "cold_open_lift": {
+       "status": "n/a",
+       "value": null,
+       "detail": ""
+      },
+      "internal_cuts": {
+       "status": "pass",
+       "value": 0,
+       "detail": "0 cut(s)"
+      },
+      "flash": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "mid_word": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "mid_line": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "reaction_hold": {
+       "status": "pass",
+       "value": 5.182,
+       "detail": ""
+      },
+      "length": {
+       "status": "pass",
+       "value": 74.55,
+       "detail": ""
+      },
+      "recap_zone": {
+       "status": "pass",
+       "value": 0.0,
+       "detail": ""
+      },
+      "sponsor": {
+       "status": "pass",
+       "value": 0.0,
+       "detail": ""
+      },
+      "credits_zone": {
+       "status": "pass",
+       "value": 0.0,
+       "detail": ""
+      }
+     },
+     "pass": true,
+     "fails": [],
+     "warns": []
+    },
+    {
+     "id": "w10",
+     "checks": {
+      "segments": {
+       "status": "pass",
+       "value": 2,
+       "detail": ""
+      },
+      "lead_in": {
+       "status": "pass",
+       "value": 0.268,
+       "detail": ""
+      },
+      "replay": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "cold_open_lift": {
+       "status": "n/a",
+       "value": null,
+       "detail": ""
+      },
+      "internal_cuts": {
+       "status": "pass",
+       "value": 1,
+       "detail": "1 cut(s)"
+      },
+      "flash": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "mid_word": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "mid_line": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "reaction_hold": {
+       "status": "pass",
+       "value": 1.192,
+       "detail": ""
+      },
+      "length": {
+       "status": "pass",
+       "value": 70.39,
+       "detail": ""
+      },
+      "recap_zone": {
+       "status": "pass",
+       "value": 0.0,
+       "detail": ""
+      },
+      "sponsor": {
+       "status": "pass",
+       "value": 0.0,
+       "detail": ""
+      },
+      "credits_zone": {
+       "status": "pass",
+       "value": 0.0,
+       "detail": ""
+      }
+     },
+     "pass": true,
+     "fails": [],
+     "warns": []
+    },
+    {
+     "id": "w11",
+     "checks": {
+      "segments": {
+       "status": "pass",
+       "value": 1,
+       "detail": ""
+      },
+      "lead_in": {
+       "status": "pass",
+       "value": 0.254,
+       "detail": ""
+      },
+      "replay": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "cold_open_lift": {
+       "status": "n/a",
+       "value": null,
+       "detail": ""
+      },
+      "internal_cuts": {
+       "status": "pass",
+       "value": 0,
+       "detail": "0 cut(s)"
+      },
+      "flash": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "mid_word": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "mid_line": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "reaction_hold": {
+       "status": "fail",
+       "value": 0.556,
+       "detail": "ends 0.56s after the last word, not on a shot change"
+      },
+      "length": {
+       "status": "pass",
+       "value": 51.65,
+       "detail": ""
+      },
+      "recap_zone": {
+       "status": "pass",
+       "value": 0.0,
+       "detail": ""
+      },
+      "sponsor": {
+       "status": "pass",
+       "value": 0.0,
+       "detail": ""
+      },
+      "credits_zone": {
+       "status": "pass",
+       "value": 0.0,
+       "detail": ""
+      }
+     },
+     "pass": false,
+     "fails": [
+      "reaction_hold"
+     ],
+     "warns": []
+    },
+    {
+     "id": "w12",
+     "checks": {
+      "segments": {
+       "status": "pass",
+       "value": 1,
+       "detail": ""
+      },
+      "lead_in": {
+       "status": "pass",
+       "value": 0.238,
+       "detail": ""
+      },
+      "replay": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "cold_open_lift": {
+       "status": "n/a",
+       "value": null,
+       "detail": ""
+      },
+      "internal_cuts": {
+       "status": "pass",
+       "value": 0,
+       "detail": "0 cut(s)"
+      },
+      "flash": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "mid_word": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "mid_line": {
+       "status": "pass",
+       "value": 0,
+       "detail": ""
+      },
+      "reaction_hold": {
+       "status": "pass",
+       "value": 2.612,
+       "detail": ""
+      },
+      "length": {
+       "status": "pass",
+       "value": 46.45,
+       "detail": ""
+      },
+      "recap_zone": {
+       "status": "pass",
+       "value": 0.0,
+       "detail": ""
+      },
+      "sponsor": {
+       "status": "pass",
+       "value": 0.0,
+       "detail": ""
+      },
+      "credits_zone": {
+       "status": "pass",
+       "value": 0.0,
+       "detail": ""
+      }
+     },
+     "pass": true,
+     "fails": [],
+     "warns": []
+    }
+   ]
+  }
+ ]
+}

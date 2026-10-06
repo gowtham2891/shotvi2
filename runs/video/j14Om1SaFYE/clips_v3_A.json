@@ -1,0 +1,289 @@
+{
+ "w03": {
+  "windows": [
+   [
+    96.56,
+    146.72
+   ],
+   [
+    433.49,
+    601.07
+   ]
+  ],
+  "fps": 1.0,
+  "usage": {
+   "input": 23080,
+   "cached": 0,
+   "output": 450,
+   "modalities": {
+    "VIDEO": 19838,
+    "TEXT": 3242
+   }
+  },
+  "converted": {
+   "start": {
+    "time": 437.83
+   },
+   "end": {
+    "time": 591.88,
+    "gap": {
+     "start": 591.88,
+     "end": 591.88,
+     "raw": [
+      591.88,
+      591.88
+     ],
+     "snapped": [
+      true,
+      true
+     ],
+     "label": "9:51.9-9:51.9"
+    }
+   }
+  },
+  "start": {
+   "verdict": "too_early",
+   "at": {
+    "line": "L0165",
+    "after_line": "L0164",
+    "before_line": "L0165"
+   },
+   "why": "Starting on L0042 from an earlier scene creates an awkward discontinuous flashback prologue, whereas beginning directly with the conversation setup at L0165 immediately hooks into the matchmaking scene."
+  },
+  "end": {
+   "verdict": "too_early",
+   "at": {
+    "line": "",
+    "after_line": "S0051",
+    "before_line": "S0052"
+   },
+   "why": "Cutting right on L0205 abruptly stops before letting her shy smile and their shared happy reaction sink in during S0050 and S0051 as the romantic music swells."
+  },
+  "visual_beats_to_include": [
+   {
+    "after_line": "L0183",
+    "before_line": "L0185",
+    "what": "The guy kicks away the small stepping stool with his foot while reassuringly walking towards her.",
+    "why": "Kicking the stool away physically symbolizes removing her height insecurity before he delivers his speech, which is a key visual gesture in this scene.",
+    "time": {
+     "start": 482.62,
+     "end": 489.33,
+     "raw": [
+      482.11,
+      489.33
+     ],
+     "snapped": [
+      true,
+      true
+     ],
+     "label": "8:02.6-8:09.3",
+     "capped": true,
+     "full": [
+      482.11,
+      526.65
+     ]
+    }
+   }
+  ],
+  "reaction": {
+   "after_line": "L0205",
+   "what": "The girl blushes and smiles softly at him while romantic background music plays, confirming her acceptance."
+  },
+  "clean_edges": {
+   "start": false,
+   "end": false,
+   "note": "The starting line L0042 is snipped out of a completely separate scene, and the ending line L0205 cuts off right as she finishes speaking before the emotional beat resolves."
+  }
+ },
+ "w05": {
+  "windows": [
+   [
+    171.34,
+    274.9
+   ],
+   [
+    1074.946,
+    1105.966
+   ]
+  ],
+  "fps": 1.0,
+  "usage": {
+   "input": 15069,
+   "cached": 0,
+   "output": 556,
+   "modalities": {
+    "TEXT": 2784,
+    "VIDEO": 12285
+   }
+  },
+  "converted": {
+   "start": {
+    "time": 211.34
+   },
+   "end": {
+    "time": 1096.45,
+    "gap": {
+     "start": 1096.33,
+     "end": 1096.45,
+     "raw": [
+      1096.45,
+      1096.45
+     ],
+     "snapped": [
+      true,
+      false
+     ],
+     "label": "18:16.3-18:16.4"
+    }
+   }
+  },
+  "start": {
+   "verdict": "ok",
+   "at": {
+    "line": "L0069",
+    "after_line": "S0021",
+    "before_line": "L0069"
+   },
+   "why": "Starting directly on the groom asking 'Meeku vanta vachha?' sets up the central premise immediately without dragging through the earlier seating small talk."
+  },
+  "end": {
+   "verdict": "too_early",
+   "at": {
+    "line": "",
+    "after_line": "L0403",
+    "before_line": "S0061"
+   },
+   "why": "Cutting right after 'assalu theeskokenu' abandons the punchline before his aggressive comedic threats ('appadam nalipinattu...', 'chicken kalchinattu...') which create the hilarious contrast against the bride's secret lie."
+  },
+  "visual_beats_to_include": [
+   {
+    "after_line": "L0069",
+    "before_line": "L0071",
+    "what": "The bride's wide-eyed, panicked reaction shot (S0022/S0023) followed by the groom's playful smiling eyebrow raise (S0024).",
+    "why": "Cutting these shots removes the silent physical comedy showing that she does not know cooking before her mother's inner voice kicks in.",
+    "time": {
+     "start": 212.21,
+     "end": 221.33,
+     "raw": [
+      212.0,
+      221.62
+     ],
+     "snapped": [
+      true,
+      true
+     ],
+     "label": "3:32.2-3:41.3"
+    }
+   },
+   {
+    "after_line": "L0092",
+    "before_line": "L0395",
+    "what": "The mother lying that the bride prepared all the sweets herself (L0093-L0095) accompanied by the daughter's shocked glare.",
+    "why": "The clip's title and theme revolve around lying about cooking; omitting her lie leaves the subsequent wedding scene reaction without context.",
+    "time": {
+     "invalid": "spans 263 dialogue lines (4:29.9-17:59.9)",
+     "raw": [
+      269.9,
+      1079.95
+     ]
+    }
+   }
+  ],
+  "reaction": {
+   "after_line": "L0074",
+   "what": "The bride side-eying her mother in utter panic after the mother boldly claims she knows how to cook."
+  },
+  "clean_edges": {
+   "start": true,
+   "end": false,
+   "note": "The clip abruptly cuts off before his angry food metaphors complete the comedic punchline in the wedding scene."
+  }
+ },
+ "w08": {
+  "windows": [
+   [
+    987.0060000000001,
+    1116.446
+   ]
+  ],
+  "fps": 1.0,
+  "usage": {
+   "input": 14169,
+   "cached": 0,
+   "output": 468,
+   "modalities": {
+    "VIDEO": 11739,
+    "TEXT": 2430
+   }
+  },
+  "converted": {
+   "start": {
+    "time": 1070.13
+   },
+   "end": {
+    "time": 1113.04,
+    "gap": {
+     "start": 1113.04,
+     "end": 1113.04,
+     "raw": [
+      1113.04,
+      1113.04
+     ],
+     "snapped": [
+      true,
+      true
+     ],
+     "label": "18:33.0-18:33.0"
+    }
+   }
+  },
+  "start": {
+   "verdict": "too_early",
+   "at": {
+    "line": "L0390",
+    "after_line": "L0389",
+    "before_line": "L0390"
+   },
+   "why": "Starting with the friendly banter about missing her cooking creates a confusing tone change. The clip is about the groom's extreme aggressive reaction to lying, which properly begins when he receives the phone call at L0390."
+  },
+  "end": {
+   "verdict": "too_early",
+   "at": {
+    "line": "",
+    "after_line": "S0065",
+    "before_line": "S0066"
+   },
+   "why": "Cutting right at L0403 misses the bride's terrified, guilty reactions (knowing she lied about her cooking abilities) as he stalks away angrily, which is the entire punchline/payoff of the scene."
+  },
+  "visual_beats_to_include": [
+   {
+    "after_line": "L0403",
+    "before_line": "S0066",
+    "what": "The groom angrily walks away glaring intensely, while the bride and mother-in-law freeze in shock, followed by close-ups of the bride looking terrified and gulping nervously.",
+    "why": "The bride lied about knowing how to cook to marry him; seeing his violent rant against liars terrifies her and delivers the comedic irony of the episode climax.",
+    "time": {
+     "start": 1096.33,
+     "end": 1113.04,
+     "raw": [
+      1096.45,
+      1113.04
+     ],
+     "snapped": [
+      true,
+      true
+     ],
+     "label": "18:16.3-18:33.0"
+    }
+   }
+  ],
+  "reaction": {
+   "after_line": "S0065",
+   "what": "The bride stares wide-eyed in absolute panic and fear at his rage."
+  },
+  "clean_edges": {
+   "start": true,
+   "end": true,
+   "note": "Starting at L0390 begins cleanly on his phone reaction, and ending after S0065 cuts cleanly right before the title card transition at S0066."
+  }
+ }
+}

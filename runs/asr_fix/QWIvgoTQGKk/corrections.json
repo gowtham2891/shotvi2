@@ -1,0 +1,868 @@
+{
+ "video_id": "QWIvgoTQGKk",
+ "schema": "asr_fix/1",
+ "params": {
+  "layers": [
+   "context",
+   "flag",
+   "relisten"
+  ],
+  "threshold": 0.5,
+  "min_conf": 0.8,
+  "model": "gemini-3.8-flash",
+  "pad_s": 0.4,
+  "ctx_lines": 2,
+  "batch_items": 8,
+  "context_prompt": "1",
+  "relisten_prompt": "1",
+  "apply_context": false,
+  "skip_interjections": false
+ },
+ "lines": 385,
+ "n_flagged_words": 26,
+ "n_suspects": 25,
+ "suspects": [
+  {
+   "line": "L0015",
+   "start_word": 29,
+   "end_word": 29,
+   "heard": "యా",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.421
+  },
+  {
+   "line": "L0022",
+   "start_word": 41,
+   "end_word": 41,
+   "heard": "first",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.484
+  },
+  {
+   "line": "L0025",
+   "start_word": 59,
+   "end_word": 59,
+   "heard": "న",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.452
+  },
+  {
+   "line": "L0027",
+   "start_word": 71,
+   "end_word": 72,
+   "heard": "ఇప్పుడెలా అనే.",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "ఇప్పుడెలానే",
+   "why": "Telugu colloquial exclamation 'ippudelane' (how now?)",
+   "min_conf": 0.363
+  },
+  {
+   "line": "L0035",
+   "start_word": 83,
+   "end_word": 83,
+   "heard": "ప్రతికించారు",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "బ్రతికించారు",
+   "why": "meaning saved/relieved ('brathikinchaaru')",
+   "min_conf": 0.495
+  },
+  {
+   "line": "L0064",
+   "start_word": 179,
+   "end_word": 180,
+   "heard": "గుర పడితే",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "గ్రూప్ అడిగితే",
+   "why": "asking blood group (T positive vs B positive joke)",
+   "min_conf": 0.491
+  },
+  {
+   "line": "L0072",
+   "start_word": 210,
+   "end_word": 210,
+   "heard": "doubt",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.492
+  },
+  {
+   "line": "L0091",
+   "start_word": 247,
+   "end_word": 247,
+   "heard": "dinner",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.39
+  },
+  {
+   "line": "L0119",
+   "start_word": 377,
+   "end_word": 377,
+   "heard": "మండే",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "మండి",
+   "why": "idiom 'mandi padathaadu' (gets furious)",
+   "min_conf": 0.47
+  },
+  {
+   "line": "L0121",
+   "start_word": 383,
+   "end_word": 383,
+   "heard": "ఆ",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.433
+  },
+  {
+   "line": "L0127",
+   "start_word": 395,
+   "end_word": 395,
+   "heard": "ఊ",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.339
+  },
+  {
+   "line": "L0128",
+   "start_word": 396,
+   "end_word": 396,
+   "heard": "ఊ",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.309
+  },
+  {
+   "line": "L0129",
+   "start_word": 414,
+   "end_word": 415,
+   "heard": "parent ఏనే",
+   "found_by": [
+    "context"
+   ],
+   "guess": "పేరెత్తితేనే",
+   "why": "'at the very mention of the word lie'",
+   "min_conf": 0.807
+  },
+  {
+   "line": "L0142",
+   "start_word": 458,
+   "end_word": 458,
+   "heard": "hypeడ్",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.303
+  },
+  {
+   "line": "L0162",
+   "start_word": 572,
+   "end_word": 572,
+   "heard": "మే",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "మీ",
+   "why": "referring to the couple ('mee iddariki')",
+   "min_conf": 0.427
+  },
+  {
+   "line": "L0168",
+   "start_word": 592,
+   "end_word": 592,
+   "heard": "చ్",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.361
+  },
+  {
+   "line": "L0203",
+   "start_word": 716,
+   "end_word": 717,
+   "heard": "ఆనికి నేమ్",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "ఆ nickname కి",
+   "why": "nickname flashback context",
+   "min_conf": 0.431
+  },
+  {
+   "line": "L0209",
+   "start_word": 732,
+   "end_word": 732,
+   "heard": "అదే",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.5
+  },
+  {
+   "line": "L0233",
+   "start_word": 815,
+   "end_word": 815,
+   "heard": "అయ్యో",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.43
+  },
+  {
+   "line": "L0233",
+   "start_word": 820,
+   "end_word": 822,
+   "heard": "చెయ్యనే అనాసరం గా.",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "చెయ్యనేల అనవసరంగా",
+   "why": "regret 'why did I fix send-off unnecessarily'",
+   "min_conf": 0.436
+  },
+  {
+   "line": "L0234",
+   "start_word": 827,
+   "end_word": 827,
+   "heard": "మదక్,",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "మద్దెల",
+   "why": "slang insult for foolish head",
+   "min_conf": 0.467
+  },
+  {
+   "line": "L0276",
+   "start_word": 946,
+   "end_word": 946,
+   "heard": "Super",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.474
+  },
+  {
+   "line": "L0309",
+   "start_word": 1030,
+   "end_word": 1031,
+   "heard": "hop off",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "half hug",
+   "why": "talking about giving a half hug instead of communicating with heart",
+   "min_conf": 0.45
+  },
+  {
+   "line": "L0330",
+   "start_word": 1104,
+   "end_word": 1105,
+   "heard": "easy with",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "easy item",
+   "why": "trying to cook an easy item first",
+   "min_conf": 0.386
+  },
+  {
+   "line": "L0378",
+   "start_word": 1319,
+   "end_word": 1321,
+   "heard": "గా Kumari Anty",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.212
+  }
+ ],
+ "corrections": [
+  {
+   "start_word": 59,
+   "end_word": 59,
+   "heard": "న",
+   "corrected": "నే",
+   "reason": "clearly says 'నే'",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "flag"
+   ],
+   "line": "L0025",
+   "start": 174.82,
+   "end": 174.88,
+   "context_guess": null,
+   "relisten": {
+    "heard_line": "పెళ్లి చేసుకున్న next day నే మొగుడికి చాయ్ ఇచ్చి చంపేసిన భార్య అని paper లో వస్తే",
+    "line_ratio": 0.963
+   }
+  },
+  {
+   "start_word": 71,
+   "end_word": 72,
+   "heard": "ఇప్పుడెలా అనే.",
+   "corrected": "ఇప్పుడెలానే.",
+   "reason": "clearly says 'ఇప్పుడెలానే' as a single word",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0027",
+   "start": 179.94,
+   "end": 180.74,
+   "context_guess": "ఇప్పుడెలానే",
+   "relisten": {
+    "heard_line": "అమృత ఇప్పుడెలానే",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 83,
+   "end_word": 83,
+   "heard": "ప్రతికించారు",
+   "corrected": "బ్రతికించారు",
+   "reason": "clearly says 'బ్రతికించారు'",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0035",
+   "start": 187.9,
+   "end": 188.66,
+   "context_guess": "బ్రతికించారు",
+   "relisten": {
+    "heard_line": "బ్రతికించారు",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 179,
+   "end_word": 180,
+   "heard": "గుర పడితే",
+   "corrected": "group అడిగితే",
+   "reason": "clearly says 'group అడిగితే'",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0064",
+   "start": 254.74,
+   "end": 255.08,
+   "context_guess": "గ్రూప్ అడిగితే",
+   "relisten": {
+    "heard_line": "ఎవరైనా blood group అడిగితే B positive అని చెప్తున్నావా లేకపోతే T positive అని చెప్తున్నావా",
+    "line_ratio": 0.987
+   }
+  },
+  {
+   "start_word": 377,
+   "end_word": 377,
+   "heard": "మండే",
+   "corrected": "మండి",
+   "reason": "clearly says mandi",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0119",
+   "start": 386.74,
+   "end": 386.9,
+   "context_guess": "మండి",
+   "relisten": {
+    "heard_line": "అంతే అప్పటినుంచి ఎవరైనా అబద్ధాలు చెప్తే మండిపడిపోతాడు.",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 414,
+   "end_word": 415,
+   "heard": "parent ఏనే",
+   "corrected": "పేరెత్తితేనే",
+   "reason": "clearly says perethithene",
+   "source": "relisten",
+   "confidence": 0.98,
+   "applied": true,
+   "found_by": [
+    "context"
+   ],
+   "line": "L0129",
+   "start": 420.62,
+   "end": 421.06,
+   "context_guess": "పేరెత్తితేనే",
+   "relisten": {
+    "heard_line": "నువ్వేమో 100 అబద్ధాలు ఆడినా తప్పులేదంటావ్ ఆయనేమో అబద్ధమన్న పేరెత్తితేనే fire అయిపోతున్నాడు.",
+    "line_ratio": 0.945
+   }
+  },
+  {
+   "start_word": 572,
+   "end_word": 572,
+   "heard": "మే",
+   "corrected": "మీ",
+   "reason": "clearly says mee",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0162",
+   "start": 508.54,
+   "end": 508.58,
+   "context_guess": "మీ",
+   "relisten": {
+    "heard_line": "కాపురం చేయరా అంటే కథలు చెప్తున్నాడు ఇలా అయితే మీ ఇద్దరికీ చాలా కష్టం.",
+    "line_ratio": 0.966
+   }
+  },
+  {
+   "start_word": 716,
+   "end_word": 717,
+   "heard": "ఆనికి నేమ్",
+   "corrected": "nickname",
+   "reason": "clearly says nickname",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0203",
+   "start": 700.04,
+   "end": 700.46,
+   "context_guess": "ఆ nickname కి",
+   "relisten": {
+    "heard_line": "అమ్ములు అని పిలవచ్చు కదా ఆ nickname flashbacks ఏం లేవుగా.",
+    "line_ratio": 0.989
+   }
+  },
+  {
+   "start_word": 820,
+   "end_word": 822,
+   "heard": "చెయ్యనే అనాసరం గా.",
+   "corrected": "అయ్యానే అనవసరంగా.",
+   "reason": "clearly says fix అయ్యానే అనవసరంగా",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0233",
+   "start": 783.644,
+   "end": 784.864,
+   "context_guess": "చెయ్యనేల అనవసరంగా",
+   "relisten": {
+    "heard_line": "send off అని fix అయ్యానే అనవసరంగా",
+    "line_ratio": 0.918
+   }
+  },
+  {
+   "start_word": 827,
+   "end_word": 827,
+   "heard": "మదక్,",
+   "corrected": "మద్దెల,",
+   "reason": "slang insult for foolish head",
+   "source": "context",
+   "confidence": null,
+   "applied": false,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0234",
+   "start": 788.364,
+   "end": 788.544,
+   "context_guess": "మద్దెల",
+   "relisten": {
+    "verdict": "relisten_kept"
+   }
+  },
+  {
+   "start_word": 1030,
+   "end_word": 1031,
+   "heard": "hop off",
+   "corrected": "half-off",
+   "reason": "clearly says half off / hop off is misheard",
+   "source": "relisten",
+   "confidence": 0.85,
+   "applied": true,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0309",
+   "start": 972.624,
+   "end": 972.884,
+   "context_guess": "half hug",
+   "relisten": {
+    "heard_line": "మరి ఇలా half-off చేస్తే ఎలా?",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 1104,
+   "end_word": 1105,
+   "heard": "easy with",
+   "corrected": "easy వాటితో",
+   "reason": "clearly says easy వాటితో",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0330",
+   "start": 1053.884,
+   "end": 1054.244,
+   "context_guess": "easy item",
+   "relisten": {
+    "heard_line": "First easy వాటితో try చేద్దాం.",
+    "line_ratio": 1.0
+   }
+  }
+ ],
+ "uncertain": [
+  {
+   "start_word": 29,
+   "end_word": 29,
+   "heard": "యా",
+   "source": "flag",
+   "confidence": 0.421,
+   "verdict": "relisten_kept",
+   "line": "L0015",
+   "start": 157.44
+  },
+  {
+   "start_word": 41,
+   "end_word": 41,
+   "heard": "first",
+   "source": "flag",
+   "confidence": 0.484,
+   "verdict": "relisten_kept",
+   "line": "L0022",
+   "start": 167.04
+  },
+  {
+   "start_word": 210,
+   "end_word": 210,
+   "heard": "doubt",
+   "source": "flag",
+   "confidence": 0.492,
+   "verdict": "relisten_kept",
+   "line": "L0072",
+   "start": 271.12
+  },
+  {
+   "start_word": 247,
+   "end_word": 247,
+   "heard": "dinner",
+   "source": "flag",
+   "confidence": 0.39,
+   "verdict": "relisten_kept",
+   "line": "L0091",
+   "start": 316.14
+  },
+  {
+   "start_word": 383,
+   "end_word": 383,
+   "heard": "ఆ",
+   "source": "flag",
+   "confidence": 0.433,
+   "verdict": "relisten_kept",
+   "line": "L0121",
+   "start": 398.28
+  },
+  {
+   "start_word": 395,
+   "end_word": 395,
+   "heard": "ఊ",
+   "source": "flag",
+   "confidence": 0.339,
+   "verdict": "relisten_kept",
+   "line": "L0127",
+   "start": 408.42
+  },
+  {
+   "start_word": 396,
+   "end_word": 396,
+   "heard": "ఊ",
+   "source": "flag",
+   "confidence": 0.309,
+   "verdict": "relisten_kept",
+   "line": "L0128",
+   "start": 409.34
+  },
+  {
+   "start_word": 458,
+   "end_word": 458,
+   "heard": "hypeడ్",
+   "source": "flag",
+   "confidence": 0.303,
+   "verdict": "relisten_kept",
+   "line": "L0142",
+   "start": 454.08
+  },
+  {
+   "start_word": 592,
+   "end_word": 592,
+   "heard": "చ్",
+   "source": "flag",
+   "confidence": 0.361,
+   "verdict": "relisten_kept",
+   "line": "L0168",
+   "start": 531.76
+  },
+  {
+   "start_word": 732,
+   "end_word": 732,
+   "heard": "అదే",
+   "source": "flag",
+   "confidence": 0.5,
+   "verdict": "relisten_kept",
+   "line": "L0209",
+   "start": 713.66
+  },
+  {
+   "start_word": 815,
+   "end_word": 815,
+   "heard": "అయ్యో",
+   "source": "flag",
+   "confidence": 0.43,
+   "verdict": "relisten_kept",
+   "line": "L0233",
+   "start": 782.464
+  },
+  {
+   "start_word": 946,
+   "end_word": 946,
+   "heard": "Super",
+   "source": "flag",
+   "confidence": 0.474,
+   "verdict": "relisten_kept",
+   "line": "L0276",
+   "start": 883.564
+  },
+  {
+   "start_word": 1319,
+   "end_word": 1321,
+   "heard": "గా Kumari Anty",
+   "source": "flag",
+   "confidence": 0.212,
+   "verdict": "relisten_kept",
+   "line": "L0378",
+   "start": 1228.344
+  }
+ ],
+ "rejected": [
+  {
+   "layer": "relisten",
+   "line": "L0121",
+   "heard_line": "హాహా",
+   "corrected": "హాహా",
+   "confidence": 0.9,
+   "reason": "it is a chuckle/laugh",
+   "start_word": 383,
+   "end_word": 383,
+   "heard": "ఆ",
+   "why_rejected": "interjection / vocalization change only"
+  },
+  {
+   "layer": "relisten",
+   "line": "L0127",
+   "heard_line": "ఏనా? ఉహ్",
+   "corrected": "ఉహ్",
+   "confidence": 0.95,
+   "reason": "clearly says uh",
+   "start_word": 395,
+   "end_word": 395,
+   "heard": "ఊ",
+   "why_rejected": "interjection / vocalization change only"
+  },
+  {
+   "layer": "relisten",
+   "line": "L0168",
+   "heard_line": "ఎప్పట్లానే అయింది.",
+   "corrected": "",
+   "confidence": 0.9,
+   "reason": "no 'ch' sound heard, starts straight with eppatlane",
+   "start_word": 592,
+   "end_word": 592,
+   "heard": "చ్",
+   "why_rejected": "empty correction"
+  },
+  {
+   "layer": "relisten",
+   "line": "L0233",
+   "heard_line": "send off అని fix అయ్యానే అనవసరంగా",
+   "corrected": "",
+   "confidence": 0.95,
+   "reason": "speaker does not say అయ్యో",
+   "start_word": 815,
+   "end_word": 815,
+   "heard": "అయ్యో",
+   "why_rejected": "empty correction"
+  },
+  {
+   "layer": "relisten",
+   "line": "L0276",
+   "heard_line": "సూపర్ ఉంది తెలుసా?",
+   "corrected": "సూపర్",
+   "confidence": 0.9,
+   "reason": "pronounced in Telugu style సూపర్",
+   "start_word": 946,
+   "end_word": 946,
+   "heard": "Super",
+   "why_rejected": "script change only (transliteration, 0.80)"
+  },
+  {
+   "layer": "relisten",
+   "line": "L0378",
+   "heard_line": "Flashman కన్నా speed గా కుమారి ఆంటీ కన్నా tasty గా అదిరిపోయేలా వండుతదిరా.",
+   "corrected": "గా కుమారి ఆంటీ",
+   "confidence": 0.95,
+   "reason": "spelled in Telugu as కుమారి ఆంటీ",
+   "start_word": 1319,
+   "end_word": 1321,
+   "heard": "గా Kumari Anty",
+   "why_rejected": "script change only (transliteration, 1.00)"
+  }
+ ],
+ "threshold_report": {
+  "n_words": 1366,
+  "has_logprob": true,
+  "by_threshold": {
+   "0.5": {
+    "words": 26,
+    "lines": 23
+   },
+   "0.6": {
+    "words": 57,
+    "lines": 51
+   },
+   "0.7": {
+    "words": 91,
+    "lines": 72
+   }
+  }
+ },
+ "cost": {
+  "projected": {
+   "model": "gemini-3.8-flash",
+   "layers": {
+    "context": {
+     "calls": 1,
+     "input_tokens": 10111,
+     "output_tokens": 3120,
+     "inr": 1.74
+    },
+    "relisten": {
+     "calls": 5,
+     "items": 38,
+     "audio_s": 104.3,
+     "audio_tokens": 3337,
+     "input_tokens": 12960,
+     "output_tokens": 5800,
+     "inr": 3.06
+    }
+   },
+   "inr": 4.8
+  },
+  "actual": {
+   "context": {
+    "calls": 1,
+    "cached": 1,
+    "input_tokens": 10408,
+    "output_tokens": 706,
+    "audio_tokens": 0,
+    "inr": 0.0,
+    "inr_full": 0.941
+   },
+   "relisten": {
+    "calls": 3,
+    "cached": 3,
+    "input_tokens": 7299,
+    "output_tokens": 2097,
+    "audio_tokens": 0,
+    "inr": 0.0,
+    "inr_full": 1.368
+   }
+  }
+ },
+ "stopped": null,
+ "transcript": "D:\\shotvi\\scribe_dataset\\QWIvgoTQGKk\\QWIvgoTQGKk_scribe_transcript.json"
+}

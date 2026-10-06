@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="te">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shotvi Clip Review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu:wght@400;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f5f2; --panel:#ffffff; --ink:#1d1d1b; --muted:#6b6a66; --line:#e4e2dc;
+  --accent:#c2410c; --accent-soft:#fdeee6; --good:#15803d; --bad:#b91c1c; --cut:#8a8780;
+  --hl:#fff4d6; --chip:#efece6; --shadow:0 1px 2px rgba(0,0,0,.05),0 4px 16px rgba(0,0,0,.05);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#141412; --panel:#1d1c1a; --ink:#ecebe7; --muted:#a09e98; --line:#2e2d2a;
+    --accent:#fb923c; --accent-soft:#3a2416; --good:#4ade80; --bad:#f87171; --cut:#77756f;
+    --hl:#3a3220; --chip:#2a2926; --shadow:none;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#141412; --panel:#1d1c1a; --ink:#ecebe7; --muted:#a09e98; --line:#2e2d2a;
+  --accent:#fb923c; --accent-soft:#3a2416; --good:#4ade80; --bad:#f87171; --cut:#77756f;
+  --hl:#3a3220; --chip:#2a2926; --shadow:none;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);
+  font:15px/1.5 Inter,"Noto Sans Telugu",system-ui,-apple-system,"Segoe UI",sans-serif}
+.te{font-family:"Noto Sans Telugu",Inter,system-ui,sans-serif}
+header{position:sticky;top:0;z-index:5;display:flex;gap:12px;align-items:center;flex-wrap:wrap;
+  padding:12px 20px;background:var(--panel);border-bottom:1px solid var(--line)}
+header h1{font-size:16px;margin:0;font-weight:700;letter-spacing:-.01em}
+header .run{color:var(--muted);font-size:13px}
+header .sp{flex:1}
+.progress{font-size:13px;color:var(--muted)}
+.bar{width:120px;height:6px;background:var(--chip);border-radius:3px;overflow:hidden;display:inline-block;vertical-align:middle;margin-left:6px}
+.bar i{display:block;height:100%;background:var(--good);width:0}
+button{font:inherit;cursor:pointer}
+.btn{border:1px solid var(--line);background:var(--panel);color:var(--ink);padding:7px 12px;border-radius:8px;font-size:13px;font-weight:500}
+.btn:hover{border-color:var(--muted)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.wrap{display:grid;grid-template-columns:280px 1fr;min-height:calc(100vh - 57px)}
+nav{border-right:1px solid var(--line);background:var(--panel);overflow:auto;max-height:calc(100vh - 57px);position:sticky;top:57px}
+nav h2{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:16px 16px 6px;font-weight:600}
+nav a{display:flex;gap:10px;align-items:flex-start;padding:9px 16px;color:inherit;text-decoration:none;border-left:3px solid transparent}
+nav a:hover{background:var(--bg)}
+nav a.on{background:var(--accent-soft);border-left-color:var(--accent)}
+nav .rk{font-weight:700;color:var(--muted);min-width:22px;font-variant-numeric:tabular-nums}
+nav .tt{font-size:14px;line-height:1.35}
+nav .st{margin-left:auto;font-size:12px;color:var(--good);white-space:nowrap}
+main{padding:20px;min-width:0}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow)}
+.head{padding:16px 20px;border-bottom:1px solid var(--line)}
+.head h2{margin:0 0 6px;font-size:20px;line-height:1.3}
+.chips{display:flex;gap:6px;flex-wrap:wrap;font-size:12px}
+.chip{background:var(--chip);padding:2px 8px;border-radius:999px;color:var(--muted)}
+.chip.flag{background:var(--accent-soft);color:var(--accent)}
+.meta{margin-top:10px;font-size:14px;display:grid;gap:4px}
+.meta b{color:var(--muted);font-weight:600;margin-right:6px;font-size:12px;text-transform:uppercase;letter-spacing:.04em}
+.grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:0}
+.player{padding:16px 20px;border-right:1px solid var(--line)}
+video{width:100%;border-radius:8px;background:#000;display:block;aspect-ratio:16/9}
+.navrow{display:flex;gap:8px;margin-top:10px;align-items:center}
+.navrow .hint{font-size:12px;color:var(--muted);margin-left:auto}
+.tx{padding:12px 8px 12px 12px;max-height:520px;overflow:auto}
+.tx h3,.rate h3{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:4px 8px 8px;font-weight:600}
+.ln{display:grid;grid-template-columns:52px 1fr;gap:8px;padding:6px 8px;border-radius:6px;cursor:pointer}
+.ln:hover{background:var(--bg)}
+.ln.now{background:var(--hl)}
+.ln .t{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;padding-top:2px}
+.ln .t small{display:block;font-size:10.5px;opacity:.8}
+.ln .s{font-weight:700;margin-right:6px;font-size:12px;color:var(--accent)}
+.ln .s.H{color:#2563eb}
+.cut{margin:2px 8px 2px 68px;font-size:12.5px;color:var(--cut);border-left:2px dashed var(--line);padding:2px 0 2px 10px}
+.cut summary{cursor:pointer;list-style:none}
+.cut summary::-webkit-details-marker{display:none}
+.cut .ct{font-style:italic;margin-top:2px}
+.jump{margin:4px 8px 4px 68px;font-size:12.5px;color:var(--accent)}
+.rate{border-top:1px solid var(--line);padding:16px 20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px 24px}
+.q label{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
+.q label span{font-weight:400;color:var(--muted);font-size:12px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.seg button{border:0;background:var(--panel);color:var(--ink);padding:6px 12px;font-size:14px;border-right:1px solid var(--line);min-width:38px}
+.seg button:last-child{border-right:0}
+.seg button:hover{background:var(--bg)}
+.seg button.on{background:var(--accent);color:#fff}
+.seg.yn button.on[data-v="yes"]{background:var(--good)}
+.seg.yn button.on[data-v="no"]{background:var(--bad)}
+textarea{width:100%;min-height:64px;border:1px solid var(--line);border-radius:8px;padding:8px;background:var(--panel);color:var(--ink);font:inherit;font-size:14px;resize:vertical}
+.notes{grid-column:1/-1}
+.saved{font-size:12px;color:var(--good);opacity:0;transition:opacity .3s}
+.saved.show{opacity:1}
+@media (max-width:980px){
+  .wrap{grid-template-columns:1fr}
+  nav{position:static;max-height:none;border-right:0;border-bottom:1px solid var(--line)}
+  .grid{grid-template-columns:1fr}
+  .player{border-right:0;border-bottom:1px solid var(--line)}
+  .tx{max-height:none}
+}
+@media (max-width:520px){ main{padding:12px 0} .card{border-radius:0;border-left:0;border-right:0} header{padding:10px 16px} }
+
+:root{--fix:#0f766e;--fix-bg:#ddf3ef}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){--fix:#5eead4;--fix-bg:#13322e} }
+:root[data-theme="dark"]{--fix:#5eead4;--fix-bg:#13322e}
+.fix{color:var(--fix);background:var(--fix-bg);border-radius:3px;padding:0 2px;cursor:help;
+  text-decoration:underline dotted 1.5px;text-underline-offset:3px}
+.unsure{cursor:help}
+.qm{color:var(--muted);font-size:.72em;opacity:.8;margin-left:1px;vertical-align:.15em}
+.asrkey{display:block;margin:-4px 8px 8px;font-size:11.5px;color:var(--muted)}
+.asrtip{position:fixed;z-index:50;display:none;max-width:300px;padding:7px 9px;border-radius:7px;font-size:12.5px;
+  line-height:1.45;white-space:pre-line;background:var(--ink);color:var(--panel);box-shadow:0 4px 16px rgba(0,0,0,.2);
+  pointer-events:none}
+</style>
+</head>
+<body>
+<header>
+  <h1>Shotvi · Clip Review</h1><span class="run" id="run"></span>
+  <span class="sp"></span>
+  <span class="progress" id="progress"></span>
+  <button class="btn" id="theme" title="Toggle light/dark">◐</button>
+  <button class="btn primary" id="dl">Download ratings.csv</button>
+</header>
+<div class="wrap">
+  <nav id="nav"></nav>
+  <main><div class="card" id="clip"></div></main>
+</div>
+<script id="data" type="application/json">[{"video_id": "j14Om1SaFYE", "n_total": 7, "clips": [{"rank": 1, "id": "w03", "title": "పొట్టిగా ఉన్న అమ్మాయిల కోసమే!", "hook": "ఆ మీకు ఇది ఎన్నో పెళ్లిచూపులు", "why": "Engaging hook about multiple rejections leads into a wholesome, heart-melting height confession.", "flags": [], "tier": "recommended", "category": "web_series · standalone · emotional", "score": 4.5, "scores": {"hook": 4.5, "standalone": 4.5, "payoff": 4.5, "value_emotion": 4.5, "overall": 4.5}, "duration": 88.1, "n_pieces": 3, "src_start": 437.83, "src_end": 581.07, "edit_notes": ["skips 45 s"], "video": "j14Om1SaFYE/01_w03.mp4", "lines": [{"kind": "say", "t": 0.3, "src": 437.83, "spk": "speaker_6", "text": "ఆ మీకు ఇది ఎన్నో పెళ్లిచూపులు"}, {"kind": "say", "t": 4.54, "src": 442.07, "spk": "speaker_2", "text": "మొదటి పెళ్లిచూపులు"}, {"kind": "say", "t": 5.96, "src": 443.49, "spk": "speaker_6", "text": "కానీ నాకిది ఐదో పెళ్లిచూపులు"}, {"kind": "say", "t": 9.76, "src": 447.29, "spk": "speaker_2", "text": "ఓహో! అంటే నా అదృష్టానికి కారణం నలుగురు దురదృష్టం అనమాట"}, {"kind": "say", "t": 14.14, "src": 451.67, "spk": "speaker_6", "text": "అవునండి. ఆ ఏమన్నారు?"}, {"kind": "say", "t": 18.98, "src": 456.51, "spk": "speaker_2", "text": "ఆ ఏం లేదు. ఇంత మంచి సంబంధాన్ని వాళ్ళెందుకు వదులుకున్నారా అని"}, {"kind": "say", "t": 23.32, "src": 460.85, "spk": "speaker_6", "text": "హ్మ్"}, {"kind": "cut", "dur": 7.1, "text": "sorry ఏమనుకోకండి ఏమనుకోకండి మీరు కొంచెం పొట్టిగా ఉన్నారు పొట్టిగా ఉన్నారు మీరు కొంచెం పొట్టిగా ఉన్నారు పొట్టిగా ఉన్నారు పొట్టిగా ఉన్నారు పొట్టిగా ఉన్నారు", "parts": [{"t": "sorry", "k": "u", "tip": "Low ASR confidence (p = 0.484)\nre-listened: the audio agrees with the transcript"}, {"t": "ఏమనుకోకండి ఏమనుకోకండి మీరు కొంచెం పొట్టిగా ఉన్నారు పొట్టిగా ఉన్నారు మీరు కొంచెం పొట్టిగా ఉన్నారు పొట్టిగా ఉన్నారు పొట్టిగా ఉన్నారు పొట్టిగా ఉన్నారు"}]}, {"kind": "say", "t": 24.74, "src": 472.39, "spk": "speaker_6", "text": "నేను పొట్టిగా ఉంటాను కదా ఎవ్వరూ ఇష్టపడరు. అందుకే అందరూ reject చేశారు. మీకు ఇలాంటివి ఏమైనా ఉంటే చెప్పేసేయండి. పర్వాలేదు"}, {"kind": "say", "t": 35.5, "src": 526.65, "spk": "speaker_2", "text": "అందరు అబ్బాయిలకి పొడుగ్గా ఉన్న అమ్మాయలే కాదండి. నాలాంటి కొంతమంది అబ్బాయిలకి మీలా పొట్టిగా ఉన్న అమ్మాయలే నచ్చుతారు. అయినా ఆ feeling నేను మాటల్లో చెప్పలేకపోతున్నాను. పొట్టిగా ఉండటం అది మీ లోపం కాదండి. అదే మీ గంభీరం."}, {"kind": "say", "t": 74.25, "src": 565.41, "spk": "speaker_6", "text": "మీరు నిజంగా అంటున్నారా?"}, {"kind": "say", "t": 76.38, "src": 567.53, "spk": "speaker_2", "text": "అయ్యో! నిజమండి. ఇప్పుడు అమ్మాయి height గా ఉంటే ఏం చేయాలి? బల్బులు బిగించాలా? అవును second question ఏదో అడగాలన్నారు", "parts": [{"t": "అయ్యో! నిజమండి. ఇప్పుడు అమ్మాయి height గా ఉంటే ఏం చేయాలి? బల్బులు"}, {"t": "బిగించాలా?", "k": "fix", "tip": "ASR fix (audio re-listen, confidence 0.95)\nScribe heard: విగించాలా?\nWhy: clearly says బిగించాలా"}, {"t": "అవును second question ఏదో అడగాలన్నారు"}]}, {"kind": "say", "t": 89.04, "src": 580.19, "spk": "speaker_6", "text": "ఇంకా అవసరం లేదు."}]}, {"rank": 2, "id": "w06", "title": "Marriage అనేది Full Meals లాంటిది", "hook": "ఈ రోజుల్లో marriage అనేది full meals లాంటిది.", "why": "The extended full-meals metaphor is clever and relatable, holding viewer interest right up to the sweet closing reaction.", "flags": [], "tier": "recommended", "category": "web_series · standalone · humour", "score": 4.0, "scores": {"hook": 4.5, "standalone": 4.5, "payoff": 4.0, "value_emotion": 4.0, "overall": 4.0}, "duration": 67.0, "n_pieces": 1, "src_start": 769.386, "src_end": 836.406, "edit_notes": [], "video": "j14Om1SaFYE/02_w06.mp4", "lines": [{"kind": "say", "t": 0.3, "src": 769.386, "spk": "speaker_2", "text": "ఈ రోజుల్లో marriage అనేది full meals లాంటిది. starting లో hot and exciting గా ఉంటుంది without any complaints. అందులో saltే husband. అస్సలు కనిపించం. కానీ అది లేకపోతే tasteless. ఎక్కువైతే BP. ఇంకా wife అంటారా, అది gas stove మీద మంటలాంటిది. తక్కువుంటే బాగుంటుంది, ఎక్కువైతే మాత్రం మాడిపోతాం. ఉమ్ ఇంక marriage లో arguments అనేవి chillies లాంటివి. unexpected గా వస్తాయి, కంట్లో నీళ్లు తెప్పిస్తాయి. అలా అని అవి లేకపోతే మాత్రం food taste చాలా flat గా ఉంటుంది. ఇక romance అనేది ghee లాంటిది. రోజూ అవసరం లేకపోయినా correct time లో add అయితే ఆ magic ఏ వేరేగుంటుంది. ఇంక parents, relatives అంటారా, వాళ్లు side dishes లాంటోళ్లు. Order చేయకపోయినా వస్తారు. మనలో మార్పులు తెప్పిస్తారు. ఇక marriage లో love అనేది curry లాంటిది. When everything went spicy it will make us cool and save the day. Trust me you will have the best meals with me.", "parts": [{"t": "ఈ రోజుల్లో marriage అనేది full meals లాంటిది."}, {"t": "starting", "k": "u", "tip": "Low ASR confidence (p = 0.5)\nre-listened: the audio agrees with the transcript"}, {"t": "లో hot and exciting గా ఉంటుంది without any complaints. అందులో saltే husband. అస్సలు కనిపించం. కానీ అది లేకపోతే tasteless. ఎక్కువైతే BP. ఇంకా wife అంటారా, అది gas stove మీద మంటలాంటిది. తక్కువుంటే బాగుంటుంది, ఎక్కువైతే మాత్రం మాడిపోతాం. ఉమ్ ఇంక marriage లో arguments అనేవి chillies లాంటివి. unexpected గా వస్తాయి, కంట్లో నీళ్లు తెప్పిస్తాయి. అలా అని అవి లేకపోతే మాత్రం food taste చాలా flat గా ఉంటుంది. ఇక romance అనేది ghee లాంటిది. రోజూ అవసరం లేకపోయినా correct time లో add అయితే ఆ magic ఏ వేరేగుంటుంది. ఇంక parents, relatives అంటారా, వాళ్లు side dishes లాంటోళ్లు. Order చేయకపోయినా వస్తారు. మనలో మార్పులు తెప్పిస్తారు. ఇక marriage లో love అనేది curry లాంటిది. When everything went spicy it will make us cool and save the day. Trust me you will have the best meals with me."}]}, {"kind": "say", "t": 61.2, "src": 830.286, "spk": "speaker_1", "text": "అలా చెప్తే ఎవరూ No చెప్పగలరే?"}, {"kind": "say", "t": 64.86, "src": 833.946, "spk": "speaker_7", "text": "కదా! అయితే yes ఏ చెప్పే."}]}, {"rank": 3, "id": "w01", "title": "పుల్లారెడ్డి Sweets గోల!", "hook": "మీకు వంట వచ్చా?", "why": "Opens with a sharp pellichoopulu question and pays off with the mother frantically covering up the shop-bought sweets.", "flags": [], "tier": "recommended", "category": "web_series · standalone · humour", "score": 4.0, "scores": {"hook": 4.0, "standalone": 4.5, "payoff": 4.0, "value_emotion": 4.0, "overall": 4.0}, "duration": 62.9, "n_pieces": 2, "src_start": 211.34, "src_end": 313.48, "edit_notes": ["skips 39 s"], "video": "j14Om1SaFYE/03_w01.mp4", "lines": [{"kind": "say", "t": 0.3, "src": 211.34, "spk": "speaker_2", "text": "మీకు వంట వచ్చా?"}, {"kind": "say", "t": 10.58, "src": 221.62, "spk": "speaker_0", "text": "చచ్చింది గొర్ర."}, {"kind": "say", "t": 14.14, "src": 225.18, "spk": "speaker_3", "text": "ఆహా!"}, {"kind": "say", "t": 14.24, "src": 225.28, "spk": "speaker_0", "text": "ఆ వచ్చు బాబు. ఎందుకు రాదు."}, {"kind": "cut", "dur": 33.4, "text": "ఏరా! మళ్లీ start చేసావా? ఆ మా వోడు అలా అడిగాడని మీరేం అనుకోకండి. చిన్నప్పటి నుంచి వాడికి అమ్మ లేకపోవడం వల్ల hostels, PG's లో అడ్డమైన వంట తినేవాడు. ఇంటికి రాగానే నా చేతి వంట తిని వంకలు పెట్టేవాడు. ఆ వంకలు కాదు. అంటే వంటలు తిని తిని వాంతులు వరదలా వచ్చేవన్నమాట. ఏదో మా వోడి అభిమానం. అది అభిమానం కాదు నాన్న. Good food a day makes my day good day. యా గుడ్డే. అ-అందుకే అడిగాను. మీరేం తప్పుగా అనుకోవద్దు.", "parts": [{"t": "ఏరా! మళ్లీ start చేసావా? ఆ మా వోడు అలా అడిగాడని మీరేం అనుకోకండి. చిన్నప్పటి నుంచి వాడికి అమ్మ లేకపోవడం వల్ల hostels, PG's లో అడ్డమైన వంట తినేవాడు. ఇంటికి రాగానే నా చేతి వంట తిని వంకలు పెట్టేవాడు."}, {"t": "ఆ", "k": "u", "tip": "Low ASR confidence (p = 0.358)\ninterjection, not re-listened"}, {"t": "వంకలు కాదు. అంటే వంటలు తిని తిని వాంతులు వరదలా వచ్చేవన్నమాట. ఏదో మా వోడి అభిమానం. అది అభిమానం కాదు నాన్న. Good food a day makes my day good day. యా గుడ్డే. అ-అందుకే అడిగాను. మీరేం తప్పుగా అనుకోవద్దు."}]}, {"kind": "say", "t": 17.54, "src": 266.38, "spk": "speaker_2", "text": "వచ్చే wife కి వంట వస్తే చాలనుకునే అబ్బాయిల్లో నేను ఒకడిని."}, {"kind": "say", "t": 21.62, "src": 270.46, "spk": "speaker_0", "text": "అయ్యో! ఈ sweets అన్నీ మా అమ్మాయే చేసింది బాబు."}, {"kind": "say", "t": 25.58, "src": 274.42, "spk": "speaker_3", "text": "అవునా! నాకు sweet అంటే చాలా ఇష్టం."}, {"kind": "say", "t": 27.3, "src": 276.14, "spk": "speaker_0", "text": "తీసుకోండి బాబు."}, {"kind": "say", "t": 31.52, "src": 280.36, "spk": "speaker_3", "text": "పుల్లారెడ్డి sweets లాగే ఉన్నాయ్ రా."}, {"kind": "say", "t": 33.32, "src": 282.16, "spk": "speaker_1", "text": "పుల్లారెడ్డి నుంచే కదా తీసుకొచ్చాం."}, {"kind": "say", "t": 34.62, "src": 283.46, "spk": "speaker_0", "text": "ఆ!"}, {"kind": "say", "t": 38.66, "src": 287.5, "spk": "speaker_3", "text": "ఆ!"}, {"kind": "say", "t": 38.7, "src": 287.54, "spk": "speaker_0", "text": "తుమ్మ మొహం దానా! అంటే ఆ recipe ఎలా చేయాలో అని direct పుల్లారెడ్డి వాళ్ళనే phone చేసి కనుక్కుంది బాబు.", "parts": [{"t": "తుమ్మ", "k": "fix", "tip": "ASR fix (audio re-listen, confidence 0.95)\nScribe heard: తుమ్ము\nWhy: clearly says తుమ్మ"}, {"t": "మొహం దానా! అంటే ఆ recipe ఎలా చేయాలో అని direct పుల్లారెడ్డి వాళ్ళనే phone చేసి కనుక్కుంది బాబు."}]}, {"kind": "say", "t": 50.66, "src": 299.5, "spk": "speaker_3", "text": "recipe అంట. తినొచ్చు."}, {"kind": "say", "t": 52.72, "src": 301.56, "spk": "speaker_0", "text": "అప్పటి నుండి మా sweets కన్నా మీ అమ్మాయి చేసిన sweets ఏ చాలా బాగున్నాయని వాళ్లే reverse లో మా అమ్మాయిని recipe అడుగుతున్నారు."}, {"kind": "say", "t": 60.98, "src": 309.82, "spk": "speaker_3", "text": "ఓహో! super అత్తమ్మ."}, {"kind": "say", "t": 63.24, "src": 312.08, "spk": "speaker_0", "text": "ఏం acting చేస్తున్నావే."}]}, {"rank": 4, "id": "w04", "title": "Curry point పెట్టేస్తున్నావా ఏంటి?", "hook": "మరి లేకపోతే ఏంట్రా?", "why": "Fun friend banter questioning his criteria builds into a relatable bachelor monologue about missing home-cooked food.", "flags": [], "tier": "worth_a_look", "category": "web_series · standalone · humour", "score": 3.5, "scores": {"hook": 4.0, "standalone": 4.0, "payoff": 3.5, "value_emotion": 3.5, "overall": 3.5}, "duration": 50.1, "n_pieces": 1, "src_start": 624.59, "src_end": 674.65, "edit_notes": [], "video": "j14Om1SaFYE/04_w04.mp4", "lines": [{"kind": "say", "t": 0.3, "src": 624.59, "spk": "speaker_4", "text": "మరి లేకపోతే ఏంట్రా? నువ్వేమన్నా ఆ అమ్మాయితో curry point పెట్టేస్తున్నావా? పెళ్లిచూపులకి వెళ్లి చూడాల్సింది ఇదా?"}, {"kind": "say", "t": 4.22, "src": 628.51, "spk": "speaker_2", "text": "మరి ఏం చేయాలి రా? మనలాంటి అబ్బాయిలకి school వరకు అమ్మ చేతి వంట అలవాటు అయ్యాక sudden గా మనల్ని hostel లో పడేస్తే అక్కడ సాంబార్, ఇడ్లీ, khichdi అంటూ నలిగిపోయేవాళ్ళం రా."}, {"kind": "say", "t": 16.78, "src": 641.07, "spk": "speaker_4", "text": "ఏయ్ boiled గుడ్డు మర్చిపోయావ్. ఆ గుడ్డు తీసుకెళ్లి-", "parts": [{"t": "ఏయ్ boiled గుడ్డు మర్చిపోయావ్."}, {"t": "ఆ", "k": "u", "tip": "Low ASR confidence (p = 0.5)\ninterjection, not re-listened"}, {"t": "గుడ్డు తీసుకెళ్లి-"}]}, {"kind": "say", "t": 20.56, "src": 644.85, "spk": "speaker_2", "text": "ఉమ్ ఉమ్ continue"}, {"kind": "say", "t": 24.5, "src": 648.79, "spk": "speaker_4", "text": "విసిగిపోయాం రా వీటితోని. చదువుకుంటున్నప్పుడు hostel లో తినలేక, job వచ్చాక busy లో తినలేక అలాగే గడిపేసేవాళ్ళం. order చేసుకునేటప్పుడు offer లు, coupon లతో పాటు కొలెస్ట్రాల్ కూడా free గా వస్తున్నాయి రా.", "parts": [{"t": "విసిగిపోయాం రా వీటితోని. చదువుకుంటున్నప్పుడు hostel లో తినలేక, job వచ్చాక busy లో తినలేక అలాగే గడిపేసేవాళ్ళం."}, {"t": "order", "k": "u", "tip": "Low ASR confidence (p = 0.312)\nre-listened: the audio agrees with the transcript"}, {"t": "చేసుకునేటప్పుడు offer లు, coupon లతో పాటు కొలెస్ట్రాల్ కూడా free గా వస్తున్నాయి రా."}]}, {"kind": "say", "t": 40.5, "src": 664.79, "spk": "speaker_2", "text": "కానీ నాకు కావాల్సింది అది కాదురా. food made with love. ప్రేమతో చేసిన food కావాలి. అది మన అనుకునే వాళ్ళు మాత్రమే ఇవ్వగలరు."}]}, {"rank": 5, "id": "w02", "title": "చపాతీ పూరీ అయిపోయింది", "hook": "నూనెయ్యవే!", "why": "Snappy kitchen argument between mother and daughter ending on a funny cooker explosion punchline.", "flags": [], "tier": "worth_a_look", "category": "web_series · standalone · humour", "score": 3.5, "scores": {"hook": 3.5, "standalone": 4.0, "payoff": 4.0, "value_emotion": 3.5, "overall": 3.5}, "duration": 35.2, "n_pieces": 1, "src_start": 321.98, "src_end": 357.2, "edit_notes": [], "video": "j14Om1SaFYE/05_w02.mp4", "lines": [{"kind": "say", "t": 0.06, "src": 321.98, "spk": "speaker_0", "text": "నూనెయ్యవే! పోసేయ్, పోసేయ్, పోసేయ్. అది నూనె అనుకుంటున్నావా, బండిలో పోసే petrol అనుకుంటున్నావా, అంత పోసావు. ఎవరైనా చపాతీ మీద అంత నూనె వేస్తారా?"}, {"kind": "say", "t": 15.18, "src": 337.1, "spk": "speaker_1", "text": "పర్లేదమ్మా చపాతీ కాస్త పూరీ అయిపోద్ది."}, {"kind": "say", "t": 17.28, "src": 339.2, "spk": "speaker_0", "text": "హ్మ్ ఏం తెలివే."}, {"kind": "say", "t": 20.5, "src": 342.42, "spk": "speaker_1", "text": "మ్మా, మమ్మీ."}, {"kind": "say", "t": 22.22, "src": 344.14, "spk": "speaker_0", "text": "ఏంటే?"}, {"kind": "say", "t": 22.8, "src": 344.72, "spk": "speaker_1", "text": "మమ్మీ అరుస్తుందే."}, {"kind": "say", "t": 24.46, "src": 346.38, "spk": "speaker_0", "text": "అది అరవడం కాదే. లోపల పప్పు ఉడుకుతుంటే బయట whistles వస్తున్నాయి."}, {"kind": "say", "t": 29.22, "src": 351.14, "spk": "speaker_1", "text": "పోసేయ్."}, {"kind": "say", "t": 30.88, "src": 352.8, "spk": "speaker_0", "text": "వెంటనే తీస్తే పేలిపోతుందే."}, {"kind": "say", "t": 32.98, "src": 354.9, "spk": "speaker_1", "text": "అవునా! అయితే దీపావళికి plan చేద్దామా?"}, {"kind": "say", "t": 35.2, "src": 357.12, "spk": "speaker_0", "text": "ఆ!"}]}, {"rank": 6, "id": "w07", "title": "గోంగూర అంటే గోరింటాకు అనుకుంది!", "hook": "అయ్యో అయినా మిమ్మల్ని అడుగుతున్నా ఏంటి?", "why": "Steady comedic escalation as the heroine confuses gongura with mehndi and wheat with besan.", "flags": ["song_overlap"], "tier": "worth_a_look", "category": "web_series · standalone · humour", "score": 3.5, "scores": {"hook": 3.0, "standalone": 4.0, "payoff": 4.0, "value_emotion": 4.0, "overall": 3.5}, "duration": 76.0, "n_pieces": 1, "src_start": 875.006, "src_end": 951.006, "edit_notes": [], "video": "j14Om1SaFYE/06_w07.mp4", "lines": [{"kind": "say", "t": 0.3, "src": 875.006, "spk": "speaker_2", "text": "అయ్యో అయినా మిమ్మల్ని అడుగుతున్నా ఏంటి? మీరు బయట food తినరు కదా. మీకు అన్ని dishes వచ్చినప్పుడు. ఆ మీ favourite dish ఏంటి?", "parts": [{"t": "అయ్యో"}, {"t": "అయినా", "k": "u", "tip": "Low ASR confidence (p = 0.485)\nre-listened: the audio agrees with the transcript"}, {"t": "మిమ్మల్ని అడుగుతున్నా ఏంటి? మీరు బయట food తినరు కదా. మీకు అన్ని dishes వచ్చినప్పుడు. ఆ మీ favourite dish ఏంటి?"}]}, {"kind": "say", "t": 12.98, "src": 887.686, "spk": "speaker_1", "text": "ఆ Chicken. Chicken."}, {"kind": "say", "t": 15.06, "src": 889.766, "spk": "speaker_2", "text": "Chicken నేను కూడా వండుతాను. అది కాదు something different like గోంగూర."}, {"kind": "say", "t": 21.64, "src": 896.346, "spk": "speaker_1", "text": "గోంగూరా! మా అమ్మ అప్పుడప్పుడు చేతికి పెడుతుండే. ఇప్పుడు అంటే పెట్టుకోలేదు గానీ మన పెళ్లికి పెట్టుకుందాం."}, {"kind": "say", "t": 27.74, "src": 902.446, "spk": "speaker_2", "text": "అది కూరంటా కదా. నేను అడిగింది గోంగూర."}, {"kind": "say", "t": 37.44, "src": 912.146, "spk": "speaker_1", "text": "ఆ అదే మా అమ్మమ్మ వాళ్ళ ఇంటి పెరట్లో గోంగూర చెట్టు పక్కన కూరంటా చెట్టు ఉంటుంది. దాని గురించి మాట్లాడుతున్నా. అంటే ఏదైనా పచ్చడే కదా."}, {"kind": "say", "t": 48.28, "src": 922.986, "spk": "speaker_2", "text": "మ్ మీకు మిర్చి బజ్జి వేయడం వచ్చా?", "parts": [{"t": "మ్", "k": "u", "tip": "Low ASR confidence (p = 0.383)\ninterjection, not re-listened"}, {"t": "మీకు మిర్చి బజ్జి వేయడం వచ్చా?"}]}, {"kind": "say", "t": 51.04, "src": 925.746, "spk": "speaker_1", "text": "అయ్యో super. నేను చేసే మిర్చి బజ్జి అంటే మా నాన్నకి పిచ్చి ఇష్టం. ఎంతిష్టం అంటే మిర్చి బజ్జిలో ఉన్న గోధుమపిండి పక్కన పెట్టి ఉత్తి మిర్చి మాత్రమే తింటాడు. అంతిష్టం."}, {"kind": "say", "t": 60.98, "src": 935.686, "spk": "speaker_2", "text": "బజ్జీలో శనగపిండి కదా వేస్తారు. మీరు గోధుమపిండి అంటున్నారేంటి?"}, {"kind": "say", "t": 66.48, "src": 941.186, "spk": "speaker_1", "text": "శనగపిండి, గోధుమపిండి, మైదాపిండి ఇవన్నీ ఒక పిండి family ఏ కదా with వేరేవేరే పోలికలు. నేను అన్నింతో చేయగలను."}, {"kind": "say", "t": 74.06, "src": 948.766, "spk": "speaker_2", "text": "ఓ మీరు భలే talented అండి."}]}, {"rank": 7, "id": "w05", "title": "పెళ్లయ్యాక నీ ఇష్టం!", "hook": "నేను ఒక విషయం చెప్పాలి మీకు", "why": "A progressive monologue clarifying that wanting cooking skills doesn't mean restricting his wife's freedom.", "flags": [], "tier": "worth_a_look", "category": "web_series · standalone · story", "score": 3.5, "scores": {"hook": 3.0, "standalone": 4.0, "payoff": 3.5, "value_emotion": 3.5, "overall": 3.5}, "duration": 40.6, "n_pieces": 1, "src_start": 709.13, "src_end": 749.706, "edit_notes": [], "video": "j14Om1SaFYE/07_w05.mp4", "lines": [{"kind": "say", "t": 0.3, "src": 709.13, "spk": "speaker_6", "text": "నేను ఒక విషయం చెప్పాలి మీకు"}, {"kind": "say", "t": 2.24, "src": 711.07, "spk": "speaker_2", "text": "అంతకన్నా ముందు నేను మీకు ఒక విషయం చెప్పాలి."}, {"kind": "say", "t": 5.26, "src": 714.09, "spk": "speaker_6", "text": "ఉమ్"}, {"kind": "say", "t": 6.86, "src": 715.69, "spk": "speaker_2", "text": "నిన్న మీరు వంట super గా చేశారని తెలిసిన excitement లో నేను మీతో ఎక్కువ మాట్లాడలేదు. But I want to say one thing. నాకు వంట వచ్చే wife మాత్రమే కావాలనుకుంటున్నానంటే నా wife వంట గదికి మాత్రమే పరిమితమైపోవాలని కాదు You can do whatever you want. మీకు ఒకవేళ job చేయాలనిపిస్తే చేయండి. లేదా ఇంకేదైనా చేయాలనిపిస్తే చేయండి. But you should be happy. అంతగా కావాలంటే మన ఇంటి పనుల్లో నేను కూడా help చేస్తాను. Let's make our marriage life tasty."}]}]}, {"video_id": "QWIvgoTQGKk", "n_total": 8, "clips": [{"rank": 1, "id": "w02", "title": "First night reality అంటే ఇదేరా బాబు", "hook": "అదే night బొమ్మ blockbuster ఆ?", "why": "Hooked by a funny first-night inquiry, paying off with a relatable rant on wedding fatigue over romance.", "flags": [], "tier": "recommended", "category": "web_series · standalone · humour", "score": 4.5, "scores": {"hook": 4.5, "standalone": 4.5, "payoff": 4.5, "value_emotion": 4.5, "overall": 4.5}, "duration": 62.9, "n_pieces": 1, "src_start": 449.04, "src_end": 511.9, "edit_notes": [], "video": "QWIvgoTQGKk/01_w02.mp4", "lines": [{"kind": "say", "t": 0.21, "src": 449.04, "spk": "speaker_3", "text": "అదే night బొమ్మ blockbuster ఆ?"}, {"kind": "say", "t": 2.63, "src": 451.46, "spk": "speaker_0", "text": "అంత ఊహించేసుకోకు first night అనేదానికన్నా over hypeడ్ thing ఇంకోటి ఉండదని నాకు నిన్నే తెలిసిందిరా.", "parts": [{"t": "అంత ఊహించేసుకోకు first night అనేదానికన్నా over"}, {"t": "hypeడ్", "k": "u", "tip": "Low ASR confidence (p = 0.303)\nre-listened: the audio agrees with the transcript"}, {"t": "thing ఇంకోటి ఉండదని నాకు నిన్నే తెలిసిందిరా."}]}, {"kind": "say", "t": 7.83, "src": 456.66, "spk": "speaker_3", "text": "అదేంట్రా అలా అంటావ్?"}, {"kind": "say", "t": 9.21, "src": 458.04, "spk": "speaker_0", "text": "మరి ఇంక ఎలా అనాలిరా మంచి romantic dialogues తో intense eye contact తో అదిరిపోయే background music తో practice అయ్యి లోపలికి వెళ్తామా ఇంకా door వేయగానే అవేం ఉండవ్. పెళ్లి మండపం ఓడకి డబ్బులు clear చేసామా లేదా? పంతులు గారికి extra డబ్బులు ఏమైనా వేసేసామా? ఎంతమందికి పిలిచాం? ఎంతమంది వచ్చారు? ఈ చెత్త doubt లే mind లో ఉంటాయి. అందరూ అనుకున్నట్టు first night అనేది romantic గా ఉండదురా చాలా అలసటగా ఉంటుంది."}, {"kind": "say", "t": 36.15, "src": 484.98, "spk": "speaker_3", "text": "అలసటగానా?"}, {"kind": "say", "t": 37.17, "src": 486.0, "spk": "speaker_0", "text": "మరి ఉండదారా? పెళ్లంతా మొహంలో smile maintain చేస్తూ అందరినీ పలకరిస్తూ వేల photos కి pose ఇస్తే ఇంకెలా ఉంటాదిరా అలసటగానే ఉంటుంది. అందుకే ఆ night ఒకరికొకరు ప్రశాంతంగా నిద్రపోనివ్వడం కూడా romantic గానే ఉంటుందిరా. So అదే చేశాం మంచిగా నిద్రపోయాం."}, {"kind": "say", "t": 54.79, "src": 503.62, "spk": "speaker_3", "text": "పడుకోవడానికి పెళ్లి చేసుకోవాలేంట్రా. కాపురం చెయ్యరా అంటే కథలు చెప్తున్నాడు ఇలా అయితే మీ ఇద్దరికీ చాలా కష్టం.", "parts": [{"t": "పడుకోవడానికి పెళ్లి చేసుకోవాలేంట్రా. కాపురం చెయ్యరా అంటే కథలు చెప్తున్నాడు ఇలా అయితే"}, {"t": "మీ", "k": "fix", "tip": "ASR fix (audio re-listen, confidence 0.95)\nScribe heard: మే\nWhy: clearly says mee"}, {"t": "ఇద్దరికీ చాలా కష్టం."}]}, {"kind": "say", "t": 62.07, "src": 510.9, "spk": "speaker_0", "text": "వీడికి చెప్పినా waste."}]}, {"rank": 2, "id": "w04", "title": "Direct గా Hug అడగాల్సింది రా బాబు", "hook": "నేను కొన్ని most important topic మాట్లాడాలనుకుంటున్నాను", "why": "Hooked by an awkward first-night talk, paying off with the husband hilarious self-scolding for ruining a hug.", "flags": [], "tier": "recommended", "category": "web_series · standalone · humour", "score": 4.5, "scores": {"hook": 4.5, "standalone": 4.5, "payoff": 4.5, "value_emotion": 4.5, "overall": 4.5}, "duration": 72.3, "n_pieces": 2, "src_start": 710.48, "src_end": 797.624, "edit_notes": [], "video": "QWIvgoTQGKk/02_w04.mp4", "lines": [{"kind": "say", "t": 0.3, "src": 710.48, "spk": "speaker_0", "text": "నేను కొన్ని most important topic మాట్లాడాలనుకుంటున్నాను అదే మన శోభనం గురించి మన first night అనేది నీ ఇష్టమే I am not that desperate", "parts": [{"t": "నేను కొన్ని most important topic మాట్లాడాలనుకుంటున్నాను"}, {"t": "అదే", "k": "u", "tip": "Low ASR confidence (p = 0.5)\nre-listened: the audio agrees with the transcript"}, {"t": "మన శోభనం గురించి మన first night అనేది నీ ఇష్టమే I am not that desperate"}]}, {"kind": "cut", "dur": 10.4, "text": "పెళ్లి చూపుల నుంచి ఇప్పటిదాకా ప్రతిదీ రష్ రష్ గా అయిపోయింది ఇది కూడా అంత రష్ గా అవ్వాలనుకోవట్లేదు so అంతా నీ ఇష్టంతోనే అవ్వాలనుకుంటున్నాను."}, {"kind": "say", "t": 10.96, "src": 735.064, "spk": "speaker_0", "text": "But I want one thing."}, {"kind": "say", "t": 16.34, "src": 740.444, "spk": "speaker_1", "text": "ఏంటది?"}, {"kind": "say", "t": 18.58, "src": 742.684, "spk": "speaker_0", "text": "రోజూ నువ్వు నా heart తో communicate అవ్వాలి."}, {"kind": "say", "t": 22.0, "src": 746.104, "spk": "speaker_1", "text": "ఆ!"}, {"kind": "say", "t": 24.0, "src": 748.104, "spk": "speaker_0", "text": "ఇంకా అర్థం కాలేదా. రోజు నాకు hug కావాలంటున్నాను. అంటే husbands ఇంటి నుంచి బయటికి వెళ్ళేటప్పుడు wives send off ఇస్తారు కదా. అలానే send off అనేది hug రూపంలో కావాలంటున్నాను. Okay నా."}, {"kind": "say", "t": 51.02, "src": 775.124, "spk": "speaker_1", "text": "Send off ఎప్పుడన్నా ఇరుకుదా, ఇప్పుడు కాదు కదా."}, {"kind": "say", "t": 58.36, "src": 782.464, "spk": "speaker_0", "text": "అయ్యో send off అని fix అయ్యానే అనవసరంగా. ఛా, ఛా, బుర్ర లేని మదక్, బుర్ర లేని మదక్. అనవసరంగా send off అని చెప్పావు కదరా. hug direct గా అడగొచ్చు కదరా. చెత్త అదబ్బా, చెత్త అదబ్బా. కనీసం అడగడం కూడా రాదు కదరా నీకు. ఎందుకురా నువ్వు పుట్టి? ఛీ.", "parts": [{"t": "అయ్యో", "k": "u", "tip": "Low ASR confidence (p = 0.43)\nre-listened: the audio agrees with the transcript"}, {"t": "send off అని fix"}, {"t": "అయ్యానే అనవసరంగా.", "k": "fix", "tip": "ASR fix (audio re-listen, confidence 0.95)\nScribe heard: చెయ్యనే అనాసరం గా.\nWhy: clearly says fix అయ్యానే అనవసరంగా"}, {"t": "ఛా, ఛా, బుర్ర లేని"}, {"t": "మదక్,", "k": "u", "tip": "Low ASR confidence (p = 0.467)\ntext-only guess: \"మద్దెల,\" (not applied); re-listened: the audio agrees with the transcript"}, {"t": "బుర్ర లేని మదక్. అనవసరంగా send off అని చెప్పావు కదరా. hug direct గా అడగొచ్చు కదరా. చెత్త అదబ్బా, చెత్త అదబ్బా. కనీసం అడగడం కూడా రాదు కదరా నీకు. ఎందుకురా నువ్వు పుట్టి? ఛీ."}]}]}, {"rank": 3, "id": "w01", "title": "చాయ్ అంటే emotion రా బాబు", "hook": "అయినా నీకు చాయ్ గోలేంట్రా?", "why": "Hooked by a passionate monologue celebrating chai, paying off with a witty punchline about having T-positive blood.", "flags": [], "tier": "recommended", "category": "web_series · standalone · humour", "score": 4.0, "scores": {"hook": 4.0, "standalone": 4.0, "payoff": 3.5, "value_emotion": 4.0, "overall": 4.0}, "duration": 38.8, "n_pieces": 1, "src_start": 221.6, "src_end": 260.36, "edit_notes": [], "video": "QWIvgoTQGKk/03_w01.mp4", "lines": [{"kind": "say", "t": 0.22, "src": 221.6, "spk": "speaker_0", "text": "అయినా నీకు చాయ్ గోలేంట్రా? ఏంటి చాయ్ గోలా అసలు చాయ్ అంటే ఏమనుకుంటున్నారు. It's a emotion, it's a therapy. morning లేవాలన్నా చాయ్, ఓపిక రావాలన్నా చాయ్, ఆకలి ఆపాలన్నా చాయ్, ఆలోచన రావాలన్నా చాయ్. ఆఖరికి climate బాగున్నా, mood బాగోపోయినా, కొత్త పరిచయాలు అవ్వాలన్నా, పాత పరిచయాలతో time pass చేయాలన్నా దేనికైనా చాయ్ చాయ్ చాయ్. హ్మ్ అవునురా ఎవరైనా blood group అడిగితే B positive అని చెప్తున్నవా లేకపోతే T positive అని చెప్తున్నవా ఏకసకాలే వద్దనేది", "parts": [{"t": "అయినా నీకు చాయ్ గోలేంట్రా? ఏంటి చాయ్ గోలా అసలు చాయ్ అంటే ఏమనుకుంటున్నారు. It's a emotion, it's a therapy. morning లేవాలన్నా చాయ్, ఓపిక రావాలన్నా చాయ్, ఆకలి ఆపాలన్నా చాయ్, ఆలోచన రావాలన్నా చాయ్. ఆఖరికి climate బాగున్నా, mood బాగోపోయినా, కొత్త పరిచయాలు అవ్వాలన్నా, పాత పరిచయాలతో time pass చేయాలన్నా దేనికైనా చాయ్ చాయ్ చాయ్. హ్మ్ అవునురా ఎవరైనా blood"}, {"t": "group అడిగితే", "k": "fix", "tip": "ASR fix (audio re-listen, confidence 0.95)\nScribe heard: గుర పడితే\nWhy: clearly says 'group అడిగితే'"}, {"t": "B positive అని చెప్తున్నవా లేకపోతే T positive అని చెప్తున్నవా ఏకసకాలే వద్దనేది"}]}]}, {"rank": 4, "id": "w08", "title": "మొదటి రోజే దొరికిపోతుందా?", "hook": "first day నే దొరికిపోయేలా ఉన్నావు కదా.", "why": "Hooked by the bride's fear of poisoning her husband with bad tea, paying off with the mother-in-law saving the day.", "flags": [], "tier": "worth_a_look", "category": "web_series · standalone · humour", "score": 3.5, "scores": {"hook": 3.5, "standalone": 4.0, "payoff": 4.0, "value_emotion": 3.5, "overall": 3.5}, "duration": 25.8, "n_pieces": 3, "src_start": 159.98, "src_end": 188.66, "edit_notes": ["Lifted L0022 (2.1 s) to the front; skipped in place, not replayed. Amrutha's panicked realization ('first day నే దొరికిపోయేలా ఉన్నావు కదా.') creates instant intrigue about what secret she is trying t…"], "video": "QWIvgoTQGKk/04_w08.mp4", "lines": [{"kind": "say", "t": 0.12, "src": 167.04, "spk": "speaker_1", "text": "first day నే దొరికిపోయేలా ఉన్నావు కదా.", "parts": [{"t": "first", "k": "u", "tip": "Low ASR confidence (p = 0.484)\nre-listened: the audio agrees with the transcript"}, {"t": "day నే దొరికిపోయేలా ఉన్నావు కదా."}]}, {"kind": "jump", "src": 159.98}, {"kind": "say", "t": 2.12, "src": 159.98, "spk": "speaker_0", "text": "మరి పెట్టావా?"}, {"kind": "say", "t": 3.28, "src": 161.14, "spk": "speaker_1", "text": "ఆ ఆ అదే పనిలో ఉన్నా"}, {"kind": "say", "t": 4.7, "src": 162.56, "spk": "speaker_0", "text": "ఓ సరే"}, {"kind": "cut", "dur": 1.8, "text": "first day నే దొరికిపోయేలా ఉన్నావు కదా.", "parts": [{"t": "first", "k": "u", "tip": "Low ASR confidence (p = 0.484)\nre-listened: the audio agrees with the transcript"}, {"t": "day నే దొరికిపోయేలా ఉన్నావు కదా."}]}, {"kind": "say", "t": 7.55, "src": 169.42, "spk": "speaker_1", "text": "ఏం చేయాలి? నేను పెట్టే చాయ్ తాగేయ్ అన్నా అయితే, పెళ్లి చేసుకొని next day నే మొగుడికి చాయ్ ఇచ్చి చంపేసిన భార్య అని paper లో వస్తే. అమ్మో! అమృత ఇప్పుడెలానే.", "parts": [{"t": "ఏం చేయాలి? నేను పెట్టే చాయ్ తాగేయ్ అన్నా అయితే, పెళ్లి చేసుకొని next day"}, {"t": "నే", "k": "fix", "tip": "ASR fix (audio re-listen, confidence 0.95)\nScribe heard: న\nWhy: clearly says 'నే'"}, {"t": "మొగుడికి చాయ్ ఇచ్చి చంపేసిన భార్య అని paper లో వస్తే. అమ్మో! అమృత"}, {"t": "ఇప్పుడెలానే.", "k": "fix", "tip": "ASR fix (audio re-listen, confidence 0.95)\nScribe heard: ఇప్పుడెలా అనే.\nWhy: clearly says 'ఇప్పుడెలానే' as a single word"}]}, {"kind": "say", "t": 19.31, "src": 181.18, "spk": "speaker_0", "text": "అమ్మా అమృత"}, {"kind": "say", "t": 19.87, "src": 181.74, "spk": "speaker_1", "text": "ఊ"}, {"kind": "say", "t": 20.77, "src": 182.64, "spk": "speaker_0", "text": "ఇదిగో"}, {"kind": "say", "t": 21.37, "src": 183.24, "spk": "speaker_1", "text": "ఊ"}, {"kind": "say", "t": 21.41, "src": 183.28, "spk": "speaker_0", "text": "ఇది నీకు, ఇది మా వాడికి"}, {"kind": "say", "t": 26.03, "src": 187.9, "spk": "speaker_1", "text": "బ్రతికించారు", "parts": [{"t": "బ్రతికించారు", "k": "fix", "tip": "ASR fix (audio re-listen, confidence 0.95)\nScribe heard: ప్రతికించారు\nWhy: clearly says 'బ్రతికించారు'"}]}]}, {"rank": 5, "id": "w03", "title": "మిర్చి బజ్జి చేస్తూ దొరికిపోతుందా?", "hook": "బయట climate అదిరిపోయింది తెలుసా అందుకే", "why": "Hooked by an insistence to watch her cook bajji, paying off with her panic as he hypes her nonexistent skills.", "flags": [], "tier": "worth_a_look", "category": "web_series · promo · humour", "score": 3.5, "scores": {"hook": 3.0, "standalone": 4.0, "payoff": 4.0, "value_emotion": 4.0, "overall": 3.5}, "duration": 92.7, "n_pieces": 2, "src_start": 1130.624, "src_end": 1252.624, "edit_notes": [], "video": "QWIvgoTQGKk/05_w03.mp4", "lines": [{"kind": "say", "t": 0.17, "src": 1130.624, "spk": "speaker_0", "text": "బయట climate అదిరిపోయింది తెలుసా అందుకే snacks గా మిర్చి బజ్జి తినడానికి వచ్చాను."}, {"kind": "say", "t": 7.83, "src": 1138.284, "spk": "speaker_1", "text": "ఆ సరే మీరు room కి వెళ్లి fresh అయ్యి అక్కడే ఉండండి. నేను చేసి తీసుకొస్తాను."}, {"kind": "say", "t": 14.99, "src": 1145.444, "spk": "speaker_0", "text": "No no no no ఈసారి మాత్రం నువ్వు చేస్తూ ఉంటే నేను చూద్దామని fix అయిపోయాను."}, {"kind": "say", "t": 20.87, "src": 1151.324, "spk": "speaker_1", "text": "అయ్యో మీరు tired అయి ఉంటారు. ఎందుకు మీరు లోపలికి వెళ్ళండి. నేను తీసుకొస్తాను."}, {"kind": "say", "t": 26.03, "src": 1156.484, "spk": "speaker_0", "text": "ఆ లేదు లేదు లేదు నిన్ను చూస్తూ ఉంటే ఆ tiredness పోతాది."}, {"kind": "cut", "dur": 19.9, "text": "పద సరేనా ఉమ్ ఉమ్ ఇప్పుడు ఏం చేయాలి"}, {"kind": "say", "t": 30.01, "src": 1189.344, "spk": "speaker_0", "text": "వసేయ్ మంగమ్మత్త ఏమన్నావే నీకు వచ్చిన పెళ్ళాం కనీసం gas stove off చేయడం on చేయడం కూడా రాదన్నావ్ కదా. అందరూ నీ కూతుర్లా ఉంటారనుకున్నావ్ ఏంటే నాకు వచ్చిన పెళ్ళాం నాకోసం మిర్చి బజ్జీలు వేస్తుందే మిర్చి బజ్జీలు రేయ్ ప్రకాశం ఆరోజు పులిహోర ఇవ్వరా అంటే ఏమన్నావ్ రా నా పెళ్ళాం నాకోసం ప్రేమతో వండింది నేను ఇవ్వనని చెప్పావు కదరా. అదేదో నీ పెళ్ళాంతో నేను పులిహోర కలిపినట్టు. రేయ్ ఇప్పుడు నాకు కూడా పెళ్ళాం వచ్చిందిరా. ఇప్పుడది పులిహోర కాదు బిర్యాని నుంచి బిస్మిల్లా బాత్ దాకా ప్రతీది వండుతది. Flashman కన్నా speed గా Kumari Anty కన్నా tasty గా అదిరిపోయేలా వండుతదిరా. ఇంక మీ పెళ్ళాలందరూ తన వంట చూసి తట్టాబుట్టా సర్దేసుకోవడమే. కమాన్ అమృత కమాన్ నువ్వు చెయ్ నువ్వు చేయడం నేను చూడాలి. నువ్వు చెయ్ నువ్వు చెయ్ నువ్వు చెయ్ నువ్వు చేయడం నేను చూడాలి. Please చెయ్ చెయ్", "parts": [{"t": "వసేయ్ మంగమ్మత్త ఏమన్నావే నీకు వచ్చిన పెళ్ళాం కనీసం gas stove off చేయడం on చేయడం కూడా రాదన్నావ్ కదా. అందరూ నీ కూతుర్లా ఉంటారనుకున్నావ్ ఏంటే నాకు వచ్చిన పెళ్ళాం నాకోసం మిర్చి బజ్జీలు వేస్తుందే మిర్చి బజ్జీలు రేయ్ ప్రకాశం ఆరోజు పులిహోర ఇవ్వరా అంటే ఏమన్నావ్ రా నా పెళ్ళాం నాకోసం ప్రేమతో వండింది నేను ఇవ్వనని చెప్పావు కదరా. అదేదో నీ పెళ్ళాంతో నేను పులిహోర కలిపినట్టు. రేయ్ ఇప్పుడు నాకు కూడా పెళ్ళాం వచ్చిందిరా. ఇప్పుడది పులిహోర కాదు బిర్యాని నుంచి బిస్మిల్లా బాత్ దాకా ప్రతీది వండుతది. Flashman కన్నా speed"}, {"t": "గా", "k": "u", "tip": "Low ASR confidence (p = 0.212)\nre-listened: the audio agrees with the transcript"}, {"t": "Kumari", "k": "u", "tip": "Low ASR confidence (p = 0.369)\nre-listened: the audio agrees with the transcript"}, {"t": "Anty", "k": "u", "tip": "Low ASR confidence (p = 0.279)\nre-listened: the audio agrees with the transcript"}, {"t": "కన్నా tasty గా అదిరిపోయేలా వండుతదిరా. ఇంక మీ పెళ్ళాలందరూ తన వంట చూసి తట్టాబుట్టా సర్దేసుకోవడమే. కమాన్ అమృత కమాన్ నువ్వు చెయ్ నువ్వు చేయడం నేను చూడాలి. నువ్వు చెయ్ నువ్వు చెయ్ నువ్వు చెయ్ నువ్వు చేయడం నేను చూడాలి. Please చెయ్ చెయ్"}]}, {"kind": "say", "t": 89.33, "src": 1248.664, "spk": "speaker_1", "text": "నేను red handed గా దొరికిపోయానేంటి ఇప్పుడు నేను ఏం చేయాలి"}]}, {"rank": 6, "id": "w05", "title": "Short girls తో ఇదే ప్రాబ్లమ్", "hook": "దేనికో waiting.", "why": "Hooked by a playful demand for a morning hug, paying off with the wife's witty shutdown to get him to work.", "flags": [], "tier": "worth_a_look", "category": "web_series · standalone · humour", "score": 3.5, "scores": {"hook": 3.0, "standalone": 4.0, "payoff": 4.0, "value_emotion": 3.5, "overall": 3.5}, "duration": 68.4, "n_pieces": 1, "src_start": 948.844, "src_end": 1017.224, "edit_notes": [], "video": "QWIvgoTQGKk/06_w05.mp4", "lines": [{"kind": "say", "t": 0.22, "src": 948.844, "spk": "speaker_1", "text": "దేనికో waiting."}, {"kind": "say", "t": 1.56, "src": 950.184, "spk": "speaker_0", "text": "అబ్బచ్చా! అప్పుడే మర్చిపోయావా?"}, {"kind": "say", "t": 5.16, "src": 953.784, "spk": "speaker_1", "text": "ఆ, ఏం మర్చిపోవడం?"}, {"kind": "say", "t": 8.44, "src": 957.064, "spk": "speaker_0", "text": "Night escape అయినట్టు ఇప్పుడు escape అవ్వలేవులే."}, {"kind": "say", "t": 12.98, "src": 961.604, "spk": "speaker_1", "text": "అర్థమైంది."}, {"kind": "say", "t": 17.64, "src": 966.264, "spk": "speaker_0", "text": "ఆ అమ్ములు."}, {"kind": "say", "t": 19.52, "src": 968.144, "spk": "speaker_1", "text": "ఉ."}, {"kind": "say", "t": 19.66, "src": 968.284, "spk": "speaker_0", "text": "ఏంటమ్మా ఇది? నేనేం చెప్పా? నా heart తో communicate చెయ్యమని చెప్పా. మరి ఇలా half-off చేస్తే ఎలా? This is why I love short girls. ఇంతకీ నా heart నీతో ఏం communicate చేస్తుంది?", "parts": [{"t": "ఏంటమ్మా ఇది? నేనేం చెప్పా? నా heart తో communicate చెయ్యమని చెప్పా. మరి ఇలా"}, {"t": "half-off", "k": "fix", "tip": "ASR fix (audio re-listen, confidence 0.85)\nScribe heard: hop off\nWhy: clearly says half off / hop off is misheard"}, {"t": "చేస్తే ఎలా? This is why I love short girls. ఇంతకీ నా heart నీతో ఏం communicate చేస్తుంది?"}]}, {"kind": "say", "t": 64.88, "src": 1013.504, "spk": "speaker_1", "text": "త్వరగా office కి వెళ్ళమని చెప్తుంది."}, {"kind": "say", "t": 67.44, "src": 1016.064, "spk": "speaker_0", "text": "అబ్బచ్చా!"}, {"kind": "say", "t": 68.26, "src": 1016.884, "spk": "speaker_1", "text": "Bye."}]}, {"rank": 7, "id": "w06", "title": "అమ్మ వేసిన మాస్టర్ ప్లాన్", "hook": "Plain దోశా.", "why": "Hooked by a request for egg dosa, paying off with the mother's secret multi-dosa stash making her look talented.", "flags": [], "tier": "worth_a_look", "category": "web_series · standalone · humour", "score": 3.5, "scores": {"hook": 3.0, "standalone": 4.0, "payoff": 3.5, "value_emotion": 3.5, "overall": 3.5}, "duration": 86.0, "n_pieces": 1, "src_start": 839.284, "src_end": 925.244, "edit_notes": [], "video": "QWIvgoTQGKk/07_w06.mp4", "lines": [{"kind": "say", "t": 0.02, "src": 839.284, "spk": "speaker_0", "text": "Plain దోశా. ఓహ్! Sorry నీకు చెప్పడం మర్చిపోయాను. నాకు egg దోశ అంటే ఇష్టం. నాకోసం ఒక్క egg దోశ వేసుకొని వస్తావా? Please."}, {"kind": "say", "t": 14.66, "src": 853.924, "spk": "speaker_1", "text": "అమ్మా! book అయిపోయాను. Egg దోశ కావాలంటావ్."}, {"kind": "say", "t": 18.24, "src": 857.504, "spk": "speaker_2", "text": "ఆ box పక్కన ఉన్న ఇంకో box చూడమ్మా."}, {"kind": "say", "t": 21.82, "src": 861.084, "spk": "speaker_1", "text": "ఆ."}, {"kind": "say", "t": 22.52, "src": 861.784, "spk": "speaker_2", "text": "అందులో పైన రెండు normal దోశలు. next onion దోశ. ఆ next masala దోశ. last లో ఉంది చూడు egg దోశ."}, {"kind": "say", "t": 37.66, "src": 876.924, "spk": "speaker_1", "text": "సూపర్ అమ్మా నువ్వు."}, {"kind": "say", "t": 44.3, "src": 883.564, "spk": "speaker_0", "text": "Super ఉంది తెలుసా? నాకోసం ఇంకొక egg దోశ వేస్తావా? Please.", "parts": [{"t": "Super", "k": "u", "tip": "Low ASR confidence (p = 0.474)\nre-listened: the audio agrees with the transcript"}, {"t": "ఉంది తెలుసా? నాకోసం ఇంకొక egg దోశ వేస్తావా? Please."}]}, {"kind": "say", "t": 52.08, "src": 891.344, "spk": "speaker_1", "text": "ఆ, ఇంట్లో ఒక్క egg ఏ ఉంది. అందుకే ఒక్క egg దోశనే వేశా."}, {"kind": "say", "t": 56.78, "src": 896.044, "spk": "speaker_0", "text": "ఒక egg ఏ ఉందా?"}, {"kind": "say", "t": 57.8, "src": 897.064, "spk": "speaker_1", "text": "ఆ."}, {"kind": "say", "t": 58.54, "src": 897.804, "spk": "speaker_0", "text": "మొన్నే తెచ్చానే. మా నాన్న ముందులో మంచిం కోసం అంతా తినేసి ఉంటాడు."}, {"kind": "say", "t": 63.24, "src": 902.504, "spk": "speaker_1", "text": "కావాలంటే onion దోశ, masala దోశ వేస్తా. ఉ."}, {"kind": "say", "t": 68.4, "src": 907.664, "spk": "speaker_0", "text": "సరే."}, {"kind": "say", "t": 75.52, "src": 914.784, "spk": "speaker_1", "text": "ఆ."}, {"kind": "say", "t": 75.56, "src": 914.824, "spk": "speaker_0", "text": "అసలు దోశ మెల్లె రాకుండా బల్లె దోశలు వేస్తుందే. So talented."}]}, {"rank": 8, "id": "w07", "title": "అబద్ధాలు చెప్పి పెళ్లి చేశావా అమ్మా?", "hook": "పెళ్ళికి ముందు ఏమన్నావే?", "why": "Hooked by the daughter confronting her mom over wedding lies, paying off with the mom teasing an unrevealed idea.", "flags": [], "tier": "below_threshold", "category": "web_series · standalone · humour", "score": 3.0, "scores": {"hook": 3.5, "standalone": 4.0, "payoff": 3.0, "value_emotion": 3.0, "overall": 3.0}, "duration": 38.0, "n_pieces": 1, "src_start": 401.58, "src_end": 439.6, "edit_notes": [], "video": "QWIvgoTQGKk/08_w07.mp4", "lines": [{"kind": "say", "t": 0.3, "src": 401.58, "spk": "speaker_1", "text": "పెళ్ళికి ముందు ఏమన్నావే? అమ్మా!"}, {"kind": "say", "t": 3.84, "src": 405.12, "spk": "speaker_2", "text": "ఉమ్"}, {"kind": "say", "t": 4.66, "src": 405.94, "spk": "speaker_1", "text": "అబద్ధాలు చెప్పి పెళ్లి చేసుకోవడం correct ఏనా?"}, {"kind": "say", "t": 7.14, "src": 408.42, "spk": "speaker_2", "text": "ఊ ఊ వెయ్యి అబద్ధాలు ఆడి అయినా ఓ పెళ్లి చేయమన్నారే ఎక్కువగా ఆలోచించకు.", "parts": [{"t": "ఊ", "k": "u", "tip": "Low ASR confidence (p = 0.339)\nre-listened: the audio agrees with the transcript"}, {"t": "ఊ", "k": "u", "tip": "Low ASR confidence (p = 0.309)\nre-listened: the audio agrees with the transcript"}, {"t": "వెయ్యి అబద్ధాలు ఆడి అయినా ఓ పెళ్లి చేయమన్నారే ఎక్కువగా ఆలోచించకు."}]}, {"kind": "say", "t": 15.6, "src": 416.88, "spk": "speaker_1", "text": "నువ్వేమో వంద అబద్ధాలు ఆడినా తప్పులేదంటావ్ ఆయనేమో అబద్ధం అన్న పేరెత్తితేనే fire అయిపోతున్నాడు. ఇలా ఎరికిన్చేసావెంటమ్మా. అదంతా సరిపోదన్నట్టు ఇప్పుడొచ్చి క్యారేజ్ పెడతది dinner చేస్తది అని శివగామిలా హామీలు ఇస్తున్నావ్. ఇప్పుడు నన్ను ఏం చేయమంటావ్?", "parts": [{"t": "నువ్వేమో వంద అబద్ధాలు ఆడినా తప్పులేదంటావ్ ఆయనేమో అబద్ధం అన్న"}, {"t": "పేరెత్తితేనే", "k": "fix", "tip": "ASR fix (audio re-listen, confidence 0.98)\nScribe heard: parent ఏనే\nWhy: clearly says perethithene"}, {"t": "fire అయిపోతున్నాడు. ఇలా ఎరికిన్చేసావెంటమ్మా. అదంతా సరిపోదన్నట్టు ఇప్పుడొచ్చి క్యారేజ్ పెడతది dinner చేస్తది అని శివగామిలా హామీలు ఇస్తున్నావ్. ఇప్పుడు నన్ను ఏం చేయమంటావ్?"}]}, {"kind": "say", "t": 30.52, "src": 431.8, "spk": "speaker_2", "text": "ఉమ్ Idea! హుమ్"}, {"kind": "say", "t": 35.22, "src": 436.5, "spk": "speaker_1", "text": "ఏంటి?"}, {"kind": "say", "t": 36.42, "src": 437.7, "spk": "speaker_2", "text": "చెప్పను చేసి చూపిస్తానే."}]}]}]</script>
+<script>
+const RUN = "ws_r1";
+const DATA = JSON.parse(document.getElementById("data").textContent);
+const KEY = "shotvi-ratings:" + RUN;
+const QS = [["hook","Hook","grabs in the first 3s?"],["standalone","Stands alone","makes sense without the podcast?"],
+            ["payoff","Payoff","ends on a real ending?"],["overall","Overall","as a Reel/Short"]];
+const clips = [];
+DATA.forEach(v => v.clips.forEach(c => clips.push({...c, video_id: v.video_id})));
+const keyOf = c => c.video_id + "/" + c.id;
+
+let store = {};
+try { store = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) { store = {}; }
+function save() { try { localStorage.setItem(KEY, JSON.stringify(store)); } catch (e) {} flash(); progress(); navMarks(); }
+function flash() { const s = document.querySelector(".saved"); if (!s) return; s.classList.add("show"); clearTimeout(s._t); s._t = setTimeout(() => s.classList.remove("show"), 900); }
+const esc = s => String(s ?? "").replace(/[&<>"]/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[ch]));
+const mmss = t => { t = Math.max(0, t || 0); const m = Math.floor(t / 60), s = Math.floor(t % 60); return m + ":" + String(s).padStart(2, "0"); };
+const isDone = c => { const r = store[keyOf(c)] || {}; return r.overall && r.post; };
+
+function progress() {
+  const n = clips.filter(isDone).length;
+  document.getElementById("progress").innerHTML = `${n} / ${clips.length} rated <span class="bar"><i style="width:${100 * n / clips.length}%"></i></span>`;
+}
+function navMarks() {
+  document.querySelectorAll("nav a").forEach(a => {
+    const c = clips[+a.dataset.i], r = store[keyOf(c)] || {};
+    a.querySelector(".st").textContent = isDone(c) ? (r.post === "yes" ? "✓ post" : r.post === "no" ? "✗ skip" : "✓") : "";
+  });
+}
+
+const asrTip = document.createElement("div"); asrTip.className = "asrtip te"; document.body.appendChild(asrTip);
+function asrParts(ps) {
+  return ps.map(p => p.k === "fix" ? `<span class="fix" tabindex="0" data-tip="${esc(p.tip)}">${esc(p.t)}</span>`
+    : p.k === "u" ? `<span class="unsure" tabindex="0" data-tip="${esc(p.tip)}">${esc(p.t)}<span class="qm">(?)</span></span>`
+    : esc(p.t)).join(" ");
+}
+const asrKey = c => c.lines.some(l => l.parts) ? `<span class="asrkey"><span class="fix">corrected</span> = ASR fix, hover or tap to see what Scribe heard · <span class="qm">(?)</span> = low ASR confidence</span>` : "";
+function asrShow(el) {
+  asrTip.textContent = el.dataset.tip; asrTip.style.display = "block";
+  const r = el.getBoundingClientRect(), w = asrTip.offsetWidth, h = asrTip.offsetHeight;
+  let y = r.bottom + 6; if (y + h > innerHeight - 8) y = r.top - h - 6;
+  asrTip.style.left = Math.max(8, Math.min(r.left, innerWidth - w - 8)) + "px"; asrTip.style.top = Math.max(8, y) + "px";
+}
+const asrHide = () => { asrTip.style.display = "none"; };
+document.addEventListener("mouseover", e => { const el = e.target.closest && e.target.closest("[data-tip]"); if (el) asrShow(el); });
+document.addEventListener("mouseout", e => { if (e.target.closest && e.target.closest("[data-tip]")) asrHide(); });
+document.addEventListener("focusin", e => { if (e.target.dataset && e.target.dataset.tip) asrShow(e.target); });
+document.addEventListener("focusout", asrHide);
+document.addEventListener("scroll", asrHide, true);
+// tap / click on a marked word shows its note and does not seek the video
+document.addEventListener("click", e => { const el = e.target.closest && e.target.closest("[data-tip]");
+  if (el) { e.stopPropagation(); asrShow(el); } else asrHide(); }, true);
+function buildNav() {
+  let h = "", i = 0;
+  DATA.forEach(v => {
+    h += `<h2>${esc(v.video_id)} · top ${v.clips.length} of ${v.n_total}</h2>`;
+    v.clips.forEach(c => { h += `<a href="#" data-i="${i}"><span class="rk">#${c.rank}</span><span class="tt te">${esc(c.title)}</span><span class="st"></span></a>`; i++; });
+  });
+  const nav = document.getElementById("nav"); nav.innerHTML = h;
+  nav.onclick = e => { const a = e.target.closest("a"); if (!a) return; e.preventDefault(); show(+a.dataset.i); };
+  navMarks();
+}
+
+let cur = 0;
+function show(i) {
+  cur = Math.max(0, Math.min(clips.length - 1, i));
+  const c = clips[cur], r = store[keyOf(c)] || {};
+  document.querySelectorAll("nav a").forEach(a => a.classList.toggle("on", +a.dataset.i === cur));
+  const chips = [`${c.duration}s`, `${c.n_pieces} pieces`, `source ${mmss(c.src_start)}–${mmss(c.src_end)}`, c.category,
+                 (c.score != null ? `pipeline ${c.score} · ${c.tier}` : null)].filter(Boolean).map(x => `<span class="chip">${esc(x)}</span>`).join("")
+              + c.flags.map(f => `<span class="chip flag">${esc(f.replace(/_/g, " "))}</span>`).join("");
+  let tx = "";
+  c.lines.forEach((ln, k) => {
+    if (ln.kind === "cut") {
+      tx += `<details class="cut"><summary>✂ cut ${ln.dur}s — show words</summary><div class="ct te">${ln.parts ? asrParts(ln.parts) : esc(ln.text)}</div></details>`;
+    } else if (ln.kind === "jump") {
+      tx += `<div class="jump">↺ jumps back to ${mmss(ln.src)} (reordered)</div>`;
+    } else {
+      tx += `<div class="ln" data-t="${ln.t}"><div class="t">${mmss(ln.t)}<small>@${mmss(ln.src)}</small></div>` +
+            `<div class="te"><span class="s ${esc(ln.spk)}">${esc(ln.spk)}</span>${ln.parts ? asrParts(ln.parts) : esc(ln.text)}</div></div>`;
+    }
+  });
+  const seg = (q) => `<div class="seg" data-q="${q}">` + [1,2,3,4,5].map(n => `<button data-v="${n}" class="${r[q] == n ? "on" : ""}">${n}</button>`).join("") + `</div>`;
+  const rate = QS.map(([q, lab, sub]) => `<div class="q"><label>${lab} <span>${sub}</span></label>${seg(q)}</div>`).join("") +
+    `<div class="q"><label>Would you post it?</label><div class="seg yn" data-q="post">` +
+    ["yes", "maybe", "no"].map(v => `<button data-v="${v}" class="${r.post === v ? "on" : ""}">${v}</button>`).join("") + `</div></div>` +
+    `<div class="q notes"><label>Notes <span>what works, what's off (cut too early, missing context, weak ending…)</span> <span class="saved">saved</span></label>` +
+    `<textarea id="notes" class="te" placeholder="optional">${esc(r.notes || "")}</textarea></div>`;
+  document.getElementById("clip").innerHTML = `
+    <div class="head">
+      <h2 class="te">#${c.rank} ${esc(c.title)}</h2>
+      <div class="chips">${chips}</div>
+      <div class="meta">
+        <div><b>Hook</b><span class="te">${esc(c.hook)}</span></div>
+        <div><b>Why</b>${esc(c.why)}</div>
+        ${c.edit_notes.filter(Boolean).map(n => `<div><b>Edit</b>${esc(n)}</div>`).join("")}
+      </div>
+    </div>
+    <div class="grid">
+      <div class="player">
+        <video id="v" controls preload="metadata" src="${esc(c.video)}"></video>
+        <div class="navrow">
+          <button class="btn" id="prev">← Prev</button><button class="btn" id="next">Next →</button>
+          <span class="hint">click a transcript line to jump · ←/→ to switch clips</span>
+        </div>
+      </div>
+      <div class="tx"><h3>Transcript (preview time · @episode time)</h3>${asrKey(c)}${tx}</div>
+    </div>
+    <div class="rate">${rate}</div>`;
+  const v = document.getElementById("v");
+  document.querySelectorAll(".ln").forEach(el => el.onclick = () => { v.currentTime = +el.dataset.t; v.play(); });
+  const lns = [...document.querySelectorAll(".ln")];
+  v.ontimeupdate = () => {
+    let on = -1;
+    lns.forEach((el, k) => { if (+el.dataset.t <= v.currentTime + 0.05) on = k; });
+    lns.forEach((el, k) => el.classList.toggle("now", k === on));
+  };
+  document.getElementById("prev").onclick = () => show(cur - 1);
+  document.getElementById("next").onclick = () => show(cur + 1);
+  document.querySelectorAll(".seg").forEach(s => s.onclick = e => {
+    const b = e.target.closest("button"); if (!b) return;
+    const rec = store[keyOf(c)] = store[keyOf(c)] || {};
+    const val = s.dataset.q === "post" ? b.dataset.v : +b.dataset.v;
+    rec[s.dataset.q] = rec[s.dataset.q] === val ? undefined : val;
+    s.querySelectorAll("button").forEach(x => x.classList.toggle("on", String(rec[s.dataset.q]) === x.dataset.v));
+    save();
+  });
+  const ta = document.getElementById("notes");
+  ta.oninput = () => { (store[keyOf(c)] = store[keyOf(c)] || {}).notes = ta.value; clearTimeout(ta._t); ta._t = setTimeout(save, 400); };
+  try { localStorage.setItem(KEY + ":cur", cur); } catch (e) {}
+}
+
+document.addEventListener("keydown", e => {
+  if (e.target.matches("textarea,input")) return;
+  if (e.key === "ArrowRight") show(cur + 1);
+  if (e.key === "ArrowLeft") show(cur - 1);
+});
+
+document.getElementById("dl").onclick = () => {
+  const cols = ["video_id","rank","clip_id","title","file","pipeline_overall","hook_1to5","standalone_1to5","payoff_1to5","overall_1to5","would_post","notes"];
+  const q = x => { x = String(x ?? ""); return /[",\n]/.test(x) ? '"' + x.replace(/"/g, '""') + '"' : x; };
+  const rows = clips.map(c => { const r = store[keyOf(c)] || {};
+    return [c.video_id, c.rank, c.id, c.title, c.video, c.score, r.hook, r.standalone, r.payoff, r.overall, r.post, r.notes].map(q).join(","); });
+  const blob = new Blob(["﻿" + cols.join(",") + "\n" + rows.join("\n") + "\n"], {type: "text/csv;charset=utf-8"});
+  const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = "ratings.csv"; a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+};
+
+const root = document.documentElement;
+try { const t = localStorage.getItem("shotvi-theme"); if (t) root.dataset.theme = t; } catch (e) {}
+document.getElementById("theme").onclick = () => {
+  const dark = root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+  root.dataset.theme = dark ? "light" : "dark";
+  try { localStorage.setItem("shotvi-theme", root.dataset.theme); } catch (e) {}
+};
+
+document.getElementById("run").textContent = "run " + RUN;
+buildNav(); progress();
+let start = 0; try { start = +(localStorage.getItem(KEY + ":cur") || 0); } catch (e) {}
+show(start);
+</script>
+</body>
+</html>

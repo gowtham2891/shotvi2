@@ -1,0 +1,952 @@
+{
+ "method": "judged from text and context only (no audio; no LLM). verdicts: right/wrong/unsure for lexical changes; neutral = filler/spelling/segmentation with no meaning change; style = English<->Telugu script swap",
+ "key": [
+  {
+   "t": 187.9,
+   "want": "బ్రతికించారు",
+   "A": "ప్రతికించారు",
+   "B": "ప్రతికించారు",
+   "B_result": "unchanged (wrong)",
+   "relisten": "fixed"
+  },
+  {
+   "t": 254.7,
+   "want": "blood group అడిగితే",
+   "A": "blood గుర పడితే",
+   "B": "blood గుడిపడితే",
+   "B_result": "changed, still wrong",
+   "relisten": "fixed"
+  },
+  {
+   "t": 371.8,
+   "want": "cook ను",
+   "A": "కుక్కను",
+   "B": "cook ని",
+   "B_result": "fixed",
+   "relisten": "missed (conf 0.84, not flagged)"
+  },
+  {
+   "t": 1224.9,
+   "want": "బిసిబేళ బాత్ (unsure)",
+   "A": "బిస్మిల్లా బాత్",
+   "B": "బిస్మిల్లా బాత్",
+   "B_result": "unchanged",
+   "relisten": "missed"
+  },
+  {
+   "t": 972.6,
+   "want": "half (unsure)",
+   "A": "hop off",
+   "B": "hop off",
+   "B_result": "unchanged",
+   "relisten": "half-off (applied, 0.85)"
+  },
+  {
+   "t": 290.3,
+   "want": "ఏం వండావు",
+   "A": "ఏం వండవు",
+   "B": "ఏం వండావ్",
+   "B_result": "fixed",
+   "relisten": "missed (conf 0.80, not flagged)"
+  },
+  {
+   "t": 775.8,
+   "want": "ఇవ్వొచ్చు కదా",
+   "A": "ఎప్పుడన్నా ఇరుకుదా",
+   "B": "అప్పుడన్నారు కదా",
+   "B_result": "changed, still wrong (and ఎప్పుడన్నా lost)",
+   "relisten": "missed"
+  }
+ ],
+ "outside_key_counts": {
+  "unsure": 24,
+  "neutral": 36,
+  "style": 9,
+  "right": 13,
+  "wrong": 12
+ },
+ "changes": [
+  {
+   "i": 0,
+   "t": 156.88,
+   "a": "అయ్యా",
+   "b": "యా",
+   "verdict": "unsure",
+   "key_item": false,
+   "note": "stutter యా/అయ్యా"
+  },
+  {
+   "i": 1,
+   "t": 161.68,
+   "a": "ఆ",
+   "b": "",
+   "verdict": "neutral",
+   "key_item": false,
+   "note": "filler ఆ dropped"
+  },
+  {
+   "i": 2,
+   "t": 167.04,
+   "a": "first day నే",
+   "b": "ఫస్ట్ డేనే",
+   "verdict": "style",
+   "key_item": false,
+   "note": "Latin->Telugu script"
+  },
+  {
+   "i": 3,
+   "t": 168.24,
+   "a": "ఉన్నావు కదా.",
+   "b": "ఉన్నావ్ కదే",
+   "verdict": "unsure",
+   "key_item": false,
+   "note": "ఉన్నావ్ కదే, self-talk; plausible"
+  },
+  {
+   "i": 4,
+   "t": 172.34,
+   "a": "అన్నా",
+   "b": "మన్నా",
+   "verdict": "right",
+   "key_item": false,
+   "note": "తాగేయ్ మన్నా = తాగేయమన్నా"
+  },
+  {
+   "i": 5,
+   "t": 174.08,
+   "a": "చేసుకొని next day న",
+   "b": "చేసుకున్న నెక్స్ట్ డేనే",
+   "verdict": "right",
+   "key_item": false,
+   "note": "పెళ్లి చేసుకున్న next day నే; matches relisten 'నే' (but Latin->Telugu script)"
+  },
+  {
+   "i": 6,
+   "t": 176.6,
+   "a": "paper లో",
+   "b": "పేపర్లో",
+   "verdict": "style",
+   "key_item": false,
+   "note": "Latin->Telugu script"
+  },
+  {
+   "i": 7,
+   "t": 187.86,
+   "a": "",
+   "b": "ఆ",
+   "verdict": "neutral",
+   "key_item": false,
+   "note": "filler"
+  },
+  {
+   "i": 8,
+   "t": 202.36,
+   "a": "ఒరేయ్",
+   "b": "అరేయ్",
+   "verdict": "unsure",
+   "key_item": false,
+   "note": "ఒరేయ్/అరేయ్"
+  },
+  {
+   "i": 9,
+   "t": 202.62,
+   "a": "పెట్టే. ఉమ్",
+   "b": "పెట్టా",
+   "verdict": "unsure",
+   "key_item": false,
+   "note": "పెట్టే/పెట్టా"
+  },
+  {
+   "i": 10,
+   "t": 211.84,
+   "a": "coffee",
+   "b": "కాఫీ",
+   "verdict": "style",
+   "key_item": false,
+   "note": "coffee->కాఫీ"
+  },
+  {
+   "i": 11,
+   "t": 228.28,
+   "a": "ఏమనుకుంటున్నారు. It's a",
+   "b": "ఏమనుకున్నారు ఇట్స్ ఏ",
+   "verdict": "style",
+   "key_item": false,
+   "note": "It's a->ఇట్స్ ఏ; tense ఏమనుకుంటున్నారు->ఏమనుకున్నారు unsure"
+  },
+  {
+   "i": 12,
+   "t": 230.64,
+   "a": "it's a",
+   "b": "ఇట్స్ ఏ",
+   "verdict": "style",
+   "key_item": false,
+   "note": "it's a->ఇట్స్ ఏ"
+  },
+  {
+   "i": 13,
+   "t": 232.2,
+   "a": "morning",
+   "b": "మార్నింగ్",
+   "verdict": "style",
+   "key_item": false,
+   "note": "morning->మార్నింగ్"
+  },
+  {
+   "i": 14,
+   "t": 254.74,
+   "a": "గుర పడితే",
+   "b": "గుడిపడితే",
+   "verdict": "wrong",
+   "key_item": true,
+   "note": "KEY blood group అడిగితే: still wrong (గుడిపడితే)"
+  },
+  {
+   "i": 15,
+   "t": 255.62,
+   "a": "చెప్తున్నవా",
+   "b": "చెప్తున్నావా",
+   "verdict": "right",
+   "key_item": false,
+   "note": "spelling చెప్తున్నావా"
+  },
+  {
+   "i": 16,
+   "t": 257.44,
+   "a": "చెప్తున్నవా ఏకసకాలే",
+   "b": "చెప్తున్నావా ఈ ఎగ సగా లే",
+   "verdict": "unsure",
+   "key_item": false,
+   "note": "both unclear"
+  },
+  {
+   "i": 17,
+   "t": 278.86,
+   "a": "అమ్మయ్య నాకోసం",
+   "b": "మమ్మయ్యా నా కోసం",
+   "verdict": "unsure",
+   "key_item": false,
+   "note": "అమ్మయ్య->మమ్మయ్యా, B looks wrong"
+  },
+  {
+   "i": 18,
+   "t": 290.32,
+   "a": "వండవు.",
+   "b": "వండావ్",
+   "verdict": "right",
+   "key_item": true,
+   "note": "KEY ఏం వండావ్"
+  },
+  {
+   "i": 19,
+   "t": 299.36,
+   "a": "వండవా ఉమ్ దే",
+   "b": "వండావా ఊ తేయ్ ఆ",
+   "verdict": "right",
+   "key_item": false,
+   "note": "నువ్వే వండావా"
+  },
+  {
+   "i": 20,
+   "t": 305.92,
+   "a": "హా",
+   "b": "ఆ",
+   "verdict": "neutral",
+   "key_item": false,
+   "note": "filler"
+  },
+  {
+   "i": 21,
+   "t": 307.48,
+   "a": "తనతో",
+   "b": "తనతోనే",
+   "verdict": "unsure",
+   "key_item": false,
+   "note": "తనతో/తనతోనే"
+  },
+  {
+   "i": 22,
+   "t": 309.8,
+   "a": "అవునయ్యా హా హా నాకోసం dinner వండుతావు కదా ఉమ్",
+   "b": "",
+   "verdict": "unsure",
+   "key_item": false,
+   "note": "re-segmented block, lost అవునయ్యా"
+  },
+  {
+   "i": 23,
+   "t": 311.06,
+   "a": "",
+   "b": "ఆ నాకోసం ఊ dinner వండుతావ్ కదా ఊ ఆ ఆ ఆ ఊ",
+   "verdict": "unsure",
+   "key_item": false,
+   "note": "re-segmented block, more fillers"
+  },
+  {
+   "i": 24,
+   "t": 332.24,
+   "a": "వెళ్లేటప్పుడు",
+   "b": "వెళ్ళేటప్పుడు",
+   "verdict": "neutral",
+   "key_item": false,
+   "note": "spelling variant"
+  },
+  {
+   "i": 25,
+   "t": 334.64,
+   "a": "ఊహూ",
+   "b": "",
+   "verdict": "neutral",
+   "key_item": false,
+   "note": "filler dropped"
+  },
+  {
+   "i": 26,
+   "t": 338.1,
+   "a": "బలే",
+   "b": "భలే",
+   "verdict": "right",
+   "key_item": false,
+   "note": "భలే"
+  },
+  {
+   "i": 27,
+   "t": 340.98,
+   "a": "బలే",
+   "b": "భలే",
+   "verdict": "right",
+   "key_item": false,
+   "note": "భలే"
+  },
+  {
+   "i": 28,
+   "t": 347.46,
+   "a": "అన్ని",
+   "b": "అన్నీ",
+   "verdict": "neutral",
+   "key_item": false,
+   "note": "అన్నీ"
+  },
+  {
+   "i": 29,
+   "t": 353.02,
+   "a": "అన్నావు",
+   "b": "అన్నావ్",
+   "verdict": "neutral",
+   "key_item": false,
+   "note": "అన్నావ్"
+  },
+  {
+   "i": 30,
+   "t": 361.92,
+   "a": "",
+   "b": "ఆ",
+   "verdict": "neutral",
+   "key_item": false,
+   "note": "filler"
+  },
+  {
+   "i": 31,
+   "t": 366.16,
+   "a": "ఆ మావోడు",
+   "b": "మా వాడు",
+   "verdict": "neutral",
+   "key_item": false,
+   "note": "మావోడు->మా వాడు (standardised)"
+  },
+  {
+   "i": 32,
+   "t": 371.84,
+   "a": "కుక్కను",
+   "b": "cook ని",
+   "verdict": "right",
+   "key_item": true,
+   "note": "KEY cook ని (key: cook ను)"
+  },
+  {
+   "i": 33,
+   "t": 377.46,
+   "a": "ఆ గోరించు.",
+   "b": "ఆగో రెంచూ!",
+   "verdict": "unsure",
+   "key_item": false,
+   "note": "both garbled, B lower conf"
+  },
+  {
+   "i": 34,
+   "t": 398.28,
+   "a": "ఆ",
+   "b": "",
+   "verdict": "neutral",
+   "key_item": false,
+   "note": "filler dropped"
+  },
+  {
+   "i": 35,
+   "t": 408.42,
+   "a": "ఊ ఊ",
+   "b": "ఉమ్",
+   "verdict": "neutral",
+   "key_item": false,
+   "note": "filler"
+  },
+  {
+   "i": 36,
+   "t": 422.5,
+   "a": "ఎరికిన్చేసావెంటమ్మా.",
+   "b": "ఎరికిచ్చేసావెంటమ్మా?",
+   "verdict": "neutral",
+   "key_item": false,
+   "note": "both wrong (ఇరికించేసావేంటమ్మా)"
+  },
+  {
+   "i": 37,
+   "t": 425.76,
+   "a": "క్యారేజ్",
+   "b": "carriage",
+   "verdict": "style",
+   "key_item": false,
+   "note": "క్యారేజ్->carriage, now consistent with the other 'carriage'"
+  },
+  {
+   "i": 38,
+   "t": 435.1,
+   "a": "హుమ్",
+   "b": "ఉమ్",
+   "verdict": "neutral",
+   "key_item": false,
+   "note": "filler"
+  },
+  {
+   "i": 39,
+   "t": 451.46,
+   "a": "అంత",
+   "b": "అంతా",
+   "verdict": "unsure",
+   "key_item": false,
+   "note": "అంత/అంతా"
+  },
+  {
+   "i": 40,
+   "t": 454.08,
+   "a": "hypeడ్",
+   "b": "hyped",
+   "verdict": "right",
+   "key_item": false,
+   "note": "hyped"
+  },
+  {
+   "i": 41,
+   "t": 458.16,
+   "a": "ఇంక ఎలా",
+   "b": "ఇంకెలా",
+   "verdict": "neutral",
+   "key_item": false,
+   "note": "joined"
+  },
+  {
+   "i": 42,
+   "t": 471.48,
+   "a": "ఓడకి",
+   "b": "ముందుకు",
+   "verdict": "wrong",
+   "key_item": false,
+   "note": "మండపం ఓడకి(=వోడికి) -> ముందుకు (0.35)"
+  },
+  {
+   "i": 43,
+   "t": 473.92,
+   "a": "డబ్బులు ఏమైనా",
+   "b": "డబ్బులేమైనా",
+   "verdict": "neutral",
+   "key_item": false,
+   "note": "joined"
+  },
+  {
+   "i": 44,
+   "t": 508.54,
+   "a": "మే",
+   "b": "మీ",
+   "verdict": "right",
+   "key_item": false,
+   "note": "మీ, agrees with relisten"
+  },
+  {
+   "i": 45,
+   "t": 521.78,
+   "a": "అరే",
+   "b": "అరేయ్",
+   "verdict": "neutral",
+   "key_item": false,
+   "note": "అరేయ్"
+  },
+  {
+   "i": 46,
+   "t": 553.84,
+   "a": "అరే!",
+   "b": "అరేయ్!",
+   "verdict": "neutral",
+   "key_item": false,
+   "note": "అరేయ్"
+  },
+  {
+   "i": 47,
+   "t": 662.44,
+   "a": "ఉందన్నాను.",
+   "b": "ఉందన్నారు.",
+   "verdict": "wrong",
+   "key_item": false,
+   "note": "నేనేమన్నాను ... ఉందన్నాను -> ఉందన్నారు"
+  },
+  {
+   "i": 48,
+   "t": 698.82,
+   "a": "పిలవచ్చు",
+   "b": "పిలవొచ్చు",
+   "verdict": "neutral",
+   "key_item": false,
+   "note": "పిలవొచ్చు"
+  },
+  {
+   "i": 49,
+   "t": 700.04,
+   "a": "ఆనికి",
+   "b": "ఆ నిక్",
+   "verdict": "right",
+   "key_item": false,
+   "note": "nickname (ఆ నిక్ నేమ్), agrees with relisten"
+  },
+  {
+   "i": 50,
+   "t": 700.58,
+   "a": "flashbacks",
+   "b": "కి flashback",
+   "verdict": "unsure",
+   "key_item": false,
+   "note": "కి flashback; plural lost"
+  },
+  {
+   "i": 51,
+   "t": 721.84,
+   "a": "పెళ్లి చూపుల",
+   "b": "పెళ్లిచూపుల",
+   "verdict": "right",
+   "key_item": false,
+   "note": "పెళ్లిచూపుల (glossary spelling)"
+  },
+  {
+   "i": 52,
+   "t": 724.14,
+   "a": "ప్రతిదీ",
+   "b": "ప్రతీది",
+   "verdict": "neutral",
+   "key_item": false,
+   "note": "spelling"
+  },
+  {
+   "i": 53,
+   "t": 754.72,
+   "a": "husbands",
+   "b": "husband",
+   "verdict": "unsure",
+   "key_item": false,
+   "note": "husbands->husband, generic statement; possible bias"
+  },
+  {
+   "i": 54,
+   "t": 757.06,
+   "a": "wives",
+   "b": "wife",
+   "verdict": "unsure",
+   "key_item": false,
+   "note": "wives->wife; possible bias"
+  },
+  {
+   "i": 55,
+   "t": 775.48,
+   "a": "ఎప్పుడన్నా ఇరుకుదా,",
+   "b": "అప్పుడన్నారు కదా.",
+   "verdict": "wrong",
+   "key_item": true,
+   "note": "KEY ఇవ్వొచ్చు కదా: B 'అప్పుడన్నారు కదా' also loses correct ఎప్పుడన్నా"
+  },
+  {
+   "i": 56,
+   "t": 788.36,
+   "a": "మదక్,",
+   "b": "వాడా",
+   "verdict": "unsure",
+   "key_item": false,
+   "note": "మదక్->వాడా (relisten text-only guess మద్దెల)"
+  },
+  {
+   "i": 57,
+   "t": 789.1,
+   "a": "మదక్. అనవసరంగా",
+   "b": "వాడా అనాసరం గా",
+   "verdict": "wrong",
+   "key_item": false,
+   "note": "అనవసరంగా -> అనాసరం గా"
+  },
+  {
+   "i": 58,
+   "t": 793.28,
+   "a": "అదబ్బా,",
+   "b": "అదో",
+   "verdict": "unsure",
+   "key_item": false,
+   "note": "అదబ్బా/అదో"
+  },
+  {
+   "i": 59,
+   "t": 793.82,
+   "a": "అదబ్బా.",
+   "b": "అదో",
+   "verdict": "unsure",
+   "key_item": false,
+   "note": "అదబ్బా/అదో"
+  },
+  {
+   "i": 60,
+   "t": 798.5,
+   "a": "రేయ్. ఆహ్,",
+   "b": "ఛీ ఆ",
+   "verdict": "unsure",
+   "key_item": false,
+   "note": "రేయ్/ఛీ"
+  },
+  {
+   "i": 61,
+   "t": 812.02,
+   "a": "ఇప్పుడెందుకు",
+   "b": "ఇప్పుడు ఎందుకు",
+   "verdict": "neutral",
+   "key_item": false,
+   "note": "split"
+  },
+  {
+   "i": 62,
+   "t": 813.36,
+   "a": "ఆహ్, చెయ్యించాలి",
+   "b": "ఆ చేయించాలి",
+   "verdict": "neutral",
+   "key_item": false,
+   "note": "spelling"
+  },
+  {
+   "i": 63,
+   "t": 817.28,
+   "a": "అదే,",
+   "b": "",
+   "verdict": "wrong",
+   "key_item": false,
+   "note": "repeated అదే dropped"
+  },
+  {
+   "i": 64,
+   "t": 820.74,
+   "a": "ఓహ్,",
+   "b": "ఓహో",
+   "verdict": "neutral",
+   "key_item": false,
+   "note": "ఓహో"
+  },
+  {
+   "i": 65,
+   "t": 833.9,
+   "a": "వేడిగుంది. ఆ!",
+   "b": "ఓహ్ పేడిగుంది",
+   "verdict": "wrong",
+   "key_item": false,
+   "note": "వేడిగుంది -> పేడిగుంది (0.38): 'dung' in a caption"
+  },
+  {
+   "i": 66,
+   "t": 842.54,
+   "a": "ఓహ్!",
+   "b": "",
+   "verdict": "neutral",
+   "key_item": false,
+   "note": "filler dropped"
+  },
+  {
+   "i": 67,
+   "t": 848.48,
+   "a": "నాకోసం ఒక్క",
+   "b": "నా కోసం ఒక",
+   "verdict": "neutral",
+   "key_item": false,
+   "note": "split/ఒక"
+  },
+  {
+   "i": 68,
+   "t": 849.78,
+   "a": "వేసుకొని",
+   "b": "చేసుకొని",
+   "verdict": "unsure",
+   "key_item": false,
+   "note": "దోశ వేసుకొని -> చేసుకొని; A more idiomatic"
+  },
+  {
+   "i": 69,
+   "t": 869.4,
+   "a": "",
+   "b": "ఆ",
+   "verdict": "neutral",
+   "key_item": false,
+   "note": "filler"
+  },
+  {
+   "i": 70,
+   "t": 877.14,
+   "a": "అమ్మా",
+   "b": "అమ్మ",
+   "verdict": "neutral",
+   "key_item": false,
+   "note": "అమ్మ"
+  },
+  {
+   "i": 71,
+   "t": 883.56,
+   "a": "Super ఉంది",
+   "b": "సూపర్ అమ్మ",
+   "verdict": "wrong",
+   "key_item": false,
+   "note": "Super ఉంది -> సూపర్ అమ్మ (0.27), repeats previous phrase"
+  },
+  {
+   "i": 72,
+   "t": 892.64,
+   "a": "ఒక్క",
+   "b": "ఒక",
+   "verdict": "wrong",
+   "key_item": false,
+   "note": "ఒక్క egg -> ఒక (loses 'only one')"
+  },
+  {
+   "i": 73,
+   "t": 894.54,
+   "a": "ఒక్క",
+   "b": "ఒక",
+   "verdict": "wrong",
+   "key_item": false,
+   "note": "ఒక్క -> ఒక"
+  },
+  {
+   "i": 74,
+   "t": 900.32,
+   "a": "మంచిం",
+   "b": "మంచి",
+   "verdict": "wrong",
+   "key_item": false,
+   "note": "మంచిం(~munching) -> మంచి"
+  },
+  {
+   "i": 75,
+   "t": 914.78,
+   "a": "ఆ.",
+   "b": "",
+   "verdict": "neutral",
+   "key_item": false,
+   "note": "filler dropped"
+  },
+  {
+   "i": 76,
+   "t": 916.74,
+   "a": "బల్లె",
+   "b": "భలే",
+   "verdict": "right",
+   "key_item": false,
+   "note": "భలే"
+  },
+  {
+   "i": 77,
+   "t": 948.84,
+   "a": "దేనికో",
+   "b": "దేనికి",
+   "verdict": "unsure",
+   "key_item": false,
+   "note": "దేనికో/దేనికి"
+  },
+  {
+   "i": 78,
+   "t": 971.46,
+   "a": "చెయ్యమని",
+   "b": "చేయమని",
+   "verdict": "neutral",
+   "key_item": false,
+   "note": "spelling"
+  },
+  {
+   "i": 79,
+   "t": 1033.12,
+   "a": "బాధ వేస్తుంది.",
+   "b": "బాధేస్తుంది.",
+   "verdict": "neutral",
+   "key_item": false,
+   "note": "contracted"
+  },
+  {
+   "i": 80,
+   "t": 1040.76,
+   "a": "నాకు",
+   "b": "నాకూ",
+   "verdict": "unsure",
+   "key_item": false,
+   "note": "నాకు/నాకూ"
+  },
+  {
+   "i": 81,
+   "t": 1048.74,
+   "a": "అమ్మనేమడుగుతాం.",
+   "b": "అమ్మనే మడుగుతాం.",
+   "verdict": "wrong",
+   "key_item": false,
+   "note": "అమ్మనేం అడుగుతాం mis-split as అమ్మనే మడుగుతాం"
+  },
+  {
+   "i": 82,
+   "t": 1054.14,
+   "a": "with",
+   "b": "వాటితో",
+   "verdict": "right",
+   "key_item": false,
+   "note": "easy వాటితో, agrees with relisten"
+  },
+  {
+   "i": 83,
+   "t": 1100.78,
+   "a": "అనాలే",
+   "b": "అనాలి",
+   "verdict": "unsure",
+   "key_item": false,
+   "note": "అనాలే/అనాలి"
+  },
+  {
+   "i": 84,
+   "t": 1103.18,
+   "a": "చిడగొట్ట",
+   "b": "చెడగొట్ట",
+   "verdict": "unsure",
+   "key_item": false,
+   "note": "చిడగొట్ట/చెడగొట్ట"
+  },
+  {
+   "i": 85,
+   "t": 1103.96,
+   "a": "ఏవంటల",
+   "b": "ఏ వంటల",
+   "verdict": "neutral",
+   "key_item": false,
+   "note": "split"
+  },
+  {
+   "i": 86,
+   "t": 1159.66,
+   "a": "పోతాది.",
+   "b": "పోతుంది",
+   "verdict": "neutral",
+   "key_item": false,
+   "note": "dialect normalised పోతాది->పోతుంది"
+  },
+  {
+   "i": 87,
+   "t": 1162.78,
+   "a": "ఉమ్ ఉమ్",
+   "b": "",
+   "verdict": "neutral",
+   "key_item": false,
+   "note": "fillers dropped"
+  },
+  {
+   "i": 88,
+   "t": 1196.76,
+   "a": "ఉంటారనుకున్నావ్",
+   "b": "ఉంటారనుకుంటున్నావా",
+   "verdict": "unsure",
+   "key_item": false,
+   "note": "tense/question"
+  },
+  {
+   "i": 89,
+   "t": 1199.2,
+   "a": "పెళ్ళాం",
+   "b": "పెళ్ళం",
+   "verdict": "wrong",
+   "key_item": false,
+   "note": "పెళ్ళాం -> పెళ్ళం"
+  },
+  {
+   "i": 90,
+   "t": 1224.26,
+   "a": "బిర్యాని",
+   "b": "బిర్యానీ",
+   "verdict": "right",
+   "key_item": false,
+   "note": "బిర్యానీ"
+  },
+  {
+   "i": 91,
+   "t": 1225.76,
+   "a": "ప్రతీది",
+   "b": "ప్రతిదీ",
+   "verdict": "neutral",
+   "key_item": false,
+   "note": "spelling"
+  },
+  {
+   "i": 92,
+   "t": 1227.42,
+   "a": "Flashman",
+   "b": "Flash man",
+   "verdict": "neutral",
+   "key_item": false,
+   "note": "Flash man (0.07)"
+  },
+  {
+   "i": 93,
+   "t": 1228.34,
+   "a": "గా Kumari Anty కన్నా",
+   "b": "కుమార్ యంటి కంటే",
+   "verdict": "wrong",
+   "key_item": false,
+   "note": "Kumari Anty (street-food celebrity) -> కుమార్ యంటి; 'speed గా' lost"
+  },
+  {
+   "i": 94,
+   "t": 1234.26,
+   "a": "తట్టాబుట్టా",
+   "b": "తట్టబుట్టా",
+   "verdict": "neutral",
+   "key_item": false,
+   "note": "spelling"
+  },
+  {
+   "i": 95,
+   "t": 1240.26,
+   "a": "కమాన్",
+   "b": "Come on",
+   "verdict": "style",
+   "key_item": false,
+   "note": "కమాన్->Come on"
+  },
+  {
+   "i": 96,
+   "t": 1241.04,
+   "a": "కమాన్",
+   "b": "Come on",
+   "verdict": "style",
+   "key_item": false,
+   "note": "కమాన్->Come on"
+  },
+  {
+   "i": 97,
+   "t": 1249.5,
+   "a": "దొరికిపోయానేంటి",
+   "b": "దొరికిపోయాను ఏంటి",
+   "verdict": "neutral",
+   "key_item": false,
+   "note": "split"
+  }
+ ]
+}

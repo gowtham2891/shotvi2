@@ -1,0 +1,712 @@
+{
+ "w01": {
+  "windows": [
+   [
+    210.34,
+    321.48
+   ]
+  ],
+  "fps": 2.0,
+  "usage": {
+   "input": 18085,
+   "output": 663,
+   "thought": 0,
+   "modalities": {
+    "TEXT": 658,
+    "VIDEO": 17427
+   }
+  },
+  "reaction_visible": {
+   "visible": true,
+   "t": 311.5,
+   "what": "The daughter glances side-eyed and reacts with surprise and dismay while the mother laughs boisterously at her own ridiculous lie."
+  },
+  "visual_beats": [
+   {
+    "t": 212.0,
+    "end": 215.0,
+    "what": "The girl's eyes widen in absolute panic when asked if she knows how to cook.",
+    "in_current_pieces": false,
+    "should_include": true,
+    "why": "This wide-eyed shock is the key comedic setup establishing that she cannot cook at all."
+   },
+   {
+    "t": 283.5,
+    "end": 285.5,
+    "what": "The daughter visibly winces and cringes as her mother boldly claims the sweets were homemade.",
+    "in_current_pieces": false,
+    "should_include": true,
+    "why": "Highlights the comedic guilt and contrast between the lying mother and the nervous daughter."
+   },
+   {
+    "t": 313.0,
+    "end": 313.8,
+    "what": "Daughter sighs in disbelief at her mother's shameless bragging before the kitchen flashback cut.",
+    "in_current_pieces": true,
+    "should_include": true,
+    "why": "Punctuates the conversation scene before shifting scenes."
+   }
+  ],
+  "framing": {
+   "faces": 2,
+   "positions": "Mother on screen left, daughter on screen right sitting together on the couch; alternating with single shots of the groom and father.",
+   "crop_916_score": 4,
+   "note": "The two-shots of the mother and daughter are tightly framed together on the sofa, making vertical 9:16 re-framing smooth and impactful."
+  },
+  "start_clean": true,
+  "end_clean": true,
+  "clean_note": "Starts cleanly right as the groom asks his initial question and ends cleanly right on the mother-daughter banter beat before the kitchen cut at 313.8.",
+  "suggested": [
+   {
+    "start": 211.0,
+    "end": 227.5,
+    "why": "Captures the groom asking 'Meeku vanta vaccha?', her hilarious wide-eyed panic, and her mother rescuing her by claiming she can cook.",
+    "start_snapped": 212.208,
+    "start_on_cut": true,
+    "end_snapped": 228.417,
+    "end_on_cut": true
+   },
+   {
+    "start": 263.0,
+    "end": 313.8,
+    "why": "Captures the entire comedic payoff where the mother covers up the Pulla Reddy sweet slip-up with increasingly absurd lies until the daughter congratulates her acting.",
+    "start_snapped": 262.958,
+    "start_on_cut": true,
+    "end_snapped": 314.083,
+    "end_on_cut": true
+   }
+  ]
+ },
+ "w02": {
+  "windows": [
+   [
+    768.386,
+    840.946
+   ]
+  ],
+  "fps": 2.0,
+  "usage": {
+   "input": 12063,
+   "output": 739,
+   "thought": 0,
+   "modalities": {
+    "TEXT": 680,
+    "VIDEO": 11383
+   }
+  },
+  "reaction_visible": {
+   "visible": true,
+   "t": 833.5,
+   "what": "Friend on the couch looks at her nodding and asks 'Kada?' ('Right?'), reacting to her dialogue about how nobody could say no."
+  },
+  "visual_beats": [
+   {
+    "t": 768.4,
+    "end": 769.0,
+    "what": "Cut from present day living room listener to flashback restaurant scene",
+    "in_current_pieces": false,
+    "should_include": false,
+    "why": "Starts before the flashback dialogue begins, cut should start directly on the flashback setup."
+   },
+   {
+    "t": 790.4,
+    "end": 792.2,
+    "what": "Male lead nods and smiles warmly between lines",
+    "in_current_pieces": false,
+    "should_include": true,
+    "why": "Bridging beat keeps the dialogue flow natural rather than an abrupt audio jump."
+   },
+   {
+    "t": 826.7,
+    "end": 830.3,
+    "what": "Holding look between the couple followed by cut back to both girls sitting on sofa in present day",
+    "in_current_pieces": false,
+    "should_include": true,
+    "why": "Essential transition beat showing how the flashback story resolves and returns to the girls discussing it."
+   },
+   {
+    "t": 833.0,
+    "end": 836.0,
+    "what": "Her friend turns to her saying 'Kada? Aithe yes-e cheppey' (Then just say yes)",
+    "in_current_pieces": false,
+    "should_include": true,
+    "why": "This is the punchline resolution to the entire pitch and dialogue."
+   }
+  ],
+  "framing": {
+   "faces": 1,
+   "positions": "Single over-the-shoulder medium closeups centered/slightly left or right during restaurant; two-shot in living room with faces on left and right thirds.",
+   "crop_916_score": 4,
+   "note": "Most dialogue consists of alternating medium closeups perfectly suited for 9:16 vertical cropping. The final couch shot requires a slight pan or centering the main speaker on the left."
+  },
+  "start_clean": false,
+  "end_clean": false,
+  "clean_note": "The starting point at 769.4 catches the opening syllable closely without breath room; ending at 832.9 cuts off right before the friend replies 'Kada? Aithe yes-e cheppey', missing the punchline.",
+  "suggested": [
+   {
+    "start": 769.1,
+    "end": 836.0,
+    "why": "Starts cleanly on the beginning of 'Ee rojullo', keeps the full humorous food analogy monologue continuous, smoothly bridges back to the present room, and completes on the friend's punchline 'Kada? Aithe yes-e cheppey'.",
+    "start_snapped": 769.083,
+    "start_on_cut": true,
+    "end_snapped": 836.0,
+    "end_on_cut": false
+   }
+  ]
+ },
+ "w03": {
+  "windows": [
+   [
+    135.56,
+    149.72
+   ],
+   [
+    437.49,
+    589.07
+   ]
+  ],
+  "fps": 2.0,
+  "usage": {
+   "input": 26751,
+   "output": 791,
+   "thought": 0,
+   "modalities": {
+    "VIDEO": 25984,
+    "TEXT": 767
+   }
+  },
+  "reaction_visible": {
+   "visible": true,
+   "t": 586.0,
+   "what": "The girl smiles shyly and looks down contentedly after hearing his comforting words"
+  },
+  "visual_beats": [
+   {
+    "t": 489.0,
+    "end": 519.0,
+    "what": "He steps down from the small plastic stool to show his actual height, and they look at each other closely",
+    "in_current_pieces": false,
+    "should_include": false,
+    "why": "Keeping this 30-second silent physical comedy bit would make the Reel drag too long; the dialogue flow between her insecurity and his sweet reassurance works better tightly edited"
+   },
+   {
+    "t": 545.5,
+    "end": 554.0,
+    "what": "Romantic eye contact and held silence between the couple before he delivers the punchline reassurance",
+    "in_current_pieces": false,
+    "should_include": false,
+    "why": "Cutting directly into the punchline maintains high viewer retention in short-form video"
+   },
+   {
+    "t": 581.1,
+    "end": 588.5,
+    "what": "Romantic music swell with smiling reaction shots of both lead characters",
+    "in_current_pieces": false,
+    "should_include": true,
+    "why": "The clip cuts too abruptly after 'inka avasaram ledu'; letting the romantic payoff beat land provides a satisfying emotional resolution"
+   }
+  ],
+  "framing": {
+   "faces": 1,
+   "positions": "Over-the-shoulder medium close-ups alternating between the guy on right-centre and the girl on left-centre",
+   "crop_916_score": 4,
+   "note": "Most dialogue consists of clean single over-the-shoulder shots easily centred for 9:16 with minimal panning required"
+  },
+  "start_clean": true,
+  "end_clean": false,
+  "clean_note": "The starting cut at 136.6s is clean. The clip end at 581.1s cuts off sharply immediately after dialogue without letting the smiling romantic reaction resolve.",
+  "suggested": [
+   {
+    "start": 136.5,
+    "end": 141.7,
+    "why": "Clean hook establishing her insecurity about her height",
+    "start_snapped": 136.042,
+    "start_on_cut": true,
+    "end_snapped": 141.7,
+    "end_on_cut": false
+   },
+   {
+    "start": 438.2,
+    "end": 460.9,
+    "why": "Initial conversation setting up the premise that this is her 5th matchmaking meet",
+    "start_snapped": 437.125,
+    "start_on_cut": true,
+    "end_snapped": 460.917,
+    "end_on_cut": true
+   },
+   {
+    "start": 472.0,
+    "end": 482.0,
+    "why": "She openly states her complex about being rejected for being short",
+    "start_snapped": 472.0,
+    "start_on_cut": false,
+    "end_snapped": 482.625,
+    "end_on_cut": true
+   },
+   {
+    "start": 526.3,
+    "end": 542.5,
+    "why": "His warm confession that he prefers short girls",
+    "start_snapped": 526.125,
+    "start_on_cut": true,
+    "end_snapped": 542.5,
+    "end_on_cut": false
+   },
+   {
+    "start": 554.0,
+    "end": 588.5,
+    "why": "Deliver the climax punchline and allow the romantic reaction/smile beat to complete naturally",
+    "start_snapped": 554.25,
+    "start_on_cut": true,
+    "end_snapped": 588.5,
+    "end_on_cut": false
+   }
+  ]
+ },
+ "w04": {
+  "windows": [
+   [
+    876.246,
+    959.006
+   ]
+  ],
+  "fps": 2.0,
+  "usage": {
+   "input": 13707,
+   "output": 633,
+   "thought": 0,
+   "modalities": {
+    "TEXT": 754,
+    "VIDEO": 12953
+   }
+  },
+  "reaction_visible": {
+   "visible": true,
+   "t": 951.5,
+   "what": "Girl bites her lip in shy embarrassment and chuckles while looking away after he sarcastically compliments her 'talented' cooking logic."
+  },
+  "visual_beats": [
+   {
+    "t": 881.5,
+    "end": 887.7,
+    "what": "Girl ponders with exaggerated facial expressions trying to think of a dish before suddenly answering 'Chicken'.",
+    "in_current_pieces": false,
+    "should_include": false,
+    "why": "It is quite lengthy and drags pacing for a reel; cutting straight to chicken keeps tempo brisk."
+   },
+   {
+    "t": 905.0,
+    "end": 912.0,
+    "what": "Girl gestures enthusiastically imagining henna on her hands while the guy stares in utter disbelief.",
+    "in_current_pieces": false,
+    "should_include": false,
+    "why": "Skipping directly to her absurd excuse keeps dialogue snappy."
+   },
+   {
+    "t": 951.0,
+    "end": 954.5,
+    "what": "Girl feels shy/embarrassed, bites her lip and giggles, reacting to his punchline compliment.",
+    "in_current_pieces": false,
+    "should_include": true,
+    "why": "This is the payoff/reaction beat for the final punchline of the reel; without it, the clip ends abruptly mid-dialogue."
+   }
+  ],
+  "framing": {
+   "faces": 1,
+   "positions": "Over-the-shoulder medium singles alternating between male (centre-right) and female (centre-left).",
+   "crop_916_score": 4,
+   "note": "Standard conversational shot-reverse-shot. In 9:16, tracking or slight pan-and-scan centering the speaking person works very smoothly."
+  },
+  "start_clean": true,
+  "end_clean": false,
+  "clean_note": "The cut ends immediately at 951.0 while the guy is finishing speaking, cutting off the female character's cute bashful reaction beat (951.5 - 954.0).",
+  "suggested": [
+   {
+    "start": 876.8,
+    "end": 954.5,
+    "why": "Start slightly before dialogue starts for a clean audio lead-in, and extend the finish to 954.5 to fully capture her shy smiling reaction before cut back to the guy.",
+    "start_snapped": 876.8,
+    "start_on_cut": false,
+    "end_snapped": 954.625,
+    "end_on_cut": true
+   }
+  ]
+ },
+ "w05": {
+  "windows": [
+   [
+    210.34,
+    277.9
+   ],
+   [
+    1078.946,
+    1093.966
+   ]
+  ],
+  "fps": 2.0,
+  "usage": {
+   "input": 13547,
+   "output": 700,
+   "thought": 0,
+   "modalities": {
+    "VIDEO": 12953,
+    "TEXT": 594
+   }
+  },
+  "reaction_visible": {
+   "visible": true,
+   "t": 1092.5,
+   "what": "The bride and mother freeze in terror as the groom makes aggressive crushing gestures talking about liars"
+  },
+  "visual_beats": [
+   {
+    "t": 212.4,
+    "end": 214.8,
+    "what": "Bride looks up with wide, shocked, wide-eyed terror when asked if she can cook",
+    "in_current_pieces": false,
+    "should_include": true,
+    "why": "Crucial comedy beat that exposes her lie before her mother covers for her"
+   },
+   {
+    "t": 217.4,
+    "end": 221.0,
+    "what": "Groom smiling expectantly contrasted with bride's frozen wide-eyed glare",
+    "in_current_pieces": false,
+    "should_include": false,
+    "why": "Can be trimmed to keep the comedic pace brisk"
+   },
+   {
+    "t": 1086.0,
+    "end": 1093.5,
+    "what": "Groom aggressively pantomimes crushing appadams and roasting chicken while the bride recoils in fear",
+    "in_current_pieces": false,
+    "should_include": true,
+    "why": "This is the payoff/punchline of his hatred for liars, showing the direct comedic consequence for the bride"
+   }
+  ],
+  "framing": {
+   "faces": 2,
+   "positions": "Two-shots alternating between mother (left) / daughter (right) and groom (centre)",
+   "crop_916_score": 4,
+   "note": "Most two-shots keep the subjects close together, making a 9:16 vertical crop straightforward with slight panning."
+  },
+  "start_clean": true,
+  "end_clean": true,
+  "clean_note": "Both window cuts start neatly on dialogue onsets and can cut cleanly at shot transitions.",
+  "suggested": [
+   {
+    "start": 210.5,
+    "end": 215.0,
+    "why": "Includes the question and her priceless wide-eyed panic reaction",
+    "start_snapped": 210.5,
+    "start_on_cut": false,
+    "end_snapped": 214.792,
+    "end_on_cut": true
+   },
+   {
+    "start": 221.5,
+    "end": 227.5,
+    "why": "Mother stepping in and lying about her cooking skills",
+    "start_snapped": 221.333,
+    "start_on_cut": true,
+    "end_snapped": 228.417,
+    "end_on_cut": true
+   },
+   {
+    "start": 263.0,
+    "end": 270.0,
+    "why": "Groom explaining why cooking matters so much to him",
+    "start_snapped": 262.958,
+    "start_on_cut": true,
+    "end_snapped": 270.167,
+    "end_on_cut": true
+   },
+   {
+    "start": 1079.5,
+    "end": 1093.5,
+    "why": "Connects his anger over lies directly with the visceral physical payoff and bride's frightened reaction",
+    "start_snapped": 1080.792,
+    "start_on_cut": true,
+    "end_snapped": 1093.375,
+    "end_on_cut": true
+   }
+  ]
+ },
+ "w06": {
+  "windows": [
+   [
+    687.71,
+    757.706
+   ]
+  ],
+  "fps": 2.0,
+  "usage": {
+   "input": 11622,
+   "output": 670,
+   "thought": 0,
+   "modalities": {
+    "VIDEO": 10990,
+    "TEXT": 632
+   }
+  },
+  "reaction_visible": {
+   "visible": true,
+   "t": 750.5,
+   "what": "The heroine's stunned and relieved reaction as she points awkwardly to herself and gasps in pleasant surprise, followed by the hero smiling warmly at her."
+  },
+  "visual_beats": [
+   {
+    "t": 698.8,
+    "end": 708.5,
+    "what": "Swoosh transition into the cafe flashback showing the two characters sitting across from each other before speaking.",
+    "in_current_pieces": false,
+    "should_include": false,
+    "why": "This is a lengthy dead silence establishment shot before dialogue resumes; cutting straight or with a fast transition saves pacing."
+   },
+   {
+    "t": 713.3,
+    "end": 715.6,
+    "what": "Heroine nods 'Mm' and looks expectantly at him while he prepares to deliver his monologue.",
+    "in_current_pieces": false,
+    "should_include": true,
+    "why": "Bridging dialogue pause keeps the natural flow between her listening and his continuation without an abrupt audio jump."
+   },
+   {
+    "t": 749.7,
+    "end": 756.5,
+    "what": "Comedic and heartwarming reaction where she blushes, points to herself in confusion, and he grins lovingly.",
+    "in_current_pieces": false,
+    "should_include": true,
+    "why": "This is the primary punchline and emotional payoff of the scene; cutting at 749.7 drops the entire resolution."
+   }
+  ],
+  "framing": {
+   "faces": 1,
+   "positions": "center / alternating over-the-shoulder close-ups",
+   "crop_916_score": 4,
+   "note": "Most dialogue consists of nicely centered single close-ups of each character, very friendly for a 9:16 vertical crop."
+  },
+  "start_clean": false,
+  "end_clean": false,
+  "clean_note": "The clip begins right on the edge of the intro cut (687.5-688.0 shows a quick previous shot of the guy), and ends right on his final word before her reaction lands.",
+  "suggested": [
+   {
+    "start": 688.5,
+    "end": 698.7,
+    "why": "Clean start on the sister conversation setting up her anxiety about not knowing how to cook.",
+    "start_snapped": 688.375,
+    "start_on_cut": true,
+    "end_snapped": 699.167,
+    "end_on_cut": true
+   },
+   {
+    "start": 708.5,
+    "end": 756.5,
+    "why": "Covers the entire cafe confession and holds long enough for her adorable reaction and his warm smile to conclude the beat.",
+    "start_snapped": 708.292,
+    "start_on_cut": true,
+    "end_snapped": 755.25,
+    "end_on_cut": true
+   }
+  ]
+ },
+ "w07": {
+  "windows": [
+   [
+    320.98,
+    365.2
+   ]
+  ],
+  "fps": 2.0,
+  "usage": {
+   "input": 7491,
+   "output": 594,
+   "thought": 0,
+   "modalities": {
+    "VIDEO": 6908,
+    "TEXT": 583
+   }
+  },
+  "reaction_visible": {
+   "visible": true,
+   "t": 357.2,
+   "what": "Mother's bewildered and dumbfounded reaction stare after the daughter jokes about planning for Diwali"
+  },
+  "visual_beats": [
+   {
+    "t": 321.0,
+    "end": 322.0,
+    "what": "Mother taps/slaps daughter gently on the shoulder prompting her to cook properly",
+    "in_current_pieces": false,
+    "should_include": true,
+    "why": "Establishes physical comedic dynamic and provides context before dialogue begins"
+   },
+   {
+    "t": 326.5,
+    "end": 327.9,
+    "what": "Close up of drowning the chapati in a generous stream of oil on the pan",
+    "in_current_pieces": true,
+    "should_include": true,
+    "why": "Crucial visual punchline showing just how much oil she is pouring"
+   },
+   {
+    "t": 356.8,
+    "end": 358.0,
+    "what": "Mother reacts in shock/disbelief with SFX hit",
+    "in_current_pieces": false,
+    "should_include": true,
+    "why": "Essential comedic punctuation to let the punchline land before cutting"
+   }
+  ],
+  "framing": {
+   "faces": 2,
+   "positions": "two-shot profile in kitchen, shifts between close-ups and over-the-shoulder",
+   "crop_916_score": 4,
+   "note": "Characters stay relatively close together in kitchen space; alternating OTS and two-shots crop cleanly to 9:16 with slight panning"
+  },
+  "start_clean": false,
+  "end_clean": false,
+  "clean_note": "Clip start at 322.0 cuts right into the middle of dialogue and misses the physical slap setup at 321.0. Ending at 357.2 abruptly cuts off the mother's comedic reaction take that lasts until 358.0.",
+  "suggested": [
+   {
+    "start": 321.0,
+    "end": 358.0,
+    "why": "Starts with the physical slap on the shoulder and dialogue lead-in, keeps the entire chapati and cooker jokes sequence, and concludes right after the mother's reaction shot settles",
+    "start_snapped": 321.167,
+    "start_on_cut": true,
+    "end_snapped": 358.0,
+    "end_on_cut": true
+   }
+  ]
+ },
+ "w08": {
+  "windows": [
+   [
+    1026.006,
+    1104.446
+   ]
+  ],
+  "fps": 2.0,
+  "usage": {
+   "input": 13085,
+   "output": 571,
+   "thought": 0,
+   "modalities": {
+    "VIDEO": 12325,
+    "TEXT": 760
+   }
+  },
+  "reaction_visible": {
+   "visible": true,
+   "t": 1096.5,
+   "what": "Shocked, petrified reactions from both the wife and mother-in-law as the hero violently describes crushing anyone who lies."
+  },
+  "visual_beats": [
+   {
+    "t": 1040.6,
+    "end": 1042.2,
+    "what": "Bride glares furiously at groom after he teases about her cooking.",
+    "in_current_pieces": false,
+    "should_include": true,
+    "why": "Crucial comedy beat delivering the bride's angry reaction to his cooking insult before moving on."
+   },
+   {
+    "t": 1063.5,
+    "end": 1066.5,
+    "what": "Friend makes hand gestures teasing the groom before groom takes the phone call.",
+    "in_current_pieces": false,
+    "should_include": false,
+    "why": "Unnecessary filler transition that slows down the comedic escalation."
+   },
+   {
+    "t": 1096.5,
+    "end": 1099.0,
+    "what": "Extended terrified stare from mother-in-law and bride taking in groom's psychotic warning.",
+    "in_current_pieces": false,
+    "should_include": true,
+    "why": "The ultimate punchline reaction shot holding on their scared expressions."
+   }
+  ],
+  "framing": {
+   "faces": 2,
+   "positions": "two-shots and medium singles alternating between center and left-right",
+   "crop_916_score": 4,
+   "note": "Mostly single close-ups or closely grouped two-shots, straightforward to pan/crop to vertical 9:16."
+  },
+  "start_clean": true,
+  "end_clean": false,
+  "clean_note": "Clip abruptly cuts at 1096.4 mid-reaction while hero finishes dialogue. Needs to extend onto the stunned reactions.",
+  "suggested": [
+   {
+    "start": 1026.5,
+    "end": 1099.0,
+    "why": "Includes the bride's glare visual beat and lets the full comedic shock landing on mother-in-law and bride play out at the end.",
+    "start_snapped": 1027.5,
+    "start_on_cut": true,
+    "end_snapped": 1099.542,
+    "end_on_cut": true
+   }
+  ]
+ },
+ "w09": {
+  "windows": [
+   [
+    597.17,
+    682.65
+   ]
+  ],
+  "fps": 2.0,
+  "usage": {
+   "input": 14136,
+   "output": 513,
+   "thought": 0,
+   "modalities": {
+    "VIDEO": 13424,
+    "TEXT": 712
+   }
+  },
+  "reaction_visible": {
+   "visible": true,
+   "t": 681.5,
+   "what": "Friend asks punchline question 'mari endukena nannu pelli cheskunnav ani ammayi adigithe?' and lead looks blankly back at 682.0."
+  },
+  "visual_beats": [
+   {
+    "t": 640.8,
+    "end": 645.5,
+    "what": "Friend interrupts mentioning 'boiled egg marchipoyavu', lead stares angrily, friend gestures hands down saying 'continue'.",
+    "in_current_pieces": false,
+    "should_include": false,
+    "why": "It interrupts the emotional monologue arc about hostel food and home food."
+   },
+   {
+    "t": 674.6,
+    "end": 677.0,
+    "what": "Lead finishes dialogue and nods with a soft emotional smile.",
+    "in_current_pieces": false,
+    "should_include": true,
+    "why": "Gives proper breathing space for the emotional line 'mana anukune vaallu maatrame ivvagalaru' to land."
+   }
+  ],
+  "framing": {
+   "faces": 1,
+   "positions": "Over-the-shoulder close-up single framing alternating between lead (center-left) and friend (center).",
+   "crop_916_score": 4,
+   "note": "Most monologue dialogue takes place in single close-ups over the shoulder, easy to track and crop to 9:16."
+  },
+  "start_clean": true,
+  "end_clean": true,
+  "clean_note": "Clean cut starts on shot boundary right before dialogue starts at 597.5s, ends cleanly after emotional delivery.",
+  "suggested": [
+   {
+    "start": 597.5,
+    "end": 676.8,
+    "why": "Complete, emotionally coherent story about marriage, cooking, and hostel trauma transitioning into 'food made with love' without awkward mid-monologue cuts.",
+    "start_snapped": 597.5,
+    "start_on_cut": true,
+    "end_snapped": 677.625,
+    "end_on_cut": true
+   }
+  ]
+ }
+}

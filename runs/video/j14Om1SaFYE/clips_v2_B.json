@@ -1,0 +1,93 @@
+{
+ "w03": {
+  "windows": [
+   [
+    96.56,
+    146.72
+   ],
+   [
+    433.49,
+    601.07
+   ]
+  ],
+  "fps": 1.0,
+  "usage": {
+   "input": 25290,
+   "cached": 17684,
+   "output": 517,
+   "modalities": {
+    "VIDEO": 19838,
+    "TEXT": 5452
+   }
+  },
+  "converted": {
+   "start": {
+    "time": 437.83
+   },
+   "end": {
+    "time": 597.5,
+    "gap": {
+     "start": 581.71,
+     "end": 597.5,
+     "raw": [
+      581.09,
+      598.17
+     ],
+     "snapped": [
+      true,
+      true
+     ],
+     "label": "9:41.7-9:57.5"
+    }
+   }
+  },
+  "start": {
+   "verdict": "too_early",
+   "at": {
+    "line": "L0165",
+    "after_line": "",
+    "before_line": ""
+   },
+   "why": "L0042 is from a completely separate earlier scene (scene 3 in bedroom talking to her mom) spliced in as an awkward prologue before jumping to scene 8 with Gowtham. The clip functions much better as a coherent dialogue starting directly when Amrutha asks him about his matchmaking history (L0165)."
+  },
+  "end": {
+   "verdict": "too_early",
+   "at": {
+    "line": "",
+    "after_line": "L0206",
+    "before_line": "L0207"
+   },
+   "why": "Cutting right at L0205 cuts off Amrutha's joyful, blushing reaction and smile during the romantic music swelling at L0206, which provides the emotional payoff to her line 'inka avasaram ledu'."
+  },
+  "visual_beats_to_include": [
+   {
+    "after_line": "L0184",
+    "before_line": "L0185",
+    "what": "Gowtham notices the small teal plastic stool Amrutha used to stand on to appear taller, and gently kicks/nudges it away with his foot, then steps close to her.",
+    "why": "This is a pivotal physical gesture demonstrating that he rejects the expectation for her to artificially seem taller, perfectly setting up his dialogue at L0185.",
+    "time": {
+     "start": 482.62,
+     "end": 526.12,
+     "raw": [
+      482.17,
+      526.65
+     ],
+     "snapped": [
+      true,
+      true
+     ],
+     "label": "8:02.6-8:46.1"
+    }
+   }
+  ],
+  "reaction": {
+   "after_line": "L0206",
+   "what": "Amrutha looks down with a shy, bashful smile, touched that she doesn't need to ask her second question because Gowtham accepted her completely."
+  },
+  "clean_edges": {
+   "start": false,
+   "end": false,
+   "note": "Starting at L0042 is an abrupt edit across different scenes. Ending directly on L0205 cuts off the musical release and Amrutha's blushing visual beat in L0206."
+  }
+ }
+}

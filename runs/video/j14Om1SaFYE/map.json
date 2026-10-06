@@ -1,0 +1,556 @@
+{
+ "prompt": "1+4642e408",
+ "usage": {
+  "input": 106492,
+  "output": 5399,
+  "thought": 0,
+  "modalities": {
+   "VIDEO": 106197,
+   "TEXT": 295
+  }
+ },
+ "cost": {
+  "n_llm_calls": 1,
+  "n_cache_hits": 0,
+  "n_failed_attempts": 0,
+  "input_tokens": 106492,
+  "output_tokens": 5399,
+  "thought_tokens": 0,
+  "cached_input_tokens": 0,
+  "usd": 0.10012,
+  "usd_billed": 0.10012,
+  "wall_time_secs": 87.7,
+  "by_role": {
+   "video_map": {
+    "n_llm_calls": 1,
+    "n_cache_hits": 0,
+    "n_failed_attempts": 0,
+    "input_tokens": 106492,
+    "output_tokens": 5399,
+    "thought_tokens": 0,
+    "cached_input_tokens": 0,
+    "usd": 0.10012,
+    "usd_billed": 0.10012,
+    "models": [
+     "gemini-3.8-flash"
+    ]
+   }
+  },
+  "unpriced_models": []
+ },
+ "scenes": [
+  {
+   "start": 0.0,
+   "end": 6.0,
+   "location": "Channel / production intro screen",
+   "characters": [],
+   "what_happens": "Motion graphics logo animation for Infinitum Network Solutions."
+  },
+  {
+   "start": 6.0,
+   "end": 68.0,
+   "location": "Amrutha's bedroom",
+   "characters": [
+    {
+     "description": "young woman in royal blue and gold silk saree, blow-drying hair and putting on jhumkas",
+     "who": "Amrutha (the bride-to-be)"
+    },
+    {
+     "description": "middle-aged woman in pink printed saree holding phone",
+     "who": "Amrutha's mother"
+    }
+   ],
+   "what_happens": "Amrutha searches frantically for her hair clip. Her mother brings it in, complaining about her untidiness and insisting she get ready properly to impress the prospective groom and his family."
+  },
+  {
+   "start": 68.0,
+   "end": 126.0,
+   "location": "Living room of Amrutha's house",
+   "characters": [
+    {
+     "description": "Amrutha in blue saree and her mother standing beside sofa",
+     "who": "Amrutha and her mother"
+    },
+    {
+     "description": "tall groom candidate in red checked shirt and his father in checkered collared shirt",
+     "who": "Prospective groom and his father"
+    }
+   ],
+   "what_happens": "During matchmaking visit, the groom's father suggests asking questions. The groom stands up and asks Amrutha to stand up as well."
+  },
+  {
+   "start": 126.0,
+   "end": 154.0,
+   "location": "Living room of Amrutha's house",
+   "characters": [
+    {
+     "description": "Amrutha standing looking anxious, her mother beside her",
+     "who": "Amrutha and mother"
+    },
+    {
+     "description": "tall man in red checkered shirt",
+     "who": "Prospective groom"
+    }
+   ],
+   "what_happens": "The prospective groom politely rejects Amrutha due to height difference, saying he wanted a taller partner for wedding photos."
+  },
+  {
+   "start": 154.0,
+   "end": 165.0,
+   "location": "Studio / abstract backdrop (memory sequence)",
+   "characters": [
+    {
+     "description": "Amrutha in different sarees seated in an armchair",
+     "who": "Amrutha"
+    }
+   ],
+   "what_happens": "Flashback montage showing various suitors repeatedly rejecting her for being 'potti' (short)."
+  },
+  {
+   "start": 165.0,
+   "end": 240.0,
+   "location": "Amrutha's bedroom",
+   "characters": [
+    {
+     "description": "Amrutha in green printed salwar kameez, looking sullen",
+     "who": "Amrutha"
+    },
+    {
+     "description": "mother in green and dark blue saree with pink border",
+     "who": "Amrutha's mother"
+    }
+   ],
+   "what_happens": "Amrutha vents frustration about being repeatedly rejected for her height and refuses to get ready for yet another match. Her mother coaxes and pleads with her to give this match a try because it's a good alliance."
+  },
+  {
+   "start": 240.0,
+   "end": 327.0,
+   "location": "Living room",
+   "characters": [
+    {
+     "description": "Amrutha in parrot green silk pattu saree and her mother",
+     "who": "Amrutha and her mother"
+    },
+    {
+     "description": "smiling handsome groom in dark blue shirt and his father with beard in yellow-grey plaid shirt",
+     "who": "Gowtham (groom) and groom's father"
+    }
+   ],
+   "what_happens": "Gowtham and his father arrive for the match-seeing ceremony. Amrutha enters nervous, expecting the height question, but the father cheerfully tells them to relax and sit down."
+  },
+  {
+   "start": 327.0,
+   "end": 348.0,
+   "location": "Living room",
+   "characters": [
+    {
+     "description": "Gowtham in dark blue shirt",
+     "who": "Gowtham"
+    },
+    {
+     "description": "Amrutha and her mother",
+     "who": "Amrutha and mother"
+    }
+   ],
+   "what_happens": "Gowtham looks intently at Amrutha and asks her if she knows how to cook ('Meeku vanta vaccha?'). Amrutha is shocked, but her mother immediately intervenes and claims she is a master cook."
+  },
+  {
+   "start": 348.0,
+   "end": 513.0,
+   "location": "Living room",
+   "characters": [
+    {
+     "description": "Gowtham, Amrutha, both parents",
+     "who": "Gowtham, Amrutha, Gowtham's father, Amrutha's mother"
+    }
+   ],
+   "what_happens": "Gowtham explains his past hostel food misery and love for food. His father eats a sweet and remarks it tastes just like Pulla Reddy Sweets; Amrutha blurts out they brought it from Pulla Reddy, causing a panic until her mother spins an absurd cover story."
+  },
+  {
+   "start": 513.0,
+   "end": 557.0,
+   "location": "Kitchen (flashback)",
+   "characters": [
+    {
+     "description": "Amrutha in grey salwar suit",
+     "who": "Amrutha"
+    },
+    {
+     "description": "mother in blue/yellow saree",
+     "who": "Amrutha's mother"
+    }
+   ],
+   "what_happens": "Flashback comedic montage of Amrutha's disastrous cooking attempts: dumping half a bottle of oil onto chapati, nearly causing an explosion with pressure cooker whistle."
+  },
+  {
+   "start": 557.0,
+   "end": 638.0,
+   "location": "Living room",
+   "characters": [
+    {
+     "description": "Gowtham, Amrutha, Amrutha's mother, Gowtham's father",
+     "who": "All four family members"
+    }
+   ],
+   "what_happens": "Gowtham requests 2 minutes to speak privately with Amrutha. Amrutha nervously stands up, her mother gives approval, and they step inside."
+  },
+  {
+   "start": 638.0,
+   "end": 808.0,
+   "location": "Inside bedroom / hallway entrance",
+   "characters": [
+    {
+     "description": "Amrutha in green saree",
+     "who": "Amrutha"
+    },
+    {
+     "description": "Gowtham in blue shirt leaning on doorframe",
+     "who": "Gowtham"
+    }
+   ],
+   "what_happens": "Gowtham reassures Amrutha. She confesses this is her 5th matchmaking attempt, assuming she'll be rejected again for being short, and braces herself for the blow."
+  },
+  {
+   "start": 808.0,
+   "end": 846.0,
+   "location": "Inside bedroom",
+   "characters": [
+    {
+     "description": "Gowtham",
+     "who": "Gowtham"
+    },
+    {
+     "description": "Amrutha",
+     "who": "Amrutha"
+    }
+   ],
+   "what_happens": "Gowtham gently kicks away a low footstool, stepping down to her level to look eye-to-eye with her."
+  },
+  {
+   "start": 846.0,
+   "end": 952.0,
+   "location": "Inside bedroom",
+   "characters": [
+    {
+     "description": "Gowtham and Amrutha",
+     "who": "Gowtham and Amrutha"
+    }
+   ],
+   "what_happens": "Gowtham gives an emotional confession praising short girls and saying height is beauty, not a flaw. A romantic theme plays as Amrutha falls for his sincerity."
+  },
+  {
+   "start": 952.0,
+   "end": 1047.0,
+   "location": "Office space / workstation",
+   "characters": [
+    {
+     "description": "Gowtham in maroon casual shirt",
+     "who": "Gowtham"
+    },
+    {
+     "description": "male colleague in brown shirt with long wavy hair",
+     "who": "Colleague / friend"
+    }
+   ],
+   "what_happens": "Gowtham daydreams at work about Amrutha and her alleged culinary talents, passionately gushing to his cynical friend about home-cooked food."
+  },
+  {
+   "start": 1047.0,
+   "end": 1127.0,
+   "location": "Office / cafeteria",
+   "characters": [
+    {
+     "description": "Gowtham and colleague",
+     "who": "Gowtham and friend"
+    }
+   ],
+   "what_happens": "Gowtham recounts their childhood trauma with bad hostel food and explains that finding a wife who cooks with love is his dream."
+  },
+  {
+   "start": 1127.0,
+   "end": 1139.0,
+   "location": "Living room sofa at home",
+   "characters": [
+    {
+     "description": "Amrutha in printed black and white nightwear",
+     "who": "Amrutha"
+    },
+    {
+     "description": "female friend in maroon top",
+     "who": "Amrutha's friend"
+    }
+   ],
+   "what_happens": "Amrutha tells her friend about her meeting with Gowtham and the terrible dilemma of not knowing cooking."
+  },
+  {
+   "start": 1139.0,
+   "end": 1240.0,
+   "location": "Outdoor cafe",
+   "characters": [
+    {
+     "description": "Amrutha in purple embroidered salwar suit",
+     "who": "Amrutha"
+    },
+    {
+     "description": "Gowtham in olive brown shirt",
+     "who": "Gowtham"
+    }
+   ],
+   "what_happens": "Gowtham meets Amrutha at a cafe, clarifying that wanting someone who cooks doesn't mean she will be confined to the kitchen; she has complete freedom to work or pursue her dreams."
+  },
+  {
+   "start": 1240.0,
+   "end": 1249.0,
+   "location": "Living room sofa",
+   "characters": [
+    {
+     "description": "Amrutha and friend",
+     "who": "Amrutha and friend"
+    }
+   ],
+   "what_happens": "Amrutha tells her friend how Gowtham explained marriage like food."
+  },
+  {
+   "start": 1249.0,
+   "end": 1347.0,
+   "location": "Outdoor cafe",
+   "characters": [
+    {
+     "description": "Amrutha listening with chin resting on hand",
+     "who": "Amrutha"
+    },
+    {
+     "description": "Gowtham speaking enthusiastically",
+     "who": "Gowtham"
+    }
+   ],
+   "what_happens": "Gowtham delivers an elaborate culinary monologue comparing marriage to 'full meals', where husband is salt, wife is the gas flame, arguments are green chillies, romance is ghee, and curd is love."
+  },
+  {
+   "start": 1347.0,
+   "end": 1406.0,
+   "location": "Living room sofa",
+   "characters": [
+    {
+     "description": "Amrutha and friend",
+     "who": "Amrutha and friend"
+    }
+   ],
+   "what_happens": "Amrutha and her friend discuss how charming his speech was. Her friend asks why she didn't just learn cooking."
+  },
+  {
+   "start": 1406.0,
+   "end": 1415.0,
+   "location": "Kitchen (flashback)",
+   "characters": [
+    {
+     "description": "Amrutha in green kurta choking on smoke",
+     "who": "Amrutha"
+    }
+   ],
+   "what_happens": "Brief flashback of Amrutha burning spices in a wok and choking on smoke, screaming for her mother."
+  },
+  {
+   "start": 1415.0,
+   "end": 1431.0,
+   "location": "Kitchen / fridge area",
+   "characters": [
+    {
+     "description": "Amrutha drinking water and friend leaning on fridge",
+     "who": "Amrutha and friend"
+    }
+   ],
+   "what_happens": "Friend advises her that Gowtham is a rare gem of a guy and she should just accept and manage it until marriage."
+  },
+  {
+   "start": 1431.0,
+   "end": 1555.0,
+   "location": "Outdoor cafe",
+   "characters": [
+    {
+     "description": "Amrutha and Gowtham",
+     "who": "Amrutha and Gowtham"
+    }
+   ],
+   "what_happens": "Gowtham quizzes Amrutha on favourite dishes and cooking mirchi bajji; Amrutha makes hilarious blunders confusing gongura with gorintaku (henna) and wheat flour with besan, but Gowtham adorably plays along."
+  },
+  {
+   "start": 1555.0,
+   "end": 1608.0,
+   "location": "Outdoor cafe",
+   "characters": [
+    {
+     "description": "Gowtham smiling warmly",
+     "who": "Gowtham"
+    },
+    {
+     "description": "Amrutha looking charmed",
+     "who": "Amrutha"
+    }
+   ],
+   "what_happens": "Gowtham tells Amrutha to call and let him know if she agrees to marry him, adding he will eagerly await her call."
+  },
+  {
+   "start": 1608.0,
+   "end": 1624.0,
+   "location": "Bathroom mirror / hallway",
+   "characters": [
+    {
+     "description": "Amrutha drying hands",
+     "who": "Amrutha"
+    },
+    {
+     "description": "her friend giving advice",
+     "who": "Amrutha's friend"
+    }
+   ],
+   "what_happens": "Friend urges Amrutha to make up her mind soon before she loses a wonderful match."
+  },
+  {
+   "start": 1624.0,
+   "end": 1652.0,
+   "location": "Balcony / terrace at night",
+   "characters": [
+    {
+     "description": "Amrutha in peach salwar suit pacing anxiously with phone",
+     "who": "Amrutha"
+    }
+   ],
+   "what_happens": "Recalling Gowtham's sincere words, Amrutha finally gathers courage, dials his number, and confesses over the call: 'Hello... Naaku ok'."
+  },
+  {
+   "start": 1652.0,
+   "end": 1749.0,
+   "location": "Street outside Amrutha's house (post-wedding farewell / vidaai)",
+   "characters": [
+    {
+     "description": "Gowtham dressed as groom in white kurta and garland, Amrutha in bridal red/yellow saree and garland",
+     "who": "Gowtham and Amrutha (newlyweds)"
+    },
+    {
+     "description": "Amrutha's parents, Gowtham's father",
+     "who": "Parents"
+    }
+   ],
+   "what_happens": "The newly married couple takes blessings at the car. Amrutha hugs her crying mother. Gowtham teases his mother-in-law that she shouldn't cry because they rented a house just at the end of the very same street."
+  },
+  {
+   "start": 1749.0,
+   "end": 1832.0,
+   "location": "Street outside house",
+   "characters": [
+    {
+     "description": "Gowtham receiving sudden phone call, suddenly turning furious",
+     "who": "Gowtham"
+    },
+    {
+     "description": "Amrutha, her mother, Gowtham's father looking on in horror",
+     "who": "Amrutha and family"
+    }
+   ],
+   "what_happens": "Gowtham receives a phone call revealing someone lied to him. In an explosive rage, he yells into the phone that he hates lies and cheats above all else, vividly threatening violence using aggressive cooking metaphors (crushing like appadams, roasting like chicken, pounding like mutton keema). Amrutha and her mother look on in pure terror as Amrutha's lie about cooking hangs over her head."
+  },
+  {
+   "start": 1832.0,
+   "end": 1903.0,
+   "location": "Kitchen cooking shots & end title credits",
+   "characters": [],
+   "what_happens": "Title card 'Couple Goals' appears, followed by creative end credits displayed alongside top-down kitchen cooking sequences."
+  },
+  {
+   "start": 1903.0,
+   "end": 1927.0,
+   "location": "Outro screen",
+   "characters": [],
+   "what_happens": "Channel subscribe and end video cards."
+  }
+ ],
+ "visual_beats": [
+  {
+   "t": 45.0,
+   "end": 54.0,
+   "what": "Amrutha pouts and makes an annoyed grumpy face in the mirror when her mother brings up marriage again.",
+   "why": "Pure comedic character expression showing Amrutha's childish frustration."
+  },
+  {
+   "t": 142.0,
+   "end": 154.0,
+   "what": "Amrutha looks up at the towering groom with an innocent, heartbreakingly crestfallen expression as he politely rejects her.",
+   "why": "Emotional punch showing her insecurity regarding her height."
+  },
+  {
+   "t": 331.0,
+   "end": 344.0,
+   "what": "Amrutha's eyes pop open wide in absolute disbelief and panic upon hearing the groom ask if she knows how to cook.",
+   "why": "Classic comedic reaction beat that sets off the main premise."
+  },
+  {
+   "t": 441.0,
+   "end": 448.0,
+   "what": "Amrutha innocently blurts out that they bought the laddu from Pulla Reddy sweets, causing her mother to shoot a murderous side-eye while the groom pauses mid-bite.",
+   "why": "Peak sitcom timing and instant memeable face-fault."
+  },
+  {
+   "t": 524.0,
+   "end": 535.0,
+   "what": "Amrutha pouring an insane torrent of cooking oil straight from the bottle onto a lone chapati on the tawa.",
+   "why": "Hilarious visual proof of her utter culinary ineptitude."
+  },
+  {
+   "t": 809.0,
+   "end": 836.0,
+   "what": "Gowtham nudges away the plastic stool with his bare foot and steps down to stand directly eye-to-eye with Amrutha.",
+   "why": "Top romantic hero gesture, highly shareable as a standalone romance Reel."
+  },
+  {
+   "t": 1496.0,
+   "end": 1515.0,
+   "what": "Amrutha holding up her hand, confusing eating 'gongura' with applying 'gorintaku' henna, and enthusiastically defending it.",
+   "why": "Cute, endearing goofball heroine moment."
+  },
+  {
+   "t": 1810.0,
+   "end": 1831.0,
+   "what": "Gowtham screaming maniacally about beating cheats like mutton keema while Amrutha's face freezes in horrified dread on her wedding day.",
+   "why": "Cliffhanger comedic beat showing the dramatic irony of her giant culinary lie."
+  }
+ ],
+ "spans": [
+  {
+   "start": 0.0,
+   "end": 6.0,
+   "kind": "title_card",
+   "note": "Production studio logo sting"
+  },
+  {
+   "start": 154.0,
+   "end": 165.0,
+   "kind": "montage",
+   "note": "Past rejections montage of suitors rejecting Amrutha for being short"
+  },
+  {
+   "start": 514.0,
+   "end": 557.0,
+   "kind": "montage",
+   "note": "Comedic flashback montage of Amrutha failing in the kitchen"
+  },
+  {
+   "start": 941.0,
+   "end": 952.0,
+   "kind": "song",
+   "note": "Romantic BGM / title vocal bit playing as Amrutha falls for Gowtham"
+  },
+  {
+   "start": 1832.0,
+   "end": 1839.0,
+   "kind": "title_card",
+   "note": "'Couple Goals' title card reveal"
+  },
+  {
+   "start": 1839.0,
+   "end": 1903.0,
+   "kind": "credits",
+   "note": "End credits roll over kitchen cooking footage"
+  }
+ ]
+}

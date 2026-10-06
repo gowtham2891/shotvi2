@@ -1,7 +1,20 @@
 .env
 venv/
 __pycache__/
-runs/
+runs/*
+# working artifacts the pipeline and scorer read (small, text): kept in git
+!runs/video/
+!runs/asr_fix/
+!runs/asr_fix_band/
+!runs/gt/
+!runs/segment_r3/
+!runs/keyterms/
+!runs/gold_r2/
+!runs/gold_hm/
+!runs/ws_*/
+!runs/ws_ab/
+runs/gt/*/frames/
+runs/**/debug/
 *.mp4
 *.wav
 *.upload.mp3

@@ -1,0 +1,764 @@
+{
+ "w03": {
+  "windows": [
+   [
+    96.56,
+    146.72
+   ],
+   [
+    433.49,
+    601.07
+   ]
+  ],
+  "fps": 1.0,
+  "usage": {
+   "input": 22419,
+   "cached": 0,
+   "output": 420,
+   "modalities": {
+    "TEXT": 2581,
+    "VIDEO": 19838
+   }
+  },
+  "converted": {
+   "start": {
+    "time": 437.83
+   },
+   "end": {
+    "time": 591.88,
+    "gap": {
+     "start": 581.71,
+     "end": 591.88,
+     "raw": [
+      581.09,
+      591.88
+     ],
+     "snapped": [
+      true,
+      true
+     ],
+     "label": "9:41.7-9:51.9",
+     "capped": true,
+     "full": [
+      581.09,
+      598.17
+     ]
+    }
+   }
+  },
+  "start": {
+   "verdict": "too_early",
+   "at": {
+    "line": "L0165",
+    "after_line": "",
+    "before_line": ""
+   },
+   "why": "Starting on L0042 from an earlier scene creates a jarring disconnect. The emotional core begins directly in the match-making conversation at L0165."
+  },
+  "end": {
+   "verdict": "too_early",
+   "at": {
+    "line": "",
+    "after_line": "L0206",
+    "before_line": "L0207"
+   },
+   "why": "Cutting right on L0205 abruptly stops before the sweet musical beat and the shy smiles exchanged between the couple after she says second question is not needed."
+  },
+  "visual_beats_to_include": [
+   {
+    "after_line": "L0183",
+    "before_line": "L0185",
+    "what": "The male lead quietly pulling a small plastic stool forward with his foot and stepping onto it to adjust his perspective before smiling at her.",
+    "why": "It is the pivotal cute, physical gesture showing he doesn't care about the height difference and sets up his speech.",
+    "time": {
+     "start": 482.62,
+     "end": 489.33,
+     "raw": [
+      482.11,
+      489.33
+     ],
+     "snapped": [
+      true,
+      true
+     ],
+     "label": "8:02.6-8:09.3",
+     "capped": true,
+     "full": [
+      482.11,
+      526.65
+     ]
+    }
+   }
+  ],
+  "reaction": {
+   "after_line": "L0205",
+   "what": "The female lead looks down and smiles bashfully while music plays, completely won over."
+  },
+  "clean_edges": {
+   "start": false,
+   "end": false,
+   "note": "Starting with L0042 leaps across episodes/scenes awkwardly, and ending directly on L0205 cuts off the musical payoff and reaction."
+  }
+ },
+ "w01": {
+  "windows": [
+   [
+    171.34,
+    333.48
+   ]
+  ],
+  "fps": 1.0,
+  "usage": {
+   "input": 17318,
+   "cached": 0,
+   "output": 498,
+   "modalities": {
+    "TEXT": 2576,
+    "VIDEO": 14742
+   }
+  },
+  "converted": {
+   "start": {
+    "time": 211.34
+   },
+   "end": {
+    "time": 313.48
+   }
+  },
+  "start": {
+   "verdict": "ok",
+   "at": {
+    "line": "L0069",
+    "after_line": "",
+    "before_line": ""
+   },
+   "why": "Starting directly with the groom asking 'Meeku vanta vaccha?' sets up the central premise immediately and hooks the audience without delay."
+  },
+  "end": {
+   "verdict": "ok",
+   "at": {
+    "line": "L0111",
+    "after_line": "",
+    "before_line": ""
+   },
+   "why": "Ending on the mother's hilarious whispered inner voice/aside ('Em acting chestunnave') serves as the perfect punchline before the flashback transition begins."
+  },
+  "visual_beats_to_include": [
+   {
+    "after_line": "L0069",
+    "before_line": "L0071",
+    "what": "The bride's shocked, wide-eyed facial reaction followed by her mother's alarmed look across to her.",
+    "why": "Crucial comedy beat showing her sudden panic before the mother's inner voice kicks in with 'Chacchindi gorre'.",
+    "time": {
+     "start": 212.21,
+     "end": 221.33,
+     "raw": [
+      212.0,
+      221.62
+     ],
+     "snapped": [
+      true,
+      true
+     ],
+     "label": "3:32.2-3:41.3"
+    }
+   },
+   {
+    "after_line": "L0102",
+    "before_line": "L0104",
+    "what": "The mother and daughter breaking into an exaggerated, forced, cover-up laugh to mask the daughter blabbing the truth.",
+    "why": "The fake laughter is essential physical comedy that sells how ridiculously fabricated the cover-up excuse is.",
+    "time": {
+     "start": 289.33,
+     "end": 292.1,
+     "raw": [
+      289.18,
+      292.1
+     ],
+     "snapped": [
+      true,
+      false
+     ],
+     "label": "4:49.3-4:52.1"
+    }
+   }
+  ],
+  "reaction": {
+   "after_line": "L0099",
+   "what": "The mother turns in horror and whispers aggressively under her breath at the daughter ('Thummu moham daana') after she blurts out that they bought the sweets from Pulla Reddy."
+  },
+  "clean_edges": {
+   "start": true,
+   "end": true,
+   "note": "The clip begins cleanly on dialogue delivery and cuts out cleanly right before the kitchen flashback sequence begins."
+  }
+ },
+ "w02": {
+  "windows": [
+   [
+    729.386,
+    852.946
+   ]
+  ],
+  "fps": 1.0,
+  "usage": {
+   "input": 13283,
+   "cached": 0,
+   "output": 315,
+   "modalities": {
+    "TEXT": 1999,
+    "VIDEO": 11284
+   }
+  },
+  "converted": {
+   "start": {
+    "time": 769.39
+   },
+   "end": {
+    "time": 832.95
+   }
+  },
+  "start": {
+   "verdict": "ok",
+   "at": {
+    "line": "L0268",
+    "after_line": "L0267",
+    "before_line": "L0268"
+   },
+   "why": "Starting directly on the food metaphor about marriage gives an immediate and engaging hook for the reel."
+  },
+  "end": {
+   "verdict": "ok",
+   "at": {
+    "line": "L0291",
+    "after_line": "L0291",
+    "before_line": "L0292"
+   },
+   "why": "Ending on the heroine's helpless rhetorical question ('Who could say no if someone explains it like that?') provides a neat resolution to his long food analogy."
+  },
+  "visual_beats_to_include": [],
+  "reaction": {
+   "after_line": "L0290",
+   "what": "The scene cuts back to the living room where the girl sits with her knees pulled up, looking dreamy yet conflicted after listening to his pitch."
+  },
+  "clean_edges": {
+   "start": true,
+   "end": true,
+   "note": "Starts smoothly on the dialogue transition and cuts cleanly after the line delivers its comedic impact."
+  }
+ },
+ "w04": {
+  "windows": [
+   [
+    837.246,
+    971.006
+   ]
+  ],
+  "fps": 1.0,
+  "usage": {
+   "input": 14579,
+   "cached": 0,
+   "output": 407,
+   "modalities": {
+    "VIDEO": 12194,
+    "TEXT": 2385
+   }
+  },
+  "converted": {
+   "start": {
+    "time": 879.97
+   },
+   "end": {
+    "time": 954.62,
+    "gap": {
+     "start": 951.46,
+     "end": 954.62,
+     "raw": [
+      951.01,
+      954.99
+     ],
+     "snapped": [
+      true,
+      true
+     ],
+     "label": "15:51.5-15:54.6"
+    }
+   }
+  },
+  "start": {
+   "verdict": "too_early",
+   "at": {
+    "line": "L0316",
+    "after_line": "",
+    "before_line": ""
+   },
+   "why": "Starting on the setup question 'మీ favourite dish ఏంటి?' gets straight to the funny interaction and cuts the redundant preamble about eating outside."
+  },
+  "end": {
+   "verdict": "too_early",
+   "at": {
+    "line": "L0344",
+    "after_line": "",
+    "before_line": ""
+   },
+   "why": "The clip cuts off abruptly right as the guy says 'మీరు భలే talented అండి', missing her hilarious bashful/awkward smile and biting her lip reaction that sells the comedy."
+  },
+  "visual_beats_to_include": [
+   {
+    "after_line": "L0326",
+    "before_line": "L0328",
+    "what": "She freezes with an awkward stunned grin, realizing she confused gongura with gorintaku, while he stares back baffled.",
+    "why": "The cut in L0327 removes her embarrassed hesitation beat which makes the recovery excuse funny.",
+    "time": {
+     "start": 905.5,
+     "end": 912.15,
+     "raw": [
+      904.95,
+      912.15
+     ],
+     "snapped": [
+      true,
+      false
+     ],
+     "label": "15:05.5-15:12.1"
+    }
+   }
+  ],
+  "reaction": {
+   "after_line": "L0343",
+   "what": "She laughs bashfully, bites her lower lip, and tries to keep a proud poker face while pretending to accept the compliment."
+  },
+  "clean_edges": {
+   "start": true,
+   "end": false,
+   "note": "Ending directly on line L0343 trims off the key punchline reaction shot of the actress smiling awkwardly."
+  }
+ },
+ "w05": {
+  "windows": [
+   [
+    171.34,
+    274.9
+   ],
+   [
+    1074.946,
+    1105.966
+   ]
+  ],
+  "fps": 1.0,
+  "usage": {
+   "input": 14530,
+   "cached": 0,
+   "output": 420,
+   "modalities": {
+    "TEXT": 2245,
+    "VIDEO": 12285
+   }
+  },
+  "converted": {
+   "start": {
+    "time": 211.34
+   },
+   "end": {
+    "time": 1106.54,
+    "gap": {
+     "start": 1096.33,
+     "end": 1106.54,
+     "raw": [
+      1096.45,
+      1106.54
+     ],
+     "snapped": [
+      true,
+      true
+     ],
+     "label": "18:16.3-18:26.5",
+     "capped": true,
+     "full": [
+      1096.45,
+      1111.45
+     ]
+    }
+   }
+  },
+  "start": {
+   "verdict": "ok",
+   "at": {
+    "line": "L0069",
+    "after_line": "",
+    "before_line": ""
+   },
+   "why": "Starting directly with the hero's sudden question 'Meeku vanta vaccha?' immediately establishes the premise of the reel."
+  },
+  "end": {
+   "verdict": "too_early",
+   "at": {
+    "line": "",
+    "after_line": "L0403",
+    "before_line": "L0404"
+   },
+   "why": "Ending at L0398 cuts out the punchline of his extreme, hilarious violent reaction to lies ('appadalu nalipinattu', 'chicken kalchinattu', etc.) and the shock on the bride and mother's faces."
+  },
+  "visual_beats_to_include": [
+   {
+    "after_line": "L0069",
+    "before_line": "L0071",
+    "what": "The bride's wide-eyed, stunned comedic reaction when asked if she knows how to cook.",
+    "why": "It sells the irony that she does not know cooking before her mother covers it up with 'chacchindi gorre'.",
+    "time": {
+     "start": 212.21,
+     "end": 221.33,
+     "raw": [
+      212.0,
+      221.62
+     ],
+     "snapped": [
+      true,
+      true
+     ],
+     "label": "3:32.2-3:41.3"
+    }
+   }
+  ],
+  "reaction": {
+   "after_line": "L0403",
+   "what": "The bride and her mother staring in terrified shock as the groom describes how aggressively he wants to crush liars like appadalu and roasted meat."
+  },
+  "clean_edges": {
+   "start": true,
+   "end": false,
+   "note": "The current ending abruptly chops mid-monologue before the punchy descriptions of his anger finish."
+  }
+ },
+ "w06": {
+  "windows": [
+   [
+    648.71,
+    769.706
+   ]
+  ],
+  "fps": 1.0,
+  "usage": {
+   "input": 12746,
+   "cached": 0,
+   "output": 411,
+   "modalities": {
+    "TEXT": 1735,
+    "VIDEO": 11011
+   }
+  },
+  "converted": {
+   "start": {
+    "time": 688.71
+   },
+   "end": {
+    "time": 760.71,
+    "gap": {
+     "start": 749.88,
+     "end": 760.71,
+     "raw": [
+      749.71,
+      761.19
+     ],
+     "snapped": [
+      true,
+      true
+     ],
+     "label": "12:29.9-12:40.7"
+    }
+   }
+  },
+  "start": {
+   "verdict": "ok",
+   "at": {
+    "line": "L0243",
+    "after_line": "",
+    "before_line": ""
+   },
+   "why": "Starting on the friend's dialogue creates the narrative framing of her friend asking whether she went crazy hiding that she can't cook."
+  },
+  "end": {
+   "verdict": "too_early",
+   "at": {
+    "line": "",
+    "after_line": "L0264",
+    "before_line": "L0265"
+   },
+   "why": "Ending on line L0263 leaves the male lead's dialogue hanging without showing her flustered reaction where she tucks her hair and stands up shyly to walk away."
+  },
+  "visual_beats_to_include": [
+   {
+    "after_line": "L0263",
+    "before_line": "L0265",
+    "what": "The female lead is stunned by his sweet words, smiles shyly, touches her hair, and gets up from the table while he smiles warmly at her.",
+    "why": "This is the entire emotional payoff and romantic reaction of the scene, completing the exchange before returning to her present conversation.",
+    "time": {
+     "start": 749.88,
+     "end": 760.71,
+     "raw": [
+      749.71,
+      761.19
+     ],
+     "snapped": [
+      true,
+      true
+     ],
+     "label": "12:29.9-12:40.7"
+    }
+   }
+  ],
+  "reaction": {
+   "after_line": "L0263",
+   "what": "She looks stunned, blushes, touches her hair, smiles bashfully, and stands up from the table while he smiles warmly."
+  },
+  "clean_edges": {
+   "start": true,
+   "end": false,
+   "note": "The clip abruptly cuts right as he finishes speaking, truncating the musical beat and the romantic visual reaction."
+  }
+ },
+ "w07": {
+  "windows": [
+   [
+    281.98,
+    377.2
+   ]
+  ],
+  "fps": 1.0,
+  "usage": {
+   "input": 10302,
+   "cached": 0,
+   "output": 281,
+   "modalities": {
+    "TEXT": 1657,
+    "VIDEO": 8645
+   }
+  },
+  "converted": {
+   "start": {
+    "time": 321.98
+   },
+   "end": {
+    "time": 357.2
+   }
+  },
+  "start": {
+   "verdict": "ok",
+   "at": {
+    "line": "L0114",
+    "after_line": "",
+    "before_line": ""
+   },
+   "why": "Starting sharply with the mother's kitchen command gives an instant punchy entry into the comedy montage."
+  },
+  "end": {
+   "verdict": "ok",
+   "at": {
+    "line": "L0131",
+    "after_line": "",
+    "before_line": ""
+   },
+   "why": "Ending on the mother's shocked reaction to the Deepavali cooker bomb joke cleanly wraps up the cooking gag sequence before returning to the living room scene."
+  },
+  "visual_beats_to_include": [],
+  "reaction": {
+   "after_line": "L0131",
+   "what": "The mother gives an exasperated, horrified stare with her mouth open as the Deepavali cooker joke lands."
+  },
+  "clean_edges": {
+   "start": true,
+   "end": true,
+   "note": "Both start and end align well with camera cuts and dialogue beats."
+  }
+ },
+ "w08": {
+  "windows": [
+   [
+    987.0060000000001,
+    1116.446
+   ]
+  ],
+  "fps": 1.0,
+  "usage": {
+   "input": 13833,
+   "cached": 0,
+   "output": 517,
+   "modalities": {
+    "VIDEO": 11739,
+    "TEXT": 2094
+   }
+  },
+  "converted": {
+   "start": {
+    "time": 1070.13
+   },
+   "end": {
+    "time": 1106.54,
+    "gap": {
+     "start": 1096.33,
+     "end": 1106.54,
+     "raw": [
+      1096.45,
+      1106.54
+     ],
+     "snapped": [
+      true,
+      true
+     ],
+     "label": "18:16.3-18:26.5",
+     "capped": true,
+     "full": [
+      1096.45,
+      1150.19
+     ]
+    }
+   }
+  },
+  "start": {
+   "verdict": "too_early",
+   "at": {
+    "line": "L0390",
+    "after_line": "L0389",
+    "before_line": "L0390"
+   },
+   "why": "Starting on the mother-in-law farewell small talk drags out the premise. The actual hook and tension of the Reel begins when the groom answers his phone and bursts out into anger about lying."
+  },
+  "end": {
+   "verdict": "too_early",
+   "at": {
+    "line": "",
+    "after_line": "L0404",
+    "before_line": ""
+   },
+   "why": "Cutting off immediately after he describes beating mutton leaves out the intense freeze-frame suspense and terrified reaction shots of the bride and mother-in-law as he glares toward them."
+  },
+  "visual_beats_to_include": [
+   {
+    "after_line": "L0375",
+    "before_line": "L0379",
+    "what": "The bride's alarmed side-eye glance at the groom when he mentions missing her cooking.",
+    "why": "If the preamble about cooking is kept, cutting her guilty reaction eliminates the subtle foreshadowing that she lied about being able to cook.",
+    "time": {
+     "start": 1039.42,
+     "end": 1047.21,
+     "raw": [
+      1039.57,
+      1047.47
+     ],
+     "snapped": [
+      true,
+      true
+     ],
+     "label": "17:19.4-17:27.2"
+    }
+   },
+   {
+    "after_line": "L0403",
+    "before_line": "L0404",
+    "what": "The terrified reactions of the bride and her mother staring wide-eyed, followed by the groom's intense, angry stare.",
+    "why": "This reaction beat establishes the cliffhanger comedy/drama of the bride realizing how dangerous her secret lie is.",
+    "time": {
+     "start": 1096.33,
+     "end": 1106.54,
+     "raw": [
+      1096.45,
+      1106.54
+     ],
+     "snapped": [
+      true,
+      true
+     ],
+     "label": "18:16.3-18:26.5",
+     "capped": true,
+     "full": [
+      1096.45,
+      1111.45
+     ]
+    }
+   }
+  ],
+  "reaction": {
+   "after_line": "L0403",
+   "what": "The bride and her mother stand frozen with shocked, terrified expressions as dramatic background music plays."
+  },
+  "clean_edges": {
+   "start": true,
+   "end": false,
+   "note": "The current clip cuts abruptly while the groom is still finishing his dialogue action, slicing through the dramatic payoff and silence that follows."
+  }
+ },
+ "w09": {
+  "windows": [
+   [
+    558.17,
+    694.65
+   ]
+  ],
+  "fps": 1.0,
+  "usage": {
+   "input": 14669,
+   "cached": 0,
+   "output": 416,
+   "modalities": {
+    "TEXT": 2202,
+    "VIDEO": 12467
+   }
+  },
+  "converted": {
+   "start": {
+    "time": 598.17
+   },
+   "end": {
+    "time": 681.83
+   }
+  },
+  "start": {
+   "verdict": "ok",
+   "at": {
+    "line": "L0207",
+    "after_line": "L0206",
+    "before_line": "L0207"
+   },
+   "why": "The clip begins right on cue as the friend teases him about liking the girl at the office desk, setting up the entire conversation."
+  },
+  "end": {
+   "verdict": "too_early",
+   "at": {
+    "line": "L0241",
+    "after_line": "L0240",
+    "before_line": "L0242"
+   },
+   "why": "Cutting right on the emotional line turns it into pure melodrama, missing the comic punchline in L0241 where the friend punctures the sentiment with 'What if she asks if you married her just for food?'"
+  },
+  "visual_beats_to_include": [
+   {
+    "after_line": "L0240",
+    "before_line": "L0241",
+    "what": "The protagonist smiles warmly and looks away dreamily, before his friend cuts through his reverie.",
+    "why": "Allows the emotional high point to breathe for a split second before delivering the punchline question.",
+    "time": {
+     "start": 674.65,
+     "end": 679.25,
+     "raw": [
+      674.65,
+      679.25
+     ],
+     "snapped": [
+      false,
+      false
+     ],
+     "label": "11:14.6-11:19.2"
+    }
+   }
+  ],
+  "reaction": {
+   "after_line": "L0241",
+   "what": "The protagonist's warm romantic smile instantly freezes into a blank, worried expression upon hearing his friend's reality-check question."
+  },
+  "clean_edges": {
+   "start": true,
+   "end": false,
+   "note": "The end cuts abruptly on the emotional delivery before the comedic reaction and counter-question can land."
+  }
+ }
+}

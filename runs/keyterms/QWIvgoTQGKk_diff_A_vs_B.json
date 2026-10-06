@@ -1,0 +1,4738 @@
+{
+ "totals": {
+  "a_words": 1366,
+  "b_words": 1370,
+  "aligned_equal": 1231,
+  "aligned_same_surface": 1116,
+  "a_mean_conf": 0.9309,
+  "b_mean_conf": 0.9313,
+  "a_low_conf_words(<0.5)": 26,
+  "b_low_conf_words(<0.5)": 25,
+  "a_sentences": 335,
+  "b_sentences": 314,
+  "a_speakers": [
+   "speaker_0",
+   "speaker_1",
+   "speaker_2",
+   "speaker_3"
+  ],
+  "b_speakers": [
+   "speaker_2",
+   "speaker_3",
+   "speaker_1",
+   "speaker_4",
+   "speaker_5"
+  ],
+  "a_ghosts": [],
+  "b_ghosts": [],
+  "a_talk_s": {
+   "speaker_0": 228.2,
+   "speaker_1": 96.6,
+   "speaker_2": 38.9,
+   "speaker_3": 19.1
+  },
+  "b_talk_s": {
+   "speaker_2": 164.8,
+   "speaker_3": 78.8,
+   "speaker_1": 59.0,
+   "speaker_4": 48.8,
+   "speaker_5": 27.5
+  }
+ },
+ "n_changes": 98,
+ "changes": [
+  {
+   "op": "replace",
+   "a_words": [
+    28,
+    28
+   ],
+   "b_words": [
+    28,
+    28
+   ],
+   "t": 156.88,
+   "a": "అయ్యా",
+   "b": "యా",
+   "a_conf": [
+    0.73
+   ],
+   "b_conf": [
+    0.87
+   ],
+   "a_spk": [
+    "speaker_1"
+   ],
+   "b_spk": [
+    "speaker_1"
+   ]
+  },
+  {
+   "op": "delete",
+   "a_words": [
+    35,
+    35
+   ],
+   "b_words": null,
+   "t": 161.68,
+   "a": "ఆ",
+   "b": "",
+   "a_conf": [
+    0.67
+   ],
+   "b_conf": [],
+   "a_spk": [
+    "speaker_1"
+   ],
+   "b_spk": []
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    41,
+    43
+   ],
+   "b_words": [
+    40,
+    41
+   ],
+   "t": 167.04,
+   "a": "first day నే",
+   "b": "ఫస్ట్ డేనే",
+   "a_conf": [
+    0.48,
+    0.99,
+    0.84
+   ],
+   "b_conf": [
+    0.86,
+    0.8
+   ],
+   "a_spk": [
+    "speaker_1"
+   ],
+   "b_spk": [
+    "speaker_1"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    45,
+    46
+   ],
+   "b_words": [
+    43,
+    44
+   ],
+   "t": 168.24,
+   "a": "ఉన్నావు కదా.",
+   "b": "ఉన్నావ్ కదే",
+   "a_conf": [
+    0.84,
+    0.94
+   ],
+   "b_conf": [
+    0.83,
+    0.91
+   ],
+   "a_spk": [
+    "speaker_1"
+   ],
+   "b_spk": [
+    "speaker_1"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    53,
+    53
+   ],
+   "b_words": [
+    51,
+    51
+   ],
+   "t": 172.34,
+   "a": "అన్నా",
+   "b": "మన్నా",
+   "a_conf": [
+    0.92
+   ],
+   "b_conf": [
+    0.81
+   ],
+   "a_spk": [
+    "speaker_1"
+   ],
+   "b_spk": [
+    "speaker_1"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    56,
+    59
+   ],
+   "b_words": [
+    54,
+    56
+   ],
+   "t": 174.08,
+   "a": "చేసుకొని next day న",
+   "b": "చేసుకున్న నెక్స్ట్ డేనే",
+   "a_conf": [
+    0.82,
+    1.0,
+    1.0,
+    0.45
+   ],
+   "b_conf": [
+    0.7,
+    1.0,
+    0.89
+   ],
+   "a_spk": [
+    "speaker_1"
+   ],
+   "b_spk": [
+    "speaker_1"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    66,
+    67
+   ],
+   "b_words": [
+    63,
+    63
+   ],
+   "t": 176.6,
+   "a": "paper లో",
+   "b": "పేపర్లో",
+   "a_conf": [
+    0.96,
+    1.0
+   ],
+   "b_conf": [
+    0.99
+   ],
+   "a_spk": [
+    "speaker_1"
+   ],
+   "b_spk": [
+    "speaker_1"
+   ]
+  },
+  {
+   "op": "insert",
+   "a_words": null,
+   "b_words": [
+    79,
+    79
+   ],
+   "t": 187.86,
+   "a": "",
+   "b": "ఆ",
+   "a_conf": [],
+   "b_conf": [
+    0.6
+   ],
+   "a_spk": [],
+   "b_spk": [
+    "speaker_1"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    101,
+    101
+   ],
+   "b_words": [
+    98,
+    98
+   ],
+   "t": 202.36,
+   "a": "ఒరేయ్",
+   "b": "అరేయ్",
+   "a_conf": [
+    0.83
+   ],
+   "b_conf": [
+    0.49
+   ],
+   "a_spk": [
+    "speaker_0"
+   ],
+   "b_spk": [
+    "speaker_2"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    103,
+    104
+   ],
+   "b_words": [
+    100,
+    100
+   ],
+   "t": 202.62,
+   "a": "పెట్టే. ఉమ్",
+   "b": "పెట్టా",
+   "a_conf": [
+    0.89,
+    0.7
+   ],
+   "b_conf": [
+    0.93
+   ],
+   "a_spk": [
+    "speaker_0"
+   ],
+   "b_spk": [
+    "speaker_2"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    110,
+    110
+   ],
+   "b_words": [
+    106,
+    106
+   ],
+   "t": 211.84,
+   "a": "coffee",
+   "b": "కాఫీ",
+   "a_conf": [
+    0.91
+   ],
+   "b_conf": [
+    0.91
+   ],
+   "a_spk": [
+    "speaker_1"
+   ],
+   "b_spk": [
+    "speaker_1"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    139,
+    141
+   ],
+   "b_words": [
+    135,
+    137
+   ],
+   "t": 228.28,
+   "a": "ఏమనుకుంటున్నారు. It's a",
+   "b": "ఏమనుకున్నారు ఇట్స్ ఏ",
+   "a_conf": [
+    0.92,
+    0.9,
+    1.0
+   ],
+   "b_conf": [
+    0.77,
+    0.99,
+    0.92
+   ],
+   "a_spk": [
+    "speaker_0"
+   ],
+   "b_spk": [
+    "speaker_2"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    143,
+    144
+   ],
+   "b_words": [
+    139,
+    140
+   ],
+   "t": 230.64,
+   "a": "it's a",
+   "b": "ఇట్స్ ఏ",
+   "a_conf": [
+    0.85,
+    1.0
+   ],
+   "b_conf": [
+    1.0,
+    1.0
+   ],
+   "a_spk": [
+    "speaker_0"
+   ],
+   "b_spk": [
+    "speaker_2"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    146,
+    146
+   ],
+   "b_words": [
+    142,
+    142
+   ],
+   "t": 232.2,
+   "a": "morning",
+   "b": "మార్నింగ్",
+   "a_conf": [
+    0.58
+   ],
+   "b_conf": [
+    0.88
+   ],
+   "a_spk": [
+    "speaker_0"
+   ],
+   "b_spk": [
+    "speaker_2"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    179,
+    180
+   ],
+   "b_words": [
+    175,
+    175
+   ],
+   "t": 254.74,
+   "a": "గుర పడితే",
+   "b": "గుడిపడితే",
+   "a_conf": [
+    0.49,
+    0.84
+   ],
+   "b_conf": [
+    0.77
+   ],
+   "a_spk": [
+    "speaker_0"
+   ],
+   "b_spk": [
+    "speaker_2"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    184,
+    184
+   ],
+   "b_words": [
+    179,
+    179
+   ],
+   "t": 255.62,
+   "a": "చెప్తున్నవా",
+   "b": "చెప్తున్నావా",
+   "a_conf": [
+    0.93
+   ],
+   "b_conf": [
+    0.98
+   ],
+   "a_spk": [
+    "speaker_0"
+   ],
+   "b_spk": [
+    "speaker_2"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    189,
+    190
+   ],
+   "b_words": [
+    184,
+    188
+   ],
+   "t": 257.44,
+   "a": "చెప్తున్నవా ఏకసకాలే",
+   "b": "చెప్తున్నావా ఈ ఎగ సగా లే",
+   "a_conf": [
+    1.0,
+    0.65
+   ],
+   "b_conf": [
+    1.0,
+    0.9,
+    0.82,
+    0.41,
+    0.63
+   ],
+   "a_spk": [
+    "speaker_0"
+   ],
+   "b_spk": [
+    "speaker_2"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    214,
+    215
+   ],
+   "b_words": [
+    212,
+    214
+   ],
+   "t": 278.86,
+   "a": "అమ్మయ్య నాకోసం",
+   "b": "మమ్మయ్యా నా కోసం",
+   "a_conf": [
+    0.65,
+    0.95
+   ],
+   "b_conf": [
+    0.71,
+    1.0,
+    0.56
+   ],
+   "a_spk": [
+    "speaker_0",
+    "speaker_1"
+   ],
+   "b_spk": [
+    "speaker_1",
+    "speaker_2"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    217,
+    217
+   ],
+   "b_words": [
+    216,
+    216
+   ],
+   "t": 290.32,
+   "a": "వండవు.",
+   "b": "వండావ్",
+   "a_conf": [
+    0.8
+   ],
+   "b_conf": [
+    0.68
+   ],
+   "a_spk": [
+    "speaker_0"
+   ],
+   "b_spk": [
+    "speaker_2"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    228,
+    230
+   ],
+   "b_words": [
+    227,
+    230
+   ],
+   "t": 299.36,
+   "a": "వండవా ఉమ్ దే",
+   "b": "వండావా ఊ తేయ్ ఆ",
+   "a_conf": [
+    0.8,
+    0.77,
+    0.62
+   ],
+   "b_conf": [
+    0.88,
+    0.4,
+    0.71,
+    0.59
+   ],
+   "a_spk": [
+    "speaker_0"
+   ],
+   "b_spk": [
+    "speaker_2"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    237,
+    237
+   ],
+   "b_words": [
+    237,
+    237
+   ],
+   "t": 305.92,
+   "a": "హా",
+   "b": "ఆ",
+   "a_conf": [
+    0.52
+   ],
+   "b_conf": [
+    0.86
+   ],
+   "a_spk": [
+    "speaker_0"
+   ],
+   "b_spk": [
+    "speaker_1"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    240,
+    240
+   ],
+   "b_words": [
+    240,
+    240
+   ],
+   "t": 307.48,
+   "a": "తనతో",
+   "b": "తనతోనే",
+   "a_conf": [
+    1.0
+   ],
+   "b_conf": [
+    0.69
+   ],
+   "a_spk": [
+    "speaker_2"
+   ],
+   "b_spk": [
+    "speaker_2"
+   ]
+  },
+  {
+   "op": "delete",
+   "a_words": [
+    243,
+    250
+   ],
+   "b_words": null,
+   "t": 309.8,
+   "a": "అవునయ్యా హా హా నాకోసం dinner వండుతావు కదా ఉమ్",
+   "b": "",
+   "a_conf": [
+    0.74,
+    0.61,
+    0.74,
+    1.0,
+    0.39,
+    0.97,
+    1.0,
+    0.77
+   ],
+   "b_conf": [],
+   "a_spk": [
+    "speaker_0",
+    "speaker_2"
+   ],
+   "b_spk": []
+  },
+  {
+   "op": "insert",
+   "a_words": null,
+   "b_words": [
+    245,
+    255
+   ],
+   "t": 311.06,
+   "a": "",
+   "b": "ఆ నాకోసం ఊ dinner వండుతావ్ కదా ఊ ఆ ఆ ఆ ఊ",
+   "a_conf": [],
+   "b_conf": [
+    0.65,
+    0.88,
+    0.57,
+    0.53,
+    0.88,
+    1.0,
+    0.91,
+    0.55,
+    1.0,
+    0.92,
+    0.93
+   ],
+   "a_spk": [],
+   "b_spk": [
+    "speaker_1",
+    "speaker_2"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    269,
+    269
+   ],
+   "b_words": [
+    272,
+    272
+   ],
+   "t": 332.24,
+   "a": "వెళ్లేటప్పుడు",
+   "b": "వెళ్ళేటప్పుడు",
+   "a_conf": [
+    0.9
+   ],
+   "b_conf": [
+    0.91
+   ],
+   "a_spk": [
+    "speaker_2"
+   ],
+   "b_spk": [
+    "speaker_1"
+   ]
+  },
+  {
+   "op": "delete",
+   "a_words": [
+    274,
+    274
+   ],
+   "b_words": null,
+   "t": 334.64,
+   "a": "ఊహూ",
+   "b": "",
+   "a_conf": [
+    0.91
+   ],
+   "b_conf": [],
+   "a_spk": [
+    "speaker_1"
+   ],
+   "b_spk": []
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    277,
+    277
+   ],
+   "b_words": [
+    279,
+    279
+   ],
+   "t": 338.1,
+   "a": "బలే",
+   "b": "భలే",
+   "a_conf": [
+    0.8
+   ],
+   "b_conf": [
+    0.93
+   ],
+   "a_spk": [
+    "speaker_0"
+   ],
+   "b_spk": [
+    "speaker_2"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    282,
+    282
+   ],
+   "b_words": [
+    284,
+    284
+   ],
+   "t": 340.98,
+   "a": "బలే",
+   "b": "భలే",
+   "a_conf": [
+    1.0
+   ],
+   "b_conf": [
+    1.0
+   ],
+   "a_spk": [
+    "speaker_1"
+   ],
+   "b_spk": [
+    "speaker_1"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    299,
+    299
+   ],
+   "b_words": [
+    301,
+    301
+   ],
+   "t": 347.46,
+   "a": "అన్ని",
+   "b": "అన్నీ",
+   "a_conf": [
+    0.7
+   ],
+   "b_conf": [
+    0.85
+   ],
+   "a_spk": [
+    "speaker_2"
+   ],
+   "b_spk": [
+    "speaker_2"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    308,
+    308
+   ],
+   "b_words": [
+    310,
+    310
+   ],
+   "t": 353.02,
+   "a": "అన్నావు",
+   "b": "అన్నావ్",
+   "a_conf": [
+    0.94
+   ],
+   "b_conf": [
+    1.0
+   ],
+   "a_spk": [
+    "speaker_1"
+   ],
+   "b_spk": [
+    "speaker_1"
+   ]
+  },
+  {
+   "op": "insert",
+   "a_words": null,
+   "b_words": [
+    326,
+    326
+   ],
+   "t": 361.92,
+   "a": "",
+   "b": "ఆ",
+   "a_conf": [],
+   "b_conf": [
+    0.79
+   ],
+   "a_spk": [],
+   "b_spk": [
+    "speaker_2"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    328,
+    329
+   ],
+   "b_words": [
+    331,
+    332
+   ],
+   "t": 366.16,
+   "a": "ఆ మావోడు",
+   "b": "మా వాడు",
+   "a_conf": [
+    0.96,
+    0.89
+   ],
+   "b_conf": [
+    0.64,
+    0.85
+   ],
+   "a_spk": [
+    "speaker_3"
+   ],
+   "b_spk": [
+    "speaker_3"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    341,
+    341
+   ],
+   "b_words": [
+    344,
+    345
+   ],
+   "t": 371.84,
+   "a": "కుక్కను",
+   "b": "cook ని",
+   "a_conf": [
+    0.84
+   ],
+   "b_conf": [
+    0.63,
+    0.71
+   ],
+   "a_spk": [
+    "speaker_3"
+   ],
+   "b_spk": [
+    "speaker_3"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    357,
+    358
+   ],
+   "b_words": [
+    361,
+    362
+   ],
+   "t": 377.46,
+   "a": "ఆ గోరించు.",
+   "b": "ఆగో రెంచూ!",
+   "a_conf": [
+    0.77,
+    0.67
+   ],
+   "b_conf": [
+    0.43,
+    0.3
+   ],
+   "a_spk": [
+    "speaker_1"
+   ],
+   "b_spk": [
+    "speaker_1"
+   ]
+  },
+  {
+   "op": "delete",
+   "a_words": [
+    383,
+    383
+   ],
+   "b_words": null,
+   "t": 398.28,
+   "a": "ఆ",
+   "b": "",
+   "a_conf": [
+    0.43
+   ],
+   "b_conf": [],
+   "a_spk": [
+    "speaker_1"
+   ],
+   "b_spk": []
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    395,
+    396
+   ],
+   "b_words": [
+    398,
+    398
+   ],
+   "t": 408.42,
+   "a": "ఊ ఊ",
+   "b": "ఉమ్",
+   "a_conf": [
+    0.34,
+    0.31
+   ],
+   "b_conf": [
+    0.69
+   ],
+   "a_spk": [
+    "speaker_2"
+   ],
+   "b_spk": [
+    "speaker_1"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    419,
+    419
+   ],
+   "b_words": [
+    421,
+    421
+   ],
+   "t": 422.5,
+   "a": "ఎరికిన్చేసావెంటమ్మా.",
+   "b": "ఎరికిచ్చేసావెంటమ్మా?",
+   "a_conf": [
+    0.53
+   ],
+   "b_conf": [
+    0.57
+   ],
+   "a_spk": [
+    "speaker_1"
+   ],
+   "b_spk": [
+    "speaker_4"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    423,
+    423
+   ],
+   "b_words": [
+    425,
+    425
+   ],
+   "t": 425.76,
+   "a": "క్యారేజ్",
+   "b": "carriage",
+   "a_conf": [
+    0.93
+   ],
+   "b_conf": [
+    1.0
+   ],
+   "a_spk": [
+    "speaker_1"
+   ],
+   "b_spk": [
+    "speaker_4"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    437,
+    437
+   ],
+   "b_words": [
+    439,
+    439
+   ],
+   "t": 435.1,
+   "a": "హుమ్",
+   "b": "ఉమ్",
+   "a_conf": [
+    0.6
+   ],
+   "b_conf": [
+    0.61
+   ],
+   "a_spk": [
+    "speaker_2"
+   ],
+   "b_spk": [
+    "speaker_1"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    452,
+    452
+   ],
+   "b_words": [
+    454,
+    454
+   ],
+   "t": 451.46,
+   "a": "అంత",
+   "b": "అంతా",
+   "a_conf": [
+    0.67
+   ],
+   "b_conf": [
+    0.62
+   ],
+   "a_spk": [
+    "speaker_0"
+   ],
+   "b_spk": [
+    "speaker_3"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    458,
+    458
+   ],
+   "b_words": [
+    460,
+    460
+   ],
+   "t": 454.08,
+   "a": "hypeడ్",
+   "b": "hyped",
+   "a_conf": [
+    0.3
+   ],
+   "b_conf": [
+    0.25
+   ],
+   "a_spk": [
+    "speaker_0"
+   ],
+   "b_spk": [
+    "speaker_3"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    469,
+    470
+   ],
+   "b_words": [
+    471,
+    471
+   ],
+   "t": 458.16,
+   "a": "ఇంక ఎలా",
+   "b": "ఇంకెలా",
+   "a_conf": [
+    0.8,
+    1.0
+   ],
+   "b_conf": [
+    0.9
+   ],
+   "a_spk": [
+    "speaker_0"
+   ],
+   "b_spk": [
+    "speaker_3"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    495,
+    495
+   ],
+   "b_words": [
+    496,
+    496
+   ],
+   "t": 471.48,
+   "a": "ఓడకి",
+   "b": "ముందుకు",
+   "a_conf": [
+    0.65
+   ],
+   "b_conf": [
+    0.35
+   ],
+   "a_spk": [
+    "speaker_0"
+   ],
+   "b_spk": [
+    "speaker_3"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    503,
+    504
+   ],
+   "b_words": [
+    504,
+    504
+   ],
+   "t": 473.92,
+   "a": "డబ్బులు ఏమైనా",
+   "b": "డబ్బులేమైనా",
+   "a_conf": [
+    0.9,
+    0.94
+   ],
+   "b_conf": [
+    0.87
+   ],
+   "a_spk": [
+    "speaker_0"
+   ],
+   "b_spk": [
+    "speaker_3"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    572,
+    572
+   ],
+   "b_words": [
+    572,
+    572
+   ],
+   "t": 508.54,
+   "a": "మే",
+   "b": "మీ",
+   "a_conf": [
+    0.43
+   ],
+   "b_conf": [
+    0.54
+   ],
+   "a_spk": [
+    "speaker_3"
+   ],
+   "b_spk": [
+    "speaker_2"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    579,
+    579
+   ],
+   "b_words": [
+    579,
+    579
+   ],
+   "t": 521.78,
+   "a": "అరే",
+   "b": "అరేయ్",
+   "a_conf": [
+    0.81
+   ],
+   "b_conf": [
+    0.99
+   ],
+   "a_spk": [
+    "speaker_0"
+   ],
+   "b_spk": [
+    "speaker_3"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    629,
+    629
+   ],
+   "b_words": [
+    629,
+    629
+   ],
+   "t": 553.84,
+   "a": "అరే!",
+   "b": "అరేయ్!",
+   "a_conf": [
+    0.97
+   ],
+   "b_conf": [
+    0.91
+   ],
+   "a_spk": [
+    "speaker_1"
+   ],
+   "b_spk": [
+    "speaker_4"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    706,
+    706
+   ],
+   "b_words": [
+    706,
+    706
+   ],
+   "t": 662.44,
+   "a": "ఉందన్నాను.",
+   "b": "ఉందన్నారు.",
+   "a_conf": [
+    0.86
+   ],
+   "b_conf": [
+    0.66
+   ],
+   "a_spk": [
+    "speaker_0"
+   ],
+   "b_spk": [
+    "speaker_3"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    714,
+    714
+   ],
+   "b_words": [
+    714,
+    714
+   ],
+   "t": 698.82,
+   "a": "పిలవచ్చు",
+   "b": "పిలవొచ్చు",
+   "a_conf": [
+    0.65
+   ],
+   "b_conf": [
+    0.93
+   ],
+   "a_spk": [
+    "speaker_0"
+   ],
+   "b_spk": [
+    "speaker_3"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    716,
+    716
+   ],
+   "b_words": [
+    716,
+    717
+   ],
+   "t": 700.04,
+   "a": "ఆనికి",
+   "b": "ఆ నిక్",
+   "a_conf": [
+    0.43
+   ],
+   "b_conf": [
+    0.91,
+    0.49
+   ],
+   "a_spk": [
+    "speaker_0"
+   ],
+   "b_spk": [
+    "speaker_3"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    718,
+    718
+   ],
+   "b_words": [
+    719,
+    720
+   ],
+   "t": 700.58,
+   "a": "flashbacks",
+   "b": "కి flashback",
+   "a_conf": [
+    0.5
+   ],
+   "b_conf": [
+    1.0,
+    0.44
+   ],
+   "a_spk": [
+    "speaker_0"
+   ],
+   "b_spk": [
+    "speaker_3"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    747,
+    748
+   ],
+   "b_words": [
+    749,
+    749
+   ],
+   "t": 721.84,
+   "a": "పెళ్లి చూపుల",
+   "b": "పెళ్లిచూపుల",
+   "a_conf": [
+    0.84,
+    0.86
+   ],
+   "b_conf": [
+    0.92
+   ],
+   "a_spk": [
+    "speaker_0"
+   ],
+   "b_spk": [
+    "speaker_3"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    751,
+    751
+   ],
+   "b_words": [
+    752,
+    752
+   ],
+   "t": 724.14,
+   "a": "ప్రతిదీ",
+   "b": "ప్రతీది",
+   "a_conf": [
+    0.77
+   ],
+   "b_conf": [
+    0.81
+   ],
+   "a_spk": [
+    "speaker_0"
+   ],
+   "b_spk": [
+    "speaker_3"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    789,
+    789
+   ],
+   "b_words": [
+    790,
+    790
+   ],
+   "t": 754.72,
+   "a": "husbands",
+   "b": "husband",
+   "a_conf": [
+    0.88
+   ],
+   "b_conf": [
+    0.65
+   ],
+   "a_spk": [
+    "speaker_0"
+   ],
+   "b_spk": [
+    "speaker_2"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    794,
+    794
+   ],
+   "b_words": [
+    795,
+    795
+   ],
+   "t": 757.06,
+   "a": "wives",
+   "b": "wife",
+   "a_conf": [
+    0.99
+   ],
+   "b_conf": [
+    0.92
+   ],
+   "a_spk": [
+    "speaker_0"
+   ],
+   "b_spk": [
+    "speaker_2"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    810,
+    811
+   ],
+   "b_words": [
+    811,
+    812
+   ],
+   "t": 775.48,
+   "a": "ఎప్పుడన్నా ఇరుకుదా,",
+   "b": "అప్పుడన్నారు కదా.",
+   "a_conf": [
+    0.72,
+    0.6
+   ],
+   "b_conf": [
+    0.93,
+    0.98
+   ],
+   "a_spk": [
+    "speaker_1"
+   ],
+   "b_spk": [
+    "speaker_5"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    827,
+    827
+   ],
+   "b_words": [
+    828,
+    828
+   ],
+   "t": 788.36,
+   "a": "మదక్,",
+   "b": "వాడా",
+   "a_conf": [
+    0.47
+   ],
+   "b_conf": [
+    0.67
+   ],
+   "a_spk": [
+    "speaker_0"
+   ],
+   "b_spk": [
+    "speaker_2"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    830,
+    831
+   ],
+   "b_words": [
+    831,
+    833
+   ],
+   "t": 789.1,
+   "a": "మదక్. అనవసరంగా",
+   "b": "వాడా అనాసరం గా",
+   "a_conf": [
+    0.98,
+    0.88
+   ],
+   "b_conf": [
+    0.89,
+    0.67,
+    1.0
+   ],
+   "a_spk": [
+    "speaker_0"
+   ],
+   "b_spk": [
+    "speaker_2"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    843,
+    843
+   ],
+   "b_words": [
+    845,
+    845
+   ],
+   "t": 793.28,
+   "a": "అదబ్బా,",
+   "b": "అదో",
+   "a_conf": [
+    0.64
+   ],
+   "b_conf": [
+    0.49
+   ],
+   "a_spk": [
+    "speaker_0"
+   ],
+   "b_spk": [
+    "speaker_2"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    845,
+    845
+   ],
+   "b_words": [
+    847,
+    847
+   ],
+   "t": 793.82,
+   "a": "అదబ్బా.",
+   "b": "అదో",
+   "a_conf": [
+    1.0
+   ],
+   "b_conf": [
+    0.97
+   ],
+   "a_spk": [
+    "speaker_0"
+   ],
+   "b_spk": [
+    "speaker_2"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    856,
+    857
+   ],
+   "b_words": [
+    858,
+    859
+   ],
+   "t": 798.5,
+   "a": "రేయ్. ఆహ్,",
+   "b": "ఛీ ఆ",
+   "a_conf": [
+    0.78,
+    0.54
+   ],
+   "b_conf": [
+    0.5,
+    0.87
+   ],
+   "a_spk": [
+    "speaker_0",
+    "speaker_1"
+   ],
+   "b_spk": [
+    "speaker_2",
+    "speaker_5"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    865,
+    865
+   ],
+   "b_words": [
+    867,
+    868
+   ],
+   "t": 812.02,
+   "a": "ఇప్పుడెందుకు",
+   "b": "ఇప్పుడు ఎందుకు",
+   "a_conf": [
+    0.99
+   ],
+   "b_conf": [
+    0.55,
+    1.0
+   ],
+   "a_spk": [
+    "speaker_0"
+   ],
+   "b_spk": [
+    "speaker_2"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    867,
+    868
+   ],
+   "b_words": [
+    870,
+    871
+   ],
+   "t": 813.36,
+   "a": "ఆహ్, చెయ్యించాలి",
+   "b": "ఆ చేయించాలి",
+   "a_conf": [
+    0.99,
+    0.97
+   ],
+   "b_conf": [
+    0.97,
+    0.89
+   ],
+   "a_spk": [
+    "speaker_1"
+   ],
+   "b_spk": [
+    "speaker_5"
+   ]
+  },
+  {
+   "op": "delete",
+   "a_words": [
+    873,
+    873
+   ],
+   "b_words": null,
+   "t": 817.28,
+   "a": "అదే,",
+   "b": "",
+   "a_conf": [
+    0.92
+   ],
+   "b_conf": [],
+   "a_spk": [
+    "speaker_1"
+   ],
+   "b_spk": []
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    882,
+    882
+   ],
+   "b_words": [
+    884,
+    884
+   ],
+   "t": 820.74,
+   "a": "ఓహ్,",
+   "b": "ఓహో",
+   "a_conf": [
+    0.84
+   ],
+   "b_conf": [
+    0.93
+   ],
+   "a_spk": [
+    "speaker_0"
+   ],
+   "b_spk": [
+    "speaker_2"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    890,
+    891
+   ],
+   "b_words": [
+    892,
+    893
+   ],
+   "t": 833.9,
+   "a": "వేడిగుంది. ఆ!",
+   "b": "ఓహ్ పేడిగుంది",
+   "a_conf": [
+    0.58,
+    0.7
+   ],
+   "b_conf": [
+    0.49,
+    0.38
+   ],
+   "a_spk": [
+    "speaker_0",
+    "speaker_1"
+   ],
+   "b_spk": [
+    "speaker_5"
+   ]
+  },
+  {
+   "op": "delete",
+   "a_words": [
+    894,
+    894
+   ],
+   "b_words": null,
+   "t": 842.54,
+   "a": "ఓహ్!",
+   "b": "",
+   "a_conf": [
+    0.88
+   ],
+   "b_conf": [],
+   "a_spk": [
+    "speaker_0"
+   ],
+   "b_spk": []
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    904,
+    905
+   ],
+   "b_words": [
+    905,
+    907
+   ],
+   "t": 848.48,
+   "a": "నాకోసం ఒక్క",
+   "b": "నా కోసం ఒక",
+   "a_conf": [
+    0.89,
+    0.65
+   ],
+   "b_conf": [
+    1.0,
+    1.0,
+    0.56
+   ],
+   "a_spk": [
+    "speaker_0"
+   ],
+   "b_spk": [
+    "speaker_2"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    908,
+    908
+   ],
+   "b_words": [
+    910,
+    910
+   ],
+   "t": 849.78,
+   "a": "వేసుకొని",
+   "b": "చేసుకొని",
+   "a_conf": [
+    0.89
+   ],
+   "b_conf": [
+    0.72
+   ],
+   "a_spk": [
+    "speaker_0"
+   ],
+   "b_spk": [
+    "speaker_2"
+   ]
+  },
+  {
+   "op": "insert",
+   "a_words": null,
+   "b_words": [
+    936,
+    936
+   ],
+   "t": 869.4,
+   "a": "",
+   "b": "ఆ",
+   "a_conf": [],
+   "b_conf": [
+    0.82
+   ],
+   "a_spk": [],
+   "b_spk": [
+    "speaker_1"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    944,
+    944
+   ],
+   "b_words": [
+    947,
+    947
+   ],
+   "t": 877.14,
+   "a": "అమ్మా",
+   "b": "అమ్మ",
+   "a_conf": [
+    0.92
+   ],
+   "b_conf": [
+    0.65
+   ],
+   "a_spk": [
+    "speaker_1"
+   ],
+   "b_spk": [
+    "speaker_5"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    946,
+    947
+   ],
+   "b_words": [
+    949,
+    950
+   ],
+   "t": 883.56,
+   "a": "Super ఉంది",
+   "b": "సూపర్ అమ్మ",
+   "a_conf": [
+    0.47,
+    0.85
+   ],
+   "b_conf": [
+    0.96,
+    0.27
+   ],
+   "a_spk": [
+    "speaker_0"
+   ],
+   "b_spk": [
+    "speaker_2"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    957,
+    957
+   ],
+   "b_words": [
+    960,
+    960
+   ],
+   "t": 892.64,
+   "a": "ఒక్క",
+   "b": "ఒక",
+   "a_conf": [
+    0.62
+   ],
+   "b_conf": [
+    0.88
+   ],
+   "a_spk": [
+    "speaker_1"
+   ],
+   "b_spk": [
+    "speaker_5"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    962,
+    962
+   ],
+   "b_words": [
+    965,
+    965
+   ],
+   "t": 894.54,
+   "a": "ఒక్క",
+   "b": "ఒక",
+   "a_conf": [
+    0.96
+   ],
+   "b_conf": [
+    1.0
+   ],
+   "a_spk": [
+    "speaker_1"
+   ],
+   "b_spk": [
+    "speaker_5"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    976,
+    976
+   ],
+   "b_words": [
+    979,
+    979
+   ],
+   "t": 900.32,
+   "a": "మంచిం",
+   "b": "మంచి",
+   "a_conf": [
+    0.88
+   ],
+   "b_conf": [
+    0.99
+   ],
+   "a_spk": [
+    "speaker_0"
+   ],
+   "b_spk": [
+    "speaker_2"
+   ]
+  },
+  {
+   "op": "delete",
+   "a_words": [
+    989,
+    989
+   ],
+   "b_words": null,
+   "t": 914.78,
+   "a": "ఆ.",
+   "b": "",
+   "a_conf": [
+    1.0
+   ],
+   "b_conf": [],
+   "a_spk": [
+    "speaker_1"
+   ],
+   "b_spk": []
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    994,
+    994
+   ],
+   "b_words": [
+    996,
+    996
+   ],
+   "t": 916.74,
+   "a": "బల్లె",
+   "b": "భలే",
+   "a_conf": [
+    0.59
+   ],
+   "b_conf": [
+    0.82
+   ],
+   "a_spk": [
+    "speaker_0"
+   ],
+   "b_spk": [
+    "speaker_2"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    1000,
+    1000
+   ],
+   "b_words": [
+    1002,
+    1002
+   ],
+   "t": 948.84,
+   "a": "దేనికో",
+   "b": "దేనికి",
+   "a_conf": [
+    0.77
+   ],
+   "b_conf": [
+    1.0
+   ],
+   "a_spk": [
+    "speaker_1"
+   ],
+   "b_spk": [
+    "speaker_5"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    1026,
+    1026
+   ],
+   "b_words": [
+    1028,
+    1028
+   ],
+   "t": 971.46,
+   "a": "చెయ్యమని",
+   "b": "చేయమని",
+   "a_conf": [
+    0.92
+   ],
+   "b_conf": [
+    0.8
+   ],
+   "a_spk": [
+    "speaker_0"
+   ],
+   "b_spk": [
+    "speaker_2"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    1075,
+    1076
+   ],
+   "b_words": [
+    1077,
+    1077
+   ],
+   "t": 1033.12,
+   "a": "బాధ వేస్తుంది.",
+   "b": "బాధేస్తుంది.",
+   "a_conf": [
+    1.0,
+    0.85
+   ],
+   "b_conf": [
+    0.94
+   ],
+   "a_spk": [
+    "speaker_0"
+   ],
+   "b_spk": [
+    "speaker_2"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    1090,
+    1090
+   ],
+   "b_words": [
+    1091,
+    1091
+   ],
+   "t": 1040.76,
+   "a": "నాకు",
+   "b": "నాకూ",
+   "a_conf": [
+    0.53
+   ],
+   "b_conf": [
+    0.71
+   ],
+   "a_spk": [
+    "speaker_0"
+   ],
+   "b_spk": [
+    "speaker_2"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    1098,
+    1098
+   ],
+   "b_words": [
+    1099,
+    1100
+   ],
+   "t": 1048.74,
+   "a": "అమ్మనేమడుగుతాం.",
+   "b": "అమ్మనే మడుగుతాం.",
+   "a_conf": [
+    0.92
+   ],
+   "b_conf": [
+    0.99,
+    0.86
+   ],
+   "a_spk": [
+    "speaker_1"
+   ],
+   "b_spk": [
+    "speaker_5"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    1105,
+    1105
+   ],
+   "b_words": [
+    1107,
+    1107
+   ],
+   "t": 1054.14,
+   "a": "with",
+   "b": "వాటితో",
+   "a_conf": [
+    0.39
+   ],
+   "b_conf": [
+    0.59
+   ],
+   "a_spk": [
+    "speaker_1"
+   ],
+   "b_spk": [
+    "speaker_5"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    1130,
+    1130
+   ],
+   "b_words": [
+    1132,
+    1132
+   ],
+   "t": 1100.78,
+   "a": "అనాలే",
+   "b": "అనాలి",
+   "a_conf": [
+    0.69
+   ],
+   "b_conf": [
+    0.67
+   ],
+   "a_spk": [
+    "speaker_1"
+   ],
+   "b_spk": [
+    "speaker_4"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    1140,
+    1140
+   ],
+   "b_words": [
+    1142,
+    1142
+   ],
+   "t": 1103.18,
+   "a": "చిడగొట్ట",
+   "b": "చెడగొట్ట",
+   "a_conf": [
+    0.81
+   ],
+   "b_conf": [
+    0.95
+   ],
+   "a_spk": [
+    "speaker_1"
+   ],
+   "b_spk": [
+    "speaker_4"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    1142,
+    1142
+   ],
+   "b_words": [
+    1144,
+    1145
+   ],
+   "t": 1103.96,
+   "a": "ఏవంటల",
+   "b": "ఏ వంటల",
+   "a_conf": [
+    0.81
+   ],
+   "b_conf": [
+    0.9,
+    0.9
+   ],
+   "a_spk": [
+    "speaker_1"
+   ],
+   "b_spk": [
+    "speaker_4"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    1239,
+    1239
+   ],
+   "b_words": [
+    1242,
+    1242
+   ],
+   "t": 1159.66,
+   "a": "పోతాది.",
+   "b": "పోతుంది",
+   "a_conf": [
+    0.88
+   ],
+   "b_conf": [
+    0.57
+   ],
+   "a_spk": [
+    "speaker_0"
+   ],
+   "b_spk": [
+    "speaker_2"
+   ]
+  },
+  {
+   "op": "delete",
+   "a_words": [
+    1242,
+    1243
+   ],
+   "b_words": null,
+   "t": 1162.78,
+   "a": "ఉమ్ ఉమ్",
+   "b": "",
+   "a_conf": [
+    0.77,
+    1.0
+   ],
+   "b_conf": [],
+   "a_spk": [
+    "speaker_0",
+    "speaker_1"
+   ],
+   "b_spk": []
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    1266,
+    1266
+   ],
+   "b_words": [
+    1267,
+    1267
+   ],
+   "t": 1196.76,
+   "a": "ఉంటారనుకున్నావ్",
+   "b": "ఉంటారనుకుంటున్నావా",
+   "a_conf": [
+    0.96
+   ],
+   "b_conf": [
+    0.91
+   ],
+   "a_spk": [
+    "speaker_0"
+   ],
+   "b_spk": [
+    "speaker_2"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    1270,
+    1270
+   ],
+   "b_words": [
+    1271,
+    1271
+   ],
+   "t": 1199.2,
+   "a": "పెళ్ళాం",
+   "b": "పెళ్ళం",
+   "a_conf": [
+    0.89
+   ],
+   "b_conf": [
+    0.92
+   ],
+   "a_spk": [
+    "speaker_0"
+   ],
+   "b_spk": [
+    "speaker_2"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    1309,
+    1309
+   ],
+   "b_words": [
+    1310,
+    1310
+   ],
+   "t": 1224.26,
+   "a": "బిర్యాని",
+   "b": "బిర్యానీ",
+   "a_conf": [
+    0.75
+   ],
+   "b_conf": [
+    0.87
+   ],
+   "a_spk": [
+    "speaker_0"
+   ],
+   "b_spk": [
+    "speaker_2"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    1314,
+    1314
+   ],
+   "b_words": [
+    1315,
+    1315
+   ],
+   "t": 1225.76,
+   "a": "ప్రతీది",
+   "b": "ప్రతిదీ",
+   "a_conf": [
+    0.74
+   ],
+   "b_conf": [
+    0.78
+   ],
+   "a_spk": [
+    "speaker_0"
+   ],
+   "b_spk": [
+    "speaker_2"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    1316,
+    1316
+   ],
+   "b_words": [
+    1317,
+    1318
+   ],
+   "t": 1227.42,
+   "a": "Flashman",
+   "b": "Flash man",
+   "a_conf": [
+    0.76
+   ],
+   "b_conf": [
+    0.84,
+    0.07
+   ],
+   "a_spk": [
+    "speaker_0"
+   ],
+   "b_spk": [
+    "speaker_2"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    1319,
+    1322
+   ],
+   "b_words": [
+    1321,
+    1323
+   ],
+   "t": 1228.34,
+   "a": "గా Kumari Anty కన్నా",
+   "b": "కుమార్ యంటి కంటే",
+   "a_conf": [
+    0.21,
+    0.37,
+    0.28,
+    0.84
+   ],
+   "b_conf": [
+    0.22,
+    0.43,
+    0.89
+   ],
+   "a_spk": [
+    "speaker_0"
+   ],
+   "b_spk": [
+    "speaker_2"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    1333,
+    1333
+   ],
+   "b_words": [
+    1334,
+    1334
+   ],
+   "t": 1234.26,
+   "a": "తట్టాబుట్టా",
+   "b": "తట్టబుట్టా",
+   "a_conf": [
+    0.81
+   ],
+   "b_conf": [
+    0.76
+   ],
+   "a_spk": [
+    "speaker_0"
+   ],
+   "b_spk": [
+    "speaker_2"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    1335,
+    1335
+   ],
+   "b_words": [
+    1336,
+    1337
+   ],
+   "t": 1240.26,
+   "a": "కమాన్",
+   "b": "Come on",
+   "a_conf": [
+    0.79
+   ],
+   "b_conf": [
+    0.67,
+    1.0
+   ],
+   "a_spk": [
+    "speaker_0"
+   ],
+   "b_spk": [
+    "speaker_2"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    1337,
+    1337
+   ],
+   "b_words": [
+    1339,
+    1340
+   ],
+   "t": 1241.04,
+   "a": "కమాన్",
+   "b": "Come on",
+   "a_conf": [
+    1.0
+   ],
+   "b_conf": [
+    0.75,
+    1.0
+   ],
+   "a_spk": [
+    "speaker_0"
+   ],
+   "b_spk": [
+    "speaker_2"
+   ]
+  },
+  {
+   "op": "replace",
+   "a_words": [
+    1361,
+    1361
+   ],
+   "b_words": [
+    1364,
+    1365
+   ],
+   "t": 1249.5,
+   "a": "దొరికిపోయానేంటి",
+   "b": "దొరికిపోయాను ఏంటి",
+   "a_conf": [
+    0.86
+   ],
+   "b_conf": [
+    0.95,
+    0.97
+   ],
+   "a_spk": [
+    "speaker_1"
+   ],
+   "b_spk": [
+    "speaker_4"
+   ]
+  }
+ ],
+ "speaker_map_b_to_a": {
+  "speaker_1": "speaker_2",
+  "speaker_2": "speaker_0",
+  "speaker_3": "speaker_0",
+  "speaker_4": "speaker_1",
+  "speaker_5": "speaker_1"
+ },
+ "speaker_changed_on_aligned": [
+  {
+   "a_word": 0,
+   "b_word": 0,
+   "t": 134.06,
+   "word": "మీకెందుకండీ",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 1,
+   "b_word": 1,
+   "t": 134.88,
+   "word": "ఇవన్నీ?",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 4,
+   "b_word": 4,
+   "t": 141.36,
+   "word": "అవును",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 5,
+   "b_word": 5,
+   "t": 141.7,
+   "word": "ఎందుకింత",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 6,
+   "b_word": 6,
+   "t": 142.16,
+   "word": "త్వరగా",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 7,
+   "b_word": 7,
+   "t": 142.52,
+   "word": "లేచారు",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 19,
+   "b_word": 19,
+   "t": 148.02,
+   "word": "ఎందుకు?",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 26,
+   "b_word": 26,
+   "t": 152.16,
+   "word": "చాయా?",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 29,
+   "b_word": 29,
+   "t": 157.44,
+   "word": "యా",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 30,
+   "b_word": 30,
+   "t": 158.42,
+   "word": "చాయ్",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 31,
+   "b_word": 31,
+   "t": 159.34,
+   "word": "చాయ్",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 34,
+   "b_word": 34,
+   "t": 161.14,
+   "word": "ఆ",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 36,
+   "b_word": 35,
+   "t": 161.8,
+   "word": "అదే",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 37,
+   "b_word": 36,
+   "t": 162.06,
+   "word": "పనిలో",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 38,
+   "b_word": 37,
+   "t": 162.3,
+   "word": "ఉన్నా",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 44,
+   "b_word": 42,
+   "t": 167.62,
+   "word": "దొరికిపోయేలా",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 47,
+   "b_word": 45,
+   "t": 169.42,
+   "word": "ఏం",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 48,
+   "b_word": 46,
+   "t": 169.62,
+   "word": "చేయాలి?",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 49,
+   "b_word": 47,
+   "t": 171.16,
+   "word": "నేను",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 50,
+   "b_word": 48,
+   "t": 171.38,
+   "word": "పెట్టే",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 51,
+   "b_word": 49,
+   "t": 171.74,
+   "word": "చాయ్",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 52,
+   "b_word": 50,
+   "t": 172.0,
+   "word": "తాగేయ్",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 54,
+   "b_word": 52,
+   "t": 172.54,
+   "word": "అయితే,",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 55,
+   "b_word": 53,
+   "t": 173.82,
+   "word": "పెళ్లి",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 60,
+   "b_word": 57,
+   "t": 174.94,
+   "word": "మొగుడికి",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 61,
+   "b_word": 58,
+   "t": 175.34,
+   "word": "చాయ్",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 62,
+   "b_word": 59,
+   "t": 175.5,
+   "word": "ఇచ్చి",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 63,
+   "b_word": 60,
+   "t": 175.7,
+   "word": "చంపేసిన",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 64,
+   "b_word": 61,
+   "t": 176.16,
+   "word": "భార్య",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 65,
+   "b_word": 62,
+   "t": 176.44,
+   "word": "అని",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 68,
+   "b_word": 64,
+   "t": 177.02,
+   "word": "వస్తే.",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 69,
+   "b_word": 65,
+   "t": 177.86,
+   "word": "అమ్మో!",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 70,
+   "b_word": 66,
+   "t": 179.0,
+   "word": "అమృత",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 71,
+   "b_word": 67,
+   "t": 179.94,
+   "word": "ఇప్పుడెలా",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 72,
+   "b_word": 68,
+   "t": 180.4,
+   "word": "అనే.",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 75,
+   "b_word": 71,
+   "t": 181.74,
+   "word": "ఊ",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 77,
+   "b_word": 73,
+   "t": 183.24,
+   "word": "ఊ",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 83,
+   "b_word": 80,
+   "t": 187.9,
+   "word": "ప్రతికించారు",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 85,
+   "b_word": 82,
+   "t": 190.08,
+   "word": "ఆ",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 86,
+   "b_word": 83,
+   "t": 191.36,
+   "word": "మా-మావయ్య",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 87,
+   "b_word": 84,
+   "t": 192.54,
+   "word": "మీకెందుకు",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 88,
+   "b_word": 85,
+   "t": 193.08,
+   "word": "శ్రమ",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 89,
+   "b_word": 86,
+   "t": 193.44,
+   "word": "నేను",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 90,
+   "b_word": 87,
+   "t": 193.72,
+   "word": "చేసేదాన్ని",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 91,
+   "b_word": 88,
+   "t": 194.26,
+   "word": "కదా",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 93,
+   "b_word": 90,
+   "t": 196.58,
+   "word": "ఆ",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 99,
+   "b_word": 96,
+   "t": 198.38,
+   "word": "ఆ",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 100,
+   "b_word": 97,
+   "t": 198.48,
+   "word": "చాయ్",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 107,
+   "b_word": 103,
+   "t": 210.46,
+   "word": "ఇంతలా",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 108,
+   "b_word": 104,
+   "t": 210.78,
+   "word": "అరిచారంటే",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 109,
+   "b_word": 105,
+   "t": 211.66,
+   "word": "ఇది",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 111,
+   "b_word": 107,
+   "t": 212.1,
+   "word": "అయి",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 112,
+   "b_word": 108,
+   "t": 212.22,
+   "word": "ఉంటది",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 127,
+   "b_word": 123,
+   "t": 219.92,
+   "word": "ఆ",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 128,
+   "b_word": 124,
+   "t": 220.32,
+   "word": "ఆ",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 192,
+   "b_word": 190,
+   "t": 260.88,
+   "word": "చాయ్",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 201,
+   "b_word": 199,
+   "t": 264.76,
+   "word": "ఊహూ",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 210,
+   "b_word": 208,
+   "t": 271.12,
+   "word": "doubt",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 211,
+   "b_word": 209,
+   "t": 271.36,
+   "word": "clarified",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 212,
+   "b_word": 210,
+   "t": 272.38,
+   "word": "చాయే",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 213,
+   "b_word": 211,
+   "t": 272.7,
+   "word": "ఇది.",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 219,
+   "b_word": 218,
+   "t": 292.32,
+   "word": "ఆ",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 223,
+   "b_word": 222,
+   "t": 295.6,
+   "word": "ఊ",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 231,
+   "b_word": 231,
+   "t": 302.74,
+   "word": "తను",
+   "a": "speaker_0",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 232,
+   "b_word": 232,
+   "t": 302.96,
+   "word": "వండుతాది",
+   "a": "speaker_0",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 233,
+   "b_word": 233,
+   "t": 303.38,
+   "word": "కదా",
+   "a": "speaker_0",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 234,
+   "b_word": 234,
+   "t": 303.56,
+   "word": "నాన్న",
+   "a": "speaker_0",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 235,
+   "b_word": 235,
+   "t": 305.4,
+   "word": "కొత్త",
+   "a": "speaker_2",
+   "b": "speaker_2",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 236,
+   "b_word": 236,
+   "t": 305.66,
+   "word": "కదరా",
+   "a": "speaker_2",
+   "b": "speaker_2",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 238,
+   "b_word": 238,
+   "t": 306.78,
+   "word": "Dinner",
+   "a": "speaker_2",
+   "b": "speaker_2",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 239,
+   "b_word": 239,
+   "t": 307.08,
+   "word": "కావాలంటే",
+   "a": "speaker_2",
+   "b": "speaker_2",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 241,
+   "b_word": 241,
+   "t": 307.8,
+   "word": "చేయించుకో",
+   "a": "speaker_2",
+   "b": "speaker_2",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 242,
+   "b_word": 242,
+   "t": 309.26,
+   "word": "ఓ",
+   "a": "speaker_0",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 251,
+   "b_word": 243,
+   "t": 317.98,
+   "word": "ఆ",
+   "a": "speaker_0",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 254,
+   "b_word": 257,
+   "t": 320.1,
+   "word": "ఆ",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 281,
+   "b_word": 283,
+   "t": 340.3,
+   "word": "అవును",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 283,
+   "b_word": 285,
+   "t": 341.26,
+   "word": "time",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 284,
+   "b_word": 286,
+   "t": 341.48,
+   "word": "కి",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 285,
+   "b_word": 287,
+   "t": 341.64,
+   "word": "వచ్చింది",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 286,
+   "b_word": 288,
+   "t": 342.06,
+   "word": "మా",
+   "a": "speaker_2",
+   "b": "speaker_2",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 287,
+   "b_word": 289,
+   "t": 342.26,
+   "word": "అమృత",
+   "a": "speaker_2",
+   "b": "speaker_2",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 288,
+   "b_word": 290,
+   "t": 342.64,
+   "word": "మామూలుగానే",
+   "a": "speaker_2",
+   "b": "speaker_2",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 289,
+   "b_word": 291,
+   "t": 343.28,
+   "word": "ఎనిమిది",
+   "a": "speaker_2",
+   "b": "speaker_2",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 290,
+   "b_word": 292,
+   "t": 343.6,
+   "word": "గంటలకు",
+   "a": "speaker_2",
+   "b": "speaker_2",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 291,
+   "b_word": 293,
+   "t": 343.94,
+   "word": "లెగుస్తుంది",
+   "a": "speaker_2",
+   "b": "speaker_2",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 292,
+   "b_word": 294,
+   "t": 344.9,
+   "word": "ఆ",
+   "a": "speaker_0",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 293,
+   "b_word": 295,
+   "t": 345.26,
+   "word": "మీకోసం",
+   "a": "speaker_2",
+   "b": "speaker_2",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 294,
+   "b_word": 296,
+   "t": 345.74,
+   "word": "రేపటి",
+   "a": "speaker_2",
+   "b": "speaker_2",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 295,
+   "b_word": 297,
+   "t": 346.08,
+   "word": "నుండి",
+   "a": "speaker_2",
+   "b": "speaker_2",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 296,
+   "b_word": 298,
+   "t": 346.42,
+   "word": "ఆరు",
+   "a": "speaker_2",
+   "b": "speaker_2",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 297,
+   "b_word": 299,
+   "t": 346.68,
+   "word": "గంటలకు",
+   "a": "speaker_2",
+   "b": "speaker_2",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 298,
+   "b_word": 300,
+   "t": 347.04,
+   "word": "ఏలేసి",
+   "a": "speaker_2",
+   "b": "speaker_2",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 300,
+   "b_word": 302,
+   "t": 347.84,
+   "word": "పనులు",
+   "a": "speaker_2",
+   "b": "speaker_2",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 301,
+   "b_word": 303,
+   "t": 348.1,
+   "word": "చేసుకుంటుంది",
+   "a": "speaker_2",
+   "b": "speaker_2",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 302,
+   "b_word": 304,
+   "t": 348.98,
+   "word": "ఓ",
+   "a": "speaker_0",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 303,
+   "b_word": 305,
+   "t": 349.78,
+   "word": "ఆ",
+   "a": "speaker_0",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 304,
+   "b_word": 306,
+   "t": 350.92,
+   "word": "ఏమే",
+   "a": "speaker_2",
+   "b": "speaker_2",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 305,
+   "b_word": 307,
+   "t": 351.88,
+   "word": "ఒక్కరోజు",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 306,
+   "b_word": 308,
+   "t": 352.38,
+   "word": "లెగిస్తే",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 307,
+   "b_word": 309,
+   "t": 352.78,
+   "word": "చాలు",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 309,
+   "b_word": 311,
+   "t": 353.3,
+   "word": "కదే",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 316,
+   "b_word": 318,
+   "t": 357.66,
+   "word": "ఆ",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 317,
+   "b_word": 319,
+   "t": 358.46,
+   "word": "carriage",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 330,
+   "b_word": 333,
+   "t": 367.32,
+   "word": "food",
+   "a": "speaker_3",
+   "b": "speaker_3",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 331,
+   "b_word": 334,
+   "t": 367.48,
+   "word": "విషయంలో",
+   "a": "speaker_3",
+   "b": "speaker_3",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 332,
+   "b_word": 335,
+   "t": 367.76,
+   "word": "చాలా",
+   "a": "speaker_3",
+   "b": "speaker_3",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 333,
+   "b_word": 336,
+   "t": 367.96,
+   "word": "particular",
+   "a": "speaker_3",
+   "b": "speaker_3",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 334,
+   "b_word": 337,
+   "t": 368.3,
+   "word": "గా",
+   "a": "speaker_3",
+   "b": "speaker_3",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 335,
+   "b_word": 338,
+   "t": 368.34,
+   "word": "ఉంటాడమ్మా.",
+   "a": "speaker_3",
+   "b": "speaker_3",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 336,
+   "b_word": 339,
+   "t": 369.9,
+   "word": "వాళ్ళ",
+   "a": "speaker_3",
+   "b": "speaker_3",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 337,
+   "b_word": 340,
+   "t": 370.08,
+   "word": "అమ్మ",
+   "a": "speaker_3",
+   "b": "speaker_3",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 338,
+   "b_word": 341,
+   "t": 370.24,
+   "word": "చనిపోయిన",
+   "a": "speaker_3",
+   "b": "speaker_3",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 339,
+   "b_word": 342,
+   "t": 370.6,
+   "word": "తర్వాత",
+   "a": "speaker_3",
+   "b": "speaker_3",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 340,
+   "b_word": 343,
+   "t": 371.56,
+   "word": "ఇంట్లో",
+   "a": "speaker_3",
+   "b": "speaker_3",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 342,
+   "b_word": 346,
+   "t": 372.12,
+   "word": "పెట్టుకుందాం",
+   "a": "speaker_3",
+   "b": "speaker_3",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 343,
+   "b_word": 347,
+   "t": 372.48,
+   "word": "అని",
+   "a": "speaker_3",
+   "b": "speaker_3",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 344,
+   "b_word": 348,
+   "t": 372.54,
+   "word": "వాడు",
+   "a": "speaker_3",
+   "b": "speaker_3",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 345,
+   "b_word": 349,
+   "t": 372.7,
+   "word": "అడిగితే",
+   "a": "speaker_3",
+   "b": "speaker_3",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 346,
+   "b_word": 350,
+   "t": 373.7,
+   "word": "డబ్బులు",
+   "a": "speaker_3",
+   "b": "speaker_3",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 347,
+   "b_word": 351,
+   "t": 373.98,
+   "word": "దండగ",
+   "a": "speaker_3",
+   "b": "speaker_3",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 348,
+   "b_word": 352,
+   "t": 374.2,
+   "word": "ఎందుకని",
+   "a": "speaker_3",
+   "b": "speaker_3",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 349,
+   "b_word": 353,
+   "t": 374.54,
+   "word": "చెప్పి",
+   "a": "speaker_3",
+   "b": "speaker_3",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 350,
+   "b_word": 354,
+   "t": 375.62,
+   "word": "I",
+   "a": "speaker_3",
+   "b": "speaker_3",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 351,
+   "b_word": 355,
+   "t": 375.64,
+   "word": "am",
+   "a": "speaker_3",
+   "b": "speaker_3",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 352,
+   "b_word": 356,
+   "t": 375.8,
+   "word": "master",
+   "a": "speaker_3",
+   "b": "speaker_3",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 353,
+   "b_word": 357,
+   "t": 376.08,
+   "word": "in",
+   "a": "speaker_3",
+   "b": "speaker_3",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 354,
+   "b_word": 358,
+   "t": 376.3,
+   "word": "cooking",
+   "a": "speaker_3",
+   "b": "speaker_3",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 355,
+   "b_word": 359,
+   "t": 376.62,
+   "word": "అని",
+   "a": "speaker_3",
+   "b": "speaker_3",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 356,
+   "b_word": 360,
+   "t": 376.74,
+   "word": "చెప్పా.",
+   "a": "speaker_3",
+   "b": "speaker_3",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 359,
+   "b_word": 363,
+   "t": 378.54,
+   "word": "ఆ",
+   "a": "speaker_3",
+   "b": "speaker_3",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 360,
+   "b_word": 364,
+   "t": 378.66,
+   "word": "తర్వాత",
+   "a": "speaker_3",
+   "b": "speaker_3",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 361,
+   "b_word": 365,
+   "t": 378.94,
+   "word": "కొన్ని",
+   "a": "speaker_3",
+   "b": "speaker_3",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 362,
+   "b_word": 366,
+   "t": 379.16,
+   "word": "రోజులకి",
+   "a": "speaker_3",
+   "b": "speaker_3",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 363,
+   "b_word": 367,
+   "t": 379.34,
+   "word": "వాడికే",
+   "a": "speaker_3",
+   "b": "speaker_3",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 364,
+   "b_word": 368,
+   "t": 379.66,
+   "word": "అర్థమైంది",
+   "a": "speaker_3",
+   "b": "speaker_3",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 365,
+   "b_word": 369,
+   "t": 380.46,
+   "word": "I",
+   "a": "speaker_3",
+   "b": "speaker_3",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 366,
+   "b_word": 370,
+   "t": 380.52,
+   "word": "am",
+   "a": "speaker_3",
+   "b": "speaker_3",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 367,
+   "b_word": 371,
+   "t": 380.66,
+   "word": "master",
+   "a": "speaker_3",
+   "b": "speaker_3",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 368,
+   "b_word": 372,
+   "t": 380.98,
+   "word": "in",
+   "a": "speaker_3",
+   "b": "speaker_3",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 369,
+   "b_word": 373,
+   "t": 381.14,
+   "word": "అబద్ధాలు",
+   "a": "speaker_3",
+   "b": "speaker_3",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 370,
+   "b_word": 374,
+   "t": 381.64,
+   "word": "అని.",
+   "a": "speaker_3",
+   "b": "speaker_3",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 371,
+   "b_word": 375,
+   "t": 384.16,
+   "word": "అంతే",
+   "a": "speaker_3",
+   "b": "speaker_3",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 372,
+   "b_word": 376,
+   "t": 385.04,
+   "word": "అప్పటి",
+   "a": "speaker_3",
+   "b": "speaker_3",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 373,
+   "b_word": 377,
+   "t": 385.3,
+   "word": "నుంచి",
+   "a": "speaker_3",
+   "b": "speaker_3",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 374,
+   "b_word": 378,
+   "t": 385.4,
+   "word": "ఎవరైనా",
+   "a": "speaker_3",
+   "b": "speaker_3",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 375,
+   "b_word": 379,
+   "t": 385.6,
+   "word": "అబద్ధాలు",
+   "a": "speaker_3",
+   "b": "speaker_3",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 376,
+   "b_word": 380,
+   "t": 385.94,
+   "word": "చెప్తే",
+   "a": "speaker_3",
+   "b": "speaker_3",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 377,
+   "b_word": 381,
+   "t": 386.74,
+   "word": "మండే",
+   "a": "speaker_3",
+   "b": "speaker_3",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 378,
+   "b_word": 382,
+   "t": 386.92,
+   "word": "పడిపోతాడు.",
+   "a": "speaker_3",
+   "b": "speaker_3",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 379,
+   "b_word": 383,
+   "t": 388.04,
+   "word": "నాతో",
+   "a": "speaker_3",
+   "b": "speaker_3",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 380,
+   "b_word": 384,
+   "t": 388.26,
+   "word": "వాడు",
+   "a": "speaker_3",
+   "b": "speaker_3",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 381,
+   "b_word": 385,
+   "t": 388.4,
+   "word": "నాలుగేళ్ళు",
+   "a": "speaker_3",
+   "b": "speaker_3",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 382,
+   "b_word": 386,
+   "t": 388.76,
+   "word": "మాట్లాడలేదు.",
+   "a": "speaker_3",
+   "b": "speaker_3",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 384,
+   "b_word": 387,
+   "t": 401.58,
+   "word": "పెళ్ళికి",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 385,
+   "b_word": 388,
+   "t": 401.92,
+   "word": "ముందు",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 386,
+   "b_word": 389,
+   "t": 402.14,
+   "word": "ఏమన్నావే?",
+   "a": "speaker_1",
+   "b": "speaker_1",
+   "b_mapped": "speaker_2"
+  },
+  {
+   "a_word": 442,
+   "b_word": 444,
+   "t": 445.92,
+   "word": "ఏయ్",
+   "a": "speaker_3",
+   "b": "speaker_2",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 443,
+   "b_word": 445,
+   "t": 447.04,
+   "word": "ఏంటి",
+   "a": "speaker_3",
+   "b": "speaker_2",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 444,
+   "b_word": 446,
+   "t": 447.24,
+   "word": "matter?",
+   "a": "speaker_3",
+   "b": "speaker_2",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 447,
+   "b_word": 449,
+   "t": 449.04,
+   "word": "అదే",
+   "a": "speaker_3",
+   "b": "speaker_2",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 448,
+   "b_word": 450,
+   "t": 449.66,
+   "word": "night",
+   "a": "speaker_3",
+   "b": "speaker_2",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 449,
+   "b_word": 451,
+   "t": 449.92,
+   "word": "బొమ్మ",
+   "a": "speaker_3",
+   "b": "speaker_2",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 450,
+   "b_word": 452,
+   "t": 450.18,
+   "word": "blockbuster",
+   "a": "speaker_3",
+   "b": "speaker_2",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 451,
+   "b_word": 453,
+   "t": 450.66,
+   "word": "ఆ?",
+   "a": "speaker_3",
+   "b": "speaker_2",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 465,
+   "b_word": 467,
+   "t": 456.66,
+   "word": "అదేంట్రా",
+   "a": "speaker_3",
+   "b": "speaker_2",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 466,
+   "b_word": 468,
+   "t": 457.1,
+   "word": "అలా",
+   "a": "speaker_3",
+   "b": "speaker_2",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 467,
+   "b_word": 469,
+   "t": 457.26,
+   "word": "అంటావ్?",
+   "a": "speaker_3",
+   "b": "speaker_2",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 528,
+   "b_word": 528,
+   "t": 484.98,
+   "word": "అలసటగానా?",
+   "a": "speaker_3",
+   "b": "speaker_2",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 562,
+   "b_word": 562,
+   "t": 503.62,
+   "word": "పడుకోవడానికి",
+   "a": "speaker_3",
+   "b": "speaker_2",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 563,
+   "b_word": 563,
+   "t": 504.2,
+   "word": "పెళ్లి",
+   "a": "speaker_3",
+   "b": "speaker_2",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 564,
+   "b_word": 564,
+   "t": 504.4,
+   "word": "చేసుకోవాలేంట్రా.",
+   "a": "speaker_3",
+   "b": "speaker_2",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 565,
+   "b_word": 565,
+   "t": 506.02,
+   "word": "కాపురం",
+   "a": "speaker_3",
+   "b": "speaker_2",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 566,
+   "b_word": 566,
+   "t": 506.48,
+   "word": "చెయ్యరా",
+   "a": "speaker_3",
+   "b": "speaker_2",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 567,
+   "b_word": 567,
+   "t": 506.7,
+   "word": "అంటే",
+   "a": "speaker_3",
+   "b": "speaker_2",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 568,
+   "b_word": 568,
+   "t": 506.9,
+   "word": "కథలు",
+   "a": "speaker_3",
+   "b": "speaker_2",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 569,
+   "b_word": 569,
+   "t": 507.16,
+   "word": "చెప్తున్నాడు",
+   "a": "speaker_3",
+   "b": "speaker_2",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 570,
+   "b_word": 570,
+   "t": 508.18,
+   "word": "ఇలా",
+   "a": "speaker_3",
+   "b": "speaker_2",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 571,
+   "b_word": 571,
+   "t": 508.34,
+   "word": "అయితే",
+   "a": "speaker_3",
+   "b": "speaker_2",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 573,
+   "b_word": 573,
+   "t": 508.6,
+   "word": "ఇద్దరికీ",
+   "a": "speaker_3",
+   "b": "speaker_2",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 574,
+   "b_word": 574,
+   "t": 508.84,
+   "word": "చాలా",
+   "a": "speaker_3",
+   "b": "speaker_2",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 575,
+   "b_word": 575,
+   "t": 509.06,
+   "word": "కష్టం.",
+   "a": "speaker_3",
+   "b": "speaker_2",
+   "b_mapped": "speaker_0"
+  },
+  {
+   "a_word": 933,
+   "b_word": 935,
+   "t": 869.284,
+   "word": "ఆ",
+   "a": "speaker_2",
+   "b": "speaker_5",
+   "b_mapped": "speaker_1"
+  }
+ ],
+ "timestamps": {
+  "start_shift_median": 0.0,
+  "start_shift_p95": 0.02,
+  "start_shift_max": 8.14,
+  "end_shift_max": 9.02,
+  "n_shift_over_0.1s": 20,
+  "n_shift_over_0.5s": 8
+ },
+ "audio_events": {
+  "a": 50,
+  "b": 43,
+  "same": 1,
+  "moved": [
+   {
+    "a": [
+     "[పాట]",
+     273.1,
+     278.84
+    ],
+    "b": [
+     "[పాట]",
+     272.9,
+     289.6
+    ]
+   },
+   {
+    "a": [
+     "[నవ్వు]",
+     312.22,
+     313.96
+    ],
+    "b": [
+     "[నవ్వు]",
+     311.06,
+     313.96
+    ]
+   },
+   {
+    "a": [
+     "[నవ్వు]",
+     746.444,
+     748.064
+    ],
+    "b": [
+     "[నవ్వు]",
+     746.144,
+     748.024
+    ]
+   },
+   {
+    "a": [
+     "[నవ్వు]",
+     877.784,
+     883.524
+    ],
+    "b": [
+     "[నవ్వు]",
+     877.704,
+     883.484
+    ]
+   },
+   {
+    "a": [
+     "[నవ్వు]",
+     1202.684,
+     1209.524
+    ],
+    "b": [
+     "[నవ్వు]",
+     1202.824,
+     1209.524
+    ]
+   }
+  ],
+  "only_a": [
+   [
+    "[వెనకశదం]",
+    0.06,
+    2.14
+   ],
+   [
+    "[పాట]",
+    3.16,
+    134.02
+   ],
+   [
+    "[ఎగతాళిగా]",
+    151.7,
+    151.92
+   ],
+   [
+    "[ఆశ్చర్యంగా]",
+    152.1,
+    152.14
+   ],
+   [
+    "[పాట]",
+    153.56,
+    156.76
+   ],
+   [
+    "[నవ్వు]",
+    163.62,
+    164.38
+   ],
+   [
+    "[ఆవేగభరిత సంగీతం]",
+    164.84,
+    166.98
+   ],
+   [
+    "[పాట]",
+    185.58,
+    187.84
+   ],
+   [
+    "[వేడుకగా సంగీతం]",
+    198.84,
+    202.3
+   ],
+   [
+    "[ఎగతాళిగా]",
+    206.64,
+    210.36
+   ],
+   [
+    "[పాట]",
+    210.38,
+    210.42
+   ],
+   [
+    "[ఎగతాళిగా]",
+    226.2,
+    227.6
+   ],
+   [
+    "[ఎగతాళిగా]",
+    257.86,
+    258.62
+   ],
+   [
+    "[వేడుకగా సంగీతం]",
+    267.8,
+    271.08
+   ],
+   [
+    "[వేడుకగా సంగీతం]",
+    279.42,
+    289.72
+   ],
+   [
+    "[ఎగతాళిగా]",
+    300.4,
+    302.68
+   ],
+   [
+    "[నవ్వు]",
+    398.46,
+    401.54
+   ],
+   [
+    "[తప్పు]",
+    509.52,
+    510.88
+   ],
+   [
+    "[చప్]",
+    621.24,
+    621.74
+   ],
+   [
+    "[స్లాప్]",
+    745.224,
+    746.024
+   ],
+   [
+    "[పాప్ అప్ సౌండ్]",
+    777.424,
+    782.304
+   ],
+   [
+    "[నవ్వు]",
+    782.364,
+    782.464
+   ],
+   [
+    "[పాప్ అప్ సౌండ్]",
+    810.344,
+    811.944
+   ],
+   [
+    "[స్లాప్]",
+    814.604,
+    814.904
+   ],
+   [
+    "[నవ్వు]",
+    825.964,
+    833.804
+   ],
+   [
+    "[పాప్ అప్ సౌండ్]",
+    840.164,
+    842.504
+   ],
+   [
+    "[పాప్ అప్ సౌండ్]",
+    846.884,
+    848.424
+   ],
+   [
+    "[పాప్ అప్ సౌండ్]",
+    851.304,
+    853.844
+   ],
+   [
+    "[పాప్ అప్ సౌండ్]",
+    873.784,
+    876.864
+   ],
+   [
+    "[పాప్ అప్ సౌండ్]",
+    887.404,
+    889.184
+   ],
+   [
+    "[నవ్వు]",
+    905.444,
+    907.604
+   ],
+   [
+    "[నవ్వు]",
+    917.704,
+    918.984
+   ],
+   [
+    "[స్నేజిజి]",
+    948.544,
+    948.764
+   ],
+   [
+    "[పాప్ అప్ సౌండ్]",
+    1017.224,
+    1022.744
+   ],
+   [
+    "[పాప్ అప్ సౌండ్]",
+    1026.384,
+    1027.424
+   ],
+   [
+    "[పాప్ అప్ సౌండ్]",
+    1030.564,
+    1031.844
+   ],
+   [
+    "[పాప్ అప్ సౌండ్]",
+    1033.884,
+    1034.304
+   ],
+   [
+    "[పాప్ అప్ సౌండ్]",
+    1038.024,
+    1039.464
+   ],
+   [
+    "[పాప్ అప్ సౌండ్]",
+    1058.884,
+    1060.184
+   ],
+   [
+    "[నవ్వు]",
+    1062.084,
+    1062.104
+   ],
+   [
+    "[పాప్ అప్ సౌండ్]",
+    1063.744,
+    1095.424
+   ],
+   [
+    "[నవ్వు]",
+    1120.804,
+    1127.864
+   ],
+   [
+    "[నవ్వు]",
+    1133.144,
+    1134.844
+   ],
+   [
+    "[నవ్వు]",
+    1180.284,
+    1189.304
+   ]
+  ],
+  "only_b": [
+   [
+    "[ఇంట్రో మ్యూజిక్]",
+    0.06,
+    5.24
+   ],
+   [
+    "[బాటసారి మ్యూజిక్]",
+    5.58,
+    133.98
+   ],
+   [
+    "[అతృత]",
+    152.56,
+    153.2
+   ],
+   [
+    "[అతృత]",
+    153.54,
+    156.74
+   ],
+   [
+    "[నవ్వు]",
+    177.34,
+    177.82
+   ],
+   [
+    "[తడుముకున్నాడు]",
+    202.88,
+    205.54
+   ],
+   [
+    "[అరిచాడు]",
+    257.86,
+    258.6
+   ],
+   [
+    "[నవ్వుతూ]",
+    301.2,
+    302.52
+   ],
+   [
+    "[పాట]",
+    439.6,
+    445.84
+   ],
+   [
+    "[పాట]",
+    511.98,
+    521.66
+   ],
+   [
+    "[పాట]",
+    556.8,
+    600.4
+   ],
+   [
+    "[చుమ్మా]",
+    621.24,
+    621.74
+   ],
+   [
+    "[పాట]",
+    624.38,
+    651.38
+   ],
+   [
+    "[పాట]",
+    665.9,
+    688.26
+   ],
+   [
+    "[పాట]",
+    693.0,
+    698.38
+   ],
+   [
+    "[పాట]",
+    766.064,
+    775.064
+   ],
+   [
+    "[పాట]",
+    777.424,
+    782.464
+   ],
+   [
+    "[నవ్వు]",
+    784.864,
+    786.364
+   ],
+   [
+    "[పాట]",
+    825.884,
+    833.084
+   ],
+   [
+    "[ధ్వని]",
+    839.884,
+    842.584
+   ],
+   [
+    "[భయానక సంగీతం]",
+    846.764,
+    848.364
+   ],
+   [
+    "[పాట]",
+    863.804,
+    866.124
+   ],
+   [
+    "[అరుస్తూ]",
+    873.724,
+    876.524
+   ],
+   [
+    "[నవ్వు]",
+    884.424,
+    885.704
+   ],
+   [
+    "[పాట]",
+    907.944,
+    914.764
+   ],
+   [
+    "[తుమ్ము]",
+    925.584,
+    948.544
+   ],
+   [
+    "[పాట]",
+    948.544,
+    948.544
+   ],
+   [
+    "[తుమ్ము]",
+    948.544,
+    948.664
+   ],
+   [
+    "[పాట]",
+    948.684,
+    948.804
+   ],
+   [
+    "[ Belch]",
+    950.624,
+    951.864
+   ],
+   [
+    "[పాట]",
+    962.204,
+    966.184
+   ],
+   [
+    "[పాట]",
+    973.444,
+    999.264
+   ],
+   [
+    "[ధ్వని]",
+    1033.784,
+    1034.304
+   ],
+   [
+    "[పాట]",
+    1063.664,
+    1095.344
+   ],
+   [
+    "[ధ్వని]",
+    1095.364,
+    1095.404
+   ],
+   [
+    "[గుర్తుపెట్టుకునే music]",
+    1133.144,
+    1134.904
+   ],
+   [
+    "[గుర్తుపెట్టుకునే music]",
+    1162.764,
+    1179.424
+   ]
+  ]
+ }
+}

@@ -1,0 +1,827 @@
+{
+ "video_id": "QWIvgoTQGKk",
+ "schema": "asr_fix/1",
+ "params": {
+  "layers": [
+   "flag",
+   "relisten"
+  ],
+  "threshold": 0.6,
+  "min_conf": 0.8,
+  "model": "gemini-3.8-flash",
+  "pad_s": 0.4,
+  "ctx_lines": 2,
+  "batch_items": 8,
+  "context_prompt": "1",
+  "relisten_prompt": "1",
+  "apply_context": false,
+  "skip_interjections": true,
+  "band_from": 0.5
+ },
+ "lines": 385,
+ "n_flagged_words": 31,
+ "n_suspects": 31,
+ "suspects": [
+  {
+   "line": "L0060",
+   "start_word": 146,
+   "end_word": 146,
+   "heard": "morning",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.582
+  },
+  {
+   "line": "L0068",
+   "start_word": 198,
+   "end_word": 198,
+   "heard": "నేను",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.598
+  },
+  {
+   "line": "L0076",
+   "start_word": 216,
+   "end_word": 216,
+   "heard": "ఏం",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.501
+  },
+  {
+   "line": "L0086",
+   "start_word": 237,
+   "end_word": 237,
+   "heard": "హా",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.517
+  },
+  {
+   "line": "L0093",
+   "start_word": 252,
+   "end_word": 252,
+   "heard": "ఆ",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.57
+  },
+  {
+   "line": "L0107",
+   "start_word": 309,
+   "end_word": 309,
+   "heard": "కదే",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.503
+  },
+  {
+   "line": "L0110",
+   "start_word": 317,
+   "end_word": 317,
+   "heard": "carriage",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.53
+  },
+  {
+   "line": "L0130",
+   "start_word": 419,
+   "end_word": 419,
+   "heard": "ఎరికిన్చేసావెంటమ్మా.",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.533
+  },
+  {
+   "line": "L0131",
+   "start_word": 427,
+   "end_word": 427,
+   "heard": "అని",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.586
+  },
+  {
+   "line": "L0135",
+   "start_word": 437,
+   "end_word": 437,
+   "heard": "హుమ్",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.596
+  },
+  {
+   "line": "L0158",
+   "start_word": 557,
+   "end_word": 557,
+   "heard": "So",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.524
+  },
+  {
+   "line": "L0187",
+   "start_word": 647,
+   "end_word": 647,
+   "heard": "హా",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.559
+  },
+  {
+   "line": "L0203",
+   "start_word": 718,
+   "end_word": 718,
+   "heard": "flashbacks",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.503
+  },
+  {
+   "line": "L0229",
+   "start_word": 806,
+   "end_word": 806,
+   "heard": "Okay",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.582
+  },
+  {
+   "line": "L0230",
+   "start_word": 808,
+   "end_word": 808,
+   "heard": "Send",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.537
+  },
+  {
+   "line": "L0230",
+   "start_word": 811,
+   "end_word": 811,
+   "heard": "ఇరుకుదా,",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.6
+  },
+  {
+   "line": "L0236",
+   "start_word": 838,
+   "end_word": 838,
+   "heard": "direct",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.501
+  },
+  {
+   "line": "L0242",
+   "start_word": 857,
+   "end_word": 857,
+   "heard": "ఆహ్,",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.544
+  },
+  {
+   "line": "L0253",
+   "start_word": 890,
+   "end_word": 890,
+   "heard": "వేడిగుంది.",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.578
+  },
+  {
+   "line": "L0255",
+   "start_word": 892,
+   "end_word": 892,
+   "heard": "Plain",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.586
+  },
+  {
+   "line": "L0265",
+   "start_word": 912,
+   "end_word": 912,
+   "heard": "book",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.513
+  },
+  {
+   "line": "L0266",
+   "start_word": 914,
+   "end_word": 914,
+   "heard": "Egg",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.593
+  },
+  {
+   "line": "L0270",
+   "start_word": 930,
+   "end_word": 930,
+   "heard": "next",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.549
+  },
+  {
+   "line": "L0292",
+   "start_word": 994,
+   "end_word": 994,
+   "heard": "బల్లె",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.594
+  },
+  {
+   "line": "L0294",
+   "start_word": 997,
+   "end_word": 997,
+   "heard": "So",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.523
+  },
+  {
+   "line": "L0302",
+   "start_word": 1008,
+   "end_word": 1008,
+   "heard": "Night",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.588
+  },
+  {
+   "line": "L0310",
+   "start_word": 1034,
+   "end_word": 1034,
+   "heard": "This",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.593
+  },
+  {
+   "line": "L0325",
+   "start_word": 1089,
+   "end_word": 1089,
+   "heard": "రా.",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.567
+  },
+  {
+   "line": "L0326",
+   "start_word": 1090,
+   "end_word": 1090,
+   "heard": "నాకు",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.531
+  },
+  {
+   "line": "L0339",
+   "start_word": 1134,
+   "end_word": 1134,
+   "heard": "Big",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.51
+  },
+  {
+   "line": "L0339",
+   "start_word": 1136,
+   "end_word": 1136,
+   "heard": "లో",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.594
+  }
+ ],
+ "corrections": [
+  {
+   "start_word": 317,
+   "end_word": 317,
+   "heard": "carriage",
+   "corrected": "క్యారేజ్",
+   "reason": "spoken in Telugu script style matching next lines",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "flag"
+   ],
+   "line": "L0110",
+   "start": 358.46,
+   "end": 358.98,
+   "context_guess": null,
+   "relisten": {
+    "heard_line": "క్యారేజ్",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 419,
+   "end_word": 419,
+   "heard": "ఎరికిన్చేసావెంటమ్మా.",
+   "corrected": "ఇరికించేసావేంటమ్మా.",
+   "reason": "clearly says ఇరికించేసావేంటమ్మా",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "flag"
+   ],
+   "line": "L0130",
+   "start": 422.5,
+   "end": 423.56,
+   "context_guess": null,
+   "relisten": {
+    "heard_line": "ఇలా ఇరికించేసావేంటమ్మా.",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 810,
+   "end_word": 811,
+   "heard": "ఎప్పుడన్నా ఇరుకుదా,",
+   "corrected": "అప్పుడన్నారు కదా,",
+   "reason": "clearly says 'అప్పుడన్నారు కదా'",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "flag"
+   ],
+   "line": "L0230",
+   "start": 775.484,
+   "end": 776.104,
+   "context_guess": null,
+   "relisten": {
+    "heard_line": "Send off అప్పుడన్నారు కదా ఇప్పుడు కాదు కదా",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 912,
+   "end_word": 913,
+   "heard": "book అయిపోయాను.",
+   "corrected": "బాగా బుక్కయిపోయానే.",
+   "reason": "clearly says 'బాగా బుక్కయిపోయానే'",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "flag"
+   ],
+   "line": "L0265",
+   "start": 854.584,
+   "end": 855.664,
+   "context_guess": null,
+   "relisten": {
+    "heard_line": "బాగా బుక్కయిపోయానే",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 994,
+   "end_word": 994,
+   "heard": "బల్లె",
+   "corrected": "భలే",
+   "reason": "clearly says భలే",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "flag"
+   ],
+   "line": "L0292",
+   "start": 916.744,
+   "end": 916.904,
+   "context_guess": null,
+   "relisten": {
+    "heard_line": "అసలు దోశ స్మెల్లే రాకుండా భలే దోశలేస్తుందే.",
+    "line_ratio": 0.919
+   }
+  },
+  {
+   "start_word": 1136,
+   "end_word": 1136,
+   "heard": "లో",
+   "corrected": "లు",
+   "reason": "says Big Boss లు",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "flag"
+   ],
+   "line": "L0339",
+   "start": 1102.364,
+   "end": 1102.424,
+   "context_guess": null,
+   "relisten": {
+    "heard_line": "ముందు నిన్ను అనాలే. ఆ lockdown లో Big Boss లు సీరియళ్ళు చూపించి చెడగొట్టే బదులు ఏ వంటల program లో చూపించాల్సింది కదా.",
+    "line_ratio": 0.911
+   }
+  }
+ ],
+ "uncertain": [
+  {
+   "start_word": 146,
+   "end_word": 146,
+   "heard": "morning",
+   "source": "flag",
+   "confidence": 0.582,
+   "verdict": "relisten_kept",
+   "line": "L0060",
+   "start": 232.2
+  },
+  {
+   "start_word": 198,
+   "end_word": 198,
+   "heard": "నేను",
+   "source": "flag",
+   "confidence": 0.598,
+   "verdict": "relisten_kept",
+   "line": "L0068",
+   "start": 262.38
+  },
+  {
+   "start_word": 216,
+   "end_word": 216,
+   "heard": "ఏం",
+   "source": "flag",
+   "confidence": 0.501,
+   "verdict": "relisten_kept",
+   "line": "L0076",
+   "start": 290.18
+  },
+  {
+   "start_word": 237,
+   "end_word": 237,
+   "heard": "హా",
+   "source": "flag",
+   "confidence": 0.517,
+   "verdict": "skipped_interjection",
+   "line": "L0086",
+   "start": 305.92
+  },
+  {
+   "start_word": 252,
+   "end_word": 252,
+   "heard": "ఆ",
+   "source": "flag",
+   "confidence": 0.57,
+   "verdict": "skipped_interjection",
+   "line": "L0093",
+   "start": 318.08
+  },
+  {
+   "start_word": 309,
+   "end_word": 309,
+   "heard": "కదే",
+   "source": "flag",
+   "confidence": 0.503,
+   "verdict": "relisten_kept",
+   "line": "L0107",
+   "start": 353.3
+  },
+  {
+   "start_word": 427,
+   "end_word": 427,
+   "heard": "అని",
+   "source": "flag",
+   "confidence": 0.586,
+   "verdict": "relisten_kept",
+   "line": "L0131",
+   "start": 427.38
+  },
+  {
+   "start_word": 437,
+   "end_word": 437,
+   "heard": "హుమ్",
+   "source": "flag",
+   "confidence": 0.596,
+   "verdict": "skipped_interjection",
+   "line": "L0135",
+   "start": 435.1
+  },
+  {
+   "start_word": 557,
+   "end_word": 557,
+   "heard": "So",
+   "source": "flag",
+   "confidence": 0.524,
+   "verdict": "relisten_kept",
+   "line": "L0158",
+   "start": 501.16
+  },
+  {
+   "start_word": 647,
+   "end_word": 647,
+   "heard": "హా",
+   "source": "flag",
+   "confidence": 0.559,
+   "verdict": "skipped_interjection",
+   "line": "L0187",
+   "start": 609.8
+  },
+  {
+   "start_word": 718,
+   "end_word": 718,
+   "heard": "flashbacks",
+   "source": "flag",
+   "confidence": 0.503,
+   "verdict": "relisten_kept",
+   "line": "L0203",
+   "start": 700.58
+  },
+  {
+   "start_word": 806,
+   "end_word": 806,
+   "heard": "Okay",
+   "source": "flag",
+   "confidence": 0.582,
+   "verdict": "skipped_interjection",
+   "line": "L0229",
+   "start": 765.684
+  },
+  {
+   "start_word": 808,
+   "end_word": 808,
+   "heard": "Send",
+   "source": "flag",
+   "confidence": 0.537,
+   "verdict": "relisten_kept",
+   "line": "L0230",
+   "start": 775.124
+  },
+  {
+   "start_word": 838,
+   "end_word": 838,
+   "heard": "direct",
+   "source": "flag",
+   "confidence": 0.501,
+   "verdict": "relisten_kept",
+   "line": "L0236",
+   "start": 791.824
+  },
+  {
+   "start_word": 857,
+   "end_word": 857,
+   "heard": "ఆహ్,",
+   "source": "flag",
+   "confidence": 0.544,
+   "verdict": "skipped_interjection",
+   "line": "L0242",
+   "start": 808.244
+  },
+  {
+   "start_word": 890,
+   "end_word": 890,
+   "heard": "వేడిగుంది.",
+   "source": "flag",
+   "confidence": 0.578,
+   "verdict": "relisten_kept",
+   "line": "L0253",
+   "start": 833.904
+  },
+  {
+   "start_word": 892,
+   "end_word": 892,
+   "heard": "Plain",
+   "source": "flag",
+   "confidence": 0.586,
+   "verdict": "relisten_kept",
+   "line": "L0255",
+   "start": 839.284
+  },
+  {
+   "start_word": 914,
+   "end_word": 914,
+   "heard": "Egg",
+   "source": "flag",
+   "confidence": 0.593,
+   "verdict": "relisten_kept",
+   "line": "L0266",
+   "start": 855.724
+  },
+  {
+   "start_word": 930,
+   "end_word": 930,
+   "heard": "next",
+   "source": "flag",
+   "confidence": 0.549,
+   "verdict": "relisten_kept",
+   "line": "L0270",
+   "start": 866.184
+  },
+  {
+   "start_word": 997,
+   "end_word": 997,
+   "heard": "So",
+   "source": "flag",
+   "confidence": 0.523,
+   "verdict": "relisten_kept",
+   "line": "L0294",
+   "start": 919.024
+  },
+  {
+   "start_word": 1008,
+   "end_word": 1008,
+   "heard": "Night",
+   "source": "flag",
+   "confidence": 0.588,
+   "verdict": "relisten_kept",
+   "line": "L0302",
+   "start": 957.064
+  },
+  {
+   "start_word": 1034,
+   "end_word": 1034,
+   "heard": "This",
+   "source": "flag",
+   "confidence": 0.593,
+   "verdict": "relisten_kept",
+   "line": "L0310",
+   "start": 999.304
+  },
+  {
+   "start_word": 1089,
+   "end_word": 1089,
+   "heard": "రా.",
+   "source": "flag",
+   "confidence": 0.567,
+   "verdict": "relisten_kept",
+   "line": "L0325",
+   "start": 1040.244
+  },
+  {
+   "start_word": 1090,
+   "end_word": 1090,
+   "heard": "నాకు",
+   "source": "flag",
+   "confidence": 0.531,
+   "verdict": "relisten_kept",
+   "line": "L0326",
+   "start": 1040.764
+  },
+  {
+   "start_word": 1134,
+   "end_word": 1134,
+   "heard": "Big",
+   "source": "flag",
+   "confidence": 0.51,
+   "verdict": "relisten_kept",
+   "line": "L0339",
+   "start": 1102.004
+  }
+ ],
+ "rejected": [],
+ "threshold_report": {
+  "n_words": 1366,
+  "has_logprob": true,
+  "by_threshold": {
+   "0.5": {
+    "words": 26,
+    "lines": 23
+   },
+   "0.6": {
+    "words": 57,
+    "lines": 51
+   },
+   "0.7": {
+    "words": 91,
+    "lines": 72
+   }
+  }
+ },
+ "cost": {
+  "projected": {
+   "model": "gemini-3.8-flash",
+   "layers": {
+    "relisten": {
+     "calls": 3,
+     "items": 23,
+     "audio_s": 67.8,
+     "audio_tokens": 2168,
+     "input_tokens": 11370,
+     "output_tokens": 3500,
+     "inr": 2.1
+    }
+   },
+   "inr": 2.1
+  },
+  "actual": {
+   "relisten": {
+    "calls": 3,
+    "cached": 0,
+    "input_tokens": 6641,
+    "output_tokens": 1365,
+    "audio_tokens": 1701,
+    "inr": 1.024,
+    "inr_full": 1.024
+   }
+  }
+ },
+ "stopped": null,
+ "transcript": "D:\\shotvi\\scribe_dataset\\QWIvgoTQGKk\\QWIvgoTQGKk_scribe_transcript.json"
+}

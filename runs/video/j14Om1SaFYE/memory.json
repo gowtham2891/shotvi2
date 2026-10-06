@@ -1,0 +1,1197 @@
+{
+ "prompt": "1+8766209f",
+ "usage": [
+  {
+   "window": 0,
+   "t": [
+    0.0,
+    150.2
+   ],
+   "lines": [
+    "L0001",
+    "L0047"
+   ],
+   "in": 15443,
+   "out": 1333,
+   "cached": 0,
+   "modalities": null
+  },
+  {
+   "window": 1,
+   "t": [
+    150.2,
+    300.6
+   ],
+   "lines": [
+    "L0048",
+    "L0106"
+   ],
+   "in": 16257,
+   "out": 975,
+   "cached": 13450,
+   "modalities": {
+    "TEXT": 2516,
+    "VIDEO": 13741
+   }
+  },
+  {
+   "window": 2,
+   "t": [
+    300.6,
+    451.6
+   ],
+   "lines": [
+    "L0107",
+    "L0170"
+   ],
+   "in": 16540,
+   "out": 1519,
+   "cached": 0,
+   "modalities": {
+    "TEXT": 2799,
+    "VIDEO": 13741
+   }
+  },
+  {
+   "window": 3,
+   "t": [
+    451.6,
+    603.6
+   ],
+   "lines": [
+    "L0171",
+    "L0208"
+   ],
+   "in": 16318,
+   "out": 859,
+   "cached": 13450,
+   "modalities": {
+    "VIDEO": 13832,
+    "TEXT": 2486
+   }
+  },
+  {
+   "window": 4,
+   "t": [
+    603.6,
+    761.1
+   ],
+   "lines": [
+    "L0209",
+    "L0264"
+   ],
+   "in": 17644,
+   "out": 1440,
+   "cached": 13588,
+   "modalities": {
+    "TEXT": 3357,
+    "VIDEO": 14287
+   }
+  },
+  {
+   "window": 5,
+   "t": [
+    761.1,
+    912.1
+   ],
+   "lines": [
+    "L0265",
+    "L0327"
+   ],
+   "in": 17602,
+   "out": 1465,
+   "cached": 13637,
+   "modalities": {
+    "TEXT": 3861,
+    "VIDEO": 13741
+   }
+  },
+  {
+   "window": 6,
+   "t": [
+    912.1,
+    1064.4
+   ],
+   "lines": [
+    "L0328",
+    "L0386"
+   ],
+   "in": 18086,
+   "out": 1672,
+   "cached": 0,
+   "modalities": {
+    "TEXT": 4254,
+    "VIDEO": 13832
+   }
+  },
+  {
+   "window": 7,
+   "t": [
+    1064.4,
+    1167.3
+   ],
+   "lines": [
+    "L0387",
+    "L0404"
+   ],
+   "in": 12934,
+   "out": 1170,
+   "cached": 0,
+   "modalities": {
+    "TEXT": 3561,
+    "VIDEO": 9373
+   }
+  }
+ ],
+ "cost": {
+  "n_llm_calls": 8,
+  "n_cache_hits": 1,
+  "n_failed_attempts": 0,
+  "input_tokens": 130824,
+  "output_tokens": 10433,
+  "thought_tokens": 0,
+  "cached_input_tokens": 54125,
+  "usd": 0.10071,
+  "usd_billed": 0.08413,
+  "wall_time_secs": 51.7,
+  "by_role": {
+   "memory_window": {
+    "n_llm_calls": 8,
+    "n_cache_hits": 1,
+    "n_failed_attempts": 0,
+    "input_tokens": 130824,
+    "output_tokens": 10433,
+    "thought_tokens": 0,
+    "cached_input_tokens": 54125,
+    "usd": 0.10071,
+    "usd_billed": 0.08413,
+    "models": [
+     "gemini-3.8-flash"
+    ]
+   }
+  },
+  "unpriced_models": []
+ },
+ "memory": {
+  "characters": [
+   {
+    "id": "C1",
+    "name": "Amrutha",
+    "description": "Young woman married to Gowtham; horrified when her husband reveals his absolute hatred for lies using violent food metaphors.",
+    "relations": [
+     "Daughter of C2",
+     "Wife of C3",
+     "Wife of C3 (Gowtham)"
+    ],
+    "speaker_labels": [
+     {
+      "label": "speaker_0",
+      "from_line": "L0002",
+      "to_line": "L0003"
+     },
+     {
+      "label": "speaker_1",
+      "from_line": "L0009",
+      "to_line": "L0009"
+     },
+     {
+      "label": "speaker_1",
+      "from_line": "L0041",
+      "to_line": "L0043"
+     },
+     {
+      "label": "speaker_1",
+      "from_line": "L0099",
+      "to_line": "L0099"
+     },
+     {
+      "label": "speaker_1",
+      "from_line": "L0113",
+      "to_line": "L0130"
+     },
+     {
+      "label": "speaker_6",
+      "from_line": "L0151",
+      "to_line": "L0168"
+     },
+     {
+      "label": "speaker_1",
+      "from_line": "L0328",
+      "to_line": "L0362"
+     },
+     {
+      "label": "speaker_1",
+      "from_line": "L0389",
+      "to_line": "L0389"
+     }
+    ],
+    "label_errors": [
+     "speaker_0 assigned to Amrutha in L0002-L0003 while speaker_0 is otherwise her mother"
+    ]
+   },
+   {
+    "id": "C2",
+    "name": "Amrutha's Mother",
+    "description": "Mother-in-law who listens in mounting dread as Gowtham rages against liars.",
+    "relations": [
+     "Mother of C1 (Amrutha)",
+     "Mother-in-law of C3",
+     "Mother-in-law of C3 (Gowtham)"
+    ],
+    "speaker_labels": [
+     {
+      "label": "speaker_0",
+      "from_line": "L0005",
+      "to_line": "L0018"
+     },
+     {
+      "label": "speaker_0",
+      "from_line": "L0038",
+      "to_line": "L0040"
+     },
+     {
+      "label": "speaker_0",
+      "from_line": "L0044",
+      "to_line": "L0047"
+     },
+     {
+      "label": "speaker_0",
+      "from_line": "L0048",
+      "to_line": "L0104"
+     },
+     {
+      "label": "speaker_0",
+      "from_line": "L0108",
+      "to_line": "L0145"
+     },
+     {
+      "label": "speaker_0",
+      "from_line": "L0373",
+      "to_line": "L0386"
+     },
+     {
+      "label": "speaker_0",
+      "from_line": "L0395",
+      "to_line": "L0395"
+     }
+    ],
+    "label_errors": []
+   },
+   {
+    "id": "C3",
+    "name": "Prospective Groom (Gowtham)",
+    "description": "Groom who marries Amrutha, gets furious about lying and deceit, vividly describing violent cooking metaphors.",
+    "relations": [
+     "Son of C4",
+     "Husband of C1 (Amrutha)",
+     "Son-in-law of C2"
+    ],
+    "speaker_labels": [
+     {
+      "label": "speaker_2",
+      "from_line": "L0021",
+      "to_line": "L0032"
+     },
+     {
+      "label": "speaker_2",
+      "from_line": "L0069",
+      "to_line": "L0092"
+     },
+     {
+      "label": "speaker_2",
+      "from_line": "L0133",
+      "to_line": "L0170"
+     },
+     {
+      "label": "speaker_2",
+      "from_line": "L0209",
+      "to_line": "L0263"
+     },
+     {
+      "label": "speaker_2",
+      "from_line": "L0332",
+      "to_line": "L0385"
+     },
+     {
+      "label": "speaker_2",
+      "from_line": "L0387",
+      "to_line": "L0403"
+     }
+    ],
+    "label_errors": [
+     "L0231 to L0240 diarized as speaker_4/speaker_2 back and forth, L0241 spoken by colleague C5 labeled as speaker_2",
+     "L0367-L0368 is spoken by the groom's friend/relative, mislabeled as speaker_2"
+    ]
+   },
+   {
+    "id": "C4",
+    "name": "Groom's Father",
+    "description": "Easygoing father of the prospective groom; enjoys the sweets and teases his son.",
+    "relations": [
+     "Father of C3"
+    ],
+    "speaker_labels": [
+     {
+      "label": "speaker_3",
+      "from_line": "L0020",
+      "to_line": "L0020"
+     },
+     {
+      "label": "speaker_3",
+      "from_line": "L0056",
+      "to_line": "L0106"
+     },
+     {
+      "label": "speaker_3",
+      "from_line": "L0107",
+      "to_line": "L0110"
+     },
+     {
+      "label": "speaker_4",
+      "from_line": "L0136",
+      "to_line": "L0136"
+     }
+    ],
+    "label_errors": []
+   },
+   {
+    "id": "C5",
+    "name": "Groom's Colleague / Friend",
+    "description": "Office friend and colleague sitting beside the groom at work, teasing him about whether he is marrying to open a curry point.",
+    "relations": [
+     "Colleague / Friend of C3 (Prospective Groom)"
+    ],
+    "speaker_labels": [
+     {
+      "label": "speaker_4",
+      "from_line": "L0207",
+      "to_line": "L0208"
+     },
+     {
+      "label": "speaker_4",
+      "from_line": "L0212",
+      "to_line": "L0235"
+     }
+    ],
+    "label_errors": [
+     "L0241 spoken by C5 is mislabeled as speaker_2"
+    ]
+   },
+   {
+    "id": "C6",
+    "name": "Amrutha's Sister / Friend",
+    "description": "Young woman in maroon patterned kurta chatting with Amrutha at home, advising her to manage the lie until marriage because the groom is a good catch.",
+    "relations": [
+     "Sister or close friend of C1 (Amrutha)"
+    ],
+    "speaker_labels": [
+     {
+      "label": "speaker_0",
+      "from_line": "L0243",
+      "to_line": "L0248"
+     },
+     {
+      "label": "speaker_7",
+      "from_line": "L0267",
+      "to_line": "L0308"
+     }
+    ],
+    "label_errors": []
+   }
+  ],
+  "scenes": [
+   {
+    "from_line": "L0001",
+    "to_line": "L0018",
+    "place": "Amrutha's Bedroom",
+    "what": "Amrutha gets dressed up before the mirror while her mother brings her hair clip and nags her about marriage.",
+    "time": "0:00.1-1:04.3"
+   },
+   {
+    "from_line": "L0019",
+    "to_line": "L0036",
+    "place": "Living Room / Flashback Montage",
+    "what": "Pelli choopulu meeting where the groom asks Amrutha to stand up and rejects her due to her height, leading to repeated echoing memories of height rejections.",
+    "time": "1:12.0-2:04.3"
+   },
+   {
+    "from_line": "L0037",
+    "to_line": "L0047",
+    "place": "Amrutha's Bedroom",
+    "what": "In a later instance, Amrutha sits dejected and refuses to get ready for another prospective groom, recounting the predictable rejection pattern to her pleading mother.",
+    "time": "2:04.5-2:29.9"
+   },
+   {
+    "from_line": "L0048",
+    "to_line": "L0052",
+    "place": "Amrutha's Bedroom",
+    "what": "Mother coaxes Amrutha sweetly one last time to participate in the match meeting.",
+    "time": "2:30.3-2:41.7"
+   },
+   {
+    "from_line": "L0053",
+    "to_line": "L0106",
+    "place": "Living Room",
+    "what": "Matchmaking meeting where the groom asks about cooking, and Amrutha accidentally exposes her mother's lie about homemade sweets.",
+    "time": "2:55.7-5:00.2"
+   },
+   {
+    "from_line": "L0107",
+    "to_line": "L0111",
+    "place": "Living Room",
+    "what": "Mother finishes concocting her story about Pulla Reddy, while Amrutha makes skeptical faces beside her.",
+    "time": "5:00.7-5:13.5"
+   },
+   {
+    "from_line": "L0112",
+    "to_line": "L0132",
+    "place": "Kitchen (Flashback)",
+    "what": "Flashback revealing Amrutha's catastrophic cooking attempts, dousing chapati in oil and fearing the cooker whistle.",
+    "time": "5:13.5-6:00.1"
+   },
+   {
+    "from_line": "L0133",
+    "to_line": "L0148",
+    "place": "Living Room",
+    "what": "Groom asks permission to speak to Amrutha alone; mother nervously agrees.",
+    "time": "6:15.1-6:46.3"
+   },
+   {
+    "from_line": "L0149",
+    "to_line": "L0170",
+    "place": "Bedroom / Hallway Corner",
+    "what": "Groom gently reassures Amrutha, and Amrutha confesses this is her fifth match viewing.",
+    "time": "6:46.4-7:31.6"
+   },
+   {
+    "from_line": "L0171",
+    "to_line": "L0206",
+    "place": "Amrutha's Bedroom",
+    "what": "The prospective groom pushes away the small plastic stool with his foot and tenderly tells Amrutha that her short height is her beauty, completely winning her over.",
+    "time": "7:31.7-9:58.0"
+   },
+   {
+    "from_line": "L0207",
+    "to_line": "L0208",
+    "place": "Office",
+    "what": "The groom sits in front of his laptop at work blushing and daydreaming while his colleague teases him.",
+    "time": "9:58.2-10:03.5"
+   },
+   {
+    "from_line": "L0209",
+    "to_line": "L0242",
+    "place": "Office",
+    "what": "The groom praises Amrutha's supposed cooking to his colleague, explaining his emotional longing for home food made with love.",
+    "time": "10:03.6-11:28.6"
+   },
+   {
+    "from_line": "L0243",
+    "to_line": "L0248",
+    "place": "Living Room / Amrutha's Home",
+    "what": "Amrutha confides in her sister/friend that she went to confess the truth about her cooking, but something stopped her.",
+    "time": "11:28.7-11:38.7"
+   },
+   {
+    "from_line": "L0249",
+    "to_line": "L0264",
+    "place": "Outdoor Cafe",
+    "what": "Flashback to Amrutha meeting the groom at an outdoor cafe where she tries to confess, but he preempts her by affirming her freedom, happiness, and offering to share chores.",
+    "time": "11:38.7-12:41.1"
+   },
+   {
+    "from_line": "L0265",
+    "to_line": "L0267",
+    "place": "Living Room / Amrutha's Home",
+    "what": "Amrutha tells her friend how the groom compares marriage and relationships completely to food.",
+    "time": "12:41.2-12:48.5"
+   },
+   {
+    "from_line": "L0268",
+    "to_line": "L0290",
+    "place": "Outdoor Cafe (Flashback)",
+    "what": "The groom poetically details how every aspect of marriage corresponds to dishes and ingredients (full meals, salt, flame, chillies, ghee, curd).",
+    "time": "12:49.4-13:46.7"
+   },
+   {
+    "from_line": "L0291",
+    "to_line": "L0297",
+    "place": "Living Room / Amrutha's Home",
+    "what": "Amrutha laments that nobody could say no to him, but she still cannot cook; her friend suggests learning to cook.",
+    "time": "13:50.3-14:06.4"
+   },
+   {
+    "from_line": "L0298",
+    "to_line": "L0303",
+    "place": "Kitchen (Flashback)",
+    "what": "Flashback to Amrutha trying to cook, creating a massive cloud of smoke and coughing frantically.",
+    "time": "14:06.4-14:16.6"
+   },
+   {
+    "from_line": "L0304",
+    "to_line": "L0310",
+    "place": "Kitchen / Living Room / Amrutha's Home",
+    "what": "By the fridge, her friend urges her to manage the lie till marriage, but Amrutha says she hasn't heard the full story yet.",
+    "time": "14:18.2-14:31.2"
+   },
+   {
+    "from_line": "L0311",
+    "to_line": "L0327",
+    "place": "Outdoor Cafe (Flashback)",
+    "what": "Back at the cafe, the groom asks about her favorite dish, bringing up Gongura, which Amrutha confuses with Gorintaku (henna).",
+    "time": "14:32.3-15:11.8"
+   },
+   {
+    "from_line": "L0328",
+    "to_line": "L0350",
+    "place": "Outdoor Cafe (Flashback)",
+    "what": "Amrutha digs herself deeper covering up her cooking lies about mirchi bajji before the groom asks her to call if she agrees to the match.",
+    "time": "15:12.1-16:09.9"
+   },
+   {
+    "from_line": "L0351",
+    "to_line": "L0355",
+    "place": "Amrutha's Bedroom / Bathroom",
+    "what": "Amrutha's friend comforts and advises her to decide thoughtfully since she can learn cooking before the wedding.",
+    "time": "16:09.9-16:25.3"
+   },
+   {
+    "from_line": "L0356",
+    "to_line": "L0363",
+    "place": "Balcony / Night Corridor",
+    "what": "Amrutha paces in the dark remembering the groom's words, finally dials him, and says okay.",
+    "time": "16:25.4-16:54.2"
+   },
+   {
+    "from_line": "L0364",
+    "to_line": "L0386",
+    "place": "Street / Outside Amrutha's House",
+    "what": "Wedding sendoff where the newly married couple takes blessings, and the groom reveals their new home is on the same street.",
+    "time": "16:54.2-17:41.9"
+   },
+   {
+    "from_line": "L0387",
+    "to_line": "L0404",
+    "place": "Street / Outside Amrutha's House",
+    "what": "The groom receives a phone call about someone lying at work, passionately shouting to fire them, and then explains to his mother-in-law and Amrutha how much he violently despises lies.",
+    "time": "17:44.4-19:07.2"
+   }
+  ],
+  "plot": {
+   "setup": "Amrutha undergoes traditional match-viewing meetings, but suffers repeated rejections due to her height.",
+   "conflict": "The persistent rejections make Amrutha disheartened and resistant to dressing up for yet another groom viewing.",
+   "turn": "Amrutha innocently blurts out that the sweets were bought directly from Pulla Reddy sweets.",
+   "cliffhanger": "The groom describes how he feels like crushing, roasting, and beating liars like food ingredients, leaving Amrutha and her mother petrified."
+  },
+  "_window": 8,
+  "_plot_window": {
+   "setup": 0,
+   "conflict": 0,
+   "turn": 1,
+   "cliffhanger": 7
+  },
+  "links": [
+   {
+    "setup_line": "L0023",
+    "payoff_line": "L0042",
+    "payoff_after_line": "",
+    "payoff_before_line": "",
+    "what": "The humiliating request to stand up and being told 'pottiga unnaru' is directly recited by Amrutha as the guaranteed outcome of every meeting."
+   },
+   {
+    "setup_line": "L0094",
+    "payoff_line": "L0099",
+    "payoff_after_line": "",
+    "payoff_before_line": "",
+    "what": "Mother claims Amrutha made all the sweets, which Amrutha immediately exposes by saying they bought them from Pulla Reddy."
+   },
+   {
+    "setup_line": "L0033",
+    "payoff_line": "L0168",
+    "payoff_after_line": "",
+    "payoff_before_line": "",
+    "what": "The repeated rejections shown in previous flashbacks are directly quantified by Amrutha as her 5th match viewing."
+   },
+   {
+    "setup_line": "L0006",
+    "payoff_line": "",
+    "payoff_after_line": "L0184",
+    "payoff_before_line": "L0185",
+    "what": "The small teal plastic stool that Amrutha used to stand on to look taller is gently nudged aside by the groom's foot, signaling she doesn't need to fake her height for him.",
+    "payoff_time": {
+     "start": 482.62,
+     "end": 526.12,
+     "raw": [
+      482.17,
+      526.65
+     ],
+     "snapped": [
+      true,
+      true
+     ],
+     "label": "8:02.6-8:46.1"
+    }
+   },
+   {
+    "setup_line": "L0066",
+    "payoff_line": "L0205",
+    "payoff_after_line": "",
+    "payoff_before_line": "",
+    "what": "Amrutha had initially planned to ask two questions; after his heartfelt acceptance of her height, she happily declares that asking the second question is no longer necessary."
+   },
+   {
+    "setup_line": "L0089",
+    "payoff_line": "L0210",
+    "payoff_after_line": "",
+    "payoff_before_line": "",
+    "what": "Mother's earlier lie that Amrutha makes sweets and curries deliciously convinces the groom she is an extraordinary cook."
+   },
+   {
+    "setup_line": "L0246",
+    "payoff_line": "L0250",
+    "payoff_after_line": "",
+    "payoff_before_line": "",
+    "what": "Amrutha explains to her sister that she went to tell him the truth, which plays out as the cafe meeting flashback."
+   },
+   {
+    "setup_line": "L0295",
+    "payoff_line": "L0297",
+    "payoff_after_line": "",
+    "payoff_before_line": "",
+    "what": "Friend asks why she doesn't just learn cooking, paying off with Amrutha revealing her smoky kitchen disaster."
+   },
+   {
+    "setup_line": "L0310",
+    "payoff_line": "L0311",
+    "payoff_after_line": "",
+    "payoff_before_line": "",
+    "what": "Amrutha promises the full cafe story hasn't been told yet, transitioning back to the cafe disaster."
+   },
+   {
+    "setup_line": "L0346",
+    "payoff_line": "L0362",
+    "payoff_after_line": "",
+    "payoff_before_line": "",
+    "what": "The groom asking Amrutha to call if she is okay with the match is paid off when she calls him at night saying okay."
+   },
+   {
+    "setup_line": "L0089",
+    "payoff_line": "L0385",
+    "payoff_after_line": "",
+    "payoff_before_line": "",
+    "what": "Mother's original lie that Amrutha cooks deliciously leads directly to the groom joyfully promising the mother can eat Amrutha's food anytime."
+   },
+   {
+    "setup_line": "L0094",
+    "payoff_line": "L0398",
+    "payoff_after_line": "",
+    "payoff_before_line": "",
+    "what": "Mother's original lie that Amrutha cooks deliciously directly clashes with Gowtham declaring he cannot tolerate lies or cheats."
+   }
+  ],
+  "gags": [
+   {
+    "name": "Cooking Blunder Coverup",
+    "lines": [
+     "L0094",
+     "L0098",
+     "L0099",
+     "L0102",
+     "L0104"
+    ],
+    "what": "Mother lies that Amrutha cooked the sweets, Amrutha exposes it's store-bought, and mother hilariously invents an excuse."
+   },
+   {
+    "name": "Cooking Incompetence",
+    "lines": [
+     "L0117",
+     "L0118",
+     "L0119",
+     "L0124",
+     "L0130"
+    ],
+    "what": "Amrutha drowns chapati in oil calling it poori and suggests using the whistling cooker as a Diwali explosive."
+   },
+   {
+    "name": "Curry Point Teasing",
+    "lines": [
+     "L0218",
+     "L0221"
+    ],
+    "what": "Colleague mocks the groom's poetic exaggeration of Amrutha's cooking by asking if he's starting a curry point."
+   },
+   {
+    "name": "Food Metaphor Romancing",
+    "lines": [
+     "L0268",
+     "L0270",
+     "L0274",
+     "L0278",
+     "L0281",
+     "L0283",
+     "L0286"
+    ],
+    "what": "The groom breaks down the entire philosophy of marriage into full meals, salt, flame, chillies, ghee, and curd."
+   },
+   {
+    "name": "Culinary Ignorance: Gongura vs Gorintaku",
+    "lines": [
+     "L0321",
+     "L0322",
+     "L0323",
+     "L0324",
+     "L0325",
+     "L0326"
+    ],
+    "what": "Amrutha confuses Gongura leaf curry with Gorintaku (henna applied on hands for weddings)."
+   },
+   {
+    "name": "Flour Family Logic",
+    "lines": [
+     "L0335",
+     "L0337",
+     "L0340"
+    ],
+    "what": "Amrutha claiming bajji is made with wheat flour and justifying that gram flour, wheat flour, and maida all belong to the same flour family."
+   },
+   {
+    "name": "Backfire of the Cooking Lie",
+    "lines": [
+     "L0375",
+     "L0381",
+     "L0385"
+    ],
+    "what": "The groom enthusiastically securing a home nearby so Amrutha's mother can regularly enjoy her daughter's non-existent cooking."
+   },
+   {
+    "name": "Food Metaphor Violence",
+    "lines": [
+     "L0399",
+     "L0400",
+     "L0401",
+     "L0403"
+    ],
+    "what": "Gowtham uses culinary actions—crushing papad, roasting chicken, pounding mutton—to describe how violently he wants to punish liars."
+   }
+  ],
+  "visual_beats": [
+   {
+    "after_line": "L0025",
+    "before_line": "L0026",
+    "what": "Amrutha reluctantly stands up from the sofa as her mother watches hopefully, only to receive immediate rejection.",
+    "why": "Crucial awkward emotional turning point emphasizing the indignity of height evaluation.",
+    "time": {
+     "start": 94.75,
+     "end": 98.08,
+     "raw": [
+      94.6,
+      97.0
+     ],
+     "snapped": [
+      true,
+      true
+     ],
+     "label": "1:34.8-1:38.1"
+    }
+   },
+   {
+    "after_line": "L0033",
+    "before_line": "L0037",
+    "what": "Rapid montage of Amrutha sitting in different sarees looking distressed while voiceover insults repeat 'pottiga unnaru'.",
+    "why": "Visually conveys her cumulative trauma and humiliation from multiple rejected matchmaking sessions.",
+    "time": {
+     "start": 110.17,
+     "end": 127.96,
+     "raw": [
+      110.5,
+      128.18
+     ],
+     "snapped": [
+      true,
+      true
+     ],
+     "label": "1:50.2-2:08.0"
+    }
+   },
+   {
+    "after_line": "L0069",
+    "before_line": "L0071",
+    "what": "Amrutha freezes with wide, startled eyes staring straight at the groom upon hearing the question about cooking.",
+    "why": "Dramatic comedic pause highlighting her sheer panic and lack of culinary skills.",
+    "time": {
+     "start": 212.21,
+     "end": 221.33,
+     "raw": [
+      212.0,
+      221.62
+     ],
+     "snapped": [
+      true,
+      true
+     ],
+     "label": "3:32.2-3:41.3"
+    }
+   },
+   {
+    "after_line": "L0099",
+    "before_line": "L0101",
+    "what": "Mother's smile completely freezes in shock while Amrutha smiles innocently unaware of the lie.",
+    "why": "Classic comedic contrast between the lying mother and the honest daughter.",
+    "time": {
+     "start": 284.62,
+     "end": 287.21,
+     "raw": [
+      283.2,
+      287.5
+     ],
+     "snapped": [
+      true,
+      true
+     ],
+     "label": "4:44.6-4:47.2"
+    }
+   },
+   {
+    "after_line": "L0110",
+    "before_line": "L0111",
+    "what": "Amrutha turns her head and glares in disbelief at her mother while her mother laughs hysterically to sell the lie.",
+    "why": "Highlights the comedic dynamic of mother's shameless lying versus daughter's exasperation.",
+    "time": {
+     "start": 311.94,
+     "end": 312.08,
+     "raw": [
+      311.94,
+      312.08
+     ],
+     "snapped": [
+      false,
+      false
+     ],
+     "label": "5:11.9-5:12.1"
+    }
+   },
+   {
+    "after_line": "L0126",
+    "before_line": "L0127",
+    "what": "Amrutha reaches out to pry the whistle off the hot pressure cooker and cowers away in fear.",
+    "why": "Physical comedy displaying her absolute cluelessness in the kitchen.",
+    "time": {
+     "start": 350.0,
+     "end": 351.08,
+     "raw": [
+      349.88,
+      351.14
+     ],
+     "snapped": [
+      true,
+      true
+     ],
+     "label": "5:50.0-5:51.1"
+    }
+   },
+   {
+    "after_line": "L0168",
+    "before_line": "L0169",
+    "what": "The groom breaks into an affectionate, delighted smile rather than showing disappointment at her confession.",
+    "why": "Key romantic turn shifting him from an intimidating suitor to a supportive partner.",
+    "time": {
+     "start": 446.08,
+     "end": 448.17,
+     "raw": [
+      445.79,
+      447.29
+     ],
+     "snapped": [
+      true,
+      true
+     ],
+     "label": "7:26.1-7:28.2"
+    }
+   },
+   {
+    "after_line": "L0184",
+    "before_line": "L0185",
+    "what": "The groom looks down and quietly kicks/nudges the small green-blue plastic stool aside with his bare foot, then steps closer to look directly into Amrutha's eyes.",
+    "why": "Crucial romantic gesture showing complete acceptance of Amrutha's natural height without needing any prop.",
+    "time": {
+     "start": 482.62,
+     "end": 526.12,
+     "raw": [
+      482.17,
+      526.65
+     ],
+     "snapped": [
+      true,
+      true
+     ],
+     "label": "8:02.6-8:46.1"
+    }
+   },
+   {
+    "after_line": "L0206",
+    "before_line": "L0207",
+    "what": "Amrutha lowers her gaze with a bashful, joyful smile while romantic music swells, completely swept off her feet.",
+    "why": "Marks Amrutha's emotional payoff and relief after years of matchmaking humiliation.",
+    "time": {
+     "start": 581.71,
+     "end": 597.5,
+     "raw": [
+      581.09,
+      598.17
+     ],
+     "snapped": [
+      true,
+      true
+     ],
+     "label": "9:41.7-9:57.5"
+    }
+   },
+   {
+    "after_line": "L0222",
+    "before_line": "L0223",
+    "what": "Colleague turns in his chair and gives a skeptical, dumbfounded glare at the groom's poetic daydreams.",
+    "why": "Provides comedic grounded contrast to the groom's starry-eyed romantic monologue.",
+    "time": {
+     "start": 628.25,
+     "end": 628.25,
+     "raw": [
+      628.21,
+      628.51
+     ],
+     "snapped": [
+      true,
+      true
+     ],
+     "label": "10:28.2-10:28.2"
+    }
+   },
+   {
+    "after_line": "L0248",
+    "before_line": "L0249",
+    "what": "Transition to cafe scene where Amrutha and the groom sit across a wooden table, both nervous.",
+    "why": "Establishes the pivotal private encounter where the cooking secret hangs in the balance.",
+    "time": {
+     "start": 699.17,
+     "end": 708.29,
+     "raw": [
+      698.73,
+      709.07
+     ],
+     "snapped": [
+      true,
+      true
+     ],
+     "label": "11:39.2-11:48.3"
+    }
+   },
+   {
+    "after_line": "L0263",
+    "before_line": "L0264",
+    "what": "Amrutha stammers silently, gestures bashfully, picks up her bag, and walks away completely charmed.",
+    "why": "The emotional turning point where she falls for him and fails to make her confession.",
+    "time": {
+     "start": 749.88,
+     "end": 760.71,
+     "raw": [
+      749.71,
+      761.11
+     ],
+     "snapped": [
+      true,
+      true
+     ],
+     "label": "12:29.9-12:40.7"
+    }
+   },
+   {
+    "after_line": "L0275",
+    "before_line": "L0277",
+    "what": "The groom gestures a bursting explosion with his hands while making the sound effect when describing high flame.",
+    "why": "Visual comic emphasis on his elaborate food analogies.",
+    "time": {
+     "start": 790.58,
+     "end": 790.58,
+     "raw": [
+      790.45,
+      791.09
+     ],
+     "snapped": [
+      true,
+      true
+     ],
+     "label": "13:10.6-13:10.6"
+    }
+   },
+   {
+    "after_line": "L0320",
+    "before_line": "L0322",
+    "what": "Amrutha pauses with a thoughtful face, then happily holds up her palms wiggling her fingers describing Gorintaku.",
+    "why": "Physical comedy showing how confidently wrong she is about cooking ingredients.",
+    "time": {
+     "start": 892.04,
+     "end": 895.5,
+     "raw": [
+      891.97,
+      896.35
+     ],
+     "snapped": [
+      true,
+      true
+     ],
+     "label": "14:52.0-14:55.5"
+    }
+   },
+   {
+    "after_line": "L0326",
+    "before_line": "L0327",
+    "what": "The groom stares with bewildered amusement while Amrutha freezes, realizing her ridiculous mix-up.",
+    "why": "Reaction beat highlighting her comical slip-up.",
+    "time": {
+     "start": 905.5,
+     "end": 911.85,
+     "raw": [
+      904.95,
+      911.85
+     ],
+     "snapped": [
+      true,
+      false
+     ],
+     "label": "15:05.5-15:11.8"
+    }
+   },
+   {
+    "after_line": "L0344",
+    "before_line": "L0345",
+    "what": "Amrutha bites her lip and looks away nervously after her ridiculous explanation, realizing how close she is to being caught.",
+    "why": "Highlights Amrutha's acute awkwardness and comical guilt.",
+    "time": {
+     "start": 951.46,
+     "end": 954.62,
+     "raw": [
+      951.01,
+      955.03
+     ],
+     "snapped": [
+      true,
+      true
+     ],
+     "label": "15:51.5-15:54.6"
+    }
+   },
+   {
+    "after_line": "L0360",
+    "before_line": "L0361",
+    "what": "Amrutha holds her phone nervously in the dark hallway, hesitating before dialing.",
+    "why": "Builds the romantic and comedic tension leading to her decision.",
+    "time": {
+     "start": 997.73,
+     "end": 1006.31,
+     "raw": [
+      997.73,
+      1006.31
+     ],
+     "snapped": [
+      false,
+      false
+     ],
+     "label": "16:37.7-16:46.3"
+    }
+   },
+   {
+    "after_line": "L0376",
+    "before_line": "L0377",
+    "what": "Amrutha's face freezes in sheer horror in her bridal saree upon hearing the groom say her mother misses her cooking.",
+    "why": "Key punchline beat where her past lies come back to haunt her.",
+    "time": {
+     "start": 1039.42,
+     "end": 1045.75,
+     "raw": [
+      1039.79,
+      1044.79
+     ],
+     "snapped": [
+      true,
+      true
+     ],
+     "label": "17:19.4-17:25.8"
+    }
+   },
+   {
+    "after_line": "L0381",
+    "before_line": "L0383",
+    "what": "Amrutha and her mother exchange wide-eyed, panicked stares as the groom points down the street to their new nearby house.",
+    "why": "Visual culmination of mother and daughter realizing they are trapped in their own lie.",
+    "time": {
+     "start": 1053.04,
+     "end": 1054.67,
+     "raw": [
+      1053.13,
+      1053.59
+     ],
+     "snapped": [
+      true,
+      true
+     ],
+     "label": "17:33.0-17:34.7"
+    }
+   },
+   {
+    "after_line": "L0389",
+    "before_line": "L0390",
+    "what": "Amrutha lovingly hugs her father goodbye by the car while Gowtham answers an urgent work phone call.",
+    "why": "Contrasts the sweet emotional wedding farewell with the ominous tension about to erupt.",
+    "time": {
+     "start": 1067.29,
+     "end": 1070.38,
+     "raw": [
+      1068.79,
+      1070.13
+     ],
+     "snapped": [
+      true,
+      true
+     ],
+     "label": "17:47.3-17:50.4"
+    }
+   },
+   {
+    "after_line": "L0394",
+    "before_line": "L0395",
+    "what": "Amrutha and her mother freeze and look at Gowtham with tense, nervous expressions as he angrily yells on the phone about lies.",
+    "why": "Establishes immediate dread and fear for both women who built the entire wedding on a lie.",
+    "time": {
+     "start": 1078.17,
+     "end": 1080.79,
+     "raw": [
+      1078.95,
+      1079.95
+     ],
+     "snapped": [
+      true,
+      true
+     ],
+     "label": "17:58.2-18:00.8"
+    }
+   },
+   {
+    "after_line": "L0403",
+    "before_line": "L0404",
+    "what": "Gowtham clenches his fists aggressively demonstrating crushing and beating, while Amrutha and her mother stare wide-eyed in utter terror.",
+    "why": "High comedic shock value and cliffhanger moment highlighting Amrutha's impending doom.",
+    "time": {
+     "start": 1096.33,
+     "end": 1147.29,
+     "raw": [
+      1096.45,
+      1147.19
+     ],
+     "snapped": [
+      true,
+      true
+     ],
+     "label": "18:16.3-19:07.3"
+    }
+   }
+  ]
+ }
+}

@@ -1,0 +1,81 @@
+# Episode memory: j14Om1SaFYE
+
+CHARACTERS:
+- C1 Amrutha: Young woman married to Gowtham; horrified when her husband reveals his | Daughter of C2; Wife of C3 | labels: speaker_0, speaker_1, speaker_6
+- C2 Amrutha's Mother: Mother-in-law who listens in mounting dread as Gowtham rages against l | Mother of C1 (Amrutha); Mother-in-law of C3 | labels: speaker_0
+- C3 Prospective Groom (Gowtham): Groom who marries Amrutha, gets furious about lying and deceit, vividl | Son of C4; Husband of C1 (Amrutha) | labels: speaker_2
+- C4 Groom's Father: Easygoing father of the prospective groom; enjoys the sweets and tease | Father of C3 | labels: speaker_3, speaker_4
+- C5 Groom's Colleague / Friend: Office friend and colleague sitting beside the groom at work, teasing  | Colleague / Friend of C3 (Prospective Groom) | labels: speaker_4
+- C6 Amrutha's Sister / Friend: Young woman in maroon patterned kurta chatting with Amrutha at home, a | Sister or close friend of C1 (Amrutha) | labels: speaker_0, speaker_7
+SCENES:
+- L0001-L0018 Amrutha's Bedroom: Amrutha gets dressed up before the mirror while her mother brings her hair clip 
+- L0019-L0036 Living Room / Flashback M: Pelli choopulu meeting where the groom asks Amrutha to stand up and rejects her 
+- L0037-L0047 Amrutha's Bedroom: In a later instance, Amrutha sits dejected and refuses to get ready for another 
+- L0048-L0052 Amrutha's Bedroom: Mother coaxes Amrutha sweetly one last time to participate in the match meeting.
+- L0053-L0106 Living Room: Matchmaking meeting where the groom asks about cooking, and Amrutha accidentally
+- L0107-L0111 Living Room: Mother finishes concocting her story about Pulla Reddy, while Amrutha makes skep
+- L0112-L0132 Kitchen (Flashback): Flashback revealing Amrutha's catastrophic cooking attempts, dousing chapati in 
+- L0133-L0148 Living Room: Groom asks permission to speak to Amrutha alone; mother nervously agrees.
+- L0149-L0170 Bedroom / Hallway Corner: Groom gently reassures Amrutha, and Amrutha confesses this is her fifth match vi
+- L0171-L0206 Amrutha's Bedroom: The prospective groom pushes away the small plastic stool with his foot and tend
+- L0207-L0208 Office: The groom sits in front of his laptop at work blushing and daydreaming while his
+- L0209-L0242 Office: The groom praises Amrutha's supposed cooking to his colleague, explaining his em
+- L0243-L0248 Living Room / Amrutha's H: Amrutha confides in her sister/friend that she went to confess the truth about h
+- L0249-L0264 Outdoor Cafe: Flashback to Amrutha meeting the groom at an outdoor cafe where she tries to con
+- L0265-L0267 Living Room / Amrutha's H: Amrutha tells her friend how the groom compares marriage and relationships compl
+- L0268-L0290 Outdoor Cafe (Flashback): The groom poetically details how every aspect of marriage corresponds to dishes 
+- L0291-L0297 Living Room / Amrutha's H: Amrutha laments that nobody could say no to him, but she still cannot cook; her 
+- L0298-L0303 Kitchen (Flashback): Flashback to Amrutha trying to cook, creating a massive cloud of smoke and cough
+- L0304-L0310 Kitchen / Living Room / A: By the fridge, her friend urges her to manage the lie till marriage, but Amrutha
+- L0311-L0327 Outdoor Cafe (Flashback): Back at the cafe, the groom asks about her favorite dish, bringing up Gongura, w
+- L0328-L0350 Outdoor Cafe (Flashback): Amrutha digs herself deeper covering up her cooking lies about mirchi bajji befo
+- L0351-L0355 Amrutha's Bedroom / Bathr: Amrutha's friend comforts and advises her to decide thoughtfully since she can l
+- L0356-L0363 Balcony / Night Corridor: Amrutha paces in the dark remembering the groom's words, finally dials him, and 
+- L0364-L0386 Street / Outside Amrutha': Wedding sendoff where the newly married couple takes blessings, and the groom re
+- L0387-L0404 Street / Outside Amrutha': The groom receives a phone call about someone lying at work, passionately shouti
+PLOT: setup: Amrutha undergoes traditional match-viewing meetings, but suffers repeated rejections due to her height. | conflict: The persistent rejections make Amrutha disheartened and resistant to dressing up for yet another groom viewing. | turn: Amrutha innocently blurts out that the sweets were bought directly from Pulla Reddy sweets. | cliffhanger: The groom describes how he feels like crushing, roasting, and beating liars like food ingredients, leaving Amrutha and her mother petrified.
+SETUP -> PAYOFF:
+- L0023 -> L0042: The humiliating request to stand up and being told 'pottiga unnaru' is directly recited by
+- L0094 -> L0099: Mother claims Amrutha made all the sweets, which Amrutha immediately exposes by saying the
+- L0033 -> L0168: The repeated rejections shown in previous flashbacks are directly quantified by Amrutha as
+- L0006 -> between L0184/L0185: The small teal plastic stool that Amrutha used to stand on to look taller is gently nudged
+- L0066 -> L0205: Amrutha had initially planned to ask two questions; after his heartfelt acceptance of her 
+- L0089 -> L0210: Mother's earlier lie that Amrutha makes sweets and curries deliciously convinces the groom
+- L0246 -> L0250: Amrutha explains to her sister that she went to tell him the truth, which plays out as the
+- L0295 -> L0297: Friend asks why she doesn't just learn cooking, paying off with Amrutha revealing her smok
+- L0310 -> L0311: Amrutha promises the full cafe story hasn't been told yet, transitioning back to the cafe 
+- L0346 -> L0362: The groom asking Amrutha to call if she is okay with the match is paid off when she calls 
+- L0089 -> L0385: Mother's original lie that Amrutha cooks deliciously leads directly to the groom joyfully 
+- L0094 -> L0398: Mother's original lie that Amrutha cooks deliciously directly clashes with Gowtham declari
+RUNNING GAGS:
+- Cooking Blunder Coverup (L0094, L0098, L0099, L0102): Mother lies that Amrutha cooked the sweets, Amrutha exposes it's store
+- Cooking Incompetence (L0117, L0118, L0119, L0124): Amrutha drowns chapati in oil calling it poori and suggests using the 
+- Curry Point Teasing (L0218, L0221): Colleague mocks the groom's poetic exaggeration of Amrutha's cooking b
+- Food Metaphor Romancing (L0268, L0270, L0274, L0278): The groom breaks down the entire philosophy of marriage into full meal
+- Culinary Ignorance: Gongura vs (L0321, L0322, L0323, L0324): Amrutha confuses Gongura leaf curry with Gorintaku (henna applied on h
+- Flour Family Logic (L0335, L0337, L0340): Amrutha claiming bajji is made with wheat flour and justifying that gr
+- Backfire of the Cooking Lie (L0375, L0381, L0385): The groom enthusiastically securing a home nearby so Amrutha's mother 
+- Food Metaphor Violence (L0399, L0400, L0401, L0403): Gowtham uses culinary actions—crushing papad, roasting chicken, poundi
+VISUAL BEATS (no dialogue; between two lines):
+- L0025/L0026: Amrutha reluctantly stands up from the sofa as her mother watches hopefully, only to receive im
+- L0033/L0037: Rapid montage of Amrutha sitting in different sarees looking distressed while voiceover insults
+- L0069/L0071: Amrutha freezes with wide, startled eyes staring straight at the groom upon hearing the questio
+- L0099/L0101: Mother's smile completely freezes in shock while Amrutha smiles innocently unaware of the lie.
+- L0110/L0111: Amrutha turns her head and glares in disbelief at her mother while her mother laughs hysterical
+- L0126/L0127: Amrutha reaches out to pry the whistle off the hot pressure cooker and cowers away in fear.
+- L0168/L0169: The groom breaks into an affectionate, delighted smile rather than showing disappointment at he
+- L0184/L0185: The groom looks down and quietly kicks/nudges the small green-blue plastic stool aside with his
+- L0206/L0207: Amrutha lowers her gaze with a bashful, joyful smile while romantic music swells, completely sw
+- L0222/L0223: Colleague turns in his chair and gives a skeptical, dumbfounded glare at the groom's poetic day
+- L0248/L0249: Transition to cafe scene where Amrutha and the groom sit across a wooden table, both nervous.
+- L0263/L0264: Amrutha stammers silently, gestures bashfully, picks up her bag, and walks away completely char
+- L0275/L0277: The groom gestures a bursting explosion with his hands while making the sound effect when descr
+- L0320/L0322: Amrutha pauses with a thoughtful face, then happily holds up her palms wiggling her fingers des
+- L0326/L0327: The groom stares with bewildered amusement while Amrutha freezes, realizing her ridiculous mix-
+- L0344/L0345: Amrutha bites her lip and looks away nervously after her ridiculous explanation, realizing how 
+- L0360/L0361: Amrutha holds her phone nervously in the dark hallway, hesitating before dialing.
+- L0376/L0377: Amrutha's face freezes in sheer horror in her bridal saree upon hearing the groom say her mothe
+- L0381/L0383: Amrutha and her mother exchange wide-eyed, panicked stares as the groom points down the street 
+- L0389/L0390: Amrutha lovingly hugs her father goodbye by the car while Gowtham answers an urgent work phone 
+- L0394/L0395: Amrutha and her mother freeze and look at Gowtham with tense, nervous expressions as he angrily
+- L0403/L0404: Gowtham clenches his fists aggressively demonstrating crushing and beating, while Amrutha and h
