@@ -59,7 +59,10 @@ class RenderedUnit:
 INTRO_TAG = "(intro)"
 
 
-def render_unit(tr: Transcript, u: Unit, roles: dict[str, SpeakerInfo], events=(), unit_tag: str = "") -> str:
+def render_unit(tr: Transcript, u: Unit, roles: dict[str, SpeakerInfo], events=(), unit_tag: str = "",
+                display: dict[int, str] | None = None) -> str:
+    """``display``: word index -> text to print instead of the word ("" = print nothing), e.g. the ASR
+    layer's marked corrections (``asr_fix.display_map``); other words print as Scribe heard them."""
     ws = tr.words
     label = lambda s: roles[s].label if s in roles else "O"  # noqa: E731
     bc_at = {b.i0: b for b in u.backchannels}
@@ -88,7 +91,10 @@ def render_unit(tr: Transcript, u: Unit, roles: dict[str, SpeakerInfo], events=(
         if w.speaker != cur_spk:
             parts.append(("| " if cur_spk is not None else "") + f"{label(w.speaker)}:")
             cur_spk = w.speaker
-        parts.append(w.text)
+        if display is None or i not in display:
+            parts.append(w.text)
+        elif display[i]:
+            parts.append(display[i])
         i += 1
     for e in ev[ev_k:]:
         tag = EVENT_TAGS.get(e.kind)
@@ -109,15 +115,23 @@ def _events_by_unit(tr: Transcript, units: list[Unit]) -> dict[int, list]:
     return out
 
 
-def render_units(tr: Transcript, units: list[Unit], roles: dict[str, SpeakerInfo]) -> list[RenderedUnit]:
+def render_units(tr: Transcript, units: list[Unit], roles: dict[str, SpeakerInfo],
+                 marks: dict[int, dict] | None = None) -> list[RenderedUnit]:
     """All units, including ones inside opening ranges; greeting / host-intro
     units are tagged ``(intro)``. Hiding teaser units is the caller's choice
-    (``Segmentation.render`` / ``render_chunks`` do it by default)."""
+    (``Segmentation.render`` / ``render_chunks`` do it by default).
+    ``marks`` (``asr_fix.word_marks``, opt-in): corrected words print as ``{fixed: ...}``, leftover
+    low-confidence words as ``word(?)``; a correction cut by a unit edge prints as Scribe heard it, with (?)."""
     evs = _events_by_unit(tr, units)
     out = []
     for u in units:
         tag = INTRO_TAG if getattr(u, "intro_kind", None) == "intro" else ""
-        line = render_unit(tr, u, roles, evs[u.id], tag)
+        display = None
+        if marks is not None:
+            from .asr_fix import display_map
+            bc = {i for b in u.backchannels for i in range(b.i0, b.i1 + 1)}
+            display = display_map(tr.words, marks, [i for i in range(u.i0, u.i1 + 1) if i not in bc])
+        line = render_unit(tr, u, roles, evs[u.id], tag, display)
         out.append(RenderedUnit(u.id, line, estimate_tokens(line) + 1))
     return out
 

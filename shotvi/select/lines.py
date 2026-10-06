@@ -13,12 +13,18 @@ Times are snapped to shot cuts (runs/video/<id>/shots.json) when a cut lies with
 without shot lines, or when an edge is a long event line or missing; it is capped at ``MAX_BEAT_S`` (ending on the last
 shot cut inside the cap) and flagged ``capped`` with the ``full`` span kept for the reviewer. A "silent" beat that
 spans more than ``MAX_TALK_LINES`` dialogue lines is returned as ``{"invalid": reason}``.
+ASR layer (``asr_fix=True``, opt-in, off by default): speech lines with an audio-confirmed correction or a leftover
+low-confidence word show ``{fixed: corrected words}`` / ``word(?)`` (``ASR_LEGEND`` explains both to a model);
+line ids and times never change. Off, the text is Scribe's, byte-identical to before the option existed.
 """
 from __future__ import annotations
 
 import bisect
 import json
+import sys
 from pathlib import Path
+
+from shotvi.segment.asr_fix import ASR_LEGEND  # noqa: F401  (for prompts that turn asr_fix on)
 
 SNAP_S = 1.5
 SPLIT_S = 6.0       # silent stretches longer than this get shot lines
@@ -32,9 +38,48 @@ def fmt(t: float) -> str:
     return f"{int(t // 60)}:{t % 60:04.1f}"
 
 
-def build_lines(video_id: str) -> list[dict]:
-    tr = json.loads(Path(f"scribe_dataset/{video_id}/{video_id}_scribe_transcript.json").read_text(encoding="utf-8"))
-    rows = [{"start": s["start"], "end": s["end"], "speaker": s.get("speaker", "?"), "text": s["text"],
+def asr_marks(video_id: str, words: list, asr_fix) -> dict | None:
+    """Word display marks from the ASR correction layer (``asr_fix``: True = runs/asr_fix/<id>/corrections.json,
+    or the corrections dict itself). None when off; a missing layer warns and renders like off."""
+    if not asr_fix:
+        return None
+    from shotvi.segment import asr_fix as af
+    if isinstance(asr_fix, dict):
+        corr = asr_fix
+    elif af.corrections_path(video_id).exists():
+        corr = af.load_corrections(video_id)
+    else:
+        print(f"warning: {video_id}: asr_fix requested but {af.corrections_path(video_id)} does not exist; "
+              f"lines are Scribe's text", file=sys.stderr)
+        return None
+    stale = af.stale_corrections(words, corr)
+    if stale:
+        print(f"warning: {video_id}: {len(stale)} ASR corrections no longer match the transcript; skipped",
+              file=sys.stderr)
+    return af.word_marks(words, corr)
+
+
+def _speech_text(s: dict, words: list, marks: dict | None) -> str:
+    """Scribe's sentence text, or (ASR layer on, and the line has a marked word) the corrected, marked text:
+    ``{fixed: ...}`` for corrected words, ``word(?)`` for leftover low-confidence words."""
+    if not marks or not s.get("words"):
+        return s["text"]
+    idxs = range(s["words"][0], s["words"][1] + 1)
+    if not any(i in marks for i in idxs):
+        return s["text"]
+    from shotvi.segment.asr_fix import marked_text
+    return marked_text(words, marks, idxs)
+
+
+def build_lines(video_id: str, asr_fix: bool | dict = False, transcript: dict | None = None) -> list[dict]:
+    """``asr_fix`` (opt-in, default off): speech text shows the ASR correction layer (see ``ASR_LEGEND``); ids,
+    times and every other field are the same. Off = Scribe's text, byte-identical to before the option existed.
+    ``transcript``: the Scribe dict (default: read scribe_dataset/<id>/<id>_scribe_transcript.json)."""
+    tr = transcript if transcript is not None else json.loads(
+        Path(f"scribe_dataset/{video_id}/{video_id}_scribe_transcript.json").read_text(encoding="utf-8"))
+    marks = asr_marks(video_id, tr["word_timestamps"], asr_fix)
+    rows = [{"start": s["start"], "end": s["end"], "speaker": s.get("speaker", "?"),
+             "text": _speech_text(s, tr["word_timestamps"], marks),
              "kind": "speech", "words": s.get("words")} for s in tr["sentences"]]
     rows += [{"start": e["start"], "end": e["end"], "speaker": "event", "text": e["text"], "kind": "event"}
              for e in tr.get("audio_events", [])]
@@ -97,8 +142,9 @@ def shot_rows(lines: list[dict], cuts: list[float]) -> list[dict]:
 
 class LineIndex:
     def __init__(self, video_id: str | None = None, shot_lines: bool = False,
-                 lines: list[dict] | None = None, cuts: list[float] | None = None):
-        self.lines = lines if lines is not None else build_lines(video_id)
+                 lines: list[dict] | None = None, cuts: list[float] | None = None, asr_fix: bool | dict = False):
+        """``asr_fix`` (opt-in, default off): line text shows the ASR correction layer (``build_lines``)."""
+        self.lines = lines if lines is not None else build_lines(video_id, asr_fix=asr_fix)
         self.cuts = cuts if cuts is not None else load_cuts(video_id)
         if shot_lines:
             self.lines = sorted(self.lines + shot_rows(self.lines, self.cuts),

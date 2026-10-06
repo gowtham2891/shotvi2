@@ -7,6 +7,7 @@ import statistics
 from dataclasses import dataclass, field
 from pathlib import Path
 
+from .asr_fix import ASR_LEGEND, corrections_path, load_corrections, stale_corrections, word_marks
 from .intro import HIDDEN_KINDS, KINDS, IntroRange, TeaserFragment, cuts_of, detect_intros, detect_teasers, finalize
 from .loader import Transcript, from_dict, load
 from .opening_llm import OpeningLLM, OpeningLLMError, find_all_fragments, ranges_from_answer
@@ -37,6 +38,7 @@ class Segmentation:
     params: UnitParams
     intro_ranges: list[IntroRange] = field(default_factory=list)
     opening: dict = field(default_factory=dict)   # how the opening was decided (mode, LLM answer, fallback)
+    asr_fix: dict | None = None   # opt-in ASR layer used for rendering: counts of shown corrections / (?) marks
     _snapper: Snapper | None = field(default=None, repr=False)
     _unit_starts: list[int] = field(default_factory=list, repr=False)
 
@@ -123,6 +125,8 @@ class Segmentation:
             leg = LEGEND
             if any(r.kind == "intro" for r in self.intro_ranges):
                 leg += f" {INTRO_TAG} marks greeting / episode-introduction speech (not clip material)."
+            if self.asr_fix is not None:
+                leg += " " + ASR_LEGEND
             return leg + "\n\n" + body
         return body
 
@@ -214,6 +218,7 @@ class Segmentation:
             "video_signals": self.video_signals,
             "intro_ranges": [r.to_dict() for r in self.intro_ranges],
             "opening": self.opening,
+            **({"asr_fix": self.asr_fix} if self.asr_fix is not None else {}),
             "events": [{"kind": e.kind, "text": e.text, "start": round(e.start, 3), "end": round(e.end, 3)}
                        for e in tr.events],
             "turns": [{
@@ -263,11 +268,35 @@ def opening_mode(detect_intro=None) -> str:
     return mode
 
 
+def _asr_marks(tr: Transcript, asr_fix) -> tuple[dict | None, dict | None]:
+    """(word marks, summary) for the opt-in ASR layer; (None, None) when off or the layer is missing."""
+    if not asr_fix:
+        return None, None
+    if isinstance(asr_fix, dict):
+        corr = asr_fix
+    elif tr.video_id and corrections_path(tr.video_id).exists():
+        corr = load_corrections(tr.video_id)
+    else:
+        tr.warnings.append(f"asr_fix requested but no corrections for {tr.video_id!r}; rendering Scribe's text")
+        return None, None
+    stale = stale_corrections(tr.words, corr)
+    if stale:
+        tr.warnings.append(f"asr_fix: {len(stale)} corrections no longer match the transcript; skipped")
+    marks = word_marks(tr.words, corr)
+    return marks, {"corrections_shown": len({id(m) for m in marks.values() if m["kind"] == "fixed"}),
+                   "low_conf_marked": sum(m["kind"] == "unsure" for m in marks.values()),
+                   "stale_skipped": len(stale)}
+
+
 def segment(tr: Transcript, params: UnitParams | None = None, detect_intro=None,
-            opening_llm=None) -> Segmentation:
+            opening_llm=None, asr_fix: bool | dict = False) -> Segmentation:
     """detect_intro: "llm" (default; one cached LLM call per long episode, falls
     back to "rules" on any failure), "rules" (offline repeat detector), "off".
-    ``opening_llm``: a callable like ``OpeningLLM`` (inject a fake in tests)."""
+    ``opening_llm``: a callable like ``OpeningLLM`` (inject a fake in tests).
+    ``asr_fix`` (opt-in, default off; True = runs/asr_fix/<video_id>/corrections.json, or the corrections dict):
+    rendered unit text (``render``, chunks, unit "text" in ``to_dict``) shows audio-confirmed corrections as
+    ``{fixed: ...}`` and leftover low-confidence words as ``word(?)``. Word indices, times, units, links and
+    signals do not change; off renders exactly as before."""
     params = params or UnitParams()
     mode = opening_mode(detect_intro)
     ps = pause_stats(tr)
@@ -324,8 +353,10 @@ def segment(tr: Transcript, params: UnitParams | None = None, detect_intro=None,
                 u.intro_kind, u.intro_id = r.kind, r.id
                 break
     video = add_signals(tr, ps, units)
-    rendered = render_units(tr, units, roles)
-    seg = Segmentation(tr, ps, turns, units, roles, host, conf, links, video, rendered, params, ranges, info)
+    marks, asr_info = _asr_marks(tr, asr_fix)
+    rendered = render_units(tr, units, roles, marks)
+    seg = Segmentation(tr, ps, turns, units, roles, host, conf, links, video, rendered, params, ranges, info,
+                       asr_info)
     seg._unit_starts = [u.i0 for u in units]
     seg._snapper = Snapper(tr, ps, turns, units, excluded=[(r.i0, r.i1, r.kind, r.id) for r in ranges])
     for l in links:
@@ -336,10 +367,10 @@ def segment(tr: Transcript, params: UnitParams | None = None, detect_intro=None,
 
 
 def segment_file(path: str | Path, params: UnitParams | None = None, detect_intro=None,
-                 opening_llm=None) -> Segmentation:
-    return segment(load(path), params, detect_intro, opening_llm)
+                 opening_llm=None, asr_fix: bool | dict = False) -> Segmentation:
+    return segment(load(path), params, detect_intro, opening_llm, asr_fix)
 
 
 def segment_dict(d: dict, params: UnitParams | None = None, video_id: str | None = None,
-                 detect_intro=None, opening_llm=None) -> Segmentation:
-    return segment(from_dict(d, video_id=video_id), params, detect_intro, opening_llm)
+                 detect_intro=None, opening_llm=None, asr_fix: bool | dict = False) -> Segmentation:
+    return segment(from_dict(d, video_id=video_id), params, detect_intro, opening_llm, asr_fix)

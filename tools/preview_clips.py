@@ -7,16 +7,26 @@ joins don't click. Beside each video goes a transcript (preview time, source
 time, speaker, and the words cut between pieces), plus index.md and a
 ratings.csv to fill in.
 
-usage: python tools/preview_clips.py runs/<run_id> [--top 5] [--video <id>] [--skip-existing]
+When an ASR correction layer exists (runs/asr_fix/<video_id>/corrections.json), transcripts show the corrected
+words, marked (page: hover / tap shows what Scribe heard and why; .txt: [✎ ...] plus a list under the transcript),
+and low-confidence words with no correction get "(?)". Scribe's transcript is never changed. --no-asr-fix: off.
+
+usage: python tools/preview_clips.py runs/<run_id> [--top 5] [--video <id>] [--skip-existing] [--no-asr-fix]
 writes runs/previews/<run_id>/<video_id>/NN_<clip_id>.mp4 and NN_<clip_id>.txt
 """
 import argparse
 import csv
 import json
 import subprocess
+import sys
 from pathlib import Path
 
 from preview_page import build_page
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from shotvi.segment import asr_fix  # noqa: E402
+
+TXT_FIXED = "[✎ %s]"   # .txt form of a corrected span
 
 PRE_PAD = 0.10    # s before a piece's first word
 POST_PAD = 0.20   # s after a piece's last word
@@ -61,9 +71,50 @@ def hook_text(c):
     return h.get("text", "") if isinstance(h, dict) else h
 
 
-def transcript_lines(c, segs, words, labels):
+def asr_marks(vid, words, on=True):
+    """Display marks from the ASR correction layer, or None (layer off / not built for this video)."""
+    if not on or not asr_fix.corrections_path(vid).exists():
+        return None
+    corr = asr_fix.load_corrections(vid)
+    stale = asr_fix.stale_corrections(words, corr)
+    if stale:
+        print(f"warning: {vid}: {len(stale)} ASR corrections no longer match the transcript; not shown")
+    return asr_fix.word_marks(words, corr)
+
+
+def _say_text(words, idxs, marks):
+    """(text, parts): plain text with corrections applied; parts (only when a word is marked) for the page:
+    runs of plain words {"t"} and marked tokens {"t", "k": "fix"|"u", "tip"}."""
+    if marks is None:
+        return " ".join(words[i]["word"] for i in idxs), None
+    toks = asr_fix.marked_tokens(words, marks, idxs)
+    text = " ".join(t["text"] for t in toks)
+    if all(t["kind"] == "word" for t in toks):
+        return text, None
+    parts = []
+    for t in toks:
+        if t["kind"] == "word":
+            if parts and "k" not in parts[-1]:
+                parts[-1]["t"] += " " + t["text"]
+            else:
+                parts.append({"t": t["text"]})
+        else:
+            parts.append({"t": t["text"], "k": "fix" if t["kind"] == "fixed" else "u", "tip": asr_fix.mark_tip(t)})
+    return text, parts
+
+
+def _say(t, src, spk, words, idxs, marks):
+    text, parts = _say_text(words, idxs, marks)
+    d = {"kind": "say", "t": t, "src": src, "spk": spk, "text": text}
+    if parts:
+        d["parts"] = parts
+    return d
+
+
+def transcript_lines(c, segs, words, labels, marks=None):
     """Structured transcript: speech lines {kind, t (preview s), src (episode s), spk, text},
-    plus cut / jump markers between pieces."""
+    plus cut / jump markers between pieces. ``marks`` (from ``asr_marks``): text shows the corrections, and lines
+    with a marked word carry ``parts``."""
     starts, acc = [], 0.0          # preview offset of each padded segment
     for a, b in segs:
         starts.append(acc)
@@ -76,24 +127,23 @@ def transcript_lines(c, segs, words, labels):
         if prev is not None:
             if p["start_word"] > prev["end_word"] + 1:
                 gap = words[prev["end_word"] + 1:p["start_word"]]
-                out.append({"kind": "cut", "dur": round(gap[-1]["end"] - gap[0]["start"], 1),
-                            "text": " ".join(w["word"] for w in gap)})
+                text, parts = _say_text(words, range(prev["end_word"] + 1, p["start_word"]), marks)
+                out.append({"kind": "cut", "dur": round(gap[-1]["end"] - gap[0]["start"], 1), "text": text,
+                            **({"parts": parts} if parts else {})})
             elif p["start_word"] < prev["end_word"]:
                 out.append({"kind": "jump", "src": p["start"]})
         line, spk, t_line, t_src = [], None, None, None
         for i in range(p["start_word"], p["end_word"] + 1):
             w = words[i]
             if w.get("speaker") != spk and line:
-                out.append({"kind": "say", "t": t_line, "src": t_src, "spk": labels.get(spk, spk or "?"),
-                            "text": " ".join(line)})
+                out.append(_say(t_line, t_src, labels.get(spk, spk or "?"), words, line, marks))
                 line = []
             if not line:
                 spk, t_src = w.get("speaker"), w["start"]
                 t_line = round(starts[k] + (w["start"] - segs[k][0]), 2)
-            line.append(w["word"])
+            line.append(i)
         if line:
-            out.append({"kind": "say", "t": t_line, "src": t_src, "spk": labels.get(spk, spk or "?"),
-                        "text": " ".join(line)})
+            out.append(_say(t_line, t_src, labels.get(spk, spk or "?"), words, line, marks))
         prev = p
     return out
 
@@ -110,6 +160,14 @@ def clip_meta(c):
             "edit_notes": [n.get("note") or n.get("reason") or "" for n in c.get("edit_notes") or []]}
 
 
+def _txt(ln):
+    """.txt form of a line's words: corrected spans as [✎ ...], low-confidence words as word(?)."""
+    if not ln.get("parts"):
+        return ln["text"]
+    return " ".join(TXT_FIXED % x["t"] if x.get("k") == "fix" else x["t"] + "(?)" if x.get("k") == "u" else x["t"]
+                    for x in ln["parts"])
+
+
 def transcript_text(meta, lines, video_name):
     """Readable .txt beside the video."""
     out = [f"#{meta['rank']} {meta['title']}",
@@ -120,14 +178,23 @@ def transcript_text(meta, lines, video_name):
         out.append(f"Flags: {', '.join(meta['flags'])}")
     out += [f"Edit note: {n}" for n in meta["edit_notes"] if n]
     out += ["", "[preview time] (source time) speaker: words      ✂ = words cut between pieces", ""]
+    marked = any(ln.get("parts") for ln in lines)
+    if marked:
+        out.insert(-1, "[✎ words] = ASR fix (Scribe misheard; see the list at the end)      word(?) = low ASR "
+                       "confidence")
+    fixes = []
     for ln in lines:
         if ln["kind"] == "cut":
-            t = ln["text"]
+            t = _txt(ln)
             out.append(f"      ✂ cut {ln['dur']:.1f}s: {t[:160]}{'…' if len(t) > 160 else ''}")
         elif ln["kind"] == "jump":
             out.append(f"      ↺ jumps back to {mmss(ln['src'])} (reordered)")
         else:
-            out.append(f"[{mmss(ln['t'])}] ({mmss(ln['src'])}) {ln['spk']}: {ln['text']}")
+            out.append(f"[{mmss(ln['t'])}] ({mmss(ln['src'])}) {ln['spk']}: {_txt(ln)}")
+        fixes += [x for x in ln.get("parts") or [] if x.get("k") == "fix"]
+    fixes = list(dict.fromkeys(f"  [✎ {x['t']}] " + x["tip"].replace("\n", " | ") for x in fixes))  # cold opens
+    if fixes:                                                                                 # replay a moment
+        out += ["", "ASR fixes (Scribe's transcript itself is unchanged):"] + fixes
     return "\n".join(out) + "\n"
 
 
@@ -157,6 +224,8 @@ def main():
     ap.add_argument("--top", type=int, default=5)
     ap.add_argument("--video")
     ap.add_argument("--skip-existing", action="store_true", help="don't re-render videos that exist")
+    ap.add_argument("--no-asr-fix", action="store_true",
+                    help="show Scribe's words as is (no ASR corrections, no low-confidence marks)")
     args = ap.parse_args()
     run = Path(args.run)
     out_root = Path("runs/previews") / run.name
@@ -173,6 +242,10 @@ def main():
         vdir = Path("scribe_dataset") / vid
         words = json.loads((vdir / f"{vid}_scribe_transcript.json").read_text(encoding="utf-8"))["word_timestamps"]
         labels = speaker_labels(vid)
+        marks = asr_marks(vid, words, not args.no_asr_fix)
+        if marks is not None:
+            print(f"{vid}: ASR layer: {len({id(m) for m in marks.values() if m['kind'] == 'fixed'})} fixes, "
+                  f"{sum(m['kind'] == 'unsure' for m in marks.values())} low-confidence words marked")
         out_dir = out_root / vid
         out_dir.mkdir(parents=True, exist_ok=True)
         index.append(f"\n## {vid}\n")
@@ -184,7 +257,7 @@ def main():
                     else padded_segments(c["pieces"], words))
             if not (out.exists() and args.skip_existing):
                 render(vdir / f"{vid}.mp4", segs, out)
-            meta, lines = clip_meta(c), transcript_lines(c, segs, words, labels)
+            meta, lines = clip_meta(c), transcript_lines(c, segs, words, labels, marks)
             out.with_suffix(".txt").write_text(transcript_text(meta, lines, out.name), encoding="utf-8")
             page[-1]["clips"].append({**meta, "video": out.relative_to(out_root).as_posix(), "lines": lines})
             s = c.get("scores", {})

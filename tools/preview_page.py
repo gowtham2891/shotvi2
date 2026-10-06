@@ -264,6 +264,66 @@ show(start);
 """
 
 
+# ASR correction marks: injected only when some line carries "parts" (preview_clips.transcript_lines with an ASR
+# layer), so a page without them is byte-identical to the plain template.
+ASR_CSS = r"""
+:root{--fix:#0f766e;--fix-bg:#ddf3ef}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){--fix:#5eead4;--fix-bg:#13322e} }
+:root[data-theme="dark"]{--fix:#5eead4;--fix-bg:#13322e}
+.fix{color:var(--fix);background:var(--fix-bg);border-radius:3px;padding:0 2px;cursor:help;
+  text-decoration:underline dotted 1.5px;text-underline-offset:3px}
+.unsure{cursor:help}
+.qm{color:var(--muted);font-size:.72em;opacity:.8;margin-left:1px;vertical-align:.15em}
+.asrkey{display:block;margin:-4px 8px 8px;font-size:11.5px;color:var(--muted)}
+.asrtip{position:fixed;z-index:50;display:none;max-width:300px;padding:7px 9px;border-radius:7px;font-size:12.5px;
+  line-height:1.45;white-space:pre-line;background:var(--ink);color:var(--panel);box-shadow:0 4px 16px rgba(0,0,0,.2);
+  pointer-events:none}
+"""
+
+ASR_JS = r"""
+const asrTip = document.createElement("div"); asrTip.className = "asrtip te"; document.body.appendChild(asrTip);
+function asrParts(ps) {
+  return ps.map(p => p.k === "fix" ? `<span class="fix" tabindex="0" data-tip="${esc(p.tip)}">${esc(p.t)}</span>`
+    : p.k === "u" ? `<span class="unsure" tabindex="0" data-tip="${esc(p.tip)}">${esc(p.t)}<span class="qm">(?)</span></span>`
+    : esc(p.t)).join(" ");
+}
+const asrKey = c => c.lines.some(l => l.parts) ? `<span class="asrkey"><span class="fix">corrected</span> = ASR fix, hover or tap to see what Scribe heard · <span class="qm">(?)</span> = low ASR confidence</span>` : "";
+function asrShow(el) {
+  asrTip.textContent = el.dataset.tip; asrTip.style.display = "block";
+  const r = el.getBoundingClientRect(), w = asrTip.offsetWidth, h = asrTip.offsetHeight;
+  let y = r.bottom + 6; if (y + h > innerHeight - 8) y = r.top - h - 6;
+  asrTip.style.left = Math.max(8, Math.min(r.left, innerWidth - w - 8)) + "px"; asrTip.style.top = Math.max(8, y) + "px";
+}
+const asrHide = () => { asrTip.style.display = "none"; };
+document.addEventListener("mouseover", e => { const el = e.target.closest && e.target.closest("[data-tip]"); if (el) asrShow(el); });
+document.addEventListener("mouseout", e => { if (e.target.closest && e.target.closest("[data-tip]")) asrHide(); });
+document.addEventListener("focusin", e => { if (e.target.dataset && e.target.dataset.tip) asrShow(e.target); });
+document.addEventListener("focusout", asrHide);
+document.addEventListener("scroll", asrHide, true);
+// tap / click on a marked word shows its note and does not seek the video
+document.addEventListener("click", e => { const el = e.target.closest && e.target.closest("[data-tip]");
+  if (el) { e.stopPropagation(); asrShow(el); } else asrHide(); }, true);
+"""
+
+_ASR_SWAPS = [
+    ("</style>", ASR_CSS + "</style>"),
+    ("function buildNav() {", ASR_JS + "function buildNav() {"),
+    ('<div class="te"><span class="s ${esc(ln.spk)}">${esc(ln.spk)}</span>${esc(ln.text)}</div></div>`;',
+     '<div class="te"><span class="s ${esc(ln.spk)}">${esc(ln.spk)}</span>${ln.parts ? asrParts(ln.parts) : esc(ln.text)}</div></div>`;'),
+    ('<div class="ct te">${esc(ln.text)}</div>', '<div class="ct te">${ln.parts ? asrParts(ln.parts) : esc(ln.text)}</div>'),
+    ("<h3>Transcript (preview time · @episode time)</h3>${tx}", "<h3>Transcript (preview time · @episode time)</h3>${asrKey(c)}${tx}"),
+]
+
+
+def _has_parts(data):
+    return any(ln.get("parts") for v in data for c in v.get("clips", []) for ln in c.get("lines", []))
+
+
 def build_page(run_name, data):
     blob = json.dumps(data, ensure_ascii=False).replace("</", "<\\/")
-    return TEMPLATE.replace("__DATA__", blob).replace("__RUN__", run_name.replace('"', ""))
+    page = TEMPLATE
+    if _has_parts(data):
+        for a, b in _ASR_SWAPS:
+            assert page.count(a) == 1, f"review page template changed; ASR marks cannot hook into {a!r}"
+            page = page.replace(a, b)
+    return page.replace("__DATA__", blob).replace("__RUN__", run_name.replace('"', ""))

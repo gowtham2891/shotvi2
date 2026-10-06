@@ -29,6 +29,9 @@ def main(argv=None) -> int:
                     help="opening teaser / intro detection (default: $SHOTVI_OPENING_MODE or llm; "
                          "llm falls back to rules on any failure)")
     ap.add_argument("--no-intro", action="store_true", help="same as --intro off")
+    ap.add_argument("--asr-fix", action="store_true",
+                    help="opt-in: render runs/asr_fix/<id>/corrections.json into transcript.txt and unit text "
+                         "({fixed: ...}, word(?)); indices and times unchanged")
     a = ap.parse_args(argv)
     try:
         sys.stdout.reconfigure(encoding="utf-8")
@@ -37,7 +40,7 @@ def main(argv=None) -> int:
     t0 = time.perf_counter()
     params = UnitParams(min_s=a.min_unit, max_s=a.max_unit,
                         soft_max_s=min(UnitParams.soft_max_s, a.max_unit))
-    seg = segment_file(a.transcript, params, detect_intro="off" if a.no_intro else a.intro)
+    seg = segment_file(a.transcript, params, detect_intro="off" if a.no_intro else a.intro, asr_fix=a.asr_fix)
     d = seg.to_dict(a.chunk_tokens, a.overlap_tokens)
     elapsed = time.perf_counter() - t0
     out = Path(a.out)

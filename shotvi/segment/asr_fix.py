@@ -778,6 +778,141 @@ def display_text(words: list, corrections, i0: int = 0, i1: int | None = None, s
     return " ".join(d["text"] for d in dw[i0:i1 + 1] if d["text"])
 
 
+# ------------------------------------------------------------------ display marks (review page, opt-in LLM text)
+# Corrected words are shown corrected AND marked; leftover low-confidence words get "(?)". Scribe's transcript is
+# never modified: these helpers only change what a reader (person or model) sees.
+FIXED_FMT = "{fixed: %s}"      # LLM text: a corrected span
+UNSURE_FMT = "%s(?)"           # LLM text: a low-confidence word with no applied correction
+ASR_LEGEND = ("{fixed: ...} marks words the speech-to-text first misheard and that were corrected by re-listening "
+              "to the audio; word(?) marks a low-confidence word that may be misheard.")
+
+_VERDICT_NOTE = {
+    "relisten_kept": "re-listened: the audio agrees with the transcript",
+    "relisten_low_confidence": "re-listened: unclear",
+    "skipped_interjection": "interjection, not re-listened",
+    "not_relistened": "not re-listened",
+}
+
+
+def stale_corrections(words: list, corrections) -> list[dict]:
+    """Corrections whose ``heard`` no longer matches the transcript words at their indices (the transcript was
+    re-made after the layer was built). :func:`word_marks` skips them; callers should warn."""
+    rows = corrections.get("corrections", []) if isinstance(corrections, dict) else list(corrections or [])
+    out = []
+    for c in rows:
+        a, b = int(c["start_word"]), int(c["end_word"])
+        if not (0 <= a <= b < len(words)):
+            out.append(c)
+        elif c.get("heard") is not None and squash(c["heard"]) != squash(" ".join(wtext(w) for w in words[a:b + 1])):
+            out.append(c)
+    return out
+
+
+def word_marks(words: list, corrections, threshold: float = DEFAULT_THRESHOLD, sources: tuple | None = None
+               ) -> dict[int, dict]:
+    """Per-word display marks, only for words that have one (word index -> mark).
+
+    - ``{"kind": "fixed", "first", "last", "corrected", "heard", "reason", "source", "confidence"}`` on every word
+      of a chosen correction (default: ``applied`` ones, as :func:`apply_corrections`); stale ones are skipped.
+    - ``{"kind": "unsure", "p", "note"}`` on a word with confidence exp(logprob) < ``threshold`` that no chosen
+      correction covers (words without a logprob or with no letters are never marked). ``note`` says what the
+      correction layer knows about it (re-listen verdict, an unapplied guess), "" if nothing."""
+    stale = {id(c) for c in stale_corrections(words, corrections)}
+    marks: dict[int, dict] = {}
+    for c in _chosen(corrections, sources):
+        if id(c) in stale:
+            continue
+        a, b = int(c["start_word"]), int(c["end_word"])
+        m = {"kind": "fixed", "first": a, "last": b, "corrected": c["corrected"],
+             "heard": " ".join(wtext(w) for w in words[a:b + 1]), "reason": c.get("reason") or "",
+             "source": c.get("source"), "confidence": c.get("confidence")}
+        for i in range(a, b + 1):
+            marks[i] = m
+    notes: dict[int, str] = {}
+    if isinstance(corrections, dict):
+        for u in corrections.get("uncertain") or []:
+            low = u.get("relisten_low")
+            note = (f"re-listened: maybe \"{low['corrected']}\" (confidence {low['confidence']}, not applied)"
+                    if low else _VERDICT_NOTE.get(u.get("verdict"), ""))
+            for i in range(int(u["start_word"]), int(u["end_word"]) + 1):
+                notes[i] = note
+        for c in corrections.get("corrections") or []:
+            if c.get("start_word") in marks and marks[c["start_word"]]["corrected"] == c["corrected"]:
+                continue
+            note = f"text-only guess: \"{c['corrected']}\" (not applied)"
+            v = (c.get("relisten") or {}).get("verdict")
+            if v in _VERDICT_NOTE:
+                note += f"; {_VERDICT_NOTE[v]}"
+            for i in range(int(c["start_word"]), int(c["end_word"]) + 1):
+                notes.setdefault(i, note)
+    for i, w in enumerate(words):
+        if i in marks:
+            continue
+        p = wconf(w)
+        if p is not None and p < threshold and squash(wtext(w)):
+            marks[i] = {"kind": "unsure", "p": round(p, 3), "note": notes.get(i, "")}
+    return marks
+
+
+def marked_tokens(words: list, marks: dict[int, dict], idxs) -> list[dict]:
+    """Display tokens for the word indices ``idxs`` (in order; e.g. ``range(i0, i1 + 1)`` or a unit's words without
+    backchannels): ``{"i", "j", "text", "kind": "word"|"fixed"|"unsure", "mark"}``, ``i..j`` the words it covers.
+    A correction is shown only when all its words are in ``idxs`` (one token, on its first word); a span cut by the
+    range shows its words as Scribe heard them, each ``unsure`` with ``mark["partial"]`` set."""
+    idxs = list(idxs)
+    shown = set(idxs)
+    out = []
+    for i in idxs:
+        m = marks.get(i)
+        if m and m["kind"] == "fixed":
+            if all(j in shown for j in range(m["first"], m["last"] + 1)):
+                if i == m["first"]:
+                    out.append({"i": i, "j": m["last"], "text": m["corrected"], "kind": "fixed", "mark": m})
+                continue
+            out.append({"i": i, "j": i, "text": wtext(words[i]), "kind": "unsure", "mark": {**m, "partial": True}})
+            continue
+        out.append({"i": i, "j": i, "text": wtext(words[i]), "kind": "unsure" if m else "word", "mark": m})
+    return out
+
+
+def format_token(t: dict, fixed_fmt: str = FIXED_FMT, unsure_fmt: str = UNSURE_FMT) -> str:
+    return (fixed_fmt if t["kind"] == "fixed" else unsure_fmt if t["kind"] == "unsure" else "%s") % t["text"]
+
+
+def marked_text(words: list, marks: dict[int, dict], idxs, fixed_fmt: str = FIXED_FMT,
+                unsure_fmt: str = UNSURE_FMT) -> str:
+    """Text of ``idxs`` with corrections applied and marked (LLM form by default: ``{fixed: ...}``, ``word(?)``)."""
+    return " ".join(format_token(t, fixed_fmt, unsure_fmt) for t in marked_tokens(words, marks, idxs))
+
+
+def display_map(words: list, marks: dict[int, dict], idxs, fixed_fmt: str = FIXED_FMT,
+                unsure_fmt: str = UNSURE_FMT) -> dict[int, str]:
+    """word index -> what to print in its place ("" for the 2nd.. words of a shown correction); unmarked words are
+    left out (print the word itself)."""
+    out: dict[int, str] = {}
+    for t in marked_tokens(words, marks, idxs):
+        if t["kind"] == "word":
+            continue
+        out[t["i"]] = format_token(t, fixed_fmt, unsure_fmt)
+        for j in range(t["i"] + 1, t["j"] + 1):
+            out[j] = ""
+    return out
+
+
+def mark_tip(t: dict) -> str:
+    """Hover / tap text for a marked token (review page)."""
+    m = t["mark"] or {}
+    if t["kind"] == "fixed":
+        how = "audio re-listen" if m.get("source") == "relisten" else f"{m.get('source')}"
+        conf = f", confidence {m['confidence']}" if m.get("confidence") is not None else ""
+        return "\n".join(x for x in (f"ASR fix ({how}{conf})", f"Scribe heard: {m.get('heard', '')}",
+                                     f"Why: {m['reason']}" if m.get("reason") else "") if x)
+    if m.get("partial"):
+        return (f"Part of an ASR fix that crosses this cut: Scribe heard \"{m.get('heard', '')}\", "
+                f"audio says \"{m.get('corrected', '')}\"")
+    return "\n".join(x for x in (f"Low ASR confidence (p = {m.get('p')})", m.get("note") or "") if x)
+
+
 # ------------------------------------------------------------------ cost
 def _inr(model: str, tin: int, tout: int, audio_tokens: int = 0) -> float:
     from shotvi.llm.pricing import cost_usd
