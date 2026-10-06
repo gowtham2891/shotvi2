@@ -35,6 +35,18 @@ CLI::
         --config shotvi/select/configs/ws_r1_replay.json
     python -m shotvi.select.webseries QWIvgoTQGKk --out runs/ws_r1 --cache-only \
         --config shotvi/select/configs/ws_r1_replay_review_high.json
+    # A/B arm against the shared cached baseline ws_r1: same config, ONE swapped prompt file; free dry run first
+    # (no call of any kind, countTokens included; expected rupees calibrated on ws_r1's token counts)
+    python -m shotvi.select.webseries QWIvgoTQGKk --out runs/ws_ab_setup --dry-run --calibrate-from runs/ws_r1 \
+        --config shotvi/select/configs/ws_r1_replay_review_high.json --prompt ws_discover=ws_discover_b_setup \
+        --max-ledger-inr 1309
+    SHOTVI_SPEND_SOURCE=ws_ab_setup python -m shotvi.select.webseries QWIvgoTQGKk --out runs/ws_ab_setup \
+        --config shotvi/select/configs/ws_r1_replay_review_high.json --prompt ws_discover=ws_discover_b_setup \
+        --max-ledger-inr 1309
+
+Spend guard (``--max-ledger-inr``): checked before every billed attempt (retries included) against the project
+rupee ledger, plus once per episode before an uncached discover for discover + review together, so the run never
+pays for a discover whose review the limit would then refuse.
 """
 from __future__ import annotations
 
@@ -95,6 +107,8 @@ DEFAULTS: dict = {
                    "blocks_flag_above": 3},
     "thresholds": {"t_show": 3.5, "t_rec": 4.0, "below_threshold_max": 3, "below_min_overall": 3.0},
     "video_end_check": {"enabled": False, "max_shift_s": 8.0},
+    # prompt file per role (prompts/<name>.md); an A/B arm swaps exactly one (CLI --prompt ROLE=FILE)
+    "prompts": {"ws_discover": "ws_discover", "ws_review": "ws_review"},
     "budget_usd": 0.6,
 }
 CATEGORIES = ["story", "advice", "humour", "controversy", "emotional", "insight", "reveal", "motivation", "other"]
@@ -817,7 +831,10 @@ def project_usd(in_tok: int, out_tok: int) -> float:
 # discover (high) 19-25k out; review (medium) 1.6k out for 8 clips, review (high) 14.4k for 8 clips.
 PROJ_REVIEW = {"high": (6000, 1800), "medium": (3000, 300), "low": (2000, 250)}   # (base, per clip)
 REVIEW_IN_PER_CLIP = 900
-VIDEO_END_INR_PER_CLIP = 1.2
+# video end check per clip: guard value, and expected from the clip-check calls of 2026-10-05 (video_clip_shots:
+# ₹1.1-1.7 per clip, mean ~₹1.35; the 8-clip text-free variant ~₹1.0)
+VIDEO_END_INR_PER_CLIP = 2.0
+VIDEO_END_INR_EXPECTED = 1.35
 
 
 # ======================================================================================== stages
@@ -870,19 +887,104 @@ def liftable_lines(ep: Episode, cfg: dict) -> list[str]:
     return out
 
 
+def prompt_file(cfg: dict | None, role: str) -> str:
+    """Prompt file (prompts/<name>.md) used for a role: ``cfg["prompts"][role]``, default the role name. An A/B arm
+    swaps one file (e.g. ws_discover -> ws_discover_b_setup) and changes nothing else."""
+    return ((cfg or {}).get("prompts") or {}).get(role) or role
+
+
 def discover_prompt(ep: Episode, ix, cfg: dict | None = None) -> tuple[str, str]:
     from shotvi.select.lines import ASR_LEGEND, render
     from shotvi.select.prompts import load_prompt
-    p = load_prompt("ws_discover")
+    p = load_prompt(prompt_file(cfg, "ws_discover"))
     tags = {lid: "lift-ok" for lid in liftable_lines(ep, (cfg or DEFAULTS)["cut"])}
     return p.system, p.render(episode_len=fmt(ep.duration), n_lines=len(ep.lines), asr_legend=ASR_LEGEND,
                               transcript=render(ep.lines, tags))
 
 
-def review_prompt(texts: list[str]) -> tuple[str, str]:
+def review_prompt(texts: list[str], cfg: dict | None = None) -> tuple[str, str]:
     from shotvi.select.prompts import load_prompt
-    p = load_prompt("ws_review")
+    p = load_prompt(prompt_file(cfg, "ws_review"))
     return p.system, p.render(n_clips=len(texts), clips="\n\n".join(texts))
+
+
+# ======================================================================================== projection (free)
+DISCOVER_OUT_EXPECTED = 25000   # discover (high) output incl. thinking without a calibration run: 19-25k measured
+N_CLIPS_GUESS = 15              # clips reviewed, before discovery has run
+
+
+def calibration_of(run_dir: str | Path | None, vid: str) -> dict | None:
+    """Token counts of a finished run of the same episode (``<run_dir>/<vid>.json``, cost.by_role): the offline basis
+    of an expected-cost projection. Reads a local file only."""
+    if not run_dir:
+        return None
+    p = Path(run_dir) / f"{vid}.json"
+    if not p.exists():
+        return None
+    doc = json.loads(p.read_text(encoding="utf-8"))
+    pipe = doc.get("pipeline") or {}
+    return {"run": Path(run_dir).name, "by_role": (doc.get("cost") or {}).get("by_role") or {},
+            "n_reviewed": (doc.get("cutoff") or {}).get("n_passed_hard_rules"),
+            "prompt_versions": pipe.get("prompt_versions") or {},
+            "prompt_files": pipe.get("prompt_files") or {},
+            "models": (pipe.get("config") or {}).get("models") or {}}
+
+
+def review_out_guard(params: dict, n_clips: int) -> int:
+    """Conservative review output (visible + thinking), never above the call's output budget."""
+    rb, rc = PROJ_REVIEW[params.get("thinking_level", "high")]
+    return min(rb + rc * n_clips, int(params.get("max_output_tokens") or 10 ** 9))
+
+
+def project_episode(ep: Episode, ix, cfg: dict, system: str, user: str, llm=None, calib: dict | None = None,
+                    log=print) -> dict:
+    """Projected cost of one episode, two numbers per call:
+      ``inr``           guard value (conservative: discover at its whole output budget, review at PROJ_REVIEW);
+                        the spend guard stops on these;
+      ``inr_expected``  what the run will most likely bill: token counts of a calibration run of the same episode
+                        (input scaled by prompt length; output as measured), else defaults.
+    Input tokens come from countTokens when ``llm`` is given (a free network call), else offline (calibration
+    run, else a character estimate)."""
+    from shotvi.segment.render import estimate_tokens
+    spec, rspec = spec_of(cfg, "ws_discover"), spec_of(cfg, "ws_review")
+    cb = (calib or {}).get("by_role") or {}
+    text = system + "\n" + user
+    n_in, src = None, None
+    if llm is not None:
+        try:
+            n_in, src = llm.count_tokens(spec, text), "countTokens"
+        except Exception as e:   # noqa: BLE001 (projection only)
+            log(f"countTokens unavailable ({e}); estimating offline")
+    if n_in is None and (cb.get("ws_discover") or {}).get("input_tokens"):
+        role_file = (calib.get("prompt_files") or {}).get("ws_discover", "ws_discover")
+        bcfg = deep_merge(cfg, {"prompts": {"ws_discover": role_file}})
+        bs, bu = discover_prompt(ep, ix, bcfg)
+        n_in = int(round(cb["ws_discover"]["input_tokens"] * len(text) / max(1, len(bs + "\n" + bu))))
+        src = f"calibrated on {calib['run']} ({cb['ws_discover']['input_tokens']} tokens for its prompt)"
+    if n_in is None:
+        n_in, src = int(estimate_tokens(system + user) * 1.25), "character estimate x1.25"
+    d_max = int(spec.params.get("max_output_tokens", 32768))
+    d_exp = int((cb.get("ws_discover") or {}).get("output_tokens") or DISCOVER_OUT_EXPECTED)
+    disc = {"in": n_in, "in_source": src, "out_expected": d_exp, "out_guard": d_max,
+            "inr_expected": round(inr(project_usd(n_in, d_exp)), 2), "inr": round(inr(project_usd(n_in, d_max)), 2)}
+    # review: a calibration run only counts when it reviewed with the same model settings
+    same = (calib or {}).get("models", {}).get("ws_review") == cfg["models"]["ws_review"]
+    rcb = cb.get("ws_review") if same else None
+    rv_in = int(rcb["input_tokens"]) if rcb else 1200 + REVIEW_IN_PER_CLIP * N_CLIPS_GUESS
+    rv_exp_out = int(rcb["output_tokens"]) if rcb else review_out_guard(rspec.params, N_CLIPS_GUESS)
+    rv_g_in = 1200 + REVIEW_IN_PER_CLIP * N_CLIPS_GUESS
+    rv_g_out = review_out_guard(rspec.params, N_CLIPS_GUESS)
+    rev = {"in_expected": rv_in, "out_expected": rv_exp_out, "inr_expected": round(inr(project_usd(rv_in, rv_exp_out)), 2),
+           "in_guard": rv_g_in, "out_guard": rv_g_out, "inr": round(inr(project_usd(rv_g_in, rv_g_out)), 2),
+           "assumes_clips": N_CLIPS_GUESS,
+           "expected_from": f"{calib['run']} ({calib.get('n_reviewed')} clips)" if rcb else "defaults"}
+    n_vc = (calib or {}).get("n_reviewed") or N_CLIPS_GUESS
+    vend = {"enabled": bool(cfg["video_end_check"]["enabled"]), "assumes_clips": n_vc,
+            "inr": round(VIDEO_END_INR_PER_CLIP * n_vc, 2) if cfg["video_end_check"]["enabled"] else 0.0,
+            "inr_expected": round(VIDEO_END_INR_EXPECTED * n_vc, 2) if cfg["video_end_check"]["enabled"] else 0.0}
+    return {"ws_discover": disc, "ws_review": rev, "video_end_check": vend,
+            "episode": {"inr_expected": round(disc["inr_expected"] + rev["inr_expected"] + vend["inr_expected"], 2),
+                        "inr": round(disc["inr"] + rev["inr"] + vend["inr"], 2)}}
 
 
 def spec_of(cfg, role):
@@ -914,36 +1016,45 @@ def overlap_frac(a: dict, b: dict) -> float:
     return sh / max(1e-6, min(la, lb))
 
 
-def run_episode(vid: str, cfg: dict, llm, guard: Guard, out_dir: Path, log=print, dry_run: bool = False) -> dict:
+def dry_result(vid: str, proj: dict, stage: str, inr_expected: float, inr_guard: float, log=print, **kw) -> dict:
+    """What a dry run reports: the first stage that would bill, and the rupees from there to the end."""
+    out = {"video_id": vid, "projection": proj, "first_paid_stage": stage,
+           "would_bill_inr_expected": round(inr_expected, 2), "would_bill_inr_guard": round(inr_guard, 2), **kw}
+    log(f"{vid}: DRY RUN: " + (f"first paid stage {stage}; would bill ₹{inr_expected:.2f} expected "
+                               f"(guard projection ₹{inr_guard:.2f})" if stage else "everything is cached: ₹0"))
+    return out
+
+
+def run_episode(vid: str, cfg: dict, llm, guard: Guard, out_dir: Path, log=print, dry_run: bool = False,
+                calib_dir: str | Path | None = None) -> dict:
+    """One episode. ``dry_run``: no provider call of any kind (countTokens included); cached stages are walked for
+    free (so a run that only adds a stage, e.g. the video end check, is projected exactly) and the result says
+    which stage would bill first and how many rupees the rest would cost. Nothing is written."""
     t_start = time.time()
     ep, ix, tr, tp = load_episode(vid)
     system, user = discover_prompt(ep, ix, cfg)
     spec = spec_of(cfg, "ws_discover")
-    proj: dict = {}
-    try:
-        n_in = llm.count_tokens(spec, system + "\n" + user)
-    except Exception as e:   # noqa: BLE001 (projection only)
-        from shotvi.segment.render import estimate_tokens
-        n_in = int(estimate_tokens(system + user) * 1.25)
-        log(f"countTokens unavailable ({e}); estimated {n_in}")
-    d_out = int(spec.params.get("max_output_tokens", 32768))     # worst case: the whole output budget
-    proj["ws_discover"] = {"in": n_in, "out": d_out, "inr": round(inr(project_usd(n_in, d_out)), 2)}
-    n_guess = 15
-    rb, rc = PROJ_REVIEW[cfg["models"]["ws_review"]["params"].get("thinking_level", "high")]
-    rv_in = 1200 + REVIEW_IN_PER_CLIP * n_guess
-    rv_out = rb + rc * n_guess
-    proj["ws_review"] = {"in": rv_in, "out": rv_out, "inr": round(inr(project_usd(rv_in, rv_out)), 2),
-                         "assumes_clips": n_guess}
-    proj["video_end_check"] = {"inr": round(VIDEO_END_INR_PER_CLIP * n_guess, 2), "assumes_clips": n_guess,
-                               "enabled": cfg["video_end_check"]["enabled"]}
-    log(f"{vid}: projection {json.dumps(proj)}")
+    calib = calibration_of(calib_dir, vid)
+    proj = project_episode(ep, ix, cfg, system, user, llm=None if (dry_run or llm.cache_only) else llm,
+                           calib=calib, log=log)
+    log(f"{vid}: projection {json.dumps(proj, ensure_ascii=False)}")
+    disc_cached = is_cached(llm, spec, system, user, DISCOVER_SCHEMA)
     if dry_run:
-        return {"video_id": vid, "projection": proj}
+        if not disc_cached:
+            return dry_result(vid, proj, "ws_discover", proj["episode"]["inr_expected"], proj["episode"]["inr"], log,
+                              prompt_files={r: prompt_file(cfg, r) for r in PROMPTS})
+        llm.cache_only = True     # walk the cached stages; the first miss is where the bill starts
+    # spend guard on EVERY billed attempt (retries and schema retries included; cache hits never reach it)
+    call_proj = {"ws_discover": proj["ws_discover"]["inr"], "ws_review": proj["ws_review"]["inr"],
+                 "video_end": VIDEO_END_INR_PER_CLIP}
+    llm.before_call = lambda role, _spec: guard.check(f"{vid} {role}", call_proj.get(role, max(call_proj.values())))
+    if not disc_cached:
+        # never pay for a discover whose review (and end check) would then be stopped by the limit
+        guard.check(f"{vid} episode (discover + review"
+                    f"{' + video end' if cfg['video_end_check']['enabled'] else ''})", proj["episode"]["inr"])
 
     debug = {"video_id": vid, "projection": proj, "warnings": []}
     # ---------------------------------------------------------------- 2. discover
-    if not is_cached(llm, spec, system, user, DISCOVER_SCHEMA):
-        guard.check(f"{vid} ws_discover", proj["ws_discover"]["inr"])
     disc = llm.generate_json("ws_discover", spec, system, user, DISCOVER_SCHEMA, meta={"video": vid})
     moments = disc["moments"]
     debug["discover"] = disc
@@ -996,16 +1107,21 @@ def run_episode(vid: str, cfg: dict, llm, guard: Guard, out_dir: Path, log=print
         x["review_saw"] = shown
     reviews = {}
     if kept:
-        rs, ru = review_prompt(texts)
+        rs, ru = review_prompt(texts, cfg)
         rspec = spec_of(cfg, "ws_review")
         try:
             rin = llm.count_tokens(rspec, rs + "\n" + ru)
         except Exception:   # noqa: BLE001
             rin = len(rs + ru) // 2
-        rb, rc = PROJ_REVIEW[rspec.params.get("thinking_level", "high")]
-        rout = rb + rc * len(kept)
+        rout = review_out_guard(rspec.params, len(kept))
+        call_proj["ws_review"] = inr(project_usd(rin, rout))
         if not is_cached(llm, rspec, rs, ru, REVIEW_SCHEMA):
-            guard.check(f"{vid} ws_review", inr(project_usd(rin, rout)))
+            if dry_run:
+                vend = (VIDEO_END_INR_PER_CLIP, VIDEO_END_INR_EXPECTED) if cfg["video_end_check"]["enabled"] \
+                    else (0.0, 0.0)
+                return dry_result(vid, proj, "ws_review", proj["ws_review"]["inr_expected"] + vend[1] * len(kept),
+                                  call_proj["ws_review"] + vend[0] * len(kept), log, n_clips=len(kept))
+            guard.check(f"{vid} ws_review", call_proj["ws_review"])
         rv = llm.generate_json("ws_review", rspec, rs, ru, REVIEW_SCHEMA, meta={"video": vid})
         debug["review"] = rv
         debug["review_input"] = texts
@@ -1014,6 +1130,10 @@ def run_episode(vid: str, cfg: dict, llm, guard: Guard, out_dir: Path, log=print
     apply_review(ep, kept, reviews, cfg)
 
     # ---------------------------------------------------------------- 4. optional video end check
+    if dry_run:
+        n = len(kept) if cfg["video_end_check"]["enabled"] else 0
+        return dry_result(vid, proj, "video_end" if n else None, VIDEO_END_INR_EXPECTED * n,
+                          VIDEO_END_INR_PER_CLIP * n, log, n_clips=len(kept))
     if cfg["video_end_check"]["enabled"] and kept:
         video_end_check(ep, kept, cfg, llm, guard, log)
 
@@ -1285,7 +1405,8 @@ def run_document(ep, tp, props, rejected, cfg, llm, n_moments, n_passed, t_start
         "run_id": cfg.get("run_id", "ws"), "created_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "content_type": "web_series",
         "pipeline": {"version": PIPELINE_VERSION, "git_commit": None,
-                     "prompt_versions": {n: load_prompt(n).tag for n in PROMPTS}, "config": cfg},
+                     "prompt_versions": {n: load_prompt(prompt_file(cfg, n)).tag for n in PROMPTS},
+                     "prompt_files": {n: prompt_file(cfg, n) for n in PROMPTS}, "config": cfg},
         "models": [{"role": k, **v} for k, v in cfg["models"].items()
                    if k != "video_end" or cfg["video_end_check"]["enabled"]],
         "cost": {"input_tokens": summ["input_tokens"], "output_tokens": summ["output_tokens"],
@@ -1342,7 +1463,12 @@ def main(argv=None):
     ap.add_argument("--dry-run", action="store_true", help="token counts and projected rupees only (free)")
     ap.add_argument("--max-ledger-inr", type=float, default=None,
                     help="stop before any call whose projection would push the project ledger past this")
-    ap.add_argument("--video-end-check", action="store_true", help="stage 4 (paid, ~₹1.2 per clip)")
+    ap.add_argument("--video-end-check", action="store_true", help="stage 4 (paid, ~₹1.35 per clip)")
+    ap.add_argument("--prompt", action="append", default=[], metavar="ROLE=FILE",
+                    help="use prompts/FILE.md for ROLE (ws_discover / ws_review): one A/B arm = one swapped file")
+    ap.add_argument("--calibrate-from", default=None, metavar="RUN_DIR",
+                    help="expected-cost projection from a finished run of the same episodes (its token counts); "
+                         "offline, no call")
     ap.add_argument("--config", default=None, help="JSON deep-merged over DEFAULTS")
     ap.add_argument("--cache-only", action="store_true",
                     help="never call the provider: rebuild outputs from cached responses (free); a miss fails")
@@ -1358,20 +1484,38 @@ def main(argv=None):
     cfg = deep_merge(DEFAULTS, json.loads(Path(a.config).read_text(encoding="utf-8")) if a.config else {})
     if a.video_end_check:
         cfg["video_end_check"]["enabled"] = True
+    for kv in a.prompt:
+        role, _, name = kv.partition("=")
+        if role not in PROMPTS or not name or not (ROOT / "prompts" / f"{name}.md").exists():
+            ap.error(f"--prompt {kv}: expected ROLE=FILE with ROLE in {PROMPTS} and prompts/FILE.md present")
+        cfg["prompts"][role] = name
     out = Path(a.out)
     cfg["run_id"] = out.name
     guard = Guard(a.max_ledger_inr)
+    from shotvi.llm.spend import total_inr
+    led0 = total_inr()
+    if a.dry_run:
+        print(f"DRY RUN (no provider call, countTokens included): ledger ₹{led0:.2f}"
+              + (f", limit ₹{a.max_ledger_inr:.2f}" if a.max_ledger_inr is not None else ""))
+    results = []
     for vid in a.video_ids:
         llm = LLMClient(Ledger(max_usd=cfg["budget_usd"]), cache_dir="runs/cache",
                         **({"max_retries": 0, "schema_retries": 0} if a.no_retry else {}))
         llm.cache_only = a.cache_only
         try:
-            run_episode(vid, cfg, llm, guard, out, dry_run=a.dry_run)
+            results.append(run_episode(vid, cfg, llm, guard, out, dry_run=a.dry_run, calib_dir=a.calibrate_from))
         except BudgetStop as e:
             print(f"STOP: {e}")
             return 2
-    from shotvi.llm.spend import total_inr
-    print(f"ledger now ₹{total_inr():.2f}")
+    if a.dry_run:
+        exp = sum(r.get("would_bill_inr_expected", 0.0) for r in results)
+        grd = sum(r.get("would_bill_inr_guard", 0.0) for r in results)
+        print(f"DRY RUN total: ₹{exp:.2f} expected (guard projection ₹{grd:.2f}); ledger would go "
+              f"₹{led0:.2f} -> ~₹{led0 + exp:.2f}"
+              + (f" (limit ₹{a.max_ledger_inr:.2f}: {'fits' if led0 + grd <= a.max_ledger_inr else 'the guard may stop a later episode'})"
+                 if a.max_ledger_inr is not None else ""))
+        return 0
+    print(f"ledger now ₹{total_inr():.2f} (this run ₹{total_inr() - led0:.2f})")
     return 0
 
 

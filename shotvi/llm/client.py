@@ -126,6 +126,9 @@ class LLMClient:
         self.use_cache = use_cache and self.cache_dir is not None
         self.cache_only = False   # dry run: never call the provider; record misses and raise LLMError
         self.misses: list[dict] = []
+        # called as before_call(role, spec) right before EVERY billed provider attempt (retries and schema
+        # retries included, cache hits never): a spend guard raises here to stop before money is spent
+        self.before_call = None
 
     # ------------------------------------------------------------------ cache
     @staticmethod
@@ -230,6 +233,8 @@ class LLMClient:
         delay = 2.0
         for attempt in range(self.max_retries + 1):
             self.ledger.check_budget()
+            if self.before_call is not None:
+                self.before_call(role, spec)
             t = time.time()
             try:
                 raw = prov.generate(spec, system, prompt, schema, media) if media else \
