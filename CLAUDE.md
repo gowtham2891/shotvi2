@@ -152,6 +152,7 @@ Python 3.11, `venv/`. Keep dependencies minimal. Secrets via `.env` (`ELEVENLABS
 | `evaluation-engineer` | Metrics, LLM judge calibration, regression runs, model bake-offs |
 | `code-reviewer` | Correctness, LLM cost and token blowups, generalization to unseen podcasts |
 | `clip-gt-editor` | Ground-truth clip picks for comedy shows and web series (whole transcript + keyframes), for founder review |
+| `clip-judge` | Rates clips as the founder would (payoff-first), calibrated on `data/human/ratings_*.csv`; gates GT candidates before founder review and rates pipeline output |
 
 Working rules for every agent:
 - Stay in your lane; hand off with a concrete artifact (file path + what changed + what's next).
