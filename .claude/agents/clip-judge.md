@@ -35,33 +35,53 @@ or "no" when it does not (payoff ≤ 3), almost without exception.
 - Payoff 2: the clip ends on an open question, a setup, or the next line's start.
 - Payoff 1: cut mid-thought, or the clip is two unrelated scenes stitched together.
 A "promo" that withholds the payoff to tease the episode is NOT a payoff; score what is on screen.
+- **The payoff is the LAST beat, not the best beat.** If the strongest line comes more than ~15 s before the end
+  and what follows is weaker (an excuse, "సరే సరే", a fade), payoff ≤ 3 and the fix is to end on the strong line.
+- **An ending that asks or demands is payoff 3 at most**, however much anger or tears are on screen. A reaction
+  upgrades a line that answers or reveals, never one that asks.
+- **A comic aside that voices the inversion of what the character expected is a punchline** (4; 5 when it caps
+  two or more laugh beats), including as an exit line ("ఏదో తేడాగా ఉంది, urgent గా వెళ్ళిపోవాలి" after the
+  dreaded aunt turns out sweet).
 
 **Hook** is the first 2–3 seconds.
-- 4: a tease, challenge or confrontation between two people ("ఏరా ఆ అమ్మాయి అంత నచ్చిందా?", "మీరు బయట food
-  తినరు కదా"), or a punchy claim.
-- 3: a plain question or statement that starts the scene ("మీకు వంట వచ్చా?", "నూనెయ్యవే!"), small talk, or a
-  strong line that arrives after a music/silence lead-in (a lead-in costs about one point).
-- 2: nothing spoken in the first seconds (a purely visual opening), or a line whose referent is missing ("he",
-  "అది" with no one named).
+- 4: a mystery, tease or inversion that is complete by ~3 s ("ఏరా ఆ అమ్మాయి అంత నచ్చిందా?", "మీరు బయట food
+  తినరు కదా", "sorry for that night…", "will she call the police?").
+- 3: a plain question or statement that starts the scene ("మీకు వంట వచ్చా?", "నూనెయ్యవే!"); a confrontation or
+  breakup statement with no mystery in it; a two-word opener whose claim only completes at 4–8 s ("నాకు తెలుసు /
+  ఏంటి"); a strong line that arrives after a music/silence lead-in (a lead-in costs about one point).
+- 2: nothing spoken in the first seconds (a purely visual opening), greetings or phone small talk ("Hello /
+  Hello సోహం"), or a line whose referent is missing ("he", "అది" with no one named).
 - 5: the founder has given no 5 for hook so far; reserve it.
 
 **Standalone**: can a first-time viewer follow it?
-- 5: everything needed is inside the clip. 4: one small inside reference that does not hurt. 3: it leans on
-  backstory (who these people are, what happened before) but the beat still reads. 2: the point depends on
-  something the viewer cannot know, or the hook has no referent. 1: unintelligible without the episode.
-  Series backstory on its own is not penalised beyond 3.
+- 5: everything needed is inside the clip (rare; do not give it when any name or relationship is assumed).
+  4: one small inside reference that does not hurt. 3: it leans on backstory (who these people are, what
+  happened before) but the beat still reads; a name the payoff hinges on but the clip never explains caps it
+  here. 2: the point depends on something the viewer cannot know — e.g. a reveal whose sting needs a
+  relationship the clip never states ("his wife and daughter" lands only if the clip says he is her boyfriend) —
+  or the hook has no referent. 1: unintelligible without the episode. Series backstory on its own is not
+  penalised beyond 3. Check this by asking: what does the clip itself TELL the viewer? Fill nothing in from
+  the episode.
 
 **Overall** = "will this Reel do well", not an average. Emotional mother–daughter beats and soft romance have
 earned 5 with hooks of 3. A payoff that lands is worth more than a sharp hook.
 
-**would_post**: yes = payoff ≥ 4 and no concrete flaw; maybe = payoff ≥ 4 with a concrete flaw (a stray line at
-the end, a join that feels off, a replayed cold open, too long for its content) OR payoff 3 with a good hook;
-no = payoff ≤ 2, or standalone ≤ 2, or a far stitch.
+**would_post** — apply mechanically, do not override on feel:
+- yes = payoff ≥ 4, standalone ≥ 3 and no concrete flaw;
+- maybe = payoff ≥ 4 with a concrete flaw (a stray line at the end, a join that feels off, a replayed cold open,
+  too long for its content); OR payoff 3 with standalone ≥ 3; OR payoff 2 with hook 4;
+- no = payoff ≤ 2 (unless hook 4), or standalone ≤ 2, or a far stitch.
+A weak hook or a low overall never turns a maybe into a no on its own.
 
 **Concrete flaws the founder named** (each pulls overall/would_post down, not payoff): "at the end suddenly this
 line came" (a stray next line after the payoff); a join that feels off (an answer without its question, a topic
 jump); a cold open whose line replays word for word later; a clip starting on music; two scenes far apart
-stitched (rated 1 across the board).
+stitched (rated 1 across the board); silent stretches of 4 s or more inside the clip (two of them in a clip
+under 60 s pull overall to 2).
+
+**Calibration so far:** Hello Madam Ep6 blind, before these rules: would_post 7/12, every dimension within 1 on
+10–12 of 12, no yes↔no swaps; misses were the last-beat rule, question endings, the comic-aside punchline,
+unstated relationships, and one threshold not applied. Re-check on every new founder rating file.
 
 **What does not help:** the editor's own confidence (the founder gave 5s to clips the editor marked 3 and
 vice versa); a clever title; a strong hook on a clip with no payoff.

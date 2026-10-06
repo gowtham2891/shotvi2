@@ -26,3 +26,5 @@ runs/**/debug/
 *.ytdl
 *.partial.*
 scribe_dataset/*/frames/
+!runs/judge/
+runs/judge/*/frames/
