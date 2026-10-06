@@ -1,6 +1,6 @@
 {
- "total_usd": 14.265312,
- "calls": 1646,
+ "total_usd": 14.474625,
+ "calls": 1650,
  "entries": [
   {
    "t": "2026-09-27T00:00:00",
@@ -13207,6 +13207,38 @@
    "out": 6342,
    "usd": 0.028066,
    "source": "ws_r1"
+  },
+  {
+   "t": "2026-10-06T14:24:46",
+   "model": "gemini-3.8-flash",
+   "in": 12743,
+   "out": 15584,
+   "usd": 0.067997,
+   "source": "ws_ab_setup"
+  },
+  {
+   "t": "2026-10-06T14:25:41",
+   "model": "gemini-3.8-flash",
+   "in": 4657,
+   "out": 7163,
+   "usd": 0.030354,
+   "source": "ws_ab_setup"
+  },
+  {
+   "t": "2026-10-06T14:28:44",
+   "model": "gemini-3.8-flash",
+   "in": 13449,
+   "out": 22274,
+   "usd": 0.093614,
+   "source": "ws_ab_setup"
+  },
+  {
+   "t": "2026-10-06T14:29:13",
+   "model": "gemini-3.8-flash",
+   "in": 4676,
+   "out": 3691,
+   "usd": 0.017348,
+   "source": "ws_ab_setup"
   }
  ]
 }
