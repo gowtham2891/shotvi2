@@ -1076,8 +1076,10 @@ def project_usd(in_tok: int, out_tok: int) -> float:
 
 
 # projected output (visible + thinking) per call, conservative. Measured 2026-10-06 on a 22-min episode:
-# discover (high) 19-25k out; review (medium) 1.6k out for 8 clips, review (high) 14.4k for 8 clips.
-PROJ_REVIEW = {"high": (6000, 1800), "medium": (3000, 300), "low": (2000, 250)}   # (base, per clip)
+# discover (high) 19-25k out; review (medium) 6.3k out for 8 clips (ws_r1) and 3.4k for 5 (ws_hm), review (high)
+# 14.4k for 8 clips. Medium was (3000, 300) until 2026-10-06: 5.4k for 8 clips, below the measured 6.3k, so the guard
+# could let a review push the ledger past --max-ledger-inr.
+PROJ_REVIEW = {"high": (6000, 1800), "medium": (3000, 800), "low": (2000, 250)}   # (base, per clip)
 REVIEW_IN_PER_CLIP = 900
 # video end check per clip: guard value, and expected from the clip-check calls of 2026-10-05 (video_clip_shots:
 # ₹1.1-1.7 per clip, mean ~₹1.35; the 8-clip text-free variant ~₹1.0)
