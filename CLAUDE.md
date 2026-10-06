@@ -25,6 +25,9 @@ decision must generalize to any Telugu podcast a creator uploads.
   Founder, 2026-10-06: cold opens "sometimes feel off". Never replay the lifted line word for word later in the
   clip (skip it in place, or lift a reaction instead of a line); the lift is a complete thought or one reaction,
   1–3 s, ending on a shot change and not on a quiet tail or mid-laugh; it must make sense with no context.
+- **Web-series GT approved (founder, 2026-10-06):** `data/gold/j14Om1SaFYE.json` (Couple Goals Ep1, 8 clips) and
+  `data/gold/QWIvgoTQGKk.json` (Ep2, 12 clips), round 3 (commit 8eca87c): "all clips are good". This is the
+  target the automatic web-series pipeline is measured against (moments, boundaries, openings, reaction holds).
 - **The podcast pipeline is preserved** at git tag `podcast-pipeline-v1`; web-series work must not break it.
 - **Ground truth for these types comes from the `clip-gt-editor` agent** reading the whole episode (plus keyframes
   for web series), reviewed by the founder. The channel's own published Shorts/Reels are NOT used as ground truth.
