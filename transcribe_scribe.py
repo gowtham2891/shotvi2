@@ -26,6 +26,8 @@ MAX_SECONDS = 20.0
 GHOST_SHARE = 0.02
 RECOVER_MIN_S = 300
 RECOVER_TOL_S = 0.5
+KEYTERMS_SURCHARGE = 1.20   # ElevenLabs: keyterms add 20% to the base transcription cost
+MAX_KEYTERMS = 1000
 
 
 # Tried in this order; later keys are used only after earlier ones run out of credits.
@@ -113,8 +115,26 @@ def recover(expect_secs):
     return None
 
 
-def call(mp3, secs, language="", log=print):
-    timeout = max(MIN_TIMEOUT_S, int(secs / 60 * TIMEOUT_PER_MIN_S))
+def load_keyterms(path):
+    """A JSON file with either a list of strings or a glossary dict (``keyterms`` list, else ``terms[].term``)."""
+    d = json.loads(Path(path).read_text(encoding="utf-8"))
+    if isinstance(d, dict):
+        d = d.get("keyterms") or [t["term"] for t in d.get("terms", [])]
+    out = []
+    for t in d:
+        t = " ".join(str(t).split())
+        if t and t not in out:
+            out.append(t)
+    bad = [t for t in out if len(t) >= 50 or len(t.split()) > 5 or any(ch in "<>{}[]\\" for ch in t)]
+    if bad:
+        raise SystemExit(f"keyterms break the API limits (<50 chars, <=5 words, none of <>{{}}[]\\): {bad[:5]}")
+    if len(out) > MAX_KEYTERMS:
+        raise SystemExit(f"{len(out)} keyterms; the API allows {MAX_KEYTERMS}")
+    return out
+
+
+def request_fields(language="", keyterms=None):
+    """Form fields of the upload. Without keyterms this is exactly the original request."""
     fields = {
         "model_id": MODEL,
         "diarize": "true",
@@ -125,6 +145,14 @@ def call(mp3, secs, language="", log=print):
     }
     if language:
         fields["language_code"] = language
+    if keyterms:
+        fields["keyterms"] = list(keyterms)   # requests sends a list as one repeated form part per term
+    return fields
+
+
+def call(mp3, secs, language="", log=print, keyterms=None):
+    timeout = max(MIN_TIMEOUT_S, int(secs / 60 * TIMEOUT_PER_MIN_S))
+    fields = request_fields(language, keyterms)
     attempt = 0
     while attempt < 3:
         attempt += 1
@@ -150,7 +178,9 @@ def call(mp3, secs, language="", log=print):
             raise
         except Exception as e:
             log(f"attempt {attempt} failed: {type(e).__name__}")
-            got = recover(secs)
+            # recover() matches past transcripts by duration only: with keyterms it would return the earlier
+            # transcript of the same audio (made without them) and silently fake the result. Re-upload instead.
+            got = None if keyterms else recover(secs)
             if got:
                 log("recovered an already-processed transcript")
                 return got
@@ -220,11 +250,13 @@ def real_speakers(words):
     return sorted(real, key=lambda s: -talk[s]), talk
 
 
-def transcribe(audio, language="", log=print):
+def transcribe(audio, language="", log=print, keyterms=None):
     audio = Path(audio)
     secs = duration_s(audio)
     mins = secs / 60.0
-    need = int(mins * CREDITS_PER_MIN)
+    need = int(mins * CREDITS_PER_MIN * (KEYTERMS_SURCHARGE if keyterms else 1.0))
+    if keyterms:
+        log(f"{len(keyterms)} keyterms (+{KEYTERMS_SURCHARGE - 1:.0%} cost); recovery by duration disabled")
     # Start on the first key that has enough credits. A key that can't report its quota
     # (no user-read permission) is tried anyway; the upload switches keys if it's refused.
     while True:
@@ -246,14 +278,14 @@ def transcribe(audio, language="", log=print):
         log("converting to mp3")
         to_mp3(audio, mp3)
 
-    raw = call(mp3, secs, language=language, log=log)
+    raw = call(mp3, secs, language=language, log=log, keyterms=keyterms)
     words, events = split_entries(raw)
     sents = build_sentences(words)
     real, talk = real_speakers(words)
     ghosts = [s for s in talk if s is not None and s not in real]
     log(f"{len(sents):,} sentences, {len(words):,} words, {len(real)} speakers, "
         f"{len(events)} audio events")
-    return {
+    out = {
         "asr_model": f"elevenlabs/{MODEL}",
         "language": raw.get("language_code"),
         "language_probability": raw.get("language_probability"),
@@ -268,6 +300,10 @@ def transcribe(audio, language="", log=print):
         "audio_duration_secs": secs,
         "text": raw.get("text", ""),
     }
+    if keyterms:
+        out["keyterms"] = list(keyterms)
+        out["transcription_id"] = raw.get("transcription_id")
+    return out
 
 
 def save(data, path):
@@ -276,12 +312,31 @@ def save(data, path):
                           encoding="utf-8")
 
 
+def start_on_key(var):
+    """Start on a named key (e.g. ELEVENLABS_API_KEY_4) instead of the first one."""
+    global _active
+    k = (os.environ.get(var) or "").strip()
+    if not k:
+        raise SystemExit(f"{var} is not set")
+    _active = api_keys().index(k)
+
+
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        print("usage: python transcribe_scribe.py <audio.wav> [out.json]")
-        sys.exit(1)
-    src = Path(sys.argv[1])
-    dst = Path(sys.argv[2]) if len(sys.argv) > 2 else \
+    import argparse
+    ap = argparse.ArgumentParser(usage="python transcribe_scribe.py <audio.wav> [out.json] "
+                                       "[--keyterms terms.json] [--key ELEVENLABS_API_KEY_4]")
+    ap.add_argument("audio")
+    ap.add_argument("out", nargs="?")
+    ap.add_argument("--keyterms", default="", help="json: a list of terms, or a glossary with 'keyterms'")
+    ap.add_argument("--key", default="", help="env var of the key to start on")
+    a = ap.parse_args()
+    src = Path(a.audio)
+    dst = Path(a.out) if a.out else \
         src.with_name(src.stem.replace("_audio", "") + "_scribe_transcript.json")
-    save(transcribe(src), dst)
+    kt = load_keyterms(a.keyterms) if a.keyterms else None
+    if kt and dst.exists():
+        raise SystemExit(f"{dst} exists; a keyterms run never overwrites a transcript")
+    if a.key:
+        start_on_key(a.key)
+    save(transcribe(src, keyterms=kt), dst)
     print(f"saved {dst}")
