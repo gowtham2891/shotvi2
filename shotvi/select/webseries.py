@@ -24,11 +24,20 @@ Stages (per episode):
      -> ``time_segments`` (play order, may include silent picture) + word ``pieces``.
   3b. review (one text call, prompt ``ws_review``): scores the clips AS BUILT (play order, cut markers), may veto
      a cold open or flag bad cuts (code then rebuilds without them; no further call), writes title / why.
-     A clip repaired this way keeps its reviewer tier (worth_a_look if that tier is not shown) and is flagged
-     ``needs_rescore``: its scores belong to the broken cut, so they never reject it.
+     A clip repaired this way is flagged ``needs_rescore`` (its scores belong to the cut before the repair): it is
+     tiered on those scores like any other clip but can never be ``recommended``.
   4. (optional, off by default) video end check: ``video_check`` clip2 with shot lines; only the END suggestion
      is applied, capped and flagged.
-  5. rank by score, quality cutoff (no fixed N), write ``<out>/<video_id>.json`` (schema 1.1 + web-series fields).
+  5. absolute tiers, no padding (founder, 2026-10-07: the count depends on the video; show only clips that clear
+     the bar and say plainly when an episode has few or none):
+       recommended   review overall >= t_rec AND review payoff >= t_rec_payoff AND no blocking flaw
+                     (thresholds.rec_blockers: needs_rescore, a shot flash kept, an unreviewed start, a failed
+                     review repair)
+       worth_a_look  review overall >= t_show, not recommended
+       rejected      everything else (scores kept in the file, never shown); no "top 3 below threshold"
+     Within a tier: review overall, then payoff; ties keep discovery order. ``episode_verdict`` counts the tiers:
+     none (0 recommended) / thin (1-2) / strong (>= verdict_strong_min). Write ``<out>/<video_id>.json``
+     (schema 1.1 + web-series fields).
 
 CLI::
 
@@ -140,7 +149,15 @@ DEFAULTS: dict = {
     "review_view": "final",
     "guardrails": {"min_s": 15.0, "soft_max_s": 120.0, "hard_max_s": 150.0, "skip_s": 30.0, "dup_overlap": 0.5,
                    "blocks_flag_above": 3},
-    "thresholds": {"t_show": 3.5, "t_rec": 4.0, "below_threshold_max": 3, "below_min_overall": 3.0},
+    # absolute tiers (see module docstring, stage 5); no padding below t_show
+    "thresholds": {"t_show": 3.5, "t_rec": 4.0, "t_rec_payoff": 4.0,
+                   # flaws that keep a clip out of `recommended` (it stays worth_a_look if its overall allows):
+                   # needs_rescore (repaired after review, scores are for the cut before), shot_flash (a flash of
+                   # another shot kept at a segment edge), unreviewed_start (plays a start the review did not
+                   # score), review_repair_failed (a cut the reviewer called bad could not be rebuilt);
+                   # "unreviewed_end" (ws/0.1 replays: a reaction line after the scored payoff) is available
+                   "rec_blockers": ["needs_rescore", "shot_flash", "unreviewed_start", "review_repair_failed"],
+                   "verdict_strong_min": 3},
     "video_end_check": {"enabled": False, "max_shift_s": 8.0},
     # prompt file per role (prompts/<name>.md); an A/B arm swaps exactly one (CLI --prompt ROLE=FILE)
     "prompts": {"ws_discover": "ws_discover", "ws_review": "ws_review"},
@@ -1599,7 +1616,7 @@ def run_episode(vid: str, cfg: dict, llm, guard: Guard, out_dir: Path, log=print
             rejected.append({"id": cid, "moment": m, "clip": c, "reject_reasons": rr})
             log(f"  {cid}: rejected: {rr}")
             continue
-        cands.append({"id": cid, "moment": m, "clip": c, "barrier_pos": bpos})
+        cands.append({"id": cid, "moment": m, "clip": c, "barrier_pos": bpos, "disc_index": k})
         se = c.get("start_extended_by")
         if se and se["lines"]:
             log(f"  {cid}: exchange start {se['from_line']} -> {se['to_line']} (+{se['s']} s, {se['lines']} lines)")
@@ -1682,7 +1699,9 @@ def run_episode(vid: str, cfg: dict, llm, guard: Guard, out_dir: Path, log=print
     (out_dir / "debug" / f"{vid}.json").write_text(json.dumps(debug, ensure_ascii=False, indent=1, default=str),
                                                    encoding="utf-8")
     (out_dir / f"{vid}.md").write_text(clips_md(ep, doc), encoding="utf-8")
-    log(f"{vid}: {len(out_props)} shown, {len(out_rej)} rejected -> {out_dir / (vid + '.json')}")
+    ev = doc.get("episode_verdict") or episode_verdict(out_props, cfg["thresholds"])
+    log(f"{vid}: verdict {ev['verdict']} ({ev['strong_clips']} recommended, {ev['worth_a_look']} worth a look, "
+        f"{len(out_rej)} rejected) -> {out_dir / (vid + '.json')}")
     return doc
 
 
@@ -1748,11 +1767,50 @@ def apply_review(ep: Episode, kept: list, reviews: dict, cfg: dict) -> None:
             c["unreviewed_start_words"] = lead
 
 
+TIER_ORDER = {"recommended": 0, "worth_a_look": 1}
+
+
+def clip_flaws(x: dict) -> list[str]:
+    """Flaw names a built clip carries (keys of thresholds.rec_blockers)."""
+    c = x["clip"]
+    out = []
+    if x.get("needs_rescore"):
+        out.append("needs_rescore")
+    if any(not f["fixed"] for f in c.get("flashes") or []):
+        out.append("shot_flash")
+    if c.get("unreviewed_start_words"):
+        out.append("unreviewed_start")
+    if c.get("unreviewed_end_words"):
+        out.append("unreviewed_end")
+    if str(x.get("warnings_review") or "").startswith("rebuild after review failed"):
+        out.append("review_repair_failed")
+    return out
+
+
+def tier_of(sc: dict, flaws: list[str], th: dict) -> str:
+    """Absolute tier of a scored clip: recommended / worth_a_look / rejected (no padding, no relative cut-off)."""
+    if min(sc["hook"], sc["standalone"], sc["payoff"]) <= 2 or sc["overall"] < th["t_show"]:
+        return "rejected"
+    blocked = [f for f in flaws if f in th["rec_blockers"]]
+    if sc["overall"] >= th["t_rec"] and sc["payoff"] >= th["t_rec_payoff"] and not blocked:
+        return "recommended"
+    return "worth_a_look"
+
+
+def _disc_order(x: dict, pos: int) -> int:
+    """Discovery order of a candidate: the moment index (ids are w01, w02, ... in nomination order)."""
+    if "disc_index" in x:
+        return int(x["disc_index"])
+    digits = "".join(ch for ch in str(x.get("id", "")) if ch.isdigit())
+    return int(digits) if digits else pos
+
+
 def rank_clips(kept: list, rejected: list, cfg: dict) -> list:
-    """Scores -> shown clips in rank order (quality cutoff, no fixed N); appends the cut ones to ``rejected``."""
+    """Scores -> shown clips in rank order: tier (recommended, worth_a_look), review overall, payoff, discovery
+    order. Clips under the bar are appended to ``rejected`` with their scores (never shown, no padding)."""
     th = cfg["thresholds"]
-    proposals, below = [], []
-    for x in kept:
+    shown = []
+    for pos, x in enumerate(kept):
         r, c, m = x["review"], x["clip"], x["moment"]
         if not r:
             rejected.append({"id": x["id"], "moment": m, "clip": c, "reject_reasons": ["R0: no review"]})
@@ -1765,33 +1823,49 @@ def rank_clips(kept: list, rejected: list, cfg: dict) -> list:
         x["scores"] = sc
         if x.get("restored_drops"):
             # the code repaired the clip after the review (put back drops the reviewer called bad joins): the
-            # scores are for the broken cut, so they must not reject or bury the repaired clip. It keeps the
-            # reviewer's tier when that tier is shown, else it is shown as worth_a_look; either way needs_rescore.
-            tier = tier_of(sc["overall"], th)
+            # scores are for the cut before the repair. The clip is tiered on them like any other (no padding)
+            # but never recommended until it is re-scored.
             x["needs_rescore"] = one_line(
                 f"repaired after review (restored drop(s) {x['restored_drops']}: {r.get('cut_note', '')}); scores "
                 f"(overall {sc['overall']}, hook {sc['hook']}, standalone {sc['standalone']}, payoff {sc['payoff']}) "
                 f"are for the cut before the repair", 300)
-            if tier == "below_threshold":     # includes every score Q1 would reject (overall < t_show)
-                x["tier_override"] = "worth_a_look"
-            proposals.append(x)
+        x["flaws"] = clip_flaws(x)
+        x["tier"] = tier_of(sc, x["flaws"], th)
+        x["_disc"] = _disc_order(x, pos)
+        if x["tier"] == "rejected":
+            low_part = min(sc["hook"], sc["standalone"], sc["payoff"]) <= 2
+            why = [f"Q1: below the bar (overall {sc['overall']} < {th['t_show']}"
+                   + ("; a part score <= 2" if low_part else "")
+                   + f"; hook {sc['hook']}, standalone {sc['standalone']}, payoff {sc['payoff']})"
+                   + ("; scores are for the cut before the review repair: re-score to reconsider"
+                      if x.get("needs_rescore") else "")]
+            rejected.append({"id": x["id"], "moment": m, "clip": c, "scores": sc, "tier": "rejected",
+                             "flaws": x["flaws"], "reject_reasons": why,
+                             **({"needs_rescore": x["needs_rescore"]} if x.get("needs_rescore") else {})})
             continue
-        if min(sc["hook"], sc["standalone"], sc["payoff"]) <= 2 or sc["overall"] < th["below_min_overall"]:
-            why = [f"Q1: below the quality bar (overall {sc['overall']}, hook {sc['hook']}, standalone "
-                   f"{sc['standalone']}, payoff {sc['payoff']})"]
-            rejected.append({"id": x["id"], "moment": m, "clip": c, "scores": sc, "reject_reasons": why})
-            continue
-        (proposals if sc["overall"] >= th["t_show"] else below).append(x)
-    # a repaired clip shown as worth_a_look ranks as if its overall were t_show (bottom of that tier, above
-    # below_threshold clips) until it is re-scored
-    key = lambda x: (-(th["t_show"] if x.get("tier_override") else x["scores"]["overall"]),  # noqa: E731
-                     -x["scores"]["hook"], -x["scores"]["payoff"], -int(x["moment"].get("strength", 3)))
-    proposals.sort(key=key)
-    below.sort(key=key)
-    for x in below[th["below_threshold_max"]:]:
-        rejected.append({"id": x["id"], "moment": x["moment"], "clip": x["clip"], "scores": x["scores"],
-                         "reject_reasons": [f"Q2: below t_show, not in the top {th['below_threshold_max']} of those"]})
-    return proposals + below[:th["below_threshold_max"]]
+        shown.append(x)
+    shown.sort(key=lambda x: (TIER_ORDER[x["tier"]], -x["scores"]["overall"], -x["scores"]["payoff"], x["_disc"]))
+    return shown
+
+
+def episode_verdict(props: list[dict], th: dict) -> dict:
+    """How much this episode yields (founder, 2026-10-07): count the tiers, never pad."""
+    n_rec = sum(p["tier"] == "recommended" for p in props)
+    n_wal = sum(p["tier"] == "worth_a_look" for p in props)
+    strong_min = int(th.get("verdict_strong_min", 3))
+    plus = f" (plus {n_wal} worth a look)" if n_wal else ""
+    if n_rec == 0:
+        v = "none"
+        note = ("No clip in this episode cleared the bar"
+                + (f" ({n_wal} worth a look, none recommended)" if n_wal else "")
+                + "; skipping the episode beats posting a weak clip.")
+    elif n_rec < strong_min:
+        v = "thin"
+        note = f"This episode yields only {n_rec} strong clip{'s' if n_rec > 1 else ''}{plus}; do not expect more from it."
+    else:
+        v = "strong"
+        note = f"{n_rec} strong clips cleared the bar{plus}."
+    return {"strong_clips": n_rec, "worth_a_look": n_wal, "verdict": v, "note": note}
 
 
 def video_end_check(ep: Episode, kept: list, cfg, llm, guard: Guard, log):
@@ -1832,17 +1906,13 @@ def video_end_check(ep: Episode, kept: list, cfg, llm, guard: Guard, log):
         log(f"  {x['id']}: video end {res}")
 
 
-def tier_of(overall: float, th: dict) -> str:
-    return "recommended" if overall >= th["t_rec"] else "worth_a_look" if overall >= th["t_show"] \
-        else "below_threshold"
-
-
 def proposal_doc(ep: Episode, x: dict, rank: int, cfg, line_of_word) -> dict:
     c, m, r, sc = x["clip"], x["moment"], x["review"], x["scores"]
     th, g = cfg["thresholds"], cfg["guardrails"]
     pieces = c["pieces"]
     core = core_fields(ep, pieces, g["skip_s"])
-    tier = x.get("tier_override") or tier_of(sc["overall"], th)
+    flaws = x["flaws"] if "flaws" in x else clip_flaws(x)
+    tier = x.get("tier") or tier_of(sc, flaws, th)
     notes = []
     if c["cold_open"]:
         notes.append({"type": "cold_open", "after_piece": 0,
@@ -1895,6 +1965,8 @@ def proposal_doc(ep: Episode, x: dict, rank: int, cfg, line_of_word) -> dict:
                       "bad_cuts": r.get("bad_cuts"), "changes": c.get("review_changes") or []},
            "needs_rescore": bool(x.get("needs_rescore")),
            **({"rescore_reason": x["needs_rescore"]} if x.get("needs_rescore") else {}),
+           # flaws that keep a clip out of `recommended` (thresholds.rec_blockers)
+           "flaws": flaws,
            # shot flashes at segment edges the builder could not repair without clipping a word (the schema's
            # `flags` enum has no such value; repaired ones are listed in build_warnings)
            "shot_flags": [flash_text(f) for f in c.get("flashes") or [] if not f["fixed"]],
@@ -1906,7 +1978,7 @@ def proposal_doc(ep: Episode, x: dict, rank: int, cfg, line_of_word) -> dict:
 
 def rejected_doc(ep: Episode, x: dict, cfg) -> dict | None:
     c = x.get("clip")
-    base = {"id": x["id"], "reject_reasons": x["reject_reasons"]}
+    base = {"id": x["id"], "tier": "rejected", "reject_reasons": x["reject_reasons"]}
     if not c:
         # nothing was built: describe the moment with its line span as one piece (schema needs pieces)
         m = x["moment"]
@@ -1921,11 +1993,19 @@ def rejected_doc(ep: Episode, x: dict, cfg) -> dict | None:
         return {**base, "pieces": pieces, **core_fields(ep, pieces, cfg["guardrails"]["skip_s"]),
                 "moment": {**{k: m.get(k) for k in ("purpose", "start_line", "end_line", "hook", "payoff", "strength")},
                            **payoff_fields(m)}}
+    m = x["moment"]
     out = {**base, "pieces": c["pieces"], **core_fields(ep, c["pieces"], cfg["guardrails"]["skip_s"]),
            "time_segments": c["time_segments"], "video_duration": c["video_duration"],
-           "clip_purpose": x["moment"].get("purpose"), "cold_open": bool(c["cold_open"])}
+           "clip_purpose": m.get("purpose"), "cold_open": bool(c["cold_open"]),
+           "discovery": {"strength": m.get("strength"), "hook": m.get("hook"), "payoff": m.get("payoff"),
+                         **payoff_fields(m)}}
     if x.get("scores"):
         out["scores"] = x["scores"]
+    if x.get("flaws"):
+        out["flaws"] = x["flaws"]
+    if x.get("needs_rescore"):
+        out["needs_rescore"] = True
+        out["rescore_reason"] = x["needs_rescore"]
     return out
 
 
@@ -1960,8 +2040,14 @@ def run_document(ep, tp, props, rejected, cfg, llm, n_moments, n_passed, t_start
                  "usd": summ["usd"], "usd_billed": summ["usd_billed"], "wall_time_secs": round(time.time() - t_start, 1),
                  "n_llm_calls": summ["n_llm_calls"], "by_role": summ["by_role"], "projection": debug["projection"]},
         "cutoff": {"t_show": cfg["thresholds"]["t_show"], "t_rec": cfg["thresholds"]["t_rec"],
+                   "t_rec_payoff": cfg["thresholds"]["t_rec_payoff"],
+                   "rec_blockers": cfg["thresholds"]["rec_blockers"],
                    "n_candidates": n_moments, "n_passed_hard_rules": n_passed, "n_shown": len(props),
+                   "n_recommended": sum(p["tier"] == "recommended" for p in props),
+                   "n_worth_a_look": sum(p["tier"] == "worth_a_look" for p in props),
+                   "n_rejected": len([r for r in rejected if r]),
                    "warnings": debug.get("warnings", [])},
+        "episode_verdict": episode_verdict(props, cfg["thresholds"]),
         "episode_notes": (debug.get("discover") or {}).get("episode_notes", ""),
         **({"discover_scenes": debug["scenes"]} if debug.get("scenes") else {}),
         "proposals": props,
@@ -1970,8 +2056,11 @@ def run_document(ep, tp, props, rejected, cfg, llm, n_moments, n_passed, t_start
 
 
 def clips_md(ep: Episode, doc: dict) -> str:
+    v = doc.get("episode_verdict") or episode_verdict(doc["proposals"], {"verdict_strong_min": 3})
     out = [f"# {doc['video_id']} web-series clips ({doc['run_id']})\n",
-           f"{len(doc['proposals'])} shown, {len(doc['rejected'])} rejected. Cost ${doc['cost']['usd']:.4f}.\n"]
+           f"Episode verdict: {v['verdict'].upper()} ({v['strong_clips']} recommended, {v['worth_a_look']} worth a "
+           f"look, {len(doc['rejected'])} rejected). {v['note']}\n",
+           f"Cost ${doc['cost']['usd']:.4f}.\n"]
     for p in doc["proposals"]:
         segs = " + ".join(f"{fmt(s['start'])}-{fmt(s['end'])}" for s in p["time_segments"])
         out.append(f"\n## #{p['rank']} {p['id']} {p['title']} ({p['clip_purpose']}, {p['tier']}, "
@@ -1994,6 +2083,8 @@ def clips_md(ep: Episode, doc: dict) -> str:
             out.append(f"- exchange start not applied: {se['kept_original']}")
         if p.get("needs_rescore"):
             out.append(f"- NEEDS RESCORE: {p['rescore_reason']}")
+        if p.get("flaws"):
+            out.append(f"- flaws (not recommended while present): {', '.join(p['flaws'])}")
         for s in p.get("shot_flags") or []:
             out.append(f"- shot flag: {s}")
         out.append(f"- why: {p['why_it_works']}")
@@ -2008,7 +2099,9 @@ def clips_md(ep: Episode, doc: dict) -> str:
             out.append(f"- warnings: {'; '.join(p['build_warnings'])}")
     out.append("\n## Rejected\n")
     for r in doc["rejected"]:
-        out.append(f"- {r['id']}: {'; '.join(r['reject_reasons'])}")
+        sc = r.get("scores")
+        out.append(f"- {r['id']}: {'; '.join(r['reject_reasons'])}"
+                   + (f" [overall {sc['overall']}, payoff {sc['payoff']}]" if sc else ""))
     return "\n".join(out) + "\n"
 
 

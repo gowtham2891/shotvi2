@@ -154,6 +154,7 @@ function buildNav() {
   let h = "", i = 0;
   DATA.forEach(v => {
     h += `<h2>${esc(v.video_id)} · top ${v.clips.length} of ${v.n_total}</h2>`;
+    if (v.verdict) h += `<div class="verdict">Episode verdict: ${esc(v.verdict.verdict)} — ${v.verdict.strong_clips} recommended, ${v.verdict.worth_a_look} worth a look. ${esc(v.verdict.note)}</div>`;
     v.clips.forEach(c => { h += `<a href="#" data-i="${i}"><span class="rk">#${c.rank}</span><span class="tt te">${esc(c.title)}</span><span class="st"></span></a>`; i++; });
   });
   const nav = document.getElementById("nav"); nav.innerHTML = h;

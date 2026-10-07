@@ -190,29 +190,31 @@ class RepairedClip(unittest.TestCase):
         rejected = []
         return rank_clips(kept, rejected, self.cfg), rejected
 
-    def test_repaired_clip_is_not_rejected_on_the_broken_score(self):
+    def test_repaired_clip_under_the_bar_is_rejected_with_a_rescore_note(self):
+        # absolute tiers (2026-10-07): a repaired clip is tiered on its scores like any other; under the bar it is
+        # rejected (never padded in as a maybe), with the note that the scores are for the cut before the repair
         x = self.kept(drops=[{"first_line": "L0005", "last_line": "L0006", "why": "side talk"}])
         self.assertEqual(len(x["clip"]["time_segments"]), 2)
         shown, rejected = self.run_review([x], {"w01": review(bad_cuts=["X1"], cut_note="X1 loses the context")})
-        self.assertEqual(rejected, [])
-        self.assertEqual([y["id"] for y in shown], ["w01"])
-        self.assertEqual(len(x["clip"]["time_segments"]), 1)          # the drop was put back
-        self.assertEqual(x["tier_override"], "worth_a_look")
+        self.assertEqual(shown, [])
+        self.assertEqual(len(x["clip"]["time_segments"]), 1)          # the drop was still put back
         self.assertIn("X1 loses the context", x["needs_rescore"])
-        doc = proposal_doc(self.ep, x, 1, self.cfg, {})
-        self.assertEqual(doc["tier"], "worth_a_look")
-        self.assertTrue(doc["needs_rescore"])
-        self.assertIn("before the repair", doc["rescore_reason"])
-        self.assertEqual(doc["scores"]["overall"], 2.0)                # the reviewer's numbers are kept as given
+        self.assertEqual([r["id"] for r in rejected], ["w01"])
+        self.assertEqual(rejected[0]["scores"]["overall"], 2.0)        # the reviewer's numbers are kept as given
+        self.assertIn("re-score", rejected[0]["reject_reasons"][0])
+        self.assertIn("needs_rescore", rejected[0]["flaws"])
 
-    def test_repaired_clip_keeps_a_shown_reviewer_tier(self):
+    def test_repaired_clip_is_capped_at_worth_a_look(self):
         x = self.kept(drops=[{"first_line": "L0005", "last_line": "L0006", "why": ""}])
         rv = review(hook=4.5, standalone=4.0, payoff=4.5, value_emotion=4.0, overall=4.2,
                     hook_without_cold_open=4.5, overall_without_cold_open=4.2, bad_cuts=["X1"])
-        shown, _ = self.run_review([x], {"w01": rv})
+        shown, rejected = self.run_review([x], {"w01": rv})
+        self.assertEqual(rejected, [])
         doc = proposal_doc(self.ep, shown[0], 1, self.cfg, {})
-        self.assertEqual(doc["tier"], "recommended")
+        self.assertEqual(doc["tier"], "worth_a_look")                  # scores would recommend; the flaw blocks it
         self.assertTrue(doc["needs_rescore"])
+        self.assertIn("before the repair", doc["rescore_reason"])
+        self.assertEqual(doc["flaws"], ["needs_rescore"])
 
     def test_unrepaired_low_score_is_still_rejected(self):
         x = self.kept(drops=[{"first_line": "L0005", "last_line": "L0006", "why": ""}])
@@ -221,7 +223,8 @@ class RepairedClip(unittest.TestCase):
         self.assertTrue(rejected[0]["reject_reasons"][0].startswith("Q1"))
         self.assertFalse(x.get("needs_rescore"))
 
-    def test_repaired_clip_ranks_at_the_bottom_of_worth_a_look(self):
+    def test_no_padding_below_the_bar(self):
+        # absolute tiers: a repaired clip scored 2.0 and a 3.2 clip are both rejected; only the 3.6 clip is shown
         a = self.kept("w01", drops=[{"first_line": "L0005", "last_line": "L0006", "why": ""}])
         b = self.kept("w02")
         c = self.kept("w03")
@@ -230,8 +233,11 @@ class RepairedClip(unittest.TestCase):
                                  hook_without_cold_open=4.0, overall_without_cold_open=3.6),
                    "w03": review(id="w03", hook=3.5, standalone=3.5, payoff=3.5, overall=3.2,
                                  hook_without_cold_open=3.5, overall_without_cold_open=3.2)}
-        shown, _ = self.run_review([a, b, c], reviews)
-        self.assertEqual([y["id"] for y in shown], ["w02", "w01", "w03"])
+        shown, rejected = self.run_review([a, b, c], reviews)
+        self.assertEqual([y["id"] for y in shown], ["w02"])
+        self.assertEqual(shown[0]["tier"], "worth_a_look")
+        self.assertEqual(sorted(r["id"] for r in rejected), ["w01", "w03"])
+        self.assertTrue(all(r["scores"] for r in rejected))           # scores kept on rejected entries
 
 
 class CacheOnlyMakesNoCalls(unittest.TestCase):

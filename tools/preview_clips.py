@@ -282,7 +282,8 @@ def main():
         out_dir = out_root / vid
         out_dir.mkdir(parents=True, exist_ok=True)
         index.append(f"\n## {vid}\n")
-        page.append({"video_id": vid, "n_total": len(doc["proposals"]), "clips": []})
+        page.append({"video_id": vid, "n_total": len(doc["proposals"]), "clips": [],
+                     **({"verdict": doc["episode_verdict"]} if doc.get("episode_verdict") else {})})
         for c in sorted(doc["proposals"], key=lambda c: c["rank"])[:args.top]:
             out = out_dir / f"{c['rank']:02d}_{c['id']}.mp4"
             # web-series GT clips carry time_segments (may include silent visual beats): play those as is
