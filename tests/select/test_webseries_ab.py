@@ -4,7 +4,9 @@
 3. the spend guard runs before EVERY billed attempt (retries included), and once per episode before an uncached
    discover (discover + review together), so no discover is paid whose review the limit would refuse;
 4. a dry run makes no provider call of any kind (countTokens included) and writes nothing;
-5. the expected-cost projection uses a calibration run's token counts (review only when its settings match)."""
+5. the expected-cost projection uses a calibration run's token counts (review only when its settings match);
+6. a B prompt may declare optional answer fields (front matter ``answer_fields``): the baseline schema object (part
+   of the cache key) is untouched, the arm's schema only adds optional fields, and they reach the output docs."""
 import difflib
 import tempfile
 import unittest
@@ -35,6 +37,59 @@ class BPromptsAreBaselinePlusInsertions(unittest.TestCase):
                        if o[0] != "equal"]
                 self.assertTrue(all(o[0] == "insert" for o in ops), f"{f.name} {part}: not insert-only: {ops}")
             self.assertNotEqual(base.system + base.user, b.system + b.user, f"{f.name}: no change")
+
+
+class PayoffArmAnswerFields(unittest.TestCase):
+    ARM = "ws_discover_b_payoff"
+
+    def test_baseline_schema_is_the_same_object(self):
+        self.assertIs(ws.discover_schema(ws.DEFAULTS), ws.DISCOVER_SCHEMA)
+        self.assertNotIn("payoff_type", ws.DISCOVER_SCHEMA["properties"]["moments"]["items"]["properties"])
+
+    def test_arm_adds_optional_fields_only(self):
+        import jsonschema
+        cfg = ws.deep_merge(ws.DEFAULTS, {"prompts": {"ws_discover": self.ARM}})
+        s = ws.discover_schema(cfg)
+        item, base = s["properties"]["moments"]["items"], ws.DISCOVER_SCHEMA["properties"]["moments"]["items"]
+        self.assertEqual(item["required"], base["required"])
+        self.assertEqual({k: v for k, v in item["properties"].items() if k not in ws.DISCOVER_EXTRA_FIELDS},
+                         base["properties"])
+        self.assertEqual(list(item["properties"])[:2], ["payoff_line", "payoff_type"])
+        m = {"purpose": "standalone", "start_line": "L0001", "end_line": "L0008", "what_happens": "", "hook": "",
+             "payoff": "", "opening_strength": "weak", "cold_open_lines": [], "cold_open_why": "", "drops": [],
+             "spoiler": False, "characters": [], "visual_dependency": "low", "category": "story", "strength": 3}
+        jsonschema.validate({"episode_notes": "", "moments": [m]}, s)                     # baseline-shaped answer
+        jsonschema.validate({"episode_notes": "", "moments": [{**m, "payoff_type": "punchline",
+                                                                 "payoff_line": "x"}]}, s)
+        with self.assertRaises(jsonschema.ValidationError):
+            jsonschema.validate({"episode_notes": "", "moments": [{**m, "payoff_type": "joke"}]}, s)
+
+    def test_unknown_answer_field_is_refused(self):
+        with mock.patch("shotvi.select.prompts.load_prompt",
+                        return_value=mock.Mock(meta={"answer_fields": "payoff_type, mood"})):
+            with self.assertRaises(ValueError):
+                ws.discover_schema(ws.DEFAULTS)
+
+    def test_fields_reach_the_proposal_and_the_md(self):
+        from tests.select.test_webseries_cut import moment
+        from tests.select.test_webseries_v02 import review
+        ep = make_ep(SCENE, CUTS)
+        cfg = ws.deep_merge(ws.DEFAULTS, {})
+        mm = moment(payoff_type="punchline", payoff_line="payoff line end ok", strength=4)
+        c = ws.build_clip(ep, mm, cfg["cut"])
+        x = {"id": "w01", "moment": mm, "clip": c}
+        ws.apply_review(ep, [x], {"w01": review(hook=4, standalone=4, payoff=4, overall=4,
+                                                hook_without_cold_open=4, overall_without_cold_open=4)}, cfg)
+        rejected = []
+        shown = ws.rank_clips([x], rejected, cfg)
+        doc = ws.proposal_doc(ep, shown[0], 1, cfg, {})
+        self.assertEqual(doc["discovery"]["payoff_type"], "punchline")
+        self.assertEqual(doc["discovery"]["payoff_line"], "payoff line end ok")
+        self.assertNotIn("payoff_type", ws.proposal_doc(ep, {**x, "moment": moment()}, 1, cfg, {})["discovery"])
+        rj = ws.rejected_doc(ep, {"id": "w02", "moment": mm, "reject_reasons": ["x"]}, cfg)
+        self.assertEqual(rj["moment"]["payoff_type"], "punchline")
+        md = ws.clips_md(ep, {"video_id": "v", "run_id": "r", "cost": {"usd": 0.0}, "proposals": [doc], "rejected": []})
+        self.assertIn("- payoff (punchline): payoff line end ok", md)
 
 
 class PromptOverride(unittest.TestCase):

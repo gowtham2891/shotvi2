@@ -17,7 +17,7 @@ from __future__ import annotations
 
 import hashlib
 import re
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 from string import Template
 
@@ -31,6 +31,7 @@ class Prompt:
     system: str
     user: str
     sha8: str
+    meta: dict = field(default_factory=dict)   # other front-matter keys (e.g. answer_fields: extra answer fields)
 
     @property
     def tag(self) -> str:
@@ -57,6 +58,7 @@ def load_prompt(name: str) -> Prompt:
     if not sm:
         raise ValueError(f"prompt {name}: needs '### SYSTEM' and '### USER' sections")
     p = Prompt(meta["name"], meta["version"], sm.group(1).strip(), sm.group(2).strip(),
-               hashlib.sha256(raw.encode("utf-8")).hexdigest()[:8])
+               hashlib.sha256(raw.encode("utf-8")).hexdigest()[:8],
+               {k: v for k, v in meta.items() if k not in ("name", "version")})
     _cache[name] = p
     return p

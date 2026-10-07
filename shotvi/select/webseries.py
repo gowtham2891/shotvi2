@@ -1026,6 +1026,35 @@ DISCOVER_SCHEMA = {
     },
     "required": ["episode_notes", "moments"],
 }
+PAYOFF_TYPES = ("punchline", "reveal", "conclusion", "emotional_peak")
+# Optional answer fields an A/B discover prompt may ask for in its front matter (`answer_fields: payoff_line,
+# payoff_type`). DISCOVER_SCHEMA itself never changes: the schema is part of the response cache key, so the cached
+# baseline runs stay valid; the fields are optional, so a baseline-shaped answer validates against the extended
+# schema too. They go FIRST in the moment object: the answer states the payoff before the span it is built around.
+DISCOVER_EXTRA_FIELDS = {
+    "payoff_line": {"type": "string", "description": "the payoff line, quoted word for word from the transcript"},
+    "payoff_type": {"type": "string", "enum": list(PAYOFF_TYPES)},
+}
+
+
+def discover_schema(cfg: dict | None) -> dict:
+    """DISCOVER_SCHEMA, extended with the optional fields the configured discover prompt declares (none: the
+    baseline object itself, byte-identical cache key)."""
+    from shotvi.select.prompts import load_prompt
+    want = [f.strip() for f in (load_prompt(prompt_file(cfg, "ws_discover")).meta.get("answer_fields") or "")
+            .split(",") if f.strip()]
+    if not want:
+        return DISCOVER_SCHEMA
+    unknown = sorted(set(want) - set(DISCOVER_EXTRA_FIELDS))
+    if unknown:
+        raise ValueError(f"prompt {prompt_file(cfg, 'ws_discover')}: unknown answer_fields {unknown}; "
+                         f"known: {sorted(DISCOVER_EXTRA_FIELDS)}")
+    out = copy.deepcopy(DISCOVER_SCHEMA)
+    item = out["properties"]["moments"]["items"]
+    item["properties"] = {**{k: DISCOVER_EXTRA_FIELDS[k] for k in want}, **item["properties"]}
+    return out
+
+
 _NUM = {"type": "number", "minimum": 1, "maximum": 5}
 REVIEW_SCHEMA = {
     "type": "object",
@@ -1413,7 +1442,8 @@ def discover_by_scene(ep: Episode, ix, tr: dict, cfg: dict, llm, guard: Guard, v
         + SC.scene_table(ep, plan["scenes"]))
     log(f"{vid}: projection {json.dumps({k: v for k, v in proj.items() if k != 'ws_discover'}, ensure_ascii=False)}; "
         f"discover {json.dumps({k: v for k, v in proj['ws_discover'].items() if k != 'per_call'})}")
-    uncached = [k for k, (s, u) in enumerate(calls) if not is_cached(llm, spec, s, u, DISCOVER_SCHEMA)]
+    schema = discover_schema(cfg)
+    uncached = [k for k, (s, u) in enumerate(calls) if not is_cached(llm, spec, s, u, schema)]
     pc = proj["ws_discover"]["per_call"]
     rest = {k: proj["ws_review"][k] + proj["video_end_check"][k] for k in ("inr_expected", "inr_worst", "inr")}
     bill = {k: sum(pc[j][k] for j in uncached) + rest[k] for k in rest}
@@ -1444,7 +1474,7 @@ def discover_by_scene(ep: Episode, ix, tr: dict, cfg: dict, llm, guard: Guard, v
     moments, rejected, per_call, notes = [], [], [], []
     for win, (s, u) in zip(plan["windows"], calls):
         sc = win["scene"]
-        d = llm.generate_json("ws_discover", spec, s, u, DISCOVER_SCHEMA, meta={"video": vid, "scene": sc["no"]})
+        d = llm.generate_json("ws_discover", spec, s, u, schema, meta={"video": vid, "scene": sc["no"]})
         ids = SC.window_ids(ep, win)
         rec = {"scene": sc["no"], "lines": [sc["first_line"], sc["last_line"]],
                "context_before": ids["before"][:1] + ids["before"][-1:], "context_after": ids["after"][:1]
@@ -1529,7 +1559,8 @@ def run_episode(vid: str, cfg: dict, llm, guard: Guard, out_dir: Path, log=print
         proj = project_episode(ep, ix, cfg, system, user, llm=None if (dry_run or llm.cache_only) else llm,
                                calib=calib, log=log)
         log(f"{vid}: projection {json.dumps(proj, ensure_ascii=False)}")
-        disc_cached = is_cached(llm, spec, system, user, DISCOVER_SCHEMA)
+        schema = discover_schema(cfg)
+        disc_cached = is_cached(llm, spec, system, user, schema)
         if dry_run:
             if not disc_cached:
                 return dry_result(vid, proj, "ws_discover", proj["episode"]["inr_expected"], proj["episode"]["inr"],
@@ -1547,7 +1578,7 @@ def run_episode(vid: str, cfg: dict, llm, guard: Guard, out_dir: Path, log=print
 
         debug = {"video_id": vid, "projection": proj, "warnings": []}
         # ------------------------------------------------------------ 2. discover
-        disc = llm.generate_json("ws_discover", spec, system, user, DISCOVER_SCHEMA, meta={"video": vid})
+        disc = llm.generate_json("ws_discover", spec, system, user, schema, meta={"video": vid})
         moments = disc["moments"]
         debug["discover"] = disc
         log(f"{vid}: {len(moments)} moments nominated")
@@ -1858,6 +1889,7 @@ def proposal_doc(ep: Episode, x: dict, rank: int, cfg, line_of_word) -> dict:
            "discovery": {"strength": m.get("strength"), "what_happens": m.get("what_happens"),
                          "hook": m.get("hook"), "payoff": m.get("payoff"),
                          "opening_strength": m.get("opening_strength"),
+                         **payoff_fields(m),
                          **({"scene": m["scene"]} if "scene" in m else {})},
            "review": {"cold_open_note": r.get("cold_open_note"), "cut_note": r.get("cut_note"),
                       "bad_cuts": r.get("bad_cuts"), "changes": c.get("review_changes") or []},
@@ -1887,13 +1919,19 @@ def rejected_doc(ep: Episode, x: dict, cfg) -> dict | None:
         pieces = [{"start_word": sp[0]["words"][0], "end_word": sp[-1]["words"][1],
                    "start": round(W[sp[0]["words"][0]]["start"], 3), "end": round(W[sp[-1]["words"][1]]["end"], 3)}]
         return {**base, "pieces": pieces, **core_fields(ep, pieces, cfg["guardrails"]["skip_s"]),
-                "moment": {k: m.get(k) for k in ("purpose", "start_line", "end_line", "hook", "payoff", "strength")}}
+                "moment": {**{k: m.get(k) for k in ("purpose", "start_line", "end_line", "hook", "payoff", "strength")},
+                           **payoff_fields(m)}}
     out = {**base, "pieces": c["pieces"], **core_fields(ep, c["pieces"], cfg["guardrails"]["skip_s"]),
            "time_segments": c["time_segments"], "video_duration": c["video_duration"],
            "clip_purpose": x["moment"].get("purpose"), "cold_open": bool(c["cold_open"])}
     if x.get("scores"):
         out["scores"] = x["scores"]
     return out
+
+
+def payoff_fields(m: dict) -> dict:
+    """The optional payoff-first answer fields (DISCOVER_EXTRA_FIELDS) a moment carries, for the output docs."""
+    return {k: m[k] for k in DISCOVER_EXTRA_FIELDS if m.get(k)}
 
 
 def one_line(s: str, n: int = 200) -> str:
@@ -1960,6 +1998,9 @@ def clips_md(ep: Episode, doc: dict) -> str:
             out.append(f"- shot flag: {s}")
         out.append(f"- why: {p['why_it_works']}")
         out.append(f"- hook line: {p['hook_line']['text']}")
+        d = p.get("discovery") or {}
+        if d.get("payoff_type") or d.get("payoff_line"):
+            out.append(f"- payoff ({d.get('payoff_type', '?')}): {d.get('payoff_line', '')}")
         for cu in p["chunk_drops"]:
             out.append(f"- cut {fmt(cu['start'])}-{fmt(cu['end'])} ({cu['removed_s']} s): "
                        f"{'cold-open skip ' if cu['lift_skip'] else ''}{cu['why']}")
