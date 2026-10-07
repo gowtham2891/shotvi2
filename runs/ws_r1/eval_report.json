@@ -50,15 +50,52 @@
    5,
    10
   ],
-  "VERDICTS": [
+  "RATED": [
    "yes",
    "maybe",
    "no"
+  ],
+  "UNRATED": [
+   "held",
+   "pending"
+  ],
+  "VERDICTS": [
+   "yes",
+   "maybe",
+   "no",
+   "held",
+   "pending"
   ],
   "GT_MODES": [
    "yes",
    "all"
   ],
+  "STATUSES": [
+   "matched",
+   "acceptable",
+   "founder_no",
+   "unrated",
+   "duplicate",
+   "partial",
+   "new"
+  ],
+  "CATEGORIES": [
+   "hit",
+   "acceptable",
+   "founder_no",
+   "unrated",
+   "duplicate"
+  ],
+  "TIERS": [
+   "recommended",
+   "worth_a_look",
+   "below_threshold"
+  ],
+  "PREC_KS": [
+   3,
+   5
+  ],
+  "OVER_PROPOSE": 2.0,
   "zones": {
    "PAD": 0.5,
    "RUN_LINES": 4,
@@ -81,7 +118,10 @@
   }
  },
  "skipped_no_proposals": [
-  "epZ0lbXkgWA"
+  "epZ0lbXkgWA",
+  "gQZBXu5FAbs",
+  "H41fJJJYTqo",
+  "xmx9n4oLs-M"
  ],
  "episodes": [
   {
@@ -94,8 +134,93 @@
     "n_gt_all": 8,
     "n_maybe": 0,
     "n_no": 0,
+    "n_unrated": 0,
+    "unrated_verdicts": {},
     "acceptable_hits": 0,
     "founder_no_hits": 0,
+    "unrated_hits": 0,
+    "precision": {
+     "by_tier": {
+      "recommended": {
+       "shown": 3,
+       "hit": 3,
+       "acceptable": 0,
+       "founder_no": 0,
+       "unrated": 0,
+       "duplicate": 0,
+       "rated": 3,
+       "precision": 1.0
+      },
+      "worth_a_look": {
+       "shown": 5,
+       "hit": 5,
+       "acceptable": 0,
+       "founder_no": 0,
+       "unrated": 0,
+       "duplicate": 0,
+       "rated": 5,
+       "precision": 1.0
+      }
+     },
+     "by_rank": {
+      "@3": {
+       "shown": 3,
+       "hit": 3,
+       "acceptable": 0,
+       "founder_no": 0,
+       "unrated": 0,
+       "duplicate": 0,
+       "rated": 3,
+       "precision": 1.0
+      },
+      "@5": {
+       "shown": 5,
+       "hit": 5,
+       "acceptable": 0,
+       "founder_no": 0,
+       "unrated": 0,
+       "duplicate": 0,
+       "rated": 5,
+       "precision": 1.0
+      },
+      "all": {
+       "shown": 8,
+       "hit": 8,
+       "acceptable": 0,
+       "founder_no": 0,
+       "unrated": 0,
+       "duplicate": 0,
+       "rated": 8,
+       "precision": 1.0
+      }
+     },
+     "top_tier": "recommended",
+     "top": {
+      "shown": 3,
+      "hit": 3,
+      "acceptable": 0,
+      "founder_no": 0,
+      "unrated": 0,
+      "duplicate": 0,
+      "rated": 3,
+      "precision": 1.0
+     },
+     "founder_no_shown": 0,
+     "count_flag": "under-proposing"
+    },
+    "headline": {
+     "n_yes": 8,
+     "top_tier": "recommended",
+     "shown_top": 3,
+     "rated_top": 3,
+     "hits_top": 3,
+     "precision_top": 1.0,
+     "founder_no_top": 0,
+     "founder_no_shown": 0,
+     "missed_yes": [],
+     "recall_yes": 1.0,
+     "count_flag": "under-proposing"
+    },
     "founder_scored": 0,
     "mean_founder_payoff_matched": null,
     "mean_founder_overall_matched": null,
@@ -127,6 +252,7 @@
      "matched": 8,
      "acceptable": 0,
      "founder_no": 0,
+     "unrated": 0,
      "duplicate": 0,
      "partial": 0,
      "new": 0
@@ -213,6 +339,7 @@
      "purpose": "standalone",
      "cold_open": false,
      "title": "పుల్లారెడ్డి sweets ని అమ్మాయే చేసిందంట!",
+     "tier": null,
      "excerpt": "మీకు వంట వచ్చా? చచ్చింది గొర్ర. ఆహా! ఆ వచ్చు బాబు. ఎందుకు రాదు. అ-అందుకే ...",
      "verdict": "yes",
      "founder_scores": null,
@@ -263,6 +390,7 @@
      "purpose": "standalone",
      "cold_open": false,
      "title": "Marriage అంటే full meals లాంటిది, salt ఏ husband!",
+     "tier": null,
      "excerpt": "వాడు marriage గురించి ఎలా explain చేసాడో తెలుసా? ఆ ఈ రోజుల్లో marriage అనేది ...",
      "verdict": "yes",
      "founder_scores": null,
@@ -325,6 +453,7 @@
      "purpose": "standalone",
      "cold_open": false,
      "title": "పొట్టిగా ఉండటం మీ లోపం కాదండి | ఐదో పెళ్లిచూపులు",
+     "tier": null,
      "excerpt": "మీకు ఇది ఎన్నో పెళ్లిచూపులు మొదటి పెళ్లిచూపులు కానీ నాకిది ఐదో పెళ్లిచూపులు ఓహో! అంటే ...",
      "verdict": "yes",
      "founder_scores": null,
@@ -379,6 +508,7 @@
      "purpose": "standalone",
      "cold_open": false,
      "title": "గోంగూర అడిగితే గోరింటాకు అంటుంది! | పిండి family",
+     "tier": null,
      "excerpt": "మీరు బయట food తినరు కదా. మీకు అన్ని dishes వచ్చినప్పుడు. ఆ మీ favourite ...",
      "verdict": "yes",
      "founder_scores": null,
@@ -429,6 +559,7 @@
      "purpose": "promo",
      "cold_open": false,
      "title": "వంట రాదని చెప్పేలోపే... 'Let's make our marriage life tasty'",
+     "tier": null,
      "excerpt": "నేను ఒక విషయం చెప్పాలి మీకు అంతకన్నా ముందు నేను మీకు ఒక విషయం చెప్పాలి. ...",
      "verdict": "yes",
      "founder_scores": null,
@@ -479,6 +610,7 @@
      "purpose": "standalone",
      "cold_open": false,
      "title": "చపాతీ పూరీ అయిపోద్ది, cooker తో దీపావళి plan!",
+     "tier": null,
      "excerpt": "పోసేయ్, పోసేయ్, పోసేయ్. అది నూనె అనుకుంటున్నావా, బండిలో పోసే petrol అనుకుంటున్నావా, అంత పోసావు. ...",
      "verdict": "yes",
      "founder_scores": null,
@@ -537,6 +669,7 @@
      "purpose": "promo",
      "cold_open": false,
      "title": "అబద్ధాలు చెప్తే అస్సలు తీసుకోలేను! | కొత్త అల్లుడి warning",
+     "tier": null,
      "excerpt": "అత్తమ్మ మీరు మీ కూతుర్ని miss అవుతున్నారంటే చెప్పండి. ఇక్కడే వదిలేసి వెళ్తాను. అలా ఏం ...",
      "verdict": "yes",
      "founder_scores": null,
@@ -591,6 +724,7 @@
      "purpose": "standalone",
      "cold_open": false,
      "title": "Hostel food బాధ ప్రతి అబ్బాయికీ తెలుసు | food made with love",
+     "tier": null,
      "excerpt": "ఏరా ఆ అమ్మాయి అంత నచ్చిందా? నీలా నువ్వే మురిసిపోతున్నావ్. అమ్మాయి చాలా బాగుందిరా. కానీ ...",
      "verdict": "yes",
      "founder_scores": null,
@@ -652,6 +786,7 @@
      "purpose": "standalone",
      "cold_open": false,
      "title": "పొట్టిగా ఉన్న అమ్మాయిల కోసమే!",
+     "tier": "recommended",
      "excerpt": "ఆ మీకు ఇది ఎన్నో పెళ్లిచూపులు మొదటి పెళ్లిచూపులు కానీ నాకిది ఐదో పెళ్లిచూపులు ఓహో! ...",
      "checks": {
       "segments": {
@@ -742,6 +877,7 @@
      "purpose": "standalone",
      "cold_open": false,
      "title": "Marriage అనేది Full Meals లాంటిది",
+     "tier": "recommended",
      "excerpt": "ఈ రోజుల్లో marriage అనేది full meals లాంటిది. starting లో hot and exciting ...",
      "checks": {
       "segments": {
@@ -836,6 +972,7 @@
      "purpose": "standalone",
      "cold_open": false,
      "title": "పుల్లారెడ్డి Sweets గోల!",
+     "tier": "recommended",
      "excerpt": "మీకు వంట వచ్చా? చచ్చింది గొర్ర. ఆహా! ఆ వచ్చు బాబు. ఎందుకు రాదు. వచ్చే ...",
      "checks": {
       "segments": {
@@ -926,6 +1063,7 @@
      "purpose": "standalone",
      "cold_open": false,
      "title": "Curry point పెట్టేస్తున్నావా ఏంటి?",
+     "tier": "worth_a_look",
      "excerpt": "మరి లేకపోతే ఏంట్రా? నువ్వేమన్నా ఆ అమ్మాయితో curry point పెట్టేస్తున్నావా? పెళ్లిచూపులకి వెళ్లి చూడాల్సింది ...",
      "checks": {
       "segments": {
@@ -1016,6 +1154,7 @@
      "purpose": "standalone",
      "cold_open": false,
      "title": "చపాతీ పూరీ అయిపోయింది",
+     "tier": "worth_a_look",
      "excerpt": "నూనెయ్యవే! పోసేయ్, పోసేయ్, పోసేయ్. అది నూనె అనుకుంటున్నావా, బండిలో పోసే petrol అనుకుంటున్నావా, అంత ...",
      "checks": {
       "segments": {
@@ -1108,6 +1247,7 @@
      "purpose": "standalone",
      "cold_open": false,
      "title": "గోంగూర అంటే గోరింటాకు అనుకుంది!",
+     "tier": "worth_a_look",
      "excerpt": "అయ్యో అయినా మిమ్మల్ని అడుగుతున్నా ఏంటి? మీరు బయట food తినరు కదా. మీకు అన్ని ...",
      "checks": {
       "segments": {
@@ -1198,6 +1338,7 @@
      "purpose": "standalone",
      "cold_open": false,
      "title": "పెళ్లయ్యాక నీ ఇష్టం!",
+     "tier": "worth_a_look",
      "excerpt": "నేను ఒక విషయం చెప్పాలి మీకు అంతకన్నా ముందు నేను మీకు ఒక విషయం చెప్పాలి. ...",
      "checks": {
       "segments": {
@@ -1288,6 +1429,7 @@
      "purpose": "promo",
      "cold_open": false,
      "title": "అబద్ధాలు ఆడితే నాకు నచ్చదు!",
+     "tier": "worth_a_look",
      "excerpt": "ఆహా లేదు. మీరు మీ కూతుర్ని miss అవుతున్నారో లేదో తెలీదు గానీ, తను చేసే ...",
      "checks": {
       "segments": {
@@ -1963,8 +2105,109 @@
     "n_gt_all": 12,
     "n_maybe": 0,
     "n_no": 0,
+    "n_unrated": 0,
+    "unrated_verdicts": {},
     "acceptable_hits": 0,
     "founder_no_hits": 0,
+    "unrated_hits": 0,
+    "precision": {
+     "by_tier": {
+      "recommended": {
+       "shown": 3,
+       "hit": 3,
+       "acceptable": 0,
+       "founder_no": 0,
+       "unrated": 0,
+       "duplicate": 0,
+       "rated": 3,
+       "precision": 1.0
+      },
+      "worth_a_look": {
+       "shown": 4,
+       "hit": 4,
+       "acceptable": 0,
+       "founder_no": 0,
+       "unrated": 0,
+       "duplicate": 0,
+       "rated": 4,
+       "precision": 1.0
+      },
+      "below_threshold": {
+       "shown": 1,
+       "hit": 0,
+       "acceptable": 0,
+       "founder_no": 0,
+       "unrated": 1,
+       "duplicate": 0,
+       "rated": 0,
+       "precision": null
+      }
+     },
+     "by_rank": {
+      "@3": {
+       "shown": 3,
+       "hit": 3,
+       "acceptable": 0,
+       "founder_no": 0,
+       "unrated": 0,
+       "duplicate": 0,
+       "rated": 3,
+       "precision": 1.0
+      },
+      "@5": {
+       "shown": 5,
+       "hit": 5,
+       "acceptable": 0,
+       "founder_no": 0,
+       "unrated": 0,
+       "duplicate": 0,
+       "rated": 5,
+       "precision": 1.0
+      },
+      "all": {
+       "shown": 8,
+       "hit": 7,
+       "acceptable": 0,
+       "founder_no": 0,
+       "unrated": 1,
+       "duplicate": 0,
+       "rated": 7,
+       "precision": 1.0
+      }
+     },
+     "top_tier": "recommended",
+     "top": {
+      "shown": 3,
+      "hit": 3,
+      "acceptable": 0,
+      "founder_no": 0,
+      "unrated": 0,
+      "duplicate": 0,
+      "rated": 3,
+      "precision": 1.0
+     },
+     "founder_no_shown": 0,
+     "count_flag": "under-proposing"
+    },
+    "headline": {
+     "n_yes": 12,
+     "top_tier": "recommended",
+     "shown_top": 3,
+     "rated_top": 3,
+     "hits_top": 3,
+     "precision_top": 1.0,
+     "founder_no_top": 0,
+     "founder_no_shown": 0,
+     "missed_yes": [
+      "w03",
+      "w04",
+      "w10",
+      "w11",
+      "w12"
+     ],
+     "recall_yes": 0.583,
+     "count_flag": "under-proposing"
+    },
     "founder_scored": 0,
     "mean_founder_payoff_matched": null,
     "mean_founder_overall_matched": null,
@@ -2002,6 +2245,7 @@
      "matched": 7,
      "acceptable": 0,
      "founder_no": 0,
+     "unrated": 0,
      "duplicate": 0,
      "partial": 1,
      "new": 0
@@ -2068,6 +2312,7 @@
      "purpose": "standalone",
      "cold_open": false,
      "title": "Heart తో communicate అవ్వాలి… This is why I love short girls",
+     "tier": null,
      "excerpt": "దేనికో waiting. అబ్బచ్చా! అప్పుడే మర్చిపోయావా? ఆ, ఏం మర్చిపోవడం? Night escape అయినట్టు ఇప్పుడు ...",
      "verdict": "yes",
      "founder_scores": null,
@@ -2130,6 +2375,7 @@
      "purpose": "promo",
      "cold_open": true,
      "title": "మిర్చి బజ్జీలు నువ్వే వెయ్, నేను చూడాలి! Red handed గా దొరికిపోయిందా?",
+     "tier": null,
      "excerpt": "నీకు వచ్చిన పెళ్ళాం కనీసం gas stove off చేయడం on చేయడం కూడా రాదన్నావ్ ...",
      "verdict": "yes",
      "founder_scores": null,
@@ -2180,6 +2426,7 @@
      "purpose": "standalone",
      "cold_open": false,
      "title": "అమ్మ చేతి వంటలా ఉంది… 'మా అమ్మ చెయ్యలేదు ఒట్టు!'",
+     "tier": null,
      "excerpt": "అమ్మ చేతి వంటలా ఉంది. హా మా అమ్మ చెయ్యలేదు నిజంగా మా అమ్మ చెయ్యలేదు ...",
      "verdict": "yes",
      "founder_scores": null,
@@ -2208,6 +2455,7 @@
      "purpose": "promo",
      "cold_open": true,
      "title": "అబద్ధం అంటేనే fire అయిపోతాడు… అమృత పరిస్థితి ఏంటి?",
+     "tier": null,
      "excerpt": "అబద్ధాలు చెప్పి పెళ్లి చేసుకోవడం correct ఏనా? ఆ మావోడు food విషయంలో చాలా particular ...",
      "verdict": "yes",
      "founder_scores": null,
@@ -2235,6 +2483,7 @@
      "purpose": "standalone",
      "cold_open": false,
      "title": "చాయ్ is an emotion… B positive కాదు T positive!",
+     "tier": null,
      "excerpt": "అయినా నీకు చాయ్ గోలేంట్రా? ఏంటి చాయ్ గోలా అసలు చాయ్ అంటే ఏమనుకుంటున్నారు. It's ...",
      "verdict": "yes",
      "founder_scores": null,
@@ -2289,6 +2538,7 @@
      "purpose": "standalone",
      "cold_open": false,
      "title": "First night నీ ఇష్టమే… But I want one thing!",
+     "tier": null,
      "excerpt": "మన first night అనేది నీ ఇష్టమే I am not that desperate But ...",
      "verdict": "yes",
      "founder_scores": null,
@@ -2347,6 +2597,7 @@
      "purpose": "standalone",
      "cold_open": true,
      "title": "నాకు చాయ్ పెట్టడానికే కదా లేచావ్? First day నే దొరికిపోయిందా!",
+     "tier": null,
      "excerpt": "first day నే దొరికిపోయేలా ఉన్నావు కదా. నేనెందుకింత తొందరగా లేచానో నాకు తెలియదు గానీ, ...",
      "verdict": "yes",
      "founder_scores": null,
@@ -2397,6 +2648,7 @@
      "purpose": "standalone",
      "cold_open": false,
      "title": "Egg దోశ కావాలంట… అమ్మ ముందే box లో పెట్టేసింది!",
+     "tier": null,
      "excerpt": "ఆహ్, రేపు morning tiffin and lunch ఏం చెయ్యాలి? ఇప్పుడెందుకు అడుగుతున్నావ్? ఆహ్, చెయ్యించాలి ...",
      "verdict": "yes",
      "founder_scores": null,
@@ -2447,6 +2699,7 @@
      "purpose": "standalone",
      "cold_open": false,
      "title": "First night అంత over hyped thing ఇంకోటి ఉండదు!",
+     "tier": null,
      "excerpt": "ఏయ్ ఏంటి matter? Matter ఏంటి? అదే night బొమ్మ blockbuster ఆ? అంత ఊహించేసుకోకు ...",
      "verdict": "yes",
      "founder_scores": null,
@@ -2497,6 +2750,7 @@
      "purpose": "standalone",
      "cold_open": false,
      "title": "Dinner ఏ కాదు carriage కూడా తనే పెడుతుంది! అమ్మ హామీలు",
+     "tier": null,
      "excerpt": "నాకోసం ఏం వండవు. ఆ ఆ తోటకూర పప్పు ఆవకాయ ఊ ఆ ఇది కూడా ...",
      "verdict": "yes",
      "founder_scores": null,
@@ -2529,6 +2783,7 @@
      "purpose": "standalone",
      "cold_open": true,
      "title": "First easy వంట try చేద్దాం… popcorn I am coming!",
+     "tier": null,
      "excerpt": "అమ్మే! ప్రతిసారి వంటల కోసం అమ్మనేమడుగుతాం. మనం కూడా try చేద్దాం. First easy with ...",
      "verdict": "yes",
      "founder_scores": null,
@@ -2549,6 +2804,7 @@
      "purpose": "standalone",
      "cold_open": false,
      "title": "Nail polish నేను వెయ్యనా? | Husband goals",
+     "tier": null,
      "excerpt": "nail polish వేస్తున్నావా? ఉమ్ సరే నేను వెయ్యనా? వద్దు వద్దు పర్లేదు వద్దు. అంత ...",
      "verdict": "yes",
      "founder_scores": null,
@@ -2572,6 +2828,7 @@
      "purpose": "standalone",
      "cold_open": false,
      "title": "First night reality అంటే ఇదేరా బాబు",
+     "tier": "recommended",
      "excerpt": "అదే night బొమ్మ blockbuster ఆ? అంత ఊహించేసుకోకు first night అనేదానికన్నా over hypeడ్ ...",
      "checks": {
       "segments": {
@@ -2666,6 +2923,7 @@
      "purpose": "standalone",
      "cold_open": false,
      "title": "Direct గా Hug అడగాల్సింది రా బాబు",
+     "tier": "recommended",
      "excerpt": "నేను కొన్ని most important topic మాట్లాడాలనుకుంటున్నాను అదే మన శోభనం గురించి మన first ...",
      "checks": {
       "segments": {
@@ -2756,6 +3014,7 @@
      "purpose": "standalone",
      "cold_open": false,
      "title": "చాయ్ అంటే emotion రా బాబు",
+     "tier": "recommended",
      "excerpt": "అయినా నీకు చాయ్ గోలేంట్రా? ఏంటి చాయ్ గోలా అసలు చాయ్ అంటే ఏమనుకుంటున్నారు. It's ...",
      "checks": {
       "segments": {
@@ -2856,6 +3115,7 @@
      "purpose": "standalone",
      "cold_open": true,
      "title": "మొదటి రోజే దొరికిపోతుందా?",
+     "tier": "worth_a_look",
      "excerpt": "first day నే దొరికిపోయేలా ఉన్నావు కదా. మరి పెట్టావా? ఆ ఆ అదే పనిలో ...",
      "checks": {
       "segments": {
@@ -2950,6 +3210,7 @@
      "purpose": "promo",
      "cold_open": false,
      "title": "మిర్చి బజ్జి చేస్తూ దొరికిపోతుందా?",
+     "tier": "worth_a_look",
      "excerpt": "బయట climate అదిరిపోయింది తెలుసా అందుకే snacks గా మిర్చి బజ్జి తినడానికి వచ్చాను. ఆ ...",
      "checks": {
       "segments": {
@@ -3040,6 +3301,7 @@
      "purpose": "standalone",
      "cold_open": false,
      "title": "Short girls తో ఇదే ప్రాబ్లమ్",
+     "tier": "worth_a_look",
      "excerpt": "దేనికో waiting. అబ్బచ్చా! అప్పుడే మర్చిపోయావా? ఆ, ఏం మర్చిపోవడం? Night escape అయినట్టు ఇప్పుడు ...",
      "checks": {
       "segments": {
@@ -3130,6 +3392,7 @@
      "purpose": "standalone",
      "cold_open": false,
      "title": "అమ్మ వేసిన మాస్టర్ ప్లాన్",
+     "tier": "worth_a_look",
      "excerpt": "Plain దోశా. ఓహ్! Sorry నీకు చెప్పడం మర్చిపోయాను. నాకు egg దోశ అంటే ఇష్టం. ...",
      "checks": {
       "segments": {
@@ -3220,6 +3483,7 @@
      "purpose": "standalone",
      "cold_open": false,
      "title": "అబద్ధాలు చెప్పి పెళ్లి చేశావా అమ్మా?",
+     "tier": "below_threshold",
      "excerpt": "పెళ్ళికి ముందు ఏమన్నావే? అమ్మా! ఉమ్ అబద్ధాలు చెప్పి పెళ్లి చేసుకోవడం correct ఏనా? ఊ ...",
      "checks": {
       "segments": {

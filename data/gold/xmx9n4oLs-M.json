@@ -84,7 +84,13 @@
    "cold_open": false,
    "payoff_line": "మీతో ఏదన్నా problem వచ్చి పంపించవలసి వస్తే one rupee కూడా తిరిగి రాదని",
    "payoff_type": "hard line (no refund) with her stunned reaction held (101.5-102.8)",
-   "founder_would_post": "pending"
+   "founder_would_post": "no",
+   "founder_scores": {
+    "hook": 2,
+    "standalone": 2,
+    "payoff": 2,
+    "overall": 2
+   }
   },
   {
    "id": "w02",
@@ -149,7 +155,13 @@
    "cold_open": false,
    "payoff_line": "మీకెవరైతే అయిపోయింది అని చెప్పాలో వాళ్లే two minutes లో call చేసి చెప్తారు",
    "payoff_type": "mic-drop line + visual payoff (warden's phone rings, she answers, 228-232)",
-   "founder_would_post": "pending"
+   "founder_would_post": "no",
+   "founder_scores": {
+    "hook": 2,
+    "standalone": 2,
+    "payoff": 2,
+    "overall": 2
+   }
   },
   {
    "id": "w03",
@@ -402,7 +414,13 @@
    "cold_open": false,
    "payoff_line": "At least వాడికి exams ఉన్నాయని తెలుసు కదా / అది… ఉమ్ అరేయ్ (Tarun leaves with the bottle)",
    "payoff_type": "comic reaction: Tarun silenced, gets up and leaves (frames 668-674)",
-   "founder_would_post": "pending"
+   "founder_would_post": "maybe",
+   "founder_scores": {
+    "hook": 3,
+    "standalone": 4,
+    "payoff": 3,
+    "overall": 3
+   }
   },
   {
    "id": "w07",
@@ -467,7 +485,13 @@
    "cold_open": false,
    "payoff_line": "నిజం చెప్పాలంటే Akshara అంటే నాకు చాలా ఇష్టం రా… / Jai కి నువ్వంటే ఇష్టం ఉండొచ్చు కదా / impossible, Jai గురించి నాకు తెలీదా?",
    "payoff_type": "reveal (Jai's confession) capped by dramatic-irony punchline with a laugh beat (801)",
-   "founder_would_post": "pending"
+   "founder_would_post": "yes",
+   "founder_scores": {
+    "hook": 4,
+    "standalone": 4,
+    "payoff": 5,
+    "overall": 4
+   }
   },
   {
    "id": "w08",
@@ -549,5 +573,5 @@
    "founder_would_post": "held"
   }
  ],
- "founder_review": "pending: clip-judge gate applied 2026-10-07 (runs/judge/gh2_gate.md): 4 clips shown to the founder (w07, w06, w01, w02), 4 held (founder_would_post = 'held'); re-cuts noted per clip under 'Gate re-cut'."
+ "founder_review": "data/human/ratings_gt_gh2_r1.csv"
 }

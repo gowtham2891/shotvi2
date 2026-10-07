@@ -83,7 +83,13 @@
    "cold_open": false,
    "payoff_line": "మీది child marriage ఆ? / ఏం marriage అయితే నీకెందుకురా. మూసుకుని పో.",
    "payoff_type": "punchline + retort, ends on her close-up after 'మూసుకుని పో'",
-   "founder_would_post": "pending"
+   "founder_would_post": "maybe",
+   "founder_scores": {
+    "hook": 3,
+    "standalone": 3,
+    "payoff": 3,
+    "overall": 2
+   }
   },
   {
    "id": "w02",
@@ -209,7 +215,13 @@
    "cold_open": false,
    "payoff_line": "ఇది India. మాలాంటోళ్ళు బ్రతకాలన్నా ఏదో ఒక పని చేసుకొనే బ్రతకాలి… నీ చెత్త brain ది problem / అవునే చెత్త brain ఏ నీది",
    "payoff_type": "quotable comeback that snaps; Dhana's stunned face (190-192)",
-   "founder_would_post": "pending"
+   "founder_would_post": "yes",
+   "founder_scores": {
+    "hook": 5,
+    "standalone": 4,
+    "payoff": 5,
+    "overall": 5
+   }
   },
   {
    "id": "w04",
@@ -414,7 +426,13 @@
    "cold_open": false,
    "payoff_line": "అక్షర చదువుకి, సంస్కారానికి ఏం సంబంధం ఉండదు. ఎవరో ఏదో అన్నారని నువ్వు feel అవ్వకు.",
    "payoff_type": "quotable conclusion that snaps, advice line, then the visual answer (she picks up Jai's call)",
-   "founder_would_post": "pending"
+   "founder_would_post": "maybe",
+   "founder_scores": {
+    "hook": 3,
+    "standalone": 3,
+    "payoff": 3,
+    "overall": 3
+   }
   },
   {
    "id": "w07",
@@ -478,7 +496,13 @@
    "cold_open": false,
    "payoff_line": "అబ్బో! అంత caring ఆ. లేకపోతే నీకు ఇవ్వాల్సిన ముప్పై వేలు ఎక్కడ ఎగ్గొట్టి వెళ్ళిపోతాననే భయమా / ఏం sadism ఏ పాపం",
    "payoff_type": "punchline with laugh event (470.4) + Meenakshi's comic tag",
-   "founder_would_post": "pending"
+   "founder_would_post": "maybe",
+   "founder_scores": {
+    "hook": 4,
+    "standalone": 4,
+    "payoff": 4,
+    "overall": 3
+   }
   },
   {
    "id": "w08",
@@ -558,7 +582,13 @@
    "cold_open": false,
    "payoff_line": "I am really sorry / ఊ it's ok / Thanks for understanding",
    "payoff_type": "reversal (he apologises after demanding a sorry), read out as texts",
-   "founder_would_post": "pending"
+   "founder_would_post": "no",
+   "founder_scores": {
+    "hook": 3,
+    "standalone": 3,
+    "payoff": 2,
+    "overall": 2
+   }
   },
   {
    "id": "w09",
@@ -689,5 +719,5 @@
    "founder_would_post": "held"
   }
  ],
- "founder_review": "pending: clip-judge gate applied 2026-10-07 (runs/judge/gh2_gate.md): 5 clips shown to the founder (w03, w07, w08, w01, w06), 5 held (founder_would_post = 'held'); re-cuts noted per clip under 'Gate re-cut'."
+ "founder_review": "data/human/ratings_gt_gh2_r1.csv"
 }

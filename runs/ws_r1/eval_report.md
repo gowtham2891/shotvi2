@@ -1,13 +1,24 @@
 # Web-series eval: `D:\shotvi\runs\ws_r1`
 
-GT = clips the founder would post (`founder_would_post: yes`). Matching: a proposal matches a GT clip if it covers >= 50% of the GT's spoken core and the source-span IoU is >= 0.2; proposals are taken in rank order, each matching at most one GT clip. Leftover proposals are matched the same way against the founder's `maybe` clips (`acceptable`: not a miss, not a false positive) and `no` clips (`founder_no`: a negative hit). Unmatched proposals are not errors: `new` and `partial` ones need the founder's rating. Founder payoff/overall columns are the founder's scores for the GT cut of that moment (informational), not a rating of the proposal.
+GT = clips the founder would post (`founder_would_post: yes`). Matching: a proposal matches a GT clip if it covers >= 50% of the GT's spoken core and the source-span IoU is >= 0.2; proposals are taken in rank order, each matching at most one GT clip. Leftover proposals are matched the same way against the founder's `maybe` clips (`acceptable`: not a miss, not a false positive), `no` clips (`founder_no`: a negative hit) and the unrated `held` (hidden by the judge gate, never shown to the founder) / `pending` (not yet rated) clips (`unrated`: neither a hit nor a miss; such clips are never counted as missed). Unmatched proposals are not errors: `new` and `partial` ones need the founder's rating. Founder payoff/overall columns are the founder's scores for the GT cut of that moment (informational), not a rating of the proposal.
 
-## Episode summary
+## Headline: precision at the top
 
-| video | GT yes | maybe / no | props | recall (any) | recall@k=GT | recall@5 | missed | acceptable | founder_no | mean abs dstart / dend (s) | payoff+hold kept | drops setup | len ratio | word F1 | same purpose | props pass rules | GT pass rules | new / partial / dup |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| j14Om1SaFYE | 8 | 0 / 0 | 8 | 8/8 (100%) | 8/8 (100%) | 5/8 (62%) | - | 0/0 | 0/0 | 5.766 / 3.596 | 5/8 (62%) | 3/8 | 1.045 | 0.928 | 7/8 (88%) | 7/8 (88%) | 8/8 (100%) | 0 / 0 / 0 |
-| QWIvgoTQGKk | 12 | 0 / 0 | 8 | 7/12 (58%) | 7/12 (58%) | 5/12 (42%) | w03, w04, w10, w11, w12 | 0/0 | 0/0 | 8.109 / 8.75 | 4/7 (57%) | 3/7 | 0.967 | 0.883 | 7/7 (100%) | 7/8 (88%) | 10/12 (83%) | 0 / 1 / 0 |
+Of the proposals shown, how many land on a founder-yes clip (hit), a maybe (acceptable), a no (founder_no), or nothing rated (unrated: new / partial / on a held or pending clip; dup = a second proposal on a moment already matched). Precision = hits / rated shown. `founder_no shown` target is 0. Count: top-tier shown vs founder-yes count; over-proposing = shown > 2x yes, under-proposing = shown < yes.
+
+| video | founder yes / maybe / no / unrated | shown rec / look / below | top tier | hit / acc / no / unrated / dup | precision (top) | founder_no shown (top / all) | @3 | @5 | all | missed yes | recall yes | count |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| j14Om1SaFYE | 8 / 0 / 0 / 0 | 3 / 5 / 0 | recommended (3) | 3 / 0 / 0 / 0 / 0 | 3/3 (100%) | 0 / 0 | 3/3 (100%) | 5/5 (100%) | 8/8 (100%) | - | 8/8 (100%) | under-proposing |
+| QWIvgoTQGKk | 12 / 0 / 0 / 0 | 3 / 4 / 1 | recommended (3) | 3 / 0 / 0 / 0 / 0 | 3/3 (100%) | 0 / 0 | 3/3 (100%) | 5/5 (100%) | 7/7 (100%) | w03, w04, w10, w11, w12 | 7/12 (58%) | under-proposing |
+
+Overall (pooled over 2 episode(s)): top tier 6/6 (100%) hits of rated shown (6 shown, 0 unrated, 0 dup); all shown 15/15 (100%) (16 shown); founder_no shown 0 (0 in the top tier); missed yes 5 of 20; count flags: under-proposing x2. Small sample: 20 founder-yes clips, 6 rated top-tier proposals.
+
+## Secondary: recall and boundary metrics
+
+| video | GT yes | maybe / no / unrated | props | recall (any) | recall@k=GT | recall@5 | missed | acceptable | founder_no | unrated hits | mean abs dstart / dend (s) | payoff+hold kept | drops setup | len ratio | word F1 | same purpose | props pass rules | GT pass rules | new / partial / dup |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| j14Om1SaFYE | 8 | 0 / 0 / 0 | 8 | 8/8 (100%) | 8/8 (100%) | 5/8 (62%) | - | 0/0 | 0/0 | 0/0 | 5.766 / 3.596 | 5/8 (62%) | 3/8 | 1.045 | 0.928 | 7/8 (88%) | 7/8 (88%) | 8/8 (100%) | 0 / 0 / 0 |
+| QWIvgoTQGKk | 12 | 0 / 0 / 0 | 8 | 7/12 (58%) | 7/12 (58%) | 5/12 (42%) | w03, w04, w10, w11, w12 | 0/0 | 0/0 | 0/0 | 8.109 / 8.75 | 4/7 (57%) | 3/7 | 0.967 | 0.883 | 7/7 (100%) | 7/8 (88%) | 10/12 (83%) | 0 / 1 / 0 |
 
 Overall: recall 15/20 (75%), recall@k=GT 15/20 (75%), recall@5 per episode summed 10/20 (50%); acceptable hits 0 (of 0 maybe clips), founder_no hits 0 (of 0 no clips). Small sample: every number above rests on 20 founder-yes GT clips from 2 episode(s).
 
@@ -35,16 +46,16 @@ Setup dropped (proposal starts later and loses GT-kept lines):
 
 ### Proposals
 
-| rank | status | src | len | purpose | cold | lead-in | cuts | hold | fails | warns | excerpt |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| 1 | matched (w03) | 7:17.5-9:46.1 | 95s | standalone | no | 0.3 | 2 | 5.008 | - | - | ఆ మీకు ఇది ఎన్నో పెళ్లిచూపులు మొదటి పెళ్లిచూపులు కానీ నాకిది ఐదో పెళ్లిచూపులు ఓహో! ... |
-| 2 | matched (w02) | 12:49.1-13:57.6 | 68s | standalone | no | 0.3 | 0 | 1.15 | - | - | ఈ రోజుల్లో marriage అనేది full meals లాంటిది. starting లో hot and exciting ... |
-| 3 | matched (w01) | 3:31.0-5:16.7 | 68s | standalone | no | 0.3 | 1 | 3.182 | - | - | మీకు వంట వచ్చా? చచ్చింది గొర్ర. ఆహా! ఆ వచ్చు బాబు. ఎందుకు రాదు. వచ్చే ... |
-| 4 | matched (w09) | 10:24.3-11:17.6 | 53s | standalone | no | 0.3 | 0 | 2.97 | - | - | మరి లేకపోతే ఏంట్రా? నువ్వేమన్నా ఆ అమ్మాయితో curry point పెట్టేస్తున్నావా? పెళ్లిచూపులకి వెళ్లి చూడాల్సింది ... |
-| 5 | matched (w07) | 5:21.9-6:02.2 | 40s | standalone | no | 0.06 | 0 | 5.003 | flash | - | నూనెయ్యవే! పోసేయ్, పోసేయ్, పోసేయ్. అది నూనె అనుకుంటున్నావా, బండిలో పోసే petrol అనుకుంటున్నావా, అంత ... |
-| 6 | matched (w04) | 14:34.7-15:54.6 | 80s | standalone | no | 0.298 | 0 | 3.614 | - | - | అయ్యో అయినా మిమ్మల్ని అడుగుతున్నా ఏంటి? మీరు బయట food తినరు కదా. మీకు అన్ని ... |
-| 7 | matched (w06) | 11:48.8-12:32.4 | 44s | standalone | no | 0.3 | 0 | 2.664 | - | - | నేను ఒక విషయం చెప్పాలి మీకు అంతకన్నా ముందు నేను మీకు ఒక విషయం చెప్పాలి. ... |
-| 8 | matched (w08) | 17:13.9-18:19.5 | 66s | promo | no | 0.3 | 0 | 3.091 | - | - | ఆహా లేదు. మీరు మీ కూతుర్ని miss అవుతున్నారో లేదో తెలీదు గానీ, తను చేసే ... |
+| rank | tier | status | src | len | purpose | cold | lead-in | cuts | hold | fails | warns | excerpt |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | recommended | matched (w03) | 7:17.5-9:46.1 | 95s | standalone | no | 0.3 | 2 | 5.008 | - | - | ఆ మీకు ఇది ఎన్నో పెళ్లిచూపులు మొదటి పెళ్లిచూపులు కానీ నాకిది ఐదో పెళ్లిచూపులు ఓహో! ... |
+| 2 | recommended | matched (w02) | 12:49.1-13:57.6 | 68s | standalone | no | 0.3 | 0 | 1.15 | - | - | ఈ రోజుల్లో marriage అనేది full meals లాంటిది. starting లో hot and exciting ... |
+| 3 | recommended | matched (w01) | 3:31.0-5:16.7 | 68s | standalone | no | 0.3 | 1 | 3.182 | - | - | మీకు వంట వచ్చా? చచ్చింది గొర్ర. ఆహా! ఆ వచ్చు బాబు. ఎందుకు రాదు. వచ్చే ... |
+| 4 | worth_a_look | matched (w09) | 10:24.3-11:17.6 | 53s | standalone | no | 0.3 | 0 | 2.97 | - | - | మరి లేకపోతే ఏంట్రా? నువ్వేమన్నా ఆ అమ్మాయితో curry point పెట్టేస్తున్నావా? పెళ్లిచూపులకి వెళ్లి చూడాల్సింది ... |
+| 5 | worth_a_look | matched (w07) | 5:21.9-6:02.2 | 40s | standalone | no | 0.06 | 0 | 5.003 | flash | - | నూనెయ్యవే! పోసేయ్, పోసేయ్, పోసేయ్. అది నూనె అనుకుంటున్నావా, బండిలో పోసే petrol అనుకుంటున్నావా, అంత ... |
+| 6 | worth_a_look | matched (w04) | 14:34.7-15:54.6 | 80s | standalone | no | 0.298 | 0 | 3.614 | - | - | అయ్యో అయినా మిమ్మల్ని అడుగుతున్నా ఏంటి? మీరు బయట food తినరు కదా. మీకు అన్ని ... |
+| 7 | worth_a_look | matched (w06) | 11:48.8-12:32.4 | 44s | standalone | no | 0.3 | 0 | 2.664 | - | - | నేను ఒక విషయం చెప్పాలి మీకు అంతకన్నా ముందు నేను మీకు ఒక విషయం చెప్పాలి. ... |
+| 8 | worth_a_look | matched (w08) | 17:13.9-18:19.5 | 66s | promo | no | 0.3 | 0 | 3.091 | - | - | ఆహా లేదు. మీరు మీ కూతుర్ని miss అవుతున్నారో లేదో తెలీదు గానీ, తను చేసే ... |
 
 Rule failures (proposals):
 - rank 5 flash: seg0 starts 0.20s before the shot change at 322.12s
@@ -73,12 +84,12 @@ Shots: `runs\video\QWIvgoTQGKk\shots.json`. Opening zone: lead 0:00.0-2:13.6; st
 | w11 | standalone | - | 17:27.3-18:43.2 | 61s | MISSED | no overlap | | | | | | | | | |
 | w12 | standalone | - | 9:07.0-9:49.5 | 42s | MISSED | no overlap | | | | | | | | | |
 
-Missed GT clips:
-- w03 (standalone, 10:51.1-11:09.5): అమ్మ చేతి వంటలా ఉంది… 'మా అమ్మ చెయ్యలేదు ఒట్టు!' | అమ్మ చేతి వంటలా ఉంది. హా మా అమ్మ చెయ్యలేదు నిజంగా మా అమ్మ చెయ్యలేదు ...
-- w04 (promo, 6:05.9-7:21.1): అబద్ధం అంటేనే fire అయిపోతాడు… అమృత పరిస్థితి ఏంటి? | అబద్ధాలు చెప్పి పెళ్లి చేసుకోవడం correct ఏనా? ఆ మావోడు food విషయంలో చాలా particular ...
-- w10 (standalone, 4:49.5-5:57.5): Dinner ఏ కాదు carriage కూడా తనే పెడుతుంది! అమ్మ హామీలు | నాకోసం ఏం వండవు. ఆ ఆ తోటకూర పప్పు ఆవకాయ ఊ ఆ ఇది కూడా ...
-- w11 (standalone, 17:27.3-18:43.2): First easy వంట try చేద్దాం… popcorn I am coming! | అమ్మే! ప్రతిసారి వంటల కోసం అమ్మనేమడుగుతాం. మనం కూడా try చేద్దాం. First easy with ...
-- w12 (standalone, 9:07.0-9:49.5): Nail polish నేను వెయ్యనా? | Husband goals | nail polish వేస్తున్నావా? ఉమ్ సరే నేను వెయ్యనా? వద్దు వద్దు పర్లేదు వద్దు. అంత ...
+Missed yes clips (founder would post, no proposal matched):
+- w03 (standalone, 10:51.1-11:09.5, founder -): అమ్మ చేతి వంటలా ఉంది… 'మా అమ్మ చెయ్యలేదు ఒట్టు!' | అమ్మ చేతి వంటలా ఉంది. హా మా అమ్మ చెయ్యలేదు నిజంగా మా అమ్మ చెయ్యలేదు ... | no overlapping proposal
+- w04 (promo, 6:05.9-7:21.1, founder -): అబద్ధం అంటేనే fire అయిపోతాడు… అమృత పరిస్థితి ఏంటి? | అబద్ధాలు చెప్పి పెళ్లి చేసుకోవడం correct ఏనా? ఆ మావోడు food విషయంలో చాలా particular ... | nearest: rank 8 cov 0.496 IoU 0.49
+- w10 (standalone, 4:49.5-5:57.5, founder -): Dinner ఏ కాదు carriage కూడా తనే పెడుతుంది! అమ్మ హామీలు | నాకోసం ఏం వండవు. ఆ ఆ తోటకూర పప్పు ఆవకాయ ఊ ఆ ఇది కూడా ... | no overlapping proposal
+- w11 (standalone, 17:27.3-18:43.2, founder -): First easy వంట try చేద్దాం… popcorn I am coming! | అమ్మే! ప్రతిసారి వంటల కోసం అమ్మనేమడుగుతాం. మనం కూడా try చేద్దాం. First easy with ... | no overlapping proposal
+- w12 (standalone, 9:07.0-9:49.5, founder -): Nail polish నేను వెయ్యనా? | Husband goals | nail polish వేస్తున్నావా? ఉమ్ సరే నేను వెయ్యనా? వద్దు వద్దు పర్లేదు వద్దు. అంత ... | no overlapping proposal
 
 Setup dropped (proposal starts later and loses GT-kept lines):
 - w07 vs rank 4: starts +16.8s, loses 24 words: నేనెందుకింత తొందరగా లేచానో నాకు తెలియదు గానీ, నువ్వెందుకింత తొందరగా లేచావో నాకు ...
@@ -87,16 +98,16 @@ Setup dropped (proposal starts later and loses GT-kept lines):
 
 ### Proposals
 
-| rank | status | src | len | purpose | cold | lead-in | cuts | hold | fails | warns | excerpt |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| 1 | matched (w09) | 7:28.8-8:34.2 | 65s | standalone | no | 0.207 | 0 | 2.262 | - | - | అదే night బొమ్మ blockbuster ఆ? అంత ఊహించేసుకోకు first night అనేదానికన్నా over hypeడ్ ... |
-| 2 | matched (w06) | 11:50.2-13:19.1 | 75s | standalone | no | 0.3 | 1 | 0.254 | - | - | నేను కొన్ని most important topic మాట్లాడాలనుకుంటున్నాను అదే మన శోభనం గురించి మన first ... |
-| 3 | matched (w05) | 3:41.4-4:20.8 | 39s | standalone | no | 0.225 | 0 | 0.47 | reaction_hold | - | అయినా నీకు చాయ్ గోలేంట్రా? ఏంటి చాయ్ గోలా అసలు చాయ్ అంటే ఏమనుకుంటున్నారు. It's ... |
-| 4 | matched (w07) | 2:39.9-3:08.7 | 27s | standalone | yes | 0.12 | 0 | 0.043 | - | - | first day నే దొరికిపోయేలా ఉన్నావు కదా. మరి పెట్టావా? ఆ ఆ అదే పనిలో ... |
-| 5 | matched (w02) | 18:50.5-20:54.6 | 95s | promo | no | 0.166 | 1 | 2.0 | - | - | బయట climate అదిరిపోయింది తెలుసా అందుకే snacks గా మిర్చి బజ్జి తినడానికి వచ్చాను. ఆ ... |
-| 6 | matched (w01) | 15:48.6-17:01.0 | 72s | standalone | no | 0.219 | 0 | 3.729 | - | - | దేనికో waiting. అబ్బచ్చా! అప్పుడే మర్చిపోయావా? ఆ, ఏం మర్చిపోవడం? Night escape అయినట్టు ఇప్పుడు ... |
-| 7 | matched (w08) | 13:59.3-15:27.6 | 88s | standalone | no | 0.02 | 0 | 1.994 | - | - | Plain దోశా. ఓహ్! Sorry నీకు చెప్పడం మర్చిపోయాను. నాకు egg దోశ అంటే ఇష్టం. ... |
-| 8 | partial (w04) | 6:41.3-7:24.9 | 44s | standalone | no | 0.3 | 0 | 5.27 | - | - | పెళ్ళికి ముందు ఏమన్నావే? అమ్మా! ఉమ్ అబద్ధాలు చెప్పి పెళ్లి చేసుకోవడం correct ఏనా? ఊ ... |
+| rank | tier | status | src | len | purpose | cold | lead-in | cuts | hold | fails | warns | excerpt |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | recommended | matched (w09) | 7:28.8-8:34.2 | 65s | standalone | no | 0.207 | 0 | 2.262 | - | - | అదే night బొమ్మ blockbuster ఆ? అంత ఊహించేసుకోకు first night అనేదానికన్నా over hypeడ్ ... |
+| 2 | recommended | matched (w06) | 11:50.2-13:19.1 | 75s | standalone | no | 0.3 | 1 | 0.254 | - | - | నేను కొన్ని most important topic మాట్లాడాలనుకుంటున్నాను అదే మన శోభనం గురించి మన first ... |
+| 3 | recommended | matched (w05) | 3:41.4-4:20.8 | 39s | standalone | no | 0.225 | 0 | 0.47 | reaction_hold | - | అయినా నీకు చాయ్ గోలేంట్రా? ఏంటి చాయ్ గోలా అసలు చాయ్ అంటే ఏమనుకుంటున్నారు. It's ... |
+| 4 | worth_a_look | matched (w07) | 2:39.9-3:08.7 | 27s | standalone | yes | 0.12 | 0 | 0.043 | - | - | first day నే దొరికిపోయేలా ఉన్నావు కదా. మరి పెట్టావా? ఆ ఆ అదే పనిలో ... |
+| 5 | worth_a_look | matched (w02) | 18:50.5-20:54.6 | 95s | promo | no | 0.166 | 1 | 2.0 | - | - | బయట climate అదిరిపోయింది తెలుసా అందుకే snacks గా మిర్చి బజ్జి తినడానికి వచ్చాను. ఆ ... |
+| 6 | worth_a_look | matched (w01) | 15:48.6-17:01.0 | 72s | standalone | no | 0.219 | 0 | 3.729 | - | - | దేనికో waiting. అబ్బచ్చా! అప్పుడే మర్చిపోయావా? ఆ, ఏం మర్చిపోవడం? Night escape అయినట్టు ఇప్పుడు ... |
+| 7 | worth_a_look | matched (w08) | 13:59.3-15:27.6 | 88s | standalone | no | 0.02 | 0 | 1.994 | - | - | Plain దోశా. ఓహ్! Sorry నీకు చెప్పడం మర్చిపోయాను. నాకు egg దోశ అంటే ఇష్టం. ... |
+| 8 | below_threshold | partial (w04) | 6:41.3-7:24.9 | 44s | standalone | no | 0.3 | 0 | 5.27 | - | - | పెళ్ళికి ముందు ఏమన్నావే? అమ్మా! ఉమ్ అబద్ధాలు చెప్పి పెళ్లి చేసుకోవడం correct ఏనా? ఊ ... |
 
 New moments (outside the GT, NOT wrong; need the founder's rating):
 - rank 8 [partial w04] 6:41.3-7:24.9 44s standalone: అబద్ధాలు చెప్పి పెళ్లి చేశావా అమ్మా? | పెళ్ళికి ముందు ఏమన్నావే? అమ్మా! ఉమ్ అబద్ధాలు చెప్పి పెళ్లి చేసుకోవడం correct ఏనా? ఊ ...

@@ -50,15 +50,52 @@
    5,
    10
   ],
-  "VERDICTS": [
+  "RATED": [
    "yes",
    "maybe",
    "no"
+  ],
+  "UNRATED": [
+   "held",
+   "pending"
+  ],
+  "VERDICTS": [
+   "yes",
+   "maybe",
+   "no",
+   "held",
+   "pending"
   ],
   "GT_MODES": [
    "yes",
    "all"
   ],
+  "STATUSES": [
+   "matched",
+   "acceptable",
+   "founder_no",
+   "unrated",
+   "duplicate",
+   "partial",
+   "new"
+  ],
+  "CATEGORIES": [
+   "hit",
+   "acceptable",
+   "founder_no",
+   "unrated",
+   "duplicate"
+  ],
+  "TIERS": [
+   "recommended",
+   "worth_a_look",
+   "below_threshold"
+  ],
+  "PREC_KS": [
+   3,
+   5
+  ],
+  "OVER_PROPOSE": 2.0,
   "zones": {
    "PAD": 0.5,
    "RUN_LINES": 4,
@@ -81,7 +118,10 @@
   }
  },
  "skipped_no_proposals": [
-  "QWIvgoTQGKk"
+  "gQZBXu5FAbs",
+  "H41fJJJYTqo",
+  "QWIvgoTQGKk",
+  "xmx9n4oLs-M"
  ],
  "episodes": [
   {
@@ -94,8 +134,105 @@
     "n_gt_all": 10,
     "n_maybe": 4,
     "n_no": 0,
+    "n_unrated": 0,
+    "unrated_verdicts": {},
     "acceptable_hits": 1,
     "founder_no_hits": 0,
+    "unrated_hits": 0,
+    "precision": {
+     "by_tier": {
+      "recommended": {
+       "shown": 4,
+       "hit": 4,
+       "acceptable": 0,
+       "founder_no": 0,
+       "unrated": 0,
+       "duplicate": 0,
+       "rated": 4,
+       "precision": 1.0
+      },
+      "worth_a_look": {
+       "shown": 2,
+       "hit": 1,
+       "acceptable": 1,
+       "founder_no": 0,
+       "unrated": 0,
+       "duplicate": 0,
+       "rated": 2,
+       "precision": 0.5
+      },
+      "below_threshold": {
+       "shown": 1,
+       "hit": 0,
+       "acceptable": 0,
+       "founder_no": 0,
+       "unrated": 1,
+       "duplicate": 0,
+       "rated": 0,
+       "precision": null
+      }
+     },
+     "by_rank": {
+      "@3": {
+       "shown": 3,
+       "hit": 3,
+       "acceptable": 0,
+       "founder_no": 0,
+       "unrated": 0,
+       "duplicate": 0,
+       "rated": 3,
+       "precision": 1.0
+      },
+      "@5": {
+       "shown": 5,
+       "hit": 5,
+       "acceptable": 0,
+       "founder_no": 0,
+       "unrated": 0,
+       "duplicate": 0,
+       "rated": 5,
+       "precision": 1.0
+      },
+      "all": {
+       "shown": 7,
+       "hit": 5,
+       "acceptable": 1,
+       "founder_no": 0,
+       "unrated": 1,
+       "duplicate": 0,
+       "rated": 6,
+       "precision": 0.833
+      }
+     },
+     "top_tier": "recommended",
+     "top": {
+      "shown": 4,
+      "hit": 4,
+      "acceptable": 0,
+      "founder_no": 0,
+      "unrated": 0,
+      "duplicate": 0,
+      "rated": 4,
+      "precision": 1.0
+     },
+     "founder_no_shown": 0,
+     "count_flag": "under-proposing"
+    },
+    "headline": {
+     "n_yes": 6,
+     "top_tier": "recommended",
+     "shown_top": 4,
+     "rated_top": 4,
+     "hits_top": 4,
+     "precision_top": 1.0,
+     "founder_no_top": 0,
+     "founder_no_shown": 0,
+     "missed_yes": [
+      "w09"
+     ],
+     "recall_yes": 0.833,
+     "count_flag": "under-proposing"
+    },
     "founder_scored": 6,
     "mean_founder_payoff_matched": 4.0,
     "mean_founder_overall_matched": 4.0,
@@ -129,6 +266,7 @@
      "matched": 5,
      "acceptable": 1,
      "founder_no": 0,
+     "unrated": 0,
      "duplicate": 0,
      "partial": 0,
      "new": 1
@@ -226,6 +364,7 @@
      "purpose": "standalone",
      "cold_open": false,
      "title": "For suppose నాకు పెళ్లయి వెళ్ళిపోతే… నువ్వు ఒంటరిగా ఉండగలవా అమ్మా?",
+     "tier": null,
      "excerpt": "తోడు లేని జీవితం waste అన్నట్టు అన్నావు కదా, మరి నీక తోడు అవసరం లేదా ...",
      "verdict": "yes",
      "founder_scores": {
@@ -283,6 +422,7 @@
      "purpose": "standalone",
      "cold_open": false,
      "title": "Sorry చెప్దామని వెళ్తే… 'పెళ్లయ్యాక అందరం కలిసి తాగొచ్చు బాబు' అంది ఆంటీ",
+     "tier": null,
      "excerpt": "ఆ రోజు నైట్ జరిగిన దానికి I am really sorry అండి. ఏదో మధ్య ...",
      "verdict": "yes",
      "founder_scores": {
@@ -340,6 +480,7 @@
      "purpose": "standalone",
      "cold_open": false,
      "title": "నేను రేపో మాపో పోతే ఒంటరిగా ఉండగలవా? అమ్మ చెప్పిన సృష్టి ధర్మం",
+     "tier": null,
      "excerpt": "ఒకటి చెప్పు, చచ్చేంత వరకు నేను ఇలానే ఉంటాను అంటున్నావు కదా. నేను రేపో మాపో ...",
      "verdict": "yes",
      "founder_scores": {
@@ -393,6 +534,7 @@
      "purpose": "standalone",
      "cold_open": false,
      "title": "వాడు అస్సలు happy గా ఉండలేడు అన్నాడు… 'సోహం చనిపోయాడురా!'",
+     "tier": null,
      "excerpt": "అయినా ఎవడికి మనసేలో వచ్చిందండి. మీలాంటి మంచి మనిషిని ఇబ్బంది పెట్టడానికి. మీరు అలా చూస్తూ ...",
      "verdict": "yes",
      "founder_scores": {
@@ -446,6 +588,7 @@
      "purpose": "standalone",
      "cold_open": false,
      "title": "ఇంట్లో bottle ఖాళీ అవుతుంటే ఎవరా అనుకున్నా… ఆ దొంగ అమ్మే!",
+     "tier": null,
      "excerpt": "ఏదో బాధలన్నీ దేవుడు నీకే పెట్టినట్టు పెద్ద buildup ఇవ్వకు. మాకూ బాధలుంటాయి. ఆలోచించకుండా పడుకోవాలని ...",
      "verdict": "yes",
      "founder_scores": {
@@ -469,6 +612,7 @@
      "purpose": "standalone",
      "cold_open": false,
      "title": "అమ్మతో కలిసి wine ఆ? 'I am now your friend… call me పద్దు'",
+     "tier": null,
      "excerpt": "ఏంటమ్మా అలా చూస్తున్నావ్ ఏం లేదు నేను ఇప్పుడు wine తాగుదాము అంటే ఏమంటావా అని ...",
      "verdict": "yes",
      "founder_scores": {
@@ -528,6 +672,7 @@
      "purpose": "standalone",
      "cold_open": false,
      "title": "మొన్న చేసిన పనికి police కి call చేస్తుందేమో అనుకున్నా… ఆంటీ ఇంత sweet ఆ?",
+     "tier": null,
      "excerpt": "మొన్న చేసిన పనికి, ఇప్పుడు ఆంటీకి కనిపిస్తే ఏం చేస్తదో ఏంటో. police కి call ...",
      "verdict": "maybe",
      "founder_scores": {
@@ -551,6 +696,7 @@
      "purpose": "standalone",
      "cold_open": false,
      "title": "వాడికి కాళ్ళ నొప్పులు రావడమే తప్ప నా మాట మారదు… అమ్మ నవ్వుకు అర్థమేంటి?",
+     "tier": null,
      "excerpt": "ఏంటి ఆ అబ్బాయి matter నాకు తెలుసు, నువ్వు all of a sudden ఎందుకు ...",
      "verdict": "maybe",
      "founder_scores": {
@@ -574,6 +720,7 @@
      "purpose": "standalone",
      "cold_open": false,
      "title": "మీ హంసిని వల్లే ఈ గడ్డం ఆంటీ… 'పైకే గరుగ్గా ఉంటుంది, లోపల సున్నితం బాబు'",
+     "tier": null,
      "excerpt": "అప్పుడప్పుడు మా హన్స్ని కొంచెం గరుగ్గా మాట్లాడుతుంది. ఏం పట్టించుకోకు బాబు. ఉమ్ పర్లేదండి నాకు ...",
      "verdict": "maybe",
      "founder_scores": {
@@ -609,6 +756,7 @@
      "purpose": "standalone",
      "cold_open": false,
      "title": "నేను గుడ్డిగా నమ్మి మోసపోయాను… 'సోహం సర్ వాళ్ళ wife and వాళ్ళ పాప'",
+     "tier": null,
      "excerpt": "నీకు already చెప్పాను కదా. I am not interested in you and this ...",
      "verdict": "maybe",
      "founder_scores": {
@@ -638,6 +786,7 @@
      "purpose": "standalone",
      "cold_open": false,
      "title": "అసలు నిజం తెలిసింది!",
+     "tier": "recommended",
      "excerpt": "మీరు ఎందుకు వేరే వాడిని మీ life లోకి రానివ్వట్లేదో నాకు తెలుసు ఏం తెలుసు ...",
      "checks": {
       "segments": {
@@ -739,6 +888,7 @@
      "purpose": "standalone",
      "cold_open": true,
      "title": "కూతురితో wine తాగే cool అమ్మ",
+     "tier": "recommended",
      "excerpt": "ఏయ్ ఇప్పుడు నేను నీకు అమ్మనని ఎవరు చెప్పారు ఏంటమ్మా అలా చూస్తున్నావ్ ఏం లేదు ...",
      "checks": {
       "segments": {
@@ -840,6 +990,7 @@
      "purpose": "standalone",
      "cold_open": true,
      "title": "తోడు లేకుండా బ్రతకడం కష్టం",
+     "tier": "recommended",
      "excerpt": "నేను పోతే ఒంటరిగా ఉండగలవా ఒకటి చెప్పు, చచ్చేంత వరకు నేను ఇలానే ఉంటాను అంటున్నావు ...",
      "checks": {
       "segments": {
@@ -933,6 +1084,7 @@
      "purpose": "standalone",
      "cold_open": false,
      "title": "నాకు కొడుకు దొరుకుతాడు",
+     "tier": "recommended",
      "excerpt": "తోడు లేని జీవితం waste అన్నట్టు అన్నావు కదా, మరి నీక తోడు అవసరం లేదా ...",
      "checks": {
       "segments": {
@@ -1034,6 +1186,7 @@
      "purpose": "standalone",
      "cold_open": true,
      "title": "All the best, నా support నీకే!",
+     "tier": "worth_a_look",
      "excerpt": "ఒక్కసారి హన్స్నితో పెళ్లయితే అందరం కలిసి తాగొచ్చు. ఆ రోజు నైట్ జరిగిన దానికి I ...",
      "checks": {
       "segments": {
@@ -1127,6 +1280,7 @@
      "purpose": "standalone",
      "cold_open": false,
      "title": "Sudden గా breakup చెప్తే ఎలా?",
+     "tier": "worth_a_look",
      "excerpt": "ఏమైంది అంశ? ఎందుకు ఒక వారం నుంచి నరకం చూపిస్తున్నావ్? phone లో block చేశావ్. ...",
      "checks": {
       "segments": {
@@ -1227,6 +1381,7 @@
      "purpose": "promo",
      "cold_open": false,
      "title": "తన past లో ఏం జరిగింది?",
+     "tier": "below_threshold",
      "excerpt": "నా మాట విని వదిలేయ్ bro తనని. అసలు తన life లో ఏం జరిగిందని ...",
      "checks": {
       "segments": {
@@ -1754,8 +1909,95 @@
     "n_gt_all": 8,
     "n_maybe": 0,
     "n_no": 0,
+    "n_unrated": 0,
+    "unrated_verdicts": {},
     "acceptable_hits": 0,
     "founder_no_hits": 0,
+    "unrated_hits": 0,
+    "precision": {
+     "by_tier": {
+      "recommended": {
+       "shown": 3,
+       "hit": 3,
+       "acceptable": 0,
+       "founder_no": 0,
+       "unrated": 0,
+       "duplicate": 0,
+       "rated": 3,
+       "precision": 1.0
+      },
+      "worth_a_look": {
+       "shown": 5,
+       "hit": 4,
+       "acceptable": 0,
+       "founder_no": 0,
+       "unrated": 1,
+       "duplicate": 0,
+       "rated": 4,
+       "precision": 1.0
+      }
+     },
+     "by_rank": {
+      "@3": {
+       "shown": 3,
+       "hit": 3,
+       "acceptable": 0,
+       "founder_no": 0,
+       "unrated": 0,
+       "duplicate": 0,
+       "rated": 3,
+       "precision": 1.0
+      },
+      "@5": {
+       "shown": 5,
+       "hit": 4,
+       "acceptable": 0,
+       "founder_no": 0,
+       "unrated": 1,
+       "duplicate": 0,
+       "rated": 4,
+       "precision": 1.0
+      },
+      "all": {
+       "shown": 8,
+       "hit": 7,
+       "acceptable": 0,
+       "founder_no": 0,
+       "unrated": 1,
+       "duplicate": 0,
+       "rated": 7,
+       "precision": 1.0
+      }
+     },
+     "top_tier": "recommended",
+     "top": {
+      "shown": 3,
+      "hit": 3,
+      "acceptable": 0,
+      "founder_no": 0,
+      "unrated": 0,
+      "duplicate": 0,
+      "rated": 3,
+      "precision": 1.0
+     },
+     "founder_no_shown": 0,
+     "count_flag": "under-proposing"
+    },
+    "headline": {
+     "n_yes": 8,
+     "top_tier": "recommended",
+     "shown_top": 3,
+     "rated_top": 3,
+     "hits_top": 3,
+     "precision_top": 1.0,
+     "founder_no_top": 0,
+     "founder_no_shown": 0,
+     "missed_yes": [
+      "w09"
+     ],
+     "recall_yes": 0.875,
+     "count_flag": "under-proposing"
+    },
     "founder_scored": 0,
     "mean_founder_payoff_matched": null,
     "mean_founder_overall_matched": null,
@@ -1789,6 +2031,7 @@
      "matched": 7,
      "acceptable": 0,
      "founder_no": 0,
+     "unrated": 0,
      "duplicate": 0,
      "partial": 0,
      "new": 1
@@ -1873,6 +2116,7 @@
      "purpose": "standalone",
      "cold_open": false,
      "title": "పుల్లారెడ్డి sweets ని అమ్మాయే చేసిందంట!",
+     "tier": null,
      "excerpt": "మీకు వంట వచ్చా? చచ్చింది గొర్ర. ఆహా! ఆ వచ్చు బాబు. ఎందుకు రాదు. అ-అందుకే ...",
      "verdict": "yes",
      "founder_scores": null,
@@ -1923,6 +2167,7 @@
      "purpose": "standalone",
      "cold_open": false,
      "title": "Marriage అంటే full meals లాంటిది, salt ఏ husband!",
+     "tier": null,
      "excerpt": "వాడు marriage గురించి ఎలా explain చేసాడో తెలుసా? ఆ ఈ రోజుల్లో marriage అనేది ...",
      "verdict": "yes",
      "founder_scores": null,
@@ -1985,6 +2230,7 @@
      "purpose": "standalone",
      "cold_open": false,
      "title": "పొట్టిగా ఉండటం మీ లోపం కాదండి | ఐదో పెళ్లిచూపులు",
+     "tier": null,
      "excerpt": "మీకు ఇది ఎన్నో పెళ్లిచూపులు మొదటి పెళ్లిచూపులు కానీ నాకిది ఐదో పెళ్లిచూపులు ఓహో! అంటే ...",
      "verdict": "yes",
      "founder_scores": null,
@@ -2039,6 +2285,7 @@
      "purpose": "standalone",
      "cold_open": false,
      "title": "గోంగూర అడిగితే గోరింటాకు అంటుంది! | పిండి family",
+     "tier": null,
      "excerpt": "మీరు బయట food తినరు కదా. మీకు అన్ని dishes వచ్చినప్పుడు. ఆ మీ favourite ...",
      "verdict": "yes",
      "founder_scores": null,
@@ -2089,6 +2336,7 @@
      "purpose": "promo",
      "cold_open": false,
      "title": "వంట రాదని చెప్పేలోపే... 'Let's make our marriage life tasty'",
+     "tier": null,
      "excerpt": "నేను ఒక విషయం చెప్పాలి మీకు అంతకన్నా ముందు నేను మీకు ఒక విషయం చెప్పాలి. ...",
      "verdict": "yes",
      "founder_scores": null,
@@ -2139,6 +2387,7 @@
      "purpose": "standalone",
      "cold_open": false,
      "title": "చపాతీ పూరీ అయిపోద్ది, cooker తో దీపావళి plan!",
+     "tier": null,
      "excerpt": "పోసేయ్, పోసేయ్, పోసేయ్. అది నూనె అనుకుంటున్నావా, బండిలో పోసే petrol అనుకుంటున్నావా, అంత పోసావు. ...",
      "verdict": "yes",
      "founder_scores": null,
@@ -2197,6 +2446,7 @@
      "purpose": "promo",
      "cold_open": false,
      "title": "అబద్ధాలు చెప్తే అస్సలు తీసుకోలేను! | కొత్త అల్లుడి warning",
+     "tier": null,
      "excerpt": "అత్తమ్మ మీరు మీ కూతుర్ని miss అవుతున్నారంటే చెప్పండి. ఇక్కడే వదిలేసి వెళ్తాను. అలా ఏం ...",
      "verdict": "yes",
      "founder_scores": null,
@@ -2251,6 +2501,7 @@
      "purpose": "standalone",
      "cold_open": false,
      "title": "Hostel food బాధ ప్రతి అబ్బాయికీ తెలుసు | food made with love",
+     "tier": null,
      "excerpt": "ఏరా ఆ అమ్మాయి అంత నచ్చిందా? నీలా నువ్వే మురిసిపోతున్నావ్. అమ్మాయి చాలా బాగుందిరా. కానీ ...",
      "verdict": "yes",
      "founder_scores": null,
@@ -2278,6 +2529,7 @@
      "purpose": "standalone",
      "cold_open": false,
      "title": "పొట్టిగా ఉన్న అమ్మాయికి దక్కిన ప్రేమ",
+     "tier": "recommended",
      "excerpt": "నేను పొట్టిగా ఉంటాను కదా ఎవ్వరూ ఇష్టపడరు. అందుకే అందరూ reject చేశారు. మీకు ఇలాంటివి ...",
      "checks": {
       "segments": {
@@ -2372,6 +2624,7 @@
      "purpose": "standalone",
      "cold_open": false,
      "title": "పుల్లారెడ్డి Sweets గోల",
+     "tier": "recommended",
      "excerpt": "మీకు వంట వచ్చా? చచ్చింది గొర్ర. ఆహా! ఆ వచ్చు బాబు. ఎందుకు రాదు. వచ్చే ...",
      "checks": {
       "segments": {
@@ -2462,6 +2715,7 @@
      "purpose": "standalone",
      "cold_open": false,
      "title": "Marriage అంటే Full Meals లాంటిది",
+     "tier": "recommended",
      "excerpt": "ఈ రోజుల్లో marriage అనేది full meals లాంటిది. starting లో hot and exciting ...",
      "checks": {
       "segments": {
@@ -2556,6 +2810,7 @@
      "purpose": "standalone",
      "cold_open": false,
      "title": "పెళ్లిచూపుల్లో అమ్మాయిల బాధ",
+     "tier": "worth_a_look",
      "excerpt": "అమృత గారు, ఒకసారి నించోగలుగుతారా please. please ఒక్కసారి నించోండి. అమృత గారు I am ...",
      "checks": {
       "segments": {
@@ -2656,6 +2911,7 @@
      "purpose": "promo",
      "cold_open": true,
      "title": "అబద్ధం తెలిస్తే పరిస్థితి ఏంటి?",
+     "tier": "worth_a_look",
      "excerpt": "ఎవరైనా అబద్ధాలాడినా, మోసం చేసినా అస్సలు తీసుకోలేను. అత్తమ్మ మీరు మీ కూతుర్ని miss అవుతున్నారంటే ...",
      "checks": {
       "segments": {
@@ -2746,6 +3002,7 @@
      "purpose": "standalone",
      "cold_open": false,
      "title": "కిచెన్ లో కూతురి ప్రయోగాలు",
+     "tier": "worth_a_look",
      "excerpt": "పోసేయ్, పోసేయ్, పోసేయ్. అది నూనె అనుకుంటున్నావా, బండిలో పోసే petrol అనుకుంటున్నావా, అంత పోసావు. ...",
      "checks": {
       "segments": {
@@ -2836,6 +3093,7 @@
      "purpose": "standalone",
      "cold_open": false,
      "title": "పెళ్లి తర్వాత భార్య గురించి అబ్బాయి ఆలోచన",
+     "tier": "worth_a_look",
      "excerpt": "నాకు వంట వచ్చే wife మాత్రమే కావాలనుకుంటున్నానంటే నా wife వంట గదికి మాత్రమే పరిమితమైపోవాలని ...",
      "checks": {
       "segments": {
@@ -2930,6 +3188,7 @@
      "purpose": "standalone",
      "cold_open": false,
      "title": "Cooking రాకపోయినా cover చేసే Talent",
+     "tier": "worth_a_look",
      "excerpt": "అయ్యో అయినా మిమ్మల్ని అడుగుతున్నా ఏంటి? మీరు బయట food తినరు కదా. మీకు అన్ని ...",
      "checks": {
       "segments": {
