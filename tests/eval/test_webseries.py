@@ -4,13 +4,14 @@ Run: python -m unittest tests.eval.test_webseries
 """
 import copy
 import unittest
+import warnings
 from pathlib import Path
 
 from eval import webseries as W
 from eval.common import ROOT, load_json
 
 GT_IDS = ("j14Om1SaFYE", "QWIvgoTQGKk")
-HM = "epZ0lbXkgWA"   # Hello Madam Ep6: held-out series; GT pending founder review
+HM = "epZ0lbXkgWA"   # Hello Madam Ep6: held-out series; founder round-2 verdicts (6 yes / 4 maybe)
 
 
 # ---- synthetic episode ----------------------------------------------------------------------------------
@@ -209,9 +210,11 @@ class TestRuleChecks(unittest.TestCase):
 class TestMatching(unittest.TestCase):
     def setUp(self):
         self.ctx = no_cuts_ctx()
-        self.g1 = clip([body(self.ctx, 30, 37)], id="g1", clip_purpose="standalone", content_type="web_series")
-        self.g2 = clip([body(self.ctx, 40, 46)], id="g2", clip_purpose="promo", content_type="web_series")
-        self.gold = {"clips": [self.g1, self.g2]}
+        self.g1 = clip([body(self.ctx, 30, 37)], id="g1", clip_purpose="standalone", content_type="web_series",
+                       founder_would_post="yes")
+        self.g2 = clip([body(self.ctx, 40, 46)], id="g2", clip_purpose="promo", content_type="web_series",
+                       founder_would_post="yes")
+        self.gold = {"video_id": "synth", "clips": [self.g1, self.g2]}
 
     def ev(self, props):
         return W.evaluate_episode(self.gold, {"proposals": [dict(p, rank=i + 1) for i, p in enumerate(props)]}, self.ctx)
@@ -265,6 +268,121 @@ class TestMatching(unittest.TestCase):
         self.assertEqual(rec["@10"], 1)
 
 
+class TestFounderVerdict(unittest.TestCase):
+    """GT = founder_would_post 'yes'; 'maybe' hits are acceptable, 'no' hits are founder_no; --gt all = old behaviour."""
+
+    def setUp(self):
+        self.ctx = no_cuts_ctx()
+        self.yes = clip([body(self.ctx, 30, 37)], id="y1", clip_purpose="standalone", content_type="web_series",
+                        founder_would_post="yes", founder_scores={"hook": 4, "standalone": 4, "payoff": 5, "overall": 4})
+        self.maybe = clip([body(self.ctx, 40, 46)], id="m1", clip_purpose="promo", content_type="web_series",
+                          founder_would_post="maybe", founder_scores={"hook": 3, "standalone": 3, "payoff": 3, "overall": 3})
+        self.no = clip([body(self.ctx, 10, 16)], id="n1", clip_purpose="standalone", content_type="web_series",
+                       founder_would_post="no")
+        self.gold = {"video_id": "synth", "clips": [self.yes, self.maybe, self.no]}
+
+    def ev(self, props, gold=None, **kw):
+        with warnings.catch_warnings():
+            warnings.simplefilter("error")   # a complete gold file must not warn
+            return W.evaluate_episode(gold or self.gold, {"proposals": [dict(p, rank=i + 1) for i, p in enumerate(props)]},
+                                      self.ctx, **kw)
+
+    def test_split(self):
+        gts, others, notes = W.split_gt(self.gold)
+        self.assertEqual([c["id"] for c in gts], ["y1"])
+        self.assertEqual([c["id"] for c in others], ["m1", "n1"])
+        self.assertEqual(notes, [])
+        with self.assertRaises(ValueError):
+            W.verdict(dict(self.yes, founder_would_post="sure"))
+        self.assertEqual(W.verdict(dict(self.yes, founder_would_post=" Yes ")), "yes")
+
+    def test_maybe_is_acceptable_no_is_founder_no(self):
+        r = self.ev([copy.deepcopy(self.maybe), copy.deepcopy(self.no), copy.deepcopy(self.yes)])
+        s = r["summary"]
+        self.assertEqual((s["n_gt"], s["n_maybe"], s["n_no"], s["n_gt_all"]), (1, 1, 1, 3))
+        self.assertEqual([p["status"] for p in r["proposals"]], ["acceptable", "founder_no", "matched"])
+        self.assertEqual([p.get("gt") for p in r["proposals"]], ["m1", "n1", "y1"])
+        self.assertEqual(s["acceptable_hits"], 1)
+        self.assertEqual(s["founder_no_hits"], 1)
+        self.assertEqual(s["status_counts"]["new"], 0)
+        self.assertEqual(s["missed"], [])          # the maybe/no clips are not misses
+        self.assertEqual(s["recall"]["any"], 1)    # recall is over the yes clip only
+        self.assertEqual(s["recall"]["@k_gt"], 0)  # ... and the yes clip sits at rank 3 > k_gt = 1
+        self.assertEqual(s["recall_frac"]["any"], 1.0)
+        # founder scores travel with the match (informational)
+        g = r["gt"][0]
+        self.assertEqual(g["pair"]["founder_payoff"], 5)
+        self.assertEqual(g["pair"]["founder_overall"], 4)
+        self.assertEqual(s["mean_founder_payoff_matched"], 5.0)
+        acc = r["proposals"][0]
+        self.assertEqual(acc["founder_verdict"], "maybe")
+        self.assertEqual(acc["founder_scores"], {"payoff": 3, "overall": 3})
+        self.assertIsNone(r["proposals"][1]["founder_scores"])
+        other = {o["id"]: o for o in r["other_gt"]}
+        self.assertTrue(other["m1"]["hit"] and other["n1"]["hit"])
+        self.assertEqual(other["m1"]["prop_rank"], 1)
+
+    def test_maybe_miss_is_not_a_miss_and_second_hit_is_duplicate(self):
+        r = self.ev([copy.deepcopy(self.yes), copy.deepcopy(self.maybe), copy.deepcopy(self.maybe)])
+        self.assertEqual([p["status"] for p in r["proposals"]], ["matched", "acceptable", "duplicate"])
+        self.assertEqual(r["proposals"][2]["gt"], "m1")
+        r = self.ev([copy.deepcopy(self.yes)])
+        s = r["summary"]
+        self.assertEqual(s["missed"], [])
+        self.assertEqual(s["acceptable_hits"], 0)
+        self.assertFalse(any(o["hit"] for o in r["other_gt"]))
+
+    def test_partial_on_a_maybe_clip(self):
+        part = clip([body(self.ctx, 45, 46)])   # the last two lines of m1 only: cov ~0.3 < MATCH_COV, IoU >= 0.1
+        r = self.ev([part])
+        p = r["proposals"][0]
+        self.assertEqual(p["status"], "partial")
+        self.assertEqual(p["gt"], "m1")
+        self.assertEqual(p["founder_verdict"], "maybe")
+
+    def test_missing_verdict_is_yes_with_warning(self):
+        old = {"video_id": "old", "clips": [{k: v for k, v in self.yes.items() if k != "founder_would_post"},
+                                              copy.deepcopy(self.maybe)]}
+        with self.assertWarns(UserWarning) as cm:
+            gts, others, notes = W.split_gt(old)
+        self.assertEqual([c["id"] for c in gts], ["y1"])
+        self.assertEqual([c["id"] for c in others], ["m1"])
+        self.assertEqual(len(notes), 1)
+        self.assertIn("y1", notes[0])
+        self.assertIn("old", str(cm.warning))
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore")
+            r = W.evaluate_episode(old, {"proposals": [dict(copy.deepcopy(self.yes), rank=1)]}, self.ctx)
+        self.assertEqual(r["summary"]["n_gt"], 1)
+        self.assertEqual(r["summary"]["recall"]["any"], 1)
+        self.assertEqual(r["summary"]["gt_notes"], notes)
+        self.assertIn("treating them as 'yes'", W.render_markdown([r], "x"))
+
+    def test_gt_all_is_the_old_behaviour(self):
+        r = self.ev([copy.deepcopy(self.maybe), copy.deepcopy(self.no), copy.deepcopy(self.yes)], gt="all")
+        s = r["summary"]
+        self.assertEqual(s["gt_mode"], "all")
+        self.assertEqual((s["n_gt"], s["n_maybe"], s["n_no"]), (3, 0, 0))
+        self.assertEqual([p["status"] for p in r["proposals"]], ["matched"] * 3)
+        self.assertEqual(s["recall"]["any"], 3)
+        self.assertEqual(r["other_gt"], [])
+        # a missing verdict field does not warn in --gt all mode (the verdict is not used)
+        old = {"video_id": "old", "clips": [{k: v for k, v in self.yes.items() if k != "founder_would_post"}]}
+        self.assertEqual(W.split_gt(old, "all")[2], [])
+        with self.assertRaises(ValueError):
+            W.split_gt(self.gold, "some")
+
+    def test_markdown_columns(self):
+        r = self.ev([copy.deepcopy(self.maybe), copy.deepcopy(self.no), copy.deepcopy(self.yes)])
+        md = W.render_markdown([r], "runs/x")
+        self.assertIn("| GT yes | maybe / no |", md)
+        self.assertIn("| acceptable | founder_no |", md)
+        self.assertIn("| synth | 1 | 1 / 1 | 3 | 1/1 (100%) |", md)
+        self.assertIn("| 1/1 (100%) | 1/1 (100%) |", md)   # acceptable / founder_no
+        self.assertIn("| y1 | standalone | 5/4 |", md)       # founder payoff/overall on the GT row
+        self.assertIn("acceptable (m1) founder 3/3", md)
+
+
 # ---- real GT (skipped when the local data is absent) -----------------------------------------------------
 
 def _have(vid):
@@ -277,18 +395,19 @@ def perturb(gold, ctx):
     """Proposals from the GT with three injected faults: clip 0 starts at its second line (shifted start),
     the first non-cold clip gets a replayed cold open (lifted line also played in place), and another gets a
     3 s lead-in. Returns (proposal doc, {fault: gt clip id})."""
-    clips = [copy.deepcopy(c) for c in W.gt_clips(gold)]
+    clips = [copy.deepcopy(c) for c in W.gt_clips(gold)]          # proposals: every gold clip, maybe/no included
+    yes = [c for c in clips if W.verdict(c) == "yes"]              # faults are injected into founder-yes clips only
     faults = {}
     # 1) shifted start: drop everything before the second spoken line of the first body segment
     def lines(x):
         ws = ctx.words_in(x["time_segments"][0]["start"], x["time_segments"][0]["end"])
         return ws, [j for j in ws if ctx.sent_of[j] != ctx.sent_of[ws[0]]]
-    c = next(c for c in clips if not c.get("cold_open") and lines(c)[1])
+    c = next(c for c in yes if not c.get("cold_open") and lines(c)[1])
     k = lines(c)[1][0]
     c["time_segments"][0]["start"] = round(ctx.words[k]["start"] - 0.2, 3)
     faults["shifted_start"] = c["id"]
     # 2) replayed cold open: lift a 2 s stretch from the middle of the longest segment, keep it in place too
-    c2 = next(x for x in clips if not x.get("cold_open") and x["id"] != c["id"])
+    c2 = next(x for x in yes if not x.get("cold_open") and x["id"] != c["id"])
     seg = max(c2["time_segments"], key=lambda s: s["end"] - s["start"])
     mid = (seg["start"] + seg["end"]) / 2
     c2["time_segments"].insert(0, {"start": round(mid, 3), "end": round(mid + 2.0, 3)})
@@ -300,7 +419,7 @@ def perturb(gold, ctx):
     def gap_before(x):
         j = ctx.words_in(x["time_segments"][0]["start"], x["time_segments"][0]["end"])[0]
         return ctx.words[j]["start"] - (ctx.words[j - 1]["end"] if j else 0.0), ctx.words[j]["start"]
-    c3 = max((x for x in clips if not x.get("cold_open") and x["id"] not in (c["id"], c2["id"])),
+    c3 = max((x for x in yes if not x.get("cold_open") and x["id"] not in (c["id"], c2["id"])),
              key=lambda x: gap_before(x)[0])
     gap, first = gap_before(c3)
     lead = min(3.0, gap - 0.1)
@@ -320,15 +439,27 @@ class TestRealGT(unittest.TestCase):
         return GT_IDS + ((HM,) if _have(HM) else ())
 
     def test_gold_vs_gold(self):
+        """Every founder-yes clip finds itself (100% recall over yes clips), every maybe/no clip is an acceptable /
+        founder_no hit, nothing is new, and the shipped gold files carry a verdict on every clip (no warning)."""
         for vid in self.ids():
             gold = load_json(ROOT / "data" / "gold" / f"{vid}.json")
             ctx = W.load_ctx(vid)
-            r = W.evaluate_episode(gold, gold, ctx)
+            with warnings.catch_warnings():
+                warnings.simplefilter("error")
+                r = W.evaluate_episode(gold, gold, ctx)
             s = r["summary"]
             n = s["n_gt"]
             self.assertGreater(n, 0)
+            self.assertEqual(s["gt_notes"], [], vid)
+            self.assertEqual(n, sum(W.verdict(c) == "yes" for c in W.gt_clips(gold)), vid)
+            self.assertEqual(s["n_gt_all"], len(W.gt_clips(gold)), vid)
             self.assertEqual(s["recall"]["any"], n, vid)
-            self.assertEqual(s["recall"]["@k_gt"], n, vid)
+            # recall@k=GT counts the yes clips found within the first n proposals; here proposals are the gold clips in
+            # file order, so the expectation is the number of yes clips among the first n gold clips
+            self.assertEqual(s["recall"]["@k_gt"], sum(W.verdict(c) == "yes" for c in W.gt_clips(gold)[:n]), vid)
+            self.assertEqual(s["acceptable_hits"], s["n_maybe"], vid)
+            self.assertEqual(s["founder_no_hits"], s["n_no"], vid)
+            self.assertEqual(s["status_counts"]["new"] + s["status_counts"]["partial"] + s["status_counts"]["duplicate"], 0, vid)
             self.assertEqual(s["mean_abs_start_delta"], 0.0)
             self.assertEqual(s["mean_abs_end_delta"], 0.0)
             self.assertEqual(s["payoff_and_hold_kept"], n)
@@ -336,7 +467,16 @@ class TestRealGT(unittest.TestCase):
             self.assertEqual(s["mean_length_ratio"], 1.0)
             self.assertEqual(s["same_purpose"], n)
             for g in r["gt"]:
-                self.assertEqual(g["prop_rank"], int(g["rank"]))
+                self.assertEqual(g["prop_id"], g["id"])
+                self.assertEqual(g["verdict"], "yes")
+            for o in r["other_gt"]:
+                self.assertEqual(o["prop_id"], o["id"])
+            if vid == HM:   # founder scores ride along on the matched pairs
+                self.assertEqual(s["founder_scored"], n)
+                self.assertTrue(all(g["pair"]["founder_payoff"] is not None for g in r["gt"]))
+            # --gt all: the pre-verdict behaviour, every clip is GT and finds itself
+            r_all = W.evaluate_episode(gold, gold, ctx, gt="all")
+            self.assertEqual(r_all["summary"]["recall"]["any"], len(W.gt_clips(gold)), vid)
             # structural checks every approved GT clip passes (informative failures elsewhere are reported, not asserted)
             for g in r["gt_checks"]:
                 for name in ("segments", "replay", "cold_open_lift", "internal_cuts", "flash", "length",

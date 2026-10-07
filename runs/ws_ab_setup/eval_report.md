@@ -1,32 +1,32 @@
 # Web-series eval: `D:\shotvi\runs\ws_ab_setup`
 
-Matching: a proposal matches a GT clip if it covers >= 50% of the GT's spoken core and the source-span IoU is >= 0.2; proposals are taken in rank order, each matching at most one GT clip. Unmatched proposals are not errors: `new` and `partial` ones need the founder's rating.
+GT = clips the founder would post (`founder_would_post: yes`). Matching: a proposal matches a GT clip if it covers >= 50% of the GT's spoken core and the source-span IoU is >= 0.2; proposals are taken in rank order, each matching at most one GT clip. Leftover proposals are matched the same way against the founder's `maybe` clips (`acceptable`: not a miss, not a false positive) and `no` clips (`founder_no`: a negative hit). Unmatched proposals are not errors: `new` and `partial` ones need the founder's rating. Founder payoff/overall columns are the founder's scores for the GT cut of that moment (informational), not a rating of the proposal.
 
 ## Episode summary
 
-| video | GT | props | recall (any) | recall@k=GT | recall@5 | missed | mean abs dstart / dend (s) | payoff+hold kept | drops setup | len ratio | word F1 | same purpose | props pass rules | GT pass rules | new / partial / dup |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| j14Om1SaFYE | 8 | 6 | 6/8 (75%) | 6/8 (75%) | 5/8 (62%) | w06, w09 | 7.657 / 2.142 | 4/6 (67%) | 2/6 | 1.029 | 0.952 | 6/6 (100%) | 5/6 (83%) | 8/8 (100%) | 0 / 0 / 0 |
-| QWIvgoTQGKk | 12 | 7 | 6/12 (50%) | 6/12 (50%) | 5/12 (42%) | w03, w04, w07, w10, w11, w12 | 8.255 / 9.325 | 4/6 (67%) | 3/6 | 1.06 | 0.873 | 6/6 (100%) | 6/7 (86%) | 10/12 (83%) | 0 / 1 / 0 |
+| video | GT yes | maybe / no | props | recall (any) | recall@k=GT | recall@5 | missed | acceptable | founder_no | mean abs dstart / dend (s) | payoff+hold kept | drops setup | len ratio | word F1 | same purpose | props pass rules | GT pass rules | new / partial / dup |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| j14Om1SaFYE | 8 | 0 / 0 | 6 | 6/8 (75%) | 6/8 (75%) | 5/8 (62%) | w06, w09 | 0/0 | 0/0 | 7.657 / 2.142 | 4/6 (67%) | 2/6 | 1.029 | 0.952 | 6/6 (100%) | 5/6 (83%) | 8/8 (100%) | 0 / 0 / 0 |
+| QWIvgoTQGKk | 12 | 0 / 0 | 7 | 6/12 (50%) | 6/12 (50%) | 5/12 (42%) | w03, w04, w07, w10, w11, w12 | 0/0 | 0/0 | 8.255 / 9.325 | 4/6 (67%) | 3/6 | 1.06 | 0.873 | 6/6 (100%) | 6/7 (86%) | 10/12 (83%) | 0 / 1 / 0 |
 
-Overall: recall 12/20 (60%), recall@k=GT 12/20 (60%), recall@5 per episode summed 10/20 (50%). Small sample: every number above rests on 20 GT clips from 2 episode(s).
+Overall: recall 12/20 (60%), recall@k=GT 12/20 (60%), recall@5 per episode summed 10/20 (50%); acceptable hits 0 (of 0 maybe clips), founder_no hits 0 (of 0 no clips). Small sample: every number above rests on 20 founder-yes GT clips from 2 episode(s).
 
 ## j14Om1SaFYE
 
 Shots: `runs\video\j14Om1SaFYE\shots.json`. Opening zone: lead 0:00.0-0:23.6, isolated 0:23.6-0:33.4 (uncertain); story starts 0:33.9. Recap check vs QWIvgoTQGKk. Sponsor: none detected. Credits: heuristic (last word 1096.4s + 10s hold allowance; speechless tail 71s).
 
-### GT clips
+### GT clips (founder: yes)
 
-| GT | purpose | src | len | match rank | cov / IoU | dstart | dend | payoff / hold | drops setup | len ratio | word P/R | cuts P/GT | same purpose | cold P/GT |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| w01 | standalone | 3:31.1-5:14.1 | 62s | 2 | 0.956 / 0.835 | -0.1 | +2.6 | yes / yes | no | 1.108 | 1.0/1.0 | 1/2 | yes | yes/no |
-| w02 | standalone | 12:45.6-13:47.5 | 62s | 3 | 0.946 / 0.943 | +3.5 | +0.0 | yes / yes | yes: 8 words | 0.944 | 1.0/0.941 | 0/0 | yes | no/no |
-| w03 | standalone | 7:18.2-9:47.6 | 84s | 1 | 0.749 / 0.557 | +33.9 | -1.5 | yes / no | yes: 19 words | 0.696 | 0.91/0.762 | 2/3 | yes | no/no |
-| w04 | standalone | 14:37.0-15:54.6 | 73s | 5 | 0.905 / 0.837 | -2.3 | +0.0 | yes / yes | no | 1.003 | 0.961/1.0 | 1/1 | yes | no/no |
-| w06 | promo | 11:48.9-12:38.2 | 49s | MISSED | no overlap | | | | | | | | | |
-| w07 | standalone | 5:28.0-5:58.0 | 30s | 4 | 1.0 / 0.743 | -6.1 | +4.2 | yes / yes | no | 1.345 | 0.98/1.0 | 0/0 | yes | no/no |
-| w08 | promo | 17:06.8-18:24.0 | 67s | 6 | 1.0 / 0.814 | -0.1 | -4.5 | yes / no | no | 1.081 | 0.892/1.0 | 0/2 | yes | no/no |
-| w09 | standalone | 9:57.9-11:17.6 | 72s | MISSED | no overlap | | | | | | | | | |
+| GT | purpose | founder payoff/overall | src | len | match rank | cov / IoU | dstart | dend | payoff / hold | drops setup | len ratio | word P/R | cuts P/GT | same purpose | cold P/GT |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| w01 | standalone | - | 3:31.1-5:14.1 | 62s | 2 | 0.956 / 0.835 | -0.1 | +2.6 | yes / yes | no | 1.108 | 1.0/1.0 | 1/2 | yes | yes/no |
+| w02 | standalone | - | 12:45.6-13:47.5 | 62s | 3 | 0.946 / 0.943 | +3.5 | +0.0 | yes / yes | yes: 8 words | 0.944 | 1.0/0.941 | 0/0 | yes | no/no |
+| w03 | standalone | - | 7:18.2-9:47.6 | 84s | 1 | 0.749 / 0.557 | +33.9 | -1.5 | yes / no | yes: 19 words | 0.696 | 0.91/0.762 | 2/3 | yes | no/no |
+| w04 | standalone | - | 14:37.0-15:54.6 | 73s | 5 | 0.905 / 0.837 | -2.3 | +0.0 | yes / yes | no | 1.003 | 0.961/1.0 | 1/1 | yes | no/no |
+| w06 | promo | - | 11:48.9-12:38.2 | 49s | MISSED | no overlap | | | | | | | | | |
+| w07 | standalone | - | 5:28.0-5:58.0 | 30s | 4 | 1.0 / 0.743 | -6.1 | +4.2 | yes / yes | no | 1.345 | 0.98/1.0 | 0/0 | yes | no/no |
+| w08 | promo | - | 17:06.8-18:24.0 | 67s | 6 | 1.0 / 0.814 | -0.1 | -4.5 | yes / no | no | 1.081 | 0.892/1.0 | 0/2 | yes | no/no |
+| w09 | standalone | - | 9:57.9-11:17.6 | 72s | MISSED | no overlap | | | | | | | | | |
 
 Missed GT clips:
 - w06 (promo, 11:48.9-12:38.2): వంట రాదని చెప్పేలోపే... 'Let's make our marriage life tasty' | నేను ఒక విషయం చెప్పాలి మీకు అంతకన్నా ముందు నేను మీకు ఒక విషయం చెప్పాలి. ...
@@ -57,22 +57,22 @@ GT sanity (rule checks on the approved GT clips): 8/8 (100%) pass.
 
 Shots: `runs\video\QWIvgoTQGKk\shots.json`. Opening zone: lead 0:00.0-2:13.6; story starts 2:14.1. Recap check vs j14Om1SaFYE. Sponsor: none detected. Credits: heuristic (evenly timed shot cards from 1257.5s; speechless tail 59s).
 
-### GT clips
+### GT clips (founder: yes)
 
-| GT | purpose | src | len | match rank | cov / IoU | dstart | dend | payoff / hold | drops setup | len ratio | word P/R | cuts P/GT | same purpose | cold P/GT |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| w01 | standalone | 15:48.6-17:01.0 | 72s | 4 | 0.884 / 0.887 | +8.1 | -0.0 | yes / yes | yes: 8 words | 0.887 | 1.0/0.855 | 0/0 | yes | no/no |
-| w02 | promo | 18:50.5-20:57.5 | 89s | 6 | 1.0 / 0.865 | +0.0 | -2.8 | yes / no | no | 1.063 | 0.981/1.0 | 1/1 | yes | no/yes |
-| w03 | standalone | 10:51.1-11:09.5 | 18s | MISSED | no overlap | | | | | | | | | |
-| w04 | promo | 6:05.9-7:21.1 | 74s | MISSED | nearest: rank 7 cov 0.398 IoU 0.384 | | | | | | | | | |
-| w05 | standalone | 3:41.4-4:20.8 | 39s | 2 | 0.972 / 0.912 | +0.0 | +2.6 | yes / yes | no | 1.038 | 0.875/1.0 | 0/0 | yes | yes/no |
-| w06 | standalone | 11:55.8-13:22.5 | 73s | 1 | 1.0 / 0.752 | -5.6 | -3.4 | yes / no | no | 1.22 | 0.771/1.0 | 0/1 | yes | no/no |
-| w07 | standalone | 2:23.2-3:16.5 | 53s | MISSED | no overlap | | | | | | | | | |
-| w08 | standalone | 13:28.0-14:42.5 | 74s | 5 | 0.506 / 0.333 | +34.6 | +45.1 | yes / yes | yes: 38 words | 1.141 | 0.486/0.573 | 0/0 | yes | no/no |
-| w09 | standalone | 7:25.7-8:32.2 | 66s | 3 | 0.985 / 0.953 | +1.2 | +2.0 | yes / yes | yes: 1 words | 1.012 | 1.0/0.993 | 0/0 | yes | no/no |
-| w10 | standalone | 4:49.5-5:57.5 | 68s | MISSED | no overlap | | | | | | | | | |
-| w11 | standalone | 17:27.3-18:43.2 | 61s | MISSED | no overlap | | | | | | | | | |
-| w12 | standalone | 9:07.0-9:49.5 | 42s | MISSED | no overlap | | | | | | | | | |
+| GT | purpose | founder payoff/overall | src | len | match rank | cov / IoU | dstart | dend | payoff / hold | drops setup | len ratio | word P/R | cuts P/GT | same purpose | cold P/GT |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| w01 | standalone | - | 15:48.6-17:01.0 | 72s | 4 | 0.884 / 0.887 | +8.1 | -0.0 | yes / yes | yes: 8 words | 0.887 | 1.0/0.855 | 0/0 | yes | no/no |
+| w02 | promo | - | 18:50.5-20:57.5 | 89s | 6 | 1.0 / 0.865 | +0.0 | -2.8 | yes / no | no | 1.063 | 0.981/1.0 | 1/1 | yes | no/yes |
+| w03 | standalone | - | 10:51.1-11:09.5 | 18s | MISSED | no overlap | | | | | | | | | |
+| w04 | promo | - | 6:05.9-7:21.1 | 74s | MISSED | nearest: rank 7 cov 0.398 IoU 0.384 | | | | | | | | | |
+| w05 | standalone | - | 3:41.4-4:20.8 | 39s | 2 | 0.972 / 0.912 | +0.0 | +2.6 | yes / yes | no | 1.038 | 0.875/1.0 | 0/0 | yes | yes/no |
+| w06 | standalone | - | 11:55.8-13:22.5 | 73s | 1 | 1.0 / 0.752 | -5.6 | -3.4 | yes / no | no | 1.22 | 0.771/1.0 | 0/1 | yes | no/no |
+| w07 | standalone | - | 2:23.2-3:16.5 | 53s | MISSED | no overlap | | | | | | | | | |
+| w08 | standalone | - | 13:28.0-14:42.5 | 74s | 5 | 0.506 / 0.333 | +34.6 | +45.1 | yes / yes | yes: 38 words | 1.141 | 0.486/0.573 | 0/0 | yes | no/no |
+| w09 | standalone | - | 7:25.7-8:32.2 | 66s | 3 | 0.985 / 0.953 | +1.2 | +2.0 | yes / yes | yes: 1 words | 1.012 | 1.0/0.993 | 0/0 | yes | no/no |
+| w10 | standalone | - | 4:49.5-5:57.5 | 68s | MISSED | no overlap | | | | | | | | | |
+| w11 | standalone | - | 17:27.3-18:43.2 | 61s | MISSED | no overlap | | | | | | | | | |
+| w12 | standalone | - | 9:07.0-9:49.5 | 42s | MISSED | no overlap | | | | | | | | | |
 
 Missed GT clips:
 - w03 (standalone, 10:51.1-11:09.5): అమ్మ చేతి వంటలా ఉంది… 'మా అమ్మ చెయ్యలేదు ఒట్టు!' | అమ్మ చేతి వంటలా ఉంది. హా మా అమ్మ చెయ్యలేదు నిజంగా మా అమ్మ చెయ్యలేదు ...

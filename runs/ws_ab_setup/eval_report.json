@@ -1,5 +1,6 @@
 {
  "run_dir": "D:\\shotvi\\runs\\ws_ab_setup",
+ "gt_mode": "yes",
  "params": {
   "HARD_MAX_S": 150.0,
   "HARD_MIN_S": 15.0,
@@ -49,6 +50,15 @@
    5,
    10
   ],
+  "VERDICTS": [
+   "yes",
+   "maybe",
+   "no"
+  ],
+  "GT_MODES": [
+   "yes",
+   "all"
+  ],
   "zones": {
    "PAD": 0.5,
    "RUN_LINES": 4,
@@ -77,9 +87,19 @@
   {
    "summary": {
     "video_id": "j14Om1SaFYE",
+    "gt_mode": "yes",
     "n_gt": 8,
     "k_gt": 8,
     "n_props": 6,
+    "n_gt_all": 8,
+    "n_maybe": 0,
+    "n_no": 0,
+    "acceptable_hits": 0,
+    "founder_no_hits": 0,
+    "founder_scored": 0,
+    "mean_founder_payoff_matched": null,
+    "mean_founder_overall_matched": null,
+    "gt_notes": [],
     "recall": {
      "any": 6,
      "@k_gt": 6,
@@ -108,6 +128,8 @@
     "gt_pass_rules": 8,
     "status_counts": {
      "matched": 6,
+     "acceptable": 0,
+     "founder_no": 0,
      "duplicate": 0,
      "partial": 0,
      "new": 0
@@ -195,6 +217,8 @@
      "cold_open": false,
      "title": "పుల్లారెడ్డి sweets ని అమ్మాయే చేసిందంట!",
      "excerpt": "మీకు వంట వచ్చా? చచ్చింది గొర్ర. ఆహా! ఆ వచ్చు బాబు. ఎందుకు రాదు. అ-అందుకే ...",
+     "verdict": "yes",
+     "founder_scores": null,
      "matched": true,
      "prop_rank": 2,
      "prop_id": "w01",
@@ -222,7 +246,9 @@
       "purpose_gt": "standalone",
       "same_purpose": true,
       "cold_prop": true,
-      "cold_gt": false
+      "cold_gt": false,
+      "founder_payoff": null,
+      "founder_overall": null
      }
     },
     {
@@ -241,6 +267,8 @@
      "cold_open": false,
      "title": "Marriage అంటే full meals లాంటిది, salt ఏ husband!",
      "excerpt": "వాడు marriage గురించి ఎలా explain చేసాడో తెలుసా? ఆ ఈ రోజుల్లో marriage అనేది ...",
+     "verdict": "yes",
+     "founder_scores": null,
      "matched": true,
      "prop_rank": 3,
      "prop_id": "w04",
@@ -268,7 +296,9 @@
       "purpose_gt": "standalone",
       "same_purpose": true,
       "cold_prop": false,
-      "cold_gt": false
+      "cold_gt": false,
+      "founder_payoff": null,
+      "founder_overall": null
      }
     },
     {
@@ -299,6 +329,8 @@
      "cold_open": false,
      "title": "పొట్టిగా ఉండటం మీ లోపం కాదండి | ఐదో పెళ్లిచూపులు",
      "excerpt": "మీకు ఇది ఎన్నో పెళ్లిచూపులు మొదటి పెళ్లిచూపులు కానీ నాకిది ఐదో పెళ్లిచూపులు ఓహో! అంటే ...",
+     "verdict": "yes",
+     "founder_scores": null,
      "matched": true,
      "prop_rank": 1,
      "prop_id": "w03",
@@ -326,7 +358,9 @@
       "purpose_gt": "standalone",
       "same_purpose": true,
       "cold_prop": false,
-      "cold_gt": false
+      "cold_gt": false,
+      "founder_payoff": null,
+      "founder_overall": null
      }
     },
     {
@@ -349,6 +383,8 @@
      "cold_open": false,
      "title": "గోంగూర అడిగితే గోరింటాకు అంటుంది! | పిండి family",
      "excerpt": "మీరు బయట food తినరు కదా. మీకు అన్ని dishes వచ్చినప్పుడు. ఆ మీ favourite ...",
+     "verdict": "yes",
+     "founder_scores": null,
      "matched": true,
      "prop_rank": 5,
      "prop_id": "w05",
@@ -376,7 +412,9 @@
       "purpose_gt": "standalone",
       "same_purpose": true,
       "cold_prop": false,
-      "cold_gt": false
+      "cold_gt": false,
+      "founder_payoff": null,
+      "founder_overall": null
      }
     },
     {
@@ -395,6 +433,8 @@
      "cold_open": false,
      "title": "వంట రాదని చెప్పేలోపే... 'Let's make our marriage life tasty'",
      "excerpt": "నేను ఒక విషయం చెప్పాలి మీకు అంతకన్నా ముందు నేను మీకు ఒక విషయం చెప్పాలి. ...",
+     "verdict": "yes",
+     "founder_scores": null,
      "matched": false
     },
     {
@@ -413,6 +453,8 @@
      "cold_open": false,
      "title": "చపాతీ పూరీ అయిపోద్ది, cooker తో దీపావళి plan!",
      "excerpt": "పోసేయ్, పోసేయ్, పోసేయ్. అది నూనె అనుకుంటున్నావా, బండిలో పోసే petrol అనుకుంటున్నావా, అంత పోసావు. ...",
+     "verdict": "yes",
+     "founder_scores": null,
      "matched": true,
      "prop_rank": 4,
      "prop_id": "w02",
@@ -440,7 +482,9 @@
       "purpose_gt": "standalone",
       "same_purpose": true,
       "cold_prop": false,
-      "cold_gt": false
+      "cold_gt": false,
+      "founder_payoff": null,
+      "founder_overall": null
      }
     },
     {
@@ -467,6 +511,8 @@
      "cold_open": false,
      "title": "అబద్ధాలు చెప్తే అస్సలు తీసుకోలేను! | కొత్త అల్లుడి warning",
      "excerpt": "అత్తమ్మ మీరు మీ కూతుర్ని miss అవుతున్నారంటే చెప్పండి. ఇక్కడే వదిలేసి వెళ్తాను. అలా ఏం ...",
+     "verdict": "yes",
+     "founder_scores": null,
      "matched": true,
      "prop_rank": 6,
      "prop_id": "w06",
@@ -494,7 +540,9 @@
       "purpose_gt": "promo",
       "same_purpose": true,
       "cold_prop": false,
-      "cold_gt": false
+      "cold_gt": false,
+      "founder_payoff": null,
+      "founder_overall": null
      }
     },
     {
@@ -517,9 +565,12 @@
      "cold_open": false,
      "title": "Hostel food బాధ ప్రతి అబ్బాయికీ తెలుసు | food made with love",
      "excerpt": "ఏరా ఆ అమ్మాయి అంత నచ్చిందా? నీలా నువ్వే మురిసిపోతున్నావ్. అమ్మాయి చాలా బాగుందిరా. కానీ ...",
+     "verdict": "yes",
+     "founder_scores": null,
      "matched": false
     }
    ],
+   "other_gt": [],
    "proposals": [
     {
      "id": "w03",
@@ -616,7 +667,8 @@
      "fails": [],
      "warns": [],
      "status": "matched",
-     "gt": "w03"
+     "gt": "w03",
+     "founder_scores": null
     },
     {
      "id": "w01",
@@ -717,7 +769,8 @@
      "fails": [],
      "warns": [],
      "status": "matched",
-     "gt": "w01"
+     "gt": "w01",
+     "founder_scores": null
     },
     {
      "id": "w04",
@@ -806,7 +859,8 @@
      "fails": [],
      "warns": [],
      "status": "matched",
-     "gt": "w02"
+     "gt": "w02",
+     "founder_scores": null
     },
     {
      "id": "w02",
@@ -897,7 +951,8 @@
      ],
      "warns": [],
      "status": "matched",
-     "gt": "w07"
+     "gt": "w07",
+     "founder_scores": null
     },
     {
      "id": "w05",
@@ -990,7 +1045,8 @@
      "fails": [],
      "warns": [],
      "status": "matched",
-     "gt": "w04"
+     "gt": "w04",
+     "founder_scores": null
     },
     {
      "id": "w06",
@@ -1079,7 +1135,8 @@
      "fails": [],
      "warns": [],
      "status": "matched",
-     "gt": "w08"
+     "gt": "w08",
+     "founder_scores": null
     }
    ],
    "gt_checks": [
@@ -1674,9 +1731,19 @@
   {
    "summary": {
     "video_id": "QWIvgoTQGKk",
+    "gt_mode": "yes",
     "n_gt": 12,
     "k_gt": 12,
     "n_props": 7,
+    "n_gt_all": 12,
+    "n_maybe": 0,
+    "n_no": 0,
+    "acceptable_hits": 0,
+    "founder_no_hits": 0,
+    "founder_scored": 0,
+    "mean_founder_payoff_matched": null,
+    "mean_founder_overall_matched": null,
+    "gt_notes": [],
     "recall": {
      "any": 6,
      "@k_gt": 6,
@@ -1709,6 +1776,8 @@
     "gt_pass_rules": 10,
     "status_counts": {
      "matched": 6,
+     "acceptable": 0,
+     "founder_no": 0,
      "duplicate": 0,
      "partial": 1,
      "new": 0
@@ -1776,6 +1845,8 @@
      "cold_open": false,
      "title": "Heart తో communicate అవ్వాలి… This is why I love short girls",
      "excerpt": "దేనికో waiting. అబ్బచ్చా! అప్పుడే మర్చిపోయావా? ఆ, ఏం మర్చిపోవడం? Night escape అయినట్టు ఇప్పుడు ...",
+     "verdict": "yes",
+     "founder_scores": null,
      "matched": true,
      "prop_rank": 4,
      "prop_id": "w06",
@@ -1803,7 +1874,9 @@
       "purpose_gt": "standalone",
       "same_purpose": true,
       "cold_prop": false,
-      "cold_gt": false
+      "cold_gt": false,
+      "founder_payoff": null,
+      "founder_overall": null
      }
     },
     {
@@ -1834,6 +1907,8 @@
      "cold_open": true,
      "title": "మిర్చి బజ్జీలు నువ్వే వెయ్, నేను చూడాలి! Red handed గా దొరికిపోయిందా?",
      "excerpt": "నీకు వచ్చిన పెళ్ళాం కనీసం gas stove off చేయడం on చేయడం కూడా రాదన్నావ్ ...",
+     "verdict": "yes",
+     "founder_scores": null,
      "matched": true,
      "prop_rank": 6,
      "prop_id": "w07",
@@ -1861,7 +1936,9 @@
       "purpose_gt": "promo",
       "same_purpose": true,
       "cold_prop": false,
-      "cold_gt": true
+      "cold_gt": true,
+      "founder_payoff": null,
+      "founder_overall": null
      }
     },
     {
@@ -1880,6 +1957,8 @@
      "cold_open": false,
      "title": "అమ్మ చేతి వంటలా ఉంది… 'మా అమ్మ చెయ్యలేదు ఒట్టు!'",
      "excerpt": "అమ్మ చేతి వంటలా ఉంది. హా మా అమ్మ చెయ్యలేదు నిజంగా మా అమ్మ చెయ్యలేదు ...",
+     "verdict": "yes",
+     "founder_scores": null,
      "matched": false
     },
     {
@@ -1906,6 +1985,8 @@
      "cold_open": true,
      "title": "అబద్ధం అంటేనే fire అయిపోతాడు… అమృత పరిస్థితి ఏంటి?",
      "excerpt": "అబద్ధాలు చెప్పి పెళ్లి చేసుకోవడం correct ఏనా? ఆ మావోడు food విషయంలో చాలా particular ...",
+     "verdict": "yes",
+     "founder_scores": null,
      "matched": false,
      "nearest": {
       "prop_rank": 7,
@@ -1931,6 +2012,8 @@
      "cold_open": false,
      "title": "చాయ్ is an emotion… B positive కాదు T positive!",
      "excerpt": "అయినా నీకు చాయ్ గోలేంట్రా? ఏంటి చాయ్ గోలా అసలు చాయ్ అంటే ఏమనుకుంటున్నారు. It's ...",
+     "verdict": "yes",
+     "founder_scores": null,
      "matched": true,
      "prop_rank": 2,
      "prop_id": "w01",
@@ -1958,7 +2041,9 @@
       "purpose_gt": "standalone",
       "same_purpose": true,
       "cold_prop": true,
-      "cold_gt": false
+      "cold_gt": false,
+      "founder_payoff": null,
+      "founder_overall": null
      }
     },
     {
@@ -1981,6 +2066,8 @@
      "cold_open": false,
      "title": "First night నీ ఇష్టమే… But I want one thing!",
      "excerpt": "మన first night అనేది నీ ఇష్టమే I am not that desperate But ...",
+     "verdict": "yes",
+     "founder_scores": null,
      "matched": true,
      "prop_rank": 1,
      "prop_id": "w04",
@@ -2008,7 +2095,9 @@
       "purpose_gt": "standalone",
       "same_purpose": true,
       "cold_prop": false,
-      "cold_gt": false
+      "cold_gt": false,
+      "founder_payoff": null,
+      "founder_overall": null
      }
     },
     {
@@ -2035,6 +2124,8 @@
      "cold_open": true,
      "title": "నాకు చాయ్ పెట్టడానికే కదా లేచావ్? First day నే దొరికిపోయిందా!",
      "excerpt": "first day నే దొరికిపోయేలా ఉన్నావు కదా. నేనెందుకింత తొందరగా లేచానో నాకు తెలియదు గానీ, ...",
+     "verdict": "yes",
+     "founder_scores": null,
      "matched": false
     },
     {
@@ -2053,6 +2144,8 @@
      "cold_open": false,
      "title": "Egg దోశ కావాలంట… అమ్మ ముందే box లో పెట్టేసింది!",
      "excerpt": "ఆహ్, రేపు morning tiffin and lunch ఏం చెయ్యాలి? ఇప్పుడెందుకు అడుగుతున్నావ్? ఆహ్, చెయ్యించాలి ...",
+     "verdict": "yes",
+     "founder_scores": null,
      "matched": true,
      "prop_rank": 5,
      "prop_id": "w05",
@@ -2080,7 +2173,9 @@
       "purpose_gt": "standalone",
       "same_purpose": true,
       "cold_prop": false,
-      "cold_gt": false
+      "cold_gt": false,
+      "founder_payoff": null,
+      "founder_overall": null
      }
     },
     {
@@ -2099,6 +2194,8 @@
      "cold_open": false,
      "title": "First night అంత over hyped thing ఇంకోటి ఉండదు!",
      "excerpt": "ఏయ్ ఏంటి matter? Matter ఏంటి? అదే night బొమ్మ blockbuster ఆ? అంత ఊహించేసుకోకు ...",
+     "verdict": "yes",
+     "founder_scores": null,
      "matched": true,
      "prop_rank": 3,
      "prop_id": "w03",
@@ -2126,7 +2223,9 @@
       "purpose_gt": "standalone",
       "same_purpose": true,
       "cold_prop": false,
-      "cold_gt": false
+      "cold_gt": false,
+      "founder_payoff": null,
+      "founder_overall": null
      }
     },
     {
@@ -2145,6 +2244,8 @@
      "cold_open": false,
      "title": "Dinner ఏ కాదు carriage కూడా తనే పెడుతుంది! అమ్మ హామీలు",
      "excerpt": "నాకోసం ఏం వండవు. ఆ ఆ తోటకూర పప్పు ఆవకాయ ఊ ఆ ఇది కూడా ...",
+     "verdict": "yes",
+     "founder_scores": null,
      "matched": false
     },
     {
@@ -2175,6 +2276,8 @@
      "cold_open": true,
      "title": "First easy వంట try చేద్దాం… popcorn I am coming!",
      "excerpt": "అమ్మే! ప్రతిసారి వంటల కోసం అమ్మనేమడుగుతాం. మనం కూడా try చేద్దాం. First easy with ...",
+     "verdict": "yes",
+     "founder_scores": null,
      "matched": false
     },
     {
@@ -2193,9 +2296,12 @@
      "cold_open": false,
      "title": "Nail polish నేను వెయ్యనా? | Husband goals",
      "excerpt": "nail polish వేస్తున్నావా? ఉమ్ సరే నేను వెయ్యనా? వద్దు వద్దు పర్లేదు వద్దు. అంత ...",
+     "verdict": "yes",
+     "founder_scores": null,
      "matched": false
     }
    ],
+   "other_gt": [],
    "proposals": [
     {
      "id": "w04",
@@ -2284,7 +2390,8 @@
      "fails": [],
      "warns": [],
      "status": "matched",
-     "gt": "w06"
+     "gt": "w06",
+     "founder_scores": null
     },
     {
      "id": "w01",
@@ -2383,7 +2490,8 @@
      ],
      "warns": [],
      "status": "matched",
-     "gt": "w05"
+     "gt": "w05",
+     "founder_scores": null
     },
     {
      "id": "w03",
@@ -2472,7 +2580,8 @@
      "fails": [],
      "warns": [],
      "status": "matched",
-     "gt": "w09"
+     "gt": "w09",
+     "founder_scores": null
     },
     {
      "id": "w06",
@@ -2561,7 +2670,8 @@
      "fails": [],
      "warns": [],
      "status": "matched",
-     "gt": "w01"
+     "gt": "w01",
+     "founder_scores": null
     },
     {
      "id": "w05",
@@ -2650,7 +2760,8 @@
      "fails": [],
      "warns": [],
      "status": "matched",
-     "gt": "w08"
+     "gt": "w08",
+     "founder_scores": null
     },
     {
      "id": "w07",
@@ -2743,7 +2854,8 @@
      "fails": [],
      "warns": [],
      "status": "matched",
-     "gt": "w02"
+     "gt": "w02",
+     "founder_scores": null
     },
     {
      "id": "w02",

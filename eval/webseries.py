@@ -1,11 +1,19 @@
 """Web-series clip eval: automatic proposals vs the founder-approved web-series ground truth.
 
-    python -m eval.webseries runs/ws_r1 [--video ID] [--gold-dir data/gold] [--out-dir DIR]
+    python -m eval.webseries runs/ws_r1 [--video ID] [--gold-dir data/gold] [--out-dir DIR] [--gt yes|all]
 
-Ground truth: `data/gold/<id>.json` clips with `content_type: web_series` (CLAUDE.md "Web-series GT approved",
-founder 2026-10-06: "all clips are good"). Proposals: `<run>/<id>.json` with `proposals` (or `clips`, so a gold file
-can be scored against itself). Every clip is read through its `time_segments` (play order, seconds); `pieces`
-are only a fallback when a clip has no time segments. No LLM, no network.
+Ground truth: `data/gold/<id>.json` clips with `content_type: web_series` AND the founder's verdict
+`founder_would_post == "yes"` (founder, 2026-10-07: "without perfect GT all are waste"; GT is what the founder would
+POST, not what an editor picked). Clips the founder marked "maybe" or "no" stay in the file but are not GT: a
+proposal that lands on a "maybe" moment is `acceptable` (neither a miss nor a false positive), one that lands on a
+"no" moment is `founder_no` (a negative hit). A clip with no `founder_would_post` field counts as "yes" with a
+warning, so older gold files still score. `--gt all` restores the old behaviour (every web-series clip is GT).
+Where the gold carries `founder_scores` {hook, standalone, payoff, overall}, matched pairs report the founder's
+payoff and overall for that moment (informational: they rate the GT cut, not the proposal).
+
+Proposals: `<run>/<id>.json` with `proposals` (or `clips`, so a gold file can be scored against itself). Every
+clip is read through its `time_segments` (play order, seconds); `pieces` are only a fallback when a clip has no
+time segments. No LLM, no network.
 
 Three parts:
 1. Moment matching (recall vs GT). Detection-style: proposals are processed in rank order, and each takes the
@@ -14,9 +22,10 @@ Three parts:
                                    source span; the GT's silent holds are boundary details, scored separately)
      span IoU      >= MATCH_IOU  (IoU of the source-time unions; stops a 3-minute region from "finding" a 40 s
                                    moment)
-   One proposal matches at most one GT clip, so a long clip spanning two GT moments counts once. Unmatched
-   proposals are NOT wrong (CLAUDE.md "Ground truth philosophy"): they are listed as new / partial-overlap,
-   for the founder to rate, or as duplicates when they cover a GT moment another proposal already matched.
+   One proposal matches at most one GT clip, so a long clip spanning two GT moments counts once. Proposals left
+   over are then matched (same rule, rank order) against the maybe/no clips -> `acceptable` / `founder_no`.
+   Unmatched proposals are NOT wrong (CLAUDE.md "Ground truth philosophy"): they are listed as new / partial-overlap,
+   for the founder to rate, or as duplicates when they cover a moment another proposal already matched.
 2. Pair metrics on matched pairs: start/end deltas, payoff + reaction hold kept, setup dropped, word-level
    agreement, length ratio, cut counts, purpose, cold open.
 3. Rule checks on every clip (GT clips too, as a sanity test of the checks): lead-in, replay, cold-open lift,
@@ -30,6 +39,7 @@ import argparse
 import bisect
 import json
 import sys
+import warnings
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -68,6 +78,10 @@ CADENCE_RANGE = (1.5, 6.0)  # ... each this long
 MUSIC_KEYS = ("మ్యూజిక్", "పాట", "సంగీత", "గీతం", "music", "song")
 LAUGH_KEYS = ("నవ్వు", "laugh")
 KS_EXTRA = (5, 10)
+
+VERDICTS = ("yes", "maybe", "no")       # founder_would_post values
+GT_MODES = ("yes", "all")               # --gt: GT = founder "yes" clips (default) | every web-series clip
+HIT_OF = {"maybe": "acceptable", "no": "founder_no"}   # proposal status when it lands on a non-GT founder clip
 
 
 # ---- episode context ----------------------------------------------------------------------------------
@@ -558,7 +572,48 @@ def clips_of(doc):
 
 
 def gt_clips(gold):
+    """Every web-series clip in the gold file, whatever the founder's verdict."""
     return [c for c in gold.get("clips") or [] if c.get("content_type") == "web_series"]
+
+
+def verdict(clip):
+    """The founder's verdict for a gold clip: 'yes' | 'maybe' | 'no'. A missing field means 'yes' (older gold files,
+    e.g. the Couple Goals round-3 approval "all clips are good") and is reported by `split_gt`; an unknown value
+    raises, since silently scoring it either way would corrupt the GT."""
+    v = clip.get("founder_would_post")
+    if v is None:
+        return "yes"
+    v = str(v).strip().lower()
+    if v not in VERDICTS:
+        raise ValueError(f"clip {clip.get('id')}: founder_would_post={clip.get('founder_would_post')!r} not in {VERDICTS}")
+    return v
+
+
+def split_gt(gold, gt="yes"):
+    """(gts, others, notes): the clips scored as GT, the founder's maybe/no clips (only in gt='yes' mode) and any
+    warnings (clips scored as 'yes' because the verdict field is missing)."""
+    if gt not in GT_MODES:
+        raise ValueError(f"--gt must be one of {GT_MODES}, got {gt!r}")
+    allc = gt_clips(gold)
+    notes = []
+    missing = [c.get("id") for c in allc if c.get("founder_would_post") is None]
+    if missing and gt == "yes":
+        vid = gold.get("video_id") or "?"
+        msg = (f"{vid}: {len(missing)}/{len(allc)} web-series gold clips have no founder_would_post "
+               f"({', '.join(str(m) for m in missing)}); treating them as 'yes'")
+        notes.append(msg)
+        warnings.warn(msg, stacklevel=2)
+    if gt == "all":
+        return allc, [], notes
+    return [c for c in allc if verdict(c) == "yes"], [c for c in allc if verdict(c) != "yes"], notes
+
+
+def founder_scores(clip):
+    """{payoff, overall} from the gold's founder_scores, or None when the founder has not scored that clip."""
+    fs = clip.get("founder_scores")
+    if not isinstance(fs, dict):
+        return None
+    return {"payoff": fs.get("payoff"), "overall": fs.get("overall")}
 
 
 def _clip_row(c, rank, ctx):
@@ -570,21 +625,36 @@ def _clip_row(c, rank, ctx):
             "excerpt": ctx.text(words, 12)}
 
 
-def evaluate_episode(gold, prop_doc, ctx):
-    gts = gt_clips(gold)
+def _eligible(st):
+    return st[0] >= MATCH_COV and st[1] >= MATCH_IOU
+
+
+def evaluate_episode(gold, prop_doc, ctx, gt="yes"):
+    """Score one episode. `gt`: 'yes' (GT = founder_would_post yes; maybe/no clips give acceptable / founder_no
+    hits) or 'all' (every web-series clip is GT, the pre-verdict behaviour)."""
+    gts, others, notes = split_gt(gold, gt)
     props = clips_of(prop_doc)
     assign, stats = match(gts, props, ctx)
     inv = {pi: gi for gi, pi in assign.items()}
     n = len(gts)
+    # second stage: proposals that matched no GT clip, against the founder's maybe/no clips (rank order, same rule)
+    rest = [p if pi not in inv else None for pi, p in enumerate(props)]
+    o_assign, o_stats = match(others, [p or {"time_segments": []} for p in rest], ctx) if others else ({}, {})
+    o_assign = {oi: pi for oi, pi in o_assign.items() if rest[pi] is not None}
+    o_inv = {pi: oi for oi, pi in o_assign.items()}
 
     gt_rows = []
     for gi, g in enumerate(gts):
         row = _clip_row(g, gi + 1, ctx)
+        row["verdict"] = verdict(g)
+        row["founder_scores"] = founder_scores(g)
         if gi in assign:
             pi = assign[gi]
             row.update({"matched": True, "prop_rank": pi + 1, "prop_id": props[pi].get("id"),
                         "cov": stats[gi, pi][0], "iou": stats[gi, pi][1]})
             row["pair"] = pair_metrics(g, props[pi], ctx)
+            fs = row["founder_scores"] or {}
+            row["pair"]["founder_payoff"], row["pair"]["founder_overall"] = fs.get("payoff"), fs.get("overall")
         else:
             best = max(range(len(props)), key=lambda pi: stats[gi, pi], default=None)
             row.update({"matched": False})
@@ -593,6 +663,18 @@ def evaluate_episode(gold, prop_doc, ctx):
                                   "cov": stats[gi, best][0], "iou": stats[gi, best][1],
                                   "matched_elsewhere": best in inv}
         gt_rows.append(row)
+
+    other_rows = []
+    for oi, o in enumerate(others):
+        row = _clip_row(o, oi + 1, ctx)
+        row["verdict"] = verdict(o)
+        row["founder_scores"] = founder_scores(o)
+        row["hit"] = oi in o_assign
+        if row["hit"]:
+            pi = o_assign[oi]
+            row.update({"prop_rank": pi + 1, "prop_id": props[pi].get("id"),
+                        "cov": o_stats[oi, pi][0], "iou": o_stats[oi, pi][1]})
+        other_rows.append(row)
 
     prop_rows = []
     for pi, p in enumerate(props):
@@ -603,15 +685,30 @@ def evaluate_episode(gold, prop_doc, ctx):
         if pi in inv:
             row["status"] = "matched"
             row["gt"] = gts[inv[pi]].get("id")
+            row["founder_scores"] = founder_scores(gts[inv[pi]])
+        elif pi in o_inv:
+            o = others[o_inv[pi]]
+            row["status"], row["gt"] = HIT_OF[verdict(o)], o.get("id")
+            row["founder_verdict"] = verdict(o)
+            row["founder_scores"] = founder_scores(o)
+            row["cov"], row["iou"] = o_stats[o_inv[pi], pi]
         else:
-            el = [gi for gi in range(n) if stats[gi, pi][0] >= MATCH_COV and stats[gi, pi][1] >= MATCH_IOU]
-            part = [gi for gi in range(n) if stats[gi, pi][0] >= PARTIAL_COV or stats[gi, pi][1] >= 0.1]
+            el = [gi for gi in range(n) if _eligible(stats[gi, pi])]
+            oel = [oi for oi in range(len(others)) if _eligible(o_stats[oi, pi])]
+            part = [("gt", gi) for gi in range(n) if stats[gi, pi][0] >= PARTIAL_COV or stats[gi, pi][1] >= 0.1] + \
+                   [("other", oi) for oi in range(len(others)) if o_stats[oi, pi][0] >= PARTIAL_COV or o_stats[oi, pi][1] >= 0.1]
             if el:
                 row["status"], row["gt"] = "duplicate", gts[el[0]].get("id")
+            elif oel:   # a second proposal on the same maybe/no moment
+                row["status"], row["gt"] = "duplicate", others[oel[0]].get("id")
+                row["founder_verdict"] = verdict(others[oel[0]])
             elif part:
-                gi = max(part, key=lambda gi: stats[gi, pi])
-                row["status"], row["gt"] = "partial", gts[gi].get("id")
-                row["cov"], row["iou"] = stats[gi, pi]
+                kind, i = max(part, key=lambda ki: stats[ki[1], pi] if ki[0] == "gt" else o_stats[ki[1], pi])
+                c = gts[i] if kind == "gt" else others[i]
+                row["status"], row["gt"] = "partial", c.get("id")
+                row["cov"], row["iou"] = stats[i, pi] if kind == "gt" else o_stats[i, pi]
+                if kind == "other":
+                    row["founder_verdict"] = verdict(c)
             else:
                 row["status"] = "new"
         prop_rows.append(row)
@@ -631,8 +728,18 @@ def evaluate_episode(gold, prop_doc, ctx):
         xs = [x for x in xs if x is not None]
         return round(sum(xs) / len(xs), 3) if xs else None
 
+    n_all = n + len(others)
+    sc = {s: sum(r["status"] == s for r in prop_rows)
+          for s in ("matched", "acceptable", "founder_no", "duplicate", "partial", "new")}
     summary = {
-        "video_id": ctx.video_id, "n_gt": n, "k_gt": n, "n_props": len(props),
+        "video_id": ctx.video_id, "gt_mode": gt, "n_gt": n, "k_gt": n, "n_props": len(props),
+        "n_gt_all": n_all, "n_maybe": sum(verdict(o) == "maybe" for o in others),
+        "n_no": sum(verdict(o) == "no" for o in others),
+        "acceptable_hits": sc["acceptable"], "founder_no_hits": sc["founder_no"],
+        "founder_scored": sum(1 for g in gts if founder_scores(g)),
+        "mean_founder_payoff_matched": mean([x["founder_payoff"] for x in pairs]),
+        "mean_founder_overall_matched": mean([x["founder_overall"] for x in pairs]),
+        "gt_notes": notes,
         "recall": rec, "recall_frac": {k: round(v / n, 3) if n else None for k, v in rec.items()},
         "missed": [r["id"] for r in gt_rows if not r["matched"]],
         "mean_abs_start_delta": mean([abs(x["start_delta"]) for x in pairs]),
@@ -645,13 +752,13 @@ def evaluate_episode(gold, prop_doc, ctx):
         "n_matched": len(pairs),
         "props_pass_rules": sum(r["pass"] for r in prop_rows),
         "gt_pass_rules": sum(r["pass"] for r in gt_checks),
-        "status_counts": {s: sum(r["status"] == s for r in prop_rows) for s in ("matched", "duplicate", "partial", "new")},
+        "status_counts": sc,
         "fail_counts": _count([f for r in prop_rows for f in r["fails"]]),
         "credits": ctx.credits_status, "credits_zone": ctx.credits_zone, "intro_zone": ctx.intro_zone,
         "opening": ctx.opening, "sponsors": ctx.sponsors, "sibling_episodes": ctx.reference_ids,
         "shots": ctx.shots_source,
     }
-    return {"summary": summary, "gt": gt_rows, "proposals": prop_rows, "gt_checks": gt_checks}
+    return {"summary": summary, "gt": gt_rows, "other_gt": other_rows, "proposals": prop_rows, "gt_checks": gt_checks}
 
 
 def _count(xs):
@@ -692,20 +799,34 @@ def _opening_md(s):
     return txt
 
 
+def _fs(fs):
+    """'payoff/overall' from a founder_scores dict, or '-' when the founder has not scored the clip."""
+    if not fs or (fs.get("payoff") is None and fs.get("overall") is None):
+        return "-"
+    return f"{fs.get('payoff', '-')}/{fs.get('overall', '-')}"
+
+
 def render_markdown(results, run_dir):
+    mode = results[0]["summary"].get("gt_mode", "yes") if results else "yes"
     L = [f"# Web-series eval: `{run_dir}`", "",
+         ("GT = clips the founder would post (`founder_would_post: yes`). " if mode == "yes" else
+          "GT = every web-series gold clip (`--gt all`, the founder's verdict is ignored). ") +
          f"Matching: a proposal matches a GT clip if it covers >= {MATCH_COV:.0%} of the GT's spoken core and the "
          f"source-span IoU is >= {MATCH_IOU}; proposals are taken in rank order, each matching at most one GT clip. "
-         "Unmatched proposals are not errors: `new` and `partial` ones need the founder's rating.", ""]
+         "Leftover proposals are matched the same way against the founder's `maybe` clips (`acceptable`: not a miss, "
+         "not a false positive) and `no` clips (`founder_no`: a negative hit). "
+         "Unmatched proposals are not errors: `new` and `partial` ones need the founder's rating. Founder payoff/overall "
+         "columns are the founder's scores for the GT cut of that moment (informational), not a rating of the proposal.", ""]
     L += ["## Episode summary", "",
-          "| video | GT | props | recall (any) | recall@k=GT | recall@5 | missed | mean abs dstart / dend (s) | payoff+hold kept | drops setup | len ratio | word F1 | same purpose | props pass rules | GT pass rules | new / partial / dup |",
-          "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
+          f"| video | {'GT yes' if mode == 'yes' else 'GT (all)'} | maybe / no | props | recall (any) | recall@k=GT | recall@5 | missed | acceptable | founder_no | mean abs dstart / dend (s) | payoff+hold kept | drops setup | len ratio | word F1 | same purpose | props pass rules | GT pass rules | new / partial / dup |",
+          "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
     for r in results:
         s = r["summary"]
         n, m = s["n_gt"], s["n_matched"]
         sc = s["status_counts"]
-        L.append(f"| {s['video_id']} | {n} | {s['n_props']} | {_pct(s['recall']['any'], n)} | {_pct(s['recall']['@k_gt'], n)} | "
-                 f"{_pct(s['recall']['@5'], n)} | {', '.join(s['missed']) or '-'} | {s['mean_abs_start_delta']} / {s['mean_abs_end_delta']} | "
+        L.append(f"| {s['video_id']} | {n} | {s['n_maybe']} / {s['n_no']} | {s['n_props']} | {_pct(s['recall']['any'], n)} | {_pct(s['recall']['@k_gt'], n)} | "
+                 f"{_pct(s['recall']['@5'], n)} | {', '.join(s['missed']) or '-'} | {_pct(sc['acceptable'], s['n_maybe'])} | {_pct(sc['founder_no'], s['n_no'])} | "
+                 f"{s['mean_abs_start_delta']} / {s['mean_abs_end_delta']} | "
                  f"{_pct(s['payoff_and_hold_kept'], m)} | {s['drops_setup']}/{m} | {s['mean_length_ratio']} | {s['mean_word_f1']} | "
                  f"{_pct(s['same_purpose'], m)} | {_pct(s['props_pass_rules'], s['n_props'])} | {_pct(s['gt_pass_rules'], n)} | "
                  f"{sc['new']} / {sc['partial']} / {sc['duplicate']} |")
@@ -713,17 +834,26 @@ def render_markdown(results, run_dir):
     tot_any = sum(r["summary"]["recall"]["any"] for r in results)
     tot_k = sum(r["summary"]["recall"]["@k_gt"] for r in results)
     tot_5 = sum(r["summary"]["recall"]["@5"] for r in results)
+    tot_acc = sum(r["summary"]["status_counts"]["acceptable"] for r in results)
+    tot_no = sum(r["summary"]["status_counts"]["founder_no"] for r in results)
+    tot_maybe = sum(r["summary"]["n_maybe"] for r in results)
+    tot_non = sum(r["summary"]["n_no"] for r in results)
     L += ["", f"Overall: recall {_pct(tot_any, tot_g)}, recall@k=GT {_pct(tot_k, tot_g)}, recall@5 per episode summed "
-          f"{_pct(tot_5, tot_g)}. Small sample: every number above rests on {tot_g} GT clips from {len(results)} episode(s)."]
+          f"{_pct(tot_5, tot_g)}; acceptable hits {tot_acc} (of {tot_maybe} maybe clips), founder_no hits {tot_no} "
+          f"(of {tot_non} no clips). Small sample: every number above rests on {tot_g} founder-yes GT clips from {len(results)} episode(s)."]
+    notes = [n for r in results for n in r["summary"].get("gt_notes", [])]
+    if notes:
+        L += ["", "GT notes:"] + [f"- {n}" for n in notes]
     for r in results:
         s = r["summary"]
         L += ["", f"## {s['video_id']}", "",
               f"Shots: `{s['shots']}`. {_opening_md(s)} Credits: {s['credits']}.", "",
-              "### GT clips", "",
-              "| GT | purpose | src | len | match rank | cov / IoU | dstart | dend | payoff / hold | drops setup | len ratio | word P/R | cuts P/GT | same purpose | cold P/GT |",
-              "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
+              "### GT clips" + (" (founder: yes)" if s.get("gt_mode", "yes") == "yes" else ""), "",
+              "| GT | purpose | founder payoff/overall | src | len | match rank | cov / IoU | dstart | dend | payoff / hold | drops setup | len ratio | word P/R | cuts P/GT | same purpose | cold P/GT |",
+              "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
         for g in r["gt"]:
-            head = f"| {g['id']} | {g['purpose']} | {_t(g['src_start'])}-{_t(g['play_end'])} | {g['duration']:.0f}s "
+            head = (f"| {g['id']} | {g['purpose']} | {_fs(g.get('founder_scores'))} | {_t(g['src_start'])}-{_t(g['play_end'])} "
+                    f"| {g['duration']:.0f}s ")
             if g["matched"]:
                 x = g["pair"]
                 L.append(head + f"| {g['prop_rank']} | {g['cov']} / {g['iou']} | {x['start_delta']:+.1f} | {x['end_delta']:+.1f} | "
@@ -736,6 +866,14 @@ def render_markdown(results, run_dir):
                 near = (f"nearest: rank {nb['prop_rank']} cov {nb['cov']} IoU {nb['iou']}" +
                         (" (matched to another GT)" if nb["matched_elsewhere"] else "")) if nb else "no overlap"
                 L.append(head + f"| MISSED | {near} | | | | | | | | | |")
+        if r.get("other_gt"):
+            L += ["", "### Founder maybe / no clips (not GT: a hit is `acceptable` / `founder_no`, a miss is not a miss)", "",
+                  "| clip | verdict | founder payoff/overall | purpose | src | len | hit by rank | cov / IoU | excerpt |",
+                  "|---|---|---|---|---|---|---|---|---|"]
+            for o in r["other_gt"]:
+                hit = f"{o['prop_rank']} | {o['cov']} / {o['iou']}" if o["hit"] else "- | -"
+                L.append(f"| {o['id']} | {o['verdict']} | {_fs(o.get('founder_scores'))} | {o['purpose']} | "
+                         f"{_t(o['src_start'])}-{_t(o['play_end'])} | {o['duration']:.0f}s | {hit} | {o['excerpt']} |")
         missed = [g for g in r["gt"] if not g["matched"]]
         if missed:
             L += ["", "Missed GT clips:"]
@@ -753,10 +891,18 @@ def render_markdown(results, run_dir):
         for p in r["proposals"]:
             c = p["checks"]
             st = p["status"] + (f" ({p['gt']})" if p.get("gt") else "")
+            if p["status"] in ("acceptable", "founder_no") and _fs(p.get("founder_scores")) != "-":
+                st += f" founder {_fs(p['founder_scores'])}"
             L.append(f"| {p['rank']} | {st} | {_t(p['src_start'])}-{_t(p['play_end'])} | {p['duration']:.0f}s | {p['purpose']} | "
                      f"{_yn(p['cold_open'])} | {c.get('lead_in', {}).get('value')} | {c.get('internal_cuts', {}).get('value')} | "
                      f"{c.get('reaction_hold', {}).get('value')} | {', '.join(p['fails']) or '-'} | {', '.join(p['warns']) or '-'} | "
                      f"{p['excerpt']} |")
+        hits = [p for p in r["proposals"] if p["status"] in ("acceptable", "founder_no")]
+        if hits:
+            L += ["", "Founder maybe / no hits (acceptable = on a `maybe` moment; founder_no = on a moment the founder would NOT post):"]
+            for p in hits:
+                L.append(f"- rank {p['rank']} [{p['status']} {p['gt']}, founder {_fs(p.get('founder_scores'))}] "
+                         f"{_t(p['src_start'])}-{_t(p['play_end'])} {p['duration']:.0f}s {p['purpose']}: {p['title']} | {p['excerpt']}")
         new = [p for p in r["proposals"] if p["status"] in ("new", "partial")]
         if new:
             L += ["", "New moments (outside the GT, NOT wrong; need the founder's rating):"]
@@ -777,7 +923,7 @@ def render_markdown(results, run_dir):
 
 # ---- CLI ----------------------------------------------------------------------------------------------
 
-def run(run_dir, video=None, gold_dir=None, out_dir=None, shots_dir=None, write=True):
+def run(run_dir, video=None, gold_dir=None, out_dir=None, shots_dir=None, write=True, gt="yes"):
     run_dir = resolve(run_dir)
     gold_dir = resolve(gold_dir) if gold_dir else ROOT / "data" / "gold"
     results, skipped = [], []
@@ -794,10 +940,10 @@ def run(run_dir, video=None, gold_dir=None, out_dir=None, shots_dir=None, write=
             continue
         tpath = (gold.get("transcript") or {}).get("path")
         ctx = load_ctx(vid, tpath, shots_dir)
-        results.append(evaluate_episode(gold, load_json(pp), ctx))
+        results.append(evaluate_episode(gold, load_json(pp), ctx, gt))
     params = {k: v for k, v in globals().items() if k.isupper() and isinstance(v, (int, float, tuple))}
     params["zones"] = {k: v for k, v in vars(EZ).items() if k.isupper() and isinstance(v, (int, float))}
-    out = {"run_dir": str(run_dir), "params": params,
+    out = {"run_dir": str(run_dir), "gt_mode": gt, "params": params,
            "skipped_no_proposals": skipped, "episodes": results}
     if write and results:
         od = resolve(out_dir) if out_dir else run_dir
@@ -814,8 +960,10 @@ def main(argv=None):
     ap.add_argument("--gold-dir")
     ap.add_argument("--out-dir", help="where eval_report.{md,json} go (default: the run dir)")
     ap.add_argument("--shots-dir", help="default runs/video (expects <id>/shots.json)")
+    ap.add_argument("--gt", choices=GT_MODES, default="yes",
+                    help="yes (default): GT = clips with founder_would_post yes; all: every web-series gold clip")
     a = ap.parse_args(argv)
-    out = run(a.run_dir, a.video, a.gold_dir, a.out_dir, a.shots_dir)
+    out = run(a.run_dir, a.video, a.gold_dir, a.out_dir, a.shots_dir, gt=a.gt)
     if not out["episodes"]:
         print(f"no proposal files with web-series GT in {a.run_dir} (looked for <video_id>.json)", file=sys.stderr)
         return 1
