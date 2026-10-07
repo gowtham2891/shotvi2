@@ -1,0 +1,810 @@
+{
+ "video_id": "Sy8yZ4DgzrU",
+ "schema": "asr_fix/1",
+ "params": {
+  "layers": [
+   "context",
+   "flag",
+   "relisten"
+  ],
+  "threshold": 0.5,
+  "min_conf": 0.8,
+  "model": "gemini-3.8-flash",
+  "pad_s": 0.4,
+  "ctx_lines": 2,
+  "batch_items": 8,
+  "context_prompt": "1",
+  "relisten_prompt": "1",
+  "apply_context": false,
+  "skip_interjections": true
+ },
+ "lines": 542,
+ "n_flagged_words": 21,
+ "n_suspects": 26,
+ "suspects": [
+  {
+   "line": "L0016",
+   "start_word": 35,
+   "end_word": 35,
+   "heard": "ఇంకా",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.466
+  },
+  {
+   "line": "L0016",
+   "start_word": 40,
+   "end_word": 40,
+   "heard": "నాకెళ్ళావు",
+   "found_by": [
+    "context"
+   ],
+   "guess": "దాకెళ్ళావా",
+   "why": "Makes no sense; asking if he went to her (Radha) in context",
+   "min_conf": 0.583
+  },
+  {
+   "line": "L0131",
+   "start_word": 460,
+   "end_word": 460,
+   "heard": "sorry",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.477
+  },
+  {
+   "line": "L0145",
+   "start_word": 514,
+   "end_word": 514,
+   "heard": "రెక్కేవో",
+   "found_by": [
+    "context"
+   ],
+   "guess": "రక్కావో",
+   "why": "Misspelling/mishearing of scratching (రక్కడం)",
+   "min_conf": 0.796
+  },
+  {
+   "line": "L0152",
+   "start_word": 543,
+   "end_word": 544,
+   "heard": "dialogues stop",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "dialogues ఆపి",
+   "why": "Mixed English phrase misheard for Telugu ఆపి",
+   "min_conf": 0.309
+  },
+  {
+   "line": "L0162",
+   "start_word": 593,
+   "end_word": 593,
+   "heard": "మీరే",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.065
+  },
+  {
+   "line": "L0169",
+   "start_word": 605,
+   "end_word": 608,
+   "heard": "బండ నాన్నలా సందె నాయనా",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "దొంగ నా కొడకా",
+   "why": "Nonsensical string during playful fight",
+   "min_conf": 0.494
+  },
+  {
+   "line": "L0174",
+   "start_word": 613,
+   "end_word": 613,
+   "heard": "ఉమ్",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.493
+  },
+  {
+   "line": "L0175",
+   "start_word": 615,
+   "end_word": 615,
+   "heard": "ఆడి",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "ఆడి",
+   "why": "Correct word flagged incorrectly by ASR",
+   "min_conf": 0.422
+  },
+  {
+   "line": "L0193",
+   "start_word": 673,
+   "end_word": 674,
+   "heard": "cut ఏ",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "కట్",
+   "why": "Colloquial slang 'నీతో కట్' (breaking friendship playfully)",
+   "min_conf": 0.431
+  },
+  {
+   "line": "L0222",
+   "start_word": 790,
+   "end_word": 790,
+   "heard": "Okay",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.497
+  },
+  {
+   "line": "L0225",
+   "start_word": 795,
+   "end_word": 795,
+   "heard": "ఒకటి",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.352
+  },
+  {
+   "line": "L0228",
+   "start_word": 811,
+   "end_word": 811,
+   "heard": "ఎలుకుపోతుంది",
+   "found_by": [
+    "context"
+   ],
+   "guess": "వెలిగిపోతుంది",
+   "why": "Colloquial expression about face shining/villain face",
+   "min_conf": 0.708
+  },
+  {
+   "line": "L0244",
+   "start_word": 858,
+   "end_word": 858,
+   "heard": "రాదంటే",
+   "found_by": [
+    "context"
+   ],
+   "guess": "రా అదంటే",
+   "why": "'రా అదంటే' referring to Satya",
+   "min_conf": 0.868
+  },
+  {
+   "line": "L0246",
+   "start_word": 865,
+   "end_word": 865,
+   "heard": "ఓ",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.402
+  },
+  {
+   "line": "L0266",
+   "start_word": 928,
+   "end_word": 929,
+   "heard": "మచ్చ చేసుకొని",
+   "found_by": [
+    "context"
+   ],
+   "guess": "పుణ్యం చేసుకొని",
+   "why": "Idiom about being lucky/fortunate to get someone",
+   "min_conf": 0.536
+  },
+  {
+   "line": "L0269",
+   "start_word": 945,
+   "end_word": 945,
+   "heard": "పోయి",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.465
+  },
+  {
+   "line": "L0283",
+   "start_word": 984,
+   "end_word": 984,
+   "heard": "అని",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "అంతే",
+   "why": "Conversational reply 'అది అలా అయిపోయిందిరా అంతే'",
+   "min_conf": 0.444
+  },
+  {
+   "line": "L0298",
+   "start_word": 1063,
+   "end_word": 1063,
+   "heard": "అంటే",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.433
+  },
+  {
+   "line": "L0299",
+   "start_word": 1076,
+   "end_word": 1076,
+   "heard": "school",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.436
+  },
+  {
+   "line": "L0311",
+   "start_word": 1147,
+   "end_word": 1147,
+   "heard": "ఊ..",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.47
+  },
+  {
+   "line": "L0319",
+   "start_word": 1159,
+   "end_word": 1159,
+   "heard": "అక్క",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.47
+  },
+  {
+   "line": "L0340",
+   "start_word": 1281,
+   "end_word": 1281,
+   "heard": "okay",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.429
+  },
+  {
+   "line": "L0363",
+   "start_word": 1380,
+   "end_word": 1380,
+   "heard": "bye",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.464
+  },
+  {
+   "line": "L0434",
+   "start_word": 1624,
+   "end_word": 1624,
+   "heard": "మ్",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.457
+  },
+  {
+   "line": "L0480",
+   "start_word": 1780,
+   "end_word": 1780,
+   "heard": "నా",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.23
+  }
+ ],
+ "corrections": [
+  {
+   "start_word": 40,
+   "end_word": 40,
+   "heard": "నాకెళ్ళావు",
+   "corrected": "చేసుకున్నాక వెళ్ళావు",
+   "reason": "clearly says చేసుకున్నాక వెళ్ళావు",
+   "source": "relisten",
+   "confidence": 0.98,
+   "applied": true,
+   "found_by": [
+    "context"
+   ],
+   "line": "L0016",
+   "start": 82.7,
+   "end": 83.0,
+   "context_guess": "దాకెళ్ళావా",
+   "relisten": {
+    "heard_line": "నేను పడుకున్నాను ఇంక లేవను అని confirm చేసుకున్నాక వెళ్ళావు అంతే కదా.",
+    "line_ratio": 0.929
+   }
+  },
+  {
+   "start_word": 514,
+   "end_word": 514,
+   "heard": "రెక్కేవో",
+   "corrected": "రక్కావో",
+   "reason": "clearly says రక్కావో",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context"
+   ],
+   "line": "L0145",
+   "start": 422.4,
+   "end": 422.74,
+   "context_guess": "రక్కావో",
+   "relisten": {
+    "heard_line": "చూడు ఎలా రక్కావో దెయ్యం గోర్లు వేసుకుని",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 543,
+   "end_word": 544,
+   "heard": "dialogues stop",
+   "corrected": "డైలాగ్స్ ఆపి",
+   "reason": "clearly says డైలాగ్స్ ఆపి",
+   "source": "relisten",
+   "confidence": 0.98,
+   "applied": true,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0152",
+   "start": 436.86,
+   "end": 437.32,
+   "context_guess": "dialogues ఆపి",
+   "relisten": {
+    "heard_line": "డైలాగ్స్ ఆపి ఇప్పుడు ఆడతావా లేదా చెప్పు",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 605,
+   "end_word": 608,
+   "heard": "బండ నాన్నలా సందె నాయనా",
+   "corrected": "బండ నాయాల చవట నాయాల",
+   "reason": "clearly abuses as బండ నాయాల చవట నాయాల",
+   "source": "relisten",
+   "confidence": 0.9,
+   "applied": true,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0169",
+   "start": 472.62,
+   "end": 474.54,
+   "context_guess": "దొంగ నా కొడకా",
+   "relisten": {
+    "heard_line": "బండ నాయాల చవట నాయాల నన్నే కొడతావా? ఊ",
+    "line_ratio": 0.933
+   }
+  },
+  {
+   "start_word": 615,
+   "end_word": 615,
+   "heard": "ఆడి",
+   "corrected": "లో",
+   "reason": "clearly says game లో",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0175",
+   "start": 478.58,
+   "end": 478.98,
+   "context_guess": "ఆడి",
+   "relisten": {
+    "heard_line": "game లో cheating చేస్తావా? ఆగండి",
+    "line_ratio": 0.9
+   }
+  },
+  {
+   "start_word": 673,
+   "end_word": 674,
+   "heard": "cut ఏ",
+   "corrected": "కట్టిస్",
+   "reason": "clearly says కట్టిస్ (kattis)",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0193",
+   "start": 506.86,
+   "end": 507.06,
+   "context_guess": "కట్",
+   "relisten": {
+    "heard_line": "నీతో కట్టిస్",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 811,
+   "end_word": 811,
+   "heard": "ఎలుకుపోతుంది",
+   "corrected": "వెలిగిపోతుంది",
+   "reason": "clearly says వెలిగిపోతుంది",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context"
+   ],
+   "line": "L0228",
+   "start": 627.54,
+   "end": 628.18,
+   "context_guess": "వెలిగిపోతుంది",
+   "relisten": {
+    "heard_line": "ఏం లేదంటున్నావ్ పాత సినిమాలో villain లా face వెలిగిపోతుంది",
+    "line_ratio": 0.99
+   }
+  },
+  {
+   "start_word": 858,
+   "end_word": 858,
+   "heard": "రాదంటే",
+   "corrected": "రా అదంటే",
+   "reason": "clearly says రా అదంటే",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context"
+   ],
+   "line": "L0244",
+   "start": 654.54,
+   "end": 654.9,
+   "context_guess": "రా అదంటే",
+   "relisten": {
+    "heard_line": "అంత పిచ్చి రా అదంటే నాకు",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 928,
+   "end_word": 929,
+   "heard": "మచ్చ చేసుకొని",
+   "corrected": "మచ్చ వేసుకొని",
+   "reason": "clearly says మచ్చ వేసుకొని",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context"
+   ],
+   "line": "L0266",
+   "start": 696.0,
+   "end": 696.52,
+   "context_guess": "పుణ్యం చేసుకొని",
+   "relisten": {
+    "heard_line": "ఎక్కడో మచ్చ వేసుకొని పుట్టుంటాడు నా కొడుకు",
+    "line_ratio": 0.96
+   }
+  },
+  {
+   "start_word": 984,
+   "end_word": 984,
+   "heard": "అని",
+   "corrected": "నేను",
+   "reason": "speaker says నేను",
+   "source": "relisten",
+   "confidence": 0.9,
+   "applied": true,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0283",
+   "start": 733.42,
+   "end": 733.82,
+   "context_guess": "అంతే",
+   "relisten": {
+    "heard_line": "అది అలా అయిపోయింది రా నేను",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 1159,
+   "end_word": 1159,
+   "heard": "అక్క",
+   "corrected": "ఆగు",
+   "reason": "clearly says ఆగు",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "flag"
+   ],
+   "line": "L0319",
+   "start": 820.436,
+   "end": 820.516,
+   "context_guess": null,
+   "relisten": {
+    "heard_line": "ఆగు నేను call చేస్తా ఆగు",
+    "line_ratio": 1.0
+   }
+  }
+ ],
+ "uncertain": [
+  {
+   "start_word": 35,
+   "end_word": 35,
+   "heard": "ఇంకా",
+   "source": "flag",
+   "confidence": 0.466,
+   "verdict": "relisten_kept",
+   "line": "L0016",
+   "start": 81.5
+  },
+  {
+   "start_word": 460,
+   "end_word": 460,
+   "heard": "sorry",
+   "source": "flag",
+   "confidence": 0.477,
+   "verdict": "relisten_kept",
+   "line": "L0131",
+   "start": 370.58
+  },
+  {
+   "start_word": 593,
+   "end_word": 593,
+   "heard": "మీరే",
+   "source": "flag",
+   "confidence": 0.065,
+   "verdict": "relisten_kept",
+   "line": "L0162",
+   "start": 466.56
+  },
+  {
+   "start_word": 613,
+   "end_word": 613,
+   "heard": "ఉమ్",
+   "source": "flag",
+   "confidence": 0.493,
+   "verdict": "skipped_interjection",
+   "line": "L0174",
+   "start": 478.3
+  },
+  {
+   "start_word": 790,
+   "end_word": 790,
+   "heard": "Okay",
+   "source": "flag",
+   "confidence": 0.497,
+   "verdict": "skipped_interjection",
+   "line": "L0222",
+   "start": 612.44
+  },
+  {
+   "start_word": 795,
+   "end_word": 795,
+   "heard": "ఒకటి",
+   "source": "flag",
+   "confidence": 0.352,
+   "verdict": "relisten_kept",
+   "line": "L0225",
+   "start": 617.18
+  },
+  {
+   "start_word": 865,
+   "end_word": 865,
+   "heard": "ఓ",
+   "source": "flag",
+   "confidence": 0.402,
+   "verdict": "skipped_interjection",
+   "line": "L0246",
+   "start": 658.1
+  },
+  {
+   "start_word": 945,
+   "end_word": 945,
+   "heard": "పోయి",
+   "source": "flag",
+   "confidence": 0.465,
+   "verdict": "relisten_kept",
+   "line": "L0269",
+   "start": 703.08
+  },
+  {
+   "start_word": 1063,
+   "end_word": 1063,
+   "heard": "అంటే",
+   "source": "flag",
+   "confidence": 0.433,
+   "verdict": "relisten_kept",
+   "line": "L0298",
+   "start": 770.596
+  },
+  {
+   "start_word": 1076,
+   "end_word": 1076,
+   "heard": "school",
+   "source": "flag",
+   "confidence": 0.436,
+   "verdict": "relisten_kept",
+   "line": "L0299",
+   "start": 777.016
+  },
+  {
+   "start_word": 1147,
+   "end_word": 1147,
+   "heard": "ఊ..",
+   "source": "flag",
+   "confidence": 0.47,
+   "verdict": "skipped_interjection",
+   "line": "L0311",
+   "start": 805.956
+  },
+  {
+   "start_word": 1281,
+   "end_word": 1281,
+   "heard": "okay",
+   "source": "flag",
+   "confidence": 0.429,
+   "verdict": "skipped_interjection",
+   "line": "L0340",
+   "start": 882.116
+  },
+  {
+   "start_word": 1380,
+   "end_word": 1380,
+   "heard": "bye",
+   "source": "flag",
+   "confidence": 0.464,
+   "verdict": "relisten_kept",
+   "line": "L0363",
+   "start": 928.516
+  },
+  {
+   "start_word": 1624,
+   "end_word": 1624,
+   "heard": "మ్",
+   "source": "flag",
+   "confidence": 0.457,
+   "verdict": "skipped_interjection",
+   "line": "L0434",
+   "start": 1102.072
+  },
+  {
+   "start_word": 1780,
+   "end_word": 1780,
+   "heard": "నా",
+   "source": "flag",
+   "confidence": 0.23,
+   "verdict": "relisten_kept",
+   "line": "L0480",
+   "start": 1207.812
+  }
+ ],
+ "rejected": [
+  {
+   "layer": "relisten",
+   "line": "L0162",
+   "heard_line": "game లో cheating చేస్తావా? చెప్తా నీ పని.",
+   "corrected": "game లో cheating చేస్తావా",
+   "confidence": 0.95,
+   "reason": "clearly says game లో cheating చేస్తావా",
+   "start_word": 592,
+   "end_word": 595,
+   "heard": "time మీరే cheating చేస్తారా",
+   "why_rejected": "not on a suspect span"
+  }
+ ],
+ "threshold_report": {
+  "n_words": 2144,
+  "has_logprob": true,
+  "by_threshold": {
+   "0.5": {
+    "words": 21,
+    "lines": 21
+   },
+   "0.6": {
+    "words": 41,
+    "lines": 39
+   },
+   "0.7": {
+    "words": 79,
+    "lines": 69
+   }
+  }
+ },
+ "cost": {
+  "projected": {
+   "model": "gemini-3.8-flash",
+   "layers": {
+    "context": {
+     "calls": 1,
+     "input_tokens": 15148,
+     "output_tokens": 2850,
+     "inr": 1.98
+    },
+    "relisten": {
+     "calls": 4,
+     "items": 29,
+     "audio_s": 78.3,
+     "audio_tokens": 2505,
+     "input_tokens": 12382,
+     "output_tokens": 4500,
+     "inr": 2.52
+    }
+   },
+   "inr": 4.5
+  },
+  "actual": {
+   "context": {
+    "calls": 1,
+    "cached": 0,
+    "input_tokens": 14595,
+    "output_tokens": 641,
+    "audio_tokens": 0,
+    "inr": 1.202,
+    "inr_full": 1.202
+   },
+   "relisten": {
+    "calls": 3,
+    "cached": 0,
+    "input_tokens": 5876,
+    "output_tokens": 1278,
+    "audio_tokens": 1452,
+    "inr": 0.925,
+    "inr_full": 0.925
+   }
+  }
+ },
+ "stopped": null,
+ "transcript": "D:\\shotvi\\scribe_dataset\\Sy8yZ4DgzrU\\Sy8yZ4DgzrU_scribe_transcript.json"
+}

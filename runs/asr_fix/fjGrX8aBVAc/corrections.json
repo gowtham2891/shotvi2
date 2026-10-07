@@ -1,0 +1,340 @@
+{
+ "video_id": "fjGrX8aBVAc",
+ "schema": "asr_fix/1",
+ "params": {
+  "layers": [
+   "context",
+   "flag",
+   "relisten"
+  ],
+  "threshold": 0.5,
+  "min_conf": 0.8,
+  "model": "gemini-3.8-flash",
+  "pad_s": 0.4,
+  "ctx_lines": 2,
+  "batch_items": 8,
+  "context_prompt": "1",
+  "relisten_prompt": "1",
+  "apply_context": false,
+  "skip_interjections": true
+ },
+ "lines": 458,
+ "n_flagged_words": 8,
+ "n_suspects": 9,
+ "suspects": [
+  {
+   "line": "L0083",
+   "start_word": 221,
+   "end_word": 221,
+   "heard": "suteనే",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "తెలిస్తేనే",
+   "why": "Soundalike non-word fragment in 'అన్నీ తెలిస్తేనే'",
+   "min_conf": 0.418
+  },
+  {
+   "line": "L0175",
+   "start_word": 488,
+   "end_word": 488,
+   "heard": "కాదు",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.391
+  },
+  {
+   "line": "L0319",
+   "start_word": 908,
+   "end_word": 908,
+   "heard": "Delhi",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.337
+  },
+  {
+   "line": "L0364",
+   "start_word": 1029,
+   "end_word": 1029,
+   "heard": "ఉండుతుంది.",
+   "found_by": [
+    "context"
+   ],
+   "guess": "మండుతుంది",
+   "why": "Talking about burning sensation in the eye",
+   "min_conf": 0.839
+  },
+  {
+   "line": "L0399",
+   "start_word": 1109,
+   "end_word": 1109,
+   "heard": "Daddy",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.424
+  },
+  {
+   "line": "L0423",
+   "start_word": 1218,
+   "end_word": 1218,
+   "heard": "bye.",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.323
+  },
+  {
+   "line": "L0436",
+   "start_word": 1272,
+   "end_word": 1272,
+   "heard": "You",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.131
+  },
+  {
+   "line": "L0456",
+   "start_word": 1356,
+   "end_word": 1356,
+   "heard": "ఇక్కడెక్కడా",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.381
+  },
+  {
+   "line": "L0457",
+   "start_word": 1361,
+   "end_word": 1361,
+   "heard": "నా",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.5
+  }
+ ],
+ "corrections": [
+  {
+   "start_word": 220,
+   "end_word": 221,
+   "heard": "తెలి suteనే",
+   "corrected": "తెలిస్తేనే",
+   "reason": "clearly says తెలిస్తేనే",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0083",
+   "start": 183.96,
+   "end": 184.38,
+   "context_guess": "తెలిస్తేనే",
+   "relisten": {
+    "heard_line": "అన్నీ తెలిస్తేనే ఇక్కడి నుంచి వెళ్తాను.",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 1029,
+   "end_word": 1029,
+   "heard": "ఉండుతుంది.",
+   "corrected": "మండుతుంది.",
+   "reason": "clearly says మండుతుంది",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context"
+   ],
+   "line": "L0364",
+   "start": 780.31,
+   "end": 780.91,
+   "context_guess": "మండుతుంది",
+   "relisten": {
+    "heard_line": "మండుతుంది.",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 1356,
+   "end_word": 1356,
+   "heard": "ఇక్కడెక్కడా",
+   "corrected": "ఇక్కడేం",
+   "reason": "clearly says ఇక్కడేం",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "flag"
+   ],
+   "line": "L0456",
+   "start": 1047.37,
+   "end": 1047.57,
+   "context_guess": null,
+   "relisten": {
+    "heard_line": "అలాంటి items ఇక్కడేం దొరకవు sir.",
+    "line_ratio": 0.964
+   }
+  }
+ ],
+ "uncertain": [
+  {
+   "start_word": 488,
+   "end_word": 488,
+   "heard": "కాదు",
+   "source": "flag",
+   "confidence": 0.391,
+   "verdict": "relisten_kept",
+   "line": "L0175",
+   "start": 345.98
+  },
+  {
+   "start_word": 908,
+   "end_word": 908,
+   "heard": "Delhi",
+   "source": "flag",
+   "confidence": 0.337,
+   "verdict": "relisten_kept",
+   "line": "L0319",
+   "start": 601.98
+  },
+  {
+   "start_word": 1109,
+   "end_word": 1109,
+   "heard": "Daddy",
+   "source": "flag",
+   "confidence": 0.424,
+   "verdict": "relisten_kept",
+   "line": "L0399",
+   "start": 896.95
+  },
+  {
+   "start_word": 1218,
+   "end_word": 1218,
+   "heard": "bye.",
+   "source": "flag",
+   "confidence": 0.323,
+   "verdict": "relisten_kept",
+   "line": "L0423",
+   "start": 960.17
+  },
+  {
+   "start_word": 1272,
+   "end_word": 1272,
+   "heard": "You",
+   "source": "flag",
+   "confidence": 0.131,
+   "verdict": "relisten_kept",
+   "line": "L0436",
+   "start": 1002.11
+  },
+  {
+   "start_word": 1361,
+   "end_word": 1361,
+   "heard": "నా",
+   "source": "flag",
+   "confidence": 0.5,
+   "verdict": "relisten_kept",
+   "line": "L0457",
+   "start": 1049.95
+  }
+ ],
+ "rejected": [
+  {
+   "layer": "relisten",
+   "line": "L0423",
+   "heard_line": "బై బై రా",
+   "corrected": "bye bye రా",
+   "confidence": 0.9,
+   "reason": "says bye bye ra",
+   "start_word": 1218,
+   "end_word": 1218,
+   "heard": "bye.",
+   "why_rejected": "corrected words not in the model's heard_line"
+  }
+ ],
+ "threshold_report": {
+  "n_words": 1365,
+  "has_logprob": true,
+  "by_threshold": {
+   "0.5": {
+    "words": 8,
+    "lines": 8
+   },
+   "0.6": {
+    "words": 24,
+    "lines": 24
+   },
+   "0.7": {
+    "words": 69,
+    "lines": 64
+   }
+  }
+ },
+ "cost": {
+  "projected": {
+   "model": "gemini-3.8-flash",
+   "layers": {
+    "context": {
+     "calls": 1,
+     "input_tokens": 10480,
+     "output_tokens": 2310,
+     "inr": 1.49
+    },
+    "relisten": {
+     "calls": 3,
+     "items": 23,
+     "audio_s": 46.5,
+     "audio_tokens": 1488,
+     "input_tokens": 9080,
+     "output_tokens": 3500,
+     "inr": 1.89
+    }
+   },
+   "inr": 3.38
+  },
+  "actual": {
+   "context": {
+    "calls": 1,
+    "cached": 0,
+    "input_tokens": 11537,
+    "output_tokens": 139,
+    "audio_tokens": 0,
+    "inr": 0.826,
+    "inr_full": 0.826
+   },
+   "relisten": {
+    "calls": 2,
+    "cached": 0,
+    "input_tokens": 2724,
+    "output_tokens": 571,
+    "audio_tokens": 513,
+    "inr": 0.411,
+    "inr_full": 0.411
+   }
+  }
+ },
+ "stopped": null,
+ "transcript": "D:\\shotvi\\scribe_dataset\\fjGrX8aBVAc\\fjGrX8aBVAc_scribe_transcript.json"
+}

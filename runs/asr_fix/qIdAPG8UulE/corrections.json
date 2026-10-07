@@ -1,0 +1,1958 @@
+{
+ "video_id": "qIdAPG8UulE",
+ "schema": "asr_fix/1",
+ "params": {
+  "layers": [
+   "context",
+   "flag",
+   "relisten"
+  ],
+  "threshold": 0.5,
+  "min_conf": 0.8,
+  "model": "gemini-3.8-flash",
+  "pad_s": 0.4,
+  "ctx_lines": 2,
+  "batch_items": 8,
+  "context_prompt": "1",
+  "relisten_prompt": "1",
+  "apply_context": false,
+  "skip_interjections": true
+ },
+ "lines": 920,
+ "n_flagged_words": 51,
+ "n_suspects": 62,
+ "suspects": [
+  {
+   "line": "L0014",
+   "start_word": 38,
+   "end_word": 38,
+   "heard": "నా",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "ని",
+   "why": "accusative marker in love ni accept chesa",
+   "min_conf": 0.341
+  },
+  {
+   "line": "L0014",
+   "start_word": 44,
+   "end_word": 44,
+   "heard": "నా",
+   "found_by": [
+    "context"
+   ],
+   "guess": "ని",
+   "why": "accusative marker in breakup ni accept chey",
+   "min_conf": 0.997
+  },
+  {
+   "line": "L0036",
+   "start_word": 141,
+   "end_word": 141,
+   "heard": "cigarettes",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "cigarette",
+   "why": "singular fits taagi",
+   "min_conf": 0.368
+  },
+  {
+   "line": "L0100",
+   "start_word": 356,
+   "end_word": 357,
+   "heard": "చెరువు రసం",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "చెరకు రసం",
+   "why": "refers to sugarcane juice mentioned in L0103",
+   "min_conf": 0.443
+  },
+  {
+   "line": "L0116",
+   "start_word": 407,
+   "end_word": 407,
+   "heard": "color",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.442
+  },
+  {
+   "line": "L0116",
+   "start_word": 409,
+   "end_word": 409,
+   "heard": "లో",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.468
+  },
+  {
+   "line": "L0147",
+   "start_word": 509,
+   "end_word": 509,
+   "heard": "తర్వాత",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.306
+  },
+  {
+   "line": "L0164",
+   "start_word": 572,
+   "end_word": 572,
+   "heard": "నుంచి",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.443
+  },
+  {
+   "line": "L0180",
+   "start_word": 614,
+   "end_word": 614,
+   "heard": "బెచ్చగాడికి",
+   "found_by": [
+    "context"
+   ],
+   "guess": "బిచ్చగాడికి",
+   "why": "proverbial contrast bichagaadiki",
+   "min_conf": 0.901
+  },
+  {
+   "line": "L0204",
+   "start_word": 693,
+   "end_word": 694,
+   "heard": "బ్రహ్మ రా.",
+   "found_by": [
+    "context"
+   ],
+   "guess": "భ్రమరా",
+   "why": "her name is Bhramara",
+   "min_conf": 0.731
+  },
+  {
+   "line": "L0216",
+   "start_word": 711,
+   "end_word": 712,
+   "heard": "బ్రహ్మ రా",
+   "found_by": [
+    "context"
+   ],
+   "guess": "భ్రమరా",
+   "why": "her name is Bhramara",
+   "min_conf": 0.915
+  },
+  {
+   "line": "L0225",
+   "start_word": 771,
+   "end_word": 772,
+   "heard": "బ్రహ్మ రా.",
+   "found_by": [
+    "context"
+   ],
+   "guess": "భ్రమరా",
+   "why": "her name is Bhramara",
+   "min_conf": 0.896
+  },
+  {
+   "line": "L0264",
+   "start_word": 920,
+   "end_word": 920,
+   "heard": "అబ్బే!",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.419
+  },
+  {
+   "line": "L0271",
+   "start_word": 957,
+   "end_word": 958,
+   "heard": "బ్రహ్మ రా,",
+   "found_by": [
+    "context"
+   ],
+   "guess": "భ్రమరా",
+   "why": "her name is Bhramara",
+   "min_conf": 0.996
+  },
+  {
+   "line": "L0272",
+   "start_word": 959,
+   "end_word": 960,
+   "heard": "బ్రహ్మ రా.",
+   "found_by": [
+    "context"
+   ],
+   "guess": "భ్రమరా",
+   "why": "her name is Bhramara",
+   "min_conf": 0.904
+  },
+  {
+   "line": "L0295",
+   "start_word": 1048,
+   "end_word": 1048,
+   "heard": "pub",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.493
+  },
+  {
+   "line": "L0305",
+   "start_word": 1119,
+   "end_word": 1119,
+   "heard": "ఇరిగించేసేవాళ్ళు?",
+   "found_by": [
+    "context"
+   ],
+   "guess": "ఇరికించేసేవాళ్ళు",
+   "why": "framing/trapping guys irikinchesevally",
+   "min_conf": 0.763
+  },
+  {
+   "line": "L0341",
+   "start_word": 1229,
+   "end_word": 1229,
+   "heard": "లో",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.411
+  },
+  {
+   "line": "L0342",
+   "start_word": 1231,
+   "end_word": 1231,
+   "heard": "Item",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.485
+  },
+  {
+   "line": "L0350",
+   "start_word": 1253,
+   "end_word": 1253,
+   "heard": "రాగం",
+   "found_by": [
+    "context"
+   ],
+   "guess": "రోగం",
+   "why": "referring to her psychological disorder / rogam",
+   "min_conf": 0.672
+  },
+  {
+   "line": "L0358",
+   "start_word": 1300,
+   "end_word": 1300,
+   "heard": "Love",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.473
+  },
+  {
+   "line": "L0371",
+   "start_word": 1362,
+   "end_word": 1363,
+   "heard": "charge ఇప్పుడుకి",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "ChatGPT కి",
+   "why": "talking about asking AI hundreds of questions",
+   "min_conf": 0.361
+  },
+  {
+   "line": "L0374",
+   "start_word": 1376,
+   "end_word": 1376,
+   "heard": "super",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.474
+  },
+  {
+   "line": "L0376",
+   "start_word": 1387,
+   "end_word": 1387,
+   "heard": "ములుతాను",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "ముల్తానీ",
+   "why": "multani matti clay pack",
+   "min_conf": 0.413
+  },
+  {
+   "line": "L0380",
+   "start_word": 1414,
+   "end_word": 1415,
+   "heard": "బంగారం నే",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "బంగారాన్నే",
+   "why": "gold must be earned",
+   "min_conf": 0.407
+  },
+  {
+   "line": "L0386",
+   "start_word": 1432,
+   "end_word": 1432,
+   "heard": "బ్రహ్మారావు",
+   "found_by": [
+    "context"
+   ],
+   "guess": "భ్రమరా",
+   "why": "calling Bhramara",
+   "min_conf": 0.899
+  },
+  {
+   "line": "L0390",
+   "start_word": 1444,
+   "end_word": 1444,
+   "heard": "చింత",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "చింపేసావంటే",
+   "why": "slang for looking amazing in saree",
+   "min_conf": 0.367
+  },
+  {
+   "line": "L0398",
+   "start_word": 1485,
+   "end_word": 1485,
+   "heard": "finally",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.456
+  },
+  {
+   "line": "L0413",
+   "start_word": 1540,
+   "end_word": 1540,
+   "heard": "బ్రహ్మారావు.",
+   "found_by": [
+    "context"
+   ],
+   "guess": "భ్రమరా",
+   "why": "addressing Bhramara",
+   "min_conf": 0.891
+  },
+  {
+   "line": "L0417",
+   "start_word": 1550,
+   "end_word": 1550,
+   "heard": "హా.",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.427
+  },
+  {
+   "line": "L0439",
+   "start_word": 1630,
+   "end_word": 1630,
+   "heard": "రక్కన్నా",
+   "found_by": [
+    "context"
+   ],
+   "guess": "రక్కమ్మ",
+   "why": "playful nickname addressing a female colleague",
+   "min_conf": 0.856
+  },
+  {
+   "line": "L0450",
+   "start_word": 1668,
+   "end_word": 1668,
+   "heard": "రక్కన్నా.",
+   "found_by": [
+    "context"
+   ],
+   "guess": "రక్కమ్మ",
+   "why": "nickname addressing Pratyusha",
+   "min_conf": 0.997
+  },
+  {
+   "line": "L0496",
+   "start_word": 1848,
+   "end_word": 1848,
+   "heard": "office",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.387
+  },
+  {
+   "line": "L0515",
+   "start_word": 1915,
+   "end_word": 1915,
+   "heard": "torture",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.16
+  },
+  {
+   "line": "L0538",
+   "start_word": 1992,
+   "end_word": 1992,
+   "heard": "secret",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.152
+  },
+  {
+   "line": "L0550",
+   "start_word": 2025,
+   "end_word": 2026,
+   "heard": "మ్యాక్ పోతున",
+   "found_by": [
+    "context"
+   ],
+   "guess": "మేకపోతులా",
+   "why": "sacrificing a male goat / mekapotu",
+   "min_conf": 0.586
+  },
+  {
+   "line": "L0558",
+   "start_word": 2058,
+   "end_word": 2058,
+   "heard": "ఇంద",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.292
+  },
+  {
+   "line": "L0572",
+   "start_word": 2096,
+   "end_word": 2096,
+   "heard": "తెగ",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.332
+  },
+  {
+   "line": "L0605",
+   "start_word": 2203,
+   "end_word": 2203,
+   "heard": "బా",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.455
+  },
+  {
+   "line": "L0653",
+   "start_word": 2357,
+   "end_word": 2357,
+   "heard": "pratyu",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.472
+  },
+  {
+   "line": "L0668",
+   "start_word": 2440,
+   "end_word": 2440,
+   "heard": "వృద్ధా",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.447
+  },
+  {
+   "line": "L0679",
+   "start_word": 2483,
+   "end_word": 2484,
+   "heard": "కాಲು మొగలన్నాక",
+   "found_by": [
+    "context"
+   ],
+   "guess": "ఆలుమగలన్నాక",
+   "why": "idiom for husband and wife aalumagalu",
+   "min_conf": 0.715
+  },
+  {
+   "line": "L0700",
+   "start_word": 2607,
+   "end_word": 2607,
+   "heard": "బయట",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.353
+  },
+  {
+   "line": "L0751",
+   "start_word": 2848,
+   "end_word": 2848,
+   "heard": "దాన్ని",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.251
+  },
+  {
+   "line": "L0764",
+   "start_word": 2904,
+   "end_word": 2904,
+   "heard": "చేయని",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "చేయమని",
+   "why": "grammar asking to try cheyamani cheppavu",
+   "min_conf": 0.466
+  },
+  {
+   "line": "L0771",
+   "start_word": 2947,
+   "end_word": 2948,
+   "heard": "tea totaler",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "teetotaler",
+   "why": "standard English term teetotaler",
+   "min_conf": 0.497
+  },
+  {
+   "line": "L0772",
+   "start_word": 2949,
+   "end_word": 2952,
+   "heard": "tea తో కలిసి బండి",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "టీ తో కలిసి బాటిల్",
+   "why": "punning on teetotaler drinking alcohol bottle",
+   "min_conf": 0.358
+  },
+  {
+   "line": "L0781",
+   "start_word": 3010,
+   "end_word": 3011,
+   "heard": "Bro cure",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "broker",
+   "why": "marriage broker",
+   "min_conf": 0.155
+  },
+  {
+   "line": "L0781",
+   "start_word": 3013,
+   "end_word": 3013,
+   "heard": "RKEs",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "archaeological",
+   "why": "pun on excavation / thavvakam",
+   "min_conf": 0.294
+  },
+  {
+   "line": "L0787",
+   "start_word": 3036,
+   "end_word": 3036,
+   "heard": "ఊ",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.385
+  },
+  {
+   "line": "L0790",
+   "start_word": 3042,
+   "end_word": 3042,
+   "heard": "Brama",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "Bhramara",
+   "why": "calling Bhramara",
+   "min_conf": 0.491
+  },
+  {
+   "line": "L0804",
+   "start_word": 3105,
+   "end_word": 3105,
+   "heard": "విరాజస్థ",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "విరాజిత",
+   "why": "addressing Virajitha from L0718",
+   "min_conf": 0.362
+  },
+  {
+   "line": "L0812",
+   "start_word": 3133,
+   "end_word": 3133,
+   "heard": "ఒక్క",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.332
+  },
+  {
+   "line": "L0817",
+   "start_word": 3149,
+   "end_word": 3149,
+   "heard": "లు",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.471
+  },
+  {
+   "line": "L0821",
+   "start_word": 3178,
+   "end_word": 3178,
+   "heard": "cigarette",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.453
+  },
+  {
+   "line": "L0830",
+   "start_word": 3225,
+   "end_word": 3225,
+   "heard": "cover",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.376
+  },
+  {
+   "line": "L0832",
+   "start_word": 3229,
+   "end_word": 3229,
+   "heard": "pond's",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.406
+  },
+  {
+   "line": "L0833",
+   "start_word": 3234,
+   "end_word": 3235,
+   "heard": "Mans field",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.066
+  },
+  {
+   "line": "L0844",
+   "start_word": 3269,
+   "end_word": 3269,
+   "heard": "బ్యాచ్",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.174
+  },
+  {
+   "line": "L0851",
+   "start_word": 3293,
+   "end_word": 3293,
+   "heard": "బంధువుల",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.403
+  },
+  {
+   "line": "L0876",
+   "start_word": 3361,
+   "end_word": 3361,
+   "heard": "Sorry",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.195
+  },
+  {
+   "line": "L0881",
+   "start_word": 3369,
+   "end_word": 3369,
+   "heard": "ఇది",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.464
+  }
+ ],
+ "corrections": [
+  {
+   "start_word": 38,
+   "end_word": 38,
+   "heard": "నా",
+   "corrected": "ని",
+   "reason": "clearly says 'ni'",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0014",
+   "start": 27.8,
+   "end": 27.84,
+   "context_guess": "ని",
+   "relisten": {
+    "heard_line": "నేను నీ love ని accept చేశా కదా ఇప్పుడు నువ్వు నా breakup ని accept చెయ్",
+    "line_ratio": 0.983
+   }
+  },
+  {
+   "start_word": 44,
+   "end_word": 44,
+   "heard": "నా",
+   "corrected": "ని",
+   "reason": "accusative marker in breakup ni accept chey",
+   "source": "context",
+   "confidence": null,
+   "applied": false,
+   "found_by": [
+    "context"
+   ],
+   "line": "L0014",
+   "start": 29.06,
+   "end": 29.18,
+   "context_guess": "ని",
+   "relisten": {
+    "verdict": "relisten_kept"
+   }
+  },
+  {
+   "start_word": 141,
+   "end_word": 141,
+   "heard": "cigarettes",
+   "corrected": "సిగరెట్లు",
+   "reason": "pronounced in Telugu as 'సిగరెట్లు'",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0036",
+   "start": 82.54,
+   "end": 82.94,
+   "context_guess": "cigarette",
+   "relisten": {
+    "heard_line": "నన్ను drop చేయడానికి వచ్చి మా ఇంటి దగ్గర pan shop లో సిగరెట్లు తాగి అరువు పెట్టి డబ్బులు అడిగితే నా పేరు చెప్పావంట",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 356,
+   "end_word": 357,
+   "heard": "చెరువు రసం",
+   "corrected": "చెరకు రసం",
+   "reason": "clearly says 'చెరకు రసం'",
+   "source": "relisten",
+   "confidence": 0.98,
+   "applied": true,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0100",
+   "start": 211.76,
+   "end": 212.16,
+   "context_guess": "చెరకు రసం",
+   "relisten": {
+    "heard_line": "అక్కడ చెరకు రసం చాలా బాగుంటుంది",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 614,
+   "end_word": 614,
+   "heard": "బెచ్చగాడికి",
+   "corrected": "భిక్షగాడికి",
+   "reason": "clearly says 'భిక్షగాడికి'",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context"
+   ],
+   "line": "L0180",
+   "start": 376.284,
+   "end": 376.704,
+   "context_guess": "బిచ్చగాడికి",
+   "relisten": {
+    "heard_line": "భిక్షగాడికి జుట్టు ఊడదు.",
+    "line_ratio": 0.93
+   }
+  },
+  {
+   "start_word": 693,
+   "end_word": 694,
+   "heard": "బ్రహ్మ రా.",
+   "corrected": "భ్రమరా?",
+   "reason": "she is named భ్రమర",
+   "source": "relisten",
+   "confidence": 0.98,
+   "applied": true,
+   "found_by": [
+    "context"
+   ],
+   "line": "L0204",
+   "start": 438.904,
+   "end": 439.264,
+   "context_guess": "భ్రమరా",
+   "relisten": {
+    "heard_line": "రోగిని ప్రేమించలేని వాడు రోగితో సమానం కదా భ్రమరా?",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 711,
+   "end_word": 712,
+   "heard": "బ్రహ్మ రా",
+   "corrected": "భ్రమరా,",
+   "reason": "clearly calls the name Bhramara, not 'బ్రహ్మ రా'",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context"
+   ],
+   "line": "L0216",
+   "start": 452.764,
+   "end": 453.084,
+   "context_guess": "భ్రమరా",
+   "relisten": {
+    "heard_line": "భ్రమరా, నీకు disorder ఉందని అందర్లా నేను దూరం పెట్టను.",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 771,
+   "end_word": 772,
+   "heard": "బ్రహ్మ రా.",
+   "corrected": "భ్రమరా?",
+   "reason": "clearly calls the name Bhramara",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context"
+   ],
+   "line": "L0225",
+   "start": 474.244,
+   "end": 474.624,
+   "context_guess": "భ్రమరా",
+   "relisten": {
+    "heard_line": "ఇప్పుడు పెళ్లి గురించి ఎవరు అడిగారు భ్రమరా?",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 957,
+   "end_word": 958,
+   "heard": "బ్రహ్మ రా,",
+   "corrected": "భ్రమరా,",
+   "reason": "clearly calls Bhramara",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context"
+   ],
+   "line": "L0271",
+   "start": 574.684,
+   "end": 575.064,
+   "context_guess": "భ్రమరా",
+   "relisten": {
+    "heard_line": "ఆ భ్రమరా,",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 959,
+   "end_word": 960,
+   "heard": "బ్రహ్మ రా.",
+   "corrected": "భ్రమరా!",
+   "reason": "clearly calls Bhramara",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context"
+   ],
+   "line": "L0272",
+   "start": 576.224,
+   "end": 576.644,
+   "context_guess": "భ్రమరా",
+   "relisten": {
+    "heard_line": "భ్రమరా!",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 1119,
+   "end_word": 1119,
+   "heard": "ఇరిగించేసేవాళ్ళు?",
+   "corrected": "ఇరికించేసేవాళ్ళు?",
+   "reason": "clearly says 'ఇరికించేసే' not 'ఇరిగించేసే'",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context"
+   ],
+   "line": "L0305",
+   "start": 644.604,
+   "end": 645.284,
+   "context_guess": "ఇరికించేసేవాళ్ళు",
+   "relisten": {
+    "heard_line": "ఈ love చేసుకున్నన్నాళ్ళో లేదా పరిస్థితులు బాగున్నన్నాళ్ళో తిన్నగా ఉండి situation లో తేడా రాగానే అబ్బాయిలని ఇరికించేసే వాళ్ళు?",
+    "line_ratio": 0.939
+   }
+  },
+  {
+   "start_word": 1229,
+   "end_word": 1229,
+   "heard": "లో",
+   "corrected": "లా",
+   "reason": "clearly says 'లా' (like an item song)",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "flag"
+   ],
+   "line": "L0341",
+   "start": 704.604,
+   "end": 704.684,
+   "context_guess": null,
+   "relisten": {
+    "heard_line": "మంచి love story లో item song లా మీరేంటండీ?",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 1253,
+   "end_word": 1253,
+   "heard": "రాగం",
+   "corrected": "రోగం",
+   "reason": "clearly says rogamu",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context"
+   ],
+   "line": "L0350",
+   "start": 727.324,
+   "end": 727.504,
+   "context_guess": "రోగం",
+   "relisten": {
+    "heard_line": "ఆ already నీకు ఒక రోగం ఉంది కదా ఇది కూడా add అయిందేమో అనుకున్నాను",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 1362,
+   "end_word": 1363,
+   "heard": "charge ఇప్పుడుకి",
+   "corrected": "ChatGPT కి",
+   "reason": "clearly says ChatGPT ki",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0371",
+   "start": 770.744,
+   "end": 771.184,
+   "context_guess": "ChatGPT కి",
+   "relisten": {
+    "heard_line": "ChatGPT కి మాత్రం 100 questions అడుగుతారు",
+    "line_ratio": 0.917
+   }
+  },
+  {
+   "start_word": 1387,
+   "end_word": 1387,
+   "heard": "ములుతాను",
+   "corrected": "ముల్తానీ",
+   "reason": "clearly says multani",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0376",
+   "start": 779.564,
+   "end": 779.864,
+   "context_guess": "ముల్తానీ",
+   "relisten": {
+    "heard_line": "Already ముల్తానీ మట్టి రాస్తున్నాను result రెండు వారాల్లో వస్తుంది",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 1414,
+   "end_word": 1415,
+   "heard": "బంగారం నే",
+   "corrected": "బంగారాన్ని",
+   "reason": "clearly says bangaranni",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0380",
+   "start": 789.804,
+   "end": 790.244,
+   "context_guess": "బంగారాన్నే",
+   "relisten": {
+    "heard_line": "చెత్త గాలికి కూడా ఎగరొస్తది బంగారాన్ని మనమే సంపాదించుకోవాలి",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 1432,
+   "end_word": 1432,
+   "heard": "బ్రహ్మారావు",
+   "corrected": "భ్రమర",
+   "reason": "her name is Bhramara",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context"
+   ],
+   "line": "L0386",
+   "start": 804.984,
+   "end": 805.284,
+   "context_guess": "భ్రమరా",
+   "relisten": {
+    "heard_line": "అంటే నీకెప్పుడూ నిజమే చెప్పాలనిపిస్తుంది భ్రమర నాకు",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 1444,
+   "end_word": 1445,
+   "heard": "చింత కొట్టేసావంటే",
+   "corrected": "చితక్కొట్టేసావంటే",
+   "reason": "clearly says chithakkottesavante",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0390",
+   "start": 810.484,
+   "end": 811.364,
+   "context_guess": "చింపేసావంటే",
+   "relisten": {
+    "heard_line": "మొన్న నువ్వు saree లోనే చితక్కొట్టేసావంటే bikini లో భలే ఉంటావ్",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 1540,
+   "end_word": 1540,
+   "heard": "బ్రహ్మారావు.",
+   "corrected": "బ్రహ్మారావ్.",
+   "reason": "says బ్రహ్మారావ్ not బ్రహ్మారావు",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context"
+   ],
+   "line": "L0413",
+   "start": 865.284,
+   "end": 865.544,
+   "context_guess": "భ్రమరా",
+   "relisten": {
+    "heard_line": "Hug చేసుకొని చెప్పు బ్రహ్మారావ్.",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 1630,
+   "end_word": 1630,
+   "heard": "రక్కన్నా",
+   "corrected": "రక్కమ్మ",
+   "reason": "playful nickname addressing a female colleague",
+   "source": "context",
+   "confidence": null,
+   "applied": false,
+   "found_by": [
+    "context"
+   ],
+   "line": "L0439",
+   "start": 969.164,
+   "end": 969.444,
+   "context_guess": "రక్కమ్మ",
+   "relisten": {
+    "verdict": "relisten_kept"
+   }
+  },
+  {
+   "start_word": 1668,
+   "end_word": 1668,
+   "heard": "రక్కన్నా.",
+   "corrected": "రక్కమ్మ.",
+   "reason": "nickname addressing Pratyusha",
+   "source": "context",
+   "confidence": null,
+   "applied": false,
+   "found_by": [
+    "context"
+   ],
+   "line": "L0450",
+   "start": 991.444,
+   "end": 991.904,
+   "context_guess": "రక్కమ్మ",
+   "relisten": {
+    "verdict": "relisten_kept"
+   }
+  },
+  {
+   "start_word": 1848,
+   "end_word": 1848,
+   "heard": "office",
+   "corrected": "ఆఫీస్",
+   "reason": "clearly says ఆఫీస్",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "flag"
+   ],
+   "line": "L0496",
+   "start": 1134.76,
+   "end": 1134.98,
+   "context_guess": null,
+   "relisten": {
+    "heard_line": "ఆఫీస్ కి పిలిచి మరి feelings అన్ని చంపేసావ్.",
+    "line_ratio": 0.883
+   }
+  },
+  {
+   "start_word": 2025,
+   "end_word": 2026,
+   "heard": "మ్యాక్ పోతున",
+   "corrected": "మేక పోతుని",
+   "reason": "clearly says మేక పోతుని",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context"
+   ],
+   "line": "L0550",
+   "start": 1259.84,
+   "end": 1260.32,
+   "context_guess": "మేకపోతులా",
+   "relisten": {
+    "heard_line": "నీకు మేక పోతుని బలిస్తారే please కొంచెం calm గా ఉండు",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 2058,
+   "end_word": 2058,
+   "heard": "ఇంద",
+   "corrected": "దా",
+   "reason": "clearly says దా",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "flag"
+   ],
+   "line": "L0558",
+   "start": 1279.62,
+   "end": 1279.76,
+   "context_guess": null,
+   "relisten": {
+    "heard_line": "ప్రత్యూష మీ ఇంటికి ఇంకోసారి వస్తామే వెళ్దాం దా",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 2203,
+   "end_word": 2203,
+   "heard": "బా",
+   "corrected": "అబ్బా",
+   "reason": "clearly says అబ్బా",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "flag"
+   ],
+   "line": "L0605",
+   "start": 1366.34,
+   "end": 1366.56,
+   "context_guess": null,
+   "relisten": {
+    "heard_line": "అబ్బా",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 2440,
+   "end_word": 2440,
+   "heard": "వృద్ధా",
+   "corrected": "వొద్ద",
+   "reason": "speaker says ఆ వొద్దా/వొద్ద",
+   "source": "relisten",
+   "confidence": 0.9,
+   "applied": true,
+   "found_by": [
+    "flag"
+   ],
+   "line": "L0668",
+   "start": 1536.204,
+   "end": 1536.464,
+   "context_guess": null,
+   "relisten": {
+    "heard_line": "అంటే నాకు మీ అక్కకి పెళ్లి అయితే ఆ పెళ్లిలో ఆకులేస్తావా ఆ వొద్ద నీకు",
+    "line_ratio": 0.964
+   }
+  },
+  {
+   "start_word": 2483,
+   "end_word": 2484,
+   "heard": "కాಲು మొగలన్నాక",
+   "corrected": "ఆలుమగలన్నాక",
+   "reason": "standard phrase ఆలుమగలన్నాక",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context"
+   ],
+   "line": "L0679",
+   "start": 1567.804,
+   "end": 1568.624,
+   "context_guess": "ఆలుమగలన్నాక",
+   "relisten": {
+    "heard_line": "ఆలుమగలన్నాక పాలు నీళ్ళలా కలిసి ఉండాలి",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 2607,
+   "end_word": 2608,
+   "heard": "బయట pic",
+   "corrected": "biopic",
+   "reason": "clearly says biopic",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "flag"
+   ],
+   "line": "L0700",
+   "start": 1631.804,
+   "end": 1632.104,
+   "context_guess": null,
+   "relisten": {
+    "heard_line": "వాడు biopic రాసావే ఆ దరిద్రాన్ని సంకలో పెట్టుకుని తిరుగుతాను",
+    "line_ratio": 0.922
+   }
+  },
+  {
+   "start_word": 2904,
+   "end_word": 2904,
+   "heard": "చేయని",
+   "corrected": "చేయి అని",
+   "reason": "clearly says చేయి అని",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0764",
+   "start": 1804.124,
+   "end": 1804.304,
+   "context_guess": "చేయమని",
+   "relisten": {
+    "heard_line": "మరెందుకప్పుడు మీ parents ని కలపడానికి try చేయి అని చెప్పావ్",
+    "line_ratio": 0.971
+   }
+  },
+  {
+   "start_word": 2947,
+   "end_word": 2948,
+   "heard": "tea totaler",
+   "corrected": "teetotaler",
+   "reason": "says teetotaler as a single English word",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0771",
+   "start": 1825.924,
+   "end": 1826.524,
+   "context_guess": "teetotaler",
+   "relisten": {
+    "heard_line": "తను teetotaler",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 2949,
+   "end_word": 2952,
+   "heard": "tea తో కలిసి బండి",
+   "corrected": "టీ తో కలిపి బ్రాందీ",
+   "reason": "clearly says కలిపి బ్రాందీ",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0772",
+   "start": 1827.084,
+   "end": 1827.664,
+   "context_guess": "టీ తో కలిసి బాటిల్",
+   "relisten": {
+    "heard_line": "టీ తో కలిపి బ్రాందీ తాగేస్తాడా తాగబోతు నా కొడుకు",
+    "line_ratio": 0.976
+   }
+  },
+  {
+   "start_word": 3010,
+   "end_word": 3011,
+   "heard": "Bro cure",
+   "corrected": "బ్రోకర్ల",
+   "reason": "clearly says బ్రోకర్ల",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0781",
+   "start": 1853.964,
+   "end": 1854.224,
+   "context_guess": "broker",
+   "relisten": {
+    "heard_line": "అప్పుడు సంబంధం పెళ్లిళ్ల బ్రోకర్ల చూడమనడం కన్నా archaeology department వాళ్ళకి అడగాలి తవ్వకాల్లో తీస్తారు మంచి అమ్మాయిని",
+    "line_ratio": 0.866
+   }
+  },
+  {
+   "start_word": 3013,
+   "end_word": 3013,
+   "heard": "RKEs",
+   "corrected": "archaeology",
+   "reason": "clearly says archaeology",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0781",
+   "start": 1855.024,
+   "end": 1855.284,
+   "context_guess": "archaeological",
+   "relisten": {
+    "heard_line": "అప్పుడు సంబంధం పెళ్లిళ్ల బ్రోకర్ల చూడమనడం కన్నా archaeology department వాళ్ళకి అడగాలి తవ్వకాల్లో తీస్తారు మంచి అమ్మాయిని",
+    "line_ratio": 0.85
+   }
+  },
+  {
+   "start_word": 3042,
+   "end_word": 3042,
+   "heard": "Brama",
+   "corrected": "Bhramara",
+   "reason": "calling Bhramara",
+   "source": "context",
+   "confidence": null,
+   "applied": false,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0790",
+   "start": 1873.044,
+   "end": 1873.324,
+   "context_guess": "Bhramara",
+   "relisten": {
+    "verdict": "relisten_kept"
+   }
+  },
+  {
+   "start_word": 3105,
+   "end_word": 3105,
+   "heard": "విరాజస్థ",
+   "corrected": "విరాజిత",
+   "reason": "name is pronounced విరాజిత",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0804",
+   "start": 1911.964,
+   "end": 1912.344,
+   "context_guess": "విరాజిత",
+   "relisten": {
+    "heard_line": "I love you విరాజిత",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 3178,
+   "end_word": 3179,
+   "heard": "cigarette card",
+   "corrected": "cigarette rate",
+   "reason": "clearly says cigarette rate",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "flag"
+   ],
+   "line": "L0821",
+   "start": 1944.204,
+   "end": 1944.624,
+   "context_guess": null,
+   "relisten": {
+    "heard_line": "ఏ మధ్యన wine shop కెళ్లట్లేదా నువ్వు cigarette rate కూడా పెరిగింది",
+    "line_ratio": 0.938
+   }
+  },
+  {
+   "start_word": 3225,
+   "end_word": 3226,
+   "heard": "cover లు",
+   "corrected": "కామర్లు",
+   "reason": "clearly says కామర్లు (jaundice idiom)",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "flag"
+   ],
+   "line": "L0830",
+   "start": 1962.964,
+   "end": 1963.284,
+   "context_guess": null,
+   "relisten": {
+    "heard_line": "ఉన్నాడు నీకే పచ్చ కామర్లు",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 3234,
+   "end_word": 3235,
+   "heard": "Mans field",
+   "corrected": "Mansion House",
+   "reason": "clearly says Mansion House",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "flag"
+   ],
+   "line": "L0833",
+   "start": 1967.044,
+   "end": 1967.484,
+   "context_guess": null,
+   "relisten": {
+    "heard_line": "విరాజస్థ నీకు Mansion House కి Royal Stag కి తేడా తెలుసా",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 3269,
+   "end_word": 3269,
+   "heard": "బ్యాచ్",
+   "corrected": "friends",
+   "reason": "clearly says friends",
+   "source": "relisten",
+   "confidence": 0.9,
+   "applied": true,
+   "found_by": [
+    "flag"
+   ],
+   "line": "L0844",
+   "start": 1982.644,
+   "end": 1983.024,
+   "context_guess": null,
+   "relisten": {
+    "heard_line": "friends ఇలా",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 3293,
+   "end_word": 3293,
+   "heard": "బంధువుల",
+   "corrected": "relatives",
+   "reason": "clearly says relatives",
+   "source": "relisten",
+   "confidence": 0.9,
+   "applied": true,
+   "found_by": [
+    "flag"
+   ],
+   "line": "L0851",
+   "start": 1992.544,
+   "end": 1992.824,
+   "context_guess": null,
+   "relisten": {
+    "heard_line": "పోనీ మీ relatives",
+    "line_ratio": 1.0
+   }
+  }
+ ],
+ "uncertain": [
+  {
+   "start_word": 407,
+   "end_word": 407,
+   "heard": "color",
+   "source": "flag",
+   "confidence": 0.442,
+   "verdict": "relisten_kept",
+   "line": "L0116",
+   "start": 250.1
+  },
+  {
+   "start_word": 409,
+   "end_word": 409,
+   "heard": "లో",
+   "source": "flag",
+   "confidence": 0.468,
+   "verdict": "relisten_kept",
+   "line": "L0116",
+   "start": 250.72
+  },
+  {
+   "start_word": 509,
+   "end_word": 509,
+   "heard": "తర్వాత",
+   "source": "flag",
+   "confidence": 0.306,
+   "verdict": "relisten_kept",
+   "line": "L0147",
+   "start": 314.98
+  },
+  {
+   "start_word": 572,
+   "end_word": 572,
+   "heard": "నుంచి",
+   "source": "flag",
+   "confidence": 0.443,
+   "verdict": "relisten_kept",
+   "line": "L0164",
+   "start": 347.88
+  },
+  {
+   "start_word": 920,
+   "end_word": 920,
+   "heard": "అబ్బే!",
+   "source": "flag",
+   "confidence": 0.419,
+   "verdict": "relisten_kept",
+   "line": "L0264",
+   "start": 553.044
+  },
+  {
+   "start_word": 1048,
+   "end_word": 1048,
+   "heard": "pub",
+   "source": "flag",
+   "confidence": 0.493,
+   "verdict": "relisten_kept",
+   "line": "L0295",
+   "start": 619.084
+  },
+  {
+   "start_word": 1231,
+   "end_word": 1231,
+   "heard": "Item",
+   "source": "flag",
+   "confidence": 0.485,
+   "verdict": "relisten_kept",
+   "line": "L0342",
+   "start": 705.784
+  },
+  {
+   "start_word": 1300,
+   "end_word": 1300,
+   "heard": "Love",
+   "source": "flag",
+   "confidence": 0.473,
+   "verdict": "relisten_kept",
+   "line": "L0358",
+   "start": 746.744
+  },
+  {
+   "start_word": 1376,
+   "end_word": 1376,
+   "heard": "super",
+   "source": "flag",
+   "confidence": 0.474,
+   "verdict": "skipped_interjection",
+   "line": "L0374",
+   "start": 776.344
+  },
+  {
+   "start_word": 1485,
+   "end_word": 1485,
+   "heard": "finally",
+   "source": "flag",
+   "confidence": 0.456,
+   "verdict": "relisten_kept",
+   "line": "L0398",
+   "start": 833.884
+  },
+  {
+   "start_word": 1550,
+   "end_word": 1550,
+   "heard": "హా.",
+   "source": "flag",
+   "confidence": 0.427,
+   "verdict": "skipped_interjection",
+   "line": "L0417",
+   "start": 870.564
+  },
+  {
+   "start_word": 1915,
+   "end_word": 1915,
+   "heard": "torture",
+   "source": "flag",
+   "confidence": 0.16,
+   "verdict": "relisten_kept",
+   "line": "L0515",
+   "start": 1176.84
+  },
+  {
+   "start_word": 1992,
+   "end_word": 1992,
+   "heard": "secret",
+   "source": "flag",
+   "confidence": 0.152,
+   "verdict": "relisten_kept",
+   "line": "L0538",
+   "start": 1233.06
+  },
+  {
+   "start_word": 2096,
+   "end_word": 2096,
+   "heard": "తెగ",
+   "source": "flag",
+   "confidence": 0.332,
+   "verdict": "relisten_kept",
+   "line": "L0572",
+   "start": 1300.1
+  },
+  {
+   "start_word": 2357,
+   "end_word": 2357,
+   "heard": "pratyu",
+   "source": "flag",
+   "confidence": 0.472,
+   "verdict": "relisten_kept",
+   "line": "L0653",
+   "start": 1498.644
+  },
+  {
+   "start_word": 2848,
+   "end_word": 2848,
+   "heard": "దాన్ని",
+   "source": "flag",
+   "confidence": 0.251,
+   "verdict": "relisten_kept",
+   "line": "L0751",
+   "start": 1776.964
+  },
+  {
+   "start_word": 3036,
+   "end_word": 3036,
+   "heard": "ఊ",
+   "source": "flag",
+   "confidence": 0.385,
+   "verdict": "skipped_interjection",
+   "line": "L0787",
+   "start": 1862.504
+  },
+  {
+   "start_word": 3133,
+   "end_word": 3133,
+   "heard": "ఒక్క",
+   "source": "flag",
+   "confidence": 0.332,
+   "verdict": "relisten_kept",
+   "line": "L0812",
+   "start": 1923.044
+  },
+  {
+   "start_word": 3149,
+   "end_word": 3149,
+   "heard": "లు",
+   "source": "flag",
+   "confidence": 0.471,
+   "verdict": "relisten_kept",
+   "line": "L0817",
+   "start": 1933.204
+  },
+  {
+   "start_word": 3229,
+   "end_word": 3229,
+   "heard": "pond's",
+   "source": "flag",
+   "confidence": 0.406,
+   "verdict": "relisten_kept",
+   "line": "L0832",
+   "start": 1964.624
+  },
+  {
+   "start_word": 3361,
+   "end_word": 3361,
+   "heard": "Sorry",
+   "source": "flag",
+   "confidence": 0.195,
+   "verdict": "relisten_kept",
+   "line": "L0876",
+   "start": 2038.104
+  },
+  {
+   "start_word": 3369,
+   "end_word": 3369,
+   "heard": "ఇది",
+   "source": "flag",
+   "confidence": 0.464,
+   "verdict": "relisten_kept",
+   "line": "L0881",
+   "start": 2046.884
+  }
+ ],
+ "rejected": [
+  {
+   "layer": "context",
+   "line": "L0341",
+   "first": 5,
+   "last": 6,
+   "heard": "పాట లో",
+   "guess": "పాటలా",
+   "kind": "flagged",
+   "why": "simile comparing entrance to item song",
+   "why_rejected": "positions do not match the heard words"
+  },
+  {
+   "layer": "relisten",
+   "line": "L0398",
+   "heard_line": "ఫైనల్ గా ఏదో clarity ఇవ్వు.",
+   "corrected": "ఫైనల్",
+   "confidence": 0.95,
+   "reason": "clearly says Telugu ఫైనల్",
+   "start_word": 1485,
+   "end_word": 1485,
+   "heard": "finally",
+   "why_rejected": "script change only (transliteration, 0.83)"
+  },
+  {
+   "layer": "relisten",
+   "line": "L0790",
+   "heard_line": "భ్రమ I miss you భ్రమ",
+   "corrected": "భ్రమ",
+   "confidence": 0.95,
+   "reason": "clearly says భ్రమ",
+   "start_word": 3042,
+   "end_word": 3042,
+   "heard": "Brama",
+   "why_rejected": "script change only (transliteration, 1.00)"
+  }
+ ],
+ "threshold_report": {
+  "n_words": 3475,
+  "has_logprob": true,
+  "by_threshold": {
+   "0.5": {
+    "words": 51,
+    "lines": 45
+   },
+   "0.6": {
+    "words": 109,
+    "lines": 95
+   },
+   "0.7": {
+    "words": 207,
+    "lines": 170
+   }
+  }
+ },
+ "cost": {
+  "projected": {
+   "model": "gemini-3.8-flash",
+   "layers": {
+    "context": {
+     "calls": 1,
+     "input_tokens": 24625,
+     "output_tokens": 4200,
+     "inr": 3.08
+    },
+    "relisten": {
+     "calls": 8,
+     "items": 57,
+     "audio_s": 152.2,
+     "audio_tokens": 4871,
+     "input_tokens": 23081,
+     "output_tokens": 8900,
+     "inr": 4.89
+    }
+   },
+   "inr": 7.97
+  },
+  "actual": {
+   "context": {
+    "calls": 1,
+    "cached": 0,
+    "input_tokens": 24492,
+    "output_tokens": 1806,
+    "audio_tokens": 0,
+    "inr": 2.263,
+    "inr_full": 2.263
+   },
+   "relisten": {
+    "calls": 7,
+    "cached": 0,
+    "input_tokens": 16327,
+    "output_tokens": 3955,
+    "audio_tokens": 3959,
+    "inr": 2.704,
+    "inr_full": 2.704
+   }
+  }
+ },
+ "stopped": null,
+ "transcript": "D:\\shotvi\\scribe_dataset\\qIdAPG8UulE\\qIdAPG8UulE_scribe_transcript.json"
+}

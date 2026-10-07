@@ -31,7 +31,8 @@ MAX_KEYTERMS = 1000
 
 
 # Tried in this order; later keys are used only after earlier ones run out of credits.
-KEY_VARS = ("ELEVENLABS_API_KEY", "ELEVENLABS_API_KEY_BACKUP", "ELEVENLABS_API_KEY_3", "ELEVENLABS_API_KEY_4")
+KEY_VARS = ("ELEVENLABS_API_KEY", "ELEVENLABS_API_KEY_BACKUP", "ELEVENLABS_API_KEY_3", "ELEVENLABS_API_KEY_4",
+            "ELEVENLABS_API_KEY_5")
 _active = 0   # index into api_keys(); moves to the backup when the current key runs out of quota
 
 

@@ -1,0 +1,824 @@
+{
+ "schema_version": "1.1",
+ "kind": "proposals",
+ "video_id": "Sy8yZ4DgzrU",
+ "transcript": {
+  "path": "scribe_dataset/Sy8yZ4DgzrU/Sy8yZ4DgzrU_scribe_transcript.json",
+  "sha256": "e35aae9eef166554ceb325a8f5c6bc88a42416082808989c38f8be234fd9e8d0",
+  "n_words": 2144,
+  "audio_duration_secs": 1435.8535
+ },
+ "derived_params": {
+  "skip_s": 30.0
+ },
+ "run_id": "v1_test",
+ "created_at": "2026-10-07T16:12:19Z",
+ "content_type": "web_series",
+ "pipeline": {
+  "version": "ws/0.2",
+  "git_commit": null,
+  "prompt_versions": {
+   "ws_discover": "3+27f4dce4",
+   "ws_review": "1+addbc14b"
+  },
+  "prompt_files": {
+   "ws_discover": "ws_discover_b_payoff",
+   "ws_review": "ws_review"
+  },
+  "config": {
+   "models": {
+    "ws_discover": {
+     "provider": "gemini",
+     "model": "gemini-3.8-flash",
+     "params": {
+      "thinking_level": "high",
+      "max_output_tokens": 32768
+     }
+    },
+    "ws_review": {
+     "provider": "gemini",
+     "model": "gemini-3.8-flash",
+     "params": {
+      "thinking_level": "medium",
+      "max_output_tokens": 16384
+     }
+    },
+    "video_end": {
+     "provider": "gemini",
+     "model": "gemini-3.8-flash",
+     "params": {
+      "thinking_level": "low"
+     }
+    }
+   },
+   "cut": {
+    "start_pad_s": 0.3,
+    "lift_min_s": 1.0,
+    "lift_max_s": 3.6,
+    "lift_cut_eps_s": 0.005,
+    "lift_start_snap_s": 0.4,
+    "lift_start_pad_s": 0.12,
+    "lift_max_tail_s": 2.0,
+    "lift_tail_measure_s": 0.4,
+    "lift_quiet_tail_db": 15.0,
+    "lift_level_warn_db": 10.0,
+    "max_cuts": 3,
+    "max_drop_s": 45.0,
+    "snap_s": 1.5,
+    "join_pad_s": 0.25,
+    "hold_min_s": 2.0,
+    "hold_max_s": 8.0,
+    "hold_short_min_s": 0.5,
+    "hold_default_s": 2.0,
+    "next_speech_margin_s": 0.1,
+    "long_silence_s": 20.0,
+    "long_silence_hold_max_s": 4.0,
+    "react_max_s": 1.5,
+    "react_max_words": 3,
+    "react_clear_s": 1.0,
+    "quick_cut_min_s": 0.02,
+    "quick_end_margin_s": 0.05,
+    "flash_s": 0.3,
+    "shot_tol_s": 0.05,
+    "word_clip_tol_s": 0.02,
+    "exchange_start": false,
+    "exchange_gap_s": 2.0,
+    "exchange_back_max_s": 30.0,
+    "exchange_back_max_lines": 12,
+    "exchange_on_cap": "keep",
+    "exchange_recap_s": 60.0,
+    "exchange_mode": "walk",
+    "qreply_require_speaker_change": false,
+    "qreply_setup_lines": 2,
+    "qreply_max_lines": 3,
+    "qreply_max_s": 12.0,
+    "exchange_max_play_s": 120.0
+   },
+   "review_view": "final",
+   "guardrails": {
+    "min_s": 15.0,
+    "soft_max_s": 120.0,
+    "hard_max_s": 150.0,
+    "skip_s": 30.0,
+    "dup_overlap": 0.5,
+    "blocks_flag_above": 3
+   },
+   "thresholds": {
+    "t_show": 3.5,
+    "t_rec": 4.0,
+    "t_rec_payoff": 4.0,
+    "rec_blockers": [
+     "needs_rescore",
+     "shot_flash",
+     "unreviewed_start",
+     "review_repair_failed"
+    ],
+    "verdict_strong_min": 3
+   },
+   "video_end_check": {
+    "enabled": false,
+    "max_shift_s": 8.0
+   },
+   "prompts": {
+    "ws_discover": "ws_discover_b_payoff",
+    "ws_review": "ws_review"
+   },
+   "budget_usd": 0.6,
+   "run_id": "v1_test"
+  }
+ },
+ "models": [
+  {
+   "role": "ws_discover",
+   "provider": "gemini",
+   "model": "gemini-3.8-flash",
+   "params": {
+    "thinking_level": "high",
+    "max_output_tokens": 32768
+   }
+  },
+  {
+   "role": "ws_review",
+   "provider": "gemini",
+   "model": "gemini-3.8-flash",
+   "params": {
+    "thinking_level": "medium",
+    "max_output_tokens": 16384
+   }
+  }
+ ],
+ "cost": {
+  "input_tokens": 21986,
+  "output_tokens": 32001,
+  "usd": 0.13649,
+  "usd_billed": 0.13649,
+  "wall_time_secs": 208.1,
+  "n_llm_calls": 2,
+  "by_role": {
+   "ws_discover": {
+    "n_llm_calls": 1,
+    "n_cache_hits": 0,
+    "n_failed_attempts": 0,
+    "input_tokens": 17994,
+    "output_tokens": 28842,
+    "thought_tokens": 26238,
+    "cached_input_tokens": 0,
+    "usd": 0.12165,
+    "usd_billed": 0.12165,
+    "models": [
+     "gemini-3.8-flash"
+    ]
+   },
+   "ws_review": {
+    "n_llm_calls": 1,
+    "n_cache_hits": 0,
+    "n_failed_attempts": 0,
+    "input_tokens": 3992,
+    "output_tokens": 3159,
+    "thought_tokens": 1688,
+    "cached_input_tokens": 0,
+    "usd": 0.01484,
+    "usd_billed": 0.01484,
+    "models": [
+     "gemini-3.8-flash"
+    ]
+   }
+  },
+  "projection": {
+   "ws_discover": {
+    "in": 17994,
+    "in_source": "countTokens",
+    "out_expected": 25000,
+    "out_guard": 32768,
+    "inr_expected": 9.65,
+    "inr": 12.27
+   },
+   "ws_review": {
+    "in_expected": 14700,
+    "out_expected": 15000,
+    "inr_expected": 6.05,
+    "in_guard": 14700,
+    "out_guard": 15000,
+    "inr": 6.05,
+    "assumes_clips": 15,
+    "expected_from": "defaults"
+   },
+   "video_end_check": {
+    "enabled": false,
+    "assumes_clips": 15,
+    "inr": 0.0,
+    "inr_expected": 0.0
+   },
+   "episode": {
+    "inr_expected": 15.7,
+    "inr": 18.32
+   }
+  }
+ },
+ "cutoff": {
+  "t_show": 3.5,
+  "t_rec": 4.0,
+  "t_rec_payoff": 4.0,
+  "rec_blockers": [
+   "needs_rescore",
+   "shot_flash",
+   "unreviewed_start",
+   "review_repair_failed"
+  ],
+  "n_candidates": 7,
+  "n_passed_hard_rules": 7,
+  "n_shown": 4,
+  "n_recommended": 2,
+  "n_worth_a_look": 2,
+  "n_rejected": 3,
+  "warnings": []
+ },
+ "episode_verdict": {
+  "strong_clips": 2,
+  "worth_a_look": 2,
+  "verdict": "thin",
+  "note": "This episode yields only 2 strong clips (plus 2 worth a look); do not expect more from it."
+ },
+ "episode_notes": "Episode Map:\n- Scene 1 (L0001-L0030): Satya wakes up, finds Krishna missing, and aggressively confronts him when he returns; Krishna admits he went intentionally. Payoff: L0029 (reveal).\n- Scene 2 (L0031-L0095): Flashback showing Krishna consoling a homesick Radha who was crying late at night.\n- Scene 3 (L0096-L0137): Krishna clarifies to Satya that Radha is just family responsibility; Satya admits feeling insecure seeing them close.\n- Scene 4 (L0138-L0208): Radha and a younger cousin/brother comically bicker over a hand game (Payoff: L0151, punchline); Satya then gently consoles Radha (Payoff: L0207, emotional_peak).\n- Scene 5 (L0209-L0275): At office, Raghu creeps on Satya and reveals his obsession to his colleague (Payoff: L0267, conclusion).\n- Scene 6 (L0276-L0365): Krishna meets his schoolmate Subbu for a Medical Representative job; Subbu explains how 'settings' work (Payoff: L0300, conclusion); Krishna gets the job and Subbu recalls childhood loyalty (Payoff: L0339, emotional_peak).\n- Scene 7 (L0366-L0443): Krishna rushes home overjoyed to share the job news; Satya expresses unconditional love (Payoff: L0391, emotional_peak); they head out for ice cream.\n- Scene 8 (L0444-L0542): At ice cream parlour, Krishna talks about a home loan; Satya mentions her dad selling land to fund their house as dowry compensation, triggering an explosive clash over self-respect vs ego (Payoff: L0525, conclusion).",
+ "proposals": [
+  {
+   "id": "w07",
+   "pieces": [
+    {
+     "start_word": 1917,
+     "end_word": 2048,
+     "start": 1266.752,
+     "end": 1312.512
+    }
+   ],
+   "region": {
+    "start_word": 1917,
+    "end_word": 2048,
+    "start": 1266.752,
+    "end": 1312.512
+   },
+   "edited_duration": 45.76,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ప్రేమ ఉంటే మన మీద నమ్మకం కూడా ఉండాలి సత్య. నమ్మకం లేకపోతే నన్ను నీకిచ్చి పెళ్లి చేయరు కదా కృష్ణ. సత్య! నా family ని ఎలా చూసుకోవాలో నాకు తెలుసు. చూసుకోలేమని ఎవరన్నారు? మరి ఎందుకు ప్రతిసారి మీ నాన్న డబ్బులు? ప్రతిసారి కాదు. ఈసారి ఇల్లు topic వచ్చింది కాబట్టి. నాకు మీ నాన్న డబ్బులు అవసరం లేదు. అవసరం లేకపోతే తీసుకోకు. దానికి నాతో ఎందుకిలా మాట్లాడుతున్నావ్? సత్య! ఒకసారి నువ్వే నా place లో ఉండి ఆలోచించు. ఇప్పుడు మీ నాన్న దగ్గర డబ్బులు తీసుకొని ఇల్లు కడితే ఆ ఇంటి ముందు నించొని ఇది నా ఇల్లు అని ఎలా అనుకోగలుగుతావ్ చెప్పు? అది నీ self respect కాదు ego. ego ఆ? అవును ego నే. మా నాన్న దగ్గర డబ్బులు తీసుకుంటే నువ్వు ఎక్కడ తక్కువ మనిషి అయిపోతావని నువ్వు అనుకుంటున్నావ్. కానీ అదే మా నాన్న నా కోసం డబ్బులు ఇస్తుంటే ప్రేమతో ఇస్తున్నారని ఎందుకు అనుకోవట్లేదు? ఇప్పుడు మీ నాన్న ప్రేమ కోసం నా ఆత్మ గౌరవాన్ని తగ్గించుకోవాలా? నీ ఆత్మ గౌరవం కోసం మా నాన్న ప్రేమను question చేయాలా?",
+   "rank": 1,
+   "tier": "recommended",
+   "scores": {
+    "hook": 3.5,
+    "standalone": 4.5,
+    "payoff": 4.5,
+    "value_emotion": 4.5,
+    "overall": 4.0
+   },
+   "title": "ఆత్మగౌరవమా లేక Ego నా?",
+   "hook_line": {
+    "text": "ప్రేమ ఉంటే మన మీద నమ్మకం కూడా ఉండాలి సత్య.",
+    "start_word": 1917,
+    "end_word": 1924
+   },
+   "why_it_works": "Engages immediately with realistic marital friction over money and self-respect, concluding on a powerful counter-question.",
+   "category": "controversy",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "promo",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 1266.452,
+     "end": 1312.598,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 46.15,
+   "spoiler": true,
+   "characters": [
+    "Krishna",
+    "Satya"
+   ],
+   "visual_dependency": "low",
+   "start_line": "L0505",
+   "end_line": "L0525",
+   "end_hold": {
+    "payoff_end": 1312.512,
+    "next_speech": 1312.872,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "end": 1312.598,
+    "hold_s": 0.09,
+    "on_shot_cut": true,
+    "rule": "shot_change_before_next_line",
+    "note": "next line starts quickly: ends on the shot change"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": 5,
+    "what_happens": "Krishna refuses to take Satya's father's money to buy a house, arguing it destroys his self-respect; Satya furiously confronts his male ego and stands up for her father's love.",
+    "hook": "Krishna starts the heated argument with a principled demand: 'ప్రేమ ఉంటే మన మీద నమ్మకం కూడా ఉండాలి సత్య.'",
+    "payoff": "Satya delivers a devastating retort that shuts down Krishna's argument completely: 'నీ ఆత్మ గౌరవం కోసం మా నాన్న ప్రేమను question చేయాలా?'",
+    "opening_strength": "strong",
+    "payoff_line": "నీ ఆత్మ గౌరవం కోసం మా నాన్న ప్రేమను question చేయాలా?",
+    "payoff_type": "conclusion"
+   },
+   "review": {
+    "cold_open_note": "No cold open used.",
+    "cut_note": "No cuts present.",
+    "bad_cuts": [],
+    "changes": []
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": []
+  },
+  {
+   "id": "w01",
+   "pieces": [
+    {
+     "start_word": 26,
+     "end_word": 96,
+     "start": 77.28,
+     "end": 107.16
+    }
+   ],
+   "region": {
+    "start_word": 26,
+    "end_word": 96,
+    "start": 77.28,
+    "end": 107.16
+   },
+   "edited_duration": 29.88,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ఓ నేను పడుకున్నాను అని చూసి వెళ్ళావా? ఏంటి? నేను పడుకున్నాను ఇంకా లేవను అని confirm చేసుకుని నాకెళ్ళావు అంతే కదా. సత్య అసలు ఏం మాట్లాడుతున్నావ్. నీకు సిగ్గు లేదా కృష్ణ. ఇంట్లో నేను ఉండగా రాసుకుని పూసుకుని తిరుగుతున్నావ్. అసలు నువ్వు ఏం చేస్తున్నావో నీకు అర్థమవుతుందా? సత్య, నువ్వు ముందు cool అవ్వు. నేను చెప్పేది విను. ఏం వినాలి. చెప్పు ఏం చెప్తావ్. ఇప్పుడు కూడా నేనేం తప్పు చేయలేదు సరదాగా వెళ్లి పడుకున్నాను అని చెప్తావా లేకపోతే నిద్రలో నడుచుకుంటూ వెళ్ళిపోయానని చెప్తావా? లేదు. నేను నిద్రలో వెళ్ళలేదు. కావాలనే వెళ్ళా.",
+   "rank": 2,
+   "tier": "recommended",
+   "scores": {
+    "hook": 4.0,
+    "standalone": 4.0,
+    "payoff": 4.0,
+    "value_emotion": 4.0,
+    "overall": 4.0
+   },
+   "title": "నేను కావాలనే వెళ్ళా!",
+   "hook_line": {
+    "text": "ఓ నేను పడుకున్నాను అని చూసి వెళ్ళావా?",
+    "start_word": 26,
+    "end_word": 31
+   },
+   "why_it_works": "Starts with a blunt midnight accusation and peaks with an unapologetic confession, creating high relationship drama.",
+   "category": "controversy",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "promo",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": "review: hook 3.0 with the lift vs 4.0 without, overall 3.5 vs 4.0; The cold open line is a generic reaction, whereas the scene's natural opening line is a much sharper, high-stakes accusation.",
+   "time_segments": [
+    {
+     "start": 76.98,
+     "end": 108.77,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 31.79,
+   "spoiler": false,
+   "characters": [
+    "Satya",
+    "Krishna"
+   ],
+   "visual_dependency": "low",
+   "start_line": "L0014",
+   "end_line": "L0029",
+   "end_hold": {
+    "payoff_end": 107.16,
+    "end": 108.77,
+    "hold_s": 1.61,
+    "on_shot_cut": true,
+    "next_speech": 117.96,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "note": "short hold (next shot cut before the minimum hold)",
+    "rule": "hold"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": 5,
+    "what_happens": "Satya corners Krishna late at night after discovering he slipped out to meet Radha while she was asleep. When she furiously asks if he will make up an excuse, Krishna shocks her by admitting he went intentionally.",
+    "hook": "Satya lashes out with intense accusations: 'ఓ నేను పడుకున్నాను అని చూసి వెళ్ళావా?... ఇంట్లో నేను ఉండగా రాసుకుని పూసుకుని తిరుగుతున్నావ్.'",
+    "payoff": "Krishna calmly drops a bombshell confession that raises tension through the roof: 'కావాలనే వెళ్ళా.'",
+    "opening_strength": "strong",
+    "payoff_line": "కావాలనే వెళ్ళా.",
+    "payoff_type": "reveal"
+   },
+   "review": {
+    "cold_open_note": "The cold open line is a generic reaction, whereas the scene's natural opening line is a much sharper, high-stakes accusation.",
+    "cut_note": "Smooth dialogue flow throughout.",
+    "bad_cuts": [],
+    "changes": [
+     "cold open dropped, review: hook 3.0 with the lift vs 4.0 without, overall 3.5 vs 4.0; The cold open line is a generic reaction, whereas the scene's natural opening line is a much sharper, high-stakes…"
+    ]
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": []
+  },
+  {
+   "id": "w02",
+   "pieces": [
+    {
+     "start_word": 512,
+     "end_word": 517,
+     "start": 422.04,
+     "end": 423.4
+    },
+    {
+     "start_word": 481,
+     "end_word": 511,
+     "start": 410.16,
+     "end": 421.5
+    },
+    {
+     "start_word": 518,
+     "end_word": 542,
+     "start": 424.68,
+     "end": 436.18
+    }
+   ],
+   "region": {
+    "start_word": 481,
+    "end_word": 542,
+    "start": 410.16,
+    "end": 436.18
+   },
+   "edited_duration": 24.2,
+   "reordered": true,
+   "n_blocks": 2,
+   "text": "చూడు ఎలా రెక్కేవో దెయ్యం గోర్లు వేసుకుని ఇది cheating నేనేం cheating చేయలేదు ఆ నేను ఇంకా start అనకముందే నువ్వు చెరిపేస్తున్నావు. ఇలా ఆడితే ఎవడైనా గెలుస్తాడు అదే కదా మరి ఆట అంటే. లేకపోతే నువ్వు కొట్టేదాకా చూస్తూ ఉండాలా ఇది ఆటలా లేదు వేటలా ఉంది. నీకు ఆడటం చేతకాట్లేదని చెప్పు నాకు మనుషులతో ఆడటం వచ్చు. నీలా రాక్షసులతో ఆడటం రాదు. ఏయ్ రాక్షసి అన్నావనుకో కొరుకుతా ఓహో! రక్కడం ఒకటే అనుకున్నాను కొరకడం కూడా వచ్చు అన్నమాట కుక్కలాగా",
+   "rank": 3,
+   "tier": "worth_a_look",
+   "scores": {
+    "hook": 3.5,
+    "standalone": 3.5,
+    "payoff": 3.5,
+    "value_emotion": 3.5,
+    "overall": 3.5
+   },
+   "title": "ఇది ఆటలా లేదు వేటలా ఉంది",
+   "hook_line": {
+    "text": "చూడు ఎలా రెక్కేవో దెయ్యం గోర్లు వేసుకుని",
+    "start_word": 512,
+    "end_word": 517
+   },
+   "why_it_works": "Fun couple bickering from a board game argument to witty animal insults delivers consistent light humour.",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [
+    {
+     "type": "cold_open",
+     "after_piece": 0,
+     "reason": "Lifted L0145 (1.8 s) to the front; skipped in place, not replayed. Lifting 'చూడు ఎలా రక్కావో దెయ్యం గోర్లు వేసుకుని' starts the Reel with instant visual comedy before the match quarrel begins."
+    }
+   ],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": true,
+   "cold_open_detail": {
+    "lines": [
+     "L0145"
+    ],
+    "text": "చూడు ఎలా {fixed: రక్కావో} దెయ్యం గోర్లు వేసుకుని",
+    "start": 421.92,
+    "end": 423.71,
+    "duration": 1.79,
+    "tail_s": 0.31,
+    "start_on_cut": false,
+    "word_range": [
+     512,
+     517
+    ],
+    "level_vs_scene_db": 3.2
+   },
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 421.92,
+     "end": 423.71,
+     "kind": "cold_open"
+    },
+    {
+     "start": 409.86,
+     "end": 421.75,
+     "kind": "scene"
+    },
+    {
+     "start": 423.715,
+     "end": 436.389,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 26.35,
+   "spoiler": false,
+   "characters": [
+    "Radha",
+    "Boy"
+   ],
+   "visual_dependency": "medium",
+   "start_line": "L0138",
+   "end_line": "L0151",
+   "end_hold": {
+    "payoff_end": 436.18,
+    "next_speech": 436.86,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "end": 436.389,
+    "hold_s": 0.21,
+    "on_shot_cut": true,
+    "rule": "shot_change_before_next_line",
+    "note": "next line starts quickly: ends on the shot change"
+   },
+   "chunk_drops": [
+    {
+     "after_line": "L0144",
+     "before_line": "L0146",
+     "removed_lines": [
+      "L0145"
+     ],
+     "lift_skip": true,
+     "start": 421.75,
+     "end": 423.715,
+     "removed_s": 1.96,
+     "why": ""
+    }
+   ],
+   "discovery": {
+    "strength": 4,
+    "what_happens": "Radha and a boy playfully play a competitive hand game, accusing each other of cheating and scratching until Radha threatens to bite, prompting a hilarious comeback.",
+    "hook": "Loud, energetic accusations fly in a competitive game: 'ఇది cheating! నేనేం cheating చేయలేదు!'",
+    "payoff": "A sharp, witty comeback that compares her vicious biting threat to a dog: 'రక్కడం ఒకటే అనుకున్నాను కొరకడం కూడా వచ్చు అన్నమాట కుక్కలాగా.'",
+    "opening_strength": "strong",
+    "payoff_line": "రక్కడం ఒకటే అనుకున్నాను కొరకడం కూడా వచ్చు అన్నమాట కుక్కలాగా",
+    "payoff_type": "punchline"
+   },
+   "review": {
+    "cold_open_note": "The cold open line works well as a playful bickering tease before entering the game cheat argument.",
+    "cut_note": "Dialogue transitions naturally between the punches.",
+    "bad_cuts": [],
+    "changes": []
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": []
+  },
+  {
+   "id": "w03",
+   "pieces": [
+    {
+     "start_word": 830,
+     "end_word": 938,
+     "start": 637.86,
+     "end": 699.96
+    }
+   ],
+   "region": {
+    "start_word": 830,
+    "end_word": 938,
+    "start": 637.86,
+    "end": 699.96
+   },
+   "edited_duration": 62.1,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ఆ అమ్మాయి పెళ్లి అయిపోయింది కదా తెలుసురా మరి పెళ్లి అయిపోయిన వాళ్ళతో ఎందుకన్నా అది దగ్గరుంటే చాలురా ఆ smell కే నాకు మెంటలెక్కుతది. తను ఏం చెప్పిందో కూడా నాకు అర్థం కాదురా. అంత పిచ్చి రాదంటే నాకు ఆమె perfume ఆ అది perfume ఓ ఇంకేదో నాకు తెలియదు గానీ ఆమె పక్కనుంటే నా brain కూడా work చేయదు. అసలు ఏం చెప్తుందో కూడా గుర్తుండదు. మరి ఇప్పుడు ఏం చేద్దాం అనుకుంటున్నావ్ సత్యా! ఏదో ఒకరోజు దాన్ని పడేయాలిరా తెలుగులో ఒక సామెత ఉంది ఆశ కదు-- చాలు చాలు చాలు. తర్వాత నాకు తెలుసు. ఆమె నార్మల్ గానే మగవాళ్ళని పురుగులు చూసినట్టు చూస్తది. అలాంటిది ఇప్పుడు పెళ్లయింది. ఆమెను పడేయాలి అంటున్నావ్. ఏయ్ పోర్రా. చూద్దాం try చేద్దాం. పోయేదేముందే. అయినా దీన్ని చేసుకున్నోడు అదృష్టవంతుడురా. ఎక్కడో మచ్చ చేసుకొని పుట్టి ఉంటాడు నా కొడుకు. లేకపోతే ఇది వాడికి పడటం ఏందిరా.",
+   "rank": 4,
+   "tier": "worth_a_look",
+   "scores": {
+    "hook": 3.5,
+    "standalone": 4.0,
+    "payoff": 3.5,
+    "value_emotion": 3.5,
+    "overall": 3.5
+   },
+   "title": "పెళ్లయిన అమ్మాయి మీద క్రష్",
+   "hook_line": {
+    "text": "ఆ అమ్మాయి పెళ్లి అయిపోయింది కదా",
+    "start_word": 830,
+    "end_word": 834
+   },
+   "why_it_works": "Taps into a taboo crush with bold, obsessive one-liners that build curiosity about what he will do next.",
+   "category": "story",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "promo",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 637.56,
+     "end": 700.111,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 62.55,
+   "spoiler": false,
+   "characters": [
+    "Raghu",
+    "Raghu's Friend"
+   ],
+   "visual_dependency": "low",
+   "start_line": "L0236",
+   "end_line": "L0267",
+   "end_hold": {
+    "payoff_end": 699.96,
+    "next_speech": 700.74,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "end": 700.111,
+    "hold_s": 0.15,
+    "on_shot_cut": true,
+    "rule": "shot_change_before_next_line",
+    "note": "next line starts quickly: ends on the shot change"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": 4,
+    "what_happens": "Raghu's colleague questions why he is still obsessing over Satya after her marriage; Raghu reveals his unhinged attraction and determination to woo her anyway.",
+    "hook": "Raghu's friend calls him out with a blunt question: 'ఆ అమ్మాయి పెళ్లి అయిపోయింది కదా... మరి పెళ్లి అయిపోయిన వాళ్ళతో ఎందుకన్నా?'",
+    "payoff": "Raghu signs off with an arrogant, toxic declaration about Satya and her husband: 'ఎక్కడో మచ్చ వేసుకొని పుట్టి ఉంటాడు నా కొడుకు. లేకపోతే ఇది వాడికి పడటం ఏందిరా.'",
+    "opening_strength": "strong",
+    "payoff_line": "లేకపోతే ఇది వాడికి పడటం ఏందిరా.",
+    "payoff_type": "conclusion"
+   },
+   "review": {
+    "cold_open_note": "No cold open used.",
+    "cut_note": "No cuts present.",
+    "bad_cuts": [],
+    "changes": []
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": []
+  }
+ ],
+ "rejected": [
+  {
+   "id": "w04",
+   "tier": "rejected",
+   "reject_reasons": [
+    "Q1: below the bar (overall 3.0 < 3.5; hook 2.5, standalone 3.5, payoff 3.5)"
+   ],
+   "pieces": [
+    {
+     "start_word": 1017,
+     "end_word": 1100,
+     "start": 749.016,
+     "end": 785.296
+    }
+   ],
+   "region": {
+    "start_word": 1017,
+    "end_word": 1100,
+    "start": 749.016,
+    "end": 785.296
+   },
+   "edited_duration": 36.28,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "అరే ఇప్పటివరకు వేరు, ఇప్పుడు వేరు. నేను ఉన్నాగా, మొత్తం అంతా నేను చూసుకుంటా పోదాం. అలా ఎలా రా? అదంతే రా, manager కి మనం ఎంత చెప్తే అంత. అయినా వారానికి నాలుగు సార్లు sitting వేయించి అంతా set చేశా. మనం చెప్పిందే చట్టం, రాసిందే గీత. రేయ్ సుబ్బు! నువ్వేనా రా? ఆ expression ఏంటి రా? హా అంటే school లో homework కూడా నాతోనే రాయించే సుబ్బు గాడు ఇప్పుడు ఇలా మాట్లాడుతుంటే. హా school లో homework కోసం నిన్ను set చేయించా, ఇక్కడ job కోసం వీడిని set చేయించా. అయినా ఈ society లో బ్రతకాలంటే ఆ మాత్రం లేకపోతే చాలా కష్టం రా బాబు.",
+   "time_segments": [
+    {
+     "start": 748.716,
+     "end": 785.906,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 37.19,
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "discovery": {
+    "strength": 4,
+    "hook": "Subbu flexes his corporate influence: 'manager కి మనం ఎంత చెప్తే అంత... మనం చెప్పిందే చట్టం, రాసిందే గీత.'",
+    "payoff": "Subbu delivers a funny, quotable reality check: 'హా school లో homework కోసం నిన్ను set చేయించా, ఇక్కడ job కోసం వీడిని set చేయించా. అయినా ఈ society లో బ్రతకాలంటే ఆ మాత్రం లేకపోతే చాలా కష్టం రా బాబు.'",
+    "payoff_line": "అయినా ఈ society లో బ్రతకాలంటే ఆ మాత్రం లేకపోతే చాలా కష్టం రా బాబు.",
+    "payoff_type": "conclusion"
+   },
+   "scores": {
+    "hook": 2.5,
+    "standalone": 3.5,
+    "payoff": 3.5,
+    "value_emotion": 3.0,
+    "overall": 3.0
+   }
+  },
+  {
+   "id": "w05",
+   "tier": "rejected",
+   "reject_reasons": [
+    "Q1: below the bar (overall 3.0 < 3.5; hook 2.5, standalone 4.0, payoff 3.5)"
+   ],
+   "pieces": [
+    {
+     "start_word": 1166,
+     "end_word": 1282,
+     "start": 829.116,
+     "end": 882.416
+    }
+   ],
+   "region": {
+    "start_word": 1166,
+    "end_word": 1282,
+    "start": 829.116,
+    "end": 882.416
+   },
+   "edited_duration": 53.3,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "job వచ్చింది రా. Monday నుంచి join అయిపోవచ్చు అన్నారు. Thanks రా సుబ్బు. రేయ్ thanks ఎందుకు రా? అయినా చిన్నప్పుడు నువ్వు చేసిందంతా పోలిస్తే ఇది చాలా చిన్న matter రా బాబు. గుర్తుందా? చిన్నప్పుడు నాతో ఎవరు ఆడుకునే వాళ్ళు కాదు. నాతో కలిసి ఎవరు ఉండేవాళ్ళు కాదురా. కానీ నువ్వు మాత్రం ఎప్పుడూ నా పక్కనే ఉండేవాడివి రా. గణేష్ గాడు అలా gang అంతా కలిసి నన్ను కొట్టడానికి వచ్చిన రోజు గుర్తుందా? అయినా అందరూ కలిసి నన్ను corner చేసినప్పుడు నువ్వు ఒక్కడివే ఉండి నన్ను save చేశావ్ రా. అరేయ్ అది చిన్న విషయం లే రా. నీకు చిన్న విషయం రా బాబు, కానీ నాకు చాలా పెద్ద విషయం. అయినా నువ్వు ఇవన్నీ మర్చిపోయి ఉండొచ్చు గానీ నేను అలా మర్చిపోను రా. చిన్నప్పటి నుంచి నాకు కావాల్సినప్పుడు నువ్వు నా పక్కనే ఉన్నావ్. ఇప్పుడు నీకు చిన్న help కావాలి. నేను friend గా నీ పక్కన నిలబడతా. okay నా.",
+   "time_segments": [
+    {
+     "start": 828.816,
+     "end": 884.087,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 55.27,
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "discovery": {
+    "strength": 4,
+    "hook": "Pure genuine excitement as Krishna shares: 'job వచ్చింది రా. Monday నుంచి join అయిపోవచ్చు అన్నారు. Thanks రా సుబ్బు.'",
+    "payoff": "A deeply touching affirmation of male friendship: 'చిన్నప్పటి నుంచి నాకు కావాల్సినప్పుడు నువ్వు నా పక్కనే ఉన్నావ్. ఇప్పుడు నీకు చిన్న help కావాలి. నేను friend గా నీ పక్కన నిలబడతా.'",
+    "payoff_line": "నేను friend గా నీ పక్కన నిలబడతా.",
+    "payoff_type": "emotional_peak"
+   },
+   "scores": {
+    "hook": 2.5,
+    "standalone": 4.0,
+    "payoff": 3.5,
+    "value_emotion": 3.5,
+    "overall": 3.0
+   }
+  },
+  {
+   "id": "w06",
+   "tier": "rejected",
+   "reject_reasons": [
+    "Q1: below the bar (overall 3.0 < 3.5; hook 2.5, standalone 4.0, payoff 4.0)"
+   ],
+   "pieces": [
+    {
+     "start_word": 1389,
+     "end_word": 1486,
+     "start": 976.116,
+     "end": 1017.656
+    }
+   ],
+   "region": {
+    "start_word": 1389,
+    "end_word": 1486,
+    "start": 976.116,
+    "end": 1017.656
+   },
+   "edited_duration": 41.54,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ఏంటి కృష్ణ? ఏమైంది ఇంత happy గా ఉన్నావ్? నిన్ను ఇంత happy గా నేను ఎప్పుడూ చూడలా. నాకు job వచ్చింది. అవునా ఊ.. ఎక్కడ? ఇక్కడే, మాదాపూర్ లో. నాకు హైదరాబాద్ లో job వచ్చింది. చాలా happy గా ఉంది కృష్ణ. ఇప్పటి నుండి మీ ఆయన కూడా సంపాదిస్తాడు. నీ అంత కాకపోయినా నాకు నెల నెల జీతం వస్తుంది. ఎంత salary వస్తుంది అన్నది important కాదు, job ఉందా లేదా అనేదే important. అయినా నీకు job ఉండాలని నేను ఎప్పుడూ అనుకోలేదు. నువ్వే life లో ఏదో ఒకటి చేయాలి, job తెచ్చుకోవాలి అనుకున్నావ్, so I am happy for you. నువ్వు నా కోసం job చేయాలని నేను ఎప్పుడూ అనుకోలేదు. నువ్వు ఇంట్లో ఉంటూ నన్ను ప్రేమించే పని చూసుకున్నా కూడా నాకు okay.",
+   "time_segments": [
+    {
+     "start": 975.816,
+     "end": 1018.546,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 42.73,
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "discovery": {
+    "strength": 5,
+    "hook": "Satya notices Krishna beaming like never before: 'ఏంటి కృష్ణ? ఏమైంది ఇంత happy గా ఉన్నావ్? నిన్ను ఇంత happy గా నేను ఎప్పుడూ చూడలా.'",
+    "payoff": "An unforgettable, heartwarming dialogue on unconditional love: 'నువ్వు నా కోసం job చేయాలని నేను ఎప్పుడూ అనుకోలేదు. నువ్వు ఇంట్లో ఉంటూ నన్ను ప్రేమించే పని చూసుకున్నా కూడా నాకు okay.'",
+    "payoff_line": "నువ్వు ఇంట్లో ఉంటూ నన్ను ప్రేమించే పని చూసుకున్నా కూడా నాకు okay.",
+    "payoff_type": "emotional_peak"
+   },
+   "scores": {
+    "hook": 2.5,
+    "standalone": 4.0,
+    "payoff": 4.0,
+    "value_emotion": 4.0,
+    "overall": 3.0
+   }
+  }
+ ]
+}
