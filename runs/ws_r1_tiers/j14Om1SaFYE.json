@@ -1,0 +1,1042 @@
+{
+ "schema_version": "1.1",
+ "kind": "proposals",
+ "video_id": "j14Om1SaFYE",
+ "transcript": {
+  "path": "scribe_dataset/j14Om1SaFYE/j14Om1SaFYE_scribe_transcript.json",
+  "sha256": "0f6ddd16cb9138680972d4539615727664fc5c0aee2090c3ab237e499c6aafb0",
+  "n_words": 1402,
+  "audio_duration_secs": 1167.301938
+ },
+ "derived_params": {
+  "skip_s": 30.0
+ },
+ "run_id": "ws_r1_tiers",
+ "created_at": "2026-10-07T14:46:14Z",
+ "content_type": "web_series",
+ "pipeline": {
+  "version": "ws/0.2",
+  "git_commit": null,
+  "prompt_versions": {
+   "ws_discover": "2+8aeaccf0",
+   "ws_review": "1+addbc14b"
+  },
+  "prompt_files": {
+   "ws_discover": "ws_discover",
+   "ws_review": "ws_review"
+  },
+  "config": {
+   "models": {
+    "ws_discover": {
+     "provider": "gemini",
+     "model": "gemini-3.8-flash",
+     "params": {
+      "thinking_level": "high",
+      "max_output_tokens": 32768
+     }
+    },
+    "ws_review": {
+     "provider": "gemini",
+     "model": "gemini-3.8-flash",
+     "params": {
+      "thinking_level": "medium",
+      "max_output_tokens": 16384
+     }
+    },
+    "video_end": {
+     "provider": "gemini",
+     "model": "gemini-3.8-flash",
+     "params": {
+      "thinking_level": "low"
+     }
+    }
+   },
+   "cut": {
+    "start_pad_s": 0.3,
+    "lift_min_s": 1.0,
+    "lift_max_s": 3.6,
+    "lift_cut_eps_s": 0.005,
+    "lift_start_snap_s": 0.4,
+    "lift_start_pad_s": 0.12,
+    "lift_max_tail_s": 2.0,
+    "lift_tail_measure_s": 0.4,
+    "lift_quiet_tail_db": 15.0,
+    "lift_level_warn_db": 10.0,
+    "max_cuts": 3,
+    "max_drop_s": 45.0,
+    "snap_s": 1.5,
+    "join_pad_s": 0.25,
+    "hold_min_s": 2.0,
+    "hold_max_s": 8.0,
+    "hold_short_min_s": 0.5,
+    "hold_default_s": 2.0,
+    "next_speech_margin_s": 0.1,
+    "long_silence_s": 20.0,
+    "long_silence_hold_max_s": 4.0,
+    "react_max_s": 1.5,
+    "react_max_words": 3,
+    "react_clear_s": 1.0,
+    "quick_cut_min_s": 0.02,
+    "quick_end_margin_s": 0.05,
+    "flash_s": 0.3,
+    "shot_tol_s": 0.05,
+    "word_clip_tol_s": 0.02,
+    "exchange_start": false,
+    "exchange_gap_s": 2.0,
+    "exchange_back_max_s": 30.0,
+    "exchange_back_max_lines": 12,
+    "exchange_on_cap": "keep",
+    "exchange_recap_s": 60.0,
+    "exchange_mode": "walk",
+    "qreply_require_speaker_change": false,
+    "qreply_setup_lines": 2,
+    "qreply_max_lines": 3,
+    "qreply_max_s": 12.0,
+    "exchange_max_play_s": 120.0
+   },
+   "review_view": "ws/0.1",
+   "guardrails": {
+    "min_s": 15.0,
+    "soft_max_s": 120.0,
+    "hard_max_s": 150.0,
+    "skip_s": 30.0,
+    "dup_overlap": 0.5,
+    "blocks_flag_above": 3
+   },
+   "thresholds": {
+    "t_show": 3.5,
+    "t_rec": 4.0,
+    "t_rec_payoff": 4.0,
+    "rec_blockers": [
+     "needs_rescore",
+     "shot_flash",
+     "unreviewed_start",
+     "review_repair_failed"
+    ],
+    "verdict_strong_min": 3
+   },
+   "video_end_check": {
+    "enabled": false,
+    "max_shift_s": 8.0
+   },
+   "prompts": {
+    "ws_discover": "ws_discover",
+    "ws_review": "ws_review"
+   },
+   "budget_usd": 0.6,
+   "run_id": "ws_r1_tiers"
+  }
+ },
+ "models": [
+  {
+   "role": "ws_discover",
+   "provider": "gemini",
+   "model": "gemini-3.8-flash",
+   "params": {
+    "thinking_level": "high",
+    "max_output_tokens": 32768
+   }
+  },
+  {
+   "role": "ws_review",
+   "provider": "gemini",
+   "model": "gemini-3.8-flash",
+   "params": {
+    "thinking_level": "medium",
+    "max_output_tokens": 16384
+   }
+  }
+ ],
+ "cost": {
+  "input_tokens": 19059,
+  "output_tokens": 25956,
+  "usd": 0.11163,
+  "usd_billed": 0.0,
+  "wall_time_secs": 0.2,
+  "n_llm_calls": 2,
+  "by_role": {
+   "ws_discover": {
+    "n_llm_calls": 1,
+    "n_cache_hits": 1,
+    "n_failed_attempts": 0,
+    "input_tokens": 13348,
+    "output_tokens": 19614,
+    "thought_tokens": 16670,
+    "cached_input_tokens": 0,
+    "usd": 0.08356,
+    "usd_billed": 0.0,
+    "models": [
+     "gemini-3.8-flash"
+    ]
+   },
+   "ws_review": {
+    "n_llm_calls": 1,
+    "n_cache_hits": 1,
+    "n_failed_attempts": 0,
+    "input_tokens": 5711,
+    "output_tokens": 6342,
+    "thought_tokens": 4695,
+    "cached_input_tokens": 0,
+    "usd": 0.02807,
+    "usd_billed": 0.0,
+    "models": [
+     "gemini-3.8-flash"
+    ]
+   }
+  },
+  "projection": {
+   "ws_discover": {
+    "in": 12891,
+    "in_source": "character estimate x1.25",
+    "out_expected": 25000,
+    "out_guard": 32768,
+    "inr_expected": 9.31,
+    "inr": 11.93
+   },
+   "ws_review": {
+    "in_expected": 14700,
+    "out_expected": 15000,
+    "inr_expected": 6.05,
+    "in_guard": 14700,
+    "out_guard": 15000,
+    "inr": 6.05,
+    "assumes_clips": 15,
+    "expected_from": "defaults"
+   },
+   "video_end_check": {
+    "enabled": false,
+    "assumes_clips": 15,
+    "inr": 0.0,
+    "inr_expected": 0.0
+   },
+   "episode": {
+    "inr_expected": 15.36,
+    "inr": 17.98
+   }
+  }
+ },
+ "cutoff": {
+  "t_show": 3.5,
+  "t_rec": 4.0,
+  "t_rec_payoff": 4.0,
+  "rec_blockers": [
+   "needs_rescore",
+   "shot_flash",
+   "unreviewed_start",
+   "review_repair_failed"
+  ],
+  "n_candidates": 8,
+  "n_passed_hard_rules": 8,
+  "n_shown": 7,
+  "n_recommended": 3,
+  "n_worth_a_look": 4,
+  "n_rejected": 1,
+  "warnings": []
+ },
+ "episode_verdict": {
+  "strong_clips": 3,
+  "worth_a_look": 4,
+  "verdict": "strong",
+  "note": "3 strong clips cleared the bar (plus 4 worth a look)."
+ },
+ "episode_notes": "Episode Map:\n- Scene 1 (L0001-L0053): Mother and Amrutha preparing for matchmaking (pellichoopulu). Amrutha expresses deep insecurity over past rejections due to her short height.\n- Scene 2 (L0054-L0112): Groom and father arrive. Groom asks if Amrutha can cook. Mother panics and lies that Amrutha prepared the sweets. Amrutha blurts out they were bought from Pulla Reddy, and mother concocts an outrageous lie that Pulla Reddy consults Amrutha for recipes.\n- Scene 3 (L0113-L0132): Mother attempts to teach Amrutha basic cooking; Amrutha drenches chapathi in oil and fears the whistling pressure cooker is a bomb.\n- Scene 4 (L0133-L0206): Private conversation. Amrutha confesses it is her 5th pellichoopulu and she gets rejected for her height. Groom charmingly reassures her that being short is her grace and dignity.\n- Scene 5 (L0207-L0242): Groom talks to his friend about hostel food trauma and his longing for food made with love.\n- Scene 6 (L0243-L0264): Amrutha tries to confess her lack of cooking skills, but Groom preempts her with a progressive speech that wanting a wife who cooks does not mean keeping her confined to the kitchen.\n- Scene 7 (L0265-L0310): Amrutha recounts Groom's 'marriage is full meals' metaphor to her friend. Friend urges her to say yes and learn cooking later.\n- Scene 8 (L0311-L0355): Date at a cafe. Amrutha confuses gongura with mehendi (gorintaku) and claims mirchi bajji is made with wheat flour; Groom naively considers her creative.\n- Scene 9 (L0356-L0363): Amrutha calls and accepts the proposal.\n- Scene 10 (L0364-L0404): Post-marriage send-off. Groom reveals he rented a house on the same street so mother can enjoy Amrutha's cooking anytime. An urgent phone call reveals Groom has an extreme, violent hatred for liars and cheats, leaving mother and Amrutha horrified.",
+ "proposals": [
+  {
+   "id": "w03",
+   "pieces": [
+    {
+     "start_word": 503,
+     "end_word": 534,
+     "start": 437.83,
+     "end": 461.77
+    },
+    {
+     "start_word": 554,
+     "end_word": 569,
+     "start": 472.39,
+     "end": 482.11
+    },
+    {
+     "start_word": 570,
+     "end_word": 620,
+     "start": 526.65,
+     "end": 581.07
+    }
+   ],
+   "region": {
+    "start_word": 503,
+    "end_word": 620,
+    "start": 437.83,
+    "end": 581.07
+   },
+   "edited_duration": 88.08,
+   "reordered": false,
+   "n_blocks": 2,
+   "text": "ఆ మీకు ఇది ఎన్నో పెళ్లిచూపులు మొదటి పెళ్లిచూపులు కానీ నాకిది ఐదో పెళ్లిచూపులు ఓహో! అంటే నా అదృష్టానికి కారణం నలుగురు దురదృష్టం అనమాట అవునండి. ఆ ఏమన్నారు? ఆ ఏం లేదు. ఇంత మంచి సంబంధాన్ని వాళ్ళెందుకు వదులుకున్నారా అని హ్మ్ నేను పొట్టిగా ఉంటాను కదా ఎవ్వరూ ఇష్టపడరు. అందుకే అందరూ reject చేశారు. మీకు ఇలాంటివి ఏమైనా ఉంటే చెప్పేసేయండి. పర్వాలేదు అందరు అబ్బాయిలకి పొడుగ్గా ఉన్న అమ్మాయలే కాదండి. నాలాంటి కొంతమంది అబ్బాయిలకి మీలా పొట్టిగా ఉన్న అమ్మాయలే నచ్చుతారు. అయినా ఆ feeling నేను మాటల్లో చెప్పలేకపోతున్నాను. పొట్టిగా ఉండటం అది మీ లోపం కాదండి. అదే మీ గంభీరం. మీరు నిజంగా అంటున్నారా? అయ్యో! నిజమండి. ఇప్పుడు అమ్మాయి height గా ఉంటే ఏం చేయాలి? బల్బులు విగించాలా? అవును second question ఏదో అడగాలన్నారు ఇంకా అవసరం లేదు.",
+   "rank": 1,
+   "tier": "recommended",
+   "scores": {
+    "hook": 4.5,
+    "standalone": 4.5,
+    "payoff": 4.5,
+    "value_emotion": 4.5,
+    "overall": 4.5
+   },
+   "title": "పొట్టిగా ఉన్న అమ్మాయిల కోసమే!",
+   "hook_line": {
+    "text": "ఆ మీకు ఇది ఎన్నో పెళ్లిచూపులు",
+    "start_word": 503,
+    "end_word": 507
+   },
+   "why_it_works": "Engaging hook about multiple rejections leads into a wholesome, heart-melting height confession.",
+   "category": "emotional",
+   "standalone_risks": [],
+   "edit_notes": [
+    {
+     "type": "skip",
+     "after_piece": 1,
+     "reason": "skips 45 s"
+    }
+   ],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 437.53,
+     "end": 462.02,
+     "kind": "scene"
+    },
+    {
+     "start": 472.14,
+     "end": 482.62,
+     "kind": "scene"
+    },
+    {
+     "start": 526.125,
+     "end": 586.078,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 94.92,
+   "spoiler": false,
+   "characters": [
+    "Groom",
+    "Amrutha"
+   ],
+   "visual_dependency": "low",
+   "start_line": "L0165",
+   "end_line": "L0205",
+   "end_hold": {
+    "payoff_end": 581.07,
+    "end": 586.078,
+    "hold_s": 5.01,
+    "on_shot_cut": true,
+    "next_speech": 598.17,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "rule": "hold"
+   },
+   "chunk_drops": [
+    {
+     "after_line": "L0176",
+     "before_line": "L0179",
+     "removed_lines": [
+      "L0177",
+      "L0178"
+     ],
+     "lift_skip": false,
+     "start": 462.02,
+     "end": 472.14,
+     "removed_s": 10.12,
+     "why": "Drops the flashback echo voiceover of past rejections so Amrutha directly opens up about her height insecurity."
+    },
+    {
+     "after_line": "L0183",
+     "before_line": "L0185",
+     "removed_lines": [
+      "L0184"
+     ],
+     "lift_skip": false,
+     "start": 482.62,
+     "end": 526.125,
+     "removed_s": 43.5,
+     "why": "Skips an extended 44-second background music pause between Amrutha speaking and the groom answering."
+    }
+   ],
+   "discovery": {
+    "strength": 5,
+    "what_happens": "In their one-on-one chat, Amrutha reveals this is her fifth matchmaking meet and confesses her insecurity about being rejected for being short. The groom delivers a heartwarming reassurance that being short is her dignity and humorously asks what tall girls do anyway.",
+    "hook": "Amrutha asks 'మీకు ఇది ఎన్నో పెళ్లిచూపులు' and Groom charmingly answers that her four past rejections are his good fortune.",
+    "payoff": "Groom quips 'ఇప్పుడు అమ్మాయి height గా ఉంటే ఏం చేయాలి? బల్బులు బిగించాలా?' and Amrutha contentedly decides she does not need to ask any more questions.",
+    "opening_strength": "strong"
+   },
+   "review": {
+    "cold_open_note": "",
+    "cut_note": "Cuts X1 and X2 eliminate repetitive stuttering and dead pauses, keeping the focus entirely on the emotional dialogue.",
+    "bad_cuts": [],
+    "changes": []
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": []
+  },
+  {
+   "id": "w01",
+   "pieces": [
+    {
+     "start_word": 222,
+     "end_word": 232,
+     "start": 211.34,
+     "end": 227.18
+    },
+    {
+     "start_word": 298,
+     "end_word": 377,
+     "start": 266.38,
+     "end": 313.48
+    }
+   ],
+   "region": {
+    "start_word": 222,
+    "end_word": 377,
+    "start": 211.34,
+    "end": 313.48
+   },
+   "edited_duration": 62.94,
+   "reordered": false,
+   "n_blocks": 2,
+   "text": "మీకు వంట వచ్చా? చచ్చింది గొర్ర. ఆహా! ఆ వచ్చు బాబు. ఎందుకు రాదు. వచ్చే wife కి వంట వస్తే చాలనుకునే అబ్బాయిల్లో నేను ఒకడిని. అయ్యో! ఈ sweets అన్నీ మా అమ్మాయే చేసింది బాబు. అవునా! నాకు sweet అంటే చాలా ఇష్టం. తీసుకోండి బాబు. పుల్లారెడ్డి sweets లాగే ఉన్నాయ్ రా. పుల్లారెడ్డి నుంచే కదా తీసుకొచ్చాం. ఆ! ఆ! తుమ్ము మొహం దానా! అంటే ఆ recipe ఎలా చేయాలో అని direct పుల్లారెడ్డి వాళ్ళనే phone చేసి కనుక్కుంది బాబు. recipe అంట. తినొచ్చు. అప్పటి నుండి మా sweets కన్నా మీ అమ్మాయి చేసిన sweets ఏ చాలా బాగున్నాయని వాళ్లే reverse లో మా అమ్మాయిని recipe అడుగుతున్నారు. ఓహో! super అత్తమ్మ. ఏం acting చేస్తున్నావే.",
+   "rank": 2,
+   "tier": "recommended",
+   "scores": {
+    "hook": 4.0,
+    "standalone": 4.5,
+    "payoff": 4.0,
+    "value_emotion": 4.0,
+    "overall": 4.0
+   },
+   "title": "పుల్లారెడ్డి Sweets గోల!",
+   "hook_line": {
+    "text": "మీకు వంట వచ్చా?",
+    "start_word": 222,
+    "end_word": 224
+   },
+   "why_it_works": "Opens with a sharp pellichoopulu question and pays off with the mother frantically covering up the shop-bought sweets.",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [
+    {
+     "type": "skip",
+     "after_piece": 0,
+     "reason": "skips 39 s"
+    }
+   ],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 211.04,
+     "end": 228.412,
+     "kind": "scene"
+    },
+    {
+     "start": 266.208,
+     "end": 316.662,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 67.83,
+   "spoiler": false,
+   "characters": [
+    "Groom",
+    "Groom's Father",
+    "Mother",
+    "Amrutha"
+   ],
+   "visual_dependency": "low",
+   "start_line": "L0069",
+   "end_line": "L0111",
+   "end_hold": {
+    "payoff_end": 313.48,
+    "end": 316.662,
+    "hold_s": 3.18,
+    "on_shot_cut": true,
+    "next_speech": 317.6,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "rule": "hold"
+   },
+   "chunk_drops": [
+    {
+     "after_line": "L0074",
+     "before_line": "L0092",
+     "removed_lines": [
+      "L0075",
+      "L0076",
+      "L0077",
+      "L0078",
+      "L0079",
+      "L0080",
+      "L0081",
+      "L0082",
+      "L0083",
+      "L0084",
+      "L0085",
+      "L0086",
+      "L0087",
+      "L0088",
+      "L0089",
+      "L0090",
+      "L0091"
+     ],
+     "lift_skip": false,
+     "start": 228.412,
+     "end": 266.208,
+     "removed_s": 37.8,
+     "why": "Cuts the groom and his father talking about past hostel digestive issues, linking the mother's initial reassurance directly to the groom's expectation and the sweet box lie."
+    }
+   ],
+   "discovery": {
+    "strength": 5,
+    "what_happens": "During pellichoopulu, the groom asks if Amrutha knows cooking. Mother panics and claims Amrutha made the sweets. When the groom's father notices they taste like Pulla Reddy sweets, Amrutha accidentally reveals they bought them from Pulla Reddy, prompting the mother to make up a hilarious excuse.",
+    "hook": "Groom bluntly asks 'మీకు వంట వచ్చా?' and the mother freezes in panic muttering 'చచ్చింది గొర్ర.'",
+    "payoff": "Mother fabricates that Pulla Reddy calls Amrutha for recipes, groom's father is impressed, and mother chides daughter under her breath: 'ఏం acting చేస్తున్నావే.'",
+    "opening_strength": "strong"
+   },
+   "review": {
+    "cold_open_note": "",
+    "cut_note": "X1 cleanly jumps over the lengthy PG food backstory straight into his expectations and the sweet reveal.",
+    "bad_cuts": [],
+    "changes": []
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": []
+  },
+  {
+   "id": "w06",
+   "pieces": [
+    {
+     "start_word": 880,
+     "end_word": 1016,
+     "start": 769.386,
+     "end": 836.406
+    }
+   ],
+   "region": {
+    "start_word": 880,
+    "end_word": 1016,
+    "start": 769.386,
+    "end": 836.406
+   },
+   "edited_duration": 67.02,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ఈ రోజుల్లో marriage అనేది full meals లాంటిది. starting లో hot and exciting గా ఉంటుంది without any complaints. అందులో saltే husband. అస్సలు కనిపించం. కానీ అది లేకపోతే tasteless. ఎక్కువైతే BP. ఇంకా wife అంటారా, అది gas stove మీద మంటలాంటిది. తక్కువుంటే బాగుంటుంది, ఎక్కువైతే మాత్రం మాడిపోతాం. ఉమ్ ఇంక marriage లో arguments అనేవి chillies లాంటివి. unexpected గా వస్తాయి, కంట్లో నీళ్లు తెప్పిస్తాయి. అలా అని అవి లేకపోతే మాత్రం food taste చాలా flat గా ఉంటుంది. ఇక romance అనేది ghee లాంటిది. రోజూ అవసరం లేకపోయినా correct time లో add అయితే ఆ magic ఏ వేరేగుంటుంది. ఇంక parents, relatives అంటారా, వాళ్లు side dishes లాంటోళ్లు. Order చేయకపోయినా వస్తారు. మనలో మార్పులు తెప్పిస్తారు. ఇక marriage లో love అనేది curry లాంటిది. When everything went spicy it will make us cool and save the day. Trust me you will have the best meals with me. అలా చెప్తే ఎవరూ No చెప్పగలరే? కదా! అయితే yes ఏ చెప్పే.",
+   "rank": 3,
+   "tier": "recommended",
+   "scores": {
+    "hook": 4.5,
+    "standalone": 4.5,
+    "payoff": 4.0,
+    "value_emotion": 4.0,
+    "overall": 4.0
+   },
+   "title": "Marriage అనేది Full Meals లాంటిది",
+   "hook_line": {
+    "text": "ఈ రోజుల్లో marriage అనేది full meals లాంటిది.",
+    "start_word": 880,
+    "end_word": 886
+   },
+   "why_it_works": "The extended full-meals metaphor is clever and relatable, holding viewer interest right up to the sweet closing reaction.",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 769.086,
+     "end": 837.556,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 68.47,
+   "spoiler": false,
+   "characters": [
+    "Groom",
+    "Amrutha",
+    "Heroine's Friend"
+   ],
+   "visual_dependency": "low",
+   "start_line": "L0268",
+   "end_line": "L0293",
+   "end_hold": {
+    "payoff_end": 836.406,
+    "next_speech": 837.606,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "end": 837.556,
+    "hold_s": 1.15,
+    "on_shot_cut": false,
+    "rule": "before_next_line",
+    "note": "next line starts quickly and no shot change before it"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": 5,
+    "what_happens": "Groom's philosophical monologue comparing modern marriage to full meals: husband is salt, wife is stove flame, arguments are chillies, romance is ghee, and love is cooling curry. Amrutha and her friend agree that no girl could say no to this.",
+    "hook": "A captivating philosophical analogy: 'ఈ రోజుల్లో marriage అనేది full meals లాంటిది.'",
+    "payoff": "Amrutha's friend completely sold by the analogy: 'అలా చెప్తే ఎవరూ No చెప్పగలరే... అయితే yes ఏ చెప్పే.'",
+    "opening_strength": "strong"
+   },
+   "review": {
+    "cold_open_note": "",
+    "cut_note": "No cuts made.",
+    "bad_cuts": [],
+    "changes": []
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": []
+  },
+  {
+   "id": "w02",
+   "pieces": [
+    {
+     "start_word": 382,
+     "end_word": 432,
+     "start": 321.98,
+     "end": 357.2
+    }
+   ],
+   "region": {
+    "start_word": 382,
+    "end_word": 432,
+    "start": 321.98,
+    "end": 357.2
+   },
+   "edited_duration": 35.22,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "నూనెయ్యవే! పోసేయ్, పోసేయ్, పోసేయ్. అది నూనె అనుకుంటున్నావా, బండిలో పోసే petrol అనుకుంటున్నావా, అంత పోసావు. ఎవరైనా చపాతీ మీద అంత నూనె వేస్తారా? పర్లేదమ్మా చపాతీ కాస్త పూరీ అయిపోద్ది. హ్మ్ ఏం తెలివే. మ్మా, మమ్మీ. ఏంటే? మమ్మీ అరుస్తుందే. అది అరవడం కాదే. లోపల పప్పు ఉడుకుతుంటే బయట whistles వస్తున్నాయి. పోసేయ్. వెంటనే తీస్తే పేలిపోతుందే. అవునా! అయితే దీపావళికి plan చేద్దామా? ఆ!",
+   "rank": 4,
+   "tier": "worth_a_look",
+   "scores": {
+    "hook": 3.5,
+    "standalone": 4.0,
+    "payoff": 4.0,
+    "value_emotion": 3.5,
+    "overall": 3.5
+   },
+   "title": "చపాతీ పూరీ అయిపోయింది",
+   "hook_line": {
+    "text": "నూనెయ్యవే!",
+    "start_word": 382,
+    "end_word": 382
+   },
+   "why_it_works": "Snappy kitchen argument between mother and daughter ending on a funny cooker explosion punchline.",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 321.92,
+     "end": 362.203,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 40.28,
+   "spoiler": false,
+   "characters": [
+    "Mother",
+    "Amrutha"
+   ],
+   "visual_dependency": "low",
+   "start_line": "L0114",
+   "end_line": "L0131",
+   "end_hold": {
+    "payoff_end": 357.2,
+    "end": 362.203,
+    "hold_s": 5.0,
+    "on_shot_cut": true,
+    "next_speech": 375.15,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "rule": "hold"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": 4,
+    "what_happens": "Mother tries to teach Amrutha basic cooking in the kitchen, but Amrutha pours half a bottle of oil on a chapathi and treats the whistling pressure cooker like a potential Diwali firecracker.",
+    "hook": "Mother screams in disbelief: 'అది నూనె అనుకుంటున్నావా, బండిలో పోసే petrol అనుకుంటున్నావా, అంత పోసావు!'",
+    "payoff": "Amrutha's innocent suggestion to save the whistling pressure cooker: 'అయితే దీపావళికి plan చేద్దామా?'",
+    "opening_strength": "strong"
+   },
+   "review": {
+    "cold_open_note": "",
+    "cut_note": "No cuts made.",
+    "bad_cuts": [],
+    "changes": []
+   },
+   "needs_rescore": false,
+   "flaws": [
+    "shot_flash"
+   ],
+   "shot_flags": [
+    "flash kept: seg0 (scene) start shows 0.20 s before the shot change at 322.12 s; moving it would clip 'నూనెయ్యవే!' (0.14 s of the word lies before the cut)"
+   ],
+   "build_warnings": [
+    "flash kept: seg0 (scene) start shows 0.20 s before the shot change at 322.12 s; moving it would clip 'నూనెయ్యవే!' (0.14 s of the word lies before the cut)"
+   ]
+  },
+  {
+   "id": "w07",
+   "pieces": [
+    {
+     "start_word": 1077,
+     "end_word": 1204,
+     "start": 875.006,
+     "end": 951.006
+    }
+   ],
+   "region": {
+    "start_word": 1077,
+    "end_word": 1204,
+    "start": 875.006,
+    "end": 951.006
+   },
+   "edited_duration": 76.0,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "అయ్యో అయినా మిమ్మల్ని అడుగుతున్నా ఏంటి? మీరు బయట food తినరు కదా. మీకు అన్ని dishes వచ్చినప్పుడు. ఆ మీ favourite dish ఏంటి? ఆ Chicken. Chicken. Chicken నేను కూడా వండుతాను. అది కాదు something different like గోంగూర. గోంగూరా! మా అమ్మ అప్పుడప్పుడు చేతికి పెడుతుండే. ఇప్పుడు అంటే పెట్టుకోలేదు గానీ మన పెళ్లికి పెట్టుకుందాం. అది కూరంటా కదా. నేను అడిగింది గోంగూర. ఆ అదే మా అమ్మమ్మ వాళ్ళ ఇంటి పెరట్లో గోంగూర చెట్టు పక్కన కూరంటా చెట్టు ఉంటుంది. దాని గురించి మాట్లాడుతున్నా. అంటే ఏదైనా పచ్చడే కదా. మ్ మీకు మిర్చి బజ్జి వేయడం వచ్చా? అయ్యో super. నేను చేసే మిర్చి బజ్జి అంటే మా నాన్నకి పిచ్చి ఇష్టం. ఎంతిష్టం అంటే మిర్చి బజ్జిలో ఉన్న గోధుమపిండి పక్కన పెట్టి ఉత్తి మిర్చి మాత్రమే తింటాడు. అంతిష్టం. బజ్జీలో శనగపిండి కదా వేస్తారు. మీరు గోధుమపిండి అంటున్నారేంటి? శనగపిండి, గోధుమపిండి, మైదాపిండి ఇవన్నీ ఒక పిండి family ఏ కదా with వేరేవేరే పోలికలు. నేను అన్నింతో చేయగలను. ఓ మీరు భలే talented అండి.",
+   "rank": 5,
+   "tier": "worth_a_look",
+   "scores": {
+    "hook": 3.0,
+    "standalone": 4.0,
+    "payoff": 4.0,
+    "value_emotion": 4.0,
+    "overall": 3.5
+   },
+   "title": "గోంగూర అంటే గోరింటాకు అనుకుంది!",
+   "hook_line": {
+    "text": "అయ్యో అయినా మిమ్మల్ని అడుగుతున్నా ఏంటి?",
+    "start_word": 1077,
+    "end_word": 1081
+   },
+   "why_it_works": "Steady comedic escalation as the heroine confuses gongura with mehndi and wheat with besan.",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [
+    "song_overlap"
+   ],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 874.708,
+     "end": 954.62,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 79.91,
+   "spoiler": false,
+   "characters": [
+    "Groom",
+    "Amrutha"
+   ],
+   "visual_dependency": "low",
+   "start_line": "L0313",
+   "end_line": "L0343",
+   "end_hold": {
+    "payoff_end": 951.006,
+    "end": 954.62,
+    "hold_s": 3.61,
+    "on_shot_cut": true,
+    "next_speech": 955.026,
+    "long_silence_after": false,
+    "laugh_after": true,
+    "note": "short hold (next shot cut before the minimum hold)",
+    "rule": "hold"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": 5,
+    "what_happens": "On a date, the groom asks Amrutha about special dishes. Amrutha confuses gongura with mehendi (gorintaku) and claims mirchi bajji is made of wheat flour, defending it by saying all flours belong to one family. The groom innocently buys her explanation.",
+    "hook": "Groom praises her culinary skills and asks: 'మీ favourite dish ఏంటి?'",
+    "payoff": "Groom gets convinced by her absurd flour family theory: 'ఓ, మీరు భలే talented అండి.'",
+    "opening_strength": "strong"
+   },
+   "review": {
+    "cold_open_note": "",
+    "cut_note": "No cuts made.",
+    "bad_cuts": [],
+    "changes": []
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": []
+  },
+  {
+   "id": "w04",
+   "pieces": [
+    {
+     "start_word": 660,
+     "end_word": 754,
+     "start": 624.59,
+     "end": 674.65
+    }
+   ],
+   "region": {
+    "start_word": 660,
+    "end_word": 754,
+    "start": 624.59,
+    "end": 674.65
+   },
+   "edited_duration": 50.06,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "మరి లేకపోతే ఏంట్రా? నువ్వేమన్నా ఆ అమ్మాయితో curry point పెట్టేస్తున్నావా? పెళ్లిచూపులకి వెళ్లి చూడాల్సింది ఇదా? మరి ఏం చేయాలి రా? మనలాంటి అబ్బాయిలకి school వరకు అమ్మ చేతి వంట అలవాటు అయ్యాక sudden గా మనల్ని hostel లో పడేస్తే అక్కడ సాంబార్, ఇడ్లీ, khichdi అంటూ నలిగిపోయేవాళ్ళం రా. ఏయ్ boiled గుడ్డు మర్చిపోయావ్. ఆ గుడ్డు తీసుకెళ్లి- ఉమ్ ఉమ్ continue విసిగిపోయాం రా వీటితోని. చదువుకుంటున్నప్పుడు hostel లో తినలేక, job వచ్చాక busy లో తినలేక అలాగే గడిపేసేవాళ్ళం. order చేసుకునేటప్పుడు offer లు, coupon లతో పాటు కొలెస్ట్రాల్ కూడా free గా వస్తున్నాయి రా. కానీ నాకు కావాల్సింది అది కాదురా. food made with love. ప్రేమతో చేసిన food కావాలి. అది మన అనుకునే వాళ్ళు మాత్రమే ఇవ్వగలరు.",
+   "rank": 6,
+   "tier": "worth_a_look",
+   "scores": {
+    "hook": 4.0,
+    "standalone": 4.0,
+    "payoff": 3.5,
+    "value_emotion": 3.5,
+    "overall": 3.5
+   },
+   "title": "Curry point పెట్టేస్తున్నావా ఏంటి?",
+   "hook_line": {
+    "text": "మరి లేకపోతే ఏంట్రా?",
+    "start_word": 660,
+    "end_word": 662
+   },
+   "why_it_works": "Fun friend banter questioning his criteria builds into a relatable bachelor monologue about missing home-cooked food.",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 624.29,
+     "end": 677.62,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 53.33,
+   "spoiler": false,
+   "characters": [
+    "Groom",
+    "Friend"
+   ],
+   "visual_dependency": "low",
+   "start_line": "L0220",
+   "end_line": "L0240",
+   "end_hold": {
+    "payoff_end": 674.65,
+    "end": 677.62,
+    "hold_s": 2.97,
+    "on_shot_cut": true,
+    "next_speech": 679.25,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "rule": "hold"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": 4,
+    "what_happens": "Groom's friend mocks him for being fixated on a wife who cooks. Groom gets emotional explaining the reality of hostel food, food delivery cholesterol, and why he genuinely craves food cooked with love.",
+    "hook": "Friend teases: 'నువ్వేమన్నా ఆ అమ్మాయితో curry point పెట్టేస్తున్నావా? పెళ్లిచూపులకి వెళ్లి చూడాల్సింది ఇదా?'",
+    "payoff": "Groom's heartfelt confession: 'food made with love... అది మన అనుకునే వాళ్ళు మాత్రమే ఇవ్వగలరు.'",
+    "opening_strength": "strong"
+   },
+   "review": {
+    "cold_open_note": "",
+    "cut_note": "No cuts made.",
+    "bad_cuts": [],
+    "changes": []
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": []
+  },
+  {
+   "id": "w05",
+   "pieces": [
+    {
+     "start_word": 781,
+     "end_word": 861,
+     "start": 709.13,
+     "end": 749.706
+    }
+   ],
+   "region": {
+    "start_word": 781,
+    "end_word": 861,
+    "start": 709.13,
+    "end": 749.706
+   },
+   "edited_duration": 40.576,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "నేను ఒక విషయం చెప్పాలి మీకు అంతకన్నా ముందు నేను మీకు ఒక విషయం చెప్పాలి. ఉమ్ నిన్న మీరు వంట super గా చేశారని తెలిసిన excitement లో నేను మీతో ఎక్కువ మాట్లాడలేదు. But I want to say one thing. నాకు వంట వచ్చే wife మాత్రమే కావాలనుకుంటున్నానంటే నా wife వంట గదికి మాత్రమే పరిమితమైపోవాలని కాదు You can do whatever you want. మీకు ఒకవేళ job చేయాలనిపిస్తే చేయండి. లేదా ఇంకేదైనా చేయాలనిపిస్తే చేయండి. But you should be happy. అంతగా కావాలంటే మన ఇంటి పనుల్లో నేను కూడా help చేస్తాను. Let's make our marriage life tasty.",
+   "rank": 7,
+   "tier": "worth_a_look",
+   "scores": {
+    "hook": 3.0,
+    "standalone": 4.0,
+    "payoff": 3.5,
+    "value_emotion": 3.5,
+    "overall": 3.5
+   },
+   "title": "పెళ్లయ్యాక నీ ఇష్టం!",
+   "hook_line": {
+    "text": "నేను ఒక విషయం చెప్పాలి మీకు",
+    "start_word": 781,
+    "end_word": 785
+   },
+   "why_it_works": "A progressive monologue clarifying that wanting cooking skills doesn't mean restricting his wife's freedom.",
+   "category": "story",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 708.83,
+     "end": 752.37,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 43.54,
+   "spoiler": false,
+   "characters": [
+    "Groom",
+    "Amrutha"
+   ],
+   "visual_dependency": "low",
+   "start_line": "L0250",
+   "end_line": "L0263",
+   "end_hold": {
+    "payoff_end": 749.706,
+    "end": 752.37,
+    "hold_s": 2.66,
+    "on_shot_cut": true,
+    "next_speech": 761.186,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "rule": "hold"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": 4,
+    "what_happens": "Amrutha attempts to confess her truth, but the groom preempts her with a progressive commitment: wanting a wife who knows cooking does not mean confining her to the kitchen; she can work and pursue her dreams while he shares the chores.",
+    "hook": "Both eager to confess something serious: 'నేను ఒక విషయం చెప్పాలి మీకు... అంతకన్నా ముందు నేను మీకు ఒక విషయం చెప్పాలి.'",
+    "payoff": "Groom's supportive pledge: 'You should be happy... Let's make our marriage life tasty.'",
+    "opening_strength": "strong"
+   },
+   "review": {
+    "cold_open_note": "",
+    "cut_note": "No cuts made.",
+    "bad_cuts": [],
+    "changes": []
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": []
+  }
+ ],
+ "rejected": [
+  {
+   "id": "w08",
+   "tier": "rejected",
+   "reject_reasons": [
+    "Q1: below the bar (overall 2.0 < 3.5; a part score <= 2; hook 2.5, standalone 2.0, payoff 2.5); scores are for the cut before the review repair: re-score to reconsider"
+   ],
+   "pieces": [
+    {
+     "start_word": 1296,
+     "end_word": 1401,
+     "start": 1034.186,
+     "end": 1096.446
+    }
+   ],
+   "region": {
+    "start_word": 1296,
+    "end_word": 1401,
+    "start": 1034.186,
+    "end": 1096.446
+   },
+   "edited_duration": 62.26,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ఆహా లేదు. మీరు మీ కూతుర్ని miss అవుతున్నారో లేదో తెలీదు గానీ, తను చేసే వంటను miss అవుతున్నారు కదా. ఆ ఆ కదా ఆ తెలుసు. అందుకే నీకు surprise ఇద్దామని చెప్పలేదు గానీ, మేము ఇల్లు ఈ week చివరనే తీసుకున్నాం. ఆ So మీరు ఎప్పుడు కావంటే అప్పుడు రావచ్చు. ఎప్పుడు కావంటే అప్పుడు చూడొచ్చు. ఎప్పుడు కావంటే అప్పుడు మీ కూతురు వంట తనివితీరా తినొచ్చు. చాలా సంతోషం బాబు. మొత్తం నా car delivery చేస్తూ తిట్టేదినే విడిచావు. చెప్పు. Bye మామ. ఏంటి అలా చేసాడా? అజ్జన్ గా ఆయన్ని తీసేయండి. అజ్జన్ గా తీసేయండి చెప్తున్నాను. అస్సలు ఆలోచించొద్దు. అబద్ధం మాట్లాడుతున్నాడు అబద్ధాలు. ఏమైంది బాబు? అబద్ధాలు అత్తమ్మా. అబద్ధాలు. ఎవరైనా అబద్ధాలాడినా, మోసం చేసినా అస్సలు తీసుకోలేను. నాకు ఎలా అనిపిస్తుందంటే appalam నలిపినట్టు నలిపినట్టు అనిపిస్తుంది. చికెన్ కాల్చినట్టు కాల్చాలనిపిస్తుంది. మటన్ గోలా కొట్టినట్టు కొట్టాలనిపిస్తుంది.",
+   "time_segments": [
+    {
+     "start": 1033.886,
+     "end": 1099.537,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 65.65,
+   "clip_purpose": "promo",
+   "cold_open": false,
+   "discovery": {
+    "strength": 5,
+    "hook": "Groom's shocking surprise to his mother-in-law: 'మేము ఇల్లే ఈ వీధి చివరనే తీసుకున్నాం... ఎప్పుడు కావంటే అప్పుడు మీ కూతురు వంట తనివితీరా తినొచ్చు.'",
+    "payoff": "Groom's menacing fury against liars using cooking metaphors: 'అప్పడాలు నలిపినట్టు నలిపినట్టు అనిపిస్తుంది... చికెన్ కాల్చినట్టు కాల్చాలనిపిస్తుంది... మటన్ కొట్టినట్టు కొట్టాలనిపిస్తుంది!'"
+   },
+   "scores": {
+    "hook": 2.5,
+    "standalone": 2.0,
+    "payoff": 2.5,
+    "value_emotion": 2.5,
+    "overall": 2.0
+   },
+   "flaws": [
+    "needs_rescore"
+   ],
+   "needs_rescore": true,
+   "rescore_reason": "repaired after review (restored drop(s) [0]: X1 removes the phone call context, making the hero's sudden angry explosion about someone lying disjointed and confusing.); scores (overall 2.0, hook 2.5, standalone 2.0, payoff 2.5) are for the cut before the repair"
+  }
+ ]
+}

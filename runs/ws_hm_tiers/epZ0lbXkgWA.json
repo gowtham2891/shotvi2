@@ -1,0 +1,735 @@
+{
+ "schema_version": "1.1",
+ "kind": "proposals",
+ "video_id": "epZ0lbXkgWA",
+ "transcript": {
+  "path": "scribe_dataset/epZ0lbXkgWA/epZ0lbXkgWA_scribe_transcript.json",
+  "sha256": "8a0b3164f3a1c873d1be42f5166fea0f42aa445c9aabc452963aca19e52c4eee",
+  "n_words": 1744,
+  "audio_duration_secs": 1608.5335
+ },
+ "derived_params": {
+  "skip_s": 30.0
+ },
+ "run_id": "ws_hm_tiers",
+ "created_at": "2026-10-07T14:46:17Z",
+ "content_type": "web_series",
+ "pipeline": {
+  "version": "ws/0.2",
+  "git_commit": null,
+  "prompt_versions": {
+   "ws_discover": "2+8aeaccf0",
+   "ws_review": "1+addbc14b"
+  },
+  "prompt_files": {
+   "ws_discover": "ws_discover",
+   "ws_review": "ws_review"
+  },
+  "config": {
+   "models": {
+    "ws_discover": {
+     "provider": "gemini",
+     "model": "gemini-3.8-flash",
+     "params": {
+      "thinking_level": "high",
+      "max_output_tokens": 32768
+     }
+    },
+    "ws_review": {
+     "provider": "gemini",
+     "model": "gemini-3.8-flash",
+     "params": {
+      "thinking_level": "medium",
+      "max_output_tokens": 16384
+     }
+    },
+    "video_end": {
+     "provider": "gemini",
+     "model": "gemini-3.8-flash",
+     "params": {
+      "thinking_level": "low"
+     }
+    }
+   },
+   "cut": {
+    "start_pad_s": 0.3,
+    "lift_min_s": 1.0,
+    "lift_max_s": 3.6,
+    "lift_cut_eps_s": 0.005,
+    "lift_start_snap_s": 0.4,
+    "lift_start_pad_s": 0.12,
+    "lift_max_tail_s": 2.0,
+    "lift_tail_measure_s": 0.4,
+    "lift_quiet_tail_db": 15.0,
+    "lift_level_warn_db": 10.0,
+    "max_cuts": 3,
+    "max_drop_s": 45.0,
+    "snap_s": 1.5,
+    "join_pad_s": 0.25,
+    "hold_min_s": 2.0,
+    "hold_max_s": 8.0,
+    "hold_short_min_s": 0.5,
+    "hold_default_s": 2.0,
+    "next_speech_margin_s": 0.1,
+    "long_silence_s": 20.0,
+    "long_silence_hold_max_s": 4.0,
+    "react_max_s": 1.5,
+    "react_max_words": 3,
+    "react_clear_s": 1.0,
+    "quick_cut_min_s": 0.02,
+    "quick_end_margin_s": 0.05,
+    "flash_s": 0.3,
+    "shot_tol_s": 0.05,
+    "word_clip_tol_s": 0.02,
+    "exchange_start": false,
+    "exchange_gap_s": 2.0,
+    "exchange_back_max_s": 30.0,
+    "exchange_back_max_lines": 12,
+    "exchange_on_cap": "keep",
+    "exchange_recap_s": 60.0,
+    "exchange_mode": "walk",
+    "qreply_require_speaker_change": false,
+    "qreply_setup_lines": 2,
+    "qreply_max_lines": 3,
+    "qreply_max_s": 12.0,
+    "exchange_max_play_s": 120.0
+   },
+   "review_view": "final",
+   "guardrails": {
+    "min_s": 15.0,
+    "soft_max_s": 120.0,
+    "hard_max_s": 150.0,
+    "skip_s": 30.0,
+    "dup_overlap": 0.5,
+    "blocks_flag_above": 3
+   },
+   "thresholds": {
+    "t_show": 3.5,
+    "t_rec": 4.0,
+    "t_rec_payoff": 4.0,
+    "rec_blockers": [
+     "needs_rescore",
+     "shot_flash",
+     "unreviewed_start",
+     "review_repair_failed"
+    ],
+    "verdict_strong_min": 3
+   },
+   "video_end_check": {
+    "enabled": false,
+    "max_shift_s": 8.0
+   },
+   "prompts": {
+    "ws_discover": "ws_discover",
+    "ws_review": "ws_review"
+   },
+   "budget_usd": 0.6,
+   "run_id": "ws_hm_tiers"
+  }
+ },
+ "models": [
+  {
+   "role": "ws_discover",
+   "provider": "gemini",
+   "model": "gemini-3.8-flash",
+   "params": {
+    "thinking_level": "high",
+    "max_output_tokens": 32768
+   }
+  },
+  {
+   "role": "ws_review",
+   "provider": "gemini",
+   "model": "gemini-3.8-flash",
+   "params": {
+    "thinking_level": "medium",
+    "max_output_tokens": 16384
+   }
+  }
+ ],
+ "cost": {
+  "input_tokens": 19244,
+  "output_tokens": 28563,
+  "usd": 0.12154,
+  "usd_billed": 0.0,
+  "wall_time_secs": 0.8,
+  "n_llm_calls": 2,
+  "by_role": {
+   "ws_discover": {
+    "n_llm_calls": 1,
+    "n_cache_hits": 1,
+    "n_failed_attempts": 0,
+    "input_tokens": 15299,
+    "output_tokens": 25177,
+    "thought_tokens": 23056,
+    "cached_input_tokens": 0,
+    "usd": 0.10589,
+    "usd_billed": 0.0,
+    "models": [
+     "gemini-3.8-flash"
+    ]
+   },
+   "ws_review": {
+    "n_llm_calls": 1,
+    "n_cache_hits": 1,
+    "n_failed_attempts": 0,
+    "input_tokens": 3945,
+    "output_tokens": 3386,
+    "thought_tokens": 2264,
+    "cached_input_tokens": 0,
+    "usd": 0.01566,
+    "usd_billed": 0.0,
+    "models": [
+     "gemini-3.8-flash"
+    ]
+   }
+  },
+  "projection": {
+   "ws_discover": {
+    "in": 14826,
+    "in_source": "character estimate x1.25",
+    "out_expected": 25000,
+    "out_guard": 32768,
+    "inr_expected": 9.44,
+    "inr": 12.06
+   },
+   "ws_review": {
+    "in_expected": 14700,
+    "out_expected": 15000,
+    "inr_expected": 6.05,
+    "in_guard": 14700,
+    "out_guard": 15000,
+    "inr": 6.05,
+    "assumes_clips": 15,
+    "expected_from": "defaults"
+   },
+   "video_end_check": {
+    "enabled": false,
+    "assumes_clips": 15,
+    "inr": 0.0,
+    "inr_expected": 0.0
+   },
+   "episode": {
+    "inr_expected": 15.49,
+    "inr": 18.11
+   }
+  }
+ },
+ "cutoff": {
+  "t_show": 3.5,
+  "t_rec": 4.0,
+  "t_rec_payoff": 4.0,
+  "rec_blockers": [
+   "needs_rescore",
+   "shot_flash",
+   "unreviewed_start",
+   "review_repair_failed"
+  ],
+  "n_candidates": 5,
+  "n_passed_hard_rules": 5,
+  "n_shown": 5,
+  "n_recommended": 4,
+  "n_worth_a_look": 1,
+  "n_rejected": 0,
+  "warnings": []
+ },
+ "episode_verdict": {
+  "strong_clips": 4,
+  "worth_a_look": 1,
+  "verdict": "strong",
+  "note": "4 strong clips cleared the bar (plus 1 worth a look)."
+ },
+ "episode_notes": "Scenes and Plot Structure:\n- L0002-L0014: Teaser hook of Soham pleading for clarity about Hansini's past.\n- L0015-L0028: Himalaya Neem face wash advertisement (skip).\n- L0029-L0061: Soham calls Keerthi desperate to meet Hansini after being blocked; Keerthi arranges a meeting.\n- L0062-L0119: Bitter roadside confrontation where Hansini refuses to speak to Soham, says she was cheated, and leaves after five minutes.\n- L0120-L0136: Flashback/hospital context where Hansini previously saw Soham with a woman and child, assuming he maintained a secret family.\n- L0137-L0157: Aravind learns Hansini broke up with Soham and resolves to support and pursue her.\n- L0158-L0246: Mother (Paddu) and Hansini at home; mom humorously introduces wine drinking and insists they be friends ('Call me Paddu').\n- L0247-L0306: Mother and daughter have an emotional talk on companionship. Hansini asks if her mom will be lonely if she marries; mom lovingly replies that the right man will be a son to her.\n- L0307-L0407: Aravind arrives nervously to apologize to Paddu; Paddu shocks him by being ultra-chill, supporting his love, and offering an 'All the best'.\n- L0408-L0464: Lake climax. Aravind confronts Hansini and insults Soham. Hansini explodes and reveals the episode's tragic twist: Soham didn't cheat—he passed away (L0461).",
+ "proposals": [
+  {
+   "id": "w03",
+   "pieces": [
+    {
+     "start_word": 1137,
+     "end_word": 1224,
+     "start": 1002.188,
+     "end": 1064.548
+    }
+   ],
+   "region": {
+    "start_word": 1137,
+    "end_word": 1224,
+    "start": 1002.188,
+    "end": 1064.548
+   },
+   "edited_duration": 62.36,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "తోడు లేని జీవితం waste అన్నట్టు అన్నావు కదా, మరి నీక తోడు అవసరం లేదా ఏం మాట్లాడుతున్నావే for suppose నాకు ఆ అరవింద్ కి అంతా set అయిపోయి మేం పెళ్లి చేసుకుంటే నాకు అదే కదా కావాలి for suppose అన్నాను, అంతే ఆ ఒకవేళ మా ఇద్దరికీ పెళ్లి జరిగి నేను వాళ్ళింటికి వెళ్లిపోతే, నువ్వు ఒంటరిగా ఉండగలవా నేను మీతో వచ్చేస్తాను ఒకవేళ వాళ్ళ family కి నువ్వు మాతో ఉండడం ఇష్టం లేకపోతే, అప్పుడేం చేస్తావ్ ఒంటరిగా ఉండడం నాకేం కొత్తేం కాదు. ఊరికి వెళ్ళిపోయి నాకు నేనే ఉంటాను ఇలా నీతో నువ్వుండడానికేనా, నన్ను పెళ్లి చేసుకొని వెళ్లిపోమంటున్నావ్ పిచ్చిదానా, correct అబ్బాయిని చేసుకుంటే నాకు కొడుకు దొరుకుతాడు. అప్పుడు అందరం కలిసి ఉండొచ్చు",
+   "rank": 1,
+   "tier": "recommended",
+   "scores": {
+    "hook": 3.5,
+    "standalone": 4.5,
+    "payoff": 4.5,
+    "value_emotion": 4.5,
+    "overall": 4.0
+   },
+   "title": "నా పెళ్లి తర్వాత నువ్వు ఒంటరిగా ఉంటావా",
+   "hook_line": {
+    "text": "తోడు లేని జీవితం waste అన్నట్టు అన్నావు కదా,",
+    "start_word": 1137,
+    "end_word": 1143
+   },
+   "why_it_works": "A poignant conversation about post-marriage loneliness peaks beautifully with the mother's heartwarming wish for a son.",
+   "category": "emotional",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 1001.888,
+     "end": 1070.106,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 68.22,
+   "spoiler": false,
+   "characters": [
+    "Hansini",
+    "Paddu"
+   ],
+   "visual_dependency": "low",
+   "start_line": "L0286",
+   "end_line": "L0306",
+   "end_hold": {
+    "payoff_end": 1064.548,
+    "end": 1070.106,
+    "hold_s": 5.56,
+    "on_shot_cut": true,
+    "next_speech": 1081.168,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "rule": "hold"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": 5,
+    "what_happens": "Hansini challenges her mother's lecture about companionship, asking if her mother won't feel lonely if Hansini gets married and moves away. The mother gives a heartwarming response that marrying the right man means gaining a son, not being left alone.",
+    "hook": "Hansini turning the mirror on her mother: 'తోడు లేని జీవితం waste అన్నట్టు అన్నావు కదా, మరి నీక తోడు అవసరం లేదా?'",
+    "payoff": "The mother's tender emotional wisdom: 'పిచ్చిదానా, correct అబ్బాయిని చేసుకుంటే నాకు కొడుకు దొరుకుతాడు. అప్పుడు అందరం కలిసి ఉండొచ్చు.'",
+    "opening_strength": "strong"
+   },
+   "review": {
+    "cold_open_note": "",
+    "cut_note": "",
+    "bad_cuts": [],
+    "changes": []
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": []
+  },
+  {
+   "id": "w02",
+   "pieces": [
+    {
+     "start_word": 769,
+     "end_word": 845,
+     "start": 674.444,
+     "end": 723.824
+    }
+   ],
+   "region": {
+    "start_word": 769,
+    "end_word": 845,
+    "start": 674.444,
+    "end": 723.824
+   },
+   "edited_duration": 49.38,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "నేను ఇప్పుడు wine తాగుదాము అంటే ఏమంటావా అని ఏం మాట్లాడుతున్నావమ్మా నాకన్నీ తెలుసులేవే నువ్వు తాగుతావా తాగవా నీ health చూసుకుంటున్నావా అసలు నువ్వు. నీకు ఇప్పుడు wine అవసరమా అయితే నేనే తాగుతాను అరే Cheers ఛీ cheers చెప్పక్కమ్మ నాకు కొంచెం ఇబ్బందిగా ఉంది అబ్బా నువ్వు మొన్న కీర్తి flat కి ఎందుకు వెళ్ళావో మాకు తెలుసులే అమ్మా ఆ అది వేరు ఇది వేరు ఇదెందుకు వేరు ఎక్కడైనా అమ్మతో కలిసి తాగుతారా ఏయ్ ఇప్పుడు నేను నీకు అమ్మనని ఎవరు చెప్పారు I am now your friend పద్దు call me పద్దు సరే పద్దు Cheers Cheers",
+   "rank": 2,
+   "tier": "recommended",
+   "scores": {
+    "hook": 4.0,
+    "standalone": 4.5,
+    "payoff": 4.0,
+    "value_emotion": 4.0,
+    "overall": 4.0
+   },
+   "title": "అమ్మతో కలిసి wine తాగడం ఏంట్రా బాబు",
+   "hook_line": {
+    "text": "నేను ఇప్పుడు wine తాగుదాము అంటే ఏమంటావా అని",
+    "start_word": 769,
+    "end_word": 775
+   },
+   "why_it_works": "The funny premise of a cool mom offering wine to her shocked daughter creates instant charm and ends on a sweet cheers.",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": "review: hook 2.0 with the lift vs 4.0 without, overall 2.5 vs 4.0; The cold open 'call me పద్దు' makes no sense without context. Starting immediately on the mom asking to share wine is a hilarious sc…",
+   "time_segments": [
+    {
+     "start": 674.144,
+     "end": 727.263,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 53.12,
+   "spoiler": false,
+   "characters": [
+    "Paddu",
+    "Hansini"
+   ],
+   "visual_dependency": "low",
+   "start_line": "L0177",
+   "end_line": "L0197",
+   "end_hold": {
+    "payoff_end": 723.824,
+    "end": 727.263,
+    "hold_s": 3.44,
+    "on_shot_cut": true,
+    "next_speech": 732.088,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "rule": "hold"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": 5,
+    "what_happens": "Hansini's mother casually suggests sharing wine. When Hansini protests asking if any mother drinks with her daughter, the mom humorously declares she is no longer her mother but her friend 'Paddu', demanding cheers.",
+    "hook": "The mother's casual, unexpected proposal: 'నేను ఇప్పుడు wine తాగుదాము అంటే ఏమంటావా అని'.",
+    "payoff": "The mother insisting on friend status ('call me పద్దు') and Hansini clinking glasses saying 'సరే పద్దు. Cheers!'",
+    "opening_strength": "strong"
+   },
+   "review": {
+    "cold_open_note": "The cold open 'call me పద్దు' makes no sense without context. Starting immediately on the mom asking to share wine is a hilarious scroll-stopping hook.",
+    "cut_note": "",
+    "bad_cuts": [],
+    "changes": [
+     "cold open dropped, review: hook 2.0 with the lift vs 4.0 without, overall 2.5 vs 4.0; The cold open 'call me పద్దు' makes no sense without context. Starting immediately on the mom asking to share win…"
+    ]
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": []
+  },
+  {
+   "id": "w04",
+   "pieces": [
+    {
+     "start_word": 1360,
+     "end_word": 1425,
+     "start": 1206.168,
+     "end": 1241.248
+    },
+    {
+     "start_word": 1455,
+     "end_word": 1525,
+     "start": 1260.668,
+     "end": 1314.528
+    }
+   ],
+   "region": {
+    "start_word": 1360,
+    "end_word": 1525,
+    "start": 1206.168,
+    "end": 1314.528
+   },
+   "edited_duration": 88.94,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ఆ రోజు నైట్ జరిగిన దానికి I am really sorry అండి. ఏదో మధ్య మత్తులో అలా మాట్లాడాను అంటే. నేను basically చాలా మంచివాడినండి. ఏదో అప్పుడప్పుడు మందు తాగుతాను. పర్లేదు బాబు. ఒక్కసారి హన్స్నితో పెళ్లయితే అందరం కలిసి తాగొచ్చు. అదే బాబు నువ్వు తాగితే మాకేం problem లేదు. నీకో విషయం తెలుసా? మేము కూడా అప్పుడప్పుడు wine తాగుతూ ఉంటాం. అందుకే అందరం కలిసి తాగొచ్చు అంటున్నా. అప్పుడప్పుడు మా హన్స్ని కొంచెం గరుగ్గా మాట్లాడుతుంది. ఏం పట్టించుకోకు బాబు. ఉమ్ పర్లేదండి నాకు అలవాటే మా హన్స్ని పైకే గరుగ్గా ఉంటుంది కానీ లోపల చాలా సున్నితం బాబు. అందుకేనండి వదులుకోలేకపోతున్నాను. పట్టుకోవడం కూడా కష్టమే try చెయ్ ఉమ్ సరే అండి ఇంకేంటి బాబు అంటే sorry చెప్దామని వచ్చాను. చెప్పేసాను. ఓహ్ సరే బాబు ఉంటా అండి Bye ఆ వాళ్ళ అమ్మాయిని love చేస్తున్నా అంటే చెప్పు తిరగేసి కొడుతుంది అనుకుంటే chill గా మాట్లాడుతుందేంటి బాబు చెప్పండి All the best. నా support నీకే. All the best ఆ ఏమవుతుందిరా Thanks అండి. ఏదో తేడా తేడాగా ఉంది. urgent గా ఇక్కడి నుంచి వెళ్ళిపోవాలి. దండనండి.",
+   "rank": 3,
+   "tier": "recommended",
+   "scores": {
+    "hook": 3.8,
+    "standalone": 4.0,
+    "payoff": 4.0,
+    "value_emotion": 4.0,
+    "overall": 4.0
+   },
+   "title": "ఇలాంటి అత్తగారు ఉంటే భయపడాల్సిందే",
+   "hook_line": {
+    "text": "ఆ రోజు నైట్ జరిగిన దానికి I am really sorry అండి.",
+    "start_word": 1360,
+    "end_word": 1369
+   },
+   "why_it_works": "The awkward apology flips into comedy when the mother-in-law turns out to be way too chill, leaving the hero terrified.",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": "review: hook 3.0 with the lift vs 3.8 without, overall 3.5 vs 4.0; The cold open 'నా support నీకే' lacks context on its own. Opening with the guy awkwardly apologizing for drunk behavior hooks the vi…",
+   "time_segments": [
+    {
+     "start": 1205.913,
+     "end": 1241.61,
+     "kind": "scene"
+    },
+    {
+     "start": 1260.418,
+     "end": 1316.894,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 92.17,
+   "spoiler": false,
+   "characters": [
+    "Aravind",
+    "Paddu"
+   ],
+   "visual_dependency": "medium",
+   "start_line": "L0360",
+   "end_line": "L0406",
+   "end_hold": {
+    "payoff_end": 1314.528,
+    "end": 1316.894,
+    "hold_s": 2.37,
+    "on_shot_cut": true,
+    "next_speech": 1334.568,
+    "long_silence_after": true,
+    "laugh_after": false,
+    "rule": "hold"
+   },
+   "chunk_drops": [
+    {
+     "after_line": "L0374",
+     "before_line": "L0383",
+     "removed_lines": [
+      "L0375",
+      "L0376",
+      "L0377",
+      "L0378",
+      "L0379",
+      "L0380",
+      "L0381",
+      "L0382"
+     ],
+     "lift_skip": false,
+     "start": 1241.61,
+     "end": 1260.418,
+     "removed_s": 18.81,
+     "why": "Trims side banter about Aravind's unkempt beard and grooming to keep the comedic momentum focused on Hansini and the mother's hilarious acceptance."
+    }
+   ],
+   "discovery": {
+    "strength": 5,
+    "what_happens": "Aravind nervously comes to apologize to Hansini's mother for his drunken behavior, expecting fury. Instead, the mom is unbelievably chill, offers to drink wine together once he marries Hansini, and gives him her full blessing, leaving Aravind bewildered.",
+    "hook": "Aravind's nervous apology and confession: 'ఆ రోజు నైట్ జరిగిన దానికి I am really sorry అండి. ఏదో మద్య మత్తులో అలా మాట్లాడాను... నేను basically చాలా మంచివాడినండి.'",
+    "payoff": "Aravind's baffled reaction to getting mother-in-law support ('All the best ఆ? ఏమవుతుందిరా... urgent గా ఇక్కడి నుంచి వెళ్ళిపోవాలి. దండనండి').",
+    "opening_strength": "strong"
+   },
+   "review": {
+    "cold_open_note": "The cold open 'నా support నీకే' lacks context on its own. Opening with the guy awkwardly apologizing for drunk behavior hooks the viewer much better.",
+    "cut_note": "Cut X1 neatly bypasses the grooming banter without breaking the flow about Hansini's nature.",
+    "bad_cuts": [],
+    "changes": [
+     "cold open dropped, review: hook 3.0 with the lift vs 3.8 without, overall 3.5 vs 4.0; The cold open 'నా support నీకే' lacks context on its own. Opening with the guy awkwardly apologizing for drunk be…"
+    ]
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": []
+  },
+  {
+   "id": "w05",
+   "pieces": [
+    {
+     "start_word": 1586,
+     "end_word": 1695,
+     "start": 1390.188,
+     "end": 1447.908
+    }
+   ],
+   "region": {
+    "start_word": 1586,
+    "end_word": 1695,
+    "start": 1390.188,
+    "end": 1447.908
+   },
+   "edited_duration": 57.72,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "మీరు ఎందుకు వేరే వాడిని మీ life లోకి రానివ్వట్లేదో నాకు తెలుసు ఏం తెలుసు మీరు ఒకరిని sincerely గా love చేశారు. వాడు మిమ్మల్ని మోసం చేశాడు. అందుకే వేరెవరినీ మీ life లోకి రానివ్వట్లేదు. అంతేగా. చూడండి madam. ఈ ప్రపంచంలో ఉన్న అబ్బాయిలందరూ మీరు love చేసిన అబ్బాయిలా ఉండరు. కొందరు నాలాంటి మంచివాళ్ళు కూడా ఉంటారు. మీరు తిట్టినా, కొట్టినా ఏం చేసినా కూడా పడేవాళ్ళు. మమ్మల్ని కూడా పట్టించుకోండి. అయినా ఎవడికి మనసేలో వచ్చిందండి. మీలాంటి మంచి మనిషిని ఇబ్బంది పెట్టడానికి. మీరు అలా చూస్తూ ఉండండి. వాడు అస్సలు happy గా ఉండలేడు. ఆపు ఇంకా. ఇంకొక్క మాట కూడా మాట్లాడకు. ఉమ్ అర్థమైందిలెండి. మనం true గా love చేసినోడు ఎవరైనా ఏమైనా అంటే మనం అస్సలు తట్టుకోలేం. కానీ మీ విషయంలో జరిగింది మాత్రం నిజంగా తప్పేనండి. నువ్వు ఆపుతావా ఆపవా? నీకు సోహం గురించి ఏం తెలుసు అని మాట్లాడుతున్నావ్ రా.",
+   "rank": 4,
+   "tier": "recommended",
+   "scores": {
+    "hook": 4.0,
+    "standalone": 3.5,
+    "payoff": 4.0,
+    "value_emotion": 4.0,
+    "overall": 4.0
+   },
+   "title": "నీకు సోహం గురించి ఏం తెలుసని మాట్లాడుతున్నావ్",
+   "hook_line": {
+    "text": "మీరు ఎందుకు వేరే వాడిని మీ life లోకి రానివ్వట్లేదో నాకు తెలుసు",
+    "start_word": 1586,
+    "end_word": 1595
+   },
+   "why_it_works": "A pushy suitor tries to trash her ex, provoking a fierce defensive reaction that serves as an effective promo cliffhanger.",
+   "category": "story",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "promo",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 1389.888,
+     "end": 1448.358,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 58.47,
+   "spoiler": false,
+   "characters": [
+    "Aravind",
+    "Hansini"
+   ],
+   "visual_dependency": "medium",
+   "start_line": "L0428",
+   "end_line": "L0450",
+   "end_hold": {
+    "payoff_end": 1447.908,
+    "next_speech": 1448.408,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "end": 1448.358,
+    "hold_s": 0.45,
+    "on_shot_cut": false,
+    "rule": "before_next_line",
+    "note": "next line starts quickly and no shot change before it"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": 5,
+    "what_happens": "Aravind lectures Hansini by the lake, claiming he knows why she shuns love and asserting that her cheating ex can never be happy. Hansini's patience snaps as she furiously warns him to stop badmouthing Soham.",
+    "hook": "Aravind's bold, intrusive opening line: 'మీరు ఎందుకు వేరే వాడిని మీ life లోకి రానివ్వట్లేదో నాకు తెలుసు.'",
+    "payoff": "Hansini's furious explosion right before the secret drops: 'నువ్వు ఆపుతావా ఆపవా? నీకు సోహం గురించి ఏం తెలుసు అని మాట్లాడుతున్నావ్ రా!'",
+    "opening_strength": "strong"
+   },
+   "review": {
+    "cold_open_note": "",
+    "cut_note": "",
+    "bad_cuts": [],
+    "changes": []
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": []
+  },
+  {
+   "id": "w01",
+   "pieces": [
+    {
+     "start_word": 366,
+     "end_word": 505,
+     "start": 303.34,
+     "end": 394.704
+    }
+   ],
+   "region": {
+    "start_word": 366,
+    "end_word": 505,
+    "start": 303.34,
+    "end": 394.704
+   },
+   "edited_duration": 91.364,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ఏమైంది అంశ? ఎందుకు ఒక వారం నుంచి నరకం చూపిస్తున్నావ్? phone లో block చేశావ్. room నుండి వెళ్ళిపోయావ్. ఎక్కడున్నావ్, ఏం చేస్తున్నావ్ నాకేం అర్థం కావట్లేదు. నీకు already చెప్పాను కదా. I am not interested in you and this relationship anymore అని. అసలు ఏం జరిగిందని? sudden గా breakup అంటే నేను ఎలా తీసుకోవాలి? నువ్వు ఎలా అయినా తీసుకో. I am just done with you. అంసిని. done ఆ? I am done with you అంటే నేను ఎలా తీసుకోవాలి? ఎందుకు చేస్తున్నావ్ ఇదంతా? నేను చెప్పాల్సిన అవసరం లేదనుకుంటా. నేను గుట్టిగా నమ్మాను చూడు, నేను మోసపోయాను. మోసం చేశానా? నువ్వేం మాట్లాడుతున్నావో నాకు అర్థం కావట్లేదు. నాకన్నీ అర్థమయ్యాయి కాబట్టే నీతో ఇంకా ఉండాలనుకోవట్లేదు. అసలు ఏం జరిగిందో చెప్పొచ్చు కదా ఎందుకు చుట్టి చుట్టి మాట్లాడుతున్నావు సోహం ఇంక వదిలే నాకింక ఓపిక లేదు అన్సుని నేను ఒక్కసారి ఇంక నన్ను కలవడానికి try చేయొద్దు అసలు ఏం ఇంకొక మాట మాట్లాడి నన్ను ఇబ్బంది పెట్టకు సోహం. నాకు నిన్ను చూడడానికి ఇష్టం లేదు నువ్ ఇచ్చిన five minutes time అయిపోయింది. ఇంక నువ్వు వెళ్ళొచ్చు.",
+   "rank": 5,
+   "tier": "worth_a_look",
+   "scores": {
+    "hook": 4.0,
+    "standalone": 4.0,
+    "payoff": 3.5,
+    "value_emotion": 3.5,
+    "overall": 4.0
+   },
+   "title": "వారం నుంచి నరకం చూపిస్తున్నావ్",
+   "hook_line": {
+    "text": "ఏమైంది అంశ?",
+    "start_word": 366,
+    "end_word": 367
+   },
+   "why_it_works": "A sharp, painful breakup confrontation starts with high stakes and sustains raw emotional tension until the final cutoff.",
+   "category": "emotional",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": "review: hook 3.0 with the lift vs 4.0 without, overall 3.5 vs 4.0; The cold open line is a generic breakup statement. Starting directly with the guy asking why she has been torturing him for a week c…",
+   "time_segments": [
+    {
+     "start": 303.04,
+     "end": 396.641,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 93.6,
+   "spoiler": false,
+   "characters": [
+    "Soham",
+    "Hansini"
+   ],
+   "visual_dependency": "medium",
+   "start_line": "L0085",
+   "end_line": "L0115",
+   "end_hold": {
+    "payoff_end": 394.704,
+    "end": 396.641,
+    "hold_s": 1.94,
+    "on_shot_cut": true,
+    "next_speech": 406.244,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "note": "short hold (next shot cut before the minimum hold)",
+    "rule": "hold"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": 4,
+    "what_happens": "Soham desperately confronts Hansini about why she blocked him and walked out of the relationship. Hansini refuses to give explanations, accuses him of cheating, and dismisses him coldly.",
+    "hook": "Soham's urgent opening demand: 'ఏమైంది అంశ? ఎందుకు ఒక వారం నుంచి నరకం చూపిస్తున్నావ్?'",
+    "payoff": "Hansini coldly declaring that his five minutes are over and dismissing him: 'నువ్ ఇచ్చిన five minutes time అయిపోయింది. ఇంక నువ్వు వెళ్ళొచ్చు.'",
+    "opening_strength": "strong"
+   },
+   "review": {
+    "cold_open_note": "The cold open line is a generic breakup statement. Starting directly with the guy asking why she has been torturing him for a week creates a far more compelling hook.",
+    "cut_note": "",
+    "bad_cuts": [],
+    "changes": [
+     "cold open dropped, review: hook 3.0 with the lift vs 4.0 without, overall 3.5 vs 4.0; The cold open line is a generic breakup statement. Starting directly with the guy asking why she has been torturi…"
+    ]
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": []
+  }
+ ],
+ "rejected": []
+}
