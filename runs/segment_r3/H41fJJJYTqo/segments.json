@@ -1,0 +1,4900 @@
+{
+ "schema_version": "shotvi.segment/1",
+ "source": {
+  "video_id": "H41fJJJYTqo",
+  "path": "scribe_dataset\\H41fJJJYTqo\\H41fJJJYTqo_scribe_transcript.json",
+  "asr_model": "elevenlabs/scribe_v2",
+  "language": "tel",
+  "duration_s": 986.473,
+  "n_words": 1225,
+  "has_logprob": true,
+  "warnings": []
+ },
+ "params": {
+  "units": {
+   "min_s": 6.0,
+   "soft_max_s": 30.0,
+   "max_s": 40.0,
+   "split_threshold": 1.6,
+   "short_penalty": 2.0,
+   "soft_penalty_per_s": 0.03,
+   "long_penalty_per_s": 0.3
+  },
+  "pauses": {
+   "n_gaps": 1126,
+   "p50": 0.04,
+   "p75": 0.18,
+   "p90": 0.62,
+   "p95": 0.975,
+   "p97": 1.9,
+   "p99": 6.455,
+   "minor": 0.62,
+   "major": 1.9,
+   "long": 5.0
+  }
+ },
+ "speakers": [
+  {
+   "id": "speaker_1",
+   "role": "guest",
+   "label": "G1",
+   "talk_s": 253.1,
+   "talk_share": 0.796,
+   "n_turns": 30,
+   "n_question_turns": 6,
+   "host_score": 0.89,
+   "is_ghost": false
+  },
+  {
+   "id": "speaker_0",
+   "role": "host",
+   "label": "H",
+   "talk_s": 49.4,
+   "talk_share": 0.155,
+   "n_turns": 23,
+   "n_question_turns": 6,
+   "host_score": 1.816,
+   "is_ghost": false
+  },
+  {
+   "id": "speaker_2",
+   "role": "guest",
+   "label": "G2",
+   "talk_s": 15.5,
+   "talk_share": 0.049,
+   "n_turns": 8,
+   "n_question_turns": 3,
+   "host_score": 1.294,
+   "is_ghost": false
+  }
+ ],
+ "host": {
+  "speaker": "speaker_0",
+  "confidence": 0.174
+ },
+ "video_signals": {
+  "median_wps": 1.877,
+  "logprob_mean": -0.078,
+  "low_conf_frac": 0.0163,
+  "latin_frac": 0.195,
+  "n_laughter": 5,
+  "n_censored": 0,
+  "event_kinds": [
+   "laughter",
+   "music",
+   "other"
+  ]
+ },
+ "intro_ranges": [],
+ "opening": {
+  "mode": "rules",
+  "decided_by": "rules",
+  "content_start_word": 0
+ },
+ "events": [
+  {
+   "kind": "other",
+   "text": "[వెనకశబ్దం]",
+   "start": 0.06,
+   "end": 3.74
+  },
+  {
+   "kind": "laughter",
+   "text": "[నవ్వు]",
+   "start": 4.72,
+   "end": 28.88
+  },
+  {
+   "kind": "other",
+   "text": "[వెనకశబ్దం]",
+   "start": 29.24,
+   "end": 32.22
+  },
+  {
+   "kind": "other",
+   "text": "[వెనకశబ్దం]",
+   "start": 35.06,
+   "end": 43.32
+  },
+  {
+   "kind": "other",
+   "text": "[వెనకశబ్దం]",
+   "start": 48.58,
+   "end": 54.26
+  },
+  {
+   "kind": "other",
+   "text": "[వెనకశబ్దం]",
+   "start": 80.22,
+   "end": 91.98
+  },
+  {
+   "kind": "other",
+   "text": "[ఫోన్ రింగీంగ్]",
+   "start": 91.98,
+   "end": 92.24
+  },
+  {
+   "kind": "other",
+   "text": "[వెనకశబ్దం]",
+   "start": 115.9,
+   "end": 116.92
+  },
+  {
+   "kind": "other",
+   "text": "[వెనకశబ్దం]",
+   "start": 160.14,
+   "end": 160.3
+  },
+  {
+   "kind": "other",
+   "text": "[వెనకశబ్దం]",
+   "start": 168.4,
+   "end": 171.56
+  },
+  {
+   "kind": "other",
+   "text": "[వెనకశబ్దం]",
+   "start": 200.28,
+   "end": 204.82
+  },
+  {
+   "kind": "other",
+   "text": "[వెనకశబ్దం]",
+   "start": 232.44,
+   "end": 254.32
+  },
+  {
+   "kind": "music",
+   "text": "[పాట]",
+   "start": 254.34,
+   "end": 254.42
+  },
+  {
+   "kind": "other",
+   "text": "[వెనకశబ్దం]",
+   "start": 271.94,
+   "end": 281.9
+  },
+  {
+   "kind": "other",
+   "text": "[వెనకశబ్దం]",
+   "start": 303.52,
+   "end": 305.16
+  },
+  {
+   "kind": "other",
+   "text": "[వెనకశబ్దం]",
+   "start": 331.88,
+   "end": 333.94
+  },
+  {
+   "kind": "other",
+   "text": "[వెనకశబ్దం]",
+   "start": 337.62,
+   "end": 339.72
+  },
+  {
+   "kind": "other",
+   "text": "[వెనకశబ్దం]",
+   "start": 353.28,
+   "end": 359.46
+  },
+  {
+   "kind": "other",
+   "text": "[ఫోన్ రింగింగ్]",
+   "start": 380.476,
+   "end": 385.176
+  },
+  {
+   "kind": "other",
+   "text": "[హమ్మింగ్]",
+   "start": 386.656,
+   "end": 394.456
+  },
+  {
+   "kind": "other",
+   "text": "[ deep sigh]",
+   "start": 394.456,
+   "end": 394.536
+  },
+  {
+   "kind": "other",
+   "text": "[ఫోన్ రింగింగ్]",
+   "start": 402.076,
+   "end": 408.316
+  },
+  {
+   "kind": "laughter",
+   "text": "[నవ్వు]",
+   "start": 440.556,
+   "end": 441.376
+  },
+  {
+   "kind": "laughter",
+   "text": "[నవ్వు]",
+   "start": 442.476,
+   "end": 459.616
+  },
+  {
+   "kind": "other",
+   "text": "[ఫోన్ రింగింగ్]",
+   "start": 459.616,
+   "end": 459.816
+  },
+  {
+   "kind": "other",
+   "text": "[గాలి శబ్దం]",
+   "start": 506.896,
+   "end": 517.036
+  },
+  {
+   "kind": "other",
+   "text": "[ఆవలింత]",
+   "start": 595.256,
+   "end": 598.756
+  },
+  {
+   "kind": "other",
+   "text": "[ఫోన్ రింగింగ్]",
+   "start": 607.656,
+   "end": 612.296
+  },
+  {
+   "kind": "laughter",
+   "text": "[నవ్వు]",
+   "start": 626.956,
+   "end": 628.416
+  },
+  {
+   "kind": "other",
+   "text": "[బైక్ శబ్దం]",
+   "start": 679.456,
+   "end": 707.476
+  },
+  {
+   "kind": "other",
+   "text": "[ఫోన్ రింగింగ్]",
+   "start": 707.596,
+   "end": 707.856
+  },
+  {
+   "kind": "laughter",
+   "text": "[నవ్వు]",
+   "start": 724.756,
+   "end": 725.856
+  },
+  {
+   "kind": "music",
+   "text": "[పాట]",
+   "start": 737.724,
+   "end": 788.804
+  },
+  {
+   "kind": "other",
+   "text": "[నిట్టూర్పు]",
+   "start": 789.824,
+   "end": 800.984
+  },
+  {
+   "kind": "other",
+   "text": "[నిట్టూర్పు]",
+   "start": 802.624,
+   "end": 805.124
+  },
+  {
+   "kind": "music",
+   "text": "[పాట]",
+   "start": 824.724,
+   "end": 830.444
+  },
+  {
+   "kind": "music",
+   "text": "[పాట]",
+   "start": 856.464,
+   "end": 911.644
+  },
+  {
+   "kind": "music",
+   "text": "[పాట]",
+   "start": 940.804,
+   "end": 949.564
+  },
+  {
+   "kind": "other",
+   "text": "[చెప్పకు తప్పేంలా లేదే]",
+   "start": 959.724,
+   "end": 963.324
+  },
+  {
+   "kind": "music",
+   "text": "[పాట]",
+   "start": 966.144,
+   "end": 986.424
+  }
+ ],
+ "turns": [
+  {
+   "id": 0,
+   "speaker": "speaker_0",
+   "role": "host",
+   "words": [
+    0,
+    0
+   ],
+   "start": 28.96,
+   "end": 29.24,
+   "n_words": 1,
+   "is_question": false,
+   "ends_with_question": false,
+   "backchannels": [],
+   "intro_kind": null
+  },
+  {
+   "id": 1,
+   "speaker": "speaker_1",
+   "role": "guest",
+   "words": [
+    1,
+    2
+   ],
+   "start": 32.32,
+   "end": 33.72,
+   "n_words": 2,
+   "is_question": false,
+   "ends_with_question": false,
+   "backchannels": [],
+   "intro_kind": null
+  },
+  {
+   "id": 2,
+   "speaker": "speaker_0",
+   "role": "host",
+   "words": [
+    3,
+    14
+   ],
+   "start": 34.0,
+   "end": 45.8,
+   "n_words": 10,
+   "is_question": false,
+   "ends_with_question": false,
+   "backchannels": [
+    {
+     "words": [
+      7,
+      7
+     ],
+     "speaker": "speaker_1",
+     "text": "ఆహ్",
+     "start": 43.44,
+     "end": 43.5,
+     "kind": "interjection"
+    },
+    {
+     "words": [
+      9,
+      9
+     ],
+     "speaker": "speaker_1",
+     "text": "ఆ",
+     "start": 43.78,
+     "end": 43.88,
+     "kind": "lexicon"
+    }
+   ],
+   "intro_kind": null
+  },
+  {
+   "id": 3,
+   "speaker": "speaker_1",
+   "role": "guest",
+   "words": [
+    15,
+    19
+   ],
+   "start": 46.3,
+   "end": 48.54,
+   "n_words": 5,
+   "is_question": false,
+   "ends_with_question": false,
+   "backchannels": [],
+   "intro_kind": null
+  },
+  {
+   "id": 4,
+   "speaker": "speaker_0",
+   "role": "host",
+   "words": [
+    20,
+    24
+   ],
+   "start": 58.82,
+   "end": 59.88,
+   "n_words": 5,
+   "is_question": true,
+   "ends_with_question": true,
+   "backchannels": [],
+   "intro_kind": null
+  },
+  {
+   "id": 5,
+   "speaker": "speaker_1",
+   "role": "guest",
+   "words": [
+    25,
+    42
+   ],
+   "start": 60.5,
+   "end": 67.3,
+   "n_words": 18,
+   "is_question": false,
+   "ends_with_question": false,
+   "backchannels": [],
+   "intro_kind": null
+  },
+  {
+   "id": 6,
+   "speaker": "speaker_0",
+   "role": "host",
+   "words": [
+    43,
+    54
+   ],
+   "start": 67.52,
+   "end": 80.22,
+   "n_words": 12,
+   "is_question": false,
+   "ends_with_question": false,
+   "backchannels": [],
+   "intro_kind": null
+  },
+  {
+   "id": 7,
+   "speaker": "speaker_1",
+   "role": "guest",
+   "words": [
+    55,
+    56
+   ],
+   "start": 92.28,
+   "end": 92.54,
+   "n_words": 2,
+   "is_question": false,
+   "ends_with_question": false,
+   "backchannels": [],
+   "intro_kind": null
+  },
+  {
+   "id": 8,
+   "speaker": "speaker_0",
+   "role": "host",
+   "words": [
+    57,
+    64
+   ],
+   "start": 92.94,
+   "end": 96.34,
+   "n_words": 6,
+   "is_question": true,
+   "ends_with_question": false,
+   "backchannels": [
+    {
+     "words": [
+      59,
+      60
+     ],
+     "speaker": "speaker_1",
+     "text": "హా వచ్చా",
+     "start": 94.02,
+     "end": 94.78,
+     "kind": "interjection"
+    }
+   ],
+   "intro_kind": null
+  },
+  {
+   "id": 9,
+   "speaker": "speaker_1",
+   "role": "guest",
+   "words": [
+    65,
+    81
+   ],
+   "start": 96.74,
+   "end": 102.88,
+   "n_words": 16,
+   "is_question": false,
+   "ends_with_question": false,
+   "backchannels": [
+    {
+     "words": [
+      76,
+      76
+     ],
+     "speaker": "speaker_0",
+     "text": "సరేలే",
+     "start": 100.34,
+     "end": 100.66,
+     "kind": "interjection"
+    }
+   ],
+   "intro_kind": null
+  },
+  {
+   "id": 10,
+   "speaker": "speaker_0",
+   "role": "host",
+   "words": [
+    82,
+    90
+   ],
+   "start": 103.24,
+   "end": 105.66,
+   "n_words": 9,
+   "is_question": false,
+   "ends_with_question": false,
+   "backchannels": [],
+   "intro_kind": null
+  },
+  {
+   "id": 11,
+   "speaker": "speaker_1",
+   "role": "guest",
+   "words": [
+    91,
+    103
+   ],
+   "start": 106.2,
+   "end": 111.46,
+   "n_words": 13,
+   "is_question": false,
+   "ends_with_question": false,
+   "backchannels": [],
+   "intro_kind": null
+  },
+  {
+   "id": 12,
+   "speaker": "speaker_0",
+   "role": "host",
+   "words": [
+    104,
+    114
+   ],
+   "start": 111.98,
+   "end": 115.88,
+   "n_words": 11,
+   "is_question": false,
+   "ends_with_question": false,
+   "backchannels": [],
+   "intro_kind": null
+  },
+  {
+   "id": 13,
+   "speaker": "speaker_1",
+   "role": "guest",
+   "words": [
+    115,
+    125
+   ],
+   "start": 117.0,
+   "end": 120.62,
+   "n_words": 11,
+   "is_question": false,
+   "ends_with_question": false,
+   "backchannels": [],
+   "intro_kind": null
+  },
+  {
+   "id": 14,
+   "speaker": "speaker_0",
+   "role": "host",
+   "words": [
+    126,
+    133
+   ],
+   "start": 120.94,
+   "end": 123.14,
+   "n_words": 8,
+   "is_question": false,
+   "ends_with_question": false,
+   "backchannels": [],
+   "intro_kind": null
+  },
+  {
+   "id": 15,
+   "speaker": "speaker_1",
+   "role": "guest",
+   "words": [
+    134,
+    138
+   ],
+   "start": 123.68,
+   "end": 125.66,
+   "n_words": 5,
+   "is_question": false,
+   "ends_with_question": false,
+   "backchannels": [],
+   "intro_kind": null
+  },
+  {
+   "id": 16,
+   "speaker": "speaker_0",
+   "role": "host",
+   "words": [
+    139,
+    146
+   ],
+   "start": 126.08,
+   "end": 130.9,
+   "n_words": 7,
+   "is_question": false,
+   "ends_with_question": false,
+   "backchannels": [
+    {
+     "words": [
+      142,
+      142
+     ],
+     "speaker": "speaker_1",
+     "text": "ఊ",
+     "start": 127.1,
+     "end": 127.1,
+     "kind": "lexicon"
+    }
+   ],
+   "intro_kind": null
+  },
+  {
+   "id": 17,
+   "speaker": "speaker_1",
+   "role": "guest",
+   "words": [
+    147,
+    147
+   ],
+   "start": 160.34,
+   "end": 160.46,
+   "n_words": 1,
+   "is_question": false,
+   "ends_with_question": false,
+   "backchannels": [],
+   "intro_kind": null
+  },
+  {
+   "id": 18,
+   "speaker": "speaker_0",
+   "role": "host",
+   "words": [
+    148,
+    150
+   ],
+   "start": 160.46,
+   "end": 161.56,
+   "n_words": 3,
+   "is_question": false,
+   "ends_with_question": false,
+   "backchannels": [],
+   "intro_kind": null
+  },
+  {
+   "id": 19,
+   "speaker": "speaker_1",
+   "role": "guest",
+   "words": [
+    151,
+    154
+   ],
+   "start": 162.26,
+   "end": 165.18,
+   "n_words": 3,
+   "is_question": false,
+   "ends_with_question": false,
+   "backchannels": [
+    {
+     "words": [
+      152,
+      152
+     ],
+     "speaker": "speaker_0",
+     "text": "ఊ",
+     "start": 163.54,
+     "end": 163.98,
+     "kind": "lexicon"
+    }
+   ],
+   "intro_kind": null
+  },
+  {
+   "id": 20,
+   "speaker": "speaker_0",
+   "role": "host",
+   "words": [
+    155,
+    179
+   ],
+   "start": 165.92,
+   "end": 177.28,
+   "n_words": 23,
+   "is_question": false,
+   "ends_with_question": false,
+   "backchannels": [
+    {
+     "words": [
+      161,
+      161
+     ],
+     "speaker": "speaker_1",
+     "text": "ఊ",
+     "start": 171.6,
+     "end": 171.6,
+     "kind": "lexicon"
+    },
+    {
+     "words": [
+      163,
+      163
+     ],
+     "speaker": "speaker_1",
+     "text": "ఊ",
+     "start": 171.9,
+     "end": 171.94,
+     "kind": "lexicon"
+    }
+   ],
+   "intro_kind": null
+  },
+  {
+   "id": 21,
+   "speaker": "speaker_1",
+   "role": "guest",
+   "words": [
+    180,
+    183
+   ],
+   "start": 177.8,
+   "end": 179.8,
+   "n_words": 4,
+   "is_question": false,
+   "ends_with_question": false,
+   "backchannels": [],
+   "intro_kind": null
+  },
+  {
+   "id": 22,
+   "speaker": "speaker_0",
+   "role": "host",
+   "words": [
+    184,
+    194
+   ],
+   "start": 179.88,
+   "end": 184.24,
+   "n_words": 11,
+   "is_question": true,
+   "ends_with_question": true,
+   "backchannels": [],
+   "intro_kind": null
+  },
+  {
+   "id": 23,
+   "speaker": "speaker_1",
+   "role": "guest",
+   "words": [
+    195,
+    220
+   ],
+   "start": 185.44,
+   "end": 194.08,
+   "n_words": 26,
+   "is_question": false,
+   "ends_with_question": false,
+   "backchannels": [],
+   "intro_kind": null
+  },
+  {
+   "id": 24,
+   "speaker": "speaker_0",
+   "role": "host",
+   "words": [
+    221,
+    232
+   ],
+   "start": 194.28,
+   "end": 198.86,
+   "n_words": 12,
+   "is_question": false,
+   "ends_with_question": false,
+   "backchannels": [],
+   "intro_kind": null
+  },
+  {
+   "id": 25,
+   "speaker": "speaker_1",
+   "role": "guest",
+   "words": [
+    233,
+    240
+   ],
+   "start": 199.26,
+   "end": 205.8,
+   "n_words": 7,
+   "is_question": true,
+   "ends_with_question": true,
+   "backchannels": [
+    {
+     "words": [
+      237,
+      237
+     ],
+     "speaker": "speaker_0",
+     "text": "ఊ",
+     "start": 204.86,
+     "end": 204.88,
+     "kind": "lexicon"
+    }
+   ],
+   "intro_kind": null
+  },
+  {
+   "id": 26,
+   "speaker": "speaker_0",
+   "role": "host",
+   "words": [
+    241,
+    251
+   ],
+   "start": 206.14,
+   "end": 210.92,
+   "n_words": 11,
+   "is_question": true,
+   "ends_with_question": false,
+   "backchannels": [],
+   "intro_kind": null
+  },
+  {
+   "id": 27,
+   "speaker": "speaker_1",
+   "role": "guest",
+   "words": [
+    252,
+    259
+   ],
+   "start": 211.58,
+   "end": 214.42,
+   "n_words": 8,
+   "is_question": false,
+   "ends_with_question": false,
+   "backchannels": [],
+   "intro_kind": null
+  },
+  {
+   "id": 28,
+   "speaker": "speaker_0",
+   "role": "host",
+   "words": [
+    260,
+    262
+   ],
+   "start": 214.48,
+   "end": 216.82,
+   "n_words": 3,
+   "is_question": false,
+   "ends_with_question": false,
+   "backchannels": [],
+   "intro_kind": null
+  },
+  {
+   "id": 29,
+   "speaker": "speaker_1",
+   "role": "guest",
+   "words": [
+    263,
+    294
+   ],
+   "start": 216.94,
+   "end": 232.1,
+   "n_words": 26,
+   "is_question": false,
+   "ends_with_question": false,
+   "backchannels": [
+    {
+     "words": [
+      273,
+      275
+     ],
+     "speaker": "speaker_0",
+     "text": "అలా కాదు ఏ",
+     "start": 221.38,
+     "end": 222.6,
+     "kind": "interjection"
+    },
+    {
+     "words": [
+      283,
+      285
+     ],
+     "speaker": "speaker_0",
+     "text": "అంటే అది ఆ",
+     "start": 226.28,
+     "end": 227.34,
+     "kind": "interjection"
+    }
+   ],
+   "intro_kind": null
+  },
+  {
+   "id": 30,
+   "speaker": "speaker_0",
+   "role": "host",
+   "words": [
+    295,
+    296
+   ],
+   "start": 232.1,
+   "end": 254.46,
+   "n_words": 2,
+   "is_question": false,
+   "ends_with_question": false,
+   "backchannels": [],
+   "intro_kind": null
+  },
+  {
+   "id": 31,
+   "speaker": "speaker_1",
+   "role": "guest",
+   "words": [
+    297,
+    305
+   ],
+   "start": 254.48,
+   "end": 257.3,
+   "n_words": 9,
+   "is_question": true,
+   "ends_with_question": false,
+   "backchannels": [],
+   "intro_kind": null
+  },
+  {
+   "id": 32,
+   "speaker": "speaker_0",
+   "role": "host",
+   "words": [
+    306,
+    311
+   ],
+   "start": 257.62,
+   "end": 259.519,
+   "n_words": 6,
+   "is_question": true,
+   "ends_with_question": true,
+   "backchannels": [],
+   "intro_kind": null
+  },
+  {
+   "id": 33,
+   "speaker": "speaker_1",
+   "role": "guest",
+   "words": [
+    312,
+    318
+   ],
+   "start": 259.92,
+   "end": 262.32,
+   "n_words": 7,
+   "is_question": false,
+   "ends_with_question": false,
+   "backchannels": [],
+   "intro_kind": null
+  },
+  {
+   "id": 34,
+   "speaker": "speaker_0",
+   "role": "host",
+   "words": [
+    319,
+    328
+   ],
+   "start": 262.44,
+   "end": 265.72,
+   "n_words": 10,
+   "is_question": false,
+   "ends_with_question": false,
+   "backchannels": [],
+   "intro_kind": null
+  },
+  {
+   "id": 35,
+   "speaker": "speaker_1",
+   "role": "guest",
+   "words": [
+    329,
+    335
+   ],
+   "start": 266.12,
+   "end": 268.06,
+   "n_words": 7,
+   "is_question": true,
+   "ends_with_question": true,
+   "backchannels": [],
+   "intro_kind": null
+  },
+  {
+   "id": 36,
+   "speaker": "speaker_0",
+   "role": "host",
+   "words": [
+    336,
+    345
+   ],
+   "start": 268.52,
+   "end": 271.94,
+   "n_words": 10,
+   "is_question": false,
+   "ends_with_question": false,
+   "backchannels": [],
+   "intro_kind": null
+  },
+  {
+   "id": 37,
+   "speaker": "speaker_1",
+   "role": "guest",
+   "words": [
+    346,
+    353
+   ],
+   "start": 282.0,
+   "end": 286.1,
+   "n_words": 8,
+   "is_question": false,
+   "ends_with_question": false,
+   "backchannels": [],
+   "intro_kind": null
+  },
+  {
+   "id": 38,
+   "speaker": "speaker_0",
+   "role": "host",
+   "words": [
+    354,
+    355
+   ],
+   "start": 286.1,
+   "end": 289.72,
+   "n_words": 2,
+   "is_question": false,
+   "ends_with_question": false,
+   "backchannels": [],
+   "intro_kind": null
+  },
+  {
+   "id": 39,
+   "speaker": "speaker_1",
+   "role": "guest",
+   "words": [
+    356,
+    358
+   ],
+   "start": 290.98,
+   "end": 292.08,
+   "n_words": 3,
+   "is_question": true,
+   "ends_with_question": true,
+   "backchannels": [],
+   "intro_kind": null
+  },
+  {
+   "id": 40,
+   "speaker": "speaker_0",
+   "role": "host",
+   "words": [
+    359,
+    361
+   ],
+   "start": 292.44,
+   "end": 294.2,
+   "n_words": 3,
+   "is_question": false,
+   "ends_with_question": false,
+   "backchannels": [],
+   "intro_kind": null
+  },
+  {
+   "id": 41,
+   "speaker": "speaker_1",
+   "role": "guest",
+   "words": [
+    362,
+    394
+   ],
+   "start": 295.28,
+   "end": 311.1,
+   "n_words": 31,
+   "is_question": true,
+   "ends_with_question": true,
+   "backchannels": [
+    {
+     "words": [
+      366,
+      367
+     ],
+     "speaker": "speaker_0",
+     "text": "ఏదో గుర్తొచ్చి",
+     "start": 298.06,
+     "end": 298.9,
+     "kind": "interjection"
+    }
+   ],
+   "intro_kind": null
+  },
+  {
+   "id": 42,
+   "speaker": "speaker_0",
+   "role": "host",
+   "words": [
+    395,
+    399
+   ],
+   "start": 312.34,
+   "end": 314.56,
+   "n_words": 5,
+   "is_question": false,
+   "ends_with_question": false,
+   "backchannels": [],
+   "intro_kind": null
+  },
+  {
+   "id": 43,
+   "speaker": "speaker_1",
+   "role": "guest",
+   "words": [
+    400,
+    453
+   ],
+   "start": 314.66,
+   "end": 347.52,
+   "n_words": 50,
+   "is_question": false,
+   "ends_with_question": false,
+   "backchannels": [
+    {
+     "words": [
+      411,
+      413
+     ],
+     "speaker": "speaker_0",
+     "text": "అది కాదు మీనాక్షి",
+     "start": 321.58,
+     "end": 322.68,
+     "kind": "interjection"
+    },
+    {
+     "words": [
+      449,
+      449
+     ],
+     "speaker": "speaker_0",
+     "text": "ఊ",
+     "start": 344.44,
+     "end": 344.56,
+     "kind": "lexicon"
+    }
+   ],
+   "intro_kind": null
+  },
+  {
+   "id": 44,
+   "speaker": "speaker_0",
+   "role": "host",
+   "words": [
+    454,
+    461
+   ],
+   "start": 347.86,
+   "end": 361.02,
+   "n_words": 8,
+   "is_question": true,
+   "ends_with_question": true,
+   "backchannels": [],
+   "intro_kind": null
+  },
+  {
+   "id": 45,
+   "speaker": "speaker_1",
+   "role": "guest",
+   "words": [
+    462,
+    1045
+   ],
+   "start": 361.776,
+   "end": 821.244,
+   "n_words": 580,
+   "is_question": true,
+   "ends_with_question": false,
+   "backchannels": [
+    {
+     "words": [
+      1003,
+      1004
+     ],
+     "speaker": "speaker_2",
+     "text": "సరే జాగ్రత్త",
+     "start": 727.404,
+     "end": 728.624,
+     "kind": "interjection"
+    },
+    {
+     "words": [
+      1011,
+      1011
+     ],
+     "speaker": "speaker_2",
+     "text": "ఉమ్",
+     "start": 731.424,
+     "end": 731.504,
+     "kind": "lexicon"
+    },
+    {
+     "words": [
+      1014,
+      1014
+     ],
+     "speaker": "speaker_2",
+     "text": "Bye",
+     "start": 732.264,
+     "end": 732.484,
+     "kind": "interjection"
+    }
+   ],
+   "intro_kind": null
+  },
+  {
+   "id": 46,
+   "speaker": "speaker_2",
+   "role": "guest",
+   "words": [
+    1046,
+    1051
+   ],
+   "start": 822.444,
+   "end": 824.104,
+   "n_words": 6,
+   "is_question": true,
+   "ends_with_question": true,
+   "backchannels": [],
+   "intro_kind": null
+  },
+  {
+   "id": 47,
+   "speaker": "speaker_1",
+   "role": "guest",
+   "words": [
+    1052,
+    1054
+   ],
+   "start": 824.324,
+   "end": 831.024,
+   "n_words": 3,
+   "is_question": false,
+   "ends_with_question": false,
+   "backchannels": [],
+   "intro_kind": null
+  },
+  {
+   "id": 48,
+   "speaker": "speaker_2",
+   "role": "guest",
+   "words": [
+    1055,
+    1060
+   ],
+   "start": 831.624,
+   "end": 833.444,
+   "n_words": 6,
+   "is_question": false,
+   "ends_with_question": false,
+   "backchannels": [],
+   "intro_kind": null
+  },
+  {
+   "id": 49,
+   "speaker": "speaker_1",
+   "role": "guest",
+   "words": [
+    1061,
+    1075
+   ],
+   "start": 833.864,
+   "end": 839.604,
+   "n_words": 15,
+   "is_question": false,
+   "ends_with_question": false,
+   "backchannels": [],
+   "intro_kind": null
+  },
+  {
+   "id": 50,
+   "speaker": "speaker_2",
+   "role": "guest",
+   "words": [
+    1076,
+    1086
+   ],
+   "start": 839.924,
+   "end": 843.384,
+   "n_words": 11,
+   "is_question": true,
+   "ends_with_question": true,
+   "backchannels": [],
+   "intro_kind": null
+  },
+  {
+   "id": 51,
+   "speaker": "speaker_1",
+   "role": "guest",
+   "words": [
+    1087,
+    1092
+   ],
+   "start": 843.544,
+   "end": 845.144,
+   "n_words": 6,
+   "is_question": false,
+   "ends_with_question": false,
+   "backchannels": [],
+   "intro_kind": null
+  },
+  {
+   "id": 52,
+   "speaker": "speaker_2",
+   "role": "guest",
+   "words": [
+    1093,
+    1108
+   ],
+   "start": 845.944,
+   "end": 851.104,
+   "n_words": 16,
+   "is_question": false,
+   "ends_with_question": false,
+   "backchannels": [],
+   "intro_kind": null
+  },
+  {
+   "id": 53,
+   "speaker": "speaker_1",
+   "role": "guest",
+   "words": [
+    1109,
+    1114
+   ],
+   "start": 851.804,
+   "end": 853.544,
+   "n_words": 6,
+   "is_question": false,
+   "ends_with_question": false,
+   "backchannels": [],
+   "intro_kind": null
+  },
+  {
+   "id": 54,
+   "speaker": "speaker_2",
+   "role": "guest",
+   "words": [
+    1115,
+    1129
+   ],
+   "start": 853.724,
+   "end": 912.364,
+   "n_words": 15,
+   "is_question": false,
+   "ends_with_question": false,
+   "backchannels": [],
+   "intro_kind": null
+  },
+  {
+   "id": 55,
+   "speaker": "speaker_1",
+   "role": "guest",
+   "words": [
+    1130,
+    1196
+   ],
+   "start": 913.544,
+   "end": 940.784,
+   "n_words": 64,
+   "is_question": true,
+   "ends_with_question": false,
+   "backchannels": [
+    {
+     "words": [
+      1131,
+      1133
+     ],
+     "speaker": "speaker_2",
+     "text": "ఆ okay madam",
+     "start": 914.064,
+     "end": 914.604,
+     "kind": "lexicon"
+    }
+   ],
+   "intro_kind": null
+  },
+  {
+   "id": 56,
+   "speaker": "speaker_2",
+   "role": "guest",
+   "words": [
+    1197,
+    1206
+   ],
+   "start": 949.584,
+   "end": 953.904,
+   "n_words": 7,
+   "is_question": false,
+   "ends_with_question": false,
+   "backchannels": [
+    {
+     "words": [
+      1198,
+      1200
+     ],
+     "speaker": "speaker_1",
+     "text": "ఏంట్రా నీ బాధ",
+     "start": 950.504,
+     "end": 951.064,
+     "kind": "interjection"
+    }
+   ],
+   "intro_kind": null
+  },
+  {
+   "id": 57,
+   "speaker": "speaker_1",
+   "role": "guest",
+   "words": [
+    1207,
+    1215
+   ],
+   "start": 954.504,
+   "end": 958.044,
+   "n_words": 9,
+   "is_question": false,
+   "ends_with_question": false,
+   "backchannels": [],
+   "intro_kind": null
+  },
+  {
+   "id": 58,
+   "speaker": "speaker_2",
+   "role": "guest",
+   "words": [
+    1216,
+    1217
+   ],
+   "start": 958.984,
+   "end": 959.684,
+   "n_words": 2,
+   "is_question": true,
+   "ends_with_question": true,
+   "backchannels": [],
+   "intro_kind": null
+  },
+  {
+   "id": 59,
+   "speaker": "speaker_1",
+   "role": "guest",
+   "words": [
+    1218,
+    1223
+   ],
+   "start": 963.384,
+   "end": 965.524,
+   "n_words": 6,
+   "is_question": false,
+   "ends_with_question": false,
+   "backchannels": [],
+   "intro_kind": null
+  },
+  {
+   "id": 60,
+   "speaker": "speaker_2",
+   "role": "guest",
+   "words": [
+    1224,
+    1224
+   ],
+   "start": 966.004,
+   "end": 966.104,
+   "n_words": 1,
+   "is_question": false,
+   "ends_with_question": false,
+   "backchannels": [],
+   "intro_kind": null
+  }
+ ],
+ "units": [
+  {
+   "id": 0,
+   "words": [
+    0,
+    19
+   ],
+   "start": 28.96,
+   "end": 48.54,
+   "duration": 19.58,
+   "kind": "exchange",
+   "speaker": "speaker_0",
+   "role": "host",
+   "speakers": {
+    "speaker_0": 0.582,
+    "speaker_1": 0.418
+   },
+   "turn_ids": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "boundary_before": 3.0,
+   "backchannel_words": [
+    [
+     7,
+     7
+    ],
+    [
+     9,
+     9
+    ]
+   ],
+   "qa_question_of": [],
+   "qa_answer_of": [],
+   "signals": {
+    "duration": 19.58,
+    "n_words": 18,
+    "n_backchannels": 2,
+    "wps": 0.919,
+    "n_pauses": 3,
+    "pause_max": 8.36,
+    "pause_frac": 0.52,
+    "laughter": 0,
+    "laughter_times": [],
+    "laugh_after": false,
+    "censored": false,
+    "censored_s": 0,
+    "events": [
+     {
+      "kind": "other",
+      "text": "[వెనకశబ్దం]",
+      "start": 29.24,
+      "end": 32.22
+     },
+     {
+      "kind": "other",
+      "text": "[వెనకశబ్దం]",
+      "start": 35.06,
+      "end": 43.32
+     }
+    ],
+    "logprob_mean": -0.174,
+    "logprob_min": -0.425,
+    "low_conf_frac": 0.0,
+    "latin_frac": 0.111,
+    "question": false,
+    "ends_with_question": false,
+    "question_score_max": 0.5,
+    "n_speakers": 2,
+    "dominant_share": 0.582,
+    "speech_rate_rel": 0.489
+   },
+   "in_intro": false,
+   "intro_kind": null,
+   "intro_id": null,
+   "text": "(laugh) H: హా | G1: ఆహ్ తెచ్చినావానే | H: హా తెచ్చానే. ఉమ్ ఉమ్ [G1: ఆహ్] సే కొంచెం టవల్ అయినా ఇవ్వచ్చు కదా | G1: ఓహ్ Sorry sorry ఉమ్ ఉమ్",
+   "est_tokens": 68
+  },
+  {
+   "id": 1,
+   "words": [
+    20,
+    42
+   ],
+   "start": 58.82,
+   "end": 67.3,
+   "duration": 8.48,
+   "kind": "exchange",
+   "speaker": "speaker_1",
+   "role": "guest",
+   "speakers": {
+    "speaker_1": 0.839,
+    "speaker_0": 0.161
+   },
+   "turn_ids": [
+    4,
+    5
+   ],
+   "boundary_before": 2.0,
+   "backchannel_words": [],
+   "qa_question_of": [
+    0
+   ],
+   "qa_answer_of": [
+    0
+   ],
+   "signals": {
+    "duration": 8.48,
+    "n_words": 23,
+    "n_backchannels": 0,
+    "wps": 2.712,
+    "n_pauses": 0,
+    "pause_max": 0.48,
+    "pause_frac": 0.0,
+    "laughter": 0,
+    "laughter_times": [],
+    "laugh_after": false,
+    "censored": false,
+    "censored_s": 0,
+    "events": [],
+    "logprob_mean": -0.212,
+    "logprob_min": -1.658,
+    "low_conf_frac": 0.087,
+    "latin_frac": 0.13,
+    "question": true,
+    "ends_with_question": false,
+    "question_score_max": 1.0,
+    "n_speakers": 2,
+    "dominant_share": 0.839,
+    "speech_rate_rel": 1.444
+   },
+   "in_intro": false,
+   "intro_kind": null,
+   "intro_id": null,
+   "text": "H: ఏంటి ఈరోజు ఇంత సేపు అయింది? | G1: అదా వర్షం పడుతుంది కదా, pay క్యూ ఇస్తారని ఇప్పటివరకు చేశా. ఇంకో 6KM extra వెళ్లి మీ కోసం ఆ బిర్యానీ తీసుకొచ్చా",
+   "est_tokens": 83
+  },
+  {
+   "id": 2,
+   "words": [
+    43,
+    54
+   ],
+   "start": 67.52,
+   "end": 80.22,
+   "duration": 12.7,
+   "kind": "monologue",
+   "speaker": "speaker_0",
+   "role": "host",
+   "speakers": {
+    "speaker_0": 1.0
+   },
+   "turn_ids": [
+    6
+   ],
+   "boundary_before": 2.0,
+   "backchannel_words": [],
+   "qa_question_of": [],
+   "qa_answer_of": [],
+   "signals": {
+    "duration": 12.7,
+    "n_words": 12,
+    "n_backchannels": 0,
+    "wps": 0.945,
+    "n_pauses": 1,
+    "pause_max": 7.12,
+    "pause_frac": 0.561,
+    "laughter": 0,
+    "laughter_times": [],
+    "laugh_after": false,
+    "censored": false,
+    "censored_s": 0,
+    "events": [
+     {
+      "kind": "other",
+      "text": "[వెనకశబ్దం]",
+      "start": 80.22,
+      "end": 91.98
+     }
+    ],
+    "logprob_mean": -0.156,
+    "logprob_min": -0.573,
+    "low_conf_frac": 0.0,
+    "latin_frac": 0.0,
+    "question": false,
+    "ends_with_question": false,
+    "question_score_max": 0.0,
+    "n_speakers": 1,
+    "dominant_share": 1.0,
+    "speech_rate_rel": 0.503
+   },
+   "in_intro": false,
+   "intro_kind": null,
+   "intro_id": null,
+   "text": "H: ఊ ఉమ్ అదే వర్షం పడుతుంది కదా, తెస్తావో లేదోలే అనుకున్నా. పోన్లే నాకోసం తెచ్చావ్.",
+   "est_tokens": 52
+  },
+  {
+   "id": 3,
+   "words": [
+    55,
+    56
+   ],
+   "start": 92.28,
+   "end": 92.54,
+   "duration": 0.26,
+   "kind": "monologue",
+   "speaker": "speaker_1",
+   "role": "guest",
+   "speakers": {
+    "speaker_1": 1.0
+   },
+   "turn_ids": [
+    7
+   ],
+   "boundary_before": 2.0,
+   "backchannel_words": [],
+   "qa_question_of": [],
+   "qa_answer_of": [],
+   "signals": {
+    "duration": 0.26,
+    "n_words": 2,
+    "n_backchannels": 0,
+    "wps": 7.692,
+    "n_pauses": 0,
+    "pause_max": 0.0,
+    "pause_frac": 0.0,
+    "laughter": 0,
+    "laughter_times": [],
+    "laugh_after": false,
+    "censored": false,
+    "censored_s": 0,
+    "events": [],
+    "logprob_mean": -0.195,
+    "logprob_min": -0.253,
+    "low_conf_frac": 0.0,
+    "latin_frac": 0.0,
+    "question": false,
+    "ends_with_question": false,
+    "question_score_max": 0.0,
+    "n_speakers": 1,
+    "dominant_share": 1.0,
+    "speech_rate_rel": 4.097
+   },
+   "in_intro": false,
+   "intro_kind": null,
+   "intro_id": null,
+   "text": "G1: ఆ హలో",
+   "est_tokens": 8
+  },
+  {
+   "id": 4,
+   "words": [
+    57,
+    90
+   ],
+   "start": 92.94,
+   "end": 105.66,
+   "duration": 12.72,
+   "kind": "exchange",
+   "speaker": "speaker_1",
+   "role": "guest",
+   "speakers": {
+    "speaker_1": 0.524,
+    "speaker_0": 0.476
+   },
+   "turn_ids": [
+    8,
+    9,
+    10
+   ],
+   "boundary_before": 2.0,
+   "backchannel_words": [
+    [
+     59,
+     60
+    ],
+    [
+     76,
+     76
+    ]
+   ],
+   "qa_question_of": [
+    1
+   ],
+   "qa_answer_of": [
+    1
+   ],
+   "signals": {
+    "duration": 12.72,
+    "n_words": 31,
+    "n_backchannels": 2,
+    "wps": 2.437,
+    "n_pauses": 2,
+    "pause_max": 1.42,
+    "pause_frac": 0.184,
+    "laughter": 0,
+    "laughter_times": [],
+    "laugh_after": false,
+    "censored": false,
+    "censored_s": 0,
+    "events": [],
+    "logprob_mean": -0.084,
+    "logprob_min": -0.499,
+    "low_conf_frac": 0.0,
+    "latin_frac": 0.258,
+    "question": true,
+    "ends_with_question": false,
+    "question_score_max": 1.0,
+    "n_speakers": 2,
+    "dominant_share": 0.524,
+    "speech_rate_rel": 1.298
+   },
+   "in_intro": false,
+   "intro_kind": null,
+   "intro_id": null,
+   "text": "H: ఏంటే వెళ్ళావా? [G1: హా వచ్చా] వెళ్ళిందానివి call చేయొచ్చు కదా | G1: నేను just ఇప్పుడే వచ్చాను రా. నీకే call చేద్దామనుకున్నా నువ్వే call చేశవ్ [H: సరేలే] ఇంతకీ నువ్వు వెళ్ళిపోయావా room కి | H: ఇంకో two hours చేసి వెళ్తా pay బాగా ఇస్తున్నాడు కదా",
+   "est_tokens": 130
+  },
+  {
+   "id": 5,
+   "words": [
+    91,
+    114
+   ],
+   "start": 106.2,
+   "end": 115.88,
+   "duration": 9.68,
+   "kind": "exchange",
+   "speaker": "speaker_1",
+   "role": "guest",
+   "speakers": {
+    "speaker_1": 0.518,
+    "speaker_0": 0.482
+   },
+   "turn_ids": [
+    11,
+    12
+   ],
+   "boundary_before": 2.0,
+   "backchannel_words": [],
+   "qa_question_of": [],
+   "qa_answer_of": [
+    1
+   ],
+   "signals": {
+    "duration": 9.68,
+    "n_words": 24,
+    "n_backchannels": 0,
+    "wps": 2.479,
+    "n_pauses": 1,
+    "pause_max": 0.82,
+    "pause_frac": 0.085,
+    "laughter": 0,
+    "laughter_times": [],
+    "laugh_after": false,
+    "censored": false,
+    "censored_s": 0,
+    "events": [],
+    "logprob_mean": -0.08,
+    "logprob_min": -0.577,
+    "low_conf_frac": 0.0,
+    "latin_frac": 0.292,
+    "question": false,
+    "ends_with_question": false,
+    "question_score_max": 0.4,
+    "n_speakers": 2,
+    "dominant_share": 0.518,
+    "speech_rate_rel": 1.32
+   },
+   "in_intro": false,
+   "intro_kind": null,
+   "intro_id": null,
+   "text": "G1: రేయ్ పో రా first room కి pay ఎక్కువిస్తానంటే చాలు ఎంత సేపైనా చేస్తా అంటావ్. | H: లేదువే group notifications పడింది కదా, రేపటి నుంచి extra classes ఉన్నాయి అందుకే.",
+   "est_tokens": 82
+  },
+  {
+   "id": 6,
+   "words": [
+    115,
+    133
+   ],
+   "start": 117.0,
+   "end": 123.14,
+   "duration": 6.14,
+   "kind": "exchange",
+   "speaker": "speaker_1",
+   "role": "guest",
+   "speakers": {
+    "speaker_1": 0.586,
+    "speaker_0": 0.414
+   },
+   "turn_ids": [
+    13,
+    14
+   ],
+   "boundary_before": 2.0,
+   "backchannel_words": [],
+   "qa_question_of": [],
+   "qa_answer_of": [
+    1
+   ],
+   "signals": {
+    "duration": 6.14,
+    "n_words": 19,
+    "n_backchannels": 0,
+    "wps": 3.094,
+    "n_pauses": 0,
+    "pause_max": 0.6,
+    "pause_frac": 0.0,
+    "laughter": 0,
+    "laughter_times": [],
+    "laugh_after": false,
+    "censored": false,
+    "censored_s": 0,
+    "events": [],
+    "logprob_mean": -0.045,
+    "logprob_min": -0.435,
+    "low_conf_frac": 0.0,
+    "latin_frac": 0.263,
+    "question": false,
+    "ends_with_question": false,
+    "question_score_max": 0.3,
+    "n_speakers": 2,
+    "dominant_share": 0.586,
+    "speech_rate_rel": 1.648
+   },
+   "in_intro": false,
+   "intro_kind": null,
+   "intro_id": null,
+   "text": "G1: అవును కదా! నేను కూడా ఇంకొక one hour extra చేసి ఉంటే బాగుండేదేమో. | H: ఏం కాదులే already late అయింది కదా, ఇంకేం చేస్తావ్",
+   "est_tokens": 64
+  },
+  {
+   "id": 7,
+   "words": [
+    134,
+    146
+   ],
+   "start": 123.68,
+   "end": 130.9,
+   "duration": 7.22,
+   "kind": "exchange",
+   "speaker": "speaker_0",
+   "role": "host",
+   "speakers": {
+    "speaker_0": 0.557,
+    "speaker_1": 0.443
+   },
+   "turn_ids": [
+    15,
+    16
+   ],
+   "boundary_before": 2.0,
+   "backchannel_words": [
+    [
+     142,
+     142
+    ]
+   ],
+   "qa_question_of": [],
+   "qa_answer_of": [
+    1
+   ],
+   "signals": {
+    "duration": 7.22,
+    "n_words": 12,
+    "n_backchannels": 1,
+    "wps": 1.662,
+    "n_pauses": 2,
+    "pause_max": 2.12,
+    "pause_frac": 0.416,
+    "laughter": 0,
+    "laughter_times": [],
+    "laugh_after": false,
+    "censored": false,
+    "censored_s": 0,
+    "events": [],
+    "logprob_mean": -0.149,
+    "logprob_min": -1.45,
+    "low_conf_frac": 0.083,
+    "latin_frac": 0.167,
+    "question": false,
+    "ends_with_question": false,
+    "question_score_max": 0.0,
+    "n_speakers": 2,
+    "dominant_share": 0.557,
+    "speech_rate_rel": 0.885
+   },
+   "in_intro": false,
+   "intro_kind": null,
+   "intro_id": null,
+   "text": "G1: ఊ సరే నేను చదువుకోవాలి bye | H: సరే bye జాగ్రత్త అమ్మయ్య పెద్ద ఆడు వచ్చింది.",
+   "est_tokens": 46
+  },
+  {
+   "id": 8,
+   "words": [
+    147,
+    183
+   ],
+   "start": 160.34,
+   "end": 179.8,
+   "duration": 19.46,
+   "kind": "exchange",
+   "speaker": "speaker_0",
+   "role": "host",
+   "speakers": {
+    "speaker_0": 0.642,
+    "speaker_1": 0.358
+   },
+   "turn_ids": [
+    17,
+    18,
+    19,
+    20,
+    21
+   ],
+   "boundary_before": 2.0,
+   "backchannel_words": [
+    [
+     152,
+     152
+    ],
+    [
+     161,
+     161
+    ],
+    [
+     163,
+     163
+    ]
+   ],
+   "qa_question_of": [],
+   "qa_answer_of": [],
+   "signals": {
+    "duration": 19.46,
+    "n_words": 34,
+    "n_backchannels": 3,
+    "wps": 1.747,
+    "n_pauses": 4,
+    "pause_max": 3.22,
+    "pause_frac": 0.291,
+    "laughter": 0,
+    "laughter_times": [],
+    "laugh_after": false,
+    "censored": false,
+    "censored_s": 0,
+    "events": [
+     {
+      "kind": "other",
+      "text": "[వెనకశబ్దం]",
+      "start": 168.4,
+      "end": 171.56
+     }
+    ],
+    "logprob_mean": -0.059,
+    "logprob_min": -0.33,
+    "low_conf_frac": 0.0,
+    "latin_frac": 0.235,
+    "question": false,
+    "ends_with_question": false,
+    "question_score_max": 0.4,
+    "n_speakers": 2,
+    "dominant_share": 0.642,
+    "speech_rate_rel": 0.93
+   },
+   "in_intro": false,
+   "intro_kind": null,
+   "intro_id": null,
+   "text": "G1: ఉమ్ | H: ఎంతసేపు తింటావు దాన్ని | G1: తినేటప్పుడు ఆస్వాదిస్తూ తినాలే | H: ఊ అబ్బా party కి late అయిపోతుంది. అక్షర చాలా సార్లు చెప్పాను నీకు Swiggy, Zomato bags ఇక్కడ పెట్టొద్దని. నా friends చూస్తే ఎంత insulting గా ఉంటుంది. | G1: ఊ దాంట్లో insulting ఏముందే",
+   "est_tokens": 130
+  },
+  {
+   "id": 9,
+   "words": [
+    184,
+    232
+   ],
+   "start": 179.88,
+   "end": 198.86,
+   "duration": 18.98,
+   "kind": "exchange",
+   "speaker": "speaker_0",
+   "role": "host",
+   "speakers": {
+    "speaker_0": 0.509,
+    "speaker_1": 0.491
+   },
+   "turn_ids": [
+    22,
+    23,
+    24
+   ],
+   "boundary_before": 2.0,
+   "backchannel_words": [],
+   "qa_question_of": [
+    2
+   ],
+   "qa_answer_of": [
+    2
+   ],
+   "signals": {
+    "duration": 18.98,
+    "n_words": 49,
+    "n_backchannels": 0,
+    "wps": 2.582,
+    "n_pauses": 2,
+    "pause_max": 0.9,
+    "pause_frac": 0.089,
+    "laughter": 0,
+    "laughter_times": [],
+    "laugh_after": false,
+    "censored": false,
+    "censored_s": 0,
+    "events": [],
+    "logprob_mean": -0.062,
+    "logprob_min": -0.895,
+    "low_conf_frac": 0.02,
+    "latin_frac": 0.184,
+    "question": true,
+    "ends_with_question": false,
+    "question_score_max": 1.0,
+    "n_speakers": 2,
+    "dominant_share": 0.509,
+    "speech_rate_rel": 1.375
+   },
+   "in_intro": false,
+   "intro_kind": null,
+   "intro_id": null,
+   "text": "H: Insult ఏముందేంటి? మీ room mate Swiggy, Zomato చేసుకుంటుందంటే అది insult కాదా? | G1: ఊ చూడు మీ ఇంట్లో వాళ్ళ లాగా లక్షలు లక్షలు fees కట్టేవాళ్ళు నాకు ఎవ్వరూ లేరు. నా fees నేనే కట్టుకోవాలి. అయినా దాంట్లో అంత insulting గా ఏముందో నాకు అర్థం కావట్లేదు. | H: ఏహే ఇవన్నీ కాదు. చూడే ఎక్తా నువ్వైనా చెప్పు దానికి. నేను చెప్పి చెప్పి అలసిపోయా.",
+   "est_tokens": 177
+  },
+  {
+   "id": 10,
+   "words": [
+    233,
+    240
+   ],
+   "start": 199.26,
+   "end": 205.8,
+   "duration": 6.54,
+   "kind": "monologue",
+   "speaker": "speaker_1",
+   "role": "guest",
+   "speakers": {
+    "speaker_1": 1.0
+   },
+   "turn_ids": [
+    25
+   ],
+   "boundary_before": 2.0,
+   "backchannel_words": [
+    [
+     237,
+     237
+    ]
+   ],
+   "qa_question_of": [
+    3
+   ],
+   "qa_answer_of": [
+    2
+   ],
+   "signals": {
+    "duration": 6.54,
+    "n_words": 7,
+    "n_backchannels": 1,
+    "wps": 1.07,
+    "n_pauses": 1,
+    "pause_max": 4.66,
+    "pause_frac": 0.713,
+    "laughter": 0,
+    "laughter_times": [],
+    "laugh_after": false,
+    "censored": false,
+    "censored_s": 0,
+    "events": [
+     {
+      "kind": "other",
+      "text": "[వెనకశబ్దం]",
+      "start": 200.28,
+      "end": 204.82
+     }
+    ],
+    "logprob_mean": -0.14,
+    "logprob_min": -0.565,
+    "low_conf_frac": 0.0,
+    "latin_frac": 0.0,
+    "question": true,
+    "ends_with_question": true,
+    "question_score_max": 1.0,
+    "n_speakers": 1,
+    "dominant_share": 1.0,
+    "speech_rate_rel": 0.57
+   },
+   "in_intro": false,
+   "intro_kind": null,
+   "intro_id": null,
+   "text": "G1: ఆ నేను చెప్తానులే. ఊ నువ్వు కూడా ఏంటి?",
+   "est_tokens": 27
+  },
+  {
+   "id": 11,
+   "words": [
+    241,
+    262
+   ],
+   "start": 206.14,
+   "end": 216.82,
+   "duration": 10.68,
+   "kind": "exchange",
+   "speaker": "speaker_0",
+   "role": "host",
+   "speakers": {
+    "speaker_0": 0.681,
+    "speaker_1": 0.319
+   },
+   "turn_ids": [
+    26,
+    27,
+    28
+   ],
+   "boundary_before": 2.0,
+   "backchannel_words": [],
+   "qa_question_of": [
+    4
+   ],
+   "qa_answer_of": [
+    3,
+    4
+   ],
+   "signals": {
+    "duration": 10.68,
+    "n_words": 22,
+    "n_backchannels": 0,
+    "wps": 2.06,
+    "n_pauses": 1,
+    "pause_max": 1.26,
+    "pause_frac": 0.118,
+    "laughter": 0,
+    "laughter_times": [],
+    "laugh_after": false,
+    "censored": false,
+    "censored_s": 0,
+    "events": [],
+    "logprob_mean": -0.051,
+    "logprob_min": -0.275,
+    "low_conf_frac": 0.0,
+    "latin_frac": 0.182,
+    "question": true,
+    "ends_with_question": false,
+    "question_score_max": 1.0,
+    "n_speakers": 2,
+    "dominant_share": 0.681,
+    "speech_rate_rel": 1.097
+   },
+   "in_intro": false,
+   "intro_kind": null,
+   "intro_id": null,
+   "text": "H: దాంతో ఏంటే సరే అంటే అయిపోద్దిగా. అదేమన్నా hostel fees కడుతుందా? light లే | G1: ఊ సరేలే నేను చదువుకోవాలి. అసలే రేపు classes ఉన్నాయి. | H: ఆ నువ్వు తిన్నావానే",
+   "est_tokens": 85
+  },
+  {
+   "id": 12,
+   "words": [
+    263,
+    294
+   ],
+   "start": 216.94,
+   "end": 232.1,
+   "duration": 15.16,
+   "kind": "monologue",
+   "speaker": "speaker_1",
+   "role": "guest",
+   "speakers": {
+    "speaker_1": 1.0
+   },
+   "turn_ids": [
+    29
+   ],
+   "boundary_before": 2.0,
+   "backchannel_words": [
+    [
+     273,
+     275
+    ],
+    [
+     283,
+     285
+    ]
+   ],
+   "qa_question_of": [],
+   "qa_answer_of": [
+    4
+   ],
+   "signals": {
+    "duration": 15.16,
+    "n_words": 26,
+    "n_backchannels": 2,
+    "wps": 1.715,
+    "n_pauses": 4,
+    "pause_max": 2.68,
+    "pause_frac": 0.445,
+    "laughter": 0,
+    "laughter_times": [],
+    "laugh_after": false,
+    "censored": false,
+    "censored_s": 0,
+    "events": [],
+    "logprob_mean": -0.129,
+    "logprob_min": -1.466,
+    "low_conf_frac": 0.077,
+    "latin_frac": 0.115,
+    "question": false,
+    "ends_with_question": false,
+    "question_score_max": 0.0,
+    "n_speakers": 1,
+    "dominant_share": 1.0,
+    "speech_rate_rel": 0.913
+   },
+   "in_intro": false,
+   "intro_kind": null,
+   "intro_id": null,
+   "text": "G1: ఊ నేను already తినేసి వచ్చా. నువ్వు నాకేమి ఇయ్యాల్సిన అవసరం లేదులే [H: అలా కాదు ఏ] ఊ నాకు ఎక్కడ share చేయాలనే కదా అడిగింది [H: అంటే అది ఆ] సర్లే అంత explanation ఇవ్వాల్సిన అవసరం లేదు. నువ్వు కా ని",
+   "est_tokens": 108
+  },
+  {
+   "id": 13,
+   "words": [
+    295,
+    296
+   ],
+   "start": 232.1,
+   "end": 254.46,
+   "duration": 22.36,
+   "kind": "monologue",
+   "speaker": "speaker_0",
+   "role": "host",
+   "speakers": {
+    "speaker_0": 1.0
+   },
+   "turn_ids": [
+    30
+   ],
+   "boundary_before": 2.0,
+   "backchannel_words": [],
+   "qa_question_of": [],
+   "qa_answer_of": [],
+   "signals": {
+    "duration": 22.36,
+    "n_words": 2,
+    "n_backchannels": 0,
+    "wps": 0.089,
+    "n_pauses": 1,
+    "pause_max": 22.32,
+    "pause_frac": 0.998,
+    "laughter": 0,
+    "laughter_times": [],
+    "laugh_after": false,
+    "censored": false,
+    "censored_s": 0,
+    "events": [
+     {
+      "kind": "other",
+      "text": "[వెనకశబ్దం]",
+      "start": 232.44,
+      "end": 254.32
+     },
+     {
+      "kind": "music",
+      "text": "[పాట]",
+      "start": 254.34,
+      "end": 254.42
+     }
+    ],
+    "logprob_mean": -0.223,
+    "logprob_min": -0.373,
+    "low_conf_frac": 0.0,
+    "latin_frac": 0.0,
+    "question": false,
+    "ends_with_question": false,
+    "question_score_max": 0.0,
+    "n_speakers": 1,
+    "dominant_share": 1.0,
+    "speech_rate_rel": 0.047
+   },
+   "in_intro": false,
+   "intro_kind": null,
+   "intro_id": null,
+   "text": "H: ఊ (music) ఉమ్",
+   "est_tokens": 10
+  },
+  {
+   "id": 14,
+   "words": [
+    297,
+    328
+   ],
+   "start": 254.48,
+   "end": 265.72,
+   "duration": 11.24,
+   "kind": "exchange",
+   "speaker": "speaker_1",
+   "role": "guest",
+   "speakers": {
+    "speaker_1": 0.503,
+    "speaker_0": 0.497
+   },
+   "turn_ids": [
+    31,
+    32,
+    33,
+    34
+   ],
+   "boundary_before": 2.0,
+   "backchannel_words": [],
+   "qa_question_of": [
+    5,
+    6
+   ],
+   "qa_answer_of": [
+    5,
+    6
+   ],
+   "signals": {
+    "duration": 11.24,
+    "n_words": 32,
+    "n_backchannels": 0,
+    "wps": 2.847,
+    "n_pauses": 0,
+    "pause_max": 0.2,
+    "pause_frac": 0.0,
+    "laughter": 0,
+    "laughter_times": [],
+    "laugh_after": false,
+    "censored": false,
+    "censored_s": 0,
+    "events": [],
+    "logprob_mean": -0.041,
+    "logprob_min": -0.378,
+    "low_conf_frac": 0.0,
+    "latin_frac": 0.125,
+    "question": true,
+    "ends_with_question": false,
+    "question_score_max": 1.0,
+    "n_speakers": 2,
+    "dominant_share": 0.503,
+    "speech_rate_rel": 1.516
+   },
+   "in_intro": false,
+   "intro_kind": null,
+   "intro_id": null,
+   "text": "G1: నువ్వేమైనా పెద్ద officer అయిపోతావా? మూసుకొని నాతో పాటు పనికి రా | H: ఎంతమంది రాస్తే నాకీ rank వచ్చిందో తెలుసా | G1: నాకవన్నీ అవసరం లేదు. నేను లక్షలు కట్టేసి చదివించలేను | H: నువ్వేం లక్షలు లక్షలు కట్టాల్సిన అవసరం లేదు just coaching కడితే చాలు",
+   "est_tokens": 137
+  },
+  {
+   "id": 15,
+   "words": [
+    329,
+    345
+   ],
+   "start": 266.12,
+   "end": 271.94,
+   "duration": 5.82,
+   "kind": "exchange",
+   "speaker": "speaker_0",
+   "role": "host",
+   "speakers": {
+    "speaker_0": 0.627,
+    "speaker_1": 0.373
+   },
+   "turn_ids": [
+    35,
+    36
+   ],
+   "boundary_before": 2.0,
+   "backchannel_words": [],
+   "qa_question_of": [
+    7,
+    8
+   ],
+   "qa_answer_of": [
+    6,
+    7
+   ],
+   "signals": {
+    "duration": 5.82,
+    "n_words": 17,
+    "n_backchannels": 0,
+    "wps": 2.921,
+    "n_pauses": 0,
+    "pause_max": 0.3,
+    "pause_frac": 0.0,
+    "laughter": 0,
+    "laughter_times": [],
+    "laugh_after": false,
+    "censored": false,
+    "censored_s": 0,
+    "events": [
+     {
+      "kind": "other",
+      "text": "[వెనకశబ్దం]",
+      "start": 271.94,
+      "end": 281.9
+     }
+    ],
+    "logprob_mean": -0.089,
+    "logprob_min": -0.814,
+    "low_conf_frac": 0.059,
+    "latin_frac": 0.0,
+    "question": true,
+    "ends_with_question": false,
+    "question_score_max": 0.8,
+    "n_speakers": 2,
+    "dominant_share": 0.627,
+    "speech_rate_rel": 1.556
+   },
+   "in_intro": false,
+   "intro_kind": null,
+   "intro_id": null,
+   "text": "G1: అది కూడా నేను కట్టనే ఏం చేస్తావో చేసుకో | H: సరే నేనే ఏదో ఒకటి చేసుకుని కట్టుకుంటా. ఏదో ఒకరోజు నువ్వే నమ్ముతావ్.",
+   "est_tokens": 70
+  },
+  {
+   "id": 16,
+   "words": [
+    346,
+    355
+   ],
+   "start": 282.0,
+   "end": 289.72,
+   "duration": 7.72,
+   "kind": "exchange",
+   "speaker": "speaker_1",
+   "role": "guest",
+   "speakers": {
+    "speaker_1": 0.916,
+    "speaker_0": 0.084
+   },
+   "turn_ids": [
+    37,
+    38
+   ],
+   "boundary_before": 2.0,
+   "backchannel_words": [],
+   "qa_question_of": [
+    9
+   ],
+   "qa_answer_of": [
+    8
+   ],
+   "signals": {
+    "duration": 7.72,
+    "n_words": 10,
+    "n_backchannels": 0,
+    "wps": 1.295,
+    "n_pauses": 2,
+    "pause_max": 3.4,
+    "pause_frac": 0.601,
+    "laughter": 0,
+    "laughter_times": [],
+    "laugh_after": false,
+    "censored": false,
+    "censored_s": 0,
+    "events": [],
+    "logprob_mean": -0.046,
+    "logprob_min": -0.204,
+    "low_conf_frac": 0.0,
+    "latin_frac": 0.2,
+    "question": false,
+    "ends_with_question": false,
+    "question_score_max": 0.0,
+    "n_speakers": 2,
+    "dominant_share": 0.916,
+    "speech_rate_rel": 0.69
+   },
+   "in_intro": false,
+   "intro_kind": null,
+   "intro_id": null,
+   "text": "G1: ఓయ్ ఏంటి madam ఒక్కటే కూర్చొని అంతలా feel అవుతున్నారు | H: ఊ ఉమ్",
+   "est_tokens": 38
+  },
+  {
+   "id": 17,
+   "words": [
+    356,
+    399
+   ],
+   "start": 290.98,
+   "end": 314.56,
+   "duration": 23.58,
+   "kind": "exchange",
+   "speaker": "speaker_1",
+   "role": "guest",
+   "speakers": {
+    "speaker_1": 0.823,
+    "speaker_0": 0.177
+   },
+   "turn_ids": [
+    39,
+    40,
+    41,
+    42
+   ],
+   "boundary_before": 2.0,
+   "backchannel_words": [
+    [
+     366,
+     367
+    ]
+   ],
+   "qa_question_of": [],
+   "qa_answer_of": [
+    8,
+    9
+   ],
+   "signals": {
+    "duration": 23.58,
+    "n_words": 42,
+    "n_backchannels": 1,
+    "wps": 1.781,
+    "n_pauses": 4,
+    "pause_max": 2.88,
+    "pause_frac": 0.29,
+    "laughter": 0,
+    "laughter_times": [],
+    "laugh_after": false,
+    "censored": false,
+    "censored_s": 0,
+    "events": [
+     {
+      "kind": "other",
+      "text": "[వెనకశబ్దం]",
+      "start": 303.52,
+      "end": 305.16
+     }
+    ],
+    "logprob_mean": -0.061,
+    "logprob_min": -0.485,
+    "low_conf_frac": 0.0,
+    "latin_frac": 0.095,
+    "question": true,
+    "ends_with_question": false,
+    "question_score_max": 1.0,
+    "n_speakers": 2,
+    "dominant_share": 0.823,
+    "speech_rate_rel": 0.949
+   },
+   "in_intro": false,
+   "intro_kind": null,
+   "intro_id": null,
+   "text": "G1: జయ్ ఏమన్నా అన్నాడా? | H: ఆ అదేం లేదే | G1: మరి ఎందుకే అంతలా బాధపడుతున్నావ్ [H: ఏదో గుర్తొచ్చి] ఛ్ ఖచ్చితంగా ఆదనా ఏదో అని ఉంటుంది. అందుకే నువ్వు ఇంతలా feel అవుతున్నావ్. నువ్వు silent గా ఉంటున్నావ్ అంటే అదే. దాని గురించి మనకు తెలిసిందే కదే. మళ్ళీ ఎందుకు feel అవ్వడం చెప్పు | H: అందరి life ఒకేలా ఉండదు కదా",
+   "est_tokens": 170
+  },
+  {
+   "id": 18,
+   "words": [
+    400,
+    413
+   ],
+   "start": 314.66,
+   "end": 322.68,
+   "duration": 8.02,
+   "kind": "monologue",
+   "speaker": "speaker_1",
+   "role": "guest",
+   "speakers": {
+    "speaker_1": 1.0
+   },
+   "turn_ids": [
+    43
+   ],
+   "boundary_before": 2.0,
+   "backchannel_words": [
+    [
+     411,
+     413
+    ]
+   ],
+   "qa_question_of": [],
+   "qa_answer_of": [
+    8,
+    9
+   ],
+   "signals": {
+    "duration": 8.02,
+    "n_words": 11,
+    "n_backchannels": 1,
+    "wps": 1.372,
+    "n_pauses": 1,
+    "pause_max": 0.7,
+    "pause_frac": 0.087,
+    "laughter": 0,
+    "laughter_times": [],
+    "laugh_after": false,
+    "censored": false,
+    "censored_s": 0,
+    "events": [],
+    "logprob_mean": -0.037,
+    "logprob_min": -0.172,
+    "low_conf_frac": 0.0,
+    "latin_frac": 0.0,
+    "question": false,
+    "ends_with_question": false,
+    "question_score_max": 0.0,
+    "n_speakers": 1,
+    "dominant_share": 1.0,
+    "speech_rate_rel": 0.731
+   },
+   "in_intro": false,
+   "intro_kind": null,
+   "intro_id": null,
+   "text": "G1: దానమ్మ బాబులు బలిసినోళ్లే, అందుకే దానికి అంత బలుపు. దానికి మనమేం చేస్తాం చెప్పు [H: అది కాదు మీనాక్షి]",
+   "est_tokens": 65
+  },
+  {
+   "id": 19,
+   "words": [
+    414,
+    433
+   ],
+   "start": 323.16,
+   "end": 331.72,
+   "duration": 8.56,
+   "kind": "monologue",
+   "speaker": "speaker_1",
+   "role": "guest",
+   "speakers": {
+    "speaker_1": 1.0
+   },
+   "turn_ids": [
+    43
+   ],
+   "boundary_before": 1.995,
+   "backchannel_words": [],
+   "qa_question_of": [],
+   "qa_answer_of": [
+    8,
+    9
+   ],
+   "signals": {
+    "duration": 8.56,
+    "n_words": 20,
+    "n_backchannels": 0,
+    "wps": 2.336,
+    "n_pauses": 1,
+    "pause_max": 0.68,
+    "pause_frac": 0.079,
+    "laughter": 0,
+    "laughter_times": [],
+    "laugh_after": false,
+    "censored": false,
+    "censored_s": 0,
+    "events": [],
+    "logprob_mean": -0.04,
+    "logprob_min": -0.349,
+    "low_conf_frac": 0.0,
+    "latin_frac": 0.15,
+    "question": false,
+    "ends_with_question": false,
+    "question_score_max": 0.4,
+    "n_speakers": 1,
+    "dominant_share": 1.0,
+    "speech_rate_rel": 1.244
+   },
+   "in_intro": false,
+   "intro_kind": null,
+   "intro_id": null,
+   "text": "G1: ఏది కాదు. నాకంటే పెద్ద problem ఉందా నీ life లో, లేదు కదా. ఎవరో ఏదో అన్నారని feel అవుతూ కూర్చుంటే నేను ఇక్కడిదాకా వచ్చేదాన్నా.",
+   "est_tokens": 73
+  },
+  {
+   "id": 20,
+   "words": [
+    434,
+    453
+   ],
+   "start": 334.08,
+   "end": 347.52,
+   "duration": 13.44,
+   "kind": "monologue",
+   "speaker": "speaker_1",
+   "role": "guest",
+   "speakers": {
+    "speaker_1": 1.0
+   },
+   "turn_ids": [
+    43
+   ],
+   "boundary_before": 2.042,
+   "backchannel_words": [
+    [
+     449,
+     449
+    ]
+   ],
+   "qa_question_of": [],
+   "qa_answer_of": [
+    8,
+    9
+   ],
+   "signals": {
+    "duration": 13.44,
+    "n_words": 19,
+    "n_backchannels": 1,
+    "wps": 1.414,
+    "n_pauses": 3,
+    "pause_max": 4.4,
+    "pause_frac": 0.546,
+    "laughter": 0,
+    "laughter_times": [],
+    "laugh_after": false,
+    "censored": false,
+    "censored_s": 0,
+    "events": [
+     {
+      "kind": "other",
+      "text": "[వెనకశబ్దం]",
+      "start": 337.62,
+      "end": 339.72
+     }
+    ],
+    "logprob_mean": -0.157,
+    "logprob_min": -0.694,
+    "low_conf_frac": 0.053,
+    "latin_frac": 0.053,
+    "question": false,
+    "ends_with_question": false,
+    "question_score_max": 0.0,
+    "n_speakers": 1,
+    "dominant_share": 1.0,
+    "speech_rate_rel": 0.753
+   },
+   "in_intro": false,
+   "intro_kind": null,
+   "intro_id": null,
+   "text": "G1: సో వదిలేయ్. దాని గురించి feel అయితే మనకేం వస్తాయి చెప్పు. దానికే ఏదో ఒకరోజు తెలిసి వస్తుంది లేవే. ఓకే నా పదా వెళ్దాం",
+   "est_tokens": 72
+  },
+  {
+   "id": 21,
+   "words": [
+    454,
+    461
+   ],
+   "start": 347.86,
+   "end": 361.02,
+   "duration": 13.16,
+   "kind": "monologue",
+   "speaker": "speaker_0",
+   "role": "host",
+   "speakers": {
+    "speaker_0": 1.0
+   },
+   "turn_ids": [
+    44
+   ],
+   "boundary_before": 2.0,
+   "backchannel_words": [],
+   "qa_question_of": [
+    10
+   ],
+   "qa_answer_of": [],
+   "signals": {
+    "duration": 13.16,
+    "n_words": 8,
+    "n_backchannels": 0,
+    "wps": 0.608,
+    "n_pauses": 2,
+    "pause_max": 6.5,
+    "pause_frac": 0.789,
+    "laughter": 0,
+    "laughter_times": [],
+    "laugh_after": false,
+    "censored": false,
+    "censored_s": 0,
+    "events": [
+     {
+      "kind": "other",
+      "text": "[వెనకశబ్దం]",
+      "start": 353.28,
+      "end": 359.46
+     }
+    ],
+    "logprob_mean": -0.144,
+    "logprob_min": -0.55,
+    "low_conf_frac": 0.0,
+    "latin_frac": 0.125,
+    "question": true,
+    "ends_with_question": true,
+    "question_score_max": 0.65,
+    "n_speakers": 1,
+    "dominant_share": 1.0,
+    "speech_rate_rel": 0.324
+   },
+   "in_intro": false,
+   "intro_kind": null,
+   "intro_id": null,
+   "text": "H: ఊ అబ్బా purse మర్చిపోయినా చ. ఏంటే చెప్పావా దానికి",
+   "est_tokens": 32
+  },
+  {
+   "id": 22,
+   "words": [
+    462,
+    503
+   ],
+   "start": 361.776,
+   "end": 386.656,
+   "duration": 24.88,
+   "kind": "monologue",
+   "speaker": "speaker_1",
+   "role": "guest",
+   "speakers": {
+    "speaker_1": 1.0
+   },
+   "turn_ids": [
+    45
+   ],
+   "boundary_before": 2.0,
+   "backchannel_words": [],
+   "qa_question_of": [],
+   "qa_answer_of": [
+    10
+   ],
+   "signals": {
+    "duration": 24.88,
+    "n_words": 42,
+    "n_backchannels": 0,
+    "wps": 1.688,
+    "n_pauses": 3,
+    "pause_max": 4.86,
+    "pause_frac": 0.248,
+    "laughter": 0,
+    "laughter_times": [],
+    "laugh_after": false,
+    "censored": false,
+    "censored_s": 0,
+    "events": [
+     {
+      "kind": "other",
+      "text": "[ఫోన్ రింగింగ్]",
+      "start": 380.48,
+      "end": 385.18
+     },
+     {
+      "kind": "other",
+      "text": "[హమ్మింగ్]",
+      "start": 386.66,
+      "end": 394.46
+     }
+    ],
+    "logprob_mean": -0.064,
+    "logprob_min": -0.646,
+    "low_conf_frac": 0.0,
+    "latin_frac": 0.214,
+    "question": false,
+    "ends_with_question": false,
+    "question_score_max": 0.4,
+    "n_speakers": 1,
+    "dominant_share": 1.0,
+    "speech_rate_rel": 0.899
+   },
+   "in_intro": false,
+   "intro_kind": null,
+   "intro_id": null,
+   "text": "G1: ఆ చెప్పేశానులే, చేసేదేమో delivery పని పొగరు మాత్రం బాగా ఎక్కువ అలాంటి వాళ్ళు అలానే ఉంటారు తనా. మనం చూసి చూడనట్టు వదిలేయాలి. low class mentality. వాళ్ళతో argue చేశావనుకో, నీ range తగ్గిపోతుంది. అదే నిజమేలే. ఊరికే ఇలాంటి వాళ్ళతో argue చేస్తే నా range తగ్గిపోతుంది. ఉమ్ correct వస్తున్నాను రా ఉమ్",
+   "est_tokens": 159
+  },
+  {
+   "id": 23,
+   "words": [
+    504,
+    520
+   ],
+   "start": 394.576,
+   "end": 402.076,
+   "duration": 7.5,
+   "kind": "monologue",
+   "speaker": "speaker_1",
+   "role": "guest",
+   "speakers": {
+    "speaker_1": 1.0
+   },
+   "turn_ids": [
+    45
+   ],
+   "boundary_before": 2.0,
+   "backchannel_words": [],
+   "qa_question_of": [],
+   "qa_answer_of": [
+    10
+   ],
+   "signals": {
+    "duration": 7.5,
+    "n_words": 17,
+    "n_backchannels": 0,
+    "wps": 2.267,
+    "n_pauses": 1,
+    "pause_max": 0.74,
+    "pause_frac": 0.099,
+    "laughter": 0,
+    "laughter_times": [],
+    "laugh_after": false,
+    "censored": false,
+    "censored_s": 0,
+    "events": [
+     {
+      "kind": "other",
+      "text": "[ఫోన్ రింగింగ్]",
+      "start": 402.08,
+      "end": 408.32
+     }
+    ],
+    "logprob_mean": -0.03,
+    "logprob_min": -0.11,
+    "low_conf_frac": 0.0,
+    "latin_frac": 0.0,
+    "question": false,
+    "ends_with_question": false,
+    "question_score_max": 0.0,
+    "n_speakers": 1,
+    "dominant_share": 1.0,
+    "speech_rate_rel": 1.207
+   },
+   "in_intro": false,
+   "intro_kind": null,
+   "intro_id": null,
+   "text": "G1: ఎక్తా ఉమ్ నువ్వైనా చెప్పొచ్చు కదా తనకి. తప్పు అలా మాట్లాడకూడదు అని మీరు వచ్చే ముందు వరకు అదే చెప్తున్నా తనకి",
+   "est_tokens": 70
+  },
+  {
+   "id": 24,
+   "words": [
+    521,
+    586
+   ],
+   "start": 408.396,
+   "end": 442.436,
+   "duration": 34.04,
+   "kind": "monologue",
+   "speaker": "speaker_1",
+   "role": "guest",
+   "speakers": {
+    "speaker_1": 1.0
+   },
+   "turn_ids": [
+    45
+   ],
+   "boundary_before": 2.0,
+   "backchannel_words": [],
+   "qa_question_of": [],
+   "qa_answer_of": [
+    10
+   ],
+   "signals": {
+    "duration": 34.04,
+    "n_words": 66,
+    "n_backchannels": 0,
+    "wps": 1.939,
+    "n_pauses": 9,
+    "pause_max": 0.96,
+    "pause_frac": 0.207,
+    "laughter": 1,
+    "laughter_times": [
+     440.56
+    ],
+    "laugh_after": true,
+    "censored": false,
+    "censored_s": 0,
+    "events": [],
+    "logprob_mean": -0.041,
+    "logprob_min": -0.387,
+    "low_conf_frac": 0.0,
+    "latin_frac": 0.242,
+    "question": true,
+    "ends_with_question": false,
+    "question_score_max": 1.0,
+    "n_speakers": 1,
+    "dominant_share": 1.0,
+    "speech_rate_rel": 1.033
+   },
+   "in_intro": false,
+   "intro_kind": null,
+   "intro_id": null,
+   "text": "G1: ఉమ్. హా చెప్పు తిన్నావా? తిన్నా. నువ్వు? హా తిన్నాను ఈ week అయినా వస్తున్నావా ఇక్కడికి ఈ week వస్తున్నా ప్రతి week ఇట్లానే చెప్తున్నావ్. కానీ ఒక్కసారి కూడా రావట్లేదు ఈసారి miss అవును సరే అయితే సరే జాగ్రత్త రా. మళ్ళీ call చేస్తాను ఈ two minutes మాట్లాడడానికి call చేయాలా? friends room కి వచ్చాను రా ఉమ్ సరేలే సరే bye Enjoy. Bye. హ్మ్ ఎవరే? నాకు ఎవరు చేస్తారే మీకు తెలియదా? ఉమ్ long distance romance ఏయ్ (laugh) అంత చెప్తున్నా (laugh)",
+   "est_tokens": 224
+  },
+  {
+   "id": 25,
+   "words": [
+    587,
+    604
+   ],
+   "start": 459.876,
+   "end": 476.576,
+   "duration": 16.7,
+   "kind": "monologue",
+   "speaker": "speaker_1",
+   "role": "guest",
+   "speakers": {
+    "speaker_1": 1.0
+   },
+   "turn_ids": [
+    45
+   ],
+   "boundary_before": 2.0,
+   "backchannel_words": [],
+   "qa_question_of": [],
+   "qa_answer_of": [
+    10
+   ],
+   "signals": {
+    "duration": 16.7,
+    "n_words": 18,
+    "n_backchannels": 0,
+    "wps": 1.078,
+    "n_pauses": 5,
+    "pause_max": 2.96,
+    "pause_frac": 0.546,
+    "laughter": 0,
+    "laughter_times": [],
+    "laugh_after": false,
+    "censored": false,
+    "censored_s": 0,
+    "events": [],
+    "logprob_mean": -0.174,
+    "logprob_min": -0.908,
+    "low_conf_frac": 0.111,
+    "latin_frac": 0.167,
+    "question": false,
+    "ends_with_question": false,
+    "question_score_max": 0.4,
+    "n_speakers": 1,
+    "dominant_share": 1.0,
+    "speech_rate_rel": 0.574
+   },
+   "in_intro": false,
+   "intro_kind": null,
+   "intro_id": null,
+   "text": "G1: Hello కిందున్న answer పో అబ్బా వస్తున్నా ఉండ్రా ఉమ్ ఉమ్ ఎక్కడుందిది. ఉమ్ ఏంటే వెతుకుతున్నావు keys ఆ హా ఉమ్ ఉమ్",
+   "est_tokens": 65
+  },
+  {
+   "id": 26,
+   "words": [
+    605,
+    659
+   ],
+   "start": 479.876,
+   "end": 506.896,
+   "duration": 27.02,
+   "kind": "monologue",
+   "speaker": "speaker_1",
+   "role": "guest",
+   "speakers": {
+    "speaker_1": 1.0
+   },
+   "turn_ids": [
+    45
+   ],
+   "boundary_before": 1.737,
+   "backchannel_words": [],
+   "qa_question_of": [],
+   "qa_answer_of": [
+    10
+   ],
+   "signals": {
+    "duration": 27.02,
+    "n_words": 55,
+    "n_backchannels": 0,
+    "wps": 2.036,
+    "n_pauses": 7,
+    "pause_max": 1.76,
+    "pause_frac": 0.26,
+    "laughter": 0,
+    "laughter_times": [],
+    "laugh_after": false,
+    "censored": false,
+    "censored_s": 0,
+    "events": [
+     {
+      "kind": "other",
+      "text": "[గాలి శబ్దం]",
+      "start": 506.9,
+      "end": 517.04
+     }
+    ],
+    "logprob_mean": -0.124,
+    "logprob_min": -0.673,
+    "low_conf_frac": 0.0,
+    "latin_frac": 0.182,
+    "question": false,
+    "ends_with_question": false,
+    "question_score_max": 0.45,
+    "n_speakers": 1,
+    "dominant_share": 1.0,
+    "speech_rate_rel": 1.084
+   },
+   "in_intro": false,
+   "intro_kind": null,
+   "intro_id": null,
+   "text": "G1: ఉమ్ Thanks వే. ఏంటో ఏ వస్తువు అవసరమైనప్పుడు పక్కనున్న కనిపిస్తావుదు. ఛా. సరే నేను వెళ్తాను అక్షర నన్ను college దగ్గర drop చేస్తావా ఆ కింద జై wait చేస్తున్నాడే. Afternoon classes కూడా ఉన్నాయి. ఆ ఓనా సరే పర్లేదులే. నేను జై కి ఏదో ఒకటి చెప్తా. పదా వెళ్దాం హా వద్దులే వే. నేను ఎక్తతో వెళ్ళిపోతా నువ్వు వెళ్ళు sure ఆ హా sure సరే bye Bye",
+   "est_tokens": 179
+  },
+  {
+   "id": 27,
+   "words": [
+    660,
+    695
+   ],
+   "start": 517.096,
+   "end": 535.496,
+   "duration": 18.4,
+   "kind": "monologue",
+   "speaker": "speaker_1",
+   "role": "guest",
+   "speakers": {
+    "speaker_1": 1.0
+   },
+   "turn_ids": [
+    45
+   ],
+   "boundary_before": 2.0,
+   "backchannel_words": [],
+   "qa_question_of": [],
+   "qa_answer_of": [
+    10
+   ],
+   "signals": {
+    "duration": 18.4,
+    "n_words": 36,
+    "n_backchannels": 0,
+    "wps": 1.957,
+    "n_pauses": 4,
+    "pause_max": 1.2,
+    "pause_frac": 0.176,
+    "laughter": 0,
+    "laughter_times": [],
+    "laugh_after": false,
+    "censored": false,
+    "censored_s": 0,
+    "events": [],
+    "logprob_mean": -0.051,
+    "logprob_min": -0.416,
+    "low_conf_frac": 0.0,
+    "latin_frac": 0.167,
+    "question": false,
+    "ends_with_question": false,
+    "question_score_max": 0.0,
+    "n_speakers": 1,
+    "dominant_share": 1.0,
+    "speech_rate_rel": 1.042
+   },
+   "in_intro": false,
+   "intro_kind": null,
+   "intro_id": null,
+   "text": "G1: ఉమ్ ఎక్తా ఉమ్ ఈరోజు నేను నీతోనే వస్తా అదేంటి అక్షర drop చేయలేదా దానికేదో work ఉందంట వెళ్ళిపోయింది అరే మా friend వస్తానన్నది వే ఓ పర్లేదులే. నేను Rapido లో వెళ్ళిపోతా ఉమ్ ఒక్కరోజు drop చేస్తే చాలు daily అదే అలవాటు అయిపోతుంది. ఉమ్",
+   "est_tokens": 130
+  },
+  {
+   "id": 28,
+   "words": [
+    696,
+    738
+   ],
+   "start": 540.656,
+   "end": 558.356,
+   "duration": 17.7,
+   "kind": "monologue",
+   "speaker": "speaker_1",
+   "role": "guest",
+   "speakers": {
+    "speaker_1": 1.0
+   },
+   "turn_ids": [
+    45
+   ],
+   "boundary_before": 2.0,
+   "backchannel_words": [],
+   "qa_question_of": [],
+   "qa_answer_of": [
+    10
+   ],
+   "signals": {
+    "duration": 17.7,
+    "n_words": 43,
+    "n_backchannels": 0,
+    "wps": 2.429,
+    "n_pauses": 3,
+    "pause_max": 0.96,
+    "pause_frac": 0.139,
+    "laughter": 0,
+    "laughter_times": [],
+    "laugh_after": false,
+    "censored": false,
+    "censored_s": 0,
+    "events": [],
+    "logprob_mean": -0.053,
+    "logprob_min": -0.351,
+    "low_conf_frac": 0.0,
+    "latin_frac": 0.233,
+    "question": false,
+    "ends_with_question": false,
+    "question_score_max": 0.45,
+    "n_speakers": 1,
+    "dominant_share": 1.0,
+    "speech_rate_rel": 1.294
+   },
+   "in_intro": false,
+   "intro_kind": null,
+   "intro_id": null,
+   "text": "G1: ఏంటి ఇవ్వాళ college కి వెళ్ళలేదా వెళ్తా Rapido book చేసుకుంటున్నా సరే రా drop చేస్తా car లో ఆ పర్లేదు నేను Rapido లో వెళ్ళిపోతా నీ ఇష్టం. ఇది ఒక్కసారి drop చేస్తేనే ఊరంతా చెప్పుకొని తిరుగుతుంది ఏదో పెద్ద help చేసినట్టు. దీంతో వెళ్ళడం కంటే Rapido లో వెళ్లడం వంద రెట్లు best.",
+   "est_tokens": 149
+  },
+  {
+   "id": 29,
+   "words": [
+    739,
+    800
+   ],
+   "start": 562.516,
+   "end": 592.716,
+   "duration": 30.2,
+   "kind": "monologue",
+   "speaker": "speaker_1",
+   "role": "guest",
+   "speakers": {
+    "speaker_1": 1.0
+   },
+   "turn_ids": [
+    45
+   ],
+   "boundary_before": 2.6,
+   "backchannel_words": [],
+   "qa_question_of": [],
+   "qa_answer_of": [
+    10
+   ],
+   "signals": {
+    "duration": 30.2,
+    "n_words": 62,
+    "n_backchannels": 0,
+    "wps": 2.053,
+    "n_pauses": 4,
+    "pause_max": 4.64,
+    "pause_frac": 0.234,
+    "laughter": 0,
+    "laughter_times": [],
+    "laugh_after": false,
+    "censored": false,
+    "censored_s": 0,
+    "events": [],
+    "logprob_mean": -0.07,
+    "logprob_min": -1.045,
+    "low_conf_frac": 0.032,
+    "latin_frac": 0.226,
+    "question": true,
+    "ends_with_question": false,
+    "question_score_max": 0.6,
+    "n_speakers": 1,
+    "dominant_share": 1.0,
+    "speech_rate_rel": 1.093
+   },
+   "in_intro": false,
+   "intro_kind": null,
+   "intro_id": null,
+   "text": "G1: ఛీ వీడేంటి మళ్ళీ వచ్చాడు Rapido వాడు త్వరగా రావడం లేదేంటి మీనాక్షి ఏంటి అదే నేను చెప్పిన దాని గురించి ఏం ఆలోచించవు ఏం ఆలోచించాలి Instagram లో కూడా message చేశాను block చేసినట్టున్నావ్ అసలు నా insta ID ఎవరు చెప్పారురా నీకు అరే ఏంటి మీనాక్షి నేను insta ID కూడా కనుక్కోలేనా హ్మ్ block చేయకు ఏం చేయాలి At least నాతో friend గా అయినా మాట్లాడొచ్చు కదా నాకున్న friends చాలు. కొత్త friends అవసరం లేదు.",
+   "est_tokens": 210
+  },
+  {
+   "id": 30,
+   "words": [
+    801,
+    817
+   ],
+   "start": 594.476,
+   "end": 607.656,
+   "duration": 13.18,
+   "kind": "monologue",
+   "speaker": "speaker_1",
+   "role": "guest",
+   "speakers": {
+    "speaker_1": 1.0
+   },
+   "turn_ids": [
+    45
+   ],
+   "boundary_before": 1.526,
+   "backchannel_words": [],
+   "qa_question_of": [],
+   "qa_answer_of": [
+    10
+   ],
+   "signals": {
+    "duration": 13.18,
+    "n_words": 17,
+    "n_backchannels": 0,
+    "wps": 1.29,
+    "n_pauses": 4,
+    "pause_max": 3.56,
+    "pause_frac": 0.442,
+    "laughter": 0,
+    "laughter_times": [],
+    "laugh_after": false,
+    "censored": false,
+    "censored_s": 0,
+    "events": [
+     {
+      "kind": "other",
+      "text": "[ఆవలింత]",
+      "start": 595.26,
+      "end": 598.76
+     },
+     {
+      "kind": "other",
+      "text": "[ఫోన్ రింగింగ్]",
+      "start": 607.66,
+      "end": 612.3
+     }
+    ],
+    "logprob_mean": -0.055,
+    "logprob_min": -0.282,
+    "low_conf_frac": 0.0,
+    "latin_frac": 0.118,
+    "question": false,
+    "ends_with_question": false,
+    "question_score_max": 0.0,
+    "n_speakers": 1,
+    "dominant_share": 1.0,
+    "speech_rate_rel": 0.687
+   },
+   "in_intro": false,
+   "intro_kind": null,
+   "intro_id": null,
+   "text": "G1: ఉమ్ ఆ ఉమ్ ఇప్పుడే petrol అయిపోవాలా అబ్బా మీనాక్షిని ఎక్కించుకుంటే అదే petrol కొట్టించేది. ఉమ్ పర్లేదు వెనుకే ఎక్కించుకుంటా. ఆ",
+   "est_tokens": 76
+  },
+  {
+   "id": 31,
+   "words": [
+    818,
+    913
+   ],
+   "start": 612.356,
+   "end": 646.196,
+   "duration": 33.84,
+   "kind": "monologue",
+   "speaker": "speaker_1",
+   "role": "guest",
+   "speakers": {
+    "speaker_1": 1.0
+   },
+   "turn_ids": [
+    45
+   ],
+   "boundary_before": 1.5,
+   "backchannel_words": [],
+   "qa_question_of": [],
+   "qa_answer_of": [
+    10
+   ],
+   "signals": {
+    "duration": 33.84,
+    "n_words": 96,
+    "n_backchannels": 0,
+    "wps": 2.837,
+    "n_pauses": 3,
+    "pause_max": 1.52,
+    "pause_frac": 0.108,
+    "laughter": 1,
+    "laughter_times": [
+     626.96
+    ],
+    "laugh_after": false,
+    "censored": false,
+    "censored_s": 0,
+    "events": [],
+    "logprob_mean": -0.065,
+    "logprob_min": -1.08,
+    "low_conf_frac": 0.021,
+    "latin_frac": 0.208,
+    "question": false,
+    "ends_with_question": false,
+    "question_score_max": 0.4,
+    "n_speakers": 1,
+    "dominant_share": 1.0,
+    "speech_rate_rel": 1.511
+   },
+   "in_intro": false,
+   "intro_kind": null,
+   "intro_id": null,
+   "text": "G1: Hello వెళ్లిపోయావా లేదే ఇక్కడే Rapido కోసం wait చేస్తున్న హా cancel చేసేయ్ cancel చేసి. నేను వస్తాను మా friend కి వద్దన్నా. నీకు late అవుతుంది కదా తను ఎలాగో అలా వెళ్ళిపోతదిలే సరే తొందరగా రావవే please One minute వస్తున్నా. ఆ (laugh) Rapido ఎందుకు నేను drop చేస్తా. నా దగ్గర కూడా bike ఉంది అబ్బా నువ్వు నన్ను ఊరికే విసిగించకుండా ఇక్కడి నుండి వెళ్ళిపో please మీనాక్షి నన్ను ఒక friend గా అయినా ఆదరించొచ్చు కదా నేను నీ friend కావడం ఏంటిరా సరే college దగ్గర drop చేస్తాను Rapido వన్నే అనుకో. నాకు డబ్బులు కూడా ఇయ్యి మాకు. అంత harsh గా మాట్లాడకు మీనాక్షి మర్యాదగా ఇక్కడి నుండి వెళ్ళిపో నాకు చిరాకు తెప్పియ్యొద్దు చెప్తున్నా నేనేం చేశాను మీనాక్షి.",
+   "est_tokens": 342
+  },
+  {
+   "id": 32,
+   "words": [
+    914,
+    971
+   ],
+   "start": 648.336,
+   "end": 679.456,
+   "duration": 31.12,
+   "kind": "monologue",
+   "speaker": "speaker_1",
+   "role": "guest",
+   "speakers": {
+    "speaker_1": 1.0
+   },
+   "turn_ids": [
+    45
+   ],
+   "boundary_before": 1.726,
+   "backchannel_words": [],
+   "qa_question_of": [],
+   "qa_answer_of": [
+    10
+   ],
+   "signals": {
+    "duration": 31.12,
+    "n_words": 58,
+    "n_backchannels": 0,
+    "wps": 1.864,
+    "n_pauses": 11,
+    "pause_max": 2.48,
+    "pause_frac": 0.424,
+    "laughter": 0,
+    "laughter_times": [],
+    "laugh_after": false,
+    "censored": false,
+    "censored_s": 0,
+    "events": [
+     {
+      "kind": "other",
+      "text": "[బైక్ శబ్దం]",
+      "start": 679.46,
+      "end": 707.48
+     }
+    ],
+    "logprob_mean": -0.112,
+    "logprob_min": -1.126,
+    "low_conf_frac": 0.034,
+    "latin_frac": 0.086,
+    "question": false,
+    "ends_with_question": false,
+    "question_score_max": 0.45,
+    "n_speakers": 1,
+    "dominant_share": 1.0,
+    "speech_rate_rel": 0.993
+   },
+   "in_intro": false,
+   "intro_kind": null,
+   "intro_id": null,
+   "text": "G1: కనీసం insta లో అయినా block చే-- ఏయ్ ఎన్నిసార్లు చెప్పాలిరా సిగ్గుగా లేదా ఇంకోసారి కనిపించావు అనుకో మర్యాద ఉండదు. పో ఇక్కడి నుంచి. వెళ్ళు ఉమ్ పదవే ఆ అంత cool గా చెప్తే వింటాడా వాడు ఎన్నిసార్లు చెప్పినా వాడిని సావడం లేదే ఈసారి రా నీ వడి పని చెల్తా ఉమ్ ఇక్కడికి వచ్చేసరికి petrol అయిపోయిందే పర్లేదులే నేను పట్టేస్తా పదా ఆ సరే నువ్వు drive చేస్తావా ఉమ్ ఉమ్ ఎక్కే ఉమ్",
+   "est_tokens": 211
+  },
+  {
+   "id": 33,
+   "words": [
+    972,
+    1004
+   ],
+   "start": 707.936,
+   "end": 728.624,
+   "duration": 20.69,
+   "kind": "monologue",
+   "speaker": "speaker_1",
+   "role": "guest",
+   "speakers": {
+    "speaker_1": 1.0
+   },
+   "turn_ids": [
+    45
+   ],
+   "boundary_before": 2.0,
+   "backchannel_words": [
+    [
+     1003,
+     1004
+    ]
+   ],
+   "qa_question_of": [],
+   "qa_answer_of": [
+    10
+   ],
+   "signals": {
+    "duration": 20.69,
+    "n_words": 31,
+    "n_backchannels": 1,
+    "wps": 1.498,
+    "n_pauses": 6,
+    "pause_max": 2.6,
+    "pause_frac": 0.377,
+    "laughter": 1,
+    "laughter_times": [
+     724.76
+    ],
+    "laugh_after": false,
+    "censored": false,
+    "censored_s": 0,
+    "events": [],
+    "logprob_mean": -0.03,
+    "logprob_min": -0.267,
+    "low_conf_frac": 0.0,
+    "latin_frac": 0.161,
+    "question": false,
+    "ends_with_question": false,
+    "question_score_max": 0.4,
+    "n_speakers": 1,
+    "dominant_share": 1.0,
+    "speech_rate_rel": 0.798
+   },
+   "in_intro": false,
+   "intro_kind": null,
+   "intro_id": null,
+   "text": "G1: ఏయ్ phone silent లో పెట్టవే రేయ్ ఉండ్రా. రేయ్ ఏంట్రా ఇంత పెద్ద order వచ్చింది అవునా సరే నేను వెళ్తాలే అయితే నువ్వుండ్రా నేను వెళ్తాను మరి classes ఆ వెళ్తూ దారిలో వింటాలే ఉమ్ dedication (laugh) తప్పదు కదా [G2: సరే జాగ్రత్త]",
+   "est_tokens": 120
+  },
+  {
+   "id": 34,
+   "words": [
+    1005,
+    1018
+   ],
+   "start": 729.644,
+   "end": 737.724,
+   "duration": 8.08,
+   "kind": "monologue",
+   "speaker": "speaker_1",
+   "role": "guest",
+   "speakers": {
+    "speaker_1": 1.0
+   },
+   "turn_ids": [
+    45
+   ],
+   "boundary_before": 1.978,
+   "backchannel_words": [
+    [
+     1011,
+     1011
+    ],
+    [
+     1014,
+     1014
+    ]
+   ],
+   "qa_question_of": [],
+   "qa_answer_of": [
+    10
+   ],
+   "signals": {
+    "duration": 8.08,
+    "n_words": 12,
+    "n_backchannels": 2,
+    "wps": 1.485,
+    "n_pauses": 2,
+    "pause_max": 2.74,
+    "pause_frac": 0.651,
+    "laughter": 0,
+    "laughter_times": [],
+    "laugh_after": false,
+    "censored": false,
+    "censored_s": 0,
+    "events": [
+     {
+      "kind": "music",
+      "text": "[పాట]",
+      "start": 737.72,
+      "end": 788.8
+     }
+    ],
+    "logprob_mean": -0.083,
+    "logprob_min": -0.695,
+    "low_conf_frac": 0.083,
+    "latin_frac": 0.083,
+    "question": false,
+    "ends_with_question": false,
+    "question_score_max": 0.0,
+    "n_speakers": 1,
+    "dominant_share": 1.0,
+    "speech_rate_rel": 0.791
+   },
+   "in_intro": false,
+   "intro_kind": null,
+   "intro_id": null,
+   "text": "G1: ఆ సరే ఇది నీ దగ్గర పెట్టుకో ఓకే నా [G2: Bye] ఉమ్ సరే bye రా (music)",
+   "est_tokens": 37
+  },
+  {
+   "id": 35,
+   "words": [
+    1019,
+    1030
+   ],
+   "start": 788.844,
+   "end": 806.704,
+   "duration": 17.86,
+   "kind": "monologue",
+   "speaker": "speaker_1",
+   "role": "guest",
+   "speakers": {
+    "speaker_1": 1.0
+   },
+   "turn_ids": [
+    45
+   ],
+   "boundary_before": 4.4,
+   "backchannel_words": [],
+   "qa_question_of": [],
+   "qa_answer_of": [
+    10
+   ],
+   "signals": {
+    "duration": 17.86,
+    "n_words": 12,
+    "n_backchannels": 0,
+    "wps": 0.672,
+    "n_pauses": 2,
+    "pause_max": 11.2,
+    "pause_frac": 0.772,
+    "laughter": 0,
+    "laughter_times": [],
+    "laugh_after": false,
+    "censored": false,
+    "censored_s": 0,
+    "events": [
+     {
+      "kind": "other",
+      "text": "[నిట్టూర్పు]",
+      "start": 789.82,
+      "end": 800.98
+     },
+     {
+      "kind": "other",
+      "text": "[నిట్టూర్పు]",
+      "start": 802.62,
+      "end": 805.12
+     }
+    ],
+    "logprob_mean": -0.081,
+    "logprob_min": -0.414,
+    "low_conf_frac": 0.0,
+    "latin_frac": 0.167,
+    "question": true,
+    "ends_with_question": false,
+    "question_score_max": 0.6,
+    "n_speakers": 1,
+    "dominant_share": 1.0,
+    "speech_rate_rel": 0.358
+   },
+   "in_intro": false,
+   "intro_kind": null,
+   "intro_id": null,
+   "text": "G1: ఏంటి ఎత్తట్లేదు ఎన్ని సార్లు phone చేసి నేత్తారండి సర్లే direct గా వెళ్లి ఇచ్చేద్దాం.",
+   "est_tokens": 53
+  },
+  {
+   "id": 36,
+   "words": [
+    1031,
+    1045
+   ],
+   "start": 815.124,
+   "end": 821.244,
+   "duration": 6.12,
+   "kind": "monologue",
+   "speaker": "speaker_1",
+   "role": "guest",
+   "speakers": {
+    "speaker_1": 1.0
+   },
+   "turn_ids": [
+    45
+   ],
+   "boundary_before": 2.6,
+   "backchannel_words": [],
+   "qa_question_of": [],
+   "qa_answer_of": [
+    10
+   ],
+   "signals": {
+    "duration": 6.12,
+    "n_words": 15,
+    "n_backchannels": 0,
+    "wps": 2.451,
+    "n_pauses": 1,
+    "pause_max": 0.74,
+    "pause_frac": 0.121,
+    "laughter": 0,
+    "laughter_times": [],
+    "laugh_after": false,
+    "censored": false,
+    "censored_s": 0,
+    "events": [],
+    "logprob_mean": -0.058,
+    "logprob_min": -0.312,
+    "low_conf_frac": 0.0,
+    "latin_frac": 0.267,
+    "question": false,
+    "ends_with_question": false,
+    "question_score_max": 0.0,
+    "n_speakers": 1,
+    "dominant_share": 1.0,
+    "speech_rate_rel": 1.305
+   },
+   "in_intro": false,
+   "intro_kind": null,
+   "intro_id": null,
+   "text": "G1: ఉమ్ ఏంటి calling bell కూడా లేదు. ఉమ్ సర్లే banquet hall ఏ కదా లోపలి వెళ్లి ఇచ్చేద్దాం",
+   "est_tokens": 47
+  },
+  {
+   "id": 37,
+   "words": [
+    1046,
+    1054
+   ],
+   "start": 822.444,
+   "end": 831.024,
+   "duration": 8.58,
+   "kind": "exchange",
+   "speaker": "speaker_2",
+   "role": "guest",
+   "speakers": {
+    "speaker_2": 0.759,
+    "speaker_1": 0.241
+   },
+   "turn_ids": [
+    46,
+    47
+   ],
+   "boundary_before": 2.0,
+   "backchannel_words": [],
+   "qa_question_of": [
+    11
+   ],
+   "qa_answer_of": [
+    11
+   ],
+   "signals": {
+    "duration": 8.58,
+    "n_words": 9,
+    "n_backchannels": 0,
+    "wps": 1.049,
+    "n_pauses": 1,
+    "pause_max": 6.24,
+    "pause_frac": 0.727,
+    "laughter": 0,
+    "laughter_times": [],
+    "laugh_after": false,
+    "censored": false,
+    "censored_s": 0,
+    "events": [
+     {
+      "kind": "music",
+      "text": "[పాట]",
+      "start": 824.72,
+      "end": 830.44
+     }
+    ],
+    "logprob_mean": -0.223,
+    "logprob_min": -0.825,
+    "low_conf_frac": 0.111,
+    "latin_frac": 0.444,
+    "question": true,
+    "ends_with_question": false,
+    "question_score_max": 0.8,
+    "n_speakers": 2,
+    "dominant_share": 0.759,
+    "speech_rate_rel": 0.559
+   },
+   "in_intro": false,
+   "intro_kind": null,
+   "intro_id": null,
+   "text": "G2: Arrangements అన్ని అన్ని అయిపోయాయి sir ఎవరు | G1: ఆ (music) sir order",
+   "est_tokens": 33
+  },
+  {
+   "id": 38,
+   "words": [
+    1055,
+    1075
+   ],
+   "start": 831.624,
+   "end": 839.604,
+   "duration": 7.98,
+   "kind": "exchange",
+   "speaker": "speaker_1",
+   "role": "guest",
+   "speakers": {
+    "speaker_1": 0.737,
+    "speaker_2": 0.263
+   },
+   "turn_ids": [
+    48,
+    49
+   ],
+   "boundary_before": 2.0,
+   "backchannel_words": [],
+   "qa_question_of": [],
+   "qa_answer_of": [
+    11
+   ],
+   "signals": {
+    "duration": 7.98,
+    "n_words": 21,
+    "n_backchannels": 0,
+    "wps": 2.632,
+    "n_pauses": 1,
+    "pause_max": 0.84,
+    "pause_frac": 0.105,
+    "laughter": 0,
+    "laughter_times": [],
+    "laugh_after": false,
+    "censored": false,
+    "censored_s": 0,
+    "events": [],
+    "logprob_mean": -0.046,
+    "logprob_min": -0.539,
+    "low_conf_frac": 0.0,
+    "latin_frac": 0.333,
+    "question": false,
+    "ends_with_question": false,
+    "question_score_max": 0.0,
+    "n_speakers": 2,
+    "dominant_share": 0.737,
+    "speech_rate_rel": 1.402
+   },
+   "in_intro": false,
+   "intro_kind": null,
+   "intro_id": null,
+   "text": "G2: Call చేయాలి కదా direct గా వచ్చేస్తావెంటి | G1: అది చాలా సార్లు call చేశాను sir మీరు lift చేయలేదు. ఇక్కడ bell కూడా లేదని open చేశాను",
+   "est_tokens": 70
+  },
+  {
+   "id": 39,
+   "words": [
+    1076,
+    1126
+   ],
+   "start": 839.924,
+   "end": 856.464,
+   "duration": 16.54,
+   "kind": "exchange",
+   "speaker": "speaker_2",
+   "role": "guest",
+   "speakers": {
+    "speaker_2": 0.75,
+    "speaker_1": 0.25
+   },
+   "turn_ids": [
+    50,
+    51,
+    52,
+    53,
+    54
+   ],
+   "boundary_before": 2.0,
+   "backchannel_words": [],
+   "qa_question_of": [],
+   "qa_answer_of": [],
+   "signals": {
+    "duration": 16.54,
+    "n_words": 51,
+    "n_backchannels": 0,
+    "wps": 3.083,
+    "n_pauses": 1,
+    "pause_max": 0.8,
+    "pause_frac": 0.048,
+    "laughter": 0,
+    "laughter_times": [],
+    "laugh_after": false,
+    "censored": false,
+    "censored_s": 0,
+    "events": [
+     {
+      "kind": "music",
+      "text": "[పాట]",
+      "start": 856.46,
+      "end": 911.64
+     }
+    ],
+    "logprob_mean": -0.016,
+    "logprob_min": -0.258,
+    "low_conf_frac": 0.0,
+    "latin_frac": 0.627,
+    "question": true,
+    "ends_with_question": false,
+    "question_score_max": 0.65,
+    "n_speakers": 2,
+    "dominant_share": 0.75,
+    "speech_rate_rel": 1.642
+   },
+   "in_intro": false,
+   "intro_kind": null,
+   "intro_id": null,
+   "text": "G2: You have to wait call lift చేయలేదని direct గా లోపలికి వచ్చేస్తావా | G1: అది banquet hall ఏ కదా sir | G2: Shut up! లోపల IAS officers meeting అవుతుంది. నువ్వు లోపలికి direct గా వచ్చేస్తే security issues ఉంటాయి కదా | G1: అలాంటప్పుడు security ని పెట్టుకోవాలి కదా sir | G2: Don't talk, don't say what I have to do. Get out first (music)",
+   "est_tokens": 133
+  },
+  {
+   "id": 40,
+   "words": [
+    1127,
+    1196
+   ],
+   "start": 911.684,
+   "end": 940.784,
+   "duration": 29.1,
+   "kind": "exchange",
+   "speaker": "speaker_1",
+   "role": "guest",
+   "speakers": {
+    "speaker_1": 0.966,
+    "speaker_2": 0.034
+   },
+   "turn_ids": [
+    54,
+    55
+   ],
+   "boundary_before": 4.0,
+   "backchannel_words": [
+    [
+     1131,
+     1133
+    ]
+   ],
+   "qa_question_of": [
+    12
+   ],
+   "qa_answer_of": [],
+   "signals": {
+    "duration": 29.1,
+    "n_words": 67,
+    "n_backchannels": 1,
+    "wps": 2.302,
+    "n_pauses": 8,
+    "pause_max": 1.02,
+    "pause_frac": 0.21,
+    "laughter": 0,
+    "laughter_times": [],
+    "laugh_after": false,
+    "censored": false,
+    "censored_s": 0,
+    "events": [],
+    "logprob_mean": -0.056,
+    "logprob_min": -0.525,
+    "low_conf_frac": 0.0,
+    "latin_frac": 0.269,
+    "question": true,
+    "ends_with_question": false,
+    "question_score_max": 1.0,
+    "n_speakers": 2,
+    "dominant_share": 0.966,
+    "speech_rate_rel": 1.226
+   },
+   "in_intro": false,
+   "intro_kind": null,
+   "intro_id": null,
+   "text": "G2: One fifteen madam | G1: అయిపోయింది ఏంటే Rapido లో వచ్చావ్ ఎక్తా నిన్ను drop చేయలేదా morning అదే drop చేసింది evening call చేస్తే phone lift చేయలేదు ఇంకేదో పని ఉందిలే అని నేనే Rapido book చేసుకొని వచ్చేసా సర్లే అది ఒక్కోసారి ఒక్కో mood లో ఉంటుంది ఉమ్ అదేంటి నువ్వు అప్పుడే వచ్చేసావ్ నాకు కొంచెం mood బాలేదులే నేను పైకి వెళ్తా సరే దా shop work వెళ్దాం please నువ్వు వెళ్ళవా? నేను పైకి వెళ్తాను ఏమనుకోకు ఉమ్ అబ్బా వీడు మళ్ళీ వచ్చాడండి (music)",
+   "est_tokens": 228
+  },
+  {
+   "id": 41,
+   "words": [
+    1197,
+    1215
+   ],
+   "start": 949.584,
+   "end": 958.044,
+   "duration": 8.46,
+   "kind": "exchange",
+   "speaker": "speaker_1",
+   "role": "guest",
+   "speakers": {
+    "speaker_1": 0.579,
+    "speaker_2": 0.421
+   },
+   "turn_ids": [
+    56,
+    57
+   ],
+   "boundary_before": 2.0,
+   "backchannel_words": [
+    [
+     1198,
+     1200
+    ]
+   ],
+   "qa_question_of": [],
+   "qa_answer_of": [
+    12
+   ],
+   "signals": {
+    "duration": 8.46,
+    "n_words": 16,
+    "n_backchannels": 1,
+    "wps": 1.891,
+    "n_pauses": 1,
+    "pause_max": 1.88,
+    "pause_frac": 0.222,
+    "laughter": 0,
+    "laughter_times": [],
+    "laugh_after": false,
+    "censored": false,
+    "censored_s": 0,
+    "events": [],
+    "logprob_mean": -0.031,
+    "logprob_min": -0.137,
+    "low_conf_frac": 0.0,
+    "latin_frac": 0.062,
+    "question": false,
+    "ends_with_question": false,
+    "question_score_max": 0.0,
+    "n_speakers": 2,
+    "dominant_share": 0.579,
+    "speech_rate_rel": 1.007
+   },
+   "in_intro": false,
+   "intro_kind": null,
+   "intro_id": null,
+   "text": "G2: మీ-మీనాక్షి [G1: ఏంట్రా నీ బాధ] ఎన్ని సార్లు propose చేసినా పట్టించుకోవడం లేదు | G1: నేను ఇప్పటికే నీకు వెయ్యి సార్లైనా చెప్పుంటా నువ్వంటే నాకిష్టం లేదని",
+   "est_tokens": 92
+  },
+  {
+   "id": 42,
+   "words": [
+    1216,
+    1224
+   ],
+   "start": 958.984,
+   "end": 966.104,
+   "duration": 7.12,
+   "kind": "exchange",
+   "speaker": "speaker_1",
+   "role": "guest",
+   "speakers": {
+    "speaker_1": 0.664,
+    "speaker_2": 0.336
+   },
+   "turn_ids": [
+    58,
+    59,
+    60
+   ],
+   "boundary_before": 2.0,
+   "backchannel_words": [],
+   "qa_question_of": [],
+   "qa_answer_of": [],
+   "signals": {
+    "duration": 7.12,
+    "n_words": 9,
+    "n_backchannels": 0,
+    "wps": 1.264,
+    "n_pauses": 0,
+    "pause_max": 0.4,
+    "pause_frac": 0.0,
+    "laughter": 0,
+    "laughter_times": [],
+    "laugh_after": false,
+    "censored": false,
+    "censored_s": 0,
+    "events": [
+     {
+      "kind": "other",
+      "text": "[చెప్పకు తప్పేంలా లేదే]",
+      "start": 959.72,
+      "end": 963.32
+     }
+    ],
+    "logprob_mean": -0.023,
+    "logprob_min": -0.154,
+    "low_conf_frac": 0.0,
+    "latin_frac": 0.111,
+    "question": true,
+    "ends_with_question": false,
+    "question_score_max": 0.8,
+    "n_speakers": 2,
+    "dominant_share": 0.664,
+    "speech_rate_rel": 0.673
+   },
+   "in_intro": false,
+   "intro_kind": null,
+   "intro_id": null,
+   "text": "G2: అదే ఎందుకు | G1: ఒరేయ్ ఎదవా నాకు already పెళ్లి అయింది | G2: ఆ (music)",
+   "est_tokens": 38
+  }
+ ],
+ "qa_links": [
+  {
+   "id": 0,
+   "kind": "question",
+   "q_score": 1.0,
+   "question": {
+    "speaker": "speaker_0",
+    "role": "host",
+    "words": [
+     20,
+     24
+    ],
+    "core_words": [
+     20,
+     24
+    ],
+    "start": 58.82,
+    "core_start": 58.82,
+    "end": 59.88,
+    "turn_id": 4,
+    "unit_ids": [
+     1
+    ]
+   },
+   "answer": {
+    "speaker": "speaker_1",
+    "role": "guest",
+    "words": [
+     25,
+     42
+    ],
+    "start": 60.5,
+    "end": 67.3,
+    "duration": 6.8,
+    "turn_ids": [
+     5
+    ],
+    "unit_ids": [
+     1
+    ]
+   },
+   "end_reason": "other_speaker_turn"
+  },
+  {
+   "id": 1,
+   "kind": "question",
+   "q_score": 1.0,
+   "question": {
+    "speaker": "speaker_0",
+    "role": "host",
+    "words": [
+     57,
+     64
+    ],
+    "core_words": [
+     57,
+     64
+    ],
+    "start": 92.94,
+    "core_start": 92.94,
+    "end": 96.34,
+    "turn_id": 8,
+    "unit_ids": [
+     4
+    ]
+   },
+   "answer": {
+    "speaker": "speaker_1",
+    "role": "guest",
+    "words": [
+     65,
+     138
+    ],
+    "start": 96.74,
+    "end": 125.66,
+    "duration": 28.92,
+    "turn_ids": [
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15,
+     16
+    ],
+    "unit_ids": [
+     4,
+     5,
+     6,
+     7
+    ]
+   },
+   "end_reason": "long_silence"
+  },
+  {
+   "id": 2,
+   "kind": "question",
+   "q_score": 1.0,
+   "question": {
+    "speaker": "speaker_0",
+    "role": "host",
+    "words": [
+     184,
+     194
+    ],
+    "core_words": [
+     186,
+     194
+    ],
+    "start": 179.88,
+    "core_start": 181.62,
+    "end": 184.24,
+    "turn_id": 22,
+    "unit_ids": [
+     9
+    ]
+   },
+   "answer": {
+    "speaker": "speaker_1",
+    "role": "guest",
+    "words": [
+     195,
+     240
+    ],
+    "start": 185.44,
+    "end": 205.8,
+    "duration": 20.36,
+    "turn_ids": [
+     23,
+     24,
+     25
+    ],
+    "unit_ids": [
+     9,
+     10
+    ]
+   },
+   "end_reason": "next_question"
+  },
+  {
+   "id": 3,
+   "kind": "question",
+   "q_score": 1.0,
+   "question": {
+    "speaker": "speaker_1",
+    "role": "guest",
+    "words": [
+     233,
+     240
+    ],
+    "core_words": [
+     238,
+     240
+    ],
+    "start": 199.26,
+    "core_start": 204.9,
+    "end": 205.8,
+    "turn_id": 25,
+    "unit_ids": [
+     10
+    ]
+   },
+   "answer": {
+    "speaker": "speaker_0",
+    "role": "host",
+    "words": [
+     241,
+     262
+    ],
+    "start": 206.14,
+    "end": 216.82,
+    "duration": 10.68,
+    "turn_ids": [
+     26,
+     27,
+     28
+    ],
+    "unit_ids": [
+     11
+    ]
+   },
+   "end_reason": "other_speaker_turn"
+  },
+  {
+   "id": 4,
+   "kind": "question",
+   "q_score": 1.0,
+   "question": {
+    "speaker": "speaker_0",
+    "role": "host",
+    "words": [
+     241,
+     251
+    ],
+    "core_words": [
+     246,
+     251
+    ],
+    "start": 206.14,
+    "core_start": 208.86,
+    "end": 210.92,
+    "turn_id": 26,
+    "unit_ids": [
+     11
+    ]
+   },
+   "answer": {
+    "speaker": "speaker_1",
+    "role": "guest",
+    "words": [
+     252,
+     294
+    ],
+    "start": 211.58,
+    "end": 232.1,
+    "duration": 20.52,
+    "turn_ids": [
+     27,
+     28,
+     29
+    ],
+    "unit_ids": [
+     11,
+     12
+    ]
+   },
+   "end_reason": "other_speaker_turn"
+  },
+  {
+   "id": 5,
+   "kind": "question",
+   "q_score": 1.0,
+   "question": {
+    "speaker": "speaker_1",
+    "role": "guest",
+    "words": [
+     297,
+     305
+    ],
+    "core_words": [
+     297,
+     305
+    ],
+    "start": 254.48,
+    "core_start": 254.48,
+    "end": 257.3,
+    "turn_id": 31,
+    "unit_ids": [
+     14
+    ]
+   },
+   "answer": {
+    "speaker": "speaker_0",
+    "role": "host",
+    "words": [
+     306,
+     328
+    ],
+    "start": 257.62,
+    "end": 265.72,
+    "duration": 8.1,
+    "turn_ids": [
+     32,
+     33,
+     34
+    ],
+    "unit_ids": [
+     14
+    ]
+   },
+   "end_reason": "next_question"
+  },
+  {
+   "id": 6,
+   "kind": "question",
+   "q_score": 0.65,
+   "question": {
+    "speaker": "speaker_0",
+    "role": "host",
+    "words": [
+     306,
+     311
+    ],
+    "core_words": [
+     306,
+     311
+    ],
+    "start": 257.62,
+    "core_start": 257.62,
+    "end": 259.519,
+    "turn_id": 32,
+    "unit_ids": [
+     14
+    ]
+   },
+   "answer": {
+    "speaker": "speaker_1",
+    "role": "guest",
+    "words": [
+     312,
+     335
+    ],
+    "start": 259.92,
+    "end": 268.06,
+    "duration": 8.14,
+    "turn_ids": [
+     33,
+     34,
+     35
+    ],
+    "unit_ids": [
+     14,
+     15
+    ]
+   },
+   "end_reason": "other_speaker_turn"
+  },
+  {
+   "id": 7,
+   "kind": "question",
+   "q_score": 0.8,
+   "question": {
+    "speaker": "speaker_1",
+    "role": "guest",
+    "words": [
+     329,
+     335
+    ],
+    "core_words": [
+     329,
+     335
+    ],
+    "start": 266.12,
+    "core_start": 266.12,
+    "end": 268.06,
+    "turn_id": 35,
+    "unit_ids": [
+     15
+    ]
+   },
+   "answer": {
+    "speaker": "speaker_0",
+    "role": "host",
+    "words": [
+     336,
+     345
+    ],
+    "start": 268.52,
+    "end": 271.94,
+    "duration": 3.42,
+    "turn_ids": [
+     36
+    ],
+    "unit_ids": [
+     15
+    ]
+   },
+   "end_reason": "long_silence"
+  },
+  {
+   "id": 8,
+   "kind": "prompt",
+   "q_score": 0.0,
+   "question": {
+    "speaker": "speaker_0",
+    "role": "host",
+    "words": [
+     336,
+     345
+    ],
+    "core_words": [
+     342,
+     345
+    ],
+    "start": 268.52,
+    "core_start": 270.66,
+    "end": 271.94,
+    "turn_id": 36,
+    "unit_ids": [
+     15
+    ]
+   },
+   "answer": {
+    "speaker": "speaker_1",
+    "role": "guest",
+    "words": [
+     346,
+     453
+    ],
+    "start": 282.0,
+    "end": 347.52,
+    "duration": 65.52,
+    "turn_ids": [
+     37,
+     38,
+     39,
+     40,
+     41,
+     42,
+     43
+    ],
+    "unit_ids": [
+     16,
+     17,
+     18,
+     19,
+     20
+    ]
+   },
+   "end_reason": "next_question"
+  },
+  {
+   "id": 9,
+   "kind": "prompt",
+   "q_score": 0.0,
+   "question": {
+    "speaker": "speaker_0",
+    "role": "host",
+    "words": [
+     354,
+     355
+    ],
+    "core_words": [
+     355,
+     355
+    ],
+    "start": 286.1,
+    "core_start": 289.5,
+    "end": 289.72,
+    "turn_id": 38,
+    "unit_ids": [
+     16
+    ]
+   },
+   "answer": {
+    "speaker": "speaker_1",
+    "role": "guest",
+    "words": [
+     356,
+     453
+    ],
+    "start": 290.98,
+    "end": 347.52,
+    "duration": 56.54,
+    "turn_ids": [
+     39,
+     40,
+     41,
+     42,
+     43
+    ],
+    "unit_ids": [
+     17,
+     18,
+     19,
+     20
+    ]
+   },
+   "end_reason": "next_question"
+  },
+  {
+   "id": 10,
+   "kind": "question",
+   "q_score": 0.65,
+   "question": {
+    "speaker": "speaker_0",
+    "role": "host",
+    "words": [
+     454,
+     461
+    ],
+    "core_words": [
+     459,
+     461
+    ],
+    "start": 347.86,
+    "core_start": 359.56,
+    "end": 361.02,
+    "turn_id": 44,
+    "unit_ids": [
+     21
+    ]
+   },
+   "answer": {
+    "speaker": "speaker_1",
+    "role": "guest",
+    "words": [
+     462,
+     1045
+    ],
+    "start": 361.776,
+    "end": 821.244,
+    "duration": 459.47,
+    "turn_ids": [
+     45
+    ],
+    "unit_ids": [
+     22,
+     23,
+     24,
+     25,
+     26,
+     27,
+     28,
+     29,
+     30,
+     31,
+     32,
+     33,
+     34,
+     35,
+     36
+    ]
+   },
+   "end_reason": "next_question"
+  },
+  {
+   "id": 11,
+   "kind": "question",
+   "q_score": 0.8,
+   "question": {
+    "speaker": "speaker_2",
+    "role": "guest",
+    "words": [
+     1046,
+     1051
+    ],
+    "core_words": [
+     1046,
+     1051
+    ],
+    "start": 822.444,
+    "core_start": 822.444,
+    "end": 824.104,
+    "turn_id": 46,
+    "unit_ids": [
+     37
+    ]
+   },
+   "answer": {
+    "speaker": "speaker_1",
+    "role": "guest",
+    "words": [
+     1052,
+     1075
+    ],
+    "start": 824.324,
+    "end": 839.604,
+    "duration": 15.28,
+    "turn_ids": [
+     47,
+     48,
+     49
+    ],
+    "unit_ids": [
+     37,
+     38
+    ]
+   },
+   "end_reason": "next_question"
+  },
+  {
+   "id": 12,
+   "kind": "question",
+   "q_score": 1.0,
+   "question": {
+    "speaker": "speaker_1",
+    "role": "guest",
+    "words": [
+     1130,
+     1196
+    ],
+    "core_words": [
+     1185,
+     1196
+    ],
+    "start": 913.544,
+    "core_start": 935.284,
+    "end": 940.784,
+    "turn_id": 55,
+    "unit_ids": [
+     40
+    ]
+   },
+   "answer": {
+    "speaker": "speaker_2",
+    "role": "guest",
+    "words": [
+     1197,
+     1206
+    ],
+    "start": 949.584,
+    "end": 953.904,
+    "duration": 4.32,
+    "turn_ids": [
+     56
+    ],
+    "unit_ids": [
+     41
+    ]
+   },
+   "end_reason": "other_speaker_turn"
+  }
+ ],
+ "chunks": [
+  {
+   "id": 0,
+   "unit_ids": [
+    0,
+    42
+   ],
+   "start": 28.96,
+   "end": 966.1,
+   "est_tokens": 4393,
+   "overlap_unit_ids": []
+  }
+ ],
+ "stats": {
+  "n_words": 1225,
+  "duration_s": 986.5,
+  "n_turns": 61,
+  "n_backchannels_absorbed": 19,
+  "backchannels_by_kind": {
+   "interjection": 10,
+   "lexicon": 9
+  },
+  "n_units": 43,
+  "unit_duration": {
+   "min": 0.3,
+   "p5": 6.1,
+   "p10": 6.7,
+   "p25": 8.1,
+   "p50": 13.2,
+   "p75": 19.5,
+   "p90": 28.7,
+   "p95": 31.0,
+   "max": 34.0,
+   "mean": 15.0
+  },
+  "units_lt_5s": 1,
+  "units_5_40s": 42,
+  "units_gt_40s": 0,
+  "units_exchange": 19,
+  "n_qa_links": 13,
+  "qa_links_by_kind": {
+   "question": 11,
+   "prompt": 2
+  },
+  "qa_links_host_asked": 8,
+  "qa_answer_duration": {
+   "p25": 8.1,
+   "p50": 15.3,
+   "p75": 28.9,
+   "p90": 63.7
+  },
+  "rendered_tokens_est": 4393,
+  "rendered_tokens_hidden_est": 0,
+  "intro_ranges": [],
+  "units_in_intro": {
+   "teaser": 0,
+   "music": 0,
+   "intro": 0
+  },
+  "opening_decided_by": "rules",
+  "n_chunks": 1,
+  "chunk_tokens_est": [
+   4393
+  ],
+  "host": "speaker_0",
+  "host_confidence": 0.174
+ }
+}
