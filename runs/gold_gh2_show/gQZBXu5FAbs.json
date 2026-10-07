@@ -1,0 +1,365 @@
+{
+ "schema_version": "1.1",
+ "kind": "gold",
+ "video_id": "gQZBXu5FAbs",
+ "transcript": {
+  "path": "scribe_dataset/gQZBXu5FAbs/gQZBXu5FAbs_scribe_transcript.json",
+  "sha256": "b48e2fa792cdad05c59715ab4d853520d71389773cd10f80cf33ff37a869871c",
+  "n_words": 1119,
+  "audio_duration_secs": 758.8935
+ },
+ "derived_params": {
+  "skip_s": 30.0
+ },
+ "labeler": "clip-gt-editor",
+ "created_at": "2026-10-07",
+ "independence": "Picked from the episode transcript, shot list, video keyframes and Ep1's map (names) only; no creator Shorts/Reels were opened or searched for.",
+ "coverage": {
+  "start": 0.0,
+  "end": 758.9,
+  "complete": true,
+  "note": "Whole episode read in order. Excluded: 0:00-0:08 B2P logo, 1:28-1:54 song + GIRLS HOSTEL / EPISODE 02 title cards (96-105 s), 1:55-2:06 replay of Ep1's banquet-hall scolding (Akshara's memory, recap), 2:06-2:14 song, 8:51-9:15 wordless smiling montage, 12:21-12:39 end credits."
+ },
+ "notes": "Girls Hostel 2.0 (B2P Studios) Ep2. CANDIDATE picks for the clip-judge filter (founder process 2026-10-07): proposed generously, every clip ends on a beat. Names carried from Ep1: Akshara (delivery girl), Meenakshi (married friend, pink kurta), Ekta (curly hair, fence-sitter), Jai (Akshara's delivery-partner friend; she owes him 30k), the stalker. New: the rich roommate is named here: Dhana / ధన ('ఏమైంది దాన?', 'ఆ దనా వచ్చి అలా అనేసరికి'); the warden (older woman, office). Scribe speaker ids are unreliable (speaker_0 covers most of the episode); speakers assigned from content and frames. Option-2 cutting: time_segments are the cut; pieces are the words inside them. || Filtered copy for the founder's review page: SHOW clips only, in the gate's order.",
+ "clips": [
+  {
+   "id": "w03",
+   "pieces": [
+    {
+     "start_word": 170,
+     "end_word": 310,
+     "start": 133.92,
+     "end": 192.06
+    }
+   ],
+   "region": {
+    "start_word": 170,
+    "end_word": 310,
+    "start": 133.92,
+    "end": 192.06
+   },
+   "edited_duration": 58.14,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "నీకు ఈ Zomato bags ఇక్కడ పెట్టొద్దని ఎన్నిసార్లు చెప్పాలి? నా friend వస్తుంది ఇప్పుడు. తీ ఇక్కడి నుండి. నీకే చెప్పేది. కొంతమంది mental మొఖాలకు ఎన్నిసార్లు చెప్పినా అర్థం కాదు. అసలేంటండీ problem? ప్రతిసారి చూస్తున్నా delivery bag తీసేయ్ తీసేయ్ అంటావ్. అసలు నీది కాదే తప్పు, నీ బావది. అడిగిన ప్రతిసారి డబ్బులు పంపిస్తుంటే కొప్పేటు మాట్లాడుతున్నావ్. ఏయ్ చాలా ఎక్కువ మాట్లాడుతున్నావ్. ఎక్కువ మాట్లాడట్లేదు. నిజం మాట్లాడుతున్నా. అప్పుడెప్పుడో ఒకసారి చెప్పావ్ కదా America లో నీ friend part time చేస్తుందని. ఏం చేస్తుందన్నావ్? It's none of your business. ఏయ్ మూసుకుని చెప్పవే. Petrol bunk లో చేస్తుంది. అయితే ఏంటి ఇప్పుడు? అయితే ఏంటి ఇప్పుడు కాదు. America లో petrol bunk లో చేస్తున్న నీ friend తో కూడా నాతో మాట్లాడినట్టు cheap గా మాట్లాడు. అది America. అక్కడ బ్రతకాలంటే ప్రతి ఒక్కరూ part time చేయాల్సిందే. అవునా madam? ఇది India. మాలాంటోళ్ళు బ్రతకాలన్నా ఏదో ఒక పని చేసుకొనే బ్రతకాలి. అయినా అక్కడ తప్పుగా అనిపించింది ఇక్కడ తప్పుగా అనిపిస్తుందంటే నీ చెత్త brain ది problem. ఏయ్ చెత్త గీత ఏంటి? అవునే చెత్త brain ఏ నీది.",
+   "labeler": "clip-gt-editor",
+   "tightening_labeled": true,
+   "hook_line": {
+    "text": "నీకు ఈ Zomato bags ఇక్కడ పెట్టొద్దని ఎన్నిసార్లు చెప్పాలి?",
+    "start_word": 170,
+    "end_word": 177
+   },
+   "scores": {
+    "hook": 4,
+    "standalone": 5,
+    "payoff": 4,
+    "value_emotion": 5,
+    "overall": 4.4
+   },
+   "title": "అది America, ఇది India… నీ చెత్త brain ది problem",
+   "why_it_works": "Dhana: 'no Zomato bags here'. Akshara: 'your friend in America works at a petrol bunk, is that cheap too?' 'That's America.' 'ఇది India, people like us must work to live. నీ చెత్త brain ది problem.'",
+   "category": "controversy",
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "characters": [
+    "Dhana",
+    "Akshara"
+   ],
+   "visual_dependency": "medium",
+   "spoiler": false,
+   "confidence": 5,
+   "time_segments": [
+    {
+     "start": 133.7,
+     "end": 192.25
+    }
+   ],
+   "video_duration": 58.55,
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "tags": [],
+   "notes": "Full fight, continuous, 58.5 s. Ends on the shot cut 192.25 right after Akshara's 'అవునే చెత్త brain ఏ నీది' (Dhana's garbled retort 'పోవే బ్యావసు మొహం దాన' at 192.5 and her storming out past Meenakshi/Ekta at 196 are left out; the judge may prefer ending at 198.4 to include the exit). ASR: 'అసలు నీది కాదే తప్పు, నీ బావది' probably 'మీ నాన్నది' (your dad sends money whenever you ask); 'కొప్పేటు మాట్లాడుతున్నావ్' ~ 'కొవ్వెక్కి'; 'ఏయ్ చెత్త గీత ఏంటి?' = 'చెత్త brain ఏంటి?'. Dhana is named only in the next scene; here she is 'the rich roommate'. w04 is a shorter cut of the same scene.",
+   "cold_open": false,
+   "payoff_line": "ఇది India. మాలాంటోళ్ళు బ్రతకాలన్నా ఏదో ఒక పని చేసుకొనే బ్రతకాలి… నీ చెత్త brain ది problem / అవునే చెత్త brain ఏ నీది",
+   "payoff_type": "quotable comeback that snaps; Dhana's stunned face (190-192)",
+   "founder_would_post": "pending",
+   "rank": 1
+  },
+  {
+   "id": "w07",
+   "pieces": [
+    {
+     "start_word": 716,
+     "end_word": 776,
+     "start": 443.156,
+     "end": 473.056
+    }
+   ],
+   "region": {
+    "start_word": 716,
+    "end_word": 776,
+    "start": 443.156,
+    "end": 473.056
+   },
+   "edited_duration": 29.9,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "నీకేమైనా పిచ్చా phone lift చేయవేంటి ఎన్ని సార్లు call చేయాలి ఎన్ని సార్లు చేశావేంటి పెద్ద చూసుకో ఏంట్రా అన్ని సార్లు చేశావ్ ఏంటి అంత simple గా చెప్తున్నావ్. ఈరోజు important class ఉందని తెలుసు. అయినా పెద్ద order వచ్చిందని వద్దని చెప్పినా వెళ్ళావ్. అప్పటి నుంచి ఒక్క call కూడా lift చేయకపోతే నువ్వేమైపోయావనుకోవాలి హ్మ్. అబ్బో! అంత caring ఆ. లేకపోతే నీకు ఇవ్వాల్సిన ముప్పై వేలు ఎక్కడ ఎగ్గొట్టి వెళ్ళిపోతాననే భయమా ఏం sadism ఏ పాపం",
+   "labeler": "clip-gt-editor",
+   "tightening_labeled": true,
+   "hook_line": {
+    "text": "నీకేమైనా పిచ్చా phone lift చేయవేంటి ఎన్ని సార్లు call",
+    "start_word": 716,
+    "end_word": 723
+   },
+   "scores": {
+    "hook": 4,
+    "standalone": 4,
+    "payoff": 5,
+    "value_emotion": 4,
+    "overall": 4.3
+   },
+   "title": "అంత caring ఆ… లేకపోతే నీ ముప్పై వేలు ఎగ్గొడతానని భయమా?",
+   "why_it_works": "Jai rages 'how many times must I call?'; she sees the missed-call pile; he says he was worried; she: 'so caring! or scared I'd run off with the 30k I owe you?' (laugh). Meenakshi: 'ఏం sadism ఏ పాపం'.",
+   "category": "humour",
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "characters": [
+    "Jai",
+    "Akshara",
+    "Meenakshi"
+   ],
+   "visual_dependency": "medium",
+   "spoiler": false,
+   "confidence": 4,
+   "time_segments": [
+    {
+     "start": 443.0,
+     "end": 473.21
+    }
+   ],
+   "video_duration": 30.21,
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "tags": [],
+   "notes": "Phone greeting ('hello hello / నువ్వేనా') dropped: starts at 443.0 on 'నీకేమైనా పిచ్చా phone lift చేయవేంటి'. The missed-call reveal at 449-452 ('చూసుకో' + surprise sting) is visual (frames 7:28-7:32). Ends on the shot cut 473.21 after Meenakshi's tag line. Jai is not named inside the clip; the 30k line tells the viewer he lent her money. Who says 'ఏం sadism ఏ పాపం' is Meenakshi (speaker_3), beside Akshara at the stall.",
+   "cold_open": false,
+   "payoff_line": "అబ్బో! అంత caring ఆ. లేకపోతే నీకు ఇవ్వాల్సిన ముప్పై వేలు ఎక్కడ ఎగ్గొట్టి వెళ్ళిపోతాననే భయమా / ఏం sadism ఏ పాపం",
+   "payoff_type": "punchline with laugh event (470.4) + Meenakshi's comic tag",
+   "founder_would_post": "pending",
+   "rank": 2
+  },
+  {
+   "id": "w08",
+   "pieces": [
+    {
+     "start_word": 863,
+     "end_word": 903,
+     "start": 511.736,
+     "end": 530.856
+    },
+    {
+     "start_word": 904,
+     "end_word": 917,
+     "start": 559.756,
+     "end": 574.756
+    }
+   ],
+   "region": {
+    "start_word": 863,
+    "end_word": 917,
+    "start": 511.736,
+    "end": 574.756
+   },
+   "edited_duration": 34.12,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "కొంచెమైనా జాలి ఉందావే నీకు sorry కూడా చెప్పాలనిపించడం లేదా ఊహూ దేనికి sorry నీకు అన్ని సార్లు call చేసిన lift చేయలేదు. దానికి నీకు కొంచెంలో కొంచెం కూడా guilty కలేదైతే హ్మ్. దానికే ఉంది ఎవరైనా చేస్తారు అయితే sorry చెప్పవు ఏయ్ పోరా నేను చెప్పను నీ పని చెప్తా ఉండువే I am really sorry ఏంటి ఈడు message చేసాడో. ఊ it's ok Thanks for understanding",
+   "labeler": "clip-gt-editor",
+   "tightening_labeled": true,
+   "hook_line": {
+    "text": "కొంచెమైనా జాలి ఉందావే నీకు sorry కూడా చెప్పాలనిపించడం లేదా ఊహూ",
+    "start_word": 863,
+    "end_word": 871
+   },
+   "scores": {
+    "hook": 4,
+    "standalone": 3,
+    "payoff": 3,
+    "value_emotion": 4,
+    "overall": 3.3
+   },
+   "title": "Sorry చెప్పవా? పోరా చెప్పను… | I am really sorry",
+   "why_it_works": "Jai demands a sorry ('don't you feel a bit guilty?'), Akshara refuses ('పోరా నేను చెప్పను'), he threatens 'నీ పని చెప్తా'; then HE texts 'I am really sorry' and she replies 'it's ok'. Soft reversal.",
+   "category": "emotional",
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "characters": [
+    "Jai",
+    "Akshara",
+    "Meenakshi"
+   ],
+   "visual_dependency": "high",
+   "spoiler": false,
+   "confidence": 2,
+   "time_segments": [
+    {
+     "start": 511.6,
+     "end": 532.75
+    },
+    {
+     "start": 555.375,
+     "end": 578.75
+    }
+   ],
+   "video_duration": 44.52,
+   "standalone_risks": [],
+   "edit_notes": [
+    {
+     "type": "skip",
+     "after_piece": 0,
+     "reason": "Drops the 23 s wordless smiling-on-the-phone montage (532.8-555.4) between the fight and Jai typing the message"
+    }
+   ],
+   "flags": [],
+   "tags": [],
+   "notes": "Doubtful: the message beat is intercut and the girl reading the phone at 562-567 wears Meenakshi's pink kurta (frames), while the texts are clearly Jai <-> Akshara ('Thanks for understanding' on Jai, 570-574). 'ఏంటి ఈడు message చేసాడో' (567) may be Meenakshi about her own phone (lock screen 564 shows a couple photo). The join at 532.75 -> 555.375 is on shot cuts but skips the montage; the reversal is soft (texts, no laugh). Low confidence; included because the founder posts romantic beats that land.",
+   "cold_open": false,
+   "payoff_line": "I am really sorry / ఊ it's ok / Thanks for understanding",
+   "payoff_type": "reversal (he apologises after demanding a sorry), read out as texts",
+   "founder_would_post": "pending",
+   "rank": 3
+  },
+  {
+   "id": "w01",
+   "pieces": [
+    {
+     "start_word": 0,
+     "end_word": 60,
+     "start": 8.64,
+     "end": 38.38
+    }
+   ],
+   "region": {
+    "start_word": 0,
+    "end_word": 60,
+    "start": 8.64,
+    "end": 38.38
+   },
+   "edited_duration": 29.74,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ఒరేయ్ ఎదవా! నాకు ఆల్రెడీ పెళ్లి అయింది. చూడు నాకు ఆల్రెడీ బాయ్ ఫ్రెండ్ ఉన్నాడు. మా ఇంట్లో ఒప్పుకోరు. ఇలాంటివి చెప్పు ఓకే. కానీ నీకు పెళ్లి అయిందంటే నమ్మడానికి నేనేం ఎర్రిపప్పను కావు. ఒరేయ్ నాకు నిజంగానే పెళ్లి అయిందిరా. ఊహూ నేను నమ్మను. హా వీడికి ఇలా కాదని. హ్మ్. ఆ ఇప్పుడు నమ్ముతావా? ఆ ఇంక మూసుకుని పో. ఇప్పటికే చాలా time waste చేసావ్. మీది child marriage ఆ? ఏం marriage అయితే నీకెందుకురా. మూసుకుని పో.",
+   "labeler": "clip-gt-editor",
+   "tightening_labeled": true,
+   "hook_line": {
+    "text": "ఒరేయ్ ఎదవా! నాకు ఆల్రెడీ పెళ్లి అయింది.",
+    "start_word": 0,
+    "end_word": 5
+   },
+   "scores": {
+    "hook": 4,
+    "standalone": 5,
+    "payoff": 4,
+    "value_emotion": 4,
+    "overall": 4.2
+   },
+   "title": "నాకు already పెళ్లి అయింది… మీది child marriage ఆ?",
+   "why_it_works": "Stalker won't believe Meenakshi is married; she shows the mangalsutra ('ఇప్పుడు నమ్ముతావా?'); his comeback 'మీది child marriage ఆ?' and her 'ఏం marriage అయితే నీకెందుకురా, మూసుకుని పో'.",
+   "category": "humour",
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "characters": [
+    "Meenakshi",
+    "stalker"
+   ],
+   "visual_dependency": "high",
+   "spoiler": false,
+   "confidence": 4,
+   "time_segments": [
+    {
+     "start": 8.5,
+     "end": 38.287
+    }
+   ],
+   "video_duration": 29.787,
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "tags": [],
+   "notes": "The episode opens on this scene (no 'previously' card; the Ep1 cliffhanger line is re-shot as the scene's first line). Frame 24 s: close-up of the mangalsutra as her proof (music sting 27-29.6). Ends after 'మూసుకుని పో' (38.4) with the shot of Ekta arriving on the scooter and Meenakshi touching her mangalsutra (40-41.5), cut at 41.58. Not a spoiler for Ep2 (the reveal was Ep1's ending), but it does give away Ep1's twist. 'వీడికి ఇలా కాదని' (24.2) is her aside before showing the proof. || Gate re-cut: end 41.5 -> 38.287, 0.005 s before the shot cut 38.292 (Ekta riding up). Audio check (20 ms RMS): 'పో.' is loud 38.12-38.26 and at the floor by 38.28, so the word is finished although Scribe times it to 38.38. Ends on Meenakshi's close-up; the scooter shot and her mangalsutra touch (40-41.5) are gone.",
+   "cold_open": false,
+   "payoff_line": "మీది child marriage ఆ? / ఏం marriage అయితే నీకెందుకురా. మూసుకుని పో.",
+   "payoff_type": "punchline + retort, ends on her close-up after 'మూసుకుని పో'",
+   "founder_would_post": "pending",
+   "rank": 4
+  },
+  {
+   "id": "w06",
+   "pieces": [
+    {
+     "start_word": 637,
+     "end_word": 707,
+     "start": 398.036,
+     "end": 431.456
+    }
+   ],
+   "region": {
+    "start_word": 637,
+    "end_word": 707,
+    "start": 398.036,
+    "end": 431.456
+   },
+   "edited_duration": 33.42,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ఎందుకే జై అన్ని సార్లు call చేస్తున్నా lift చేయడం లేదు. ఓ! తమరి కోపం జై మీదా కాదు మరి మధ్యాహ్నం ఒక delivery చేయడానికి వెళ్ళాను కదా. అతను చాలా insulting గా మాట్లాడాడు అది ఎప్పుడూ ఉండేదే కదే మామూలు వాళ్ళు అయితే పెద్ద పట్టించుకునేదాన్ని కాదే. ఆయన చూస్తే పెద్ద officer లా ఉన్నారు. ఆయన కూడా అని మాట్లాడేసరికి అక్షర చదువుకి, సంస్కారానికి ఏం సంబంధం ఉండదు. ఎవరో ఏదో అన్నారని నువ్వు feel అవ్వకు. ఇప్పుడు ఆ కోపమంతా జై మీద చూపిస్తున్నావు. first జై కి call చేసి మాట్లాడు",
+   "labeler": "clip-gt-editor",
+   "tightening_labeled": true,
+   "hook_line": {
+    "text": "ఎందుకే జై అన్ని సార్లు call చేస్తున్నా lift చేయడం లేదు.",
+    "start_word": 637,
+    "end_word": 645
+   },
+   "scores": {
+    "hook": 4,
+    "standalone": 4,
+    "payoff": 4,
+    "value_emotion": 4,
+    "overall": 3.8
+   },
+   "title": "చదువుకి, సంస్కారానికి ఏం సంబంధం ఉండదు",
+   "why_it_works": "Meenakshi: 'why aren't you lifting Jai's calls?' Akshara: a customer insulted her. Meenakshi: 'education and manners have nothing to do with each other'; then Jai calls and she answers.",
+   "category": "insight",
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "characters": [
+    "Meenakshi",
+    "Akshara"
+   ],
+   "visual_dependency": "low",
+   "spoiler": false,
+   "confidence": 3,
+   "time_segments": [
+    {
+     "start": 397.75,
+     "end": 434.91
+    }
+   ],
+   "video_duration": 37.16,
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "tags": [],
+   "notes": "Starts on the shot cut 397.75 (after the 'number busy' tone) with a direct question; ends on the shot cut 431.67 after 'first జై కి call చేసి మాట్లాడు' (the quotable line is 6 s before the end, with two advice lines after it). The judge may prefer ending right after 'ఎవరో ఏదో అన్నారని నువ్వు feel అవ్వకు' (427.94). Jai is named but not explained (her delivery friend). Idli-stall setting; alternative longer start at 366.0 ('అన్న two plates ఇడ్లీ… మూసుకొని తిను', comic) adds 32 s. || Gate re-cut: end 431.667 -> 434.91 (asked 435.0, snapped to 0.005 s before the shot cut 434.917, which goes to Jai at his table). Holds Akshara after 'first జై కి call చేసి మాట్లాడు': her phone rings, she looks at it (434.25) and lifts it to her ear (434.5-434.9). No words after 431.46.",
+   "cold_open": false,
+   "payoff_line": "అక్షర చదువుకి, సంస్కారానికి ఏం సంబంధం ఉండదు. ఎవరో ఏదో అన్నారని నువ్వు feel అవ్వకు.",
+   "payoff_type": "quotable conclusion that snaps, advice line, then the visual answer (she picks up Jai's call)",
+   "founder_would_post": "pending",
+   "rank": 5
+  }
+ ],
+ "founder_review": "pending: clip-judge gate applied 2026-10-07 (runs/judge/gh2_gate.md): 5 clips shown to the founder (w03, w07, w08, w01, w06), 5 held (founder_would_post = 'held'); re-cuts noted per clip under 'Gate re-cut'."
+}

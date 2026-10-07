@@ -1,0 +1,512 @@
+{
+ "schema_version": "1.1",
+ "kind": "gold",
+ "video_id": "H41fJJJYTqo",
+ "transcript": {
+  "path": "scribe_dataset/H41fJJJYTqo/H41fJJJYTqo_scribe_transcript.json",
+  "sha256": "7c5aa4c0cae82b3549259242d3f4d88c215ab70c8c261ce2146c8a179650c448",
+  "n_words": 1225,
+  "audio_duration_secs": 986.4735
+ },
+ "derived_params": {
+  "skip_s": 30.0
+ },
+ "labeler": "clip-gt-editor",
+ "created_at": "2026-10-07",
+ "independence": "Picked from the episode transcript, shot list and video keyframes only; no creator Shorts/Reels were opened or searched for.",
+ "coverage": {
+  "start": 0.0,
+  "end": 986.5,
+  "complete": true,
+  "note": "Whole episode read in order. Excluded: 0:00-0:29 B2P logo + rain intro (no dialogue), 2:32-2:40 GIRLS HOSTEL title card, 12:17-13:08 song/riding montage, 14:16-15:11 song, 16:06-16:26 end credits."
+ },
+ "notes": "Girls Hostel 2.0 (B2P Studios) Ep1. CANDIDATE picks for the clip-judge filter (founder process 2026-10-07): proposed generously, every clip ends on a beat. Characters named from dialogue + frames: Akshara (Zomato delivery girl, pays her own coaching fees), Meenakshi (her close friend; pink kurta; secretly married), Ekta (roommate, curly hair; mediator with a selfish streak), rich roommate (unnamed in Ep1; pink lace top, has a car), Jai (Akshara's delivery-partner friend), the stalker (unnamed suitor), banquet-hall manager. Scribe speaker ids are unreliable here (one id covers whole scenes); speakers were assigned from content and frames. Option-2 cutting: time_segments are the cut (may include silent beats); pieces are the words inside them; edited_duration = word span sum; video_duration = segment sum. || Filtered copy for the founder's review page: SHOW clips only, in the gate's order.",
+ "clips": [
+  {
+   "id": "w01",
+   "pieces": [
+    {
+     "start_word": 161,
+     "end_word": 251,
+     "start": 171.6,
+     "end": 210.92
+    }
+   ],
+   "region": {
+    "start_word": 161,
+    "end_word": 251,
+    "start": 171.6,
+    "end": 210.92
+   },
+   "edited_duration": 39.32,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ఊ అక్షర ఊ చాలా సార్లు చెప్పాను నీకు Swiggy, Zomato bags ఇక్కడ పెట్టొద్దని. నా friends చూస్తే ఎంత insulting గా ఉంటుంది. ఊ దాంట్లో insulting ఏముందే Insult ఏముందేంటి? మీ room mate Swiggy, Zomato చేసుకుంటుందంటే అది insult కాదా? ఊ చూడు మీ ఇంట్లో వాళ్ళ లాగా లక్షలు లక్షలు fees కట్టేవాళ్ళు నాకు ఎవ్వరూ లేరు. నా fees నేనే కట్టుకోవాలి. అయినా దాంట్లో అంత insulting గా ఏముందో నాకు అర్థం కావట్లేదు. ఏహే ఇవన్నీ కాదు. చూడే ఎక్తా నువ్వైనా చెప్పు దానికి. నేను చెప్పి చెప్పి అలసిపోయా. ఆ నేను చెప్తానులే. ఊ ఊ నువ్వు కూడా ఏంటి? దాంతో ఏంటే సరే అంటే అయిపోద్దిగా. అదేమన్నా hostel fees కడుతుందా? light లే",
+   "labeler": "clip-gt-editor",
+   "tightening_labeled": true,
+   "hook_line": {
+    "text": "ఊ అక్షర ఊ చాలా సార్లు చెప్పాను నీకు Swiggy, Zomato bags ఇక్కడ",
+    "start_word": 161,
+    "end_word": 171
+   },
+   "scores": {
+    "hook": 4,
+    "standalone": 4,
+    "payoff": 4,
+    "value_emotion": 4,
+    "overall": 4.0
+   },
+   "title": "Swiggy bags పెట్టొద్దు… నా fees నేనే కట్టుకోవాలి | light లే",
+   "why_it_works": "Rich roommate: delivery bags in the room are 'insulting'. Akshara's dignified 'నా fees నేనే కట్టుకోవాలి', then Ekta's deadpan 'అదేమన్నా hostel fees కడుతుందా? light లే' caps it.",
+   "category": "humour",
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "characters": [
+    "Akshara",
+    "rich roommate",
+    "Ekta"
+   ],
+   "visual_dependency": "medium",
+   "spoiler": false,
+   "confidence": 4,
+   "time_segments": [
+    {
+     "start": 171.4,
+     "end": 211.12
+    }
+   ],
+   "video_duration": 39.72,
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "tags": [],
+   "notes": "Opens on the rich roommate addressing Akshara by name (shot cut 171.9 falls 0.3 s after the first word). 'చూడే ఎక్తా నువ్వైనా చెప్పు దానికి' is the rich roommate (frame 198) asking Ekta to mediate; 'నువ్వు కూడా ఏంటి? ... light లే' is Ekta (frames 207-211, eating from a bowl) telling Akshara to let it go. 'light లే' = 'take it light'. Ends on the shot cut at 211.12 right after 'లే' (hold is only 0.2 s because the shot changes); Akshara's deflated 'సరేలే నేను చదువుకోవాలి' (211.6-214.4) left out as a weaker tail; the judge may prefer ending at 214.5 instead. Who says 'light లే' (0.3 s) is inferred from the two-shot; could be Akshara.",
+   "cold_open": false,
+   "payoff_line": "అదేమన్నా hostel fees కడుతుందా? light లే",
+   "payoff_type": "comic aside / snap comeback",
+   "founder_would_post": "pending",
+   "rank": 1
+  },
+  {
+   "id": "w04",
+   "pieces": [
+    {
+     "start_word": 529,
+     "end_word": 586,
+     "start": 412.376,
+     "end": 442.436
+    }
+   ],
+   "region": {
+    "start_word": 529,
+    "end_word": 586,
+    "start": 412.376,
+    "end": 442.436
+   },
+   "edited_duration": 30.06,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ఈ week అయినా వస్తున్నావా ఇక్కడికి ఈ week వస్తున్నా ప్రతి week ఇట్లానే చెప్తున్నావ్. కానీ ఒక్కసారి కూడా రావట్లేదు ఈసారి miss అవును సరే అయితే సరే జాగ్రత్త రా. మళ్ళీ call చేస్తాను ఈ two minutes మాట్లాడడానికి call చేయాలా? friends room కి వచ్చాను రా ఉమ్ సరేలే సరే bye Enjoy. Bye. హ్మ్ ఎవరే? నాకు ఎవరు చేస్తారే మీకు తెలియదా? ఉమ్ long distance romance ఏయ్ అంత చెప్తున్నా",
+   "labeler": "clip-gt-editor",
+   "tightening_labeled": true,
+   "hook_line": {
+    "text": "ఈ week అయినా వస్తున్నావా ఇక్కడికి",
+    "start_word": 529,
+    "end_word": 533
+   },
+   "scores": {
+    "hook": 4,
+    "standalone": 3,
+    "payoff": 3,
+    "value_emotion": 3,
+    "overall": 3.2
+   },
+   "title": "ప్రతి week ఇట్లానే చెప్తున్నావ్… | long distance romance",
+   "why_it_works": "Meenakshi nags her long-distance guy ('every week you say you're coming') and hangs up; roommates ask 'ఎవరే?' and she grins 'long distance romance', everyone giggles.",
+   "category": "humour",
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "characters": [
+    "Meenakshi",
+    "Ekta",
+    "Akshara",
+    "Meenakshi's long-distance partner (phone)"
+   ],
+   "visual_dependency": "medium",
+   "spoiler": false,
+   "confidence": 3,
+   "time_segments": [
+    {
+     "start": 412.2,
+     "end": 444.6
+    }
+   ],
+   "video_duration": 32.4,
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "tags": [],
+   "notes": "Starts on the shot cut 412.2 on Meenakshi's line 'ఈ week అయినా వస్తున్నావా ఇక్కడికి' (the man's 'హా తిన్నాను' just before is dropped; Scribe merged both into one sentence, so the start is inside sentence [527-540] but on a speaker/line boundary). The phone call is intercut with the man (frames 414-432). 'అంత చెప్తున్నా' (441.5) is unclear ASR (maybe 'అంతే చెప్తున్నా'); ends on the giggles and the shot cut at 444.6. The man is later revealed (16:03) to be, presumably, her husband; the clip gives nothing away. Mild payoff: the judge may call it 3.",
+   "cold_open": false,
+   "payoff_line": "నాకు ఎవరు చేస్తారే మీకు తెలియదా? long distance romance ఏయ్",
+   "payoff_type": "light punchline with a laugh beat",
+   "founder_would_post": "pending",
+   "rank": 2
+  },
+  {
+   "id": "w05",
+   "pieces": [
+    {
+     "start_word": 660,
+     "end_word": 695,
+     "start": 517.096,
+     "end": 535.496
+    },
+    {
+     "start_word": 696,
+     "end_word": 738,
+     "start": 540.656,
+     "end": 558.356
+    }
+   ],
+   "region": {
+    "start_word": 660,
+    "end_word": 738,
+    "start": 517.096,
+    "end": 558.356
+   },
+   "edited_duration": 36.1,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ఉమ్ ఎక్తా ఉమ్ ఈరోజు నేను నీతోనే వస్తా అదేంటి అక్షర drop చేయలేదా దానికేదో work ఉందంట వెళ్ళిపోయింది అరే మా friend వస్తానన్నది వే ఓ పర్లేదులే. నేను Rapido లో వెళ్ళిపోతా ఉమ్ ఒక్కరోజు drop చేస్తే చాలు daily అదే అలవాటు అయిపోతుంది. ఉమ్ ఏంటి ఇవ్వాళ college కి వెళ్ళలేదా వెళ్తా Rapido book చేసుకుంటున్నా సరే రా drop చేస్తా car లో ఆ పర్లేదు నేను Rapido లో వెళ్ళిపోతా నీ ఇష్టం. ఇది ఒక్కసారి drop చేస్తేనే ఊరంతా చెప్పుకొని తిరుగుతుంది ఏదో పెద్ద help చేసినట్టు. దీంతో వెళ్ళడం కంటే Rapido లో వెళ్లడం వంద రెట్లు best.",
+   "labeler": "clip-gt-editor",
+   "tightening_labeled": true,
+   "hook_line": {
+    "text": "ఉమ్ ఎక్తా ఉమ్ ఈరోజు నేను నీతోనే వస్తా",
+    "start_word": 660,
+    "end_word": 666
+   },
+   "scores": {
+    "hook": 4,
+    "standalone": 4,
+    "payoff": 4,
+    "value_emotion": 3,
+    "overall": 3.8
+   },
+   "title": "ఒక్కరోజు drop చేస్తే daily అలవాటు… | Rapido లో వెళ్లడం వంద రెట్లు best",
+   "why_it_works": "Nobody wants to give Meenakshi a lift: Ekta dodges ('one drop becomes a habit'); the rich roommate offers her car and Meenakshi refuses: 'Rapido is 100x better'. Second aside lands.",
+   "category": "humour",
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "characters": [
+    "Meenakshi",
+    "Ekta",
+    "rich roommate"
+   ],
+   "visual_dependency": "medium",
+   "spoiler": false,
+   "confidence": 4,
+   "time_segments": [
+    {
+     "start": 517.0,
+     "end": 536.667
+    },
+    {
+     "start": 539.708,
+     "end": 558.5
+    }
+   ],
+   "video_duration": 38.46,
+   "standalone_risks": [],
+   "edit_notes": [
+    {
+     "type": "skip",
+     "after_piece": 0,
+     "reason": "3 s of dead air between Ekta leaving and the rich roommate's line, cut on shot changes 536.7 / 539.7"
+    }
+   ],
+   "flags": [],
+   "tags": [],
+   "notes": "Speakers from frames: Meenakshi (pink kurta) asks Ekta (blue T-shirt, 519-526); Ekta's smirk aside at 526-534; the rich roommate (mirror, 540-550) offers the car; Meenakshi's aside 551-558 to camera-ish, looking down at 557-558. Ends on the shot cut 558.5 (hold after 'best' is 0.15 s). 'అరే మా friend వస్తానన్నది వే' is Ekta's excuse. One internal cut removing 3 s of silence.",
+   "cold_open": false,
+   "payoff_line": "ఇది ఒక్కసారి drop చేస్తేనే ఊరంతా చెప్పుకొని తిరుగుతుంది ఏదో పెద్ద help చేసినట్టు. దీంతో వెళ్ళడం కంటే Rapido లో వెళ్లడం వంద రెట్లు best.",
+   "payoff_type": "comic aside voicing the inversion (refuses the only lift)",
+   "founder_would_post": "pending",
+   "rank": 3
+  },
+  {
+   "id": "w06",
+   "pieces": [
+    {
+     "start_word": 803,
+     "end_word": 817,
+     "start": 598.796,
+     "end": 607.656
+    },
+    {
+     "start_word": 853,
+     "end_word": 971,
+     "start": 628.476,
+     "end": 679.456
+    }
+   ],
+   "region": {
+    "start_word": 803,
+    "end_word": 971,
+    "start": 598.796,
+    "end": 679.456
+   },
+   "edited_duration": 59.84,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ఉమ్ ఇప్పుడే petrol అయిపోవాలా అబ్బా మీనాక్షిని ఎక్కించుకుంటే అదే petrol కొట్టించేది. ఉమ్ పర్లేదు వెనుకే ఎక్కించుకుంటా. ఆ Rapido ఎందుకు నేను drop చేస్తా. నా దగ్గర కూడా bike ఉంది అబ్బా నువ్వు నన్ను ఊరికే విసిగించకుండా ఇక్కడి నుండి వెళ్ళిపో please మీనాక్షి నన్ను ఒక friend గా అయినా ఆదరించొచ్చు కదా నేను నీ friend కావడం ఏంటిరా సరే college దగ్గర drop చేస్తాను Rapido వన్నే అనుకో. నాకు డబ్బులు కూడా ఇయ్యి మాకు. అంత harsh గా మాట్లాడకు మీనాక్షి మర్యాదగా ఇక్కడి నుండి వెళ్ళిపో నాకు చిరాకు తెప్పియ్యొద్దు చెప్తున్నా నేనేం చేశాను మీనాక్షి. కనీసం insta లో అయినా block చే-- ఏయ్ ఎన్నిసార్లు చెప్పాలిరా సిగ్గుగా లేదా ఇంకోసారి కనిపించావు అనుకో మర్యాద ఉండదు. పో ఇక్కడి నుంచి. వెళ్ళు ఉమ్ పదవే ఆ అంత cool గా చెప్తే వింటాడా వాడు ఎన్నిసార్లు చెప్పినా వాడిని సావడం లేదే ఈసారి రా నీ వడి పని చెల్తా ఉమ్ ఇక్కడికి వచ్చేసరికి petrol అయిపోయిందే పర్లేదులే నేను పట్టేస్తా పదా ఆ సరే నువ్వు drive చేస్తావా ఉమ్ ఉమ్ ఎక్కే ఉమ్",
+   "labeler": "clip-gt-editor",
+   "tightening_labeled": true,
+   "hook_line": {
+    "text": "ఉమ్ ఇప్పుడే petrol అయిపోవాలా అబ్బా మీనాక్షిని ఎక్కించుకుంటే అదే petrol కొట్టించేది.",
+    "start_word": 803,
+    "end_word": 812
+   },
+   "scores": {
+    "hook": 3,
+    "standalone": 4,
+    "payoff": 4,
+    "value_emotion": 4,
+    "overall": 3.8
+   },
+   "title": "మీనాక్షిని ఎక్కించుకుంటే అదే petrol కొట్టించేది | plan worked",
+   "why_it_works": "Ekta's petrol runs out, she plans to pick up Meenakshi so Meenakshi pays; she arrives mid-stalker-fight, shoves him off, and the plan lands: 'పర్లేదులే నేను పట్టేస్తా' as they ride off.",
+   "category": "humour",
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "characters": [
+    "Ekta",
+    "Meenakshi",
+    "stalker"
+   ],
+   "visual_dependency": "high",
+   "spoiler": false,
+   "confidence": 3,
+   "time_segments": [
+    {
+     "start": 598.6,
+     "end": 607.7
+    },
+    {
+     "start": 628.0,
+     "end": 679.5
+    }
+   ],
+   "video_duration": 60.6,
+   "standalone_risks": [],
+   "edit_notes": [
+    {
+     "type": "skip",
+     "after_piece": 0,
+     "reason": "Drops the 20 s phone call (607.7-628.0) between Ekta's plan and the stalker scene; cut lands on the shot change 628.0"
+    }
+   ],
+   "flags": [],
+   "tags": [],
+   "notes": "Full scene, continuous, 81 s (above the typical 75 s). The stalker confrontation (628-664) is the middle; cutting it would break 'అంత cool గా చెప్తే వింటాడా వాడు'. Ekta's slap/shove at ~652 (frames 10:48-10:56). Opening line is an aside ('petrol just had to run out now'), not addressed to anyone: hook 3. Ends with both on the scooter after 'ఎక్కే' (677.6) at 679.5, before the ride montage. Overlaps w07 (same scene): the judge should keep at most one. ASR: 'వాడిని సావడం లేదే' ~ 'వాడికి సావడం లేదే'?, 'ఈసారి రా నీ వడి పని చెల్తా' = 'ఈసారి రానీ వాడి పని చెప్తా' (let him come again, I'll fix him). || Gate re-cut: phone call 607.7-628.0 dropped (Ekta's call to Meenakshi: 'Hello వెళ్లిపోయావా... One minute వస్తున్నా'). Segment 1 ends 607.7 after 'వెనుకే ఎక్కించుకుంటా.' + her 'ఆ' (607.6) as she lifts the phone; no shot cut within 0.3 s. Segment 2 starts exactly on the shot cut 628.0 (Meenakshi + stalker two-shot, 'Rapido ఎందుకు నేను drop' at 628.48). 60.6 s instead of 80.9 s.",
+   "cold_open": false,
+   "payoff_line": "ఇక్కడికి వచ్చేసరికి petrol అయిపోయిందే / పర్లేదులే నేను పట్టేస్తా పదా",
+   "payoff_type": "setup pays off (the selfish plan works), reaction on scooter",
+   "founder_would_post": "pending",
+   "rank": 4
+  },
+  {
+   "id": "w08",
+   "pieces": [
+    {
+     "start_word": 1053,
+     "end_word": 1126,
+     "start": 830.584,
+     "end": 856.464
+    }
+   ],
+   "region": {
+    "start_word": 1053,
+    "end_word": 1126,
+    "start": 830.584,
+    "end": 856.464
+   },
+   "edited_duration": 25.88,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "sir order Call చేయాలి కదా direct గా వచ్చేస్తావెంటి అది చాలా సార్లు call చేశాను sir మీరు lift చేయలేదు. ఇక్కడ bell కూడా లేదని open చేశాను You have to wait call lift చేయలేదని direct గా లోపలికి వచ్చేస్తావా అది banquet hall ఏ కదా sir Shut up! లోపల IAS officers meeting అవుతుంది. నువ్వు లోపలికి direct గా వచ్చేస్తే security issues ఉంటాయి కదా అలాంటప్పుడు security ని పెట్టుకోవాలి కదా sir Don't talk, don't say what I have to do. Get out first",
+   "labeler": "clip-gt-editor",
+   "tightening_labeled": true,
+   "hook_line": {
+    "text": "sir order Call చేయాలి కదా direct గా",
+    "start_word": 1053,
+    "end_word": 1059
+   },
+   "scores": {
+    "hook": 4,
+    "standalone": 4,
+    "payoff": 3,
+    "value_emotion": 4,
+    "overall": 3.4
+   },
+   "title": "లోపల IAS officers meeting… Shut up! Get out first",
+   "why_it_works": "Akshara walks a delivery into a banquet hall because nobody answered; the manager humiliates her ('Shut up, IAS officers inside, get out first'). Ends on her walking out alone.",
+   "category": "emotional",
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "characters": [
+    "Akshara",
+    "banquet-hall manager"
+   ],
+   "visual_dependency": "medium",
+   "spoiler": false,
+   "confidence": 2,
+   "time_segments": [
+    {
+     "start": 830.4,
+     "end": 861.5
+    }
+   ],
+   "video_duration": 31.1,
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "tags": [],
+   "notes": "Starts at 830.4 on her 'sir, order' (after a 6 s music sting). Ends on 'Get out first' (856.5) plus a 5 s hold on the single wide shot of her walking out (857.4-861.5, no shot change until 866). The irony (an IAS aspirant thrown out of an IAS officers' meet) is not stated in the clip, so the payoff is a plain humiliation with a flat exit: likely payoff 3.",
+   "cold_open": false,
+   "payoff_line": "Don't talk, don't say what I have to do. Get out first",
+   "payoff_type": "humiliation beat, she walks out (hold)",
+   "founder_would_post": "pending",
+   "rank": 5
+  },
+  {
+   "id": "w09",
+   "pieces": [
+    {
+     "start_word": 1197,
+     "end_word": 1224,
+     "start": 949.584,
+     "end": 966.104
+    }
+   ],
+   "region": {
+    "start_word": 1197,
+    "end_word": 1224,
+    "start": 949.584,
+    "end": 966.104
+   },
+   "edited_duration": 16.52,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "మీ-మీనాక్షి ఏంట్రా నీ బాధ ఎన్ని సార్లు propose చేసినా పట్టించుకోవడం లేదు నేను ఇప్పటికే నీకు వెయ్యి సార్లైనా చెప్పుంటా నువ్వంటే నాకిష్టం లేదని అదే ఎందుకు ఒరేయ్ ఎదవా నాకు already పెళ్లి అయింది ఆ",
+   "labeler": "clip-gt-editor",
+   "tightening_labeled": true,
+   "hook_line": {
+    "text": "మీ-మీనాక్షి ఏంట్రా నీ బాధ",
+    "start_word": 1197,
+    "end_word": 1200
+   },
+   "scores": {
+    "hook": 4,
+    "standalone": 4,
+    "payoff": 5,
+    "value_emotion": 4,
+    "overall": 4.5
+   },
+   "title": "ఒరేయ్ ఎదవా… నాకు already పెళ్లి అయింది",
+   "why_it_works": "Stalker: 'why do you ignore me however many times I propose?'. Meenakshi: 'I've told you a thousand times I don't like you'. 'But why?' - 'Idiot, I'm already married.' His face freezes.",
+   "category": "reveal",
+   "content_type": "web_series",
+   "clip_purpose": "promo",
+   "characters": [
+    "Meenakshi",
+    "stalker"
+   ],
+   "visual_dependency": "high",
+   "spoiler": true,
+   "confidence": 5,
+   "time_segments": [
+    {
+     "start": 949.4,
+     "end": 971.0
+    }
+   ],
+   "video_duration": 21.6,
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "tags": [],
+   "notes": "Episode cliffhanger: SPOILER (Meenakshi is married). 20.6 s; ends on his stunned face held to the shot cut at 971.3 (credits follow). 'చెప్పక తప్పేలా లేదే' (959.7-963.3) was emitted by Scribe as an audio event, not words, so it is inside time_segments but not in pieces. Preceded by a 9 s music sting (940.8-949.6) so no earlier start; 'అబ్బా వీడు మళ్ళీ వచ్చాడండి' (939.1) could be prefixed with a cut across the sting if the judge wants the 'he came again' setup.",
+   "cold_open": false,
+   "payoff_line": "ఒరేయ్ ఎదవా నాకు already పెళ్లి అయింది",
+   "payoff_type": "reveal/twist with his stunned reaction on screen",
+   "founder_would_post": "pending",
+   "rank": 6
+  },
+  {
+   "id": "w03",
+   "pieces": [
+    {
+     "start_word": 346,
+     "end_word": 449,
+     "start": 282.0,
+     "end": 344.56
+    }
+   ],
+   "region": {
+    "start_word": 346,
+    "end_word": 449,
+    "start": 282.0,
+    "end": 344.56
+   },
+   "edited_duration": 62.56,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ఓయ్ ఏంటి madam ఒక్కటే కూర్చొని అంతలా feel అవుతున్నారు ఊ ఉమ్ జయ్ ఏమన్నా అన్నాడా? ఆ అదేం లేదే మరి ఎందుకే అంతలా బాధపడుతున్నావ్ ఏదో గుర్తొచ్చి ఛ్ ఖచ్చితంగా ఆదనా ఏదో అని ఉంటుంది. అందుకే నువ్వు ఇంతలా feel అవుతున్నావ్. నువ్వు silent గా ఉంటున్నావ్ అంటే అదే. దాని గురించి మనకు తెలిసిందే కదే. మళ్ళీ ఎందుకు feel అవ్వడం చెప్పు అందరి life ఒకేలా ఉండదు కదా దానమ్మ బాబులు బలిసినోళ్లే, అందుకే దానికి అంత బలుపు. దానికి మనమేం చేస్తాం చెప్పు అది కాదు మీనాక్షి ఏది కాదు. నాకంటే పెద్ద problem ఉందా నీ life లో, లేదు కదా. ఎవరో ఏదో అన్నారని feel అవుతూ కూర్చుంటే నేను ఇక్కడిదాకా వచ్చేదాన్నా. సో వదిలేయ్. దాని గురించి feel అయితే మనకేం వస్తాయి చెప్పు. దానికే ఏదో ఒకరోజు తెలిసి వస్తుంది లేవే. ఊ",
+   "labeler": "clip-gt-editor",
+   "tightening_labeled": true,
+   "hook_line": {
+    "text": "ఓయ్ ఏంటి madam ఒక్కటే కూర్చొని అంతలా feel అవుతున్నారు ఊ",
+    "start_word": 346,
+    "end_word": 354
+   },
+   "scores": {
+    "hook": 4,
+    "standalone": 4,
+    "payoff": 4,
+    "value_emotion": 5,
+    "overall": 4.2
+   },
+   "title": "దానమ్మ బాబులు బలిసినోళ్లే… అందుకే దానికి అంత బలుపు",
+   "why_it_works": "Meenakshi finds Akshara crying alone, names the rich roommate's arrogance ('అందుకే దానికి అంత బలుపు') and lifts her; ends on Akshara wiping her tears and Meenakshi's smile.",
+   "category": "emotional",
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "characters": [
+    "Akshara",
+    "Meenakshi"
+   ],
+   "visual_dependency": "high",
+   "spoiler": false,
+   "confidence": 4,
+   "time_segments": [
+    {
+     "start": 281.85,
+     "end": 346.1
+    }
+   ],
+   "video_duration": 64.25,
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "tags": [],
+   "notes": "Continuous, no cuts; two 3 s silences inside (286-289, 302-305) kept. Frames 343-346: Akshara wipes her eyes and smiles; 347-350 both walk away. 'జయ్ ఏమన్నా అన్నాడా?' names Jai (her delivery friend) without explaining him: small inside reference. ASR: 'ఖచ్చితంగా ఆదనా ఏదో అని ఉంటుంది' is probably 'అది ఏదో అని ఉంటుంది' (she must have said something). 'నాకంటే పెద్ద problem ఉందా నీ life లో' foreshadows Meenakshi's own secret (end of episode) but reads fine without it. || Gate re-cut: end 350.0 -> 346.1, after the cheek-wipe (344.5-344.8) and Meenakshi's smile (345.0-346.5), before 'ఓకే నా పదా వెళ్దాం' (346.28) and the wide walk-off shot (~346.6; not in shots.json, no cut within 0.3 s). Last kept word 449 'ఊ' (344.56).",
+   "cold_open": false,
+   "payoff_line": "దానికే ఏదో ఒకరోజు తెలిసి వస్తుంది లేవే.",
+   "payoff_type": "emotional peak with visible reaction (tears wiped, smile held)",
+   "founder_would_post": "pending",
+   "rank": 7
+  }
+ ],
+ "founder_review": "pending: clip-judge gate applied 2026-10-07 (runs/judge/gh2_gate.md): 7 clips shown to the founder (w01, w04, w05, w06, w08, w09, w03), 5 held (founder_would_post = 'held'); re-cuts noted per clip under 'Gate re-cut'."
+}
