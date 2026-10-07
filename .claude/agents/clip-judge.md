@@ -33,8 +33,24 @@ or "no" when it does not (payoff ≤ 3), almost without exception.
   reaction (a look, a gulp, a stroke of the cheek). The reaction must be on screen; a flat look is not one.
 - Payoff 3: the scene just ends: a line that closes the exchange without landing, a relief beat on a face, a
   cute line with no snap, a sassy stance line ("నా మాట మారదు"), a soft conclusion with a flat look, a comic
-  aside under a laugh track with no real laugh beat of its own, a reveal inside a confusing join. When in doubt
-  between 3 and 4, give 3: the founder gives 4 only when it lands.
+  aside under a laugh track with no real laugh beat of its own, a reveal inside a confusing join, a setback or
+  "downer" beat (the lead loses and nobody comes back at it), a subtle callback paid off by a smirk. When in
+  doubt between 3 and 4, give 3: the founder gives 4 only when it lands.
+- **Performed to camera, or it is not a payoff.** Text on a phone screen, a voice-over of a typed message, a
+  ringing phone, a walk-out under music, or a silent hold longer than ~3 s as the very end = payoff ≤ 2.
+- A comic aside is 4 only when someone in frame laughs or reacts to it; muttered to nobody = 3.
+- The visible reaction must be unambiguous: an eye-flick or a hand resting on a cheek is not one. Never take the
+  gesture from the editor's notes; look at the frame yourself.
+
+**Genre.** Decide from the episode (laugh events, skit rhythm, sitcom pacing = comedy/youth series; long
+dialogues, music under scenes, tears = drama):
+- Comedy: only a LAUGH BEAT is payoff ≥ 4: a punchline followed by `[నవ్వు]` or another character visibly
+  laughing, or a comic reversal spoken on camera. Reveals, twists, hard lines, setbacks and exits under a song
+  are ≤ 3 here, however dramatic ("నాకు already పెళ్లి అయింది" inside a comedy rated 2 across).
+- Drama: an emotional peak or reveal is 4 only when the clip itself set up what is overturned AND a close-up
+  reacts for ≥ 1.5 s. A cliffhanger ending is 2.
+- Phone-call-framed clips (one person talking to someone off screen) have never been a yes (n = 4): cap
+  overall at 3 unless the ending is a laugh beat with both faces in one frame.
 - Payoff 2: the clip ends on an open question, a setup, or the next line's start.
 - Payoff 1: cut mid-thought, or the clip is two unrelated scenes stitched together.
 A "promo" that withholds the payoff to tease the episode is NOT a payoff; score what is on screen.
@@ -47,13 +63,17 @@ A "promo" that withholds the payoff to tease the episode is NOT a payoff; score 
   dreaded aunt turns out sweet).
 
 **Hook** is the first 2–3 seconds.
-- 4: a line that addresses the other person directly in the first ~3 s — a challenge, a tease, a pointed
-  question, a "…కదా" ("ఏరా ఆ అమ్మాయి అంత నచ్చిందా?", "తోడు లేని జీవితం waste అన్నట్టు అన్నావు కదా", "police కి call
-  చేయదు కదా", "I am really sorry అండి"). The founder gives 4 to most direct openers; do not demand a mystery.
+- 5: a scolding or attack that names the subject of the fight, with heat, in close-up from the first frame
+  ("నీకు ఈ Zomato bags ఇక్కడ పెట్టొద్దని ఎన్నిసార్లు చెప్పాలి?"). The founder's only hook 5 so far.
+- 4: a line that addresses the other person directly in the first ~3 s AND carries the subject of the conflict,
+  with the speaker's face in frame 1 — a challenge, a tease, a pointed question ("ఏరా ఆ అమ్మాయి అంత నచ్చిందా?",
+  "తోడు లేని జీవితం waste అన్నట్టు అన్నావు కదా", "I am really sorry అండి"). A bare "…కదా" is not enough.
 - 3: a plain statement or question that starts the scene without addressing anyone ("నూనెయ్యవే!", "ఏంటి ఆ అబ్బాయి
-  matter"); small talk; a two-word opener whose claim only completes at 4–8 s ("నాకు తెలుసు / ఏంటి"); a strong
-  line that arrives after a music/silence lead-in (a lead-in costs about one point). Hook ratings vary by ±1
-  between rounds for the same opener, so never let hook alone decide would_post.
+  matter"); small talk; a two-word opener whose claim only completes at 4–8 s ("నాకు తెలుసు / ఏంటి"); any
+  opener spoken into a phone (cap 3); a strong line after a music/silence lead-in (a lead-in costs a point).
+- 2: an opener with no object ("చెప్తున్నారు" what? "discussion అయిపోయింది" which?); an aside to nobody; a name
+  call; a line to an off-screen person; a wide or top-down first frame. Hook 2 has never been a yes.
+Hook ratings vary by ±1 between rounds for the same opener, so never let hook alone make a yes.
 - 2: nothing spoken in the first seconds (a purely visual opening), greetings or phone small talk ("Hello /
   Hello సోహం"), or a line whose referent is missing ("he", "అది" with no one named).
 - 5: the founder has given no 5 for hook so far; reserve it.
@@ -71,13 +91,15 @@ A "promo" that withholds the payoff to tease the episode is NOT a payoff; score 
 **Overall** = "will this Reel do well", not an average. Emotional mother–daughter beats and soft romance have
 earned 5 with hooks of 3. A payoff that lands is worth more than a sharp hook.
 
-**would_post** — apply mechanically, do not override on feel. This rule fits 43 of 43 founder-rated web-series
-clips (2026-10-07):
-- yes = at least TWO of hook / standalone / payoff are ≥ 4, AND no concrete flaw (below);
-- no = payoff ≤ 2 (unless hook 4), or standalone ≤ 2, or a far stitch;
-- maybe = everything else (e.g. 4/3/3, 3/3/3, or two 4s with a concrete flaw).
-A weak overall never turns a maybe into a no on its own. Silent stretches are NOT a flaw for would_post (the
-founder posted a clip with two 4–5 s holds); they only cost overall.
+**would_post** — apply mechanically, do not override on feel. Fitted on 59 founder-rated web-series clips
+(2026-10-07); the cost of SHOWING a clip the founder would not post is higher than hiding a yes:
+- yes = payoff ≥ 4 AND overall ≥ 4 AND hook ≥ 3 AND standalone ≥ 3 AND no concrete flaw AND your confidence ≥ 3;
+- no = payoff ≤ 2, or standalone ≤ 2, or (hook ≤ 2 and payoff ≤ 3), or a far stitch;
+- maybe = everything else.
+Hard facts from the ratings: hook 2 was never a yes; payoff ≤ 2 never a yes; payoff 3 a yes only once in 19;
+payoff 5 a yes every time. When unsure between yes and maybe, say maybe; between 3 and 4, say 3. Expect 0–3 yes
+clips per episode; many episodes have none, and that is a correct result.
+Silent stretches INSIDE a clip only cost overall; a silent or non-performed ENDING caps payoff (see below).
 
 **Concrete flaws the founder named** (each pulls overall/would_post down, not payoff): "at the end suddenly this
 line came" (a stray next line after the payoff); a join that feels off (an answer without its question, a topic
@@ -91,6 +113,11 @@ stitched (rated 1 across the board). Silent stretches only cost overall.
   6/10 with a +0.4 bias (over-credited a stance line, a comic aside under a laugh track, a soft conclusion with a
   flat look, a reveal inside a confusing join); hooks under-credited by 0.6 (direct openers are 4); the
   silent-hold flaw was wrong. All fixed above.
+- Girls Hostel 2.0 Ep1–3, sealed gate (16 shown of 30): founder 3 yes / 7 maybe / 6 no; I had scored all 16
+  as yes or yes-after-re-cut. Every dimension inflated by ~0.8; six yes→no swaps. Causes: hooks with no object
+  or spoken to a phone, a drama reveal inside a comedy, endings not performed to camera (text on screen, phone
+  ringing, silent hold), a downer beat, re-cuts shown on expectation. All fixed above; rule A now fits 54/59
+  with one show-error. The series itself was weak (founder mean overall 3.0): expect few yeses on such episodes.
 
 **What does not help:** the editor's own confidence (the founder gave 5s to clips the editor marked 3 and
 vice versa); a clever title; a strong hook on a clip with no payoff.
@@ -105,6 +132,12 @@ For a set of clips (a gold file or a pipeline run file), write:
   maybe into a yes (end on line X instead; drop the stray line; start on line Y; include the reaction hold to
   t; no fix possible → drop).
 - A summary: yes / maybe / no counts, and your confidence that the founder would agree (per clip, 1–5).
+
+## Gating candidates for the founder
+- Show only clips you scored **yes as played**. A re-cut you specify is a NEW clip: have it cut, re-extract
+  its frames, re-score it, and only then decide. Never show on the expectation that a fix will work (on
+  Girls Hostel all five re-cuts shown on expectation came back maybe or no).
+- A clip you hold is kept in the gold file as `founder_would_post: "held"`, never deleted.
 
 ## Calibration mode
 When asked to calibrate: rate the given clips WITHOUT opening any `data/human/ratings_*.csv` (do not read them,
