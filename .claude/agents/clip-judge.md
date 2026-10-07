@@ -28,10 +28,13 @@ Scores are 1–5 for hook, standalone, payoff, overall; `would_post` is yes / ma
 **Payoff is what decides a post.** The founder posts a clip when the payoff lands (payoff 4–5) and says "maybe"
 or "no" when it does not (payoff ≤ 3), almost without exception.
 - Payoff 5: a punchline or reversal that gets a real laugh, with the reaction on screen.
-- Payoff 4: a clean punchline, a quotable conclusion ("food made with love", "Let's make our marriage life
-  tasty"), a reveal, or an emotional peak with a visible reaction (a look, a gulp, a stroke of the cheek).
+- Payoff 4: a clean punchline with a laugh beat, a quotable conclusion that snaps ("food made with love",
+  "Let's make our marriage life tasty"), a reveal that reframes the clip, or an emotional peak with a VISIBLE
+  reaction (a look, a gulp, a stroke of the cheek). The reaction must be on screen; a flat look is not one.
 - Payoff 3: the scene just ends: a line that closes the exchange without landing, a relief beat on a face, a
-  cute line with no snap.
+  cute line with no snap, a sassy stance line ("నా మాట మారదు"), a soft conclusion with a flat look, a comic
+  aside under a laugh track with no real laugh beat of its own, a reveal inside a confusing join. When in doubt
+  between 3 and 4, give 3: the founder gives 4 only when it lands.
 - Payoff 2: the clip ends on an open question, a setup, or the next line's start.
 - Payoff 1: cut mid-thought, or the clip is two unrelated scenes stitched together.
 A "promo" that withholds the payoff to tease the episode is NOT a payoff; score what is on screen.
@@ -44,11 +47,13 @@ A "promo" that withholds the payoff to tease the episode is NOT a payoff; score 
   dreaded aunt turns out sweet).
 
 **Hook** is the first 2–3 seconds.
-- 4: a mystery, tease or inversion that is complete by ~3 s ("ఏరా ఆ అమ్మాయి అంత నచ్చిందా?", "మీరు బయట food
-  తినరు కదా", "sorry for that night…", "will she call the police?").
-- 3: a plain question or statement that starts the scene ("మీకు వంట వచ్చా?", "నూనెయ్యవే!"); a confrontation or
-  breakup statement with no mystery in it; a two-word opener whose claim only completes at 4–8 s ("నాకు తెలుసు /
-  ఏంటి"); a strong line that arrives after a music/silence lead-in (a lead-in costs about one point).
+- 4: a line that addresses the other person directly in the first ~3 s — a challenge, a tease, a pointed
+  question, a "…కదా" ("ఏరా ఆ అమ్మాయి అంత నచ్చిందా?", "తోడు లేని జీవితం waste అన్నట్టు అన్నావు కదా", "police కి call
+  చేయదు కదా", "I am really sorry అండి"). The founder gives 4 to most direct openers; do not demand a mystery.
+- 3: a plain statement or question that starts the scene without addressing anyone ("నూనెయ్యవే!", "ఏంటి ఆ అబ్బాయి
+  matter"); small talk; a two-word opener whose claim only completes at 4–8 s ("నాకు తెలుసు / ఏంటి"); a strong
+  line that arrives after a music/silence lead-in (a lead-in costs about one point). Hook ratings vary by ±1
+  between rounds for the same opener, so never let hook alone decide would_post.
 - 2: nothing spoken in the first seconds (a purely visual opening), greetings or phone small talk ("Hello /
   Hello సోహం"), or a line whose referent is missing ("he", "అది" with no one named).
 - 5: the founder has given no 5 for hook so far; reserve it.
@@ -66,22 +71,26 @@ A "promo" that withholds the payoff to tease the episode is NOT a payoff; score 
 **Overall** = "will this Reel do well", not an average. Emotional mother–daughter beats and soft romance have
 earned 5 with hooks of 3. A payoff that lands is worth more than a sharp hook.
 
-**would_post** — apply mechanically, do not override on feel:
-- yes = payoff ≥ 4, standalone ≥ 3 and no concrete flaw;
-- maybe = payoff ≥ 4 with a concrete flaw (a stray line at the end, a join that feels off, a replayed cold open,
-  too long for its content); OR payoff 3 with standalone ≥ 3; OR payoff 2 with hook 4;
-- no = payoff ≤ 2 (unless hook 4), or standalone ≤ 2, or a far stitch.
-A weak hook or a low overall never turns a maybe into a no on its own.
+**would_post** — apply mechanically, do not override on feel. This rule fits 43 of 43 founder-rated web-series
+clips (2026-10-07):
+- yes = at least TWO of hook / standalone / payoff are ≥ 4, AND no concrete flaw (below);
+- no = payoff ≤ 2 (unless hook 4), or standalone ≤ 2, or a far stitch;
+- maybe = everything else (e.g. 4/3/3, 3/3/3, or two 4s with a concrete flaw).
+A weak overall never turns a maybe into a no on its own. Silent stretches are NOT a flaw for would_post (the
+founder posted a clip with two 4–5 s holds); they only cost overall.
 
 **Concrete flaws the founder named** (each pulls overall/would_post down, not payoff): "at the end suddenly this
 line came" (a stray next line after the payoff); a join that feels off (an answer without its question, a topic
 jump); a cold open whose line replays word for word later; a clip starting on music; two scenes far apart
-stitched (rated 1 across the board); silent stretches of 4 s or more inside the clip (two of them in a clip
-under 60 s pull overall to 2).
+stitched (rated 1 across the board). Silent stretches only cost overall.
 
-**Calibration so far:** Hello Madam Ep6 blind, before these rules: would_post 7/12, every dimension within 1 on
-10–12 of 12, no yes↔no swaps; misses were the last-beat rule, question endings, the comic-aside punchline,
-unstated relationships, and one threshold not applied. Re-check on every new founder rating file.
+**Calibration so far** (re-check on every new founder rating file):
+- Hello Madam Ep6 round 1, blind: would_post 7/12, no yes↔no swaps. Misses → the last-beat rule, question
+  endings, the comic-aside punchline, unstated relationships.
+- Hello Madam Ep6 round 2, sealed prediction: would_post 7/10, every dimension within 1 on 10/10; payoff exact
+  6/10 with a +0.4 bias (over-credited a stance line, a comic aside under a laugh track, a soft conclusion with a
+  flat look, a reveal inside a confusing join); hooks under-credited by 0.6 (direct openers are 4); the
+  silent-hold flaw was wrong. All fixed above.
 
 **What does not help:** the editor's own confidence (the founder gave 5s to clips the editor marked 3 and
 vice versa); a clever title; a strong hook on a clip with no payoff.
