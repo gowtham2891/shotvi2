@@ -28,6 +28,16 @@ decision must generalize to any Telugu podcast a creator uploads.
 - **Web-series GT approved (founder, 2026-10-06):** `data/gold/j14Om1SaFYE.json` (Couple Goals Ep1, 8 clips) and
   `data/gold/QWIvgoTQGKk.json` (Ep2, 12 clips), round 3 (commit 8eca87c): "all clips are good". This is the
   target the automatic web-series pipeline is measured against (moments, boundaries, openings, reaction holds).
+- **Not every video yields good clips (founder, 2026-10-07).** The count depends on the video (founder posts:
+  Couple Goals 20/21, Hello Madam 6/12, Girls Hostel 2.0 3/16). GT = clips the founder would post
+  (`founder_would_post` in data/gold); the headline metric is precision at the top (recommended clips the founder
+  would post; target: never show a "no"), not recall of an editor's list. The pipeline shows absolute tiers and
+  an `episode_verdict` (strong / thin / none) instead of padding.
+- **Web-series clip selection v1 (2026-10-07):** `prompts/ws_discover_b_payoff.md` (payoff-first: find the beat
+  that lands, build back to the setup it needs, no landing = no clip) is the default discover prompt. A/B vs
+  ws/0.2 on 3 episodes (₹34.96): recommended clips the founder would post 8 → 10, founder "no" shown 0 → 0,
+  recall over yes 17 → 16 of 26. Pre-v1 configs pin `ws_discover`. Run a new episode with
+  `python -m shotvi.run_episode <url|id>`. Tuning stops here; it improves only from new founder ratings.
 - **The podcast pipeline is preserved** at git tag `podcast-pipeline-v1`; web-series work must not break it.
 - **Ground truth for these types comes from the `clip-gt-editor` agent** reading the whole episode (plus keyframes
   for web series), reviewed by the founder. The channel's own published Shorts/Reels are NOT used as ground truth.

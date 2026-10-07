@@ -43,7 +43,8 @@ class PayoffArmAnswerFields(unittest.TestCase):
     ARM = "ws_discover_b_payoff"
 
     def test_baseline_schema_is_the_same_object(self):
-        self.assertIs(ws.discover_schema(ws.DEFAULTS), ws.DISCOVER_SCHEMA)
+        v02 = ws.deep_merge(ws.DEFAULTS, {"prompts": {"ws_discover": "ws_discover"}})   # pre-v1 baseline prompt
+        self.assertIs(ws.discover_schema(v02), ws.DISCOVER_SCHEMA)
         self.assertNotIn("payoff_type", ws.DISCOVER_SCHEMA["properties"]["moments"]["items"]["properties"])
 
     def test_arm_adds_optional_fields_only(self):
@@ -96,7 +97,8 @@ class PromptOverride(unittest.TestCase):
     def test_override_swaps_only_the_discover_prompt(self):
         ep = make_ep(SCENE, CUTS)
         cfg_b = ws.deep_merge(ws.DEFAULTS, {"prompts": {"ws_discover": "ws_discover_b_setup"}})
-        s_a, u_a = ws.discover_prompt(ep, None, ws.DEFAULTS)
+        cfg_a = ws.deep_merge(ws.DEFAULTS, {"prompts": {"ws_discover": "ws_discover"}})   # pre-v1 baseline prompt
+        s_a, u_a = ws.discover_prompt(ep, None, cfg_a)
         s_b, u_b = ws.discover_prompt(ep, None, cfg_b)
         self.assertEqual(u_a, u_b)
         self.assertNotEqual(s_a, s_b)
@@ -222,3 +224,15 @@ class Projection(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class V1Default(unittest.TestCase):
+    def test_default_discover_prompt_is_payoff_first(self):
+        self.assertEqual(ws.prompt_file(ws.DEFAULTS, "ws_discover"), "ws_discover_b_payoff")
+
+    def test_pre_v1_configs_pin_the_old_prompt(self):
+        import json
+        from pathlib import Path
+        for f in sorted(Path("shotvi/select/configs").glob("ws_*.json")):
+            cfg = json.loads(f.read_text(encoding="utf-8"))
+            self.assertEqual(cfg.get("prompts", {}).get("ws_discover"), "ws_discover", f.name)

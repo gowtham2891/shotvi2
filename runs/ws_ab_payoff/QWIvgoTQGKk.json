@@ -1,0 +1,1111 @@
+{
+ "schema_version": "1.1",
+ "kind": "proposals",
+ "video_id": "QWIvgoTQGKk",
+ "transcript": {
+  "path": "scribe_dataset/QWIvgoTQGKk/QWIvgoTQGKk_scribe_transcript.json",
+  "sha256": "a1cd16043a9facd8d47e19692b1ff302e57eed20d4aeede565c4e1eec685fbc6",
+  "n_words": 1366,
+  "audio_duration_secs": 1311.892625
+ },
+ "derived_params": {
+  "skip_s": 30.0
+ },
+ "run_id": "ws_ab_payoff",
+ "created_at": "2026-10-07T15:22:07Z",
+ "content_type": "web_series",
+ "pipeline": {
+  "version": "ws/0.2",
+  "git_commit": null,
+  "prompt_versions": {
+   "ws_discover": "3+27f4dce4",
+   "ws_review": "1+addbc14b"
+  },
+  "prompt_files": {
+   "ws_discover": "ws_discover_b_payoff",
+   "ws_review": "ws_review"
+  },
+  "config": {
+   "models": {
+    "ws_discover": {
+     "provider": "gemini",
+     "model": "gemini-3.8-flash",
+     "params": {
+      "thinking_level": "high",
+      "max_output_tokens": 32768
+     }
+    },
+    "ws_review": {
+     "provider": "gemini",
+     "model": "gemini-3.8-flash",
+     "params": {
+      "thinking_level": "high",
+      "max_output_tokens": 24576
+     }
+    },
+    "video_end": {
+     "provider": "gemini",
+     "model": "gemini-3.8-flash",
+     "params": {
+      "thinking_level": "low"
+     }
+    }
+   },
+   "cut": {
+    "start_pad_s": 0.3,
+    "lift_min_s": 1.0,
+    "lift_max_s": 3.6,
+    "lift_cut_eps_s": 0.005,
+    "lift_start_snap_s": 0.4,
+    "lift_start_pad_s": 0.12,
+    "lift_max_tail_s": 2.0,
+    "lift_tail_measure_s": 0.4,
+    "lift_quiet_tail_db": 15.0,
+    "lift_level_warn_db": 10.0,
+    "max_cuts": 3,
+    "max_drop_s": 45.0,
+    "snap_s": 1.5,
+    "join_pad_s": 0.25,
+    "hold_min_s": 2.0,
+    "hold_max_s": 8.0,
+    "hold_short_min_s": 0.5,
+    "hold_default_s": 2.0,
+    "next_speech_margin_s": 0.1,
+    "long_silence_s": 20.0,
+    "long_silence_hold_max_s": 4.0,
+    "react_max_s": 1.5,
+    "react_max_words": 3,
+    "react_clear_s": 1.0,
+    "quick_cut_min_s": 0.02,
+    "quick_end_margin_s": 0.05,
+    "flash_s": 0.3,
+    "shot_tol_s": 0.05,
+    "word_clip_tol_s": 0.02,
+    "exchange_start": false,
+    "exchange_gap_s": 2.0,
+    "exchange_back_max_s": 30.0,
+    "exchange_back_max_lines": 12,
+    "exchange_on_cap": "keep",
+    "exchange_recap_s": 60.0,
+    "exchange_mode": "walk",
+    "qreply_require_speaker_change": false,
+    "qreply_setup_lines": 2,
+    "qreply_max_lines": 3,
+    "qreply_max_s": 12.0,
+    "exchange_max_play_s": 120.0
+   },
+   "review_view": "final",
+   "guardrails": {
+    "min_s": 15.0,
+    "soft_max_s": 120.0,
+    "hard_max_s": 150.0,
+    "skip_s": 30.0,
+    "dup_overlap": 0.5,
+    "blocks_flag_above": 3
+   },
+   "thresholds": {
+    "t_show": 3.5,
+    "t_rec": 4.0,
+    "t_rec_payoff": 4.0,
+    "rec_blockers": [
+     "needs_rescore",
+     "shot_flash",
+     "unreviewed_start",
+     "review_repair_failed"
+    ],
+    "verdict_strong_min": 3
+   },
+   "video_end_check": {
+    "enabled": false,
+    "max_shift_s": 8.0
+   },
+   "prompts": {
+    "ws_discover": "ws_discover_b_payoff",
+    "ws_review": "ws_review"
+   },
+   "budget_usd": 0.6,
+   "run_id": "ws_ab_payoff"
+  }
+ },
+ "models": [
+  {
+   "role": "ws_discover",
+   "provider": "gemini",
+   "model": "gemini-3.8-flash",
+   "params": {
+    "thinking_level": "high",
+    "max_output_tokens": 32768
+   }
+  },
+  {
+   "role": "ws_review",
+   "provider": "gemini",
+   "model": "gemini-3.8-flash",
+   "params": {
+    "thinking_level": "high",
+    "max_output_tokens": 24576
+   }
+  }
+ ],
+ "cost": {
+  "input_tokens": 16837,
+  "output_tokens": 38224,
+  "usd": 0.15597,
+  "usd_billed": 0.15597,
+  "wall_time_secs": 251.5,
+  "n_llm_calls": 2,
+  "by_role": {
+   "ws_discover": {
+    "n_llm_calls": 1,
+    "n_cache_hits": 0,
+    "n_failed_attempts": 0,
+    "input_tokens": 13128,
+    "output_tokens": 26175,
+    "thought_tokens": 23108,
+    "cached_input_tokens": 0,
+    "usd": 0.108,
+    "usd_billed": 0.108,
+    "models": [
+     "gemini-3.8-flash"
+    ]
+   },
+   "ws_review": {
+    "n_llm_calls": 1,
+    "n_cache_hits": 0,
+    "n_failed_attempts": 0,
+    "input_tokens": 3709,
+    "output_tokens": 12049,
+    "thought_tokens": 10833,
+    "cached_input_tokens": 0,
+    "usd": 0.04797,
+    "usd_billed": 0.04797,
+    "models": [
+     "gemini-3.8-flash"
+    ]
+   }
+  },
+  "projection": {
+   "ws_discover": {
+    "in": 13128,
+    "in_source": "countTokens",
+    "out_expected": 24626,
+    "out_guard": 32768,
+    "inr_expected": 9.2,
+    "inr": 11.95
+   },
+   "ws_review": {
+    "in_expected": 5277,
+    "out_expected": 14409,
+    "inr_expected": 5.22,
+    "in_guard": 14700,
+    "out_guard": 24576,
+    "inr": 9.29,
+    "assumes_clips": 15,
+    "expected_from": "ws_r1 (8 clips)"
+   },
+   "video_end_check": {
+    "enabled": false,
+    "assumes_clips": 8,
+    "inr": 0.0,
+    "inr_expected": 0.0
+   },
+   "episode": {
+    "inr_expected": 14.42,
+    "inr": 21.24
+   }
+  }
+ },
+ "cutoff": {
+  "t_show": 3.5,
+  "t_rec": 4.0,
+  "t_rec_payoff": 4.0,
+  "rec_blockers": [
+   "needs_rescore",
+   "shot_flash",
+   "unreviewed_start",
+   "review_repair_failed"
+  ],
+  "n_candidates": 8,
+  "n_passed_hard_rules": 8,
+  "n_shown": 8,
+  "n_recommended": 4,
+  "n_worth_a_look": 4,
+  "n_rejected": 0,
+  "warnings": []
+ },
+ "episode_verdict": {
+  "strong_clips": 4,
+  "worth_a_look": 4,
+  "verdict": "strong",
+  "note": "4 strong clips cleared the bar (plus 4 worth a look)."
+ },
+ "episode_notes": "Scenes breakdown:\n- L0001..L0075: Morning kitchen and dining area. Amrutha panics about making chai, father-in-law brings chai. Husband delivers a passionate monologue about how Chai is an emotion/therapy. Payoff: L0061 (conclusion).\n- L0076..L0113: Breakfast table. Amrutha's mother overpromises that Amrutha will wake up at 6 AM and cook all meals.\n- L0114..L0137: Kitchen/living room. Father-in-law explains why husband hates liars (he lied about cooking and son didn't talk to him for 4 years). Payoff: L0120 (reveal).\n- L0138..L0164: Office/exterior. Husband and friend discuss the reality of the first night (overhyped, exhausting, couples just want to sleep). Payoff: L0160 (punchline).\n- L0165..L0180: Bedroom. Husband offers to apply nail polish.\n- L0181..L0199: Dinner scene. Husband remarks the food tastes like his mother's cooking, Amrutha panics thinking she was caught lying. Payoff: L0199 (punchline).\n- L0200..L0241: Bedroom. Husband sets rules for intimacy: first night by mutual consent, but demands a daily send-off hug; then scolds himself for saying send-off. Payoff: L0240 (punchline).\n- L0242..L0295: Breakfast table. Husband asks for an egg dosa; mother secretly provided multiple dosa varieties in the dabba. Payoff: L0274 (punchline).\n- L0296..L0315: Hallway. Husband collects his promised send-off hug ('This is why I love short girls'). Payoff: L0312 (punchline).\n- L0316..L0327: Friend banter about marriage.\n- L0328..L0345: Kitchen. Amrutha fails at making popcorn; mother steps in.\n- L0346..L0385: Kitchen climax. Husband arrives early demanding mirchi bajji and brags to colleagues about his wife's culinary skills while she is trapped unable to cook. Payoff: L0379 (punchline).",
+ "proposals": [
+  {
+   "id": "w02",
+   "pieces": [
+    {
+     "start_word": 675,
+     "end_word": 708,
+     "start": 651.42,
+     "end": 665.4
+    }
+   ],
+   "region": {
+    "start_word": 675,
+    "end_word": 708,
+    "start": 651.42,
+    "end": 665.4
+   },
+   "edited_duration": 13.98,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "అమ్మ చేతి వంటలా ఉంది. హా మా అమ్మ చెయ్యలేదు నిజంగా మా అమ్మ చెయ్యలేదు ఒట్టు మొత్తం అన్నీ నేనే చేశా ఒట్టు మా అమ్మ చెయ్యలేదు అస్సలు చెయ్యలేదు మా అమ్మ చెయ్యలేదు. నేనేమన్నాను మా అమ్మ చేతి వంటలా ఉందన్నాను. నీ అమ్మ!",
+   "rank": 1,
+   "tier": "recommended",
+   "scores": {
+    "hook": 3.5,
+    "standalone": 5.0,
+    "payoff": 5.0,
+    "value_emotion": 4.5,
+    "overall": 4.5
+   },
+   "title": "మా అమ్మ చేతి వంటలా ఉంది",
+   "hook_line": {
+    "text": "అమ్మ చేతి వంటలా ఉంది.",
+    "start_word": 675,
+    "end_word": 678
+   },
+   "why_it_works": "A wife's guilty overreaction to a cooking compliment ends with a swift, laugh-out-loud punchline.",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 651.12,
+     "end": 666.537,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 15.42,
+   "spoiler": false,
+   "characters": [
+    "Husband",
+    "Amrutha"
+   ],
+   "visual_dependency": "medium",
+   "start_line": "L0195",
+   "end_line": "L0199",
+   "end_hold": {
+    "payoff_end": 665.4,
+    "end": 666.537,
+    "hold_s": 1.14,
+    "on_shot_cut": true,
+    "next_speech": 688.28,
+    "long_silence_after": true,
+    "laugh_after": false,
+    "note": "short hold (next shot cut before the minimum hold)",
+    "rule": "hold"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": 5,
+    "what_happens": "While tasting dinner, the husband compliments the dish saying it tastes like his mother's hand. Guilt-ridden Amrutha panics, swearing over and over that her mother did not cook it, only to realize he meant his own mother.",
+    "hook": "Husband takes a bite and says 'It tastes just like mother's cooking,' triggering instant panic.",
+    "payoff": "Amrutha vents under her breath with 'Nee amma!' upon realizing she nearly confessed for nothing.",
+    "opening_strength": "strong",
+    "payoff_line": "నీ అమ్మ!",
+    "payoff_type": "punchline"
+   },
+   "review": {
+    "cold_open_note": "No cold open.",
+    "cut_note": "No cuts present.",
+    "bad_cuts": [],
+    "changes": []
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": []
+  },
+  {
+   "id": "w01",
+   "pieces": [
+    {
+     "start_word": 447,
+     "end_word": 564,
+     "start": 449.04,
+     "end": 505.02
+    }
+   ],
+   "region": {
+    "start_word": 447,
+    "end_word": 564,
+    "start": 449.04,
+    "end": 505.02
+   },
+   "edited_duration": 55.98,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "అదే night బొమ్మ blockbuster ఆ? అంత ఊహించేసుకోకు first night అనేదానికన్నా over hypeడ్ thing ఇంకోటి ఉండదని నాకు నిన్నే తెలిసిందిరా. అదేంట్రా అలా అంటావ్? మరి ఇంక ఎలా అనాలిరా మంచి romantic dialogues తో intense eye contact తో అదిరిపోయే background music తో practice అయ్యి లోపలికి వెళ్తామా ఇంకా door వేయగానే అవేం ఉండవ్. పెళ్లి మండపం ఓడకి డబ్బులు clear చేసామా లేదా? పంతులు గారికి extra డబ్బులు ఏమైనా వేసేసామా? ఎంతమందికి పిలిచాం? ఎంతమంది వచ్చారు? ఈ చెత్త doubt లే mind లో ఉంటాయి. అందరూ అనుకున్నట్టు first night అనేది romantic గా ఉండదురా చాలా అలసటగా ఉంటుంది. అలసటగానా? మరి ఉండదారా? పెళ్లంతా మొహంలో smile maintain చేస్తూ అందరినీ పలకరిస్తూ వేల photos కి pose ఇస్తే ఇంకెలా ఉంటాదిరా అలసటగానే ఉంటుంది. అందుకే ఆ night ఒకరికొకరు ప్రశాంతంగా నిద్రపోనివ్వడం కూడా romantic గానే ఉంటుందిరా. So అదే చేశాం మంచిగా నిద్రపోయాం. పడుకోవడానికి పెళ్లి చేసుకోవాలేంట్రా.",
+   "rank": 2,
+   "tier": "recommended",
+   "scores": {
+    "hook": 4.5,
+    "standalone": 5.0,
+    "payoff": 4.5,
+    "value_emotion": 4.5,
+    "overall": 4.5
+   },
+   "title": "First Night అంటే ఇంతేనా?",
+   "hook_line": {
+    "text": "అదే night బొమ్మ blockbuster ఆ?",
+    "start_word": 447,
+    "end_word": 451
+   },
+   "why_it_works": "Strong cheeky opening hook about first night leads to a hilarious reality check on wedding fatigue and a sharp punchline.",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 448.833,
+     "end": 505.953,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 57.12,
+   "spoiler": false,
+   "characters": [
+    "Husband",
+    "Friend"
+   ],
+   "visual_dependency": "low",
+   "start_line": "L0141",
+   "end_line": "L0160",
+   "end_hold": {
+    "payoff_end": 505.02,
+    "next_speech": 506.02,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "end": 505.953,
+    "hold_s": 0.93,
+    "on_shot_cut": true,
+    "rule": "shot_change_before_next_line",
+    "note": "next line starts quickly: ends on the shot change"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": 5,
+    "what_happens": "Husband's friend asks if the first night was a blockbuster. The husband deconstructs first night myths, explaining how exhausting weddings are and why letting each other sleep peacefully was the real romantic choice, prompting an exasperated punchline from his friend.",
+    "hook": "Friend asks if the first night was a blockbuster, and the husband immediately counters that nothing is more overhyped.",
+    "payoff": "Friend snaps back with a hilarious Telugu punchline: 'Did you get married just to sleep?!'",
+    "opening_strength": "strong",
+    "payoff_line": "పడుకోవడానికి పెళ్లి చేసుకోవాలేంట్రా.",
+    "payoff_type": "punchline"
+   },
+   "review": {
+    "cold_open_note": "No cold open.",
+    "cut_note": "No cuts present.",
+    "bad_cuts": [],
+    "changes": []
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": []
+  },
+  {
+   "id": "w05",
+   "pieces": [
+    {
+     "start_word": 726,
+     "end_word": 746,
+     "start": 710.48,
+     "end": 720.18
+    },
+    {
+     "start_word": 767,
+     "end_word": 856,
+     "start": 735.064,
+     "end": 798.824
+    }
+   ],
+   "region": {
+    "start_word": 726,
+    "end_word": 856,
+    "start": 710.48,
+    "end": 798.824
+   },
+   "edited_duration": 73.46,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "నేను కొన్ని most important topic మాట్లాడాలనుకుంటున్నాను అదే మన శోభనం గురించి మన first night అనేది నీ ఇష్టమే I am not that desperate But I want one thing. ఏంటది? రోజూ నువ్వు నా heart తో communicate అవ్వాలి. ఆ! ఇంకా అర్థం కాలేదా. రోజు నాకు hug కావాలంటున్నాను. అంటే husbands ఇంటి నుంచి బయటికి వెళ్ళేటప్పుడు wives send off ఇస్తారు కదా. అలానే send off అనేది hug రూపంలో కావాలంటున్నాను. Okay నా. Send off ఎప్పుడన్నా ఇరుకుదా, ఇప్పుడు కాదు కదా. అయ్యో send off అని fix చెయ్యనే అనాసరం గా. ఛా, ఛా, బుర్ర లేని మదక్, బుర్ర లేని మదక్. అనవసరంగా send off అని చెప్పావు కదరా. hug direct గా అడగొచ్చు కదరా. చెత్త అదబ్బా, చెత్త అదబ్బా. కనీసం అడగడం కూడా రాదు కదరా నీకు. ఎందుకురా నువ్వు పుట్టి? ఛీ. రేయ్.",
+   "rank": 3,
+   "tier": "recommended",
+   "scores": {
+    "hook": 4.0,
+    "standalone": 4.5,
+    "payoff": 4.0,
+    "value_emotion": 4.0,
+    "overall": 4.0
+   },
+   "title": "First Night నాడు అతనికి కావాల్సింది ఇదే",
+   "hook_line": {
+    "text": "నేను కొన్ని most important topic మాట్లాడాలనుకుంటున్నాను",
+    "start_word": 726,
+    "end_word": 731
+   },
+   "why_it_works": "Starts with serious first-night talk that turns into an awkward request for a hug, ending in funny self-cursing monologue.",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 710.18,
+     "end": 720.537,
+     "kind": "scene"
+    },
+    {
+     "start": 734.458,
+     "end": 799.078,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 74.98,
+   "spoiler": false,
+   "characters": [
+    "Husband",
+    "Amrutha"
+   ],
+   "visual_dependency": "low",
+   "start_line": "L0208",
+   "end_line": "L0240",
+   "end_hold": {
+    "payoff_end": 797.624,
+    "next_speech": 808.244,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "end": 799.078,
+    "hold_s": 1.45,
+    "on_shot_cut": true,
+    "rule": "reaction",
+    "reaction": {
+     "line": "L0241",
+     "text": "రేయ్.",
+     "end": 798.824
+    }
+   },
+   "chunk_drops": [
+    {
+     "after_line": "L0211",
+     "before_line": "L0216",
+     "removed_lines": [
+      "L0212",
+      "L0213",
+      "L0214",
+      "L0215"
+     ],
+     "lift_skip": false,
+     "start": 720.537,
+     "end": 734.458,
+     "removed_s": 13.92,
+     "why": "Trims repetitive monologue about the rush since pellichoopulu to keep the pacing snappy."
+    }
+   ],
+   "discovery": {
+    "strength": 4,
+    "what_happens": "Husband initiates a serious bedroom conversation about first night intimacy, stating he wants it to happen only with her full consent, but asks for a mandatory daily send-off hug. When she leaves, he hilariously berates himself for framing it awkwardly as a 'send-off'.",
+    "hook": "Husband opens the conversation seriously stating he wants to discuss an important topic: their first night.",
+    "payoff": "Husband's frantic self-directed rant questioning his own intelligence ends with a disgusted 'Chhi'.",
+    "opening_strength": "strong",
+    "payoff_line": "ఛీ.",
+    "payoff_type": "punchline"
+   },
+   "review": {
+    "cold_open_note": "No cold open.",
+    "cut_note": "Cut X1 trims repetitive dialogue cleanly without breaking narrative continuity.",
+    "bad_cuts": [],
+    "changes": []
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": []
+  },
+  {
+   "id": "w07",
+   "pieces": [
+    {
+     "start_word": 1277,
+     "end_word": 1334,
+     "start": 1209.604,
+     "end": 1235.524
+    }
+   ],
+   "region": {
+    "start_word": 1277,
+    "end_word": 1334,
+    "start": 1209.604,
+    "end": 1235.524
+   },
+   "edited_duration": 25.92,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "రేయ్ ప్రకాశం ఆరోజు పులిహోర ఇవ్వరా అంటే ఏమన్నావ్ రా నా పెళ్ళాం నాకోసం ప్రేమతో వండింది నేను ఇవ్వనని చెప్పావు కదరా. అదేదో నీ పెళ్ళాంతో నేను పులిహోర కలిపినట్టు. రేయ్ ఇప్పుడు నాకు కూడా పెళ్ళాం వచ్చిందిరా. ఇప్పుడది పులిహోర కాదు బిర్యాని నుంచి బిస్మిల్లా బాత్ దాకా ప్రతీది వండుతది. Flashman కన్నా speed గా Kumari Anty కన్నా tasty గా అదిరిపోయేలా వండుతదిరా. ఇంక మీ పెళ్ళాలందరూ తన వంట చూసి తట్టాబుట్టా సర్దేసుకోవడమే.",
+   "rank": 4,
+   "tier": "recommended",
+   "scores": {
+    "hook": 4.0,
+    "standalone": 4.5,
+    "payoff": 4.0,
+    "value_emotion": 4.0,
+    "overall": 4.0
+   },
+   "title": "నా పెళ్ళాం వంట కుమారి ఆంటీ కన్నా టేస్టీ",
+   "hook_line": {
+    "text": "రేయ్ ప్రకాశం",
+    "start_word": 1277,
+    "end_word": 1278
+   },
+   "why_it_works": "A grudge over lunchbox sharing explodes into a hilarious monologue hyping up his new wife's cooking skills.",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 1209.375,
+     "end": 1237.495,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 28.12,
+   "spoiler": false,
+   "characters": [
+    "Husband",
+    "Amrutha"
+   ],
+   "visual_dependency": "medium",
+   "start_line": "L0373",
+   "end_line": "L0379",
+   "end_hold": {
+    "payoff_end": 1235.524,
+    "end": 1237.495,
+    "hold_s": 1.97,
+    "on_shot_cut": true,
+    "next_speech": 1240.264,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "note": "short hold (next shot cut before the minimum hold)",
+    "rule": "hold"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": 4,
+    "what_happens": "Husband stands in the kitchen while Amrutha is supposed to make mirchi bajji, passionately boasting to his imaginary rival colleague about how his wife cooks faster than Flashman and tastier than Kumari Aunty.",
+    "hook": "Husband aggressively calls out his colleague Prakasham for refusing to share pulihora in the past.",
+    "payoff": "Husband declares that all his colleagues' wives will have to pack their bags once they taste his wife's cooking.",
+    "opening_strength": "strong",
+    "payoff_line": "ఇంక మీ పెళ్ళాలందరూ తన వంట చూసి తట్టాబుట్టా సర్దేసుకోవడమే.",
+    "payoff_type": "punchline"
+   },
+   "review": {
+    "cold_open_note": "No cold open.",
+    "cut_note": "No cuts present.",
+    "bad_cuts": [],
+    "changes": []
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": []
+  },
+  {
+   "id": "w06",
+   "pieces": [
+    {
+     "start_word": 136,
+     "end_word": 139,
+     "start": 227.66,
+     "end": 228.8
+    },
+    {
+     "start_word": 129,
+     "end_word": 135,
+     "start": 221.6,
+     "end": 226.2
+    },
+    {
+     "start_word": 140,
+     "end_word": 174,
+     "start": 229.58,
+     "end": 247.16
+    }
+   ],
+   "region": {
+    "start_word": 129,
+    "end_word": 174,
+    "start": 221.6,
+    "end": 247.16
+   },
+   "edited_duration": 23.32,
+   "reordered": true,
+   "n_blocks": 2,
+   "text": "అసలు చాయ్ అంటే ఏమనుకుంటున్నారు. అయినా నీకు చాయ్ గోలేంట్రా? ఏంటి చాయ్ గోలా It's a emotion, it's a therapy. morning లేవాలన్నా చాయ్, ఓపిక రావాలన్నా చాయ్, ఆకలి ఆపాలన్నా చాయ్, ఆలోచన రావాలన్నా చాయ్. ఆఖరికి climate బాగున్నా, mood బాగోపోయినా, కొత్త పరిచయాలు అవ్వాలన్నా, పాత పరిచయాలతో time pass చేయాలన్నా దేనికైనా చాయ్ చాయ్ చాయ్.",
+   "rank": 5,
+   "tier": "worth_a_look",
+   "scores": {
+    "hook": 4.0,
+    "standalone": 4.5,
+    "payoff": 4.0,
+    "value_emotion": 4.0,
+    "overall": 4.0
+   },
+   "title": "Chai అంటే emotion అబ్బా",
+   "hook_line": {
+    "text": "అసలు చాయ్ అంటే ఏమనుకుంటున్నారు.",
+    "start_word": 136,
+    "end_word": 139
+   },
+   "why_it_works": "A passionate defense of chai as therapy hooks viewers instantly and flows into a relatable, rhythmic monologue.",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [
+    {
+     "type": "cold_open",
+     "after_piece": 0,
+     "reason": "Lifted L0058 (1.6 s) to the front; skipped in place, not replayed. L0058 ('అసలు చాయ్ అంటే ఏమనుకుంటున్నారు') provides a snappy rhetorical hook question before the father's setup line."
+    }
+   ],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": true,
+   "cold_open_detail": {
+    "lines": [
+     "L0058"
+    ],
+    "text": "అసలు చాయ్ అంటే ఏమనుకుంటున్నారు.",
+    "start": 227.54,
+    "end": 229.12,
+    "duration": 1.58,
+    "tail_s": 0.32,
+    "start_on_cut": false,
+    "word_range": [
+     136,
+     139
+    ],
+    "level_vs_scene_db": 3.6
+   },
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 227.54,
+     "end": 229.12,
+     "kind": "cold_open"
+    },
+    {
+     "start": 221.375,
+     "end": 226.45,
+     "kind": "scene"
+    },
+    {
+     "start": 229.125,
+     "end": 250.453,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 27.98,
+   "spoiler": false,
+   "characters": [
+    "Husband",
+    "Father"
+   ],
+   "visual_dependency": "low",
+   "start_line": "L0054",
+   "end_line": "L0061",
+   "end_hold": {
+    "payoff_end": 247.16,
+    "end": 250.453,
+    "hold_s": 3.29,
+    "on_shot_cut": true,
+    "next_speech": 251.38,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "rule": "hold"
+   },
+   "chunk_drops": [
+    {
+     "after_line": "L0056",
+     "before_line": "L0059",
+     "removed_lines": [
+      "L0057",
+      "L0058"
+     ],
+     "lift_skip": true,
+     "start": 226.45,
+     "end": 229.125,
+     "removed_s": 2.68,
+     "why": ""
+    }
+   ],
+   "discovery": {
+    "strength": 4,
+    "what_happens": "When questioned about his obsession with tea, the husband launches into an impassioned monologue celebrating chai as an emotion and a therapy for every life situation.",
+    "hook": "Father questions his son's endless obsession with tea.",
+    "payoff": "Husband concludes his lyrical ode to chai explaining why it is the answer to every mood and climate.",
+    "opening_strength": "strong",
+    "payoff_line": "ఆఖరికి climate బాగున్నా, mood బాగోపోయినా, కొత్త పరిచయాలు అవ్వాలన్నా, పాత పరిచయాలతో time pass చేయాలన్నా దేనికైనా చాయ్ చాయ్ చాయ్.",
+    "payoff_type": "conclusion"
+   },
+   "review": {
+    "cold_open_note": "The cold open works as an effective rhetorical hook for chai lovers, and skipping it in place does not disrupt the dialogue flow.",
+    "cut_note": "No cuts present.",
+    "bad_cuts": [],
+    "changes": []
+   },
+   "needs_rescore": false,
+   "flaws": [
+    "shot_flash"
+   ],
+   "shot_flags": [
+    "flash kept: seg1 (scene) end shows 0.28 s after the shot change at 226.17 s; moving it would clip 'గోలా' (0.03 s of the word lies after the cut)"
+   ],
+   "build_warnings": [
+    "flash kept: seg1 (scene) end shows 0.28 s after the shot change at 226.17 s; moving it would clip 'గోలా' (0.03 s of the word lies after the cut)"
+   ]
+  },
+  {
+   "id": "w03",
+   "pieces": [
+    {
+     "start_word": 892,
+     "end_word": 945,
+     "start": 839.284,
+     "end": 877.784
+    }
+   ],
+   "region": {
+    "start_word": 892,
+    "end_word": 945,
+    "start": 839.284,
+    "end": 877.784
+   },
+   "edited_duration": 38.5,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "Plain దోశా. ఓహ్! Sorry నీకు చెప్పడం మర్చిపోయాను. నాకు egg దోశ అంటే ఇష్టం. నాకోసం ఒక్క egg దోశ వేసుకొని వస్తావా? Please. అమ్మా! book అయిపోయాను. Egg దోశ కావాలంటావ్. ఆ box పక్కన ఉన్న ఇంకో box చూడమ్మా. ఆ. అందులో పైన రెండు normal దోశలు. next onion దోశ. ఆ next masala దోశ. last లో ఉంది చూడు egg దోశ. సూపర్ అమ్మా నువ్వు.",
+   "rank": 6,
+   "tier": "worth_a_look",
+   "scores": {
+    "hook": 3.0,
+    "standalone": 4.5,
+    "payoff": 4.0,
+    "value_emotion": 3.5,
+    "overall": 3.5
+   },
+   "title": "అత్తగారింట్లో అమ్మ వేసిన ప్లాన్",
+   "hook_line": {
+    "text": "Plain దోశా.",
+    "start_word": 892,
+    "end_word": 893
+   },
+   "why_it_works": "The newlywed bride's panic over cooking turns into sweet comedy when her mom reveals every type of dosa is pre-packed.",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": "review: hook 2.5 with the lift vs 3.0 without, overall 3.0 vs 3.5; The cold open line is mundane, gives away the food request beforehand, and lacks punch compared to opening naturally on the scene.",
+   "time_segments": [
+    {
+     "start": 839.264,
+     "end": 882.453,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 43.19,
+   "spoiler": false,
+   "characters": [
+    "Husband",
+    "Amrutha",
+    "Mother"
+   ],
+   "visual_dependency": "medium",
+   "start_line": "L0255",
+   "end_line": "L0274",
+   "end_hold": {
+    "payoff_end": 877.784,
+    "end": 882.453,
+    "hold_s": 4.67,
+    "on_shot_cut": true,
+    "next_speech": 883.564,
+    "long_silence_after": false,
+    "laugh_after": true,
+    "note": "short hold (next shot cut before the minimum hold)",
+    "rule": "hold"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": 5,
+    "what_happens": "Husband eats plain dosa and suddenly requests an egg dosa. Amrutha calls her mother in a panic only to find out her mother had anticipated this and packed plain, onion, masala, and egg dosa all in the same box.",
+    "hook": "Husband surprises Amrutha by asking for an egg dosa instead of plain dosa.",
+    "payoff": "Amrutha discovers her mom packed every single dosa variety in layers and praises her in relief.",
+    "opening_strength": "strong",
+    "payoff_line": "సూపర్ అమ్మా నువ్వు.",
+    "payoff_type": "punchline"
+   },
+   "review": {
+    "cold_open_note": "The cold open line is mundane, gives away the food request beforehand, and lacks punch compared to opening naturally on the scene.",
+    "cut_note": "No cuts present.",
+    "bad_cuts": [],
+    "changes": [
+     "cold open dropped, review: hook 2.5 with the lift vs 3.0 without, overall 3.0 vs 3.5; The cold open line is mundane, gives away the food request beforehand, and lacks punch compared to opening natura…"
+    ]
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": []
+  },
+  {
+   "id": "w04",
+   "pieces": [
+    {
+     "start_word": 1000,
+     "end_word": 1052,
+     "start": 948.844,
+     "end": 1015.124
+    }
+   ],
+   "region": {
+    "start_word": 1000,
+    "end_word": 1052,
+    "start": 948.844,
+    "end": 1015.124
+   },
+   "edited_duration": 66.28,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "దేనికో waiting. అబ్బచ్చా! అప్పుడే మర్చిపోయావా? ఆ, ఏం మర్చిపోవడం? Night escape అయినట్టు ఇప్పుడు escape అవ్వలేవులే. అర్థమైంది. ఆ అమ్ములు. ఉ. ఏంటమ్మా ఇది? నేనేం చెప్పా? నా heart తో communicate చెయ్యమని చెప్పా. మరి ఇలా hop off చేస్తే ఎలా? This is why I love short girls. ఇంతకీ నా heart నీతో ఏం communicate చేస్తుంది? త్వరగా office కి వెళ్ళమని చెప్తుంది.",
+   "rank": 7,
+   "tier": "worth_a_look",
+   "scores": {
+    "hook": 3.5,
+    "standalone": 4.0,
+    "payoff": 4.0,
+    "value_emotion": 4.0,
+    "overall": 3.5
+   },
+   "title": "Short girls తో ఇదే ప్రాబ్లమ్",
+   "hook_line": {
+    "text": "దేనికో waiting.",
+    "start_word": 1000,
+    "end_word": 1001
+   },
+   "why_it_works": "Romantic morning banter about hugging leads to a witty reality-check punchline sending him off to office.",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 948.625,
+     "end": 1016.014,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 67.39,
+   "spoiler": false,
+   "characters": [
+    "Husband",
+    "Amrutha"
+   ],
+   "visual_dependency": "low",
+   "start_line": "L0297",
+   "end_line": "L0312",
+   "end_hold": {
+    "payoff_end": 1015.124,
+    "next_speech": 1016.064,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "end": 1016.014,
+    "hold_s": 0.89,
+    "on_shot_cut": false,
+    "rule": "before_next_line",
+    "note": "next line starts quickly and no shot change before it"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": 5,
+    "what_happens": "Husband waits by the door for his promised morning send-off hug. After pulling Amrutha close and romantically asking what his heart is communicating to her, she dryly tells him to leave for office quickly.",
+    "hook": "Husband blocks the doorway playfully reminding Amrutha that she cannot escape the morning hug rule.",
+    "payoff": "After a romantic hug, Amrutha punctures his romantic build-up with a sharp deadpan reality check.",
+    "opening_strength": "strong",
+    "payoff_line": "త్వరగా office కి వెళ్ళమని చెప్తుంది.",
+    "payoff_type": "punchline"
+   },
+   "review": {
+    "cold_open_note": "No cold open.",
+    "cut_note": "No cuts present.",
+    "bad_cuts": [],
+    "changes": []
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": []
+  },
+  {
+   "id": "w08",
+   "pieces": [
+    {
+     "start_word": 328,
+     "end_word": 356,
+     "start": 366.16,
+     "end": 377.04
+    },
+    {
+     "start_word": 359,
+     "end_word": 382,
+     "start": 378.54,
+     "end": 389.26
+    }
+   ],
+   "region": {
+    "start_word": 328,
+    "end_word": 382,
+    "start": 366.16,
+    "end": 389.26
+   },
+   "edited_duration": 21.6,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ఆ మావోడు food విషయంలో చాలా particular గా ఉంటాడమ్మా. వాళ్ళ అమ్మ చనిపోయిన తర్వాత ఇంట్లో కుక్కను పెట్టుకుందాం అని వాడు అడిగితే డబ్బులు దండగ ఎందుకని చెప్పి I am master in cooking అని చెప్పా. ఆ తర్వాత కొన్ని రోజులకి వాడికే అర్థమైంది I am master in అబద్ధాలు అని. అంతే అప్పటి నుంచి ఎవరైనా అబద్ధాలు చెప్తే మండే పడిపోతాడు. నాతో వాడు నాలుగేళ్ళు మాట్లాడలేదు.",
+   "rank": 8,
+   "tier": "worth_a_look",
+   "scores": {
+    "hook": 3.0,
+    "standalone": 4.0,
+    "payoff": 3.5,
+    "value_emotion": 3.5,
+    "overall": 3.5
+   },
+   "title": "నా కొడుకు నాతో నాలుగేళ్లు మాట్లాడలేదు",
+   "hook_line": {
+    "text": "ఆ మావోడు food విషయంలో చాలా particular గా ఉంటాడమ్మా.",
+    "start_word": 328,
+    "end_word": 335
+   },
+   "why_it_works": "The father's funny backstory about lying about his cooking leads to an absurd payoff about his son holding a 4-year grudge.",
+   "category": "story",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 365.86,
+     "end": 377.037,
+     "kind": "scene"
+    },
+    {
+     "start": 378.38,
+     "end": 395.495,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 28.29,
+   "spoiler": false,
+   "characters": [
+    "Father-in-law",
+    "Amrutha"
+   ],
+   "visual_dependency": "low",
+   "start_line": "L0114",
+   "end_line": "L0120",
+   "end_hold": {
+    "payoff_end": 389.26,
+    "end": 395.495,
+    "hold_s": 6.24,
+    "on_shot_cut": true,
+    "next_speech": 398.28,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "rule": "hold"
+   },
+   "chunk_drops": [
+    {
+     "after_line": "L0116",
+     "before_line": "L0118",
+     "removed_lines": [
+      "L0117"
+     ],
+     "lift_skip": false,
+     "start": 377.037,
+     "end": 378.38,
+     "removed_s": 1.34,
+     "why": "Removes a garbled speech-to-text artifact that interrupts the father's story."
+    }
+   ],
+   "discovery": {
+    "strength": 4,
+    "what_happens": "Father-in-law explains to Amrutha that his son despises lies regarding food, revealing that after claiming to be a master chef, his son found out the truth and refused to talk to him for four years.",
+    "hook": "Father-in-law warns Amrutha that his son is extremely particular when it comes to food.",
+    "payoff": "Father reveals the harsh consequence: his son gave him the silent treatment for four full years over a cooking lie.",
+    "opening_strength": "strong",
+    "payoff_line": "నాతో వాడు నాలుగేళ్ళు మాట్లాడలేదు.",
+    "payoff_type": "reveal"
+   },
+   "review": {
+    "cold_open_note": "No cold open.",
+    "cut_note": "Cut X1 removes an inconsequential interjection seamlessly.",
+    "bad_cuts": [],
+    "changes": []
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": [
+    "flash repaired: seg0 (scene) end moved 377.250 -> 377.037 (was a 0.21 s sliver after the shot change at 377.04 s)"
+   ]
+  }
+ ],
+ "rejected": []
+}

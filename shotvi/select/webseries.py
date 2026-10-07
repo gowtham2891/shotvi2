@@ -160,7 +160,7 @@ DEFAULTS: dict = {
                    "verdict_strong_min": 3},
     "video_end_check": {"enabled": False, "max_shift_s": 8.0},
     # prompt file per role (prompts/<name>.md); an A/B arm swaps exactly one (CLI --prompt ROLE=FILE)
-    "prompts": {"ws_discover": "ws_discover", "ws_review": "ws_review"},
+    "prompts": {"ws_discover": "ws_discover_b_payoff", "ws_review": "ws_review"},  # v1 (2026-10-07): payoff-first
     "budget_usd": 0.6,
 }
 CATEGORIES = ["story", "advice", "humour", "controversy", "emotional", "insight", "reveal", "motivation", "other"]
