@@ -1,0 +1,886 @@
+{
+ "episode_id": "epZ0lbXkgWA",
+ "series": "Hello Madam",
+ "created": "2026-10-08",
+ "created_by": "evaluation-engineer",
+ "purpose": "Channel-published Shorts proven (audio AND picture) to be cut from this episode. Positive anchors only, never the full answer key (CLAUDE.md, Ground truth philosophy).",
+ "method": "Audio: 32-band log-mel (150-5000 Hz), 50 ms hop, first difference over time; every 6 s window of the Short (1 s hop) is cross-correlated (Pearson, per-band centred) against the whole episode; an ANCHOR = >=3 consecutive windows >=0.50 at the same offset (+-0.15 s), i.e. >=8 s of continuous match; inside an anchored episode, shorter pieces at other offsets are admitted (>=2 windows mean>=0.6, or one window >=0.75) and boundaries refined per frame (1 s local correlation >=0.5). Picture: for every audio segment, 3-12 frames spread over it; each Short frame is compared (NCC, multi-zoom crop-fill and letterbox templates) with the episode frame at the matched time (best of +-0.2 s) and with 3 random episode frames >=30 s away (same-frame null). A segment is picture-verified if median score >=0.75 and (median margin over null >=0.10 with >=50% of frames clearing null+0.10, or score >=0.92 with margin >=0.05). A Short is ACCEPTED for an episode only if it has an audio anchor whose segment is picture-verified, and >=25% of the Short is proven; otherwise rejected with the reason. Every accepted Short was also checked by eye on a 4-frame contact sheet (Short frame | episode frame).",
+ "thresholds": {
+  "window_s": 6,
+  "window_hop_s": 1,
+  "window_score": 0.5,
+  "anchor_windows": 3,
+  "local_corr": 0.5,
+  "picture": "median>=0.75 and ((margin>=0.10 and frac>=0.5) or (score>=0.92 and margin>=0.05))",
+  "min_short_coverage": 0.25
+ },
+ "controls": {
+  "audio_positive_self": {
+   "windows": 26487,
+   "min": 1.0,
+   "note": "each Short vs its own audio"
+  },
+  "audio_positive_synthetic": {
+   "pieces": 90,
+   "recovered": 89,
+   "start_err_s_p90": 0.5,
+   "start_err_s_max": 0.61,
+   "end_err_s_p90": 0.4,
+   "end_err_s_max": 0.64,
+   "note": "30 synthetic Shorts (3 per episode: centre-crop, letterbox, letterbox+pink noise; 3 jump-cut pieces of 8-18 s, AAC 64k, 1/2 reordered)"
+  },
+  "audio_negative_other_series": {
+   "windows": 236419,
+   "p99": 0.386,
+   "p999": 0.529,
+   "max": 0.861,
+   "short_episode_pairs": 3235,
+   "pairs_with_an_anchor": 22,
+   "note": "real candidate Shorts vs episodes of OTHER series; every such anchor failed the picture check (shared background music)"
+  },
+  "picture_positive_synthetic": {
+   "segments": 89,
+   "passed": 89
+  },
+  "picture_negative": {
+   "shift97": {
+    "n": 46,
+    "passed": 1,
+    "max_score": 0.883,
+    "max_margin": 0.138
+   },
+   "sibling_episode_same_time": {
+    "n": 22,
+    "passed": 0,
+    "max_score": 0.793,
+    "max_margin": 0.017
+   }
+  },
+  "audio_matched_but_picture_failed_real": {
+   "n": 34,
+   "shorts": [
+    "0UFgx1t1Xzc",
+    "10VTf-SnsLQ",
+    "4Of1m9bqHuQ",
+    "68xOcCjYMzo",
+    "APukMW-1Z9w",
+    "DZnl5B4tC84",
+    "FxB1HAxSxQs",
+    "ILKnRuoO778",
+    "KJkt_N0y5Rg",
+    "Lo7AUaSDBUY",
+    "OYXx2VMdTko",
+    "QbE45U0ihx4",
+    "Qvc9OtaCkNE",
+    "TEvh5yVCVRU",
+    "TzeACFNWoUY",
+    "Uo-jZPU2BS8",
+    "VMP7lrUlwr0",
+    "WLNtH16blqQ",
+    "WuUVphuL0z4",
+    "Xh24uwGfvLs",
+    "YdsdlhmA6FI",
+    "cAs2D_wazBE",
+    "cGCq0Bagd9o",
+    "cf2NFEESyBI",
+    "i5zMWpmzDrQ",
+    "it59DrRrrac",
+    "kbZgaboHx1o",
+    "mjXycrk8zv0",
+    "sAsJlWzHRj4",
+    "sPLQkh2x6g4",
+    "sxB7hlYuBh8",
+    "w0FWKYxli_U",
+    "wVGG5gEvvmU",
+    "xVpmAcyd-Nk"
+   ],
+   "note": "audio anchors on shared BGM/songs (same series or same studio); picture showed different footage, 2 of them checked by eye (kbZgaboHx1o: Love Brew song over different footage; cGCq0Bagd9o: Queen BGM over a different scene)"
+  },
+  "rejected_rechecked_for_speed_change": {
+   "variants": "tempo x0.9/0.95/1.05/1.1 (pitch kept) and speed x0.95/1.05/1.1 (pitch shifted), undone before matching",
+   "short_episode_pairs": 165,
+   "max_window_score": 0.654,
+   "longest_chain_windows": 4,
+   "positive_control": "T5hJayVbwvo artificially sped up x1.1: window score 0.968-0.981, 82-window chain",
+   "verdict": "no rejected candidate becomes a match under a speed change"
+  }
+ },
+ "channel": {
+  "name": "Sheetal Gauthaman",
+  "channel_id": "UC91nMMzLsVOt--za8U61PnQ",
+  "shorts_listed": 400,
+  "median_views_last_100_shorts": 131000.0,
+  "note": "view counts from the Shorts tab (rounded, e.g. 15K), fetched 2026-10-08"
+ },
+ "accepted": [
+  {
+   "short_id": "NVvUEZM_voU",
+   "url": "https://www.youtube.com/shorts/NVvUEZM_voU",
+   "title": "Ikkadiki enduku thesukoni vachav?? #sheetalgauthaman #hellomadam #ytshorts #youtubeshorts #shorts",
+   "upload_date": "20261004",
+   "duration": 85,
+   "views": 47086,
+   "likes": 1918,
+   "channel": "Sheetal Gauthaman",
+   "channel_median_views": 131000.0,
+   "named_series_in_metadata": true,
+   "views_vs_median": 0.36,
+   "segments": [
+    {
+     "episode_start": 256.85,
+     "episode_end": 288.6,
+     "short_start": 1.15,
+     "short_end": 32.9,
+     "audio_score": 0.536,
+     "picture_score": 0.938,
+     "picture_margin_over_null": 0.279,
+     "picture_frames_passing": 1.0,
+     "picture_frames": 7
+    },
+    {
+     "episode_start": 291.55,
+     "episode_end": 292.55,
+     "short_start": 35.85,
+     "short_end": 36.85,
+     "audio_score": 0.609,
+     "picture_score": 0.906,
+     "picture_margin_over_null": 0.278,
+     "picture_frames_passing": 1.0,
+     "picture_frames": 3
+    },
+    {
+     "episode_start": 292.75,
+     "episode_end": 294.35,
+     "short_start": 37.05,
+     "short_end": 38.65,
+     "audio_score": 0.566,
+     "picture_score": 0.927,
+     "picture_margin_over_null": 0.291,
+     "picture_frames_passing": 1.0,
+     "picture_frames": 3
+    },
+    {
+     "episode_start": 301.3,
+     "episode_end": 304.0,
+     "short_start": 45.6,
+     "short_end": 48.3,
+     "audio_score": 0.532,
+     "picture_score": 0.902,
+     "picture_margin_over_null": 0.328,
+     "picture_frames_passing": 1.0,
+     "picture_frames": 3
+    },
+    {
+     "episode_start": 304.1,
+     "episode_end": 306.5,
+     "short_start": 48.4,
+     "short_end": 50.8,
+     "audio_score": 0.526,
+     "picture_score": 0.913,
+     "picture_margin_over_null": 0.276,
+     "picture_frames_passing": 1.0,
+     "picture_frames": 3
+    },
+    {
+     "episode_start": 307.65,
+     "episode_end": 314.55,
+     "short_start": 51.95,
+     "short_end": 58.85,
+     "audio_score": 0.54,
+     "picture_score": 0.918,
+     "picture_margin_over_null": 0.311,
+     "picture_frames_passing": 1.0,
+     "picture_frames": 3
+    },
+    {
+     "episode_start": 318.35,
+     "episode_end": 323.1,
+     "short_start": 62.65,
+     "short_end": 67.4,
+     "audio_score": 0.593,
+     "picture_score": 0.922,
+     "picture_margin_over_null": 0.208,
+     "picture_frames_passing": 1.0,
+     "picture_frames": 3
+    },
+    {
+     "episode_start": 323.4,
+     "episode_end": 324.55,
+     "short_start": 67.7,
+     "short_end": 68.85,
+     "audio_score": 0.574,
+     "picture_score": 0.926,
+     "picture_margin_over_null": 0.301,
+     "picture_frames_passing": 1.0,
+     "picture_frames": 3
+    },
+    {
+     "episode_start": 325.4,
+     "episode_end": 328.65,
+     "short_start": 69.7,
+     "short_end": 72.95,
+     "audio_score": 0.538,
+     "picture_score": 0.916,
+     "picture_margin_over_null": 0.253,
+     "picture_frames_passing": 1.0,
+     "picture_frames": 3
+    },
+    {
+     "episode_start": 329.3,
+     "episode_end": 330.8,
+     "short_start": 73.6,
+     "short_end": 75.1,
+     "audio_score": 0.61,
+     "picture_score": 0.904,
+     "picture_margin_over_null": 0.215,
+     "picture_frames_passing": 1.0,
+     "picture_frames": 3
+    },
+    {
+     "episode_start": 334.6,
+     "episode_end": 335.6,
+     "short_start": 78.9,
+     "short_end": 79.9,
+     "audio_score": 0.633,
+     "picture_score": 0.925,
+     "picture_margin_over_null": 0.322,
+     "picture_frames_passing": 1.0,
+     "picture_frames": 3
+    },
+    {
+     "episode_start": 336.1,
+     "episode_end": 338.7,
+     "short_start": 80.4,
+     "short_end": 83.0,
+     "audio_score": 0.578,
+     "picture_score": 0.915,
+     "picture_margin_over_null": 0.294,
+     "picture_frames_passing": 1.0,
+     "picture_frames": 3
+    }
+   ],
+   "episode_span": [
+    256.85,
+    338.7
+   ],
+   "short_coverage": 0.718,
+   "n_segments": 12,
+   "segments_dropped_picture_mismatch": [
+    {
+     "short_start": 32.9,
+     "short_end": 35.7,
+     "episode_start": 470.1,
+     "picture": {
+      "score": 0.613,
+      "margin": -0.003,
+      "frac": 0.0
+     }
+    },
+    {
+     "short_start": 39.3,
+     "short_end": 45.6,
+     "episode_start": 476.5,
+     "picture": {
+      "score": 0.661,
+      "margin": -0.01,
+      "frac": 0.0
+     }
+    },
+    {
+     "short_start": 50.8,
+     "short_end": 51.8,
+     "episode_start": 488.0,
+     "picture": {
+      "score": 0.657,
+      "margin": 0.004,
+      "frac": 0.0
+     }
+    },
+    {
+     "short_start": 59.05,
+     "short_end": 62.55,
+     "episode_start": 496.25,
+     "picture": {
+      "score": 0.799,
+      "margin": 0.077,
+      "frac": 0.333
+     }
+    },
+    {
+     "short_start": 75.1,
+     "short_end": 76.7,
+     "episode_start": 512.3,
+     "picture": {
+      "score": 0.543,
+      "margin": -0.104,
+      "frac": 0.0
+     }
+    },
+    {
+     "short_start": 77.6,
+     "short_end": 78.9,
+     "episode_start": 514.8,
+     "picture": {
+      "score": 0.813,
+      "margin": -0.001,
+      "frac": 0.0
+     }
+    }
+   ],
+   "views_fetched_on": "2026-10-08",
+   "age_days_at_fetch": 4,
+   "notes": "Some music-only moments also correlate with 470-515 s (recurring BGM); those pieces failed the picture check and were dropped.",
+   "our_clips": {
+    "gold": [
+     {
+      "source": "gold round 1 (runs/gold_hm)",
+      "clip_id": "w04",
+      "title": "I am just done with you… నేను గుడ్డిగా నమ్మి మోసపోయాను",
+      "clip_span": [
+       318.3,
+       399.4
+      ],
+      "iou": 0.14,
+      "short_covered_by_clip": 0.18,
+      "founder_would_post": "maybe",
+      "founder_overall": "3"
+     },
+     {
+      "source": "gold round 2 = data/gold",
+      "clip_id": "w13",
+      "title": "నేను గుడ్డిగా నమ్మి మోసపోయాను… 'సోహం సర్ వాళ్ళ wife and వాళ్ళ పాప'",
+      "clip_span": [
+       318.3,
+       499.4
+      ],
+      "iou": 0.08,
+      "short_covered_by_clip": 0.18,
+      "founder_would_post": "maybe",
+      "founder_overall": 3
+     }
+    ],
+    "pipeline": [
+     {
+      "run": "ws_hm",
+      "clip_id": "w01",
+      "rank": 3,
+      "tier": "recommended",
+      "title": "వారం నుంచి నరకం చూపిస్తున్నావ్",
+      "clip_span": [
+       303.0,
+       396.6
+      ],
+      "iou": 0.26,
+      "short_covered_by_clip": 0.4
+     },
+     {
+      "run": "ws_ab_payoff",
+      "clip_id": "w07",
+      "rank": 6,
+      "tier": "worth_a_look",
+      "title": "అసలు ఏం జరిగిందో చెప్పకుండా breakup ఆ?",
+      "clip_span": [
+       303.0,
+       396.6
+      ],
+      "iou": 0.26,
+      "short_covered_by_clip": 0.4
+     }
+    ]
+   },
+   "local_file": "scribe_dataset/epZ0lbXkgWA/channel_shorts/NVvUEZM_voU.mp4"
+  },
+  {
+   "short_id": "T5hJayVbwvo",
+   "url": "https://www.youtube.com/shorts/T5hJayVbwvo",
+   "title": "Soham ekkada unnav? #sheetalgauthaman #hellomadam #ytshorts #youtubeshorts #shorts #trending #love",
+   "upload_date": "20261007",
+   "duration": 88,
+   "views": 111991,
+   "likes": 3004,
+   "channel": "Sheetal Gauthaman",
+   "channel_median_views": 131000.0,
+   "named_series_in_metadata": true,
+   "views_vs_median": 0.85,
+   "segments": [
+    {
+     "episode_start": 417.35,
+     "episode_end": 505.0,
+     "short_start": 0.0,
+     "short_end": 87.65,
+     "audio_score": 0.918,
+     "picture_score": 0.929,
+     "picture_margin_over_null": 0.194,
+     "picture_frames_passing": 1.0,
+     "picture_frames": 12
+    }
+   ],
+   "episode_span": [
+    417.35,
+    505.0
+   ],
+   "short_coverage": 1.0,
+   "n_segments": 1,
+   "views_fetched_on": "2026-10-08",
+   "age_days_at_fetch": 1,
+   "our_clips": {
+    "gold": [
+     {
+      "source": "gold round 1 (runs/gold_hm)",
+      "clip_id": "w05",
+      "title": "Friend ని కలవడానికి వెళ్తున్నా అన్నాడు… కానీ wife, పాపతో కనిపించాడు",
+      "clip_span": [
+       449.1,
+       499.4
+      ],
+      "iou": 0.57,
+      "short_covered_by_clip": 0.5,
+      "founder_would_post": "no",
+      "founder_overall": "2"
+     },
+     {
+      "source": "gold round 2 = data/gold",
+      "clip_id": "w13",
+      "title": "నేను గుడ్డిగా నమ్మి మోసపోయాను… 'సోహం సర్ వాళ్ళ wife and వాళ్ళ పాప'",
+      "clip_span": [
+       318.3,
+       499.4
+      ],
+      "iou": 0.44,
+      "short_covered_by_clip": 0.37,
+      "founder_would_post": "maybe",
+      "founder_overall": 3
+     }
+    ],
+    "pipeline": []
+   },
+   "local_file": "scribe_dataset/epZ0lbXkgWA/channel_shorts/T5hJayVbwvo.mp4"
+  },
+  {
+   "short_id": "0XrkXLTkOGw",
+   "url": "https://www.youtube.com/shorts/0XrkXLTkOGw",
+   "title": "Wine thagalani undi 🤭 #sheetalgauthaman #hellomadam #ytshorts #youtubeshorts #trending #shorts",
+   "upload_date": "20261005",
+   "duration": 80,
+   "views": 44791,
+   "likes": 1881,
+   "channel": "Sheetal Gauthaman",
+   "channel_median_views": 131000.0,
+   "named_series_in_metadata": true,
+   "views_vs_median": 0.34,
+   "segments": [
+    {
+     "episode_start": 612.7,
+     "episode_end": 692.45,
+     "short_start": 0.0,
+     "short_end": 79.75,
+     "audio_score": 0.967,
+     "picture_score": 0.87,
+     "picture_margin_over_null": 0.299,
+     "picture_frames_passing": 1.0,
+     "picture_frames": 12
+    }
+   ],
+   "episode_span": [
+    612.7,
+    692.45
+   ],
+   "short_coverage": 1.0,
+   "n_segments": 1,
+   "views_fetched_on": "2026-10-08",
+   "age_days_at_fetch": 3,
+   "our_clips": {
+    "gold": [
+     {
+      "source": "gold round 2 = data/gold",
+      "clip_id": "w07",
+      "title": "అమ్మతో కలిసి wine ఆ? 'I am now your friend… call me పద్దు'",
+      "clip_span": [
+       669.9,
+       727.2
+      ],
+      "iou": 0.2,
+      "short_covered_by_clip": 0.28,
+      "founder_would_post": "yes",
+      "founder_overall": 4
+     },
+     {
+      "source": "gold round 1 (runs/gold_hm)",
+      "clip_id": "w07",
+      "title": "అమ్మతో కలిసి wine ఆ? 'I am now your friend… call me పద్దు'",
+      "clip_span": [
+       669.9,
+       831.3
+      ],
+      "iou": 0.1,
+      "short_covered_by_clip": 0.28,
+      "founder_would_post": "maybe",
+      "founder_overall": "3"
+     }
+    ],
+    "pipeline": [
+     {
+      "run": "ws_hm",
+      "clip_id": "w02",
+      "rank": 1,
+      "tier": "recommended",
+      "title": "అమ్మతో కలిసి wine తాగడం ఏంట్రా బాబు",
+      "clip_span": [
+       674.1,
+       727.3
+      ],
+      "iou": 0.16,
+      "short_covered_by_clip": 0.23
+     },
+     {
+      "run": "ws_ab_payoff",
+      "clip_id": "w02",
+      "rank": 2,
+      "tier": "recommended",
+      "title": "కూతురితో wine తాగుతూ అమ్మ chill vibes",
+      "clip_span": [
+       674.1,
+       785.6
+      ],
+      "iou": 0.11,
+      "short_covered_by_clip": 0.23
+     }
+    ]
+   },
+   "local_file": "scribe_dataset/epZ0lbXkgWA/channel_shorts/0XrkXLTkOGw.mp4"
+  },
+  {
+   "short_id": "3KaewFn10So",
+   "url": "https://www.youtube.com/shorts/3KaewFn10So",
+   "title": "Nannu vadiley, please!! #sheetalgauthaman #hellomadam #ytshorts #youtubeshorts #trending #ahorts",
+   "upload_date": "20261006",
+   "duration": 85,
+   "views": 40292,
+   "likes": 2064,
+   "channel": "Sheetal Gauthaman",
+   "channel_median_views": 131000.0,
+   "named_series_in_metadata": true,
+   "views_vs_median": 0.31,
+   "segments": [
+    {
+     "episode_start": 1409.65,
+     "episode_end": 1445.05,
+     "short_start": 0.0,
+     "short_end": 35.4,
+     "audio_score": 0.64,
+     "picture_score": 0.919,
+     "picture_margin_over_null": 0.235,
+     "picture_frames_passing": 1.0,
+     "picture_frames": 8
+    },
+    {
+     "episode_start": 1445.95,
+     "episode_end": 1449.0,
+     "short_start": 36.3,
+     "short_end": 39.35,
+     "audio_score": 0.629,
+     "picture_score": 0.934,
+     "picture_margin_over_null": 0.274,
+     "picture_frames_passing": 1.0,
+     "picture_frames": 3
+    },
+    {
+     "episode_start": 1450.05,
+     "episode_end": 1455.75,
+     "short_start": 40.4,
+     "short_end": 46.1,
+     "audio_score": 0.601,
+     "picture_score": 0.913,
+     "picture_margin_over_null": 0.387,
+     "picture_frames_passing": 1.0,
+     "picture_frames": 3
+    },
+    {
+     "episode_start": 1457.85,
+     "episode_end": 1459.35,
+     "short_start": 48.2,
+     "short_end": 49.7,
+     "audio_score": 0.569,
+     "picture_score": 0.881,
+     "picture_margin_over_null": 0.383,
+     "picture_frames_passing": 1.0,
+     "picture_frames": 3
+    },
+    {
+     "episode_start": 1460.35,
+     "episode_end": 1470.0,
+     "short_start": 50.7,
+     "short_end": 60.35,
+     "audio_score": 0.57,
+     "picture_score": 0.884,
+     "picture_margin_over_null": 0.342,
+     "picture_frames_passing": 1.0,
+     "picture_frames": 3
+    },
+    {
+     "episode_start": 1470.4,
+     "episode_end": 1472.55,
+     "short_start": 60.75,
+     "short_end": 62.9,
+     "audio_score": 0.59,
+     "picture_score": 0.892,
+     "picture_margin_over_null": 0.293,
+     "picture_frames_passing": 1.0,
+     "picture_frames": 3
+    },
+    {
+     "episode_start": 1473.25,
+     "episode_end": 1474.95,
+     "short_start": 63.6,
+     "short_end": 65.3,
+     "audio_score": 0.609,
+     "picture_score": 0.927,
+     "picture_margin_over_null": 0.422,
+     "picture_frames_passing": 1.0,
+     "picture_frames": 3
+    },
+    {
+     "episode_start": 1485.85,
+     "episode_end": 1487.0,
+     "short_start": 76.2,
+     "short_end": 77.35,
+     "audio_score": 0.544,
+     "picture_score": 0.917,
+     "picture_margin_over_null": 0.265,
+     "picture_frames_passing": 1.0,
+     "picture_frames": 3
+    },
+    {
+     "episode_start": 1489.95,
+     "episode_end": 1493.45,
+     "short_start": 80.3,
+     "short_end": 83.8,
+     "audio_score": 0.471,
+     "picture_score": 0.908,
+     "picture_margin_over_null": 0.322,
+     "picture_frames_passing": 1.0,
+     "picture_frames": 3
+    }
+   ],
+   "episode_span": [
+    1409.65,
+    1493.45
+   ],
+   "short_coverage": 0.751,
+   "n_segments": 9,
+   "segments_dropped_picture_mismatch": [
+    {
+     "short_start": 39.35,
+     "short_end": 40.4,
+     "episode_start": 479.85,
+     "picture": {
+      "score": 0.483,
+      "margin": -0.068,
+      "frac": 0.0
+     }
+    },
+    {
+     "short_start": 46.5,
+     "short_end": 48.2,
+     "episode_start": 487.0,
+     "picture": {
+      "score": 0.669,
+      "margin": -0.053,
+      "frac": 0.0
+     }
+    },
+    {
+     "short_start": 49.7,
+     "short_end": 50.7,
+     "episode_start": 490.2,
+     "picture": {
+      "score": 0.631,
+      "margin": -0.013,
+      "frac": 0.0
+     }
+    },
+    {
+     "short_start": 65.3,
+     "short_end": 76.2,
+     "episode_start": 505.8,
+     "picture": {
+      "score": 0.482,
+      "margin": -0.025,
+      "frac": 0.0
+     }
+    },
+    {
+     "short_start": 83.8,
+     "short_end": 85.0,
+     "episode_start": 524.3,
+     "picture": {
+      "score": 0.727,
+      "margin": 0.007,
+      "frac": 0.0
+     }
+    }
+   ],
+   "views_fetched_on": "2026-10-08",
+   "age_days_at_fetch": 2,
+   "notes": "Some music-only moments also correlate with 480-524 s (recurring BGM); those pieces failed the picture check and were dropped.",
+   "our_clips": {
+    "gold": [
+     {
+      "source": "gold round 2 = data/gold",
+      "clip_id": "w01",
+      "title": "వాడు అస్సలు happy గా ఉండలేడు అన్నాడు… 'సోహం చనిపోయాడురా!'",
+      "clip_span": [
+       1421.7,
+       1489.9
+      ],
+      "iou": 0.81,
+      "short_covered_by_clip": 0.76,
+      "founder_would_post": "yes",
+      "founder_overall": 4
+     },
+     {
+      "source": "gold round 1 (runs/gold_hm)",
+      "clip_id": "w01",
+      "title": "మీరు ఎవరినీ ఎందుకు రానివ్వట్లేదో నాకు తెలుసు madam… నీకు సోహం గురించి ఏం తెలుసు?",
+      "clip_span": [
+       1386.1,
+       1449.5
+      ],
+      "iou": 0.37,
+      "short_covered_by_clip": 0.6,
+      "founder_would_post": "maybe",
+      "founder_overall": "4"
+     },
+     {
+      "source": "gold round 1 (runs/gold_hm)",
+      "clip_id": "w12",
+      "title": "నాకు కోపం రాకూడదా?… 'సోహం చనిపోయాడురా!'",
+      "clip_span": [
+       1443.5,
+       1489.9
+      ],
+      "iou": 0.55,
+      "short_covered_by_clip": 0.42,
+      "founder_would_post": "yes",
+      "founder_overall": "4"
+     }
+    ],
+    "pipeline": [
+     {
+      "run": "ws_ab_payoff",
+      "clip_id": "w01",
+      "rank": 1,
+      "tier": "recommended",
+      "title": "నీకు Soham గురించి ఏం తెలుసని మాట్లాడుతున్నావ్?",
+      "clip_span": [
+       1389.9,
+       1479.1
+      ],
+      "iou": 0.67,
+      "short_covered_by_clip": 0.93
+     },
+     {
+      "run": "ws_hm",
+      "clip_id": "w05",
+      "rank": 2,
+      "tier": "recommended",
+      "title": "నీకు సోహం గురించి ఏం తెలుసని మాట్లాడుతున్నావ్",
+      "clip_span": [
+       1389.9,
+       1448.4
+      ],
+      "iou": 0.37,
+      "short_covered_by_clip": 0.59
+     }
+    ]
+   },
+   "local_file": "scribe_dataset/epZ0lbXkgWA/channel_shorts/3KaewFn10So.mp4"
+  }
+ ],
+ "rejected": [
+  {
+   "short_id": "7CTBEr-4T94",
+   "url": "https://www.youtube.com/shorts/7CTBEr-4T94",
+   "title": "Hello Madam ♥️ #sheetalgauthaman #hellomadam #episode6 #trending #ytshorts #youtubeshorts #shorts",
+   "upload_date": "20261003",
+   "duration": 23,
+   "views": 63876,
+   "likes": 2441,
+   "channel": "Sheetal Gauthaman",
+   "channel_median_views": 131000.0,
+   "named_series_in_metadata": true,
+   "views_vs_median": 0.49,
+   "reason": "no audio match in any of our 10 episodes"
+  },
+  {
+   "short_id": "Q7bVJPry5BQ",
+   "url": "https://www.youtube.com/shorts/Q7bVJPry5BQ",
+   "title": "Night antha racha chesi 😡♥️ #sheetalgauthaman #hellomadam #trending #ytshorts #youtubeshorts",
+   "upload_date": "20260927",
+   "duration": 106,
+   "views": 314252,
+   "likes": 6839,
+   "channel": "Sheetal Gauthaman",
+   "channel_median_views": 131000.0,
+   "named_series_in_metadata": true,
+   "views_vs_median": 2.4,
+   "reason": "no audio match in any of our 10 episodes"
+  },
+  {
+   "short_id": "uhTxypamqcA",
+   "url": "https://www.youtube.com/shorts/uhTxypamqcA",
+   "title": "I love you guys! 🫂♥️ #sheetalgauthaman #hellomadam #ytshorts #youtubeshorts #trending #shorts",
+   "upload_date": "20260922",
+   "duration": 26,
+   "views": 111346,
+   "likes": 4087,
+   "channel": "Sheetal Gauthaman",
+   "channel_median_views": 131000.0,
+   "named_series_in_metadata": true,
+   "views_vs_median": 0.85,
+   "reason": "no audio match in any of our 10 episodes"
+  },
+  {
+   "short_id": "ljO7ylMJ6KA",
+   "url": "https://www.youtube.com/shorts/ljO7ylMJ6KA",
+   "title": "That hug 🥹♥️ #sheetalgauthaman #hellomadam #ytshorts #youtubeshorts #youtuber #shorts #love #series",
+   "upload_date": "20260920",
+   "duration": 57,
+   "views": 105472,
+   "likes": 2968,
+   "channel": "Sheetal Gauthaman",
+   "channel_median_views": 131000.0,
+   "named_series_in_metadata": true,
+   "views_vs_median": 0.81,
+   "reason": "no audio match in any of our 10 episodes"
+  },
+  {
+   "short_id": "d2e94oDvIjg",
+   "url": "https://www.youtube.com/shorts/d2e94oDvIjg",
+   "title": "Madam please madam 😂 #sheetalgauthaman #hellomadam #ytshorts #youtubeshorts #trending #youtuber",
+   "upload_date": "20260909",
+   "duration": 43,
+   "views": 200095,
+   "likes": 4102,
+   "channel": "Sheetal Gauthaman",
+   "channel_median_views": 131000.0,
+   "named_series_in_metadata": true,
+   "views_vs_median": 1.53,
+   "reason": "no audio match in any of our 10 episodes"
+  },
+  {
+   "short_id": "5shkp8fJM4w",
+   "url": "https://www.youtube.com/shorts/5shkp8fJM4w",
+   "title": "Hello Madam ♥️ #sheetalgauthaman #hellomadam #ytshorts #youtubeshorts #trending #webseries #love",
+   "upload_date": "20260901",
+   "duration": 61,
+   "views": 690987,
+   "likes": 12013,
+   "channel": "Sheetal Gauthaman",
+   "channel_median_views": 131000.0,
+   "named_series_in_metadata": true,
+   "views_vs_median": 5.27,
+   "reason": "no audio match in any of our 10 episodes"
+  }
+ ]
+}

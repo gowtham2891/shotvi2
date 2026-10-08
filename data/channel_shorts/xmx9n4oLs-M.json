@@ -1,0 +1,202 @@
+{
+ "episode_id": "xmx9n4oLs-M",
+ "series": "Girls Hostel 2.0",
+ "created": "2026-10-08",
+ "created_by": "evaluation-engineer",
+ "purpose": "Channel-published Shorts proven (audio AND picture) to be cut from this episode. Positive anchors only, never the full answer key (CLAUDE.md, Ground truth philosophy).",
+ "method": "Audio: 32-band log-mel (150-5000 Hz), 50 ms hop, first difference over time; every 6 s window of the Short (1 s hop) is cross-correlated (Pearson, per-band centred) against the whole episode; an ANCHOR = >=3 consecutive windows >=0.50 at the same offset (+-0.15 s), i.e. >=8 s of continuous match; inside an anchored episode, shorter pieces at other offsets are admitted (>=2 windows mean>=0.6, or one window >=0.75) and boundaries refined per frame (1 s local correlation >=0.5). Picture: for every audio segment, 3-12 frames spread over it; each Short frame is compared (NCC, multi-zoom crop-fill and letterbox templates) with the episode frame at the matched time (best of +-0.2 s) and with 3 random episode frames >=30 s away (same-frame null). A segment is picture-verified if median score >=0.75 and (median margin over null >=0.10 with >=50% of frames clearing null+0.10, or score >=0.92 with margin >=0.05). A Short is ACCEPTED for an episode only if it has an audio anchor whose segment is picture-verified, and >=25% of the Short is proven; otherwise rejected with the reason. Every accepted Short was also checked by eye on a 4-frame contact sheet (Short frame | episode frame).",
+ "thresholds": {
+  "window_s": 6,
+  "window_hop_s": 1,
+  "window_score": 0.5,
+  "anchor_windows": 3,
+  "local_corr": 0.5,
+  "picture": "median>=0.75 and ((margin>=0.10 and frac>=0.5) or (score>=0.92 and margin>=0.05))",
+  "min_short_coverage": 0.25
+ },
+ "controls": {
+  "audio_positive_self": {
+   "windows": 26487,
+   "min": 1.0,
+   "note": "each Short vs its own audio"
+  },
+  "audio_positive_synthetic": {
+   "pieces": 90,
+   "recovered": 89,
+   "start_err_s_p90": 0.5,
+   "start_err_s_max": 0.61,
+   "end_err_s_p90": 0.4,
+   "end_err_s_max": 0.64,
+   "note": "30 synthetic Shorts (3 per episode: centre-crop, letterbox, letterbox+pink noise; 3 jump-cut pieces of 8-18 s, AAC 64k, 1/2 reordered)"
+  },
+  "audio_negative_other_series": {
+   "windows": 236419,
+   "p99": 0.386,
+   "p999": 0.529,
+   "max": 0.861,
+   "short_episode_pairs": 3235,
+   "pairs_with_an_anchor": 22,
+   "note": "real candidate Shorts vs episodes of OTHER series; every such anchor failed the picture check (shared background music)"
+  },
+  "picture_positive_synthetic": {
+   "segments": 89,
+   "passed": 89
+  },
+  "picture_negative": {
+   "shift97": {
+    "n": 46,
+    "passed": 1,
+    "max_score": 0.883,
+    "max_margin": 0.138
+   },
+   "sibling_episode_same_time": {
+    "n": 22,
+    "passed": 0,
+    "max_score": 0.793,
+    "max_margin": 0.017
+   }
+  },
+  "audio_matched_but_picture_failed_real": {
+   "n": 34,
+   "shorts": [
+    "0UFgx1t1Xzc",
+    "10VTf-SnsLQ",
+    "4Of1m9bqHuQ",
+    "68xOcCjYMzo",
+    "APukMW-1Z9w",
+    "DZnl5B4tC84",
+    "FxB1HAxSxQs",
+    "ILKnRuoO778",
+    "KJkt_N0y5Rg",
+    "Lo7AUaSDBUY",
+    "OYXx2VMdTko",
+    "QbE45U0ihx4",
+    "Qvc9OtaCkNE",
+    "TEvh5yVCVRU",
+    "TzeACFNWoUY",
+    "Uo-jZPU2BS8",
+    "VMP7lrUlwr0",
+    "WLNtH16blqQ",
+    "WuUVphuL0z4",
+    "Xh24uwGfvLs",
+    "YdsdlhmA6FI",
+    "cAs2D_wazBE",
+    "cGCq0Bagd9o",
+    "cf2NFEESyBI",
+    "i5zMWpmzDrQ",
+    "it59DrRrrac",
+    "kbZgaboHx1o",
+    "mjXycrk8zv0",
+    "sAsJlWzHRj4",
+    "sPLQkh2x6g4",
+    "sxB7hlYuBh8",
+    "w0FWKYxli_U",
+    "wVGG5gEvvmU",
+    "xVpmAcyd-Nk"
+   ],
+   "note": "audio anchors on shared BGM/songs (same series or same studio); picture showed different footage, 2 of them checked by eye (kbZgaboHx1o: Love Brew song over different footage; cGCq0Bagd9o: Queen BGM over a different scene)"
+  },
+  "rejected_rechecked_for_speed_change": {
+   "variants": "tempo x0.9/0.95/1.05/1.1 (pitch kept) and speed x0.95/1.05/1.1 (pitch shifted), undone before matching",
+   "short_episode_pairs": 165,
+   "max_window_score": 0.654,
+   "longest_chain_windows": 4,
+   "positive_control": "T5hJayVbwvo artificially sped up x1.1: window score 0.968-0.981, 82-window chain",
+   "verdict": "no rejected candidate becomes a match under a speed change"
+  }
+ },
+ "channel": {
+  "name": "B2P Studios ",
+  "channel_id": "UCoHZmJ0ra6DMZqB9bOMLk2A",
+  "shorts_listed": 400,
+  "median_views_last_100_shorts": 3950.0,
+  "note": "view counts from the Shorts tab (rounded, e.g. 15K), fetched 2026-10-08"
+ },
+ "accepted": [],
+ "rejected": [
+  {
+   "short_id": "YqEUxqeWlvk",
+   "url": "https://www.youtube.com/shorts/YqEUxqeWlvk",
+   "title": "Girls Hostel || EP 1 || Short 5  #trending #trendingreels   #teluguwebseries #shortseries #love",
+   "upload_date": "20250121",
+   "duration": 55,
+   "views": 16962,
+   "likes": 1062,
+   "channel": "B2P Studios ",
+   "channel_median_views": 3950.0,
+   "named_series_in_metadata": true,
+   "views_vs_median": 4.29,
+   "reason": "no audio match in any of our 10 episodes"
+  },
+  {
+   "short_id": "oCHutBCCqtI",
+   "url": "https://www.youtube.com/shorts/oCHutBCCqtI",
+   "title": "Girls Hostel || EP 1 || Short 4  #trending #trendingreels   #teluguwebseries #shortseries #love",
+   "upload_date": "20250116",
+   "duration": 42,
+   "views": 7281,
+   "likes": 146,
+   "channel": "B2P Studios ",
+   "channel_median_views": 3950.0,
+   "named_series_in_metadata": true,
+   "views_vs_median": 1.84,
+   "reason": "no audio match in any of our 10 episodes"
+  },
+  {
+   "short_id": "9MTvRHOFoCI",
+   "url": "https://www.youtube.com/shorts/9MTvRHOFoCI",
+   "title": "Girls Hostel || EP 1 || Short 3  #trending #trendingreels   #teluguwebseries #shortseries #love",
+   "upload_date": "20250115",
+   "duration": 32,
+   "views": 9630,
+   "likes": 333,
+   "channel": "B2P Studios ",
+   "channel_median_views": 3950.0,
+   "named_series_in_metadata": true,
+   "views_vs_median": 2.44,
+   "reason": "no audio match in any of our 10 episodes"
+  },
+  {
+   "short_id": "GsTRheQWEvU",
+   "url": "https://www.youtube.com/shorts/GsTRheQWEvU",
+   "title": "Girls Trip Ep-1 || Short 2 || New Telugu Web Series || Ravi Ganjam || B2P Studios  #telugushorts",
+   "upload_date": "20250114",
+   "duration": 28,
+   "views": 9302,
+   "likes": 379,
+   "channel": "B2P Studios ",
+   "channel_median_views": 3950.0,
+   "named_series_in_metadata": true,
+   "views_vs_median": 2.35,
+   "reason": "no audio match in any of our 10 episodes"
+  },
+  {
+   "short_id": "-oSUmUTkFxo",
+   "url": "https://www.youtube.com/shorts/-oSUmUTkFxo",
+   "title": "Girls Hostel || EP 1 || Short 2  #trending #trendingreels   #teluguwebseries #shortseries #love",
+   "upload_date": "20250114",
+   "duration": 44,
+   "views": 7551,
+   "likes": 168,
+   "channel": "B2P Studios ",
+   "channel_median_views": 3950.0,
+   "named_series_in_metadata": true,
+   "views_vs_median": 1.91,
+   "reason": "no audio match in any of our 10 episodes"
+  },
+  {
+   "short_id": "Z7rEkfANGek",
+   "url": "https://www.youtube.com/shorts/Z7rEkfANGek",
+   "title": "Girls Hostel Short 1  #trending #trendingreels  #teluguonewebseries #teluguwebseries #shortseries",
+   "upload_date": "20250113",
+   "duration": 60,
+   "views": 2253,
+   "likes": 98,
+   "channel": "B2P Studios ",
+   "channel_median_views": 3950.0,
+   "named_series_in_metadata": true,
+   "views_vs_median": 0.57,
+   "reason": "no audio match in any of our 10 episodes"
+  }
+ ]
+}

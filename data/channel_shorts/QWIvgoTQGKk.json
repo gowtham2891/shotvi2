@@ -1,0 +1,871 @@
+{
+ "episode_id": "QWIvgoTQGKk",
+ "series": "Couple Goals",
+ "created": "2026-10-08",
+ "created_by": "evaluation-engineer",
+ "purpose": "Channel-published Shorts proven (audio AND picture) to be cut from this episode. Positive anchors only, never the full answer key (CLAUDE.md, Ground truth philosophy).",
+ "method": "Audio: 32-band log-mel (150-5000 Hz), 50 ms hop, first difference over time; every 6 s window of the Short (1 s hop) is cross-correlated (Pearson, per-band centred) against the whole episode; an ANCHOR = >=3 consecutive windows >=0.50 at the same offset (+-0.15 s), i.e. >=8 s of continuous match; inside an anchored episode, shorter pieces at other offsets are admitted (>=2 windows mean>=0.6, or one window >=0.75) and boundaries refined per frame (1 s local correlation >=0.5). Picture: for every audio segment, 3-12 frames spread over it; each Short frame is compared (NCC, multi-zoom crop-fill and letterbox templates) with the episode frame at the matched time (best of +-0.2 s) and with 3 random episode frames >=30 s away (same-frame null). A segment is picture-verified if median score >=0.75 and (median margin over null >=0.10 with >=50% of frames clearing null+0.10, or score >=0.92 with margin >=0.05). A Short is ACCEPTED for an episode only if it has an audio anchor whose segment is picture-verified, and >=25% of the Short is proven; otherwise rejected with the reason. Every accepted Short was also checked by eye on a 4-frame contact sheet (Short frame | episode frame).",
+ "thresholds": {
+  "window_s": 6,
+  "window_hop_s": 1,
+  "window_score": 0.5,
+  "anchor_windows": 3,
+  "local_corr": 0.5,
+  "picture": "median>=0.75 and ((margin>=0.10 and frac>=0.5) or (score>=0.92 and margin>=0.05))",
+  "min_short_coverage": 0.25
+ },
+ "controls": {
+  "audio_positive_self": {
+   "windows": 26487,
+   "min": 1.0,
+   "note": "each Short vs its own audio"
+  },
+  "audio_positive_synthetic": {
+   "pieces": 90,
+   "recovered": 89,
+   "start_err_s_p90": 0.5,
+   "start_err_s_max": 0.61,
+   "end_err_s_p90": 0.4,
+   "end_err_s_max": 0.64,
+   "note": "30 synthetic Shorts (3 per episode: centre-crop, letterbox, letterbox+pink noise; 3 jump-cut pieces of 8-18 s, AAC 64k, 1/2 reordered)"
+  },
+  "audio_negative_other_series": {
+   "windows": 236419,
+   "p99": 0.386,
+   "p999": 0.529,
+   "max": 0.861,
+   "short_episode_pairs": 3235,
+   "pairs_with_an_anchor": 22,
+   "note": "real candidate Shorts vs episodes of OTHER series; every such anchor failed the picture check (shared background music)"
+  },
+  "picture_positive_synthetic": {
+   "segments": 89,
+   "passed": 89
+  },
+  "picture_negative": {
+   "shift97": {
+    "n": 46,
+    "passed": 1,
+    "max_score": 0.883,
+    "max_margin": 0.138
+   },
+   "sibling_episode_same_time": {
+    "n": 22,
+    "passed": 0,
+    "max_score": 0.793,
+    "max_margin": 0.017
+   }
+  },
+  "audio_matched_but_picture_failed_real": {
+   "n": 34,
+   "shorts": [
+    "0UFgx1t1Xzc",
+    "10VTf-SnsLQ",
+    "4Of1m9bqHuQ",
+    "68xOcCjYMzo",
+    "APukMW-1Z9w",
+    "DZnl5B4tC84",
+    "FxB1HAxSxQs",
+    "ILKnRuoO778",
+    "KJkt_N0y5Rg",
+    "Lo7AUaSDBUY",
+    "OYXx2VMdTko",
+    "QbE45U0ihx4",
+    "Qvc9OtaCkNE",
+    "TEvh5yVCVRU",
+    "TzeACFNWoUY",
+    "Uo-jZPU2BS8",
+    "VMP7lrUlwr0",
+    "WLNtH16blqQ",
+    "WuUVphuL0z4",
+    "Xh24uwGfvLs",
+    "YdsdlhmA6FI",
+    "cAs2D_wazBE",
+    "cGCq0Bagd9o",
+    "cf2NFEESyBI",
+    "i5zMWpmzDrQ",
+    "it59DrRrrac",
+    "kbZgaboHx1o",
+    "mjXycrk8zv0",
+    "sAsJlWzHRj4",
+    "sPLQkh2x6g4",
+    "sxB7hlYuBh8",
+    "w0FWKYxli_U",
+    "wVGG5gEvvmU",
+    "xVpmAcyd-Nk"
+   ],
+   "note": "audio anchors on shared BGM/songs (same series or same studio); picture showed different footage, 2 of them checked by eye (kbZgaboHx1o: Love Brew song over different footage; cGCq0Bagd9o: Queen BGM over a different scene)"
+  },
+  "rejected_rechecked_for_speed_change": {
+   "variants": "tempo x0.9/0.95/1.05/1.1 (pitch kept) and speed x0.95/1.05/1.1 (pitch shifted), undone before matching",
+   "short_episode_pairs": 165,
+   "max_window_score": 0.654,
+   "longest_chain_windows": 4,
+   "positive_control": "T5hJayVbwvo artificially sped up x1.1: window score 0.968-0.981, 82-window chain",
+   "verdict": "no rejected candidate becomes a match under a speed change"
+  }
+ },
+ "channel": {
+  "name": "Sushma Gopal",
+  "channel_id": "UCg0AurWhzSlH-7RSQvlrWsg",
+  "shorts_listed": 400,
+  "median_views_last_100_shorts": 83000.0,
+  "note": "view counts from the Shorts tab (rounded, e.g. 15K), fetched 2026-10-08"
+ },
+ "accepted": [
+  {
+   "short_id": "_5Gd-pypUFI",
+   "url": "https://www.youtube.com/shorts/_5Gd-pypUFI",
+   "title": "Watch full episode👀👆🏻 #sushmagopal #love #funny #shortsfeed #shorts",
+   "upload_date": "20260102",
+   "duration": 68,
+   "views": 437513,
+   "likes": 8452,
+   "channel": "Sushma Gopal",
+   "channel_median_views": 83000.0,
+   "named_series_in_metadata": false,
+   "views_vs_median": 5.27,
+   "segments": [
+    {
+     "episode_start": 326.3,
+     "episode_end": 393.35,
+     "short_start": 0.65,
+     "short_end": 67.7,
+     "audio_score": 0.958,
+     "picture_score": 0.912,
+     "picture_margin_over_null": 0.226,
+     "picture_frames_passing": 0.917,
+     "picture_frames": 12
+    }
+   ],
+   "episode_span": [
+    326.3,
+    393.35
+   ],
+   "short_coverage": 0.99,
+   "n_segments": 1,
+   "views_fetched_on": "2026-10-08",
+   "age_days_at_fetch": 279,
+   "channel_median_views_pm30d": 580769,
+   "n_shorts_pm30d": 37,
+   "views_vs_median_pm30d": 0.75,
+   "our_clips": {
+    "gold": [
+     {
+      "source": "data/gold",
+      "clip_id": "w10",
+      "title": "Dinner ఏ కాదు carriage కూడా తనే పెడుతుంది! అమ్మ హామీలు",
+      "clip_span": [
+       289.5,
+       357.5
+      ],
+      "iou": 0.3,
+      "short_covered_by_clip": 0.47,
+      "founder_would_post": "yes",
+      "founder_overall": null
+     },
+     {
+      "source": "data/gold",
+      "clip_id": "w04",
+      "title": "అబద్ధం అంటేనే fire అయిపోతాడు… అమృత పరిస్థితి ఏంటి?",
+      "clip_span": [
+       365.9,
+       441.1
+      ],
+      "iou": 0.24,
+      "short_covered_by_clip": 0.41,
+      "founder_would_post": "yes",
+      "founder_overall": null
+     }
+    ],
+    "pipeline": [
+     {
+      "run": "ws_ab_payoff",
+      "clip_id": "w08",
+      "rank": 8,
+      "tier": "worth_a_look",
+      "title": "నా కొడుకు నాతో నాలుగేళ్లు మాట్లాడలేదు",
+      "clip_span": [
+       365.9,
+       395.5
+      ],
+      "iou": 0.4,
+      "short_covered_by_clip": 0.39
+     }
+    ]
+   },
+   "local_file": "scribe_dataset/QWIvgoTQGKk/channel_shorts/_5Gd-pypUFI.mp4"
+  },
+  {
+   "short_id": "OiX2a3anoWU",
+   "url": "https://www.youtube.com/shorts/OiX2a3anoWU",
+   "title": "👀👆🏻 #husbandwife #shortvideo #shorts #ytshorts #love",
+   "upload_date": "20260102",
+   "duration": 54,
+   "views": 245266,
+   "likes": 3841,
+   "channel": "Sushma Gopal",
+   "channel_median_views": 83000.0,
+   "named_series_in_metadata": false,
+   "views_vs_median": 2.96,
+   "segments": [
+    {
+     "episode_start": 687.2,
+     "episode_end": 741.55,
+     "short_start": 0.0,
+     "short_end": 54.35,
+     "audio_score": 0.925,
+     "picture_score": 0.933,
+     "picture_margin_over_null": 0.226,
+     "picture_frames_passing": 1.0,
+     "picture_frames": 12
+    }
+   ],
+   "episode_span": [
+    687.2,
+    741.55
+   ],
+   "short_coverage": 1.0,
+   "n_segments": 1,
+   "views_fetched_on": "2026-10-08",
+   "age_days_at_fetch": 279,
+   "channel_median_views_pm30d": 580769,
+   "n_shorts_pm30d": 37,
+   "views_vs_median_pm30d": 0.42,
+   "our_clips": {
+    "gold": [
+     {
+      "source": "data/gold",
+      "clip_id": "w06",
+      "title": "First night నీ ఇష్టమే… But I want one thing!",
+      "clip_span": [
+       715.7,
+       802.5
+      ],
+      "iou": 0.22,
+      "short_covered_by_clip": 0.22,
+      "founder_would_post": "yes",
+      "founder_overall": null
+     }
+    ],
+    "pipeline": [
+     {
+      "run": "ws_r1",
+      "clip_id": "w04",
+      "rank": 2,
+      "tier": "recommended",
+      "title": "Direct గా Hug అడగాల్సింది రా బాబు",
+      "clip_span": [
+       710.2,
+       799.1
+      ],
+      "iou": 0.28,
+      "short_covered_by_clip": 0.32
+     },
+     {
+      "run": "ws_ab_payoff",
+      "clip_id": "w05",
+      "rank": 3,
+      "tier": "recommended",
+      "title": "First Night నాడు అతనికి కావాల్సింది ఇదే",
+      "clip_span": [
+       710.2,
+       799.1
+      ],
+      "iou": 0.28,
+      "short_covered_by_clip": 0.32
+     }
+    ]
+   },
+   "local_file": "scribe_dataset/QWIvgoTQGKk/channel_shorts/OiX2a3anoWU.mp4"
+  },
+  {
+   "short_id": "jcWc99JZHUU",
+   "url": "https://www.youtube.com/shorts/jcWc99JZHUU",
+   "title": "❤️❤️watch full ep👆🏻 #sushmagopal #shortvideo #mohitpedada #shorts #ytshorts",
+   "upload_date": "20260104",
+   "duration": 60,
+   "views": 202876,
+   "likes": 3818,
+   "channel": "Sushma Gopal",
+   "channel_median_views": 83000.0,
+   "named_series_in_metadata": false,
+   "views_vs_median": 2.44,
+   "segments": [
+    {
+     "episode_start": 966.0,
+     "episode_end": 1008.55,
+     "short_start": 17.35,
+     "short_end": 59.9,
+     "audio_score": 0.762,
+     "picture_score": 0.951,
+     "picture_margin_over_null": 0.301,
+     "picture_frames_passing": 1.0,
+     "picture_frames": 10
+    }
+   ],
+   "episode_span": [
+    966.0,
+    1008.55
+   ],
+   "short_coverage": 0.71,
+   "n_segments": 1,
+   "views_fetched_on": "2026-10-08",
+   "age_days_at_fetch": 277,
+   "channel_median_views_pm30d": 572163.5,
+   "n_shorts_pm30d": 36,
+   "views_vs_median_pm30d": 0.35,
+   "our_clips": {
+    "gold": [
+     {
+      "source": "data/gold",
+      "clip_id": "w01",
+      "title": "Heart తో communicate అవ్వాలి… This is why I love short girls",
+      "clip_span": [
+       948.6,
+       1021.0
+      ],
+      "iou": 0.59,
+      "short_covered_by_clip": 1.0,
+      "founder_would_post": "yes",
+      "founder_overall": null
+     }
+    ],
+    "pipeline": [
+     {
+      "run": "ws_ab_payoff",
+      "clip_id": "w04",
+      "rank": 7,
+      "tier": "worth_a_look",
+      "title": "Short girls తో ఇదే ప్రాబ్లమ్",
+      "clip_span": [
+       948.6,
+       1016.0
+      ],
+      "iou": 0.63,
+      "short_covered_by_clip": 1.0
+     },
+     {
+      "run": "ws_r1",
+      "clip_id": "w05",
+      "rank": 6,
+      "tier": "worth_a_look",
+      "title": "Short girls తో ఇదే ప్రాబ్లమ్",
+      "clip_span": [
+       948.6,
+       1021.0
+      ],
+      "iou": 0.59,
+      "short_covered_by_clip": 1.0
+     }
+    ]
+   },
+   "local_file": "scribe_dataset/QWIvgoTQGKk/channel_shorts/jcWc99JZHUU.mp4"
+  }
+ ],
+ "rejected": [
+  {
+   "short_id": "jm-Qdd5DO4o",
+   "url": "https://www.youtube.com/shorts/jm-Qdd5DO4o",
+   "title": "BTS❤️👀👆🏻 #sushmagopal #love #bts #youtubeshorts #shorts #ytshorts #offscreenvideo",
+   "upload_date": "20260228",
+   "duration": 38,
+   "views": 1517626,
+   "likes": 29332,
+   "channel": "Sushma Gopal",
+   "channel_median_views": 83000.0,
+   "named_series_in_metadata": false,
+   "views_vs_median": 18.28,
+   "reason": "no audio match in any of our 10 episodes"
+  },
+  {
+   "short_id": "YdsdlhmA6FI",
+   "url": "https://www.youtube.com/shorts/YdsdlhmA6FI",
+   "title": "Husband and wife madhyalo vaste matashe😂 #comedy #romantic #sushmagopal #love #youtubeshorts",
+   "upload_date": "20260227",
+   "duration": 45,
+   "views": 83709,
+   "likes": 2081,
+   "channel": "Sushma Gopal",
+   "channel_median_views": 83000.0,
+   "named_series_in_metadata": false,
+   "views_vs_median": 1.01,
+   "reason": "audio matched Couple Goals QWIvgoTQGKk (at [1166] s) but the picture did not (picture v2 score/margin (0.54, -0.115)): shared music/sound, different footage"
+  },
+  {
+   "short_id": "f0piyBw-q-0",
+   "url": "https://www.youtube.com/shorts/f0piyBw-q-0",
+   "title": "😂bts👆🏻👀final ep chusara?? #sushmagopal #love #couple #couplegoals #shorts #ytshorts",
+   "upload_date": "20260225",
+   "duration": 31,
+   "views": 1204562,
+   "likes": 24075,
+   "channel": "Sushma Gopal",
+   "channel_median_views": 83000.0,
+   "named_series_in_metadata": true,
+   "views_vs_median": 14.51,
+   "reason": "no audio match in any of our 10 episodes"
+  },
+  {
+   "short_id": "af2XUb4Fq5I",
+   "url": "https://www.youtube.com/shorts/af2XUb4Fq5I",
+   "title": "BTS❤️watch full vdo👀👆🏻 #sushmagopal #bts #shorts #ytshorts #love #couple",
+   "upload_date": "20260221",
+   "duration": 37,
+   "views": 725185,
+   "likes": 15557,
+   "channel": "Sushma Gopal",
+   "channel_median_views": 83000.0,
+   "named_series_in_metadata": false,
+   "views_vs_median": 8.74,
+   "reason": "no audio match in any of our 10 episodes"
+  },
+  {
+   "short_id": "OB1sTrvttxI",
+   "url": "https://www.youtube.com/shorts/OB1sTrvttxI",
+   "title": "👀watch full vdo👆🏻 #shorts #sushmagopal #love #valentinesday #ytshorts #telugu",
+   "upload_date": "20260214",
+   "duration": 47,
+   "views": 288409,
+   "likes": 5858,
+   "channel": "Sushma Gopal",
+   "channel_median_views": 83000.0,
+   "named_series_in_metadata": false,
+   "views_vs_median": 3.47,
+   "reason": "no audio match in any of our 10 episodes"
+  },
+  {
+   "short_id": "D1P7NvUGkko",
+   "url": "https://www.youtube.com/shorts/D1P7NvUGkko",
+   "title": "BTS 👆🏻watch full now❤️ #love #sushmagopal #couple #bts #shorts",
+   "upload_date": "20260213",
+   "duration": 47,
+   "views": 427597,
+   "likes": 12094,
+   "channel": "Sushma Gopal",
+   "channel_median_views": 83000.0,
+   "named_series_in_metadata": false,
+   "views_vs_median": 5.15,
+   "reason": "no audio match in any of our 10 episodes"
+  },
+  {
+   "short_id": "rudWKhK5qlk",
+   "url": "https://www.youtube.com/shorts/rudWKhK5qlk",
+   "title": "💔 watch full vdo👆🏻 #sushmagopal #love #shorts #valentinesday",
+   "upload_date": "20260212",
+   "duration": 52,
+   "views": 1566229,
+   "likes": 25140,
+   "channel": "Sushma Gopal",
+   "channel_median_views": 83000.0,
+   "named_series_in_metadata": false,
+   "views_vs_median": 18.87,
+   "reason": "partial: only 16% of the Short (8 s) is proven from Couple Goals QWIvgoTQGKk at [754.45, 762.55]; the rest shows other scenes (compilation)",
+   "partial_segments": [
+    {
+     "episode_start": 754.45,
+     "episode_end": 762.55,
+     "short_start": 19.15,
+     "short_end": 27.25,
+     "audio_score": 0.675,
+     "picture_score": 0.92,
+     "picture_margin_over_null": 0.303,
+     "picture_frames_passing": 1.0,
+     "picture_frames": 3
+    }
+   ]
+  },
+  {
+   "short_id": "FToSjkiyXDI",
+   "url": "https://www.youtube.com/shorts/FToSjkiyXDI",
+   "title": "Naku thanu vaddhuu👆🏻watch full vdo #sushmagopal #love #couple #shorts #ytshorts #shortvideo",
+   "upload_date": "20260211",
+   "duration": 59,
+   "views": 374954,
+   "likes": 9225,
+   "channel": "Sushma Gopal",
+   "channel_median_views": 83000.0,
+   "named_series_in_metadata": false,
+   "views_vs_median": 4.52,
+   "reason": "no audio match in any of our 10 episodes"
+  },
+  {
+   "short_id": "1Fbvn5tyHvM",
+   "url": "https://www.youtube.com/shorts/1Fbvn5tyHvM",
+   "title": "Watch full vdo👆🏻👀Jessica nuv poo eka😍 #love #saree #couple #telugu #shorts #ytshorts",
+   "upload_date": "20260208",
+   "duration": 52,
+   "views": 1209552,
+   "likes": 23185,
+   "channel": "Sushma Gopal",
+   "channel_median_views": 83000.0,
+   "named_series_in_metadata": false,
+   "views_vs_median": 14.57,
+   "reason": "no audio match in any of our 10 episodes"
+  },
+  {
+   "short_id": "PEkprDXD-Sc",
+   "url": "https://www.youtube.com/shorts/PEkprDXD-Sc",
+   "title": "Shock iyara? #sushmagopal #love #ytshorts #shorts #telugu",
+   "upload_date": "20260204",
+   "duration": 64,
+   "views": 645268,
+   "likes": 13730,
+   "channel": "Sushma Gopal",
+   "channel_median_views": 83000.0,
+   "named_series_in_metadata": false,
+   "views_vs_median": 7.77,
+   "reason": "no audio match in any of our 10 episodes"
+  },
+  {
+   "short_id": "UWnvdFdLc8c",
+   "url": "https://www.youtube.com/shorts/UWnvdFdLc8c",
+   "title": "Bts❤️watch ep👆🏻👀 #sushmagopal #love #shorts #bts #ytshorts",
+   "upload_date": "20260201",
+   "duration": 50,
+   "views": 580769,
+   "likes": 13468,
+   "channel": "Sushma Gopal",
+   "channel_median_views": 83000.0,
+   "named_series_in_metadata": false,
+   "views_vs_median": 7.0,
+   "reason": "no audio match in any of our 10 episodes"
+  },
+  {
+   "short_id": "lsQqiuRkHR0",
+   "url": "https://www.youtube.com/shorts/lsQqiuRkHR0",
+   "title": "🥹 #sushmagopal #shorts #shortsfeed #ytshorts #love #telugu",
+   "upload_date": "20260201",
+   "duration": 52,
+   "views": 530503,
+   "likes": 12241,
+   "channel": "Sushma Gopal",
+   "channel_median_views": 83000.0,
+   "named_series_in_metadata": false,
+   "views_vs_median": 6.39,
+   "reason": "no audio match in any of our 10 episodes"
+  },
+  {
+   "short_id": "Xk9Dg-Zg_DA",
+   "url": "https://www.youtube.com/shorts/Xk9Dg-Zg_DA",
+   "title": "Watch full ep🥹🙌🏻👀👆🏻 #sushmagopal #love #family",
+   "upload_date": "20260130",
+   "duration": 60,
+   "views": 418589,
+   "likes": 10348,
+   "channel": "Sushma Gopal",
+   "channel_median_views": 83000.0,
+   "named_series_in_metadata": false,
+   "views_vs_median": 5.04,
+   "reason": "no audio match in any of our 10 episodes"
+  },
+  {
+   "short_id": "xLRuJCiFV7A",
+   "url": "https://www.youtube.com/shorts/xLRuJCiFV7A",
+   "title": "Watch full ep👆🏻👀 #shorts #sushmagopal #love #shorts #shortvideo",
+   "upload_date": "20260129",
+   "duration": 59,
+   "views": 1390336,
+   "likes": 27233,
+   "channel": "Sushma Gopal",
+   "channel_median_views": 83000.0,
+   "named_series_in_metadata": false,
+   "views_vs_median": 16.75,
+   "reason": "no audio match in any of our 10 episodes"
+  },
+  {
+   "short_id": "qziJAGxM3dQ",
+   "url": "https://www.youtube.com/shorts/qziJAGxM3dQ",
+   "title": "BTS❤️these ppl🥹 watch ep👆🏻👀 #sushmagopal #shorts #couplegoals #ytshorts",
+   "upload_date": "20260128",
+   "duration": 34,
+   "views": 351073,
+   "likes": 7497,
+   "channel": "Sushma Gopal",
+   "channel_median_views": 83000.0,
+   "named_series_in_metadata": true,
+   "views_vs_median": 4.23,
+   "reason": "no audio match in any of our 10 episodes"
+  },
+  {
+   "short_id": "VjnRAJwQArE",
+   "url": "https://www.youtube.com/shorts/VjnRAJwQArE",
+   "title": "😍watch full ep👆🏻👀#shorts #sushmagopal #ytshorts #husbandwife #family",
+   "upload_date": "20260125",
+   "duration": 30,
+   "views": 343386,
+   "likes": 6187,
+   "channel": "Sushma Gopal",
+   "channel_median_views": 83000.0,
+   "named_series_in_metadata": false,
+   "views_vs_median": 4.14,
+   "reason": "no audio match in any of our 10 episodes"
+  },
+  {
+   "short_id": "wqMNLl_vQRw",
+   "url": "https://www.youtube.com/shorts/wqMNLl_vQRw",
+   "title": "😂watch full ep👆🏻👀 #sushmagopal #shorts #ytshorts #youtubeshorts #comedy",
+   "upload_date": "20260123",
+   "duration": 39,
+   "views": 212518,
+   "likes": 3958,
+   "channel": "Sushma Gopal",
+   "channel_median_views": 83000.0,
+   "named_series_in_metadata": false,
+   "views_vs_median": 2.56,
+   "reason": "no audio match in any of our 10 episodes"
+  },
+  {
+   "short_id": "8z8LYOH2Qks",
+   "url": "https://www.youtube.com/shorts/8z8LYOH2Qks",
+   "title": "Debba mida debba😂watch full ep👆🏻 #sushmagopal #love #shorts #ytshorts #telugu",
+   "upload_date": "20260122",
+   "duration": 54,
+   "views": 974885,
+   "likes": 18883,
+   "channel": "Sushma Gopal",
+   "channel_median_views": 83000.0,
+   "named_series_in_metadata": false,
+   "views_vs_median": 11.75,
+   "reason": "no audio match in any of our 10 episodes"
+  },
+  {
+   "short_id": "oVWY8zyhjp8",
+   "url": "https://www.youtube.com/shorts/oVWY8zyhjp8",
+   "title": "Curd haters😂watch full ep👆🏻👀 #sushmagopal #love #shorts #ytshortsvideo",
+   "upload_date": "20260122",
+   "duration": 39,
+   "views": 1233701,
+   "likes": 18190,
+   "channel": "Sushma Gopal",
+   "channel_median_views": 83000.0,
+   "named_series_in_metadata": false,
+   "views_vs_median": 14.86,
+   "reason": "no audio match in any of our 10 episodes"
+  },
+  {
+   "short_id": "Q1YJCHur4X4",
+   "url": "https://www.youtube.com/shorts/Q1YJCHur4X4",
+   "title": "BTS❤️👆🏻👀ep chusara?? #sushmagopal #love #shorts #ytshorts",
+   "upload_date": "20260121",
+   "duration": 28,
+   "views": 409792,
+   "likes": 6308,
+   "channel": "Sushma Gopal",
+   "channel_median_views": 83000.0,
+   "named_series_in_metadata": false,
+   "views_vs_median": 4.94,
+   "reason": "no audio match in any of our 10 episodes"
+  },
+  {
+   "short_id": "-VJcF9v49fQ",
+   "url": "https://www.youtube.com/shorts/-VJcF9v49fQ",
+   "title": "🙆🏻‍♀️watch full ep👆🏻 #sushmagopal #love #ytshorts #couplegoals #shorts",
+   "upload_date": "20260116",
+   "duration": 55,
+   "views": 7575676,
+   "likes": 135083,
+   "channel": "Sushma Gopal",
+   "channel_median_views": 83000.0,
+   "named_series_in_metadata": true,
+   "views_vs_median": 91.27,
+   "reason": "no audio match in any of our 10 episodes"
+  },
+  {
+   "short_id": "CsBlt6yTsmA",
+   "url": "https://www.youtube.com/shorts/CsBlt6yTsmA",
+   "title": "#bts Watch ep👆🏻👀 #sushmagopal #love #bts #shorts #yt #ytshorts",
+   "upload_date": "20260115",
+   "duration": 43,
+   "views": 815028,
+   "likes": 17245,
+   "channel": "Sushma Gopal",
+   "channel_median_views": 83000.0,
+   "named_series_in_metadata": false,
+   "views_vs_median": 9.82,
+   "reason": "no audio match in any of our 10 episodes"
+  },
+  {
+   "short_id": "0QLj2OMvQJo",
+   "url": "https://www.youtube.com/shorts/0QLj2OMvQJo",
+   "title": "BTS😂 watch full ep👆🏻if u missed it🫶🏻 #sushmagopal #ytshorts #short #shorts #webseries",
+   "upload_date": "20260114",
+   "duration": 15,
+   "views": 927776,
+   "likes": 8627,
+   "channel": "Sushma Gopal",
+   "channel_median_views": 83000.0,
+   "named_series_in_metadata": false,
+   "views_vs_median": 11.18,
+   "reason": "no audio match in any of our 10 episodes"
+  },
+  {
+   "short_id": "ESrd465EUdk",
+   "url": "https://www.youtube.com/shorts/ESrd465EUdk",
+   "title": "Did you watch ep👆🏻👀?? #sushmagopal #mohitpedada #love #ytshorts #shorts #charminar",
+   "upload_date": "20260114",
+   "duration": 58,
+   "views": 148063,
+   "likes": 3455,
+   "channel": "Sushma Gopal",
+   "channel_median_views": 83000.0,
+   "named_series_in_metadata": false,
+   "views_vs_median": 1.78,
+   "reason": "no audio match in any of our 10 episodes"
+  },
+  {
+   "short_id": "0sxeiNe9HLo",
+   "url": "https://www.youtube.com/shorts/0sxeiNe9HLo",
+   "title": "Watch epsiode 👆🏻here❤️👀couple goals #shortsfeed #shorts #ytshorts #sushmagopal #bts",
+   "upload_date": "20260112",
+   "duration": 14,
+   "views": 2313118,
+   "likes": 28034,
+   "channel": "Sushma Gopal",
+   "channel_median_views": 83000.0,
+   "named_series_in_metadata": true,
+   "views_vs_median": 27.87,
+   "reason": "no audio match in any of our 10 episodes"
+  },
+  {
+   "short_id": "TzeACFNWoUY",
+   "url": "https://www.youtube.com/shorts/TzeACFNWoUY",
+   "title": "😂watch full ep👆🏻 #sushmagopal #mohithkumar #love #couplegoals #ytshorts #shorts",
+   "upload_date": "20260110",
+   "duration": 62,
+   "views": 694327,
+   "likes": 10466,
+   "channel": "Sushma Gopal",
+   "channel_median_views": 83000.0,
+   "named_series_in_metadata": true,
+   "views_vs_median": 8.37,
+   "reason": "audio matched Couple Goals QWIvgoTQGKk (at [977] s) but the picture did not (picture v2 score/margin (0.742, -0.016)): shared music/sound, different footage"
+  },
+  {
+   "short_id": "ERGr5NYv6jc",
+   "url": "https://www.youtube.com/shorts/ERGr5NYv6jc",
+   "title": "This kind of sorry🥹 #shorts #husbandwife #yt #sushmagopal #mohitpedada",
+   "upload_date": "20260108",
+   "duration": 58,
+   "views": 3813435,
+   "likes": 60235,
+   "channel": "Sushma Gopal",
+   "channel_median_views": 83000.0,
+   "named_series_in_metadata": false,
+   "views_vs_median": 45.95,
+   "reason": "no audio match in any of our 10 episodes"
+  },
+  {
+   "short_id": "fPmJvklkSqg",
+   "url": "https://www.youtube.com/shorts/fPmJvklkSqg",
+   "title": "Watch full vdo 👀👆🏻 #sushmagopal #love #bts #ytshorts #shorts",
+   "upload_date": "20260107",
+   "duration": 17,
+   "views": 1619558,
+   "likes": 20853,
+   "channel": "Sushma Gopal",
+   "channel_median_views": 83000.0,
+   "named_series_in_metadata": false,
+   "views_vs_median": 19.51,
+   "reason": "no audio match in any of our 10 episodes"
+  },
+  {
+   "short_id": "ExJlUn7vCRc",
+   "url": "https://www.youtube.com/shorts/ExJlUn7vCRc",
+   "title": "Lets Cook together❤️watch couplegoals👆🏻👀 here #sushmagopal #ytshorts #shorts #couples",
+   "upload_date": "20251229",
+   "duration": 38,
+   "views": 1735231,
+   "likes": 29889,
+   "channel": "Sushma Gopal",
+   "channel_median_views": 83000.0,
+   "named_series_in_metadata": true,
+   "views_vs_median": 20.91,
+   "reason": "no audio match in any of our 10 episodes"
+  },
+  {
+   "short_id": "XaLrI-aBd8M",
+   "url": "https://www.youtube.com/shorts/XaLrI-aBd8M",
+   "title": "Romance ghee lantadhi #sushmagopal #love #romantic #foodie #shortvideo #ytshort",
+   "upload_date": "20251228",
+   "duration": 60,
+   "views": 324189,
+   "likes": 5468,
+   "channel": "Sushma Gopal",
+   "channel_median_views": 83000.0,
+   "named_series_in_metadata": false,
+   "views_vs_median": 3.91,
+   "reason": "matched a different episode of the series: j14Om1SaFYE (span [765.4, 825.05])"
+  },
+  {
+   "short_id": "CF4rfsTRgVA",
+   "url": "https://www.youtube.com/shorts/CF4rfsTRgVA",
+   "title": "🥹❤️ watch full ep👆🏻 #sushmagopal #love #ytshorts",
+   "upload_date": "20251227",
+   "duration": 58,
+   "views": 756060,
+   "likes": 14740,
+   "channel": "Sushma Gopal",
+   "channel_median_views": 83000.0,
+   "named_series_in_metadata": false,
+   "views_vs_median": 9.11,
+   "reason": "matched a different episode of the series: j14Om1SaFYE (span [117.05, 481.3])"
+  },
+  {
+   "short_id": "DNRBCSKQluI",
+   "url": "https://www.youtube.com/shorts/DNRBCSKQluI",
+   "title": "BTS❤️watch full ep here👆🏻👀 #couplegoals #sushmagopal #love #shorts #ytshorts",
+   "upload_date": "20251227",
+   "duration": 30,
+   "views": 2167749,
+   "likes": 23845,
+   "channel": "Sushma Gopal",
+   "channel_median_views": 83000.0,
+   "named_series_in_metadata": true,
+   "views_vs_median": 26.12,
+   "reason": "no audio match in any of our 10 episodes"
+  },
+  {
+   "short_id": "fvw9l1Wzhjo",
+   "url": "https://www.youtube.com/shorts/fvw9l1Wzhjo",
+   "title": "Thappu a guys?? #sushmagopal #cooking #girls #relatable",
+   "upload_date": "20251226",
+   "duration": 42,
+   "views": 394174,
+   "likes": 6837,
+   "channel": "Sushma Gopal",
+   "channel_median_views": 83000.0,
+   "named_series_in_metadata": false,
+   "views_vs_median": 4.75,
+   "reason": "matched a different episode of the series: j14Om1SaFYE (span [341.65, 854.1])"
+  },
+  {
+   "short_id": "AMNZEZyGB4I",
+   "url": "https://www.youtube.com/shorts/AMNZEZyGB4I",
+   "title": "Watch full vdo👆🏻😂#couplegoals #love #sushmagopal #ytshorts #friday",
+   "upload_date": "20251226",
+   "duration": 7,
+   "views": 735810,
+   "likes": 6828,
+   "channel": "Sushma Gopal",
+   "channel_median_views": 83000.0,
+   "named_series_in_metadata": true,
+   "views_vs_median": 8.87,
+   "reason": "no audio match in any of our 10 episodes"
+  },
+  {
+   "short_id": "dsyADWqE-PU",
+   "url": "https://www.youtube.com/shorts/dsyADWqE-PU",
+   "title": "Potti ga unte plbm Enti anta🤧 #potti #yt #shorts #sushmagopal #mohitpedada #couplegoals",
+   "upload_date": "20251225",
+   "duration": 56,
+   "views": 197160,
+   "likes": 2344,
+   "channel": "Sushma Gopal",
+   "channel_median_views": 83000.0,
+   "named_series_in_metadata": true,
+   "views_vs_median": 2.38,
+   "reason": "matched a different episode of the series: j14Om1SaFYE (span [69.4, 125.6])"
+  }
+ ]
+}

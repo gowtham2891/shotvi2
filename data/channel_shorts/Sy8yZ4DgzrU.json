@@ -1,0 +1,413 @@
+{
+ "episode_id": "Sy8yZ4DgzrU",
+ "series": "Project Pelli S2",
+ "created": "2026-10-08",
+ "created_by": "evaluation-engineer",
+ "purpose": "Channel-published Shorts proven (audio AND picture) to be cut from this episode. Positive anchors only, never the full answer key (CLAUDE.md, Ground truth philosophy).",
+ "method": "Audio: 32-band log-mel (150-5000 Hz), 50 ms hop, first difference over time; every 6 s window of the Short (1 s hop) is cross-correlated (Pearson, per-band centred) against the whole episode; an ANCHOR = >=3 consecutive windows >=0.50 at the same offset (+-0.15 s), i.e. >=8 s of continuous match; inside an anchored episode, shorter pieces at other offsets are admitted (>=2 windows mean>=0.6, or one window >=0.75) and boundaries refined per frame (1 s local correlation >=0.5). Picture: for every audio segment, 3-12 frames spread over it; each Short frame is compared (NCC, multi-zoom crop-fill and letterbox templates) with the episode frame at the matched time (best of +-0.2 s) and with 3 random episode frames >=30 s away (same-frame null). A segment is picture-verified if median score >=0.75 and (median margin over null >=0.10 with >=50% of frames clearing null+0.10, or score >=0.92 with margin >=0.05). A Short is ACCEPTED for an episode only if it has an audio anchor whose segment is picture-verified, and >=25% of the Short is proven; otherwise rejected with the reason. Every accepted Short was also checked by eye on a 4-frame contact sheet (Short frame | episode frame).",
+ "thresholds": {
+  "window_s": 6,
+  "window_hop_s": 1,
+  "window_score": 0.5,
+  "anchor_windows": 3,
+  "local_corr": 0.5,
+  "picture": "median>=0.75 and ((margin>=0.10 and frac>=0.5) or (score>=0.92 and margin>=0.05))",
+  "min_short_coverage": 0.25
+ },
+ "controls": {
+  "audio_positive_self": {
+   "windows": 26487,
+   "min": 1.0,
+   "note": "each Short vs its own audio"
+  },
+  "audio_positive_synthetic": {
+   "pieces": 90,
+   "recovered": 89,
+   "start_err_s_p90": 0.5,
+   "start_err_s_max": 0.61,
+   "end_err_s_p90": 0.4,
+   "end_err_s_max": 0.64,
+   "note": "30 synthetic Shorts (3 per episode: centre-crop, letterbox, letterbox+pink noise; 3 jump-cut pieces of 8-18 s, AAC 64k, 1/2 reordered)"
+  },
+  "audio_negative_other_series": {
+   "windows": 236419,
+   "p99": 0.386,
+   "p999": 0.529,
+   "max": 0.861,
+   "short_episode_pairs": 3235,
+   "pairs_with_an_anchor": 22,
+   "note": "real candidate Shorts vs episodes of OTHER series; every such anchor failed the picture check (shared background music)"
+  },
+  "picture_positive_synthetic": {
+   "segments": 89,
+   "passed": 89
+  },
+  "picture_negative": {
+   "shift97": {
+    "n": 46,
+    "passed": 1,
+    "max_score": 0.883,
+    "max_margin": 0.138
+   },
+   "sibling_episode_same_time": {
+    "n": 22,
+    "passed": 0,
+    "max_score": 0.793,
+    "max_margin": 0.017
+   }
+  },
+  "audio_matched_but_picture_failed_real": {
+   "n": 34,
+   "shorts": [
+    "0UFgx1t1Xzc",
+    "10VTf-SnsLQ",
+    "4Of1m9bqHuQ",
+    "68xOcCjYMzo",
+    "APukMW-1Z9w",
+    "DZnl5B4tC84",
+    "FxB1HAxSxQs",
+    "ILKnRuoO778",
+    "KJkt_N0y5Rg",
+    "Lo7AUaSDBUY",
+    "OYXx2VMdTko",
+    "QbE45U0ihx4",
+    "Qvc9OtaCkNE",
+    "TEvh5yVCVRU",
+    "TzeACFNWoUY",
+    "Uo-jZPU2BS8",
+    "VMP7lrUlwr0",
+    "WLNtH16blqQ",
+    "WuUVphuL0z4",
+    "Xh24uwGfvLs",
+    "YdsdlhmA6FI",
+    "cAs2D_wazBE",
+    "cGCq0Bagd9o",
+    "cf2NFEESyBI",
+    "i5zMWpmzDrQ",
+    "it59DrRrrac",
+    "kbZgaboHx1o",
+    "mjXycrk8zv0",
+    "sAsJlWzHRj4",
+    "sPLQkh2x6g4",
+    "sxB7hlYuBh8",
+    "w0FWKYxli_U",
+    "wVGG5gEvvmU",
+    "xVpmAcyd-Nk"
+   ],
+   "note": "audio anchors on shared BGM/songs (same series or same studio); picture showed different footage, 2 of them checked by eye (kbZgaboHx1o: Love Brew song over different footage; cGCq0Bagd9o: Queen BGM over a different scene)"
+  },
+  "rejected_rechecked_for_speed_change": {
+   "variants": "tempo x0.9/0.95/1.05/1.1 (pitch kept) and speed x0.95/1.05/1.1 (pitch shifted), undone before matching",
+   "short_episode_pairs": 165,
+   "max_window_score": 0.654,
+   "longest_chain_windows": 4,
+   "positive_control": "T5hJayVbwvo artificially sped up x1.1: window score 0.968-0.981, 82-window chain",
+   "verdict": "no rejected candidate becomes a match under a speed change"
+  }
+ },
+ "channel": {
+  "name": "Infinitum Theatre",
+  "channel_id": "UCaooZvg_gT3gagtkbqJCxMw",
+  "shorts_listed": 369,
+  "median_views_last_100_shorts": 28000.0,
+  "note": "view counts from the Shorts tab (rounded, e.g. 15K), fetched 2026-10-08"
+ },
+ "accepted": [
+  {
+   "short_id": "q2sTytCQTmE",
+   "url": "https://www.youtube.com/shorts/q2sTytCQTmE",
+   "title": "Naku job ochindi #projectpelli",
+   "upload_date": "20260928",
+   "duration": 48,
+   "views": 27100,
+   "likes": 680,
+   "channel": "Infinitum Theatre",
+   "channel_median_views": 28000.0,
+   "named_series_in_metadata": true,
+   "views_vs_median": 0.97,
+   "segments": [
+    {
+     "episode_start": 951.8,
+     "episode_end": 999.5,
+     "short_start": 0.0,
+     "short_end": 47.7,
+     "audio_score": 0.662,
+     "picture_score": 0.969,
+     "picture_margin_over_null": 0.297,
+     "picture_frames_passing": 1.0,
+     "picture_frames": 11
+    }
+   ],
+   "episode_span": [
+    951.8,
+    999.5
+   ],
+   "short_coverage": 1.0,
+   "n_segments": 1,
+   "views_fetched_on": "2026-10-08",
+   "age_days_at_fetch": 10,
+   "channel_median_views_pm30d": 27677.0,
+   "n_shorts_pm30d": 12,
+   "views_vs_median_pm30d": 0.98,
+   "our_clips": {
+    "gold": [],
+    "pipeline": []
+   },
+   "local_file": "scribe_dataset/Sy8yZ4DgzrU/channel_shorts/q2sTytCQTmE.mp4"
+  },
+  {
+   "short_id": "HxUPGUkVyBM",
+   "url": "https://www.youtube.com/shorts/HxUPGUkVyBM",
+   "title": "Konchem thaggu #projectpelli",
+   "upload_date": "20260928",
+   "duration": 57,
+   "views": 6241,
+   "likes": 164,
+   "channel": "Infinitum Theatre",
+   "channel_median_views": 28000.0,
+   "named_series_in_metadata": true,
+   "views_vs_median": 0.22,
+   "segments": [
+    {
+     "episode_start": 1121.5,
+     "episode_end": 1178.1,
+     "short_start": 0.0,
+     "short_end": 56.6,
+     "audio_score": 0.915,
+     "picture_score": 0.982,
+     "picture_margin_over_null": 0.298,
+     "picture_frames_passing": 1.0,
+     "picture_frames": 12
+    }
+   ],
+   "episode_span": [
+    1121.5,
+    1178.1
+   ],
+   "short_coverage": 1.0,
+   "n_segments": 1,
+   "views_fetched_on": "2026-10-08",
+   "age_days_at_fetch": 10,
+   "channel_median_views_pm30d": 27677.0,
+   "n_shorts_pm30d": 12,
+   "views_vs_median_pm30d": 0.23,
+   "our_clips": {
+    "gold": [],
+    "pipeline": []
+   },
+   "local_file": "scribe_dataset/Sy8yZ4DgzrU/channel_shorts/HxUPGUkVyBM.mp4"
+  }
+ ],
+ "rejected": [
+  {
+   "short_id": "A6f9kgREZZs",
+   "url": "https://www.youtube.com/shorts/A6f9kgREZZs",
+   "title": "Sorry satyabhama #projectpelli",
+   "upload_date": "20260926",
+   "duration": 60,
+   "views": 20253,
+   "likes": 862,
+   "channel": "Infinitum Theatre",
+   "channel_median_views": 28000.0,
+   "named_series_in_metadata": true,
+   "views_vs_median": 0.72,
+   "reason": "no audio match in any of our 10 episodes"
+  },
+  {
+   "short_id": "wVGG5gEvvmU",
+   "url": "https://www.youtube.com/shorts/wVGG5gEvvmU",
+   "title": "Bava moham eraga aypoyedi #projectpelli",
+   "upload_date": "20260924",
+   "duration": 61,
+   "views": 17784,
+   "likes": 416,
+   "channel": "Infinitum Theatre",
+   "channel_median_views": 28000.0,
+   "named_series_in_metadata": true,
+   "views_vs_median": 0.64,
+   "reason": "audio matched Project Pelli S2 Sy8yZ4DgzrU (at [936] s) but the picture did not (picture v2 score/margin (0.687, -0.034)): shared music/sound, different footage"
+  },
+  {
+   "short_id": "Cqrob5_-Nu8",
+   "url": "https://www.youtube.com/shorts/Cqrob5_-Nu8",
+   "title": "Ne istam ochinattu matladtava? #projectpelli",
+   "upload_date": "20260923",
+   "duration": 61,
+   "views": 52956,
+   "likes": 1625,
+   "channel": "Infinitum Theatre",
+   "channel_median_views": 28000.0,
+   "named_series_in_metadata": true,
+   "views_vs_median": 1.89,
+   "reason": "no audio match in any of our 10 episodes"
+  },
+  {
+   "short_id": "CVdhxr7ocNA",
+   "url": "https://www.youtube.com/shorts/CVdhxr7ocNA",
+   "title": "Idi ne illu #projectpelli",
+   "upload_date": "20260923",
+   "duration": 36,
+   "views": 32492,
+   "likes": 1025,
+   "channel": "Infinitum Theatre",
+   "channel_median_views": 28000.0,
+   "named_series_in_metadata": true,
+   "views_vs_median": 1.16,
+   "reason": "no audio match in any of our 10 episodes"
+  },
+  {
+   "short_id": "8FBqMt0rlsI",
+   "url": "https://www.youtube.com/shorts/8FBqMt0rlsI",
+   "title": "Neku ice cream thinadam ante istama? #projectpelli",
+   "upload_date": "20260923",
+   "duration": 54,
+   "views": 24934,
+   "likes": 656,
+   "channel": "Infinitum Theatre",
+   "channel_median_views": 28000.0,
+   "named_series_in_metadata": true,
+   "views_vs_median": 0.89,
+   "reason": "no audio match in any of our 10 episodes"
+  },
+  {
+   "short_id": "oPO3D-sT8Cw",
+   "url": "https://www.youtube.com/shorts/oPO3D-sT8Cw",
+   "title": "Urelli edokati cheddam #projectpelli",
+   "upload_date": "20260921",
+   "duration": 58,
+   "views": 28254,
+   "likes": 967,
+   "channel": "Infinitum Theatre",
+   "channel_median_views": 28000.0,
+   "named_series_in_metadata": true,
+   "views_vs_median": 1.01,
+   "reason": "no audio match in any of our 10 episodes"
+  },
+  {
+   "short_id": "LQQ2akA2U6M",
+   "url": "https://www.youtube.com/shorts/LQQ2akA2U6M",
+   "title": "Poddu poddune ide pani #projectpelli",
+   "upload_date": "20260919",
+   "duration": 34,
+   "views": 81460,
+   "likes": 1621,
+   "channel": "Infinitum Theatre",
+   "channel_median_views": 28000.0,
+   "named_series_in_metadata": true,
+   "views_vs_median": 2.91,
+   "reason": "no audio match in any of our 10 episodes"
+  },
+  {
+   "short_id": "HP0J_DZtiZ8",
+   "url": "https://www.youtube.com/shorts/HP0J_DZtiZ8",
+   "title": "Na saree enti ikkada undi #projectpelli",
+   "upload_date": "20260918",
+   "duration": 44,
+   "views": 222308,
+   "likes": 3994,
+   "channel": "Infinitum Theatre",
+   "channel_median_views": 28000.0,
+   "named_series_in_metadata": true,
+   "views_vs_median": 7.94,
+   "reason": "no audio match in any of our 10 episodes"
+  },
+  {
+   "short_id": "N8e_-4JfelE",
+   "url": "https://www.youtube.com/shorts/N8e_-4JfelE",
+   "title": "Krishna nannu chala ba chuskuntunadu #projectpelli",
+   "upload_date": "20260528",
+   "duration": 60,
+   "views": 28405,
+   "likes": 849,
+   "channel": "Infinitum Theatre",
+   "channel_median_views": 28000.0,
+   "named_series_in_metadata": true,
+   "views_vs_median": 1.01,
+   "reason": "no audio match in any of our 10 episodes"
+  },
+  {
+   "short_id": "Rkovm4UKZTA",
+   "url": "https://www.youtube.com/shorts/Rkovm4UKZTA",
+   "title": "Characters exchange #projectpelli",
+   "upload_date": "20260524",
+   "duration": 75,
+   "views": 20028,
+   "likes": 1008,
+   "channel": "Infinitum Theatre",
+   "channel_median_views": 28000.0,
+   "named_series_in_metadata": true,
+   "views_vs_median": 0.72,
+   "reason": "no audio match in any of our 10 episodes"
+  },
+  {
+   "short_id": "sz4o83o8694",
+   "url": "https://www.youtube.com/shorts/sz4o83o8694",
+   "title": "Na husband ❤️ #projectpelli",
+   "upload_date": "20260512",
+   "duration": 58,
+   "views": 19932,
+   "likes": 538,
+   "channel": "Infinitum Theatre",
+   "channel_median_views": 28000.0,
+   "named_series_in_metadata": true,
+   "views_vs_median": 0.71,
+   "reason": "no audio match in any of our 10 episodes"
+  },
+  {
+   "short_id": "M0EAQhzQI3w",
+   "url": "https://www.youtube.com/shorts/M0EAQhzQI3w",
+   "title": "Bava #projectpelli",
+   "upload_date": "20260502",
+   "duration": 61,
+   "views": 64189,
+   "likes": 1941,
+   "channel": "Infinitum Theatre",
+   "channel_median_views": 28000.0,
+   "named_series_in_metadata": true,
+   "views_vs_median": 2.29,
+   "reason": "no audio match in any of our 10 episodes"
+  },
+  {
+   "short_id": "8EG9zNNayYg",
+   "url": "https://www.youtube.com/shorts/8EG9zNNayYg",
+   "title": "Ithanevaro naku telidu #projectpelli",
+   "upload_date": "20260426",
+   "duration": 62,
+   "views": 80475,
+   "likes": 1877,
+   "channel": "Infinitum Theatre",
+   "channel_median_views": 28000.0,
+   "named_series_in_metadata": true,
+   "views_vs_median": 2.87,
+   "reason": "no audio match in any of our 10 episodes"
+  },
+  {
+   "short_id": "dJy_PdKzSfk",
+   "url": "https://www.youtube.com/shorts/dJy_PdKzSfk",
+   "title": "Project Pelli BTS - Black Saree Romantic Scene",
+   "upload_date": "20260424",
+   "duration": 24,
+   "views": 689829,
+   "likes": 6389,
+   "channel": "Infinitum Theatre",
+   "channel_median_views": 28000.0,
+   "named_series_in_metadata": true,
+   "views_vs_median": 24.64,
+   "reason": "no audio match in any of our 10 episodes"
+  },
+  {
+   "short_id": "FMb81leNMs0",
+   "url": "https://www.youtube.com/shorts/FMb81leNMs0",
+   "title": "Nenu Morning nundi em tinaledu...! #ProjectPelli  #virajitha #shorts #youtubeshorts #love",
+   "upload_date": "20260409",
+   "duration": 59,
+   "views": 459478,
+   "likes": 4841,
+   "channel": "Infinitum Theatre",
+   "channel_median_views": 28000.0,
+   "named_series_in_metadata": true,
+   "views_vs_median": 16.41,
+   "reason": "no audio match in any of our 10 episodes"
+  }
+ ]
+}
