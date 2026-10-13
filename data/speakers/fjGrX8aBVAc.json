@@ -1,0 +1,1004 @@
+{
+ "video_id": "fjGrX8aBVAc",
+ "kind": "speaker_answer_key",
+ "version": 1,
+ "transcript": "scribe_dataset/fjGrX8aBVAc/fjGrX8aBVAc_scribe_transcript.json",
+ "transcript_sha256": "1f72b36bebd711d1ac575f6e194bbb619c3f6e78ee66fdab64f3e6752bbd0ca7",
+ "method": "Lines sampled across every scene (dad call, door confrontation, table scene with the fake travel-agent call, street, sneaking out, café, kitchen, bedroom, farewell, balcony, café cliffhanger). For each line 4 frames evenly spaced over the line (runs/gt/fjGrX8aBVAc/frames_spk/f_*.jpg) were checked for who is on screen and whose mouth moves, combined with content (names used, who answers whom). Speaker decided before looking at Scribe labels; Scribe label (majority word speaker by time overlap) added afterwards.",
+ "label_conventions": {
+  "speaker": "character name from the list; 'OFFSCREEN:<name>' = the speaker is not visible during the line (phone voice, reaction shot held on a listener) but is identified from content/voice context; 'UNKNOWN' = cannot tell. For diarization scoring, strip the OFFSCREEN: prefix.",
+  "confidence": "3 = seen speaking and/or unambiguous from content; 2 = likely (wide shot or cut mid-line, content supports); 1 = guess",
+  "times": "seconds in the episode audio; keyed by time, not by Scribe line id"
+ },
+ "characters": [
+  {
+   "name": "Abhi",
+   "desc": "rich son hiding as 'Vijay' in Meera's flat (Meera calls him Vijay, Harshita and his dad call him Abhi)"
+  },
+  {
+   "name": "Meera",
+   "desc": "café employee, owner of the flat (checked shirt, yellow top, navy top in the kitchen, brown top in the bedroom)"
+  },
+  {
+   "name": "Harshita",
+   "desc": "the girl Abhi's dad wants him to marry; knows his secret (red striped top, black top, magenta top, blue top)"
+  },
+  {
+   "name": "Dad",
+   "desc": "Abhi's father (grey beard, glasses); phone calls and the final café scene"
+  },
+  {
+   "name": "Abhi's friend",
+   "desc": "navy T-shirt; fake travel-agent call, beer on the balcony"
+  },
+  {
+   "name": "Coworker (Sindhu)",
+   "desc": "Meera's café coworker (black tee, apron); called 'సింధు' at 10:22"
+  },
+  {
+   "name": "Dad's aide",
+   "desc": "man in blue shirt who brings the father to the café (17:21)"
+  },
+  {
+   "name": "Waiter",
+   "desc": "male café worker (glasses, apron) at 17:23"
+  }
+ ],
+ "hard_cases": [
+  "Scribe gives both women one label; every Meera/Harshita line here was decided from frames (costume per scene, mouth movement) and from content (Meera calls him Vijay, Harshita calls him Abhi).",
+  "5:29-6:53 is cross-talk: Meera on the phone with the friend (fake travel agent) while Harshita and Abhi argue in whispers; lines were assigned by which shot the line plays over plus content (travel offer = friend/Meera, 'Vijay'/'cafe'/'పేరు మార్చుకోవడం' = Harshita).",
+  "5:42 'ఏంటి మీరా దగ్గర ఇరికించున్నావ్?' is played on Abhi with his mouth moving; read as Abhi accusing Harshita (confidence 2).",
+  "8:34 'సినిమాకి' (the lie) vs 'Cafe కి వెళ్తున్నాం' (the truth): two-shot, assigned Abhi then Meera by content and mouth.",
+  "10:22 'సింధు' and 11:30 'Onions ఇవ్వా' could not be attributed (UNKNOWN).",
+  "Asides spoken with lips closed (Harshita 3:30, 10:12; Abhi 4:15) are labelled as the thinking character."
+ ],
+ "labels": [
+  {
+   "start": 16.58,
+   "end": 16.88,
+   "text": "అభి",
+   "speaker": "Dad",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "phone call; father in office chair speaking"
+  },
+  {
+   "start": 17.48,
+   "end": 18.22,
+   "text": "ఆ What's up dad?",
+   "speaker": "Abhi",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "phone; Abhi in apron"
+  },
+  {
+   "start": 19.64,
+   "end": 21.58,
+   "text": "నేను నిన్ను చూద్దామని ఎంతో excitement తో వస్తే-",
+   "speaker": "Dad",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "father on screen speaking"
+  },
+  {
+   "start": 22.04,
+   "end": 22.84,
+   "text": "వచ్చ-వచ్చారా?",
+   "speaker": "Abhi",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "Abhi on screen, startled"
+  },
+  {
+   "start": 38.9,
+   "end": 41.9,
+   "text": "నీకు ఆనంద్ రావు uncle daughter తెలుసు కదా, మీ friend హర్షిత.",
+   "speaker": "Dad",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "starts on Abhi listening, cut to father speaking"
+  },
+  {
+   "start": 51.94,
+   "end": 53.86,
+   "text": "Come on dad, we are just friends.",
+   "speaker": "Abhi",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "Abhi on screen"
+  },
+  {
+   "start": 56.18,
+   "end": 58.4,
+   "text": "Best friend can make best life partner రా.",
+   "speaker": "Dad",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "father on screen"
+  },
+  {
+   "start": 130.98,
+   "end": 132.04,
+   "text": "ఆ నువ్వేంటి ఇక్కడ?",
+   "speaker": "Abhi",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "Abhi at the flat door"
+  },
+  {
+   "start": 132.96,
+   "end": 133.88,
+   "text": "అది నేను అడగాలి.",
+   "speaker": "Harshita",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "Harshita (red striped top) at the door"
+  },
+  {
+   "start": 142.16,
+   "end": 143.1,
+   "text": "Follow అయితే తెలిసింది.",
+   "speaker": "Harshita",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 147.36,
+   "end": 148.8,
+   "text": "ఆ అమ్మాయి ఎవరు ఇందాక నీతో చూశాను?",
+   "speaker": "Harshita",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 149.68,
+   "end": 150.38,
+   "text": "తను నా lover లే.",
+   "speaker": "Abhi",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 152.28,
+   "end": 153.44,
+   "text": "అంటే live-in లో ఉంటున్నావా?",
+   "speaker": "Harshita",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 157.06,
+   "end": 159.64,
+   "text": "నిన్ను love చేయకపోతే నువ్వెందుకు తన ఇంట్లో ఉంటున్నావ్?",
+   "speaker": "Harshita",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 170.74,
+   "end": 171.64,
+   "text": "నువ్వేదో దాస్తున్నావ్.",
+   "speaker": "Harshita",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 183.72,
+   "end": 185.34,
+   "text": "అన్నీ తెలిస్తేనే ఇక్కడి నుంచి వెళ్తాను.",
+   "speaker": "Harshita",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 188.82,
+   "end": 191.66,
+   "text": "అయినా నువ్వు వేరే అమ్మాయిని love చేస్తూ నాతో పెళ్ళికి ఎలా ready అయ్యావ్?",
+   "speaker": "Harshita",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "starts on Abhi, then Harshita speaking"
+  },
+  {
+   "start": 196.16,
+   "end": 196.54,
+   "text": "విజయ్!",
+   "speaker": "OFFSCREEN:Meera",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "Meera arrives behind them; shot is on Abhi reacting"
+  },
+  {
+   "start": 197.68,
+   "end": 198.16,
+   "text": "ఎవర్ తను?",
+   "speaker": "OFFSCREEN:Meera",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "shots of Abhi and Harshita; Meera asking about Harshita"
+  },
+  {
+   "start": 202.96,
+   "end": 204.86,
+   "text": "soap లమ్ముకునేదానివని చెప్తే ఏం అనుకోకు please.",
+   "speaker": "Abhi",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "Abhi whispering to Harshita"
+  },
+  {
+   "start": 205.0,
+   "end": 205.54,
+   "text": "చంపుతా.",
+   "speaker": "Harshita",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "Harshita close-up"
+  },
+  {
+   "start": 208.04,
+   "end": 209.62,
+   "text": "ఎవరని అడిగితే ఏం చెప్పావేంటి విజయ్?",
+   "speaker": "Meera",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "Meera (checked shirt) speaking, then wide of the pair"
+  },
+  {
+   "start": 210.16,
+   "end": 211.58,
+   "text": "అభి కదా విజయ్ అంటుందేంటి?",
+   "speaker": "Harshita",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "Harshita aside, close-up"
+  },
+  {
+   "start": 225.66,
+   "end": 227.6,
+   "text": "Friend అయితే బయటే నిలబెట్టి మాట్లాడుతున్నావేంటి?",
+   "speaker": "Meera",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "Meera close-up"
+  },
+  {
+   "start": 231.44,
+   "end": 233.06,
+   "text": "నాకేం పనిలేదు, నేను వచ్చి కూర్చుంటాను.",
+   "speaker": "Harshita",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "Harshita pushes in past Abhi"
+  },
+  {
+   "start": 235.7,
+   "end": 236.52,
+   "text": "లోపలికి ఎందుకు వచ్చావే?",
+   "speaker": "Abhi",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "at the table, Abhi speaking"
+  },
+  {
+   "start": 236.82,
+   "end": 237.8,
+   "text": "తను పిలిచింది, వచ్చాను.",
+   "speaker": "Harshita",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "Harshita speaking"
+  },
+  {
+   "start": 242.72,
+   "end": 245.26,
+   "text": "ఏంటి best friends ఏదో మాట్లాడుకుంటున్నట్టున్నారు?",
+   "speaker": "Meera",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "Meera walks in (wide shot)"
+  },
+  {
+   "start": 252.84,
+   "end": 254.84,
+   "text": "విజయా? నీ పేరు అభి కదా!",
+   "speaker": "Harshita",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "Harshita close-up"
+  },
+  {
+   "start": 255.18,
+   "end": 255.84,
+   "text": "ఇరికించేసింది.",
+   "speaker": "Abhi",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "Abhi aside, eyes closed; cut to Meera"
+  },
+  {
+   "start": 271.5,
+   "end": 273.14,
+   "text": "మీరిద్దరూ చాలా close friends అనుకుంటా.",
+   "speaker": "Meera",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "Meera close-up"
+  },
+  {
+   "start": 277.3,
+   "end": 277.92,
+   "text": "ఏ college?",
+   "speaker": "Meera",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "Meera close-up"
+  },
+  {
+   "start": 278.66,
+   "end": 279.72,
+   "text": "University of Melbourne.",
+   "speaker": "Harshita",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "Harshita close-up"
+  },
+  {
+   "start": 282.52,
+   "end": 283.86,
+   "text": "నువ్వు ఆస్ట్రేలియాలో చదువుకున్నావా?",
+   "speaker": "Meera",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "Meera close-up"
+  },
+  {
+   "start": 293.82,
+   "end": 297.22,
+   "text": "అవునులే ఆస్ట్రేలియాలో చదవాలంటే డబ్బులుండాలి.",
+   "speaker": "Meera",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "Meera close-up"
+  },
+  {
+   "start": 301.14,
+   "end": 304.54,
+   "text": "నువ్వు cafe లో పనిచేస్తున్నావా? అదేంటి నీకు పెద్ద పెద్ద companies ఉన్నాయి కదా?",
+   "speaker": "Harshita",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "Harshita close-up, Abhi cutaway"
+  },
+  {
+   "start": 329.22,
+   "end": 330.68,
+   "text": "మీరా! నీకు ఒకటి చెప్పాలి.",
+   "speaker": "Harshita",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "wide at the table, Harshita facing Meera"
+  },
+  {
+   "start": 330.76,
+   "end": 332.1,
+   "text": "మీరా call వస్తుంది.",
+   "speaker": "Abhi",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "Abhi close-up"
+  },
+  {
+   "start": 342.42,
+   "end": 343.6,
+   "text": "ఏంటి మీరా దగ్గర ఇరికించున్నావ్?",
+   "speaker": "Abhi",
+   "confidence": 2,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "Abhi on screen mouth moving (accusing Harshita while Meera is on the phone); Harshita cutaway at the end"
+  },
+  {
+   "start": 349.64,
+   "end": 350.02,
+   "text": "Hello madam.",
+   "speaker": "Abhi's friend",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "friend (navy tee) on the phone pretending to be a travel agent"
+  },
+  {
+   "start": 359.66,
+   "end": 360.68,
+   "text": "నేనెందుకు select అయ్యాను?",
+   "speaker": "Meera",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "Meera on the phone"
+  },
+  {
+   "start": 365.26,
+   "end": 369.38,
+   "text": "నువ్వేంటి? ఈ cafe లో work చేయడం ఏంటి? పేరు మార్చుకోవడం ఏంటి?",
+   "speaker": "Harshita",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "Harshita close-up (cross-talk with the phone call)"
+  },
+  {
+   "start": 373.74,
+   "end": 374.92,
+   "text": "నాకంటే తను దేంట్లో ఎక్కువ?",
+   "speaker": "Harshita",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 382.88,
+   "end": 385.74,
+   "text": "నాకెక్కడికి వెళ్లాలని లేదు. ఉన్నచోటే ప్రశాంతంగా ఉంది.",
+   "speaker": "Meera",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "Meera on the phone"
+  },
+  {
+   "start": 386.02,
+   "end": 389.7,
+   "text": "అలా అందరూ ఉన్నచోటే ప్రశాంతత వెతుకుతుంటే మాలాంటి companies ఎలా బతకాలి madam?",
+   "speaker": "Abhi's friend",
+   "confidence": 3,
+   "scribe_label": "speaker_3",
+   "scribe_label_share": 1.0,
+   "note": "friend on screen on the phone"
+  },
+  {
+   "start": 392.02,
+   "end": 393.42,
+   "text": "At least నీకన్నా అర్థమవుతుందా?",
+   "speaker": "Harshita",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 404.54,
+   "end": 406.54,
+   "text": "ఏయ్ ఏం మాట్లాడుతున్నావ్? phone పెట్టేయ్.",
+   "speaker": "Meera",
+   "confidence": 2,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "Meera frowning, takes the phone off her ear"
+  },
+  {
+   "start": 413.48,
+   "end": 414.6,
+   "text": "ఇంకేంటి హర్షిత సంగతులు?",
+   "speaker": "Meera",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "Meera sits back down (wide)"
+  },
+  {
+   "start": 420.86,
+   "end": 422.92,
+   "text": "రేపు interview ఉంది. అది అయిపోయాక ఊరు వెళ్ళిపోతా.",
+   "speaker": "Harshita",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 432.94,
+   "end": 435.58,
+   "text": "నీ best friend flat ఉండగా నువ్వు PG లో ఉంటావా?",
+   "speaker": "Meera",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 437.36,
+   "end": 438.68,
+   "text": "అభి కూడా అదే అంటున్నాడు.",
+   "speaker": "Harshita",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 450.78,
+   "end": 451.46,
+   "text": "Thank you Meera.",
+   "speaker": "Harshita",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 464.52,
+   "end": 465.78,
+   "text": "నువ్వు flat అయిన అమ్మాయి బాగుంది.",
+   "speaker": "Harshita",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "street two-shot"
+  },
+  {
+   "start": 466.94,
+   "end": 468.88,
+   "text": "నువ్వు మాత్రం ఏం పెంట పెట్టకే please.",
+   "speaker": "Abhi",
+   "confidence": 3,
+   "scribe_label": "speaker_3",
+   "scribe_label_share": 1.0,
+   "note": "two-shot, Abhi talking"
+  },
+  {
+   "start": 480.94,
+   "end": 481.44,
+   "text": "Hi uncle.",
+   "speaker": "Harshita",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "Harshita on the phone"
+  },
+  {
+   "start": 484.52,
+   "end": 485.48,
+   "text": "trip కి వెళ్ళా అన్నాడు.",
+   "speaker": "OFFSCREEN:Dad",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "father's voice on the phone; Harshita on screen listening"
+  },
+  {
+   "start": 495.26,
+   "end": 496.98,
+   "text": "హా నిజంగానే ఇష్టం లేదు dad.",
+   "speaker": "Abhi",
+   "confidence": 3,
+   "scribe_label": "speaker_3",
+   "scribe_label_share": 1.0,
+   "note": "Abhi on the phone"
+  },
+  {
+   "start": 513.08,
+   "end": 514.28,
+   "text": "ఏయ్ ఎక్కడికి?",
+   "speaker": "Harshita",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "Harshita (black top) on the sofa as the other two sneak out"
+  },
+  {
+   "start": 514.82,
+   "end": 515.72,
+   "text": "ఆ సినిమాకి.",
+   "speaker": "Abhi",
+   "confidence": 2,
+   "scribe_label": "speaker_3",
+   "scribe_label_share": 1.0,
+   "note": "two-shot; Abhi's lie (Meera then says café)"
+  },
+  {
+   "start": 517.92,
+   "end": 518.62,
+   "text": "Cafe కి వెళ్తున్నాం.",
+   "speaker": "Meera",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "Meera (yellow top) mouth moving"
+  },
+  {
+   "start": 527.74,
+   "end": 528.9,
+   "text": "తనెందుకు Meera మనతో?",
+   "speaker": "Abhi",
+   "confidence": 3,
+   "scribe_label": "speaker_3",
+   "scribe_label_share": 1.0,
+   "note": "Abhi to Meera"
+  },
+  {
+   "start": 529.92,
+   "end": 532.18,
+   "text": "రానీ విజయ్ తనక్కూడా bore కొడుతుంది కదా.",
+   "speaker": "Meera",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "Meera"
+  },
+  {
+   "start": 552.88,
+   "end": 554.08,
+   "text": "character లో జీవిస్తున్నావ్ కదా.",
+   "speaker": "Harshita",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "café, Harshita (red top) teasing Abhi"
+  },
+  {
+   "start": 562.84,
+   "end": 564.6,
+   "text": "ఇంతకీ ఆ అమ్మాయి ఎవరు?",
+   "speaker": "Coworker (Sindhu)",
+   "confidence": 2,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "wide; coworker (black tee, apron) asking Meera"
+  },
+  {
+   "start": 565.52,
+   "end": 566.34,
+   "text": "విజయ్ వాళ్ళ friend.",
+   "speaker": "Meera",
+   "confidence": 2,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "wide; Meera answering"
+  },
+  {
+   "start": 573.74,
+   "end": 575.86,
+   "text": "నాకేదో తేడా కొడుతుందే.",
+   "speaker": "Coworker (Sindhu)",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "coworker on screen"
+  },
+  {
+   "start": 590.56,
+   "end": 590.88,
+   "text": "మూడు.",
+   "speaker": "Harshita",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 612.64,
+   "end": 613.76,
+   "text": "దీనికి doubt వచ్చినట్టుంది.",
+   "speaker": "Harshita",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "inner voice, Harshita smirking with lips closed"
+  },
+  {
+   "start": 616.56,
+   "end": 621.38,
+   "text": "Actually మా parents మమ్మల్ని చదివించుకు ముందు చాలా rich ఉండేవాళ్ళం. మమ్మల్ని చదివించాకే poor అయిపోయాం.",
+   "speaker": "Harshita",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 622.68,
+   "end": 623.04,
+   "text": "సింధు.",
+   "speaker": "UNKNOWN",
+   "confidence": 1,
+   "scribe_label": "speaker_3",
+   "scribe_label_share": 1.0,
+   "note": "someone off screen calls the coworker (she turns); likely Meera, not seen"
+  },
+  {
+   "start": 690.12,
+   "end": 690.68,
+   "text": "Onions ఇవ్వా.",
+   "speaker": "UNKNOWN",
+   "confidence": 1,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "kitchen wide; neither woman's mouth readable; could be Abhi off screen"
+  },
+  {
+   "start": 701.1,
+   "end": 702.64,
+   "text": "నీకు ఇంకా onions cut చేయడం రాలేదా?",
+   "speaker": "Meera",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "Meera (navy top) speaking after the Abhi cutaway"
+  },
+  {
+   "start": 715.18,
+   "end": 717.38,
+   "text": "మీ friend కి onions cut చేయడం కూడా రాదు తెలుసా?",
+   "speaker": "Meera",
+   "confidence": 2,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "two-shot, Meera head down cutting, Harshita listening; by content Meera to Harshita"
+  },
+  {
+   "start": 718.62,
+   "end": 720.0,
+   "text": "నాకదన్నొచ్చు, ఆమెకది కూడా రాదు.",
+   "speaker": "Abhi",
+   "confidence": 3,
+   "scribe_label": "speaker_3",
+   "scribe_label_share": 1.0,
+   "note": "Abhi gesturing, mouth moving"
+  },
+  {
+   "start": 722.22,
+   "end": 724.36,
+   "text": "మా dad అలా పెంచారు princess లాగా.",
+   "speaker": "Harshita",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "Harshita (magenta top) speaking"
+  },
+  {
+   "start": 763.45,
+   "end": 766.31,
+   "text": "కష్టంగా ఉంది విజయ్. Open చేయలేకపోతున్నా.",
+   "speaker": "Meera",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "onion juice in her eye; Abhi faces camera, Meera's back"
+  },
+  {
+   "start": 781.71,
+   "end": 782.47,
+   "text": "Hospital కి వెళదామా?",
+   "speaker": "OFFSCREEN:Abhi",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "Meera's face on screen, Abhi's hand"
+  },
+  {
+   "start": 795.11,
+   "end": 798.51,
+   "text": "నువ్వు విజయ్ తో room share చేసుకుంటున్నావు కదా, నీకెప్పుడు ఇబ్బంది అనిపించలేదా?",
+   "speaker": "Harshita",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "bedroom, Harshita (right, black top) speaking"
+  },
+  {
+   "start": 802.51,
+   "end": 808.17,
+   "text": "మొదట ఇబ్బందిగానే అనిపించింది. కానీ తర్వాత చాలా మంచోడని అర్థమైంది.",
+   "speaker": "Meera",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "Meera (left, brown top)"
+  },
+  {
+   "start": 819.03,
+   "end": 821.17,
+   "text": "ఎందుకంటే, నువ్వు కూడా love చేస్తున్నావేమో.",
+   "speaker": "Harshita",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "Harshita speaking"
+  },
+  {
+   "start": 825.73,
+   "end": 827.03,
+   "text": "ఛా, అలా ఏం లేదు.",
+   "speaker": "Meera",
+   "confidence": 2,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "dark wide shot"
+  },
+  {
+   "start": 877.67,
+   "end": 878.61,
+   "text": "Secret, నీకెందుకు?",
+   "speaker": "Harshita",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "Harshita (blue top) turns to Abhi"
+  },
+  {
+   "start": 900.31,
+   "end": 901.29,
+   "text": "నేనెందుకురా చెప్తాను?",
+   "speaker": "Harshita",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 908.47,
+   "end": 911.25,
+   "text": "Sorry హరిషిత, నీ feelings ఏమైనా hurt చేసి ఉంటే.",
+   "speaker": "Abhi",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 953.19,
+   "end": 955.71,
+   "text": "Love లో sincerity ఉండాలి, serious గా ఉంటే సరిపోదు.",
+   "speaker": "Harshita",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 976.05,
+   "end": 979.63,
+   "text": "ఏంట్రా, ఇంటికి పిలిచి మరి beer ఇప్పిస్తున్నావ్. నీకూ మీరాకూ ఏమైనా అయిందా?",
+   "speaker": "Abhi's friend",
+   "confidence": 3,
+   "scribe_label": "speaker_3",
+   "scribe_label_share": 1.0,
+   "note": "balcony, friend gesturing"
+  },
+  {
+   "start": 996.03,
+   "end": 998.39,
+   "text": "అది తన మంచితనం కాదురా, నా ప్రేమ గొప్పతనం.",
+   "speaker": "Abhi",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "Abhi speaking"
+  },
+  {
+   "start": 1012.37,
+   "end": 1015.51,
+   "text": "నువ్వు rich fellow అనే విషయం తప్ప నిన్నూ మీరాని ఏదీ విడదీయలేదు.",
+   "speaker": "Abhi's friend",
+   "confidence": 3,
+   "scribe_label": "speaker_3",
+   "scribe_label_share": 1.0,
+   "note": "friend speaking, then Abhi reaction"
+  },
+  {
+   "start": 1041.45,
+   "end": 1042.71,
+   "text": "ఇక్కడే sir, ఇక్కడే చూసినా.",
+   "speaker": "Dad's aide",
+   "confidence": 2,
+   "scribe_label": "speaker_3",
+   "scribe_label_share": 1.0,
+   "note": "café wide; man in blue shirt with the father"
+  },
+  {
+   "start": 1043.25,
+   "end": 1044.17,
+   "text": "ఊ, ఏం కావాలి sir?",
+   "speaker": "Waiter",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "café worker (glasses, apron)"
+  },
+  {
+   "start": 1049.09,
+   "end": 1051.03,
+   "text": "Idiot, నా కొడుకు అభి కావాలి.",
+   "speaker": "Dad",
+   "confidence": 3,
+   "scribe_label": "speaker_3",
+   "scribe_label_share": 1.0,
+   "note": "father speaking"
+  }
+ ],
+ "scribe_agreement": {
+  "n_lines": 91,
+  "n_labelled": 89,
+  "one_to_one_agree": 56,
+  "one_to_one_rate": 0.629,
+  "one_to_one_rate_conf2plus": 0.629,
+  "n_conf2plus": 89,
+  "many_to_one_agree": 58,
+  "many_to_one_rate": 0.652,
+  "best_mapping": {
+   "speaker_1": "Abhi",
+   "speaker_3": "Abhi's friend",
+   "speaker_2": "Dad",
+   "speaker_0": "Harshita"
+  },
+  "confusion": {
+   "speaker_0": {
+    "Harshita": 35,
+    "Meera": 22,
+    "Coworker (Sindhu)": 2
+   },
+   "speaker_1": {
+    "Abhi": 13
+   },
+   "speaker_2": {
+    "Dad": 5,
+    "Abhi's friend": 1,
+    "Waiter": 1
+   },
+   "speaker_3": {
+    "Abhi": 5,
+    "Abhi's friend": 3,
+    "Dad": 1,
+    "Dad's aide": 1
+   }
+  }
+ }
+}

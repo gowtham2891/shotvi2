@@ -1,0 +1,1169 @@
+{
+ "video_id": "qIdAPG8UulE",
+ "kind": "speaker_answer_key",
+ "version": 1,
+ "transcript": "scribe_dataset/qIdAPG8UulE/qIdAPG8UulE_scribe_transcript.json",
+ "transcript_sha256": "2a5c9fe404b84d4b41859ad83abe4bcb0bd25348b718020d0517d4bfca153637",
+ "method": "Lines sampled across every scene of the 36-min film (café breakup, car, café with Pooja, park with Vaishu and her husband, lakeside with Bhramara, car/roadside with Pooja, Pratyusha's call and office, Pratyusha's house, Bhramara's flashback, office boss scene, Vaishu and husband, steps/lakeside, rooftop with Virajitha, Prasad's home, final call). For each line 4 frames evenly spaced over the line (runs/gt/qIdAPG8UulE/frames_spk/q_*.jpg, plus dense_929.jpg at 1 fps for 929-959 s) were checked for who is on screen and whose mouth moves, combined with content (names used, who answers whom). Speaker decided before looking at Scribe labels; Scribe label (majority word speaker by time overlap) added afterwards.",
+ "label_conventions": {
+  "speaker": "character name from the list; 'OFFSCREEN:<name>' = the speaker is not visible during the line (phone voice, reaction shot held on a listener) but is identified from content/voice context; 'UNKNOWN' = cannot tell. For diarization scoring, strip the OFFSCREEN: prefix.",
+  "confidence": "3 = seen speaking and/or unambiguous from content; 2 = likely (wide shot or cut mid-line, content supports); 1 = guess",
+  "times": "seconds in the episode audio; keyed by time, not by Scribe line id"
+ },
+ "characters": [
+  {
+   "name": "Prasad",
+   "desc": "bearded lead, serial lover"
+  },
+  {
+   "name": "Vaishu",
+   "desc": "Vaishnavi, Prasad's ex (curly hair); later married to a lawyer"
+  },
+  {
+   "name": "Vaishu's husband",
+   "desc": "lawyer (red shirt and glasses at 11:40; checked shirt at 26:00); calls her ex 'చిన్ను'"
+  },
+  {
+   "name": "Bhramara",
+   "desc": "'బ్రహ్మ', philophobia; blue saree, teal, yellow, white/pink outfits"
+  },
+  {
+   "name": "Pooja",
+   "desc": "Prasad's cousin ('బావ'); the same actress tags along in the café (white top, scarf), the car/roadside, Pratyusha's house, the steps and Prasad's home"
+  },
+  {
+   "name": "Pratyusha",
+   "desc": "ASR also 'ప్రతీక్ష'; one character: phone call at 16:07, 'you are like my brother' (polka dots), her house (cream top), office boss (blue kurta), final call (red); Bhramara's younger sister"
+  },
+  {
+   "name": "Virajitha",
+   "desc": "lawyer friend (green kurta, rooftop at night); ASR 'విరాజస్థ'"
+  },
+  {
+   "name": "Colleague",
+   "desc": "female office colleague (black top) at 24:40-25:50"
+  },
+  {
+   "name": "Prasad's mother",
+   "desc": "saree, at Prasad's home 33:16"
+  },
+  {
+   "name": "Prasad's father",
+   "desc": "maroon shirt, at Prasad's home 33:16"
+  }
+ ],
+ "hard_cases": [
+  "The 'friend' in the 15:30 car/roadside scene and the café companion at 8:00 are the same actress as cousin Pooja at Prasad's home; all labelled Pooja.",
+  "'ప్రతీక్ష'/'ప్రత్యూష' are one character played by one actress across the call, the office 'brother' scene, her house, the boss scene and the final call; labelled Pratyusha.",
+  "Vaishu's husband wears a red shirt and glasses at 11:40 and a checked shirt without glasses at 26:00; treated as the same character by content (he calls her ex 'చిన్ను', answers Virajitha's call).",
+  "0:09 'అది కాదు, నువ్వేం చెప్పాలనుకుంటున్నావ్' is on Vaishu with her mouth moving and fits her asking; confidence 2.",
+  "15:31 'car blast' threat plays entirely on Prasad at the car window, so it is his gag; Pooja answers 'Sadist'.",
+  "22:47 'నిజం చెప్తే ఎంత ప్రశాంతంగా ఉందో' / 'ఎవరికి': two-shot, assigned Pooja (who just exposed him, smiling) then Prasad; could be reversed (confidence 2).",
+  "28:03 the caller 'Hello sir ప్రసాద్ వాళ్ళింట్లో...' is heard on the husband's phone (he just said 'చెప్పు విరాజిత'); labelled OFFSCREEN:Virajitha, confidence 2."
+ ],
+ "labels": [
+  {
+   "start": 8.78,
+   "end": 11.04,
+   "text": "అది కాదు, నువ్వేం చెప్పాలనుకుంటున్నావ్",
+   "speaker": "Vaishu",
+   "confidence": 2,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "cold open; on Vaishu with mouth moving; Prasad answers 'Love you వైషు' and she replies 'torture'"
+  },
+  {
+   "start": 16.94,
+   "end": 18.84,
+   "text": "నువ్వు అలా చెప్తుంటే torture లా ఉంది.",
+   "speaker": "Vaishu",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 22.9,
+   "end": 25.3,
+   "text": "Sorry వైషు, నీ breakup నేను accept చేయలేను",
+   "speaker": "Prasad",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 27.3,
+   "end": 30.08,
+   "text": "నేను నీ love ని accept చేశా కదా, ఇప్పుడు నువ్వు నా breakup నా accept చెయ్",
+   "speaker": "Vaishu",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "starts on Prasad, then Vaishu talking"
+  },
+  {
+   "start": 62.4,
+   "end": 63.6,
+   "text": "ORS లు ఇచ్చావేంట్రా",
+   "speaker": "Vaishu",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 64.36,
+   "end": 66.22,
+   "text": "అంటే ఆ రోజు weak గా ఉన్నావని",
+   "speaker": "Prasad",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 96.62,
+   "end": 97.12,
+   "text": "హా very good",
+   "speaker": "Prasad",
+   "confidence": 2,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "short; Prasad mouth open, then cut to Vaishu"
+  },
+  {
+   "start": 140.22,
+   "end": 142.84,
+   "text": "నా friend కి breakup అయితే ఏం message పెట్టారు sir",
+   "speaker": "Vaishu",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 156.7,
+   "end": 158.12,
+   "text": "ఆరోజు నువ్వు date లో ఉన్నావ్ అన్నావ్ కదా",
+   "speaker": "Prasad",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 181.76,
+   "end": 183.74,
+   "text": "ఒరేయ్ సచ్చినోడా! నీకు చెప్తే అర్థం కావట్లేదా",
+   "speaker": "Vaishu",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "starts on Prasad, then Vaishu shouting"
+  },
+  {
+   "start": 202.88,
+   "end": 204.42,
+   "text": "ఆ సికింద్రాబాద్ railway station కి",
+   "speaker": "Prasad",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "high wide shot; answer to her question"
+  },
+  {
+   "start": 272.98,
+   "end": 274.72,
+   "text": "అమ్మాయిలకి bus free రా దరిద్రుడా",
+   "speaker": "Vaishu",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 285.74,
+   "end": 287.76,
+   "text": "వైషు madam మీరు చాలా అందంగా ఉన్నారండి",
+   "speaker": "Prasad",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "car, Prasad driving (passenger is Bhramara; 'వైషు' is the ASR's reading)"
+  },
+  {
+   "start": 288.68,
+   "end": 289.2,
+   "text": "Thank you అన్నా",
+   "speaker": "Bhramara",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "passenger (pink saree) speaking"
+  },
+  {
+   "start": 320.52,
+   "end": 322.08,
+   "text": "నిన్ను నిజంగానే రాకేష్ పంపించాడా",
+   "speaker": "Bhramara",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 357.3,
+   "end": 358.74,
+   "text": "మీకు boyfriend ఉన్నాడా",
+   "speaker": "Prasad",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "Prasad on screen; she answers 'ఏయ్! నీకు girlfriend లేదా'"
+  },
+  {
+   "start": 359.58,
+   "end": 360.34,
+   "text": "నీకు girlfriend లేదా",
+   "speaker": "Bhramara",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 363.56,
+   "end": 364.92,
+   "text": "నాకు philophobia",
+   "speaker": "Bhramara",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 433.58,
+   "end": 436.36,
+   "text": "ప్రసాద్! నీకు already చెప్పా కదా నాకు philophobia అని.",
+   "speaker": "Bhramara",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "café, Bhramara (blue saree)"
+  },
+  {
+   "start": 436.82,
+   "end": 439.26,
+   "text": "రోగిని ప్రేమించలేని వాడు రోగితో సమానం కదా భ్రమరా?",
+   "speaker": "Prasad",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 475.18,
+   "end": 475.98,
+   "text": "అంటే పెళ్లి చేసుకోవా?",
+   "speaker": "Bhramara",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 486.54,
+   "end": 488.0,
+   "text": "నువ్వు ఇంత cheaterవి అనుకోలేదు ప్రసాద్.",
+   "speaker": "Bhramara",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 488.18,
+   "end": 493.26,
+   "text": "ఒకసారి తింగరి వాడు నిన్ను confuse చేస్తున్నాడు. నువ్వే పెళ్లి చేసుకోమని వాడిని request చేస్తున్నట్టు ఉంది.",
+   "speaker": "Pooja",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "Pooja (white top, scarf) at the next table, speaking"
+  },
+  {
+   "start": 506.3,
+   "end": 509.14,
+   "text": "Love చెయ్ బ్రహ్మ, car start అవలేదని road మీద వదిలేస్తాడు",
+   "speaker": "Pooja",
+   "confidence": 2,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "starts on Bhramara, then Pooja; content = Pooja's roast"
+  },
+  {
+   "start": 511.22,
+   "end": 512.46,
+   "text": "ఎన్ని accounts ఉన్నాయి sir మనకి?",
+   "speaker": "Bhramara",
+   "confidence": 2,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "Bhramara on screen, mouth moving; sarcastic aside"
+  },
+  {
+   "start": 522.04,
+   "end": 522.78,
+   "text": "అమ్మబాబోయ్!",
+   "speaker": "Pooja",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "Pooja's disgusted reaction"
+  },
+  {
+   "start": 551.54,
+   "end": 552.52,
+   "text": "బ్రహ్మ నిన్ను తిడుతున్నాడు.",
+   "speaker": "Pooja",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "Pooja close-up"
+  },
+  {
+   "start": 571.98,
+   "end": 572.7,
+   "text": "ఓరమ్మో!",
+   "speaker": "Bhramara",
+   "confidence": 2,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "Bhramara reaction"
+  },
+  {
+   "start": 580.88,
+   "end": 583.0,
+   "text": "ప్రాతఃకాలం అందరూ ఒకే దగ్గర ఉన్నారేంటే.",
+   "speaker": "Prasad",
+   "confidence": 2,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "park, wide shot of Prasad by the car; addressed to Vaishu"
+  },
+  {
+   "start": 605.18,
+   "end": 606.66,
+   "text": "ఏ అమ్మాయిరా నిన్ను మోసం చేసింది?",
+   "speaker": "Vaishu",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 620.3,
+   "end": 622.26,
+   "text": "కొందరు తాగుతున్నారని అందర్నీ అనకూడదు కదా.",
+   "speaker": "Vaishu",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 657.38,
+   "end": 659.32,
+   "text": "మరి ఆ మంచి అమ్మాయి దొరికిందా?",
+   "speaker": "Vaishu",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "wide two-shot; content"
+  },
+  {
+   "start": 660.28,
+   "end": 661.4,
+   "text": "బాబోయ్! నన్ను వదిలేయి రా.",
+   "speaker": "Vaishu",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 675.9,
+   "end": 678.26,
+   "text": "Okay, ప్రసాద్ నాకు పెళ్లయింది.",
+   "speaker": "Vaishu",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 695.68,
+   "end": 696.82,
+   "text": "నా గురించే మాట్లాడుకుంటున్నారా?",
+   "speaker": "OFFSCREEN:Vaishu's husband",
+   "confidence": 2,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "shot held on Prasad; the husband arrives ('about me?')"
+  },
+  {
+   "start": 709.82,
+   "end": 711.4,
+   "text": "Prasad, he is my husband.",
+   "speaker": "Vaishu",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "Vaishu beside her husband on the scooter"
+  },
+  {
+   "start": 724.32,
+   "end": 725.74,
+   "text": "ఒక అమ్మాయితో ఇలానేనా మాట్లాడేది?",
+   "speaker": "Bhramara",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "lakeside, Bhramara (teal)"
+  },
+  {
+   "start": 734.18,
+   "end": 735.56,
+   "text": "అంటే, పొద్దున్న గుర్తు రావట్లేదా?",
+   "speaker": "Bhramara",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 766.64,
+   "end": 767.22,
+   "text": "అక్రమ సంబంధం.",
+   "speaker": "Prasad",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 797.82,
+   "end": 799.08,
+   "text": "ఈ విషయం ఎంతమందికి చెప్పారు sir?",
+   "speaker": "Bhramara",
+   "confidence": 3,
+   "scribe_label": "speaker_3",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 838.8,
+   "end": 839.64,
+   "text": "Washroom urgent.",
+   "speaker": "Prasad",
+   "confidence": 2,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "wide two-shot; content"
+  },
+  {
+   "start": 846.06,
+   "end": 848.7,
+   "text": "respect లేకుండా మాట్లాడితే అస్సలు బాగోదు చెప్తున్నా.",
+   "speaker": "Bhramara",
+   "confidence": 3,
+   "scribe_label": "speaker_3",
+   "scribe_label_share": 1.0,
+   "note": "Bhramara pointing"
+  },
+  {
+   "start": 857.52,
+   "end": 859.6,
+   "text": "నీలాంటి వాళ్ళని ఎన్ని తిట్టినా సిగ్గురాదు.",
+   "speaker": "Bhramara",
+   "confidence": 3,
+   "scribe_label": "speaker_3",
+   "scribe_label_share": 1.0,
+   "note": "wide, Bhramara gesturing"
+  },
+  {
+   "start": 864.56,
+   "end": 865.54,
+   "text": "Hug చేసుకొని చెప్పు బ్రహ్మారావ్.",
+   "speaker": "Prasad",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "Prasad with arms open"
+  },
+  {
+   "start": 867.04,
+   "end": 868.36,
+   "text": "బాబు నీకు ఒక దండం.",
+   "speaker": "Bhramara",
+   "confidence": 3,
+   "scribe_label": "speaker_3",
+   "scribe_label_share": 1.0,
+   "note": "Bhramara folds her hands"
+  },
+  {
+   "start": 868.38,
+   "end": 869.52,
+   "text": "పతియే ప్రత్యక్ష దైవం.",
+   "speaker": "Prasad",
+   "confidence": 2,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "cut to Prasad with hand raised; content"
+  },
+  {
+   "start": 931.36,
+   "end": 936.1,
+   "text": "ఇప్పుడు నువ్వు car దెగ్గర పోతే diesel tank లో అగ్గిపుల్ల గీసి విసిరేస్తాను car blast అయిపోద్ది body కమ్మకాయలా కాలిపోద్ది",
+   "speaker": "Prasad",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "whole line plays on Prasad at the car window, gesturing; Pooja inside"
+  },
+  {
+   "start": 937.26,
+   "end": 937.78,
+   "text": "Sadist.",
+   "speaker": "Pooja",
+   "confidence": 3,
+   "scribe_label": "speaker_3",
+   "scribe_label_share": 1.0,
+   "note": "Pooja in the driver's seat"
+  },
+  {
+   "start": 949.74,
+   "end": 951.32,
+   "text": "ఇంతసేపు మమ్మల్ని చూసి కూడా help చేయలేదు కదా!",
+   "speaker": "Prasad",
+   "confidence": 2,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "wide shot; Prasad continues dramatically and Pooja answers 'overaction చేయకు'"
+  },
+  {
+   "start": 955.82,
+   "end": 958.68,
+   "text": "అమ్మాయి ఏం మాట్లాడినా దానికి counter వేస్తావ్ ఎందుకురా love చేస్తుంది?",
+   "speaker": "Pooja",
+   "confidence": 3,
+   "scribe_label": "speaker_3",
+   "scribe_label_share": 1.0,
+   "note": "Pooja close-up"
+  },
+  {
+   "start": 967.92,
+   "end": 968.54,
+   "text": "Hi ప్రసాద్.",
+   "speaker": "Pratyusha",
+   "confidence": 3,
+   "scribe_label": "speaker_3",
+   "scribe_label_share": 1.0,
+   "note": "phone; extreme close-up of her lips"
+  },
+  {
+   "start": 979.08,
+   "end": 979.9,
+   "text": "నువ్వేగా",
+   "speaker": "Pratyusha",
+   "confidence": 3,
+   "scribe_label": "speaker_3",
+   "scribe_label_share": 1.0,
+   "note": "phone; lips close-up"
+  },
+  {
+   "start": 985.8,
+   "end": 987.26,
+   "text": "ఎంతమందికి చెప్తావ్ రా నాయనా.",
+   "speaker": "Pooja",
+   "confidence": 2,
+   "scribe_label": "speaker_3",
+   "scribe_label_share": 1.0,
+   "note": "wide, Prasad on the phone, Pooja beside him; aside"
+  },
+  {
+   "start": 993.12,
+   "end": 996.22,
+   "text": "ఇప్పుడే కదరా బ్రహ్మారావు వెనుక పడ్డావ్ మధ్యలో ప్రతీక్ష ఎవరురా?",
+   "speaker": "Pooja",
+   "confidence": 3,
+   "scribe_label": "speaker_3",
+   "scribe_label_share": 1.0,
+   "note": "Pooja close-up"
+  },
+  {
+   "start": 1036.98,
+   "end": 1038.02,
+   "text": "అలా చేయడం తప్పురా.",
+   "speaker": "Pooja",
+   "confidence": 2,
+   "scribe_label": "speaker_3",
+   "scribe_label_share": 1.0,
+   "note": "wide two-shot; content"
+  },
+  {
+   "start": 1086.34,
+   "end": 1087.94,
+   "text": "ఏదో చెప్పాలన్నావ్.",
+   "speaker": "Pratyusha",
+   "confidence": 2,
+   "scribe_label": "speaker_3",
+   "scribe_label_share": 1.0,
+   "note": "office; Pratyusha (polka dots) on screen, Prasad's back; she reminds him he wanted to tell her something"
+  },
+  {
+   "start": 1106.32,
+   "end": 1108.9,
+   "text": "emotionally గా నీతో చాలా connect అయ్యాను.",
+   "speaker": "Pratyusha",
+   "confidence": 3,
+   "scribe_label": "speaker_3",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 1125.48,
+   "end": 1126.28,
+   "text": "So you are like my brother",
+   "speaker": "Pratyusha",
+   "confidence": 3,
+   "scribe_label": "speaker_4",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 1156.4,
+   "end": 1157.18,
+   "text": "రాఖీ కట్టేస్తావా?",
+   "speaker": "Prasad",
+   "confidence": 2,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "Prasad on screen gesturing (sarcastic), then cut to her"
+  },
+  {
+   "start": 1196.42,
+   "end": 1197.94,
+   "text": "ఊరికే నిన్ను ఏడిపించడానికి.",
+   "speaker": "Pratyusha",
+   "confidence": 3,
+   "scribe_label": "speaker_4",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 1227.42,
+   "end": 1228.6,
+   "text": "practicals చేస్తూ మాట్లాడదాం",
+   "speaker": "Prasad",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "Prasad smirking"
+  },
+  {
+   "start": 1255.36,
+   "end": 1256.26,
+   "text": "నీ గురించి కాదే",
+   "speaker": "Pooja",
+   "confidence": 3,
+   "scribe_label": "speaker_5",
+   "scribe_label_share": 1.0,
+   "note": "aside at Pratyusha's house; Pooja (scarf) looks away"
+  },
+  {
+   "start": 1277.3,
+   "end": 1279.76,
+   "text": "ప్రత్యూష మీ ఇంటికి ఇంకోసారి వస్తామే, వెళ్దాం దా",
+   "speaker": "Prasad",
+   "confidence": 2,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "wide; Prasad stands up to leave; she replies 'Coffee తాగేసి వెళ్ళు ప్రసాద్'"
+  },
+  {
+   "start": 1280.0,
+   "end": 1281.16,
+   "text": "Coffee తాగేసి వెళ్ళు ప్రసాద్",
+   "speaker": "Pratyusha",
+   "confidence": 3,
+   "scribe_label": "speaker_4",
+   "scribe_label_share": 1.0,
+   "note": "Pratyusha (cream top) speaking"
+  },
+  {
+   "start": 1294.58,
+   "end": 1296.64,
+   "text": "చూడు ప్రత్యూష, వీడు మీ ఇంటికి వచ్చింది భ్రమరా కోసం",
+   "speaker": "Pooja",
+   "confidence": 3,
+   "scribe_label": "speaker_5",
+   "scribe_label_share": 1.0,
+   "note": "Pooja gesturing"
+  },
+  {
+   "start": 1308.0,
+   "end": 1309.22,
+   "text": "తను చెప్పేది నిజమేనా ప్రసాద్",
+   "speaker": "Pratyusha",
+   "confidence": 3,
+   "scribe_label": "speaker_4",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 1338.72,
+   "end": 1340.4,
+   "text": "ఇంకోసారి నీ face నాకు చూపించకు ప్రసాద్",
+   "speaker": "Pratyusha",
+   "confidence": 3,
+   "scribe_label": "speaker_4",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 1367.28,
+   "end": 1368.86,
+   "text": "నిజం చెప్తే ఎంత ప్రశాంతంగా ఉందో",
+   "speaker": "Pooja",
+   "confidence": 2,
+   "scribe_label": "speaker_5",
+   "scribe_label_share": 1.0,
+   "note": "two-shot; Pooja smiling and gesturing (she told the truth); Prasad possible"
+  },
+  {
+   "start": 1369.1,
+   "end": 1369.54,
+   "text": "ఎవరికి",
+   "speaker": "Prasad",
+   "confidence": 2,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "two-shot; retort"
+  },
+  {
+   "start": 1387.98,
+   "end": 1388.82,
+   "text": "same dialogue",
+   "speaker": "Pooja",
+   "confidence": 3,
+   "scribe_label": "speaker_5",
+   "scribe_label_share": 1.0,
+   "note": "Pooja leaning on the car, mocking"
+  },
+  {
+   "start": 1402.22,
+   "end": 1402.54,
+   "text": "మా అమ్మ",
+   "speaker": "Bhramara",
+   "confidence": 3,
+   "scribe_label": "speaker_4",
+   "scribe_label_share": 1.0,
+   "note": "Bhramara (yellow) close-up"
+  },
+  {
+   "start": 1444.58,
+   "end": 1447.38,
+   "text": "మీ parents కలిసి ఉండడానికి ఏం చేయాలో ఆలోచించు",
+   "speaker": "Bhramara",
+   "confidence": 3,
+   "scribe_label": "speaker_4",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 1465.68,
+   "end": 1467.04,
+   "text": "వాళ్ళు కలవరు, అది దొరకదు.",
+   "speaker": "Prasad",
+   "confidence": 2,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "wide two-shot with Pooja; content"
+  },
+  {
+   "start": 1470.84,
+   "end": 1471.64,
+   "text": "లేరా ఏయ్",
+   "speaker": "OFFSCREEN:Colleague",
+   "confidence": 2,
+   "scribe_label": "speaker_5",
+   "scribe_label_share": 1.0,
+   "note": "Prasad asleep at his desk, a hand nudges him; he answers 'ఏంటే' (a woman)"
+  },
+  {
+   "start": 1480.06,
+   "end": 1480.9,
+   "text": "అందరూ meeting కి వెళ్ళండి",
+   "speaker": "Pratyusha",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "office, Pratyusha (blue kurta) as the boss"
+  },
+  {
+   "start": 1504.0,
+   "end": 1505.18,
+   "text": "నువ్వు cheater vi prasad",
+   "speaker": "Pratyusha",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 1546.14,
+   "end": 1549.78,
+   "text": "Ma'am వీడు నన్ను twenty thousand అప్పు అడుగుతున్నాడు ఇవ్వకపోతే propose చేస్తా అని బెదిరిస్తున్నాడు",
+   "speaker": "Colleague",
+   "confidence": 3,
+   "scribe_label": "speaker_3",
+   "scribe_label_share": 1.0,
+   "note": "female colleague (black top)"
+  },
+  {
+   "start": 1567.8,
+   "end": 1570.34,
+   "text": "ఆలుమగలన్నాక పాలు నీళ్ళలా కలిసి ఉండాలి",
+   "speaker": "Vaishu's husband",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "husband on the scooter, Vaishu behind"
+  },
+  {
+   "start": 1608.42,
+   "end": 1611.34,
+   "text": "ఒంటి మీద నల్ల coat లేకపోతే బజ్జీల బండి కూడా manage చేయలేరు",
+   "speaker": "Vaishu",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 1622.0,
+   "end": 1625.56,
+   "text": "ఎవడో గొట్టంగాడు పిలిస్తే నీకు okay మొగుడు పిలిస్తే మాత్రం ఎక్కడలేని నొప్పులు వచ్చేస్తాయి",
+   "speaker": "Vaishu's husband",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "husband gesturing"
+  },
+  {
+   "start": 1682.6,
+   "end": 1683.12,
+   "text": "చెప్పు విరాజిత",
+   "speaker": "Vaishu's husband",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "husband answers his phone"
+  },
+  {
+   "start": 1683.46,
+   "end": 1688.1,
+   "text": "Hello sir ప్రసాద్ వాళ్ళింట్లో ఒక పంచాయితీ నడుస్తుంది దానికి మీరు chief guest గా వస్తారా",
+   "speaker": "OFFSCREEN:Virajitha",
+   "confidence": 2,
+   "scribe_label": "speaker_6",
+   "scribe_label_share": 1.0,
+   "note": "caller's voice; husband on screen listening; caller named 'విరాజిత' just before"
+  },
+  {
+   "start": 1704.42,
+   "end": 1706.26,
+   "text": "మెనూ తెలియగానే first నీకే చెప్తా",
+   "speaker": "Bhramara",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "Bhramara (white with pink dupatta)"
+  },
+  {
+   "start": 1753.14,
+   "end": 1754.3,
+   "text": "తెల్లగా పండు కోతులే ఉంటాయి",
+   "speaker": "Prasad",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "Prasad (brown shirt)"
+  },
+  {
+   "start": 1755.84,
+   "end": 1757.3,
+   "text": "ఓయ్ నువ్వు ఎవరినంటున్నావ్",
+   "speaker": "Pooja",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "Pooja on the steps with a coconut; Prasad then tells her not to react"
+  },
+  {
+   "start": 1825.64,
+   "end": 1826.52,
+   "text": "తను teetotaler",
+   "speaker": "Bhramara",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 1862.5,
+   "end": 1865.26,
+   "text": "ఊ అబ్బా వచ్చిన రెండు నెలలకే చిరాకేసింది",
+   "speaker": "Pooja",
+   "confidence": 3,
+   "scribe_label": "speaker_6",
+   "scribe_label_share": 1.0,
+   "note": "Prasad points at Pooja ('ask her'), Pooja answers"
+  },
+  {
+   "start": 1889.08,
+   "end": 1891.86,
+   "text": "Lover ని వెతుక్కోవడం కాదు మంచి soulmate ని వెతుక్కో",
+   "speaker": "Virajitha",
+   "confidence": 3,
+   "scribe_label": "speaker_6",
+   "scribe_label_share": 1.0,
+   "note": "rooftop night, Virajitha (green kurta)"
+  },
+  {
+   "start": 1911.68,
+   "end": 1912.34,
+   "text": "I love you విరాజిత",
+   "speaker": "Prasad",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "Prasad close"
+  },
+  {
+   "start": 1919.5,
+   "end": 1921.26,
+   "text": "పోన్లే మీ విడాకుల case మీరే వాదించుకోవచ్చు",
+   "speaker": "Prasad",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "Prasad, then her reaction"
+  },
+  {
+   "start": 1954.32,
+   "end": 1957.58,
+   "text": "ఊరంతా కుక్కలా తిరిగే బదులు ఇంట్లో ఉన్న పూజ గురించి ఎప్పుడైనా ఆలోచించావా",
+   "speaker": "Virajitha",
+   "confidence": 3,
+   "scribe_label": "speaker_6",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 1980.06,
+   "end": 1981.82,
+   "text": "ఏ పోరా Get lost",
+   "speaker": "Virajitha",
+   "confidence": 3,
+   "scribe_label": "speaker_6",
+   "scribe_label_share": 0.9,
+   "note": "Virajitha waving him off"
+  },
+  {
+   "start": 1996.26,
+   "end": 1997.32,
+   "text": "బావని పెళ్లి చేసుకుంటావా",
+   "speaker": "Prasad's mother",
+   "confidence": 3,
+   "scribe_label": "speaker_7",
+   "scribe_label_share": 1.0,
+   "note": "mother (saree) speaking"
+  },
+  {
+   "start": 2000.66,
+   "end": 2002.52,
+   "text": "ఛీయా మావాడికి ఏం తక్కువ",
+   "speaker": "Prasad's mother",
+   "confidence": 2,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "parents' two-shot, mother's mouth moving"
+  },
+  {
+   "start": 2008.98,
+   "end": 2010.0,
+   "text": "నీకు తెలియకుండా చేసాడా",
+   "speaker": "Prasad's father",
+   "confidence": 2,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "father gesturing"
+  },
+  {
+   "start": 2011.78,
+   "end": 2012.34,
+   "text": "లేదు",
+   "speaker": "Pooja",
+   "confidence": 3,
+   "scribe_label": "speaker_6",
+   "scribe_label_share": 1.0,
+   "note": "Pooja (pink, braids)"
+  },
+  {
+   "start": 2012.62,
+   "end": 2013.3,
+   "text": "మరి ఇంకేంటి",
+   "speaker": "Prasad's father",
+   "confidence": 2,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "parents' two-shot"
+  },
+  {
+   "start": 2017.36,
+   "end": 2020.56,
+   "text": "పూజ బావని పెళ్లి చేసుకుంటే permanent గా మాతోనే ఉండిపోవచ్చు కదా",
+   "speaker": "Prasad's mother",
+   "confidence": 3,
+   "scribe_label": "speaker_7",
+   "scribe_label_share": 1.0,
+   "note": "mother speaking"
+  },
+  {
+   "start": 2025.7,
+   "end": 2026.76,
+   "text": "రేయ్ sorry చెప్పు పూజకి",
+   "speaker": "Prasad's mother",
+   "confidence": 3,
+   "scribe_label": "speaker_7",
+   "scribe_label_share": 1.0,
+   "note": "mother speaking"
+  },
+  {
+   "start": 2039.36,
+   "end": 2040.06,
+   "text": "It's okay బావ",
+   "speaker": "Pooja",
+   "confidence": 3,
+   "scribe_label": "speaker_6",
+   "scribe_label_share": 1.0,
+   "note": "Pooja"
+  },
+  {
+   "start": 2048.6,
+   "end": 2051.14,
+   "text": "నా అన్నతో నేను మాట్లాడతాను నువ్వు మాత్రం కాదనకు",
+   "speaker": "Prasad's mother",
+   "confidence": 3,
+   "scribe_label": "speaker_7",
+   "scribe_label_share": 1.0,
+   "note": "mother to Pooja ('my brother' = Pooja's father)"
+  },
+  {
+   "start": 2093.88,
+   "end": 2096.4,
+   "text": "మా నాన్న వద్దన్నా సరే నేను నిన్నే పెళ్లి చేసుకుంటా",
+   "speaker": "Bhramara",
+   "confidence": 3,
+   "scribe_label": "speaker_6",
+   "scribe_label_share": 1.0,
+   "note": "Bhramara (green/yellow saree)"
+  },
+  {
+   "start": 2127.06,
+   "end": 2130.98,
+   "text": "ప్రసాద్ నేను ఒకడిని love చేసి వాడు కూడా correct లేకపోతే ఇంకొకడిని love చేసి",
+   "speaker": "Pratyusha",
+   "confidence": 3,
+   "scribe_label": "speaker_6",
+   "scribe_label_share": 1.0,
+   "note": "Pratyusha (red) on the phone, then cut to Prasad"
+  },
+  {
+   "start": 2155.34,
+   "end": 2157.3,
+   "text": "లేదా నిన్నైనా చంపేస్తా",
+   "speaker": "Pratyusha",
+   "confidence": 3,
+   "scribe_label": "speaker_6",
+   "scribe_label_share": 1.0,
+   "note": "Pratyusha on the phone"
+  }
+ ],
+ "scribe_agreement": {
+  "n_lines": 104,
+  "n_labelled": 104,
+  "one_to_one_agree": 60,
+  "one_to_one_rate": 0.577,
+  "one_to_one_rate_conf2plus": 0.577,
+  "n_conf2plus": 104,
+  "many_to_one_agree": 61,
+  "many_to_one_rate": 0.587,
+  "best_mapping": {
+   "speaker_3": "Bhramara",
+   "speaker_5": "Pooja",
+   "speaker_1": "Prasad",
+   "speaker_7": "Prasad's mother",
+   "speaker_4": "Pratyusha",
+   "speaker_0": "Vaishu",
+   "speaker_2": "Vaishu's husband",
+   "speaker_6": "Virajitha"
+  },
+  "confusion": {
+   "speaker_0": {
+    "Vaishu": 14,
+    "Bhramara": 12,
+    "Pooja": 4,
+    "Pratyusha": 2,
+    "Vaishu's husband": 1
+   },
+   "speaker_1": {
+    "Prasad": 22,
+    "Prasad's father": 2,
+    "Prasad's mother": 1
+   },
+   "speaker_2": {
+    "Vaishu's husband": 3,
+    "Bhramara": 1,
+    "Pooja": 1,
+    "Prasad": 1
+   },
+   "speaker_3": {
+    "Pooja": 5,
+    "Bhramara": 4,
+    "Pratyusha": 4,
+    "Colleague": 1
+   },
+   "speaker_4": {
+    "Pratyusha": 5,
+    "Bhramara": 2
+   },
+   "speaker_5": {
+    "Pooja": 4,
+    "Colleague": 1
+   },
+   "speaker_6": {
+    "Virajitha": 4,
+    "Pooja": 3,
+    "Pratyusha": 2,
+    "Bhramara": 1
+   },
+   "speaker_7": {
+    "Prasad's mother": 4
+   }
+  }
+ }
+}

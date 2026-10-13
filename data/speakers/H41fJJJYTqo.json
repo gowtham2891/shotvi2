@@ -1,0 +1,1118 @@
+{
+ "video_id": "H41fJJJYTqo",
+ "kind": "speaker_answer_key",
+ "version": 1,
+ "transcript": "scribe_dataset/H41fJJJYTqo/H41fJJJYTqo_scribe_transcript.json",
+ "transcript_sha256": "7c5aa4c0cae82b3549259242d3f4d88c215ab70c8c261ce2146c8a179650c448",
+ "method": "Lines sampled across every scene (Scribe sentences, split by word times where one Scribe sentence holds two speakers). For each line 4 frames evenly spaced over the line (runs/gt/H41fJJJYTqo/frames_spk/h_*.jpg, plus dense_924.jpg at 1.5 fps for 924-942 s) were checked for who is on screen and whose mouth moves, combined with content (names used, who answers whom, story logic). Speaker decided before looking at Scribe labels; Scribe label (majority word speaker by time overlap) added afterwards.",
+ "label_conventions": {
+  "speaker": "character name from the list; 'OFFSCREEN:<name>' = the speaker is not visible during the line (voice-over, other end of a phone call not shown, reaction shot held on a listener, title card) but is identified from content/voice context; 'UNKNOWN' = cannot tell. For diarization scoring, strip the OFFSCREEN: prefix.",
+  "confidence": "3 = seen speaking and/or unambiguous from content; 2 = likely (frames ambiguous, e.g. wide shot or cut mid-line, content supports); 1 = guess",
+  "times": "seconds in the episode audio; keyed by time, not by Scribe line id"
+ },
+ "characters": [
+  {
+   "name": "Akshara",
+   "desc": "Zomato delivery girl and student (grey polo / red Zomato shirt, hair tied back)"
+  },
+  {
+   "name": "Meenakshi",
+   "desc": "Akshara's friend (teal top at night, pink kurta by day, long straight hair); secretly married"
+  },
+  {
+   "name": "Ekta",
+   "desc": "roommate, curly hair (dark green top at night, blue T-shirt and scooter by day)"
+  },
+  {
+   "name": "Dhana",
+   "desc": "rich roommate (pink top, later leopard top); unnamed in Ep1, Ep2 calls her Dhana"
+  },
+  {
+   "name": "Jai",
+   "desc": "Akshara's male delivery-partner friend (red Zomato jacket)"
+  },
+  {
+   "name": "Meenakshi's husband",
+   "desc": "man on Meenakshi's phone call (beige shirt); revealed at 16:03"
+  },
+  {
+   "name": "Stalker",
+   "desc": "man who keeps proposing to Meenakshi (blue sweatshirt, later grey hoodie)"
+  },
+  {
+   "name": "Manager",
+   "desc": "banquet-hall manager (red shirt, glasses)"
+  },
+  {
+   "name": "Hall staff",
+   "desc": "staff man at the banquet hall (printed shirt)"
+  },
+  {
+   "name": "Akshara's parent",
+   "desc": "voice-over memory only (4:14-4:32), never on screen"
+  },
+  {
+   "name": "Rapido driver",
+   "desc": "helmeted driver who drops Meenakshi (15:12)"
+  }
+ ],
+ "hard_cases": [
+  "Opening scene (0:32-1:20) is Akshara and Ekta (curly hair, eating the biryani), not the rich roommate as the episode map says.",
+  "6:00-6:20 ('చెప్పేశానులే... low class mentality... నీ range తగ్గిపోతుంది') is Ekta flattering Dhana on screen, not a friend on the phone as the map says; Dhana answers 'నా range తగ్గిపోతుంది'.",
+  "Ekta's inner-voice asides (8:51, 10:01) and Meenakshi's aside (9:11) are spoken with lips closed; labelled as the thinking character.",
+  "Akshara's memory (4:14-4:32) is voice-over: the parent's lines are OFFSCREEN:Akshara's parent, Akshara's own lines are Akshara (she is on screen but not lip-syncing).",
+  "15:25-15:38: frames show Akshara asks Meenakshi to go alone ('please నువ్వు వెళ్ళవా? నేను పైకి వెళ్తాను'), so 'నాకు కొంచెం mood బాలేదులే' is Akshara (after being thrown out of the hall), not Meenakshi as the map says; 'అదేంటి నువ్వు అప్పుడే వచ్చేసావ్' is played over an insert of the stalker and assigned to Meenakshi by content (confidence 2).",
+  "Phone call 6:48-7:10: the man's lines are those spoken while the cut is on him; Scribe merges both sides into one sentence, so the lines were split by word times.",
+  "2:40 'ఎంతసేపు తింటావు దాన్ని' is spoken over the black EPISODE 01 card; assigned to Dhana by content, confidence 1."
+ ],
+ "labels": [
+  {
+   "start": 32.32,
+   "end": 33.72,
+   "text": "ఆహ్ తెచ్చినావానే",
+   "speaker": "Ekta",
+   "confidence": 2,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "wide shot; Ekta stands up from her bunk asking about the biryani; Akshara (raincoat) answers next"
+  },
+  {
+   "start": 34.0,
+   "end": 34.98,
+   "text": "హా తెచ్చానే.",
+   "speaker": "Akshara",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "answer to Ekta; Akshara in raincoat with delivery bag"
+  },
+  {
+   "start": 44.56,
+   "end": 45.8,
+   "text": "కొంచెం టవల్ అయినా ఇవ్వచ్చు కదా",
+   "speaker": "Akshara",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "close-up, mouth moving"
+  },
+  {
+   "start": 58.82,
+   "end": 59.88,
+   "text": "ఏంటి ఈరోజు ఇంత సేపు అయింది?",
+   "speaker": "Ekta",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "close-up eating biryani, mouth moving"
+  },
+  {
+   "start": 60.5,
+   "end": 64.14,
+   "text": "అదా వర్షం పడుతుంది కదా, pay క్యూ ఇస్తారని ఇప్పటివరకు చేశా.",
+   "speaker": "Akshara",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 74.7,
+   "end": 77.82,
+   "text": "ఉమ్ అదే వర్షం పడుతుంది కదా, తెస్తావో లేదోలే అనుకున్నా.",
+   "speaker": "Ekta",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "starts on Ekta speaking, cut to Akshara reaction"
+  },
+  {
+   "start": 78.36,
+   "end": 80.22,
+   "text": "పోన్లే నాకోసం తెచ్చావ్.",
+   "speaker": "Ekta",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "Ekta eating, mouth open"
+  },
+  {
+   "start": 92.94,
+   "end": 93.72,
+   "text": "ఏంటే వెళ్ళావా?",
+   "speaker": "Jai",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "phone call; Jai on screen speaking"
+  },
+  {
+   "start": 95.14,
+   "end": 96.34,
+   "text": "వెళ్ళిందానివి call చేయొచ్చు కదా",
+   "speaker": "Jai",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "Jai on screen speaking"
+  },
+  {
+   "start": 103.24,
+   "end": 105.66,
+   "text": "ఇంకో two hours చేసి వెళ్తా pay బాగా ఇస్తున్నాడు కదా",
+   "speaker": "Jai",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "Jai on screen; Jai is still out working in the rain"
+  },
+  {
+   "start": 107.2,
+   "end": 111.46,
+   "text": "పో రా first room కి pay ఎక్కువిస్తానంటే చాలు ఎంత సేపైనా చేస్తా అంటావ్.",
+   "speaker": "Akshara",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "addresses 'రా'; cuts between both ends of the call"
+  },
+  {
+   "start": 128.96,
+   "end": 130.9,
+   "text": "అమ్మయ్య పెద్ద ఆడు వచ్చింది.",
+   "speaker": "Jai",
+   "confidence": 2,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "Jai alone looking at his phone after the call; garbled line (probably 'పెద్ద order వచ్చింది')"
+  },
+  {
+   "start": 160.46,
+   "end": 161.56,
+   "text": "ఎంతసేపు తింటావు దాన్ని",
+   "speaker": "OFFSCREEN:Dhana",
+   "confidence": 1,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "spoken over the black 'EPISODE 01' card; by content the impatient roommate (next line 'party కి late'), could be Akshara"
+  },
+  {
+   "start": 164.08,
+   "end": 165.18,
+   "text": "ఆస్వాదిస్తూ తినాలే",
+   "speaker": "Ekta",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "wide shot; Ekta is the one eating"
+  },
+  {
+   "start": 166.78,
+   "end": 168.4,
+   "text": "అబ్బా party కి late అయిపోతుంది.",
+   "speaker": "Dhana",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "rich roommate (pink top) on screen getting ready"
+  },
+  {
+   "start": 172.48,
+   "end": 175.22,
+   "text": "చాలా సార్లు చెప్పాను నీకు Swiggy, Zomato bags ఇక్కడ పెట్టొద్దని.",
+   "speaker": "Dhana",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "close-up, mouth moving"
+  },
+  {
+   "start": 177.8,
+   "end": 179.8,
+   "text": "ఊ దాంట్లో insulting ఏముందే",
+   "speaker": "Akshara",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "close-up, mouth moving"
+  },
+  {
+   "start": 181.62,
+   "end": 184.24,
+   "text": "మీ room mate Swiggy, Zomato చేసుకుంటుందంటే అది insult కాదా?",
+   "speaker": "Dhana",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 186.52,
+   "end": 189.28,
+   "text": "మీ ఇంట్లో వాళ్ళ లాగా లక్షలు లక్షలు fees కట్టేవాళ్ళు నాకు ఎవ్వరూ లేరు.",
+   "speaker": "Akshara",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "close-up then Dhana reaction"
+  },
+  {
+   "start": 195.68,
+   "end": 197.4,
+   "text": "చూడే ఎక్తా నువ్వైనా చెప్పు దానికి.",
+   "speaker": "Dhana",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "starts on Dhana talking, cut to Ekta"
+  },
+  {
+   "start": 204.9,
+   "end": 205.8,
+   "text": "నువ్వు కూడా ఏంటి?",
+   "speaker": "Akshara",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "Akshara facing camera, to Ekta"
+  },
+  {
+   "start": 208.86,
+   "end": 210.22,
+   "text": "అదేమన్నా hostel fees కడుతుందా?",
+   "speaker": "Ekta",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "Ekta close-up"
+  },
+  {
+   "start": 215.92,
+   "end": 216.82,
+   "text": "నువ్వు తిన్నావానే",
+   "speaker": "Ekta",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "Ekta close-up mouth moving"
+  },
+  {
+   "start": 219.12,
+   "end": 220.6,
+   "text": "నువ్వు నాకేమి ఇయ్యాల్సిన అవసరం లేదులే",
+   "speaker": "OFFSCREEN:Akshara",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "shot holds on Ekta listening; content = Akshara refusing the share"
+  },
+  {
+   "start": 223.96,
+   "end": 225.66,
+   "text": "నాకు ఎక్కడ share చేయాలనే కదా అడిగింది",
+   "speaker": "Akshara",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "Akshara facing camera, mouth moving"
+  },
+  {
+   "start": 254.48,
+   "end": 257.3,
+   "text": "నువ్వేమైనా పెద్ద officer అయిపోతావా? మూసుకొని నాతో పాటు పనికి రా",
+   "speaker": "OFFSCREEN:Akshara's parent",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "voice-over memory; Akshara on screen silent"
+  },
+  {
+   "start": 262.44,
+   "end": 265.72,
+   "text": "నువ్వేం లక్షలు లక్షలు కట్టాల్సిన అవసరం లేదు just coaching కడితే చాలు",
+   "speaker": "Akshara",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "voice-over memory in Akshara's voice; she is on screen but not lip-syncing"
+  },
+  {
+   "start": 270.66,
+   "end": 271.94,
+   "text": "ఏదో ఒకరోజు నువ్వే నమ్ముతావ్.",
+   "speaker": "Akshara",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "voice-over memory"
+  },
+  {
+   "start": 283.46,
+   "end": 286.1,
+   "text": "ఏంటి madam ఒక్కటే కూర్చొని అంతలా feel అవుతున్నారు",
+   "speaker": "Meenakshi",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "close-up mouth moving"
+  },
+  {
+   "start": 290.98,
+   "end": 292.08,
+   "text": "జయ్ ఏమన్నా అన్నాడా?",
+   "speaker": "Meenakshi",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 314.66,
+   "end": 317.88,
+   "text": "దానమ్మ బాబులు బలిసినోళ్లే, అందుకే దానికి అంత బలుపు.",
+   "speaker": "Meenakshi",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 321.58,
+   "end": 322.68,
+   "text": "అది కాదు మీనాక్షి",
+   "speaker": "Akshara",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "close-up; addresses Meenakshi"
+  },
+  {
+   "start": 324.42,
+   "end": 327.74,
+   "text": "నాకంటే పెద్ద problem ఉందా నీ life లో, లేదు కదా.",
+   "speaker": "Meenakshi",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 359.56,
+   "end": 361.02,
+   "text": "ఏంటే చెప్పావా దానికి",
+   "speaker": "Dhana",
+   "confidence": 2,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "Dhana walks in; cut to Ekta mid-line; content = Dhana asking Ekta if she told Akshara off"
+  },
+  {
+   "start": 361.78,
+   "end": 367.92,
+   "text": "ఆ చెప్పేశానులే, చేసేదేమో delivery పని పొగరు మాత్రం బాగా ఎక్కువ",
+   "speaker": "Ekta",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "Ekta speaking (two-faced), Dhana listens; map said 'friend on phone' - frames show Ekta"
+  },
+  {
+   "start": 370.24,
+   "end": 374.62,
+   "text": "low class mentality. వాళ్ళతో argue చేశావనుకో, నీ range తగ్గిపోతుంది.",
+   "speaker": "Ekta",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "Ekta on screen gesturing and talking"
+  },
+  {
+   "start": 376.56,
+   "end": 379.52,
+   "text": "ఊరికే ఇలాంటి వాళ్ళతో argue చేస్తే నా range తగ్గిపోతుంది.",
+   "speaker": "Dhana",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "Dhana close-up, 'నా range'"
+  },
+  {
+   "start": 394.58,
+   "end": 399.02,
+   "text": "ఎక్తా నువ్వైనా చెప్పొచ్చు కదా తనకి. తప్పు అలా మాట్లాడకూడదు అని",
+   "speaker": "Meenakshi",
+   "confidence": 2,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "wide shot as Akshara walks in, then Meenakshi close-up talking; Akshara possible"
+  },
+  {
+   "start": 399.76,
+   "end": 402.08,
+   "text": "మీరు వచ్చే ముందు వరకు అదే చెప్తున్నా తనకి",
+   "speaker": "Ekta",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "Ekta close-up"
+  },
+  {
+   "start": 408.46,
+   "end": 409.76,
+   "text": "హా చెప్పు తిన్నావా?",
+   "speaker": "Meenakshi",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "on phone, close-up, then cut to the man"
+  },
+  {
+   "start": 412.38,
+   "end": 413.72,
+   "text": "ఈ week అయినా వస్తున్నావా ఇక్కడికి",
+   "speaker": "Meenakshi",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "on phone"
+  },
+  {
+   "start": 414.38,
+   "end": 415.06,
+   "text": "ఈ week వస్తున్నా",
+   "speaker": "Meenakshi's husband",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "man on the other end of the call, on screen speaking (revealed as her husband at 16:03)"
+  },
+  {
+   "start": 415.56,
+   "end": 418.66,
+   "text": "ప్రతి week ఇట్లానే చెప్తున్నావ్. కానీ ఒక్కసారి కూడా రావట్లేదు",
+   "speaker": "Meenakshi",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "Meenakshi then cut to man listening"
+  },
+  {
+   "start": 422.44,
+   "end": 423.28,
+   "text": "మళ్ళీ call చేస్తాను",
+   "speaker": "Meenakshi's husband",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "man on screen mouth moving"
+  },
+  {
+   "start": 423.82,
+   "end": 425.56,
+   "text": "ఈ two minutes మాట్లాడడానికి call చేయాలా?",
+   "speaker": "Meenakshi",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 432.84,
+   "end": 434.02,
+   "text": "హ్మ్ ఎవరే?",
+   "speaker": "Ekta",
+   "confidence": 2,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "Ekta on screen looking up from her phone; could be Akshara off screen"
+  },
+  {
+   "start": 434.96,
+   "end": 436.76,
+   "text": "నాకు ఎవరు చేస్తారే మీకు తెలియదా?",
+   "speaker": "Meenakshi",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 436.94,
+   "end": 440.52,
+   "text": "ఉమ్ long distance romance ఏయ్",
+   "speaker": "Ekta",
+   "confidence": 2,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "teasing; Ekta on screen first, Meenakshi reaction after"
+  },
+  {
+   "start": 472.44,
+   "end": 474.48,
+   "text": "ఏంటే వెతుకుతున్నావు keys ఆ హా",
+   "speaker": "Meenakshi",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "Meenakshi (pink kurta) mouth moving; Akshara searching"
+  },
+  {
+   "start": 482.28,
+   "end": 485.12,
+   "text": "ఏంటో ఏ వస్తువు అవసరమైనప్పుడు పక్కనున్న కనిపిస్తావుదు.",
+   "speaker": "Akshara",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 487.32,
+   "end": 490.77,
+   "text": "సరే నేను వెళ్తాను అక్షర నన్ను college దగ్గర drop చేస్తావా ఆ",
+   "speaker": "Meenakshi",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "addresses Akshara; wide two-shot"
+  },
+  {
+   "start": 491.56,
+   "end": 493.0,
+   "text": "కింద జై wait చేస్తున్నాడే.",
+   "speaker": "Akshara",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 518.54,
+   "end": 519.74,
+   "text": "ఈరోజు నేను నీతోనే వస్తా",
+   "speaker": "Meenakshi",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "to Ekta; wide shot"
+  },
+  {
+   "start": 520.28,
+   "end": 522.08,
+   "text": "అదేంటి అక్షర drop చేయలేదా",
+   "speaker": "Ekta",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "Ekta (blue tee) answers"
+  },
+  {
+   "start": 524.56,
+   "end": 526.64,
+   "text": "అరే మా friend వస్తానన్నది వే",
+   "speaker": "Ekta",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "Ekta close-up"
+  },
+  {
+   "start": 531.4,
+   "end": 534.6,
+   "text": "ఒక్కరోజు drop చేస్తే చాలు daily అదే అలవాటు అయిపోతుంది.",
+   "speaker": "Ekta",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "inner voice; Ekta on screen, lips closed"
+  },
+  {
+   "start": 540.66,
+   "end": 542.52,
+   "text": "ఏంటి ఇవ్వాళ college కి వెళ్ళలేదా",
+   "speaker": "Dhana",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "Dhana (leopard top) with mirror"
+  },
+  {
+   "start": 545.32,
+   "end": 546.74,
+   "text": "సరే రా drop చేస్తా car లో",
+   "speaker": "Dhana",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "Dhana close-up speaking"
+  },
+  {
+   "start": 551.34,
+   "end": 555.1,
+   "text": "ఇది ఒక్కసారి drop చేస్తేనే ఊరంతా చెప్పుకొని తిరుగుతుంది",
+   "speaker": "Meenakshi",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "Meenakshi aside, close-up"
+  },
+  {
+   "start": 562.52,
+   "end": 563.96,
+   "text": "ఛీ వీడేంటి మళ్ళీ వచ్చాడు",
+   "speaker": "Meenakshi",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "Meenakshi blurred foreground, stalker in background"
+  },
+  {
+   "start": 571.28,
+   "end": 571.7,
+   "text": "మీనాక్షి",
+   "speaker": "Stalker",
+   "confidence": 2,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "stalker's back to camera, Meenakshi turns"
+  },
+  {
+   "start": 573.74,
+   "end": 575.8,
+   "text": "అదే నేను చెప్పిన దాని గురించి ఏం ఆలోచించవు",
+   "speaker": "Stalker",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "stalker facing camera"
+  },
+  {
+   "start": 580.48,
+   "end": 582.32,
+   "text": "అసలు నా insta ID ఎవరు చెప్పారురా నీకు",
+   "speaker": "Meenakshi",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 590.5,
+   "end": 592.72,
+   "text": "నాకున్న friends చాలు. కొత్త friends అవసరం లేదు.",
+   "speaker": "Meenakshi",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 601.82,
+   "end": 603.92,
+   "text": "మీనాక్షిని ఎక్కించుకుంటే అదే petrol కొట్టించేది.",
+   "speaker": "Ekta",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "Ekta alone on scooter"
+  },
+  {
+   "start": 612.36,
+   "end": 613.32,
+   "text": "Hello వెళ్లిపోయావా",
+   "speaker": "Ekta",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "phone, Ekta on screen"
+  },
+  {
+   "start": 613.62,
+   "end": 615.78,
+   "text": "లేదే ఇక్కడే Rapido కోసం wait చేస్తున్న",
+   "speaker": "Meenakshi",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "phone, Meenakshi on screen"
+  },
+  {
+   "start": 620.38,
+   "end": 623.14,
+   "text": "నీకు late అవుతుంది కదా తను ఎలాగో అలా వెళ్ళిపోతదిలే",
+   "speaker": "Ekta",
+   "confidence": 2,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "starts on Ekta talking, cut to Meenakshi listening; content = Ekta dismissing her other friend"
+  },
+  {
+   "start": 628.48,
+   "end": 629.86,
+   "text": "Rapido ఎందుకు నేను drop చేస్తా.",
+   "speaker": "Stalker",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "two-shot, stalker gesturing"
+  },
+  {
+   "start": 631.84,
+   "end": 634.54,
+   "text": "నువ్వు నన్ను ఊరికే విసిగించకుండా ఇక్కడి నుండి వెళ్ళిపో please మీనాక్షి",
+   "speaker": "Meenakshi",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "Meenakshi gesturing (the trailing 'మీనాక్షి' starts the stalker's reply)"
+  },
+  {
+   "start": 634.58,
+   "end": 635.7,
+   "text": "నన్ను ఒక friend గా అయినా ఆదరించొచ్చు కదా",
+   "speaker": "Stalker",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "two-shot"
+  },
+  {
+   "start": 636.84,
+   "end": 640.34,
+   "text": "సరే college దగ్గర drop చేస్తాను Rapido వన్నే అనుకో. నాకు డబ్బులు కూడా ఇయ్యి",
+   "speaker": "Stalker",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "stalker facing camera"
+  },
+  {
+   "start": 641.72,
+   "end": 643.32,
+   "text": "అంత harsh గా మాట్లాడకు మీనాక్షి",
+   "speaker": "Stalker",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "stalker facing camera"
+  },
+  {
+   "start": 643.38,
+   "end": 645.12,
+   "text": "మర్యాదగా ఇక్కడి నుండి వెళ్ళిపో నాకు చిరాకు తెప్పియ్యొద్దు చెప్తున్నా",
+   "speaker": "Meenakshi",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "Meenakshi back to camera gesturing; Ekta arriving in background"
+  },
+  {
+   "start": 649.94,
+   "end": 653.26,
+   "text": "ఏయ్ ఎన్నిసార్లు చెప్పాలిరా సిగ్గుగా లేదా ఇంకోసారి కనిపించావు అనుకో మర్యాద ఉండదు.",
+   "speaker": "Ekta",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "Ekta pointing at him, talking"
+  },
+  {
+   "start": 658.96,
+   "end": 664.1,
+   "text": "అంత cool గా చెప్తే వింటాడా వాడు ఎన్నిసార్లు చెప్పినా వాడికి సావడం లేదే",
+   "speaker": "Ekta",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "Ekta talking to Meenakshi"
+  },
+  {
+   "start": 667.16,
+   "end": 669.08,
+   "text": "ఇక్కడికి వచ్చేసరికి petrol అయిపోయిందే",
+   "speaker": "Ekta",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "wide shot; her scooter"
+  },
+  {
+   "start": 712.86,
+   "end": 714.62,
+   "text": "రేయ్ ఏంట్రా ఇంత పెద్ద order వచ్చింది",
+   "speaker": "Akshara",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "restaurant two-shot, Akshara looking at phone"
+  },
+  {
+   "start": 719.02,
+   "end": 720.06,
+   "text": "నువ్వుండ్రా నేను వెళ్తాను",
+   "speaker": "Akshara",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "two-shot; content"
+  },
+  {
+   "start": 722.3,
+   "end": 723.4,
+   "text": "వెళ్తూ దారిలో వింటాలే",
+   "speaker": "Akshara",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "answer to Jai's 'మరి classes'"
+  },
+  {
+   "start": 801.02,
+   "end": 802.62,
+   "text": "ఎన్ని సార్లు phone చేసి నేత్తారండి",
+   "speaker": "Akshara",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "alone on bike"
+  },
+  {
+   "start": 822.44,
+   "end": 823.62,
+   "text": "Arrangements అన్ని అన్ని అయిపోయాయి sir",
+   "speaker": "Hall staff",
+   "confidence": 2,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "staff man (printed shirt) reporting to manager"
+  },
+  {
+   "start": 831.62,
+   "end": 833.44,
+   "text": "Call చేయాలి కదా direct గా వచ్చేస్తావెంటి",
+   "speaker": "Manager",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "close-up speaking"
+  },
+  {
+   "start": 833.86,
+   "end": 836.44,
+   "text": "అది చాలా సార్లు call చేశాను sir మీరు lift చేయలేదు.",
+   "speaker": "Akshara",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 846.52,
+   "end": 848.38,
+   "text": "లోపల IAS officers meeting అవుతుంది.",
+   "speaker": "Manager",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 851.8,
+   "end": 853.54,
+   "text": "అలాంటప్పుడు security ని పెట్టుకోవాలి కదా sir",
+   "speaker": "Akshara",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 853.72,
+   "end": 856.46,
+   "text": "Don't talk, don't say what I have to do. Get out first",
+   "speaker": "Manager",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 911.68,
+   "end": 912.36,
+   "text": "One fifteen madam",
+   "speaker": "Rapido driver",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "helmeted driver in frame"
+  },
+  {
+   "start": 914.96,
+   "end": 916.04,
+   "text": "ఏంటే Rapido లో వచ్చావ్",
+   "speaker": "Akshara",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 916.14,
+   "end": 917.24,
+   "text": "ఎక్తా నిన్ను drop చేయలేదా",
+   "speaker": "Akshara",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 917.56,
+   "end": 924.04,
+   "text": "morning అదే drop చేసింది evening call చేస్తే phone lift చేయలేదు ఇంకేదో పని ఉందిలే అని నేనే Rapido book చేసుకొని వచ్చేసా",
+   "speaker": "Meenakshi",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "two-shot, Meenakshi talking"
+  },
+  {
+   "start": 925.76,
+   "end": 927.26,
+   "text": "అది ఒక్కోసారి ఒక్కో mood లో ఉంటుంది",
+   "speaker": "Akshara",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 928.26,
+   "end": 929.8,
+   "text": "అదేంటి నువ్వు అప్పుడే వచ్చేసావ్",
+   "speaker": "OFFSCREEN:Meenakshi",
+   "confidence": 2,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "insert of the stalker waiting at the gate; content = Meenakshi asking why Akshara is back early"
+  },
+  {
+   "start": 930.46,
+   "end": 932.68,
+   "text": "నాకు కొంచెం mood బాలేదులే నేను పైకి వెళ్తా",
+   "speaker": "Akshara",
+   "confidence": 2,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "wide two-shot; Akshara (after being thrown out) is the one who goes upstairs; map had this as Meenakshi"
+  },
+  {
+   "start": 933.3,
+   "end": 934.52,
+   "text": "సరే దా shop work వెళ్దాం",
+   "speaker": "Meenakshi",
+   "confidence": 2,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "wide two-shot; content"
+  },
+  {
+   "start": 935.28,
+   "end": 938.12,
+   "text": "please నువ్వు వెళ్ళవా? నేను పైకి వెళ్తాను ఏమనుకోకు",
+   "speaker": "Akshara",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "Akshara close-up talking, then she walks in and Meenakshi is left alone"
+  },
+  {
+   "start": 939.1,
+   "end": 940.78,
+   "text": "అబ్బా వీడు మళ్ళీ వచ్చాడండి",
+   "speaker": "OFFSCREEN:Meenakshi",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "stalker on screen; Meenakshi is the one who sees him"
+  },
+  {
+   "start": 950.5,
+   "end": 951.06,
+   "text": "ఏంట్రా నీ బాధ",
+   "speaker": "Meenakshi",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "wide, Meenakshi back to camera"
+  },
+  {
+   "start": 951.8,
+   "end": 953.9,
+   "text": "ఎన్ని సార్లు propose చేసినా పట్టించుకోవడం లేదు",
+   "speaker": "Stalker",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 954.5,
+   "end": 958.04,
+   "text": "నేను ఇప్పటికే నీకు వెయ్యి సార్లైనా చెప్పుంటా నువ్వంటే నాకిష్టం లేదని",
+   "speaker": "Meenakshi",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  },
+  {
+   "start": 963.38,
+   "end": 965.52,
+   "text": "ఒరేయ్ ఎదవా నాకు already పెళ్లి అయింది",
+   "speaker": "Meenakshi",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "close-up"
+  }
+ ],
+ "scribe_agreement": {
+  "n_lines": 101,
+  "n_labelled": 101,
+  "one_to_one_agree": 36,
+  "one_to_one_rate": 0.356,
+  "one_to_one_rate_conf2plus": 0.35,
+  "n_conf2plus": 100,
+  "many_to_one_agree": 36,
+  "many_to_one_rate": 0.356,
+  "best_mapping": {
+   "speaker_0": "Dhana",
+   "speaker_2": "Manager",
+   "speaker_1": "Meenakshi"
+  },
+  "confusion": {
+   "speaker_0": {
+    "Dhana": 6,
+    "Akshara": 5,
+    "Ekta": 5,
+    "Jai": 4
+   },
+   "speaker_1": {
+    "Meenakshi": 27,
+    "Akshara": 20,
+    "Ekta": 16,
+    "Stalker": 6,
+    "Dhana": 3,
+    "Meenakshi's husband": 2,
+    "Akshara's parent": 1
+   },
+   "speaker_2": {
+    "Manager": 3,
+    "Hall staff": 1,
+    "Rapido driver": 1,
+    "Stalker": 1
+   }
+  }
+ }
+}
