@@ -1,22 +1,35 @@
 """LLM speaker correction: who speaks each line, inferred from content (an additive layer; the transcript is never
 modified).
 
-Scribe's diarization merges characters under one label and swaps labels (web series especially). One text call per
-episode (gemini-3.8-flash, thinking medium, default temperature) reads the whole transcript as numbered lines
-(Scribe sentences; ASR-corrected text from ``runs/asr_fix/<id>/corrections.json`` where present; Scribe's labels shown
-as weak hints) and returns a cast plus, per line, a cast key, run-length coded to keep the output small::
+Scribe's diarization merges characters under one label and swaps labels (web series especially). The episode is
+read in CHUNKS of Scribe sentences ("lines"): each call shows a core of ``CORE_MIN``-``CORE_MAX`` lines plus
+``MARGIN`` lines of overlap on each side, ASR-corrected text from ``runs/asr_fix/<id>/corrections.json`` where
+present, Scribe's labels as weak hints, and the RUNNING CAST (keys, names, one-line descriptions inferred by the
+earlier chunks) so names stay consistent. The model returns a cast plus a cast key per line, run-length coded::
 
     {"cast": [{"key": "A", "name": "...", "desc": "..."}], "turns": ["0-2:A", "3:B?", "4:C??", "5:X"]}
 
-``?`` = fairly unsure, ``??`` = a guess, ``X`` = no basis. Code validates: only given line ids, each id once (first
-answer wins), keys must be in the cast. Missing / invalid ids get ``name: null``.
+``?`` = fairly unsure, ``??`` = a guess, ``X`` = no basis. Code validates each answer: only the line ids shown, each
+id once (first answer wins), keys must be in the running or returned cast. Merge by line id: the chunk whose CORE
+holds the line wins; a margin answer is used only when the core answer is missing. A chunk may rename a key
+(a role named later, e.g. "the roommate" -> a name): the final name is the latest one, earlier ones go to ``aka``.
+
+Chunking (no LLM): cut between two lines at the strongest boundary in the allowed range, strength = silence (s) +
+``MUSIC_BONUS_S`` if a music / song audio event lies in the silence (same signal as ``shotvi.select.scenes``; that
+splitter drops openings and sponsor reads, which still need speakers, so it is not reused).
+
+Model: gemini-3.8-flash, thinking LOW, default temperature, ``max_output_tokens`` sized to the chunk. Why low: the
+evidence is local (who is addressed, who answers), the answer is small (~1k tokens), and the one whole-episode call
+at thinking medium spent its whole 16k-token budget without an answer (2026-10-13, ₹12). Exactly ONE paid attempt per
+chunk; a failed chunk is saved to ``<id>.failed.json`` and its lines fall back to the neighbours' margin answers.
 
 Output ``runs/speaker_fix/<id>.json``::
 
-    {"video_id", "schema": "speaker_fix/1", "model", "prompt": "<version>+<sha8>", "transcript", "asr_fix",
-     "cast": [{key, name, desc, n_lines, n_words}],
-     "lines": [{id, start, end, words: [i0, i1], scribe, key, name, confidence}],   # id = Scribe sentence id
-     "coverage": {n_lines, assigned, unknown, missing, duplicate_ids, invalid_items, bad_keys},
+    {"video_id", "schema": "speaker_fix/2", "model", "params", "prompt": "<version>+<sha8>", "transcript", "asr_fix",
+     "chunks": [{part, core: [a, b], shown: [a, b], ok, error?, cost}],
+     "cast": [{key, name, desc, aka, n_lines, n_words}],
+     "lines": [{id, start, end, words: [i0, i1], scribe, key, name, confidence, part, from_margin}],
+     "coverage": {n_lines, assigned, unknown, missing, from_margin, duplicate_ids, invalid_items, bad_keys},
      "cost": {projected, actual}}
 
 ``confidence``: 0.9 plain, 0.6 ``?``, 0.3 ``??``, 0.0 ``X`` / missing.
@@ -24,7 +37,7 @@ Output ``runs/speaker_fix/<id>.json``::
 CLI::
 
     python -m shotvi.segment.speaker_fix <id> [<id> ...] --dry-run
-    python -m shotvi.segment.speaker_fix <id> --max-ledger-inr 1500 --budget-inr 10
+    python -m shotvi.segment.speaker_fix <id> ... --max-ledger-inr 1513 --budget-inr 15
 """
 from __future__ import annotations
 
@@ -40,15 +53,21 @@ from string import Template
 from .render import estimate_tokens, fmt_ts
 
 ROOT = Path(__file__).resolve().parents[2]
-SCHEMA_VERSION = "speaker_fix/1"
+SCHEMA_VERSION = "speaker_fix/2"
 PROMPT_PATH = ROOT / "prompts" / "speaker_fix.md"
 OUT_DIR = ROOT / "runs" / "speaker_fix"
-MODEL = {"provider": "gemini", "model": "gemini-3.8-flash",
-         "params": {"thinking_level": "medium", "max_output_tokens": 16384}}
+MODEL = {"provider": "gemini", "model": "gemini-3.8-flash", "params": {"thinking_level": "low"}}
 CONF = {"": 0.9, "?": 0.6, "??": 0.3}
+CORE_MIN, CORE_MAX = 80, 120    # lines per chunk core
+LAST_MAX = 140                  # a final remainder up to this many lines stays one chunk
+MARGIN = 10                     # overlap lines shown on each side
+MUSIC_BONUS_S = 2.0             # as shotvi.select.scenes
+MUSIC_RE = re.compile(r"సంగీత|పాట|music|song", re.I)
 TEXT_CAL = 1.25                 # estimate_tokens under-counts (asr_fix calibration against countTokens)
-OUT_TOKENS_PER_LINE = 4         # run-length turns: ~6 tokens per run, ~1.5 lines per run
-THINK_TOKENS_EST = (4000, 8)    # projection: base + per line (medium thinking; a guess, checked after each call)
+OUT_TOKENS_PER_LINE = 5         # run-length turns + JSON
+CAST_OUT_TOKENS = 40            # per cast entry in the answer
+THINK_EST = (1500, 10)          # projection: low thinking, base + per line (a guess; checked against actuals)
+MAX_OUT = (4096, 40)            # max_output_tokens = base + per shown line (several times the expected answer)
 SPEND_FILE = OUT_DIR / "_spend.json"   # this experiment's own rupee tally (the project ledger stays the authority)
 
 SCHEMA = {
@@ -103,20 +122,57 @@ def line_texts(tr: dict, corrections: dict | None) -> list[str]:
             for s in sents]
 
 
-def render(tr: dict, corrections: dict | None = None) -> tuple[str, int]:
-    """Numbered transcript lines (id = Scribe sentence id) with audio events as unnumbered lines."""
-    texts = line_texts(tr, corrections)
-    rows = [(s["start"], 1, f"{s['id']} [{fmt_ts(s['start'])}] {short_label(s.get('speaker'))}| {t}")
-            for s, t in zip(tr["sentences"], texts)]
-    rows += [(e["start"], 0, f"({fmt_ts(e['start'])} {e['text']})") for e in tr.get("audio_events") or []]
+def render(tr: dict, corrections: dict | None = None, first: int = 0, last: int | None = None,
+           texts: list[str] | None = None) -> tuple[str, int]:
+    """Numbered lines first..last (id = Scribe sentence position) with the audio events among them."""
+    sents = tr["sentences"]
+    last = len(sents) - 1 if last is None else last
+    texts = texts if texts is not None else line_texts(tr, corrections)
+    rows = [(sents[i]["start"], 1, f"{i} [{fmt_ts(sents[i]['start'])}] {short_label(sents[i].get('speaker'))}| "
+                                   f"{texts[i]}") for i in range(first, last + 1)]
+    if rows:
+        t0 = sents[first]["start"] if first > 0 else float("-inf")
+        t1 = sents[last + 1]["start"] if last + 1 < len(sents) else float("inf")
+        rows += [(e["start"], 0, f"({fmt_ts(e['start'])} {e['text']})") for e in tr.get("audio_events") or []
+                 if t0 <= e["start"] < t1]
     rows.sort(key=lambda r: (r[0], r[1]))
-    return "\n".join(r[2] for r in rows), len(tr["sentences"])
+    return "\n".join(r[2] for r in rows), last - first + 1
 
 
-def build_request(tr: dict, corrections: dict | None = None, prompt_path: Path = PROMPT_PATH) -> tuple[str, str, str]:
-    tag, system, user = load_prompt(prompt_path)
-    text, n = render(tr, corrections)
-    return tag, system, Template(user).substitute(n_lines=n, last_id=n - 1, lines=text)
+def cast_block(cast: list[dict]) -> str:
+    if not cast:
+        return "No speakers identified yet (this is the first part)."
+    rows = [f"{c['key']}: {c['name']}" + (f" ({c['desc']})" if c.get("desc") else "") for c in cast]
+    return ("Speakers identified in earlier parts (reuse these keys for the same people; new people get new keys):\n"
+            + "\n".join(rows))
+
+
+# ------------------------------------------------------------------ chunks
+def boundary_strength(tr: dict, k: int) -> float:
+    """Strength of the cut before line k: silence + music bonus."""
+    s = tr["sentences"]
+    a, b = s[k - 1]["end"], s[k]["start"]
+    music = any(MUSIC_RE.search(e.get("text", "")) and e["start"] < b and e["end"] > a
+                for e in tr.get("audio_events") or [])
+    return max(0.0, b - a) + (MUSIC_BONUS_S if music else 0.0)
+
+
+def plan_chunks(tr: dict, core_min: int = CORE_MIN, core_max: int = CORE_MAX, last_max: int = LAST_MAX,
+                margin: int = MARGIN) -> list[dict]:
+    """[{part, core: [a, b], shown: [a', b']}] covering every line exactly once in the cores."""
+    n = len(tr["sentences"])
+    cores, a = [], 0
+    while n - a > last_max:
+        lo, hi = a + core_min, min(a + core_max, n - core_min)
+        if hi < lo:
+            hi = lo = min(a + core_max, n - 1)
+        k = max(range(lo, hi + 1), key=lambda k: (boundary_strength(tr, k), -abs(k - (a + (core_min + core_max) // 2))))
+        cores.append((a, k - 1))
+        a = k
+    if a < n:
+        cores.append((a, n - 1))
+    return [{"part": i + 1, "core": [x, y], "shown": [max(0, x - margin), min(n - 1, y + margin)]}
+            for i, (x, y) in enumerate(cores)]
 
 
 # ------------------------------------------------------------------ cost
@@ -126,12 +182,17 @@ def inr(model: str, tin: int, tout: int) -> float:
     return (cost_usd(model, tin, tout) or (tin * 5 + tout * 20) / 1e6) * usd_inr()
 
 
-def project(system: str, user: str, n_lines: int, model: str = MODEL["model"],
-            max_output_tokens: int = MODEL["params"]["max_output_tokens"]) -> dict:
-    tin = int(TEXT_CAL * (estimate_tokens(system) + estimate_tokens(user)))
-    tout = 300 + OUT_TOKENS_PER_LINE * n_lines + THINK_TOKENS_EST[0] + THINK_TOKENS_EST[1] * n_lines
-    return {"input_tokens": tin, "output_tokens": tout, "inr": round(inr(model, tin, tout), 2),
-            "worst_case_inr": round(inr(model, tin, max_output_tokens), 2)}
+def max_out_tokens(n_shown: int) -> int:
+    return MAX_OUT[0] + MAX_OUT[1] * n_shown
+
+
+def project_chunk(system: str, user: str, n_shown: int, n_cast_guess: int = 8, model: str = MODEL["model"]) -> dict:
+    tin = int(TEXT_CAL * (estimate_tokens(system) + estimate_tokens(user))) + 30 * n_cast_guess
+    tout = (CAST_OUT_TOKENS * n_cast_guess + OUT_TOKENS_PER_LINE * n_shown
+            + THINK_EST[0] + THINK_EST[1] * n_shown)
+    mx = max_out_tokens(n_shown)
+    return {"input_tokens": tin, "output_tokens": tout, "max_output_tokens": mx,
+            "inr": round(inr(model, tin, tout), 2), "worst_case_inr": round(inr(model, tin, mx), 2)}
 
 
 def billed_inr(ledger, n0: int = 0) -> float:
@@ -157,9 +218,8 @@ def add_session_spend(amount: float, what: str):
 
 def make_guard(worst_case_inr: float, max_ledger_inr: float | None, budget_inr: float | None, in_flight=None):
     """before_call hook: refuse any billed attempt whose WORST case (all max_output_tokens used) would push the
-    project ledger past ``max_ledger_inr`` or this experiment's tally past ``budget_inr``. ``in_flight()`` = rupees
-    already billed by earlier attempts of the running call (retries), which the saved tally does not hold yet.
-    (Bug fixed 2026-10-13: without it a retry after a MAX_TOKENS failure passed the budget check.)"""
+    project ledger past ``max_ledger_inr`` or this run's spend past ``budget_inr``. ``in_flight()`` = rupees this
+    run has billed so far (all chunks and attempts; bug fixed 2026-10-13: a retry once passed the budget check)."""
     def guard(role, spec):
         if max_ledger_inr is not None:
             from shotvi.llm.spend import total_inr
@@ -167,28 +227,37 @@ def make_guard(worst_case_inr: float, max_ledger_inr: float | None, budget_inr: 
             if now + worst_case_inr > max_ledger_inr:
                 raise SpeakerFixStop(f"ledger ₹{now:.2f} + worst case ₹{worst_case_inr:.2f} > ₹{max_ledger_inr:.2f}")
         if budget_inr is not None:
-            spent = session_spent() + (in_flight() if in_flight else 0.0)
+            spent = in_flight() if in_flight else 0.0
             if spent + worst_case_inr > budget_inr:
-                raise SpeakerFixStop(f"speaker_fix spent ₹{spent:.2f} + worst case ₹{worst_case_inr:.2f} "
+                raise SpeakerFixStop(f"this run spent ₹{spent:.2f} + worst case ₹{worst_case_inr:.2f} "
                                      f"> budget ₹{budget_inr:.2f}")
     return guard
 
 
-# ------------------------------------------------------------------ parse
-def parse_answer(ans: dict, tr: dict) -> dict:
-    """Validate the model answer against the transcript; returns cast / lines / coverage (see module doc)."""
-    sents = tr["sentences"]
-    n = len(sents)
-    cast, keys = [], {}
+# ------------------------------------------------------------------ parse / merge
+def parse_chunk(ans: dict, ids: range, cast: dict[str, dict]) -> tuple[dict[int, tuple], dict]:
+    """Validate one answer. ``cast`` = running cast {key: {key, name, desc, aka}}, updated IN PLACE (new keys,
+    renames). Returns ({line id: (key or None, '?'-marks)}, coverage)."""
+    cov = {"duplicate_ids": 0, "invalid_items": [], "bad_keys": []}
+    seen = set()
     for c in ans.get("cast") or []:
         k = str(c.get("key", "")).strip()
         name = " ".join(str(c.get("name", "")).split())
-        if not k or not name or k in keys or k == "X":
+        desc = " ".join(str(c.get("desc", "")).split())
+        if not k or not name or k == "X" or k in seen:   # a key twice in one answer: the first entry wins
             continue
-        keys[k] = {"key": k, "name": name, "desc": " ".join(str(c.get("desc", "")).split())}
-        cast.append(keys[k])
-    got: dict[int, tuple[str | None, str]] = {}
-    cov = {"n_lines": n, "duplicate_ids": 0, "invalid_items": [], "bad_keys": []}
+        seen.add(k)
+        if k in cast:
+            old = cast[k]
+            if name.lower() != old["name"].lower():
+                if old["name"] not in old["aka"]:
+                    old["aka"].append(old["name"])
+                old["name"] = name
+            if desc:
+                old["desc"] = desc
+        else:
+            cast[k] = {"key": k, "name": name, "desc": desc, "aka": []}
+    got: dict[int, tuple] = {}
     for item in ans.get("turns") or []:
         m = TURN_RE.match(str(item))
         if not m:
@@ -197,10 +266,10 @@ def parse_answer(ans: dict, tr: dict) -> dict:
         a = int(m.group(1))
         b = int(m.group(2)) if m.group(2) is not None else a
         key, q = m.group(3), m.group(4)
-        if b < a or a < 0 or b >= n:
-            cov["invalid_items"].append(str(item)[:40])   # an id outside the transcript: never invent lines
+        if b < a or a not in ids or b not in ids:
+            cov["invalid_items"].append(str(item)[:40])   # an id not shown: never invent lines
             continue
-        if key != "X" and key not in keys:
+        if key != "X" and key not in cast:
             cov["bad_keys"].append(key)
             key = None
         for i in range(a, b + 1):
@@ -208,21 +277,48 @@ def parse_answer(ans: dict, tr: dict) -> dict:
                 cov["duplicate_ids"] += 1
                 continue
             got[i] = (None if key == "X" else key, q)
-    lines = []
-    for s in sents:
-        k, q = got.get(s["id"], (None, ""))
-        lines.append({"id": s["id"], "start": s["start"], "end": s["end"], "words": list(s["words"]),
-                      "scribe": s.get("speaker"), "key": k, "name": keys[k]["name"] if k else None,
-                      "confidence": CONF.get(q, 0.3) if k else 0.0})
-    for c in cast:
-        mine = [ln for ln in lines if ln["key"] == c["key"]]
-        c["n_lines"] = len(mine)
-        c["n_words"] = sum(ln["words"][1] - ln["words"][0] + 1 for ln in mine)
-    cov["assigned"] = sum(1 for ln in lines if ln["key"])
-    cov["unknown"] = sum(1 for i, ln in enumerate(lines) if not ln["key"] and i in got)
-    cov["missing"] = n - len(got)
     cov["bad_keys"] = sorted(set(cov["bad_keys"]))
-    return {"cast": cast, "lines": lines, "coverage": cov}
+    return got, cov
+
+
+def merge(tr: dict, chunks: list[dict], answers: dict[int, dict], cast: dict[str, dict]) -> dict:
+    """answers: part -> {line id: (key, q)}. Core answer wins, then the nearest chunk's margin answer."""
+    sents = tr["sentences"]
+    lines, n_margin = [], 0
+    for i, s in enumerate(sents):
+        own = next(c for c in chunks if c["core"][0] <= i <= c["core"][1])
+        pick, part, margin = answers.get(own["part"], {}).get(i), own["part"], False
+        if pick is None:
+            for c in sorted(chunks, key=lambda c: abs(c["part"] - own["part"])):
+                if c is not own and i in answers.get(c["part"], {}):
+                    pick, part, margin = answers[c["part"]][i], c["part"], True
+                    break
+        k, q = pick if pick else (None, "")
+        n_margin += margin and k is not None
+        lines.append({"id": i, "start": s["start"], "end": s["end"], "words": list(s["words"]),
+                      "scribe": s.get("speaker"), "key": k, "name": cast[k]["name"] if k else None,
+                      "confidence": CONF.get(q, 0.3) if k else 0.0, "part": part if pick else None,
+                      "from_margin": margin})
+    out_cast = []
+    for c in cast.values():
+        mine = [ln for ln in lines if ln["key"] == c["key"]]
+        out_cast.append({**c, "n_lines": len(mine),
+                         "n_words": sum(ln["words"][1] - ln["words"][0] + 1 for ln in mine)})
+    answered = {i for a in answers.values() for i in a}
+    cov = {"n_lines": len(sents), "assigned": sum(1 for ln in lines if ln["key"]),
+           "unknown": sum(1 for ln in lines if not ln["key"] and ln["id"] in answered),
+           "missing": sum(1 for ln in lines if ln["id"] not in answered), "from_margin": n_margin}
+    return {"cast": out_cast, "lines": lines, "coverage": cov}
+
+
+def parse_answer(ans: dict, tr: dict) -> dict:
+    """Single answer over the whole transcript (one chunk); kept for tests and small transcripts."""
+    n = len(tr["sentences"])
+    cast: dict[str, dict] = {}
+    got, cov = parse_chunk(ans, range(n), cast)
+    res = merge(tr, [{"part": 1, "core": [0, n - 1], "shown": [0, n - 1]}], {1: got}, cast)
+    res["coverage"].update(cov)
+    return res
 
 
 def word_names(fix: dict, n_words: int) -> list[str | None]:
@@ -235,24 +331,93 @@ def word_names(fix: dict, n_words: int) -> list[str | None]:
 
 
 # ------------------------------------------------------------------ run
-def run(tr: dict, video_id: str, client, spec, corrections: dict | None = None, guard=None) -> dict:
-    """One call. ``client`` = LLMClient-like (generate_json(role, spec, system, prompt, schema, meta=, want_raw=))."""
-    tag, system, user = build_request(tr, corrections)
-    proj = project(system, user, len(tr["sentences"]), spec.model,
-                   int(spec.params.get("max_output_tokens", MODEL["params"]["max_output_tokens"])))
-    if guard is not None and hasattr(client, "before_call"):
-        client.before_call = guard
+def chunk_request(tr: dict, ch: dict, n_parts: int, cast: dict, texts: list[str], prompt=None) -> tuple[str, str, str]:
+    tag, system, user = prompt or load_prompt()
+    a, b = ch["shown"]
+    text, _ = render(tr, first=a, last=b, texts=texts)
+    return tag, system, Template(user).substitute(part=ch["part"], n_parts=n_parts, cast=cast_block(list(cast.values())),
+                                                  first_id=a, last_id=b, lines=text)
+
+
+def project(tr: dict, corrections: dict | None = None, model: str = MODEL["model"]) -> dict:
+    texts = line_texts(tr, corrections)
+    chunks = plan_chunks(tr)
+    prompt = load_prompt()
+    per = []
+    for ch in chunks:
+        _, system, user = chunk_request(tr, ch, len(chunks), {}, texts, prompt)
+        per.append({"part": ch["part"], "core": ch["core"], "shown": ch["shown"],
+                    **project_chunk(system, user, ch["shown"][1] - ch["shown"][0] + 1, model=model)})
+    return {"chunks": per, "inr": round(sum(p["inr"] for p in per), 2),
+            "worst_case_inr": round(sum(p["worst_case_inr"] for p in per), 2)}
+
+
+def run(tr: dict, video_id: str, client, spec, corrections: dict | None = None, max_ledger_inr: float | None = None,
+        budget_inr: float | None = None, spent_before=lambda: 0.0, log=print) -> dict:
+    """All chunks of one episode. ``client`` = LLMClient-like (generate_json(role, spec, system, prompt, schema, meta=,
+    want_raw=), optional ``ledger`` and ``before_call``). ``spent_before()`` = rupees this run billed before this
+    episode (budget). Stops (``stopped`` set) when a guard refuses; failed chunks are recorded, not retried."""
+    from shotvi.llm.base import LLMError, ModelSpec
+    texts = line_texts(tr, corrections)
+    chunks = plan_chunks(tr)
+    prompt = load_prompt()
+    cast: dict[str, dict] = {}
+    answers: dict[int, dict] = {}
     led = getattr(client, "ledger", None)
     n0 = len(led.calls) if led is not None else 0
-    ans, raw = client.generate_json("speaker_fix", spec, system, user, SCHEMA,
-                                    meta={"video_id": video_id, "prompt": tag}, want_raw=True)
-    spent = billed_inr(led, n0)
+    proj = project(tr, corrections, spec.model)
+    out_chunks, cov_all, failures, stopped = [], {"duplicate_ids": 0, "invalid_items": [], "bad_keys": []}, [], None
+    for ch, pj in zip(chunks, proj["chunks"]):
+        tag, system, user = chunk_request(tr, ch, len(chunks), cast, texts, prompt)
+        n_shown = ch["shown"][1] - ch["shown"][0] + 1
+        cspec = ModelSpec(spec.provider, spec.model, {**spec.params, "max_output_tokens": max_out_tokens(n_shown)})
+        worst = project_chunk(system, user, n_shown, n_cast_guess=0, model=spec.model)["worst_case_inr"]
+        if hasattr(client, "before_call"):
+            client.before_call = make_guard(worst, max_ledger_inr, budget_inr,
+                                            in_flight=lambda: spent_before() + billed_inr(led, n0))
+        k0 = len(led.calls) if led is not None else 0
+        rec = {"part": ch["part"], "core": ch["core"], "shown": ch["shown"], "projected_inr": pj["inr"]}
+        try:
+            ans, raw = client.generate_json("speaker_fix", cspec, system, user, SCHEMA,
+                                            meta={"video_id": video_id, "prompt": tag, "part": ch["part"]},
+                                            want_raw=True)
+        except SpeakerFixStop as e:
+            stopped = str(e)
+            log(f"{video_id} part {ch['part']}: STOP {e}")
+            break
+        except LLMError as e:
+            raw = getattr(e.__cause__, "response", None)
+            fail = {"part": ch["part"], "error": str(e)[:300]}
+            if raw is not None:
+                fail.update({"finish_reason": raw.finish_reason, "input_tokens": raw.input_tokens,
+                             "output_tokens": raw.output_tokens, "thought_tokens": raw.thought_tokens,
+                             "partial_text": raw.text})
+            failures.append(fail)
+            rec.update({"ok": False, "error": str(e)[:200], "inr": round(billed_inr(led, k0), 3)})
+            out_chunks.append(rec)
+            log(f"{video_id} part {ch['part']}: FAILED {str(e)[:160]}")
+            continue
+        ids = range(ch["shown"][0], ch["shown"][1] + 1)
+        got, cov = parse_chunk(ans, ids, cast)
+        answers[ch["part"]] = got
+        cov_all["duplicate_ids"] += cov["duplicate_ids"]
+        cov_all["invalid_items"] += cov["invalid_items"]
+        cov_all["bad_keys"] = sorted(set(cov_all["bad_keys"]) | set(cov["bad_keys"]))
+        rec.update({"ok": True, "inr": round(billed_inr(led, k0), 3), "input_tokens": raw.input_tokens,
+                    "output_tokens": raw.output_tokens, "thought_tokens": raw.thought_tokens,
+                    "missing_in_chunk": sum(1 for i in ids if i not in got)})
+        out_chunks.append(rec)
+        log(f"{video_id} part {ch['part']}/{len(chunks)} lines {ch['shown'][0]}-{ch['shown'][1]}: ₹{rec['inr']:.2f} "
+            f"(projected ₹{pj['inr']:.2f}; in {raw.input_tokens:,}, out {raw.output_tokens:,}, "
+            f"thinking {raw.thought_tokens:,}); cast now {len(cast)}")
     res = {"video_id": video_id, "schema": SCHEMA_VERSION, "model": spec.model, "params": spec.params,
-           "prompt": tag, **parse_answer(ans, tr),
-           "cost": {"projected": proj, "actual": {"input_tokens": raw.input_tokens,
-                                                   "output_tokens": raw.output_tokens,
-                                                   "thought_tokens": raw.thought_tokens,
-                                                   "inr": round(spent, 3), "cached": spent == 0.0}}}
+           "prompt": prompt[0], "chunks": out_chunks, **merge(tr, chunks, answers, cast)}
+    res["coverage"].update(cov_all)
+    res["cost"] = {"projected": proj, "actual": {"inr": round(billed_inr(led, n0), 3),
+                                                 "chunks_ok": sum(c.get("ok", False) for c in out_chunks),
+                                                 "chunks": len(chunks)}}
+    res["stopped"] = stopped
+    res["failures"] = failures
     return res
 
 
@@ -270,13 +435,16 @@ def main(argv=None):
     ap.add_argument("--max-ledger-inr", type=float, default=None,
                     help="refuse a call whose worst case would push the project ledger past this")
     ap.add_argument("--budget-inr", type=float, default=None,
-                    help="refuse a call whose worst case would push this experiment's tally past this")
+                    help="refuse a call whose worst case would push THIS run's spend past this")
     ap.add_argument("--out", default=str(OUT_DIR))
     a = ap.parse_args(argv)
     if a.transcript and len(a.video_ids) != 1:
         ap.error("--transcript needs exactly one video id")
+    for st in (sys.stdout, sys.stderr):   # ₹ and Telugu on Windows consoles
+        if hasattr(st, "reconfigure"):
+            st.reconfigure(encoding="utf-8")
     from .asr_fix import corrections_path, load_corrections, stale_corrections
-    jobs = []
+    jobs, tot, worst = [], 0.0, 0.0
     for vid in a.video_ids:
         tr, tp = load_transcript(vid, a.transcript)
         corr = None
@@ -288,65 +456,54 @@ def main(argv=None):
                 bad = {(c["start_word"], c["end_word"]) for c in stale}
                 corr = {**corr, "corrections": [c for c in corr["corrections"]
                                                 if (c["start_word"], c["end_word"]) not in bad]}
-        tag, system, user = build_request(tr, corr)
-        proj = project(system, user, len(tr["sentences"]))
-        print(f"{vid}: {len(tr['sentences'])} lines, asr_fix={'yes' if corr else 'no'}, prompt {tag}: "
-              f"projected in {proj['input_tokens']:,} / out {proj['output_tokens']:,} tokens, ₹{proj['inr']:.2f} "
-              f"(worst case ₹{proj['worst_case_inr']:.2f})")
-        jobs.append((vid, tr, tp, corr, proj))
-    print(f"projected total ₹{sum(j[4]['inr'] for j in jobs):.2f} "
-          f"(worst case ₹{sum(j[4]['worst_case_inr'] for j in jobs):.2f}); "
-          f"speaker_fix spent so far ₹{session_spent():.2f}")
+        proj = project(tr, corr)
+        tot += proj["inr"]
+        worst += proj["worst_case_inr"]
+        print(f"{vid}: {len(tr['sentences'])} lines, asr_fix={'yes' if corr else 'no'}, prompt {load_prompt()[0]}, "
+              f"{len(proj['chunks'])} chunks: projected ₹{proj['inr']:.2f} (worst case ₹{proj['worst_case_inr']:.2f})")
+        for c in proj["chunks"]:
+            print(f"    part {c['part']}: core {c['core'][0]}-{c['core'][1]} shown {c['shown'][0]}-{c['shown'][1]}  "
+                  f"in {c['input_tokens']:,} out ~{c['output_tokens']:,} (max {c['max_output_tokens']:,})  "
+                  f"₹{c['inr']:.2f} / worst ₹{c['worst_case_inr']:.2f}")
+        jobs.append((vid, tr, tp, corr))
+    print(f"projected total ₹{tot:.2f} (worst case ₹{worst:.2f}); speaker_fix spent before ₹{session_spent():.2f}")
     if a.dry_run:
         return 0
     os.environ.setdefault("SHOTVI_SPEND_SOURCE", "speaker_fix")
     from shotvi.llm import Ledger, LLMClient, ModelSpec
-    from shotvi.llm.base import LLMError
     client = LLMClient(Ledger(), cache_dir=str(ROOT / "runs" / "cache"), max_retries=0, schema_retries=0)
-    # one paid attempt per episode: a MAX_TOKENS / invalid answer is not retried (2026-10-13: two 16k-token
-    # MAX_TOKENS attempts on one episode cost ₹12)
     spec = ModelSpec.from_dict(MODEL)
     rc = 0
-    for vid, tr, tp, corr, proj in jobs:
+    for vid, tr, tp, corr in jobs:
         n0 = len(client.ledger.calls)
-        guard = make_guard(proj["worst_case_inr"], a.max_ledger_inr, a.budget_inr,
-                           in_flight=lambda n0=n0: billed_inr(client.ledger, n0))
         try:
-            res = run(tr, vid, client, spec, corr, guard)
-        except SpeakerFixStop as e:
-            print(f"{vid}: STOP {e}")
-            rc = 2
-            break
-        except LLMError as e:
-            # keep what was billed for diagnosis (finish reason, token split, the truncated text)
-            raw = getattr(e.__cause__, "response", None)
-            fail = {"video_id": vid, "error": str(e)[:300], "prompt": load_prompt()[0], "model": spec.model,
-                    "params": spec.params}
-            if raw is not None:
-                fail.update({"finish_reason": raw.finish_reason, "input_tokens": raw.input_tokens,
-                             "output_tokens": raw.output_tokens, "thought_tokens": raw.thought_tokens,
-                             "partial_text": raw.text})
-            fp = Path(a.out) / f"{vid}.failed.json"
-            fp.parent.mkdir(parents=True, exist_ok=True)
-            fp.write_text(json.dumps(fail, ensure_ascii=False, indent=1), encoding="utf-8")
-            print(f"{vid}: FAILED {str(e)[:200]} -> {fp}")
-            rc = 1
-            break
+            res = run(tr, vid, client, spec, corr, a.max_ledger_inr, a.budget_inr,
+                      spent_before=lambda before=billed_inr(client.ledger, 0): before)
         finally:
-            spent = billed_inr(client.ledger, n0)   # failed attempts included
+            spent = billed_inr(client.ledger, n0)
             if spent:
-                add_session_spend(spent, vid)
-        res["transcript"] = str(tp)
+                add_session_spend(spent, f"{vid} (chunked)")
+        res["transcript"] = str(tp.relative_to(ROOT)) if tp.is_relative_to(ROOT) else str(tp)
         res["asr_fix"] = bool(corr)
-        out = Path(a.out) / f"{vid}.json"
-        out.parent.mkdir(parents=True, exist_ok=True)
-        out.write_text(json.dumps(res, ensure_ascii=False, indent=1), encoding="utf-8")
-        act, cov = res["cost"]["actual"], res["coverage"]
-        print(f"{vid}: ₹{act['inr']:.2f} (in {act['input_tokens']:,}, out {act['output_tokens']:,}, "
-              f"thinking {act['thought_tokens']:,}{', cached' if act['cached'] else ''}); cast "
+        out = Path(a.out)
+        out.mkdir(parents=True, exist_ok=True)
+        if res["failures"]:
+            (out / f"{vid}.failed.json").write_text(json.dumps({"video_id": vid, "failures": res["failures"]},
+                                                               ensure_ascii=False, indent=1), encoding="utf-8")
+        if any(c.get("ok") for c in res["chunks"]):
+            (out / f"{vid}.json").write_text(json.dumps(res, ensure_ascii=False, indent=1), encoding="utf-8")
+        cov = res["coverage"]
+        print(f"{vid}: ₹{res['cost']['actual']['inr']:.2f} actual vs ₹{res['cost']['projected']['inr']:.2f} projected; "
+              f"{res['cost']['actual']['chunks_ok']}/{res['cost']['actual']['chunks']} chunks ok; cast "
               f"{len(res['cast'])}: " + ", ".join(f"{c['name']} ({c['n_lines']})" for c in res["cast"]))
         print(f"  coverage: {cov['assigned']}/{cov['n_lines']} assigned, {cov['unknown']} X, {cov['missing']} missing, "
-              f"{cov['duplicate_ids']} dup, {len(cov['invalid_items'])} invalid, bad keys {cov['bad_keys']} -> {out}")
+              f"{cov['from_margin']} from margins, {cov['duplicate_ids']} dup, {len(cov['invalid_items'])} invalid, "
+              f"bad keys {cov['bad_keys']}")
+        if res["stopped"]:
+            rc = 2
+            break
+        if res["failures"]:
+            rc = 1
     return rc
 
 

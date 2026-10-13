@@ -1,0 +1,6514 @@
+{
+ "video_id": "fjGrX8aBVAc",
+ "schema": "speaker_fix/2",
+ "model": "gemini-3.8-flash",
+ "params": {
+  "thinking_level": "low"
+ },
+ "prompt": "2+38f3542f",
+ "chunks": [
+  {
+   "part": 1,
+   "core": [
+    0,
+    101
+   ],
+   "shown": [
+    0,
+    111
+   ],
+   "projected_inr": 1.42,
+   "ok": true,
+   "inr": 0.487,
+   "input_tokens": 3256,
+   "output_tokens": 792,
+   "thought_tokens": 0,
+   "missing_in_chunk": 0
+  },
+  {
+   "part": 2,
+   "core": [
+    102,
+    218
+   ],
+   "shown": [
+    92,
+    228
+   ],
+   "projected_inr": 1.59,
+   "ok": true,
+   "inr": 0.619,
+   "input_tokens": 3910,
+   "output_tokens": 1051,
+   "thought_tokens": 0,
+   "missing_in_chunk": 0
+  },
+  {
+   "part": 3,
+   "core": [
+    219,
+    306
+   ],
+   "shown": [
+    209,
+    316
+   ],
+   "projected_inr": 1.37,
+   "ok": true,
+   "inr": 0.536,
+   "input_tokens": 3107,
+   "output_tokens": 968,
+   "thought_tokens": 0,
+   "missing_in_chunk": 0
+  },
+  {
+   "part": 4,
+   "core": [
+    307,
+    417
+   ],
+   "shown": [
+    297,
+    417
+   ],
+   "projected_inr": 1.49,
+   "ok": true,
+   "inr": 0.628,
+   "input_tokens": 3878,
+   "output_tokens": 1084,
+   "thought_tokens": 0,
+   "missing_in_chunk": 4
+  }
+ ],
+ "cast": [
+  {
+   "key": "A",
+   "name": "Abhi",
+   "desc": "Young man living with Meera under alias Vijay",
+   "aka": [],
+   "n_lines": 167,
+   "n_words": 522
+  },
+  {
+   "key": "B",
+   "name": "Abhi's father",
+   "desc": "Abhi's dad looking for Abhi",
+   "aka": [],
+   "n_lines": 33,
+   "n_words": 90
+  },
+  {
+   "key": "C",
+   "name": "Harshitha",
+   "desc": "Abhi's close friend from Vizag",
+   "aka": [],
+   "n_lines": 121,
+   "n_words": 404
+  },
+  {
+   "key": "D",
+   "name": "Meera",
+   "desc": "Abhi's flatmate who knows him as Vijay",
+   "aka": [
+    "Girlmate"
+   ],
+   "n_lines": 75,
+   "n_words": 225
+  },
+  {
+   "key": "E",
+   "name": "Sindhu",
+   "desc": "Cafe colleague working with Vijay and Meera",
+   "aka": [],
+   "n_lines": 3,
+   "n_words": 11
+  },
+  {
+   "key": "F",
+   "name": "Abhi's friend",
+   "desc": "Friend drinking beer with Abhi",
+   "aka": [],
+   "n_lines": 12,
+   "n_words": 73
+  },
+  {
+   "key": "G",
+   "name": "Informant",
+   "desc": "Person showing Abhi's father where Abhi is",
+   "aka": [],
+   "n_lines": 1,
+   "n_words": 4
+  },
+  {
+   "key": "H",
+   "name": "Shopkeeper",
+   "desc": "Shopkeeper or stall worker asked by Abhi's father",
+   "aka": [],
+   "n_lines": 2,
+   "n_words": 10
+  }
+ ],
+ "lines": [
+  {
+   "id": 0,
+   "start": 13.3,
+   "end": 13.5,
+   "words": [
+    0,
+    0
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 1,
+   "start": 15.94,
+   "end": 16.219,
+   "words": [
+    1,
+    1
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 2,
+   "start": 16.58,
+   "end": 16.88,
+   "words": [
+    2,
+    2
+   ],
+   "scribe": "speaker_2",
+   "key": "B",
+   "name": "Abhi's father",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 3,
+   "start": 17.48,
+   "end": 18.22,
+   "words": [
+    3,
+    6
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 4,
+   "start": 18.48,
+   "end": 19.0,
+   "words": [
+    7,
+    7
+   ],
+   "scribe": "speaker_2",
+   "key": "B",
+   "name": "Abhi's father",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 5,
+   "start": 19.64,
+   "end": 21.58,
+   "words": [
+    8,
+    14
+   ],
+   "scribe": "speaker_2",
+   "key": "B",
+   "name": "Abhi's father",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 6,
+   "start": 22.04,
+   "end": 22.84,
+   "words": [
+    15,
+    15
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 7,
+   "start": 23.76,
+   "end": 24.74,
+   "words": [
+    16,
+    17
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 8,
+   "start": 25.06,
+   "end": 26.62,
+   "words": [
+    18,
+    21
+   ],
+   "scribe": "speaker_2",
+   "key": "B",
+   "name": "Abhi's father",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 9,
+   "start": 26.9,
+   "end": 27.14,
+   "words": [
+    22,
+    22
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 10,
+   "start": 27.68,
+   "end": 28.74,
+   "words": [
+    23,
+    25
+   ],
+   "scribe": "speaker_2",
+   "key": "B",
+   "name": "Abhi's father",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 11,
+   "start": 29.36,
+   "end": 29.36,
+   "words": [
+    26,
+    26
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 12,
+   "start": 30.0,
+   "end": 30.6,
+   "words": [
+    27,
+    28
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 13,
+   "start": 31.4,
+   "end": 32.56,
+   "words": [
+    29,
+    32
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 14,
+   "start": 32.74,
+   "end": 32.96,
+   "words": [
+    33,
+    33
+   ],
+   "scribe": "speaker_2",
+   "key": "B",
+   "name": "Abhi's father",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 15,
+   "start": 34.48,
+   "end": 34.74,
+   "words": [
+    34,
+    34
+   ],
+   "scribe": "speaker_2",
+   "key": "B",
+   "name": "Abhi's father",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 16,
+   "start": 35.12,
+   "end": 35.56,
+   "words": [
+    35,
+    35
+   ],
+   "scribe": "speaker_2",
+   "key": "B",
+   "name": "Abhi's father",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 17,
+   "start": 35.62,
+   "end": 36.58,
+   "words": [
+    36,
+    38
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 18,
+   "start": 36.88,
+   "end": 37.14,
+   "words": [
+    39,
+    39
+   ],
+   "scribe": "speaker_2",
+   "key": "B",
+   "name": "Abhi's father",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 19,
+   "start": 37.84,
+   "end": 38.18,
+   "words": [
+    40,
+    40
+   ],
+   "scribe": "speaker_2",
+   "key": "B",
+   "name": "Abhi's father",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 20,
+   "start": 38.9,
+   "end": 41.9,
+   "words": [
+    41,
+    50
+   ],
+   "scribe": "speaker_2",
+   "key": "B",
+   "name": "Abhi's father",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 21,
+   "start": 42.46,
+   "end": 43.46,
+   "words": [
+    51,
+    52
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 22,
+   "start": 44.0,
+   "end": 45.26,
+   "words": [
+    53,
+    55
+   ],
+   "scribe": "speaker_2",
+   "key": "B",
+   "name": "Abhi's father",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 23,
+   "start": 45.64,
+   "end": 46.16,
+   "words": [
+    56,
+    57
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 24,
+   "start": 48.32,
+   "end": 49.26,
+   "words": [
+    58,
+    60
+   ],
+   "scribe": "speaker_2",
+   "key": "B",
+   "name": "Abhi's father",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 25,
+   "start": 50.02,
+   "end": 51.38,
+   "words": [
+    61,
+    64
+   ],
+   "scribe": "speaker_2",
+   "key": "B",
+   "name": "Abhi's father",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 26,
+   "start": 51.94,
+   "end": 53.86,
+   "words": [
+    65,
+    71
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 27,
+   "start": 54.42,
+   "end": 54.44,
+   "words": [
+    72,
+    72
+   ],
+   "scribe": "speaker_2",
+   "key": "B",
+   "name": "Abhi's father",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 28,
+   "start": 56.18,
+   "end": 58.4,
+   "words": [
+    73,
+    80
+   ],
+   "scribe": "speaker_2",
+   "key": "B",
+   "name": "Abhi's father",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 29,
+   "start": 59.82,
+   "end": 61.16,
+   "words": [
+    81,
+    84
+   ],
+   "scribe": "speaker_2",
+   "key": "B",
+   "name": "Abhi's father",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 30,
+   "start": 61.9,
+   "end": 62.54,
+   "words": [
+    85,
+    86
+   ],
+   "scribe": "speaker_2",
+   "key": "B",
+   "name": "Abhi's father",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 31,
+   "start": 63.7,
+   "end": 64.14,
+   "words": [
+    87,
+    87
+   ],
+   "scribe": "speaker_2",
+   "key": "B",
+   "name": "Abhi's father",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 32,
+   "start": 65.18,
+   "end": 65.68,
+   "words": [
+    88,
+    89
+   ],
+   "scribe": "speaker_2",
+   "key": "B",
+   "name": "Abhi's father",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 33,
+   "start": 66.42,
+   "end": 68.66,
+   "words": [
+    90,
+    94
+   ],
+   "scribe": "speaker_2",
+   "key": "B",
+   "name": "Abhi's father",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 34,
+   "start": 68.78,
+   "end": 69.18,
+   "words": [
+    95,
+    96
+   ],
+   "scribe": "speaker_2",
+   "key": "B",
+   "name": "Abhi's father",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 35,
+   "start": 70.16,
+   "end": 70.8,
+   "words": [
+    97,
+    99
+   ],
+   "scribe": "speaker_2",
+   "key": "B",
+   "name": "Abhi's father",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 36,
+   "start": 71.58,
+   "end": 71.9,
+   "words": [
+    100,
+    100
+   ],
+   "scribe": "speaker_2",
+   "key": "B",
+   "name": "Abhi's father",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 37,
+   "start": 72.96,
+   "end": 73.5,
+   "words": [
+    101,
+    102
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 38,
+   "start": 128.78,
+   "end": 129.039,
+   "words": [
+    103,
+    103
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 39,
+   "start": 130.979,
+   "end": 132.04,
+   "words": [
+    104,
+    106
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 40,
+   "start": 132.96,
+   "end": 133.88,
+   "words": [
+    107,
+    109
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 41,
+   "start": 134.24,
+   "end": 135.36,
+   "words": [
+    110,
+    113
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 42,
+   "start": 135.9,
+   "end": 137.64,
+   "words": [
+    114,
+    116
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 43,
+   "start": 139.32,
+   "end": 140.88,
+   "words": [
+    117,
+    121
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 44,
+   "start": 142.16,
+   "end": 143.1,
+   "words": [
+    122,
+    124
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 45,
+   "start": 143.32,
+   "end": 143.96,
+   "words": [
+    125,
+    126
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 46,
+   "start": 144.36,
+   "end": 145.26,
+   "words": [
+    127,
+    130
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 47,
+   "start": 147.12,
+   "end": 147.28,
+   "words": [
+    131,
+    131
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 48,
+   "start": 147.36,
+   "end": 148.8,
+   "words": [
+    132,
+    137
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 49,
+   "start": 149.2,
+   "end": 149.52,
+   "words": [
+    138,
+    138
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 50,
+   "start": 149.68,
+   "end": 150.38,
+   "words": [
+    139,
+    142
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 51,
+   "start": 150.88,
+   "end": 151.0,
+   "words": [
+    143,
+    143
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 52,
+   "start": 152.28,
+   "end": 153.44,
+   "words": [
+    144,
+    147
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 53,
+   "start": 154.02,
+   "end": 154.82,
+   "words": [
+    148,
+    151
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 54,
+   "start": 155.38,
+   "end": 156.72,
+   "words": [
+    152,
+    155
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 55,
+   "start": 157.06,
+   "end": 159.64,
+   "words": [
+    156,
+    162
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 56,
+   "start": 160.1,
+   "end": 161.46,
+   "words": [
+    163,
+    167
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 57,
+   "start": 162.0,
+   "end": 163.08,
+   "words": [
+    168,
+    172
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 58,
+   "start": 163.4,
+   "end": 164.8,
+   "words": [
+    173,
+    177
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 59,
+   "start": 165.66,
+   "end": 166.82,
+   "words": [
+    178,
+    181
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 60,
+   "start": 167.34,
+   "end": 167.8,
+   "words": [
+    182,
+    182
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 61,
+   "start": 167.84,
+   "end": 169.92,
+   "words": [
+    183,
+    190
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 62,
+   "start": 170.16,
+   "end": 170.6,
+   "words": [
+    191,
+    191
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 63,
+   "start": 170.74,
+   "end": 171.64,
+   "words": [
+    192,
+    193
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 64,
+   "start": 171.96,
+   "end": 173.74,
+   "words": [
+    194,
+    197
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 65,
+   "start": 173.8,
+   "end": 174.62,
+   "words": [
+    198,
+    200
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 66,
+   "start": 175.12,
+   "end": 175.38,
+   "words": [
+    201,
+    201
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 67,
+   "start": 175.58,
+   "end": 177.08,
+   "words": [
+    202,
+    204
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 68,
+   "start": 178.2,
+   "end": 178.24,
+   "words": [
+    205,
+    205
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 69,
+   "start": 179.3,
+   "end": 181.56,
+   "words": [
+    206,
+    213
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 70,
+   "start": 181.68,
+   "end": 183.4,
+   "words": [
+    214,
+    218
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 71,
+   "start": 183.72,
+   "end": 185.34,
+   "words": [
+    219,
+    224
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 72,
+   "start": 188.66,
+   "end": 188.74,
+   "words": [
+    225,
+    225
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 73,
+   "start": 188.82,
+   "end": 191.66,
+   "words": [
+    226,
+    236
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 74,
+   "start": 191.76,
+   "end": 192.98,
+   "words": [
+    237,
+    242
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 75,
+   "start": 193.52,
+   "end": 194.28,
+   "words": [
+    243,
+    245
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 76,
+   "start": 194.32,
+   "end": 195.38,
+   "words": [
+    246,
+    251
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 77,
+   "start": 196.16,
+   "end": 196.54,
+   "words": [
+    252,
+    252
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 78,
+   "start": 197.3,
+   "end": 197.3,
+   "words": [
+    253,
+    253
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 79,
+   "start": 197.68,
+   "end": 198.16,
+   "words": [
+    254,
+    255
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 80,
+   "start": 199.12,
+   "end": 199.2,
+   "words": [
+    256,
+    256
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 81,
+   "start": 201.98,
+   "end": 202.16,
+   "words": [
+    257,
+    258
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 82,
+   "start": 202.96,
+   "end": 204.86,
+   "words": [
+    259,
+    264
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 83,
+   "start": 205.0,
+   "end": 205.54,
+   "words": [
+    265,
+    265
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 84,
+   "start": 206.04,
+   "end": 206.16,
+   "words": [
+    266,
+    266
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 85,
+   "start": 207.9,
+   "end": 207.9,
+   "words": [
+    267,
+    267
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 86,
+   "start": 208.04,
+   "end": 209.62,
+   "words": [
+    268,
+    272
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 87,
+   "start": 210.16,
+   "end": 211.58,
+   "words": [
+    273,
+    276
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 88,
+   "start": 211.9,
+   "end": 213.7,
+   "words": [
+    277,
+    283
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 89,
+   "start": 215.28,
+   "end": 216.14,
+   "words": [
+    284,
+    286
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 90,
+   "start": 216.36,
+   "end": 216.76,
+   "words": [
+    287,
+    287
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 91,
+   "start": 216.86,
+   "end": 216.88,
+   "words": [
+    288,
+    288
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 92,
+   "start": 217.26,
+   "end": 218.44,
+   "words": [
+    289,
+    290
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 93,
+   "start": 218.78,
+   "end": 219.64,
+   "words": [
+    291,
+    293
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 94,
+   "start": 220.68,
+   "end": 221.28,
+   "words": [
+    294,
+    295
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 95,
+   "start": 222.12,
+   "end": 223.12,
+   "words": [
+    296,
+    298
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 96,
+   "start": 223.34,
+   "end": 225.26,
+   "words": [
+    299,
+    303
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 97,
+   "start": 225.6,
+   "end": 225.62,
+   "words": [
+    304,
+    304
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 98,
+   "start": 225.66,
+   "end": 227.6,
+   "words": [
+    305,
+    309
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 99,
+   "start": 227.88,
+   "end": 228.6,
+   "words": [
+    310,
+    311
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 100,
+   "start": 229.08,
+   "end": 231.34,
+   "words": [
+    312,
+    317
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 101,
+   "start": 231.44,
+   "end": 233.06,
+   "words": [
+    318,
+    322
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 102,
+   "start": 235.7,
+   "end": 236.52,
+   "words": [
+    323,
+    325
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 103,
+   "start": 236.82,
+   "end": 237.8,
+   "words": [
+    326,
+    328
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 104,
+   "start": 238.24,
+   "end": 239.02,
+   "words": [
+    329,
+    330
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 105,
+   "start": 239.18,
+   "end": 239.64,
+   "words": [
+    331,
+    332
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 106,
+   "start": 239.78,
+   "end": 240.3,
+   "words": [
+    333,
+    335
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 107,
+   "start": 240.56,
+   "end": 241.78,
+   "words": [
+    336,
+    340
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 108,
+   "start": 242.72,
+   "end": 245.26,
+   "words": [
+    341,
+    345
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 109,
+   "start": 247.7,
+   "end": 248.28,
+   "words": [
+    346,
+    347
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 110,
+   "start": 249.36,
+   "end": 249.98,
+   "words": [
+    348,
+    349
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 111,
+   "start": 250.74,
+   "end": 252.26,
+   "words": [
+    350,
+    354
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 112,
+   "start": 252.84,
+   "end": 253.38,
+   "words": [
+    355,
+    355
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 113,
+   "start": 253.8,
+   "end": 254.84,
+   "words": [
+    356,
+    359
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 114,
+   "start": 255.18,
+   "end": 255.84,
+   "words": [
+    360,
+    360
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 115,
+   "start": 256.44,
+   "end": 256.82,
+   "words": [
+    361,
+    361
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 116,
+   "start": 257.42,
+   "end": 257.98,
+   "words": [
+    362,
+    363
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 117,
+   "start": 258.66,
+   "end": 263.18,
+   "words": [
+    364,
+    374
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 118,
+   "start": 263.44,
+   "end": 265.12,
+   "words": [
+    375,
+    380
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 119,
+   "start": 266.34,
+   "end": 268.08,
+   "words": [
+    381,
+    386
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 120,
+   "start": 268.32,
+   "end": 269.42,
+   "words": [
+    387,
+    389
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 121,
+   "start": 270.66,
+   "end": 271.44,
+   "words": [
+    390,
+    390
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 122,
+   "start": 271.5,
+   "end": 273.14,
+   "words": [
+    391,
+    395
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 123,
+   "start": 273.58,
+   "end": 274.82,
+   "words": [
+    396,
+    398
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 124,
+   "start": 275.28,
+   "end": 276.64,
+   "words": [
+    399,
+    402
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 125,
+   "start": 277.3,
+   "end": 277.92,
+   "words": [
+    403,
+    404
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 126,
+   "start": 278.66,
+   "end": 279.72,
+   "words": [
+    405,
+    407
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 127,
+   "start": 281.1,
+   "end": 281.2,
+   "words": [
+    408,
+    408
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 128,
+   "start": 281.34,
+   "end": 281.98,
+   "words": [
+    409,
+    409
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 129,
+   "start": 282.52,
+   "end": 283.86,
+   "words": [
+    410,
+    412
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 130,
+   "start": 284.6,
+   "end": 285.88,
+   "words": [
+    413,
+    415
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 131,
+   "start": 285.94,
+   "end": 287.6,
+   "words": [
+    416,
+    421
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 132,
+   "start": 287.9,
+   "end": 289.32,
+   "words": [
+    422,
+    426
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 133,
+   "start": 290.28,
+   "end": 290.6,
+   "words": [
+    427,
+    427
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 134,
+   "start": 293.82,
+   "end": 297.22,
+   "words": [
+    428,
+    431
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 135,
+   "start": 297.56,
+   "end": 297.86,
+   "words": [
+    432,
+    432
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 136,
+   "start": 298.18,
+   "end": 299.98,
+   "words": [
+    433,
+    438
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 137,
+   "start": 300.22,
+   "end": 300.58,
+   "words": [
+    439,
+    439
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 138,
+   "start": 301.14,
+   "end": 302.4,
+   "words": [
+    440,
+    443
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 139,
+   "start": 302.6,
+   "end": 304.54,
+   "words": [
+    444,
+    450
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 140,
+   "start": 305.22,
+   "end": 306.06,
+   "words": [
+    451,
+    452
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 141,
+   "start": 306.52,
+   "end": 312.3,
+   "words": [
+    453,
+    465
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 142,
+   "start": 312.52,
+   "end": 313.44,
+   "words": [
+    466,
+    468
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 143,
+   "start": 329.22,
+   "end": 329.64,
+   "words": [
+    469,
+    469
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 144,
+   "start": 329.72,
+   "end": 330.68,
+   "words": [
+    470,
+    472
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 145,
+   "start": 330.76,
+   "end": 332.1,
+   "words": [
+    473,
+    475
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 146,
+   "start": 332.98,
+   "end": 333.96,
+   "words": [
+    476,
+    477
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 147,
+   "start": 335.42,
+   "end": 335.96,
+   "words": [
+    478,
+    478
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 148,
+   "start": 338.46,
+   "end": 338.82,
+   "words": [
+    479,
+    479
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 149,
+   "start": 342.42,
+   "end": 343.6,
+   "words": [
+    480,
+    483
+   ],
+   "scribe": "speaker_1",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 150,
+   "start": 343.9,
+   "end": 344.68,
+   "words": [
+    484,
+    485
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 151,
+   "start": 345.7,
+   "end": 347.8,
+   "words": [
+    486,
+    490
+   ],
+   "scribe": "speaker_1",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 152,
+   "start": 349.64,
+   "end": 350.02,
+   "words": [
+    491,
+    492
+   ],
+   "scribe": "speaker_2",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 153,
+   "start": 350.06,
+   "end": 350.42,
+   "words": [
+    493,
+    493
+   ],
+   "scribe": "speaker_2",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 154,
+   "start": 351.08,
+   "end": 351.38,
+   "words": [
+    494,
+    494
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 155,
+   "start": 351.96,
+   "end": 354.66,
+   "words": [
+    495,
+    504
+   ],
+   "scribe": "speaker_2",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 156,
+   "start": 355.1,
+   "end": 355.54,
+   "words": [
+    505,
+    505
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 157,
+   "start": 356.04,
+   "end": 358.64,
+   "words": [
+    506,
+    516
+   ],
+   "scribe": "speaker_2",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 158,
+   "start": 358.88,
+   "end": 359.58,
+   "words": [
+    517,
+    520
+   ],
+   "scribe": "speaker_2",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 159,
+   "start": 359.66,
+   "end": 360.68,
+   "words": [
+    521,
+    523
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 160,
+   "start": 361.42,
+   "end": 363.28,
+   "words": [
+    524,
+    530
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 161,
+   "start": 363.58,
+   "end": 364.66,
+   "words": [
+    531,
+    534
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 162,
+   "start": 365.26,
+   "end": 366.08,
+   "words": [
+    535,
+    535
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 163,
+   "start": 366.48,
+   "end": 367.94,
+   "words": [
+    536,
+    541
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 164,
+   "start": 368.14,
+   "end": 369.379,
+   "words": [
+    542,
+    544
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 165,
+   "start": 369.7,
+   "end": 371.44,
+   "words": [
+    545,
+    547
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 166,
+   "start": 372.02,
+   "end": 372.92,
+   "words": [
+    548,
+    549
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 167,
+   "start": 373.74,
+   "end": 374.92,
+   "words": [
+    550,
+    553
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 168,
+   "start": 375.46,
+   "end": 376.64,
+   "words": [
+    554,
+    558
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 169,
+   "start": 377.04,
+   "end": 378.66,
+   "words": [
+    559,
+    562
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 170,
+   "start": 379.16,
+   "end": 381.8,
+   "words": [
+    563,
+    570
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 171,
+   "start": 382.88,
+   "end": 384.2,
+   "words": [
+    571,
+    573
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 172,
+   "start": 384.5,
+   "end": 385.74,
+   "words": [
+    574,
+    576
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 173,
+   "start": 386.02,
+   "end": 389.7,
+   "words": [
+    577,
+    586
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 174,
+   "start": 390.7,
+   "end": 391.9,
+   "words": [
+    587,
+    589
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 175,
+   "start": 392.02,
+   "end": 393.419,
+   "words": [
+    590,
+    593
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 176,
+   "start": 394.38,
+   "end": 395.2,
+   "words": [
+    594,
+    595
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 177,
+   "start": 395.78,
+   "end": 397.62,
+   "words": [
+    596,
+    601
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 178,
+   "start": 398.18,
+   "end": 399.36,
+   "words": [
+    602,
+    604
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 179,
+   "start": 399.88,
+   "end": 401.08,
+   "words": [
+    605,
+    610
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 180,
+   "start": 401.2,
+   "end": 401.82,
+   "words": [
+    611,
+    613
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 181,
+   "start": 402.3,
+   "end": 403.32,
+   "words": [
+    614,
+    618
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 182,
+   "start": 403.82,
+   "end": 404.12,
+   "words": [
+    619,
+    619
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 183,
+   "start": 404.54,
+   "end": 405.7,
+   "words": [
+    620,
+    622
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 184,
+   "start": 406.06,
+   "end": 406.54,
+   "words": [
+    623,
+    624
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 185,
+   "start": 407.66,
+   "end": 407.74,
+   "words": [
+    625,
+    625
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 186,
+   "start": 408.74,
+   "end": 409.18,
+   "words": [
+    626,
+    626
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 187,
+   "start": 409.46,
+   "end": 410.22,
+   "words": [
+    627,
+    629
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 188,
+   "start": 410.54,
+   "end": 411.06,
+   "words": [
+    630,
+    631
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 189,
+   "start": 411.98,
+   "end": 412.02,
+   "words": [
+    632,
+    632
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 190,
+   "start": 413.48,
+   "end": 414.6,
+   "words": [
+    633,
+    635
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 191,
+   "start": 415.26,
+   "end": 415.28,
+   "words": [
+    636,
+    636
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 192,
+   "start": 415.66,
+   "end": 416.38,
+   "words": [
+    637,
+    638
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 193,
+   "start": 416.58,
+   "end": 417.68,
+   "words": [
+    639,
+    641
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 194,
+   "start": 417.78,
+   "end": 418.32,
+   "words": [
+    642,
+    642
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 195,
+   "start": 418.76,
+   "end": 419.1,
+   "words": [
+    643,
+    644
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 196,
+   "start": 420.86,
+   "end": 421.68,
+   "words": [
+    645,
+    647
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 197,
+   "start": 421.74,
+   "end": 422.92,
+   "words": [
+    648,
+    651
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 198,
+   "start": 423.46,
+   "end": 424.5,
+   "words": [
+    652,
+    655
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 199,
+   "start": 425.02,
+   "end": 425.26,
+   "words": [
+    656,
+    656
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 200,
+   "start": 425.359,
+   "end": 426.16,
+   "words": [
+    657,
+    659
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 201,
+   "start": 426.279,
+   "end": 427.1,
+   "words": [
+    660,
+    662
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 202,
+   "start": 427.56,
+   "end": 427.86,
+   "words": [
+    663,
+    663
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 203,
+   "start": 428.36,
+   "end": 429.34,
+   "words": [
+    664,
+    667
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 204,
+   "start": 430.14,
+   "end": 431.2,
+   "words": [
+    668,
+    669
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 205,
+   "start": 432.94,
+   "end": 435.58,
+   "words": [
+    670,
+    678
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 206,
+   "start": 436.48,
+   "end": 436.72,
+   "words": [
+    679,
+    679
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 207,
+   "start": 437.36,
+   "end": 438.68,
+   "words": [
+    680,
+    683
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 208,
+   "start": 439.68,
+   "end": 440.28,
+   "words": [
+    684,
+    684
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 209,
+   "start": 441.16,
+   "end": 441.72,
+   "words": [
+    685,
+    685
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 210,
+   "start": 441.74,
+   "end": 441.84,
+   "words": [
+    686,
+    686
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 211,
+   "start": 442.48,
+   "end": 444.38,
+   "words": [
+    687,
+    691
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 212,
+   "start": 444.48,
+   "end": 444.86,
+   "words": [
+    692,
+    692
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 213,
+   "start": 444.9,
+   "end": 445.38,
+   "words": [
+    693,
+    693
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 214,
+   "start": 445.7,
+   "end": 446.66,
+   "words": [
+    694,
+    696
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 215,
+   "start": 446.86,
+   "end": 448.86,
+   "words": [
+    697,
+    703
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 216,
+   "start": 449.62,
+   "end": 450.24,
+   "words": [
+    704,
+    704
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 217,
+   "start": 450.78,
+   "end": 451.46,
+   "words": [
+    705,
+    707
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 218,
+   "start": 452.42,
+   "end": 452.54,
+   "words": [
+    708,
+    708
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 219,
+   "start": 457.48,
+   "end": 457.52,
+   "words": [
+    709,
+    709
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 220,
+   "start": 460.52,
+   "end": 461.68,
+   "words": [
+    710,
+    711
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 221,
+   "start": 462.5,
+   "end": 463.34,
+   "words": [
+    712,
+    714
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 222,
+   "start": 463.7,
+   "end": 464.46,
+   "words": [
+    715,
+    716
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 223,
+   "start": 464.52,
+   "end": 465.78,
+   "words": [
+    717,
+    721
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 224,
+   "start": 466.14,
+   "end": 466.52,
+   "words": [
+    722,
+    722
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 225,
+   "start": 466.94,
+   "end": 468.88,
+   "words": [
+    723,
+    728
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 226,
+   "start": 469.2,
+   "end": 470.48,
+   "words": [
+    729,
+    732
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 227,
+   "start": 470.58,
+   "end": 471.34,
+   "words": [
+    733,
+    734
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 228,
+   "start": 473.0,
+   "end": 473.02,
+   "words": [
+    735,
+    735
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 229,
+   "start": 473.1,
+   "end": 473.86,
+   "words": [
+    736,
+    737
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 230,
+   "start": 474.02,
+   "end": 474.66,
+   "words": [
+    738,
+    739
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 231,
+   "start": 476.06,
+   "end": 476.2,
+   "words": [
+    740,
+    740
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 232,
+   "start": 477.98,
+   "end": 477.98,
+   "words": [
+    741,
+    741
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 233,
+   "start": 478.04,
+   "end": 478.8,
+   "words": [
+    742,
+    743
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 234,
+   "start": 479.58,
+   "end": 479.72,
+   "words": [
+    744,
+    744
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 235,
+   "start": 480.3,
+   "end": 480.68,
+   "words": [
+    745,
+    745
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 236,
+   "start": 480.94,
+   "end": 481.44,
+   "words": [
+    746,
+    747
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 237,
+   "start": 481.76,
+   "end": 481.96,
+   "words": [
+    748,
+    748
+   ],
+   "scribe": "speaker_2",
+   "key": "B",
+   "name": "Abhi's father",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 238,
+   "start": 482.62,
+   "end": 482.96,
+   "words": [
+    749,
+    749
+   ],
+   "scribe": "speaker_2",
+   "key": "B",
+   "name": "Abhi's father",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 239,
+   "start": 483.28,
+   "end": 483.64,
+   "words": [
+    750,
+    750
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 240,
+   "start": 484.52,
+   "end": 485.48,
+   "words": [
+    751,
+    754
+   ],
+   "scribe": "speaker_2",
+   "key": "B",
+   "name": "Abhi's father",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 241,
+   "start": 485.82,
+   "end": 486.96,
+   "words": [
+    755,
+    758
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 242,
+   "start": 488.04,
+   "end": 488.56,
+   "words": [
+    759,
+    759
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 243,
+   "start": 490.1,
+   "end": 490.34,
+   "words": [
+    760,
+    760
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 244,
+   "start": 491.36,
+   "end": 491.399,
+   "words": [
+    761,
+    761
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 245,
+   "start": 492.34,
+   "end": 492.62,
+   "words": [
+    762,
+    762
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 246,
+   "start": 492.98,
+   "end": 494.78,
+   "words": [
+    763,
+    766
+   ],
+   "scribe": "speaker_2",
+   "key": "B",
+   "name": "Abhi's father",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 247,
+   "start": 495.26,
+   "end": 496.98,
+   "words": [
+    767,
+    771
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 248,
+   "start": 499.18,
+   "end": 500.72,
+   "words": [
+    772,
+    776
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 249,
+   "start": 500.9,
+   "end": 501.3,
+   "words": [
+    777,
+    778
+   ],
+   "scribe": "speaker_2",
+   "key": "B",
+   "name": "Abhi's father",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 250,
+   "start": 501.72,
+   "end": 501.94,
+   "words": [
+    779,
+    779
+   ],
+   "scribe": "speaker_2",
+   "key": "B",
+   "name": "Abhi's father",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 251,
+   "start": 501.98,
+   "end": 502.58,
+   "words": [
+    780,
+    781
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 252,
+   "start": 503.9,
+   "end": 504.56,
+   "words": [
+    782,
+    782
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 253,
+   "start": 505.62,
+   "end": 505.8,
+   "words": [
+    783,
+    783
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 254,
+   "start": 513.08,
+   "end": 514.28,
+   "words": [
+    784,
+    785
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 255,
+   "start": 514.82,
+   "end": 515.72,
+   "words": [
+    786,
+    787
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 256,
+   "start": 516.36,
+   "end": 517.04,
+   "words": [
+    788,
+    790
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 257,
+   "start": 517.92,
+   "end": 518.62,
+   "words": [
+    791,
+    793
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 258,
+   "start": 519.4,
+   "end": 522.0,
+   "words": [
+    794,
+    799
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 259,
+   "start": 522.6,
+   "end": 522.98,
+   "words": [
+    800,
+    800
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 260,
+   "start": 524.44,
+   "end": 526.06,
+   "words": [
+    801,
+    805
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 261,
+   "start": 526.24,
+   "end": 526.94,
+   "words": [
+    806,
+    807
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 262,
+   "start": 527.74,
+   "end": 528.9,
+   "words": [
+    808,
+    810
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 263,
+   "start": 529.92,
+   "end": 532.18,
+   "words": [
+    811,
+    816
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 264,
+   "start": 533.58,
+   "end": 533.58,
+   "words": [
+    817,
+    817
+   ],
+   "scribe": "speaker_0",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 265,
+   "start": 533.62,
+   "end": 534.9,
+   "words": [
+    818,
+    823
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 266,
+   "start": 535.3,
+   "end": 535.54,
+   "words": [
+    824,
+    824
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 267,
+   "start": 548.74,
+   "end": 549.76,
+   "words": [
+    825,
+    828
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 268,
+   "start": 550.24,
+   "end": 551.36,
+   "words": [
+    829,
+    831
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 269,
+   "start": 551.58,
+   "end": 552.34,
+   "words": [
+    832,
+    833
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 270,
+   "start": 552.88,
+   "end": 554.08,
+   "words": [
+    834,
+    837
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 271,
+   "start": 554.48,
+   "end": 556.7,
+   "words": [
+    838,
+    844
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 272,
+   "start": 556.74,
+   "end": 557.52,
+   "words": [
+    845,
+    847
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 273,
+   "start": 557.64,
+   "end": 558.52,
+   "words": [
+    848,
+    850
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 274,
+   "start": 559.04,
+   "end": 559.6,
+   "words": [
+    851,
+    852
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 275,
+   "start": 562.84,
+   "end": 564.6,
+   "words": [
+    853,
+    856
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Sindhu",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 276,
+   "start": 565.52,
+   "end": 566.34,
+   "words": [
+    857,
+    859
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 277,
+   "start": 567.82,
+   "end": 569.66,
+   "words": [
+    860,
+    863
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Sindhu",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 278,
+   "start": 571.68,
+   "end": 572.06,
+   "words": [
+    864,
+    864
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 279,
+   "start": 573.74,
+   "end": 575.86,
+   "words": [
+    865,
+    867
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 280,
+   "start": 579.74,
+   "end": 580.16,
+   "words": [
+    868,
+    869
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 281,
+   "start": 581.9,
+   "end": 583.28,
+   "words": [
+    870,
+    873
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 282,
+   "start": 583.8,
+   "end": 584.06,
+   "words": [
+    874,
+    874
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 283,
+   "start": 587.0,
+   "end": 588.4,
+   "words": [
+    875,
+    878
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 284,
+   "start": 588.54,
+   "end": 589.04,
+   "words": [
+    879,
+    881
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 285,
+   "start": 589.1,
+   "end": 590.0,
+   "words": [
+    882,
+    885
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 286,
+   "start": 590.56,
+   "end": 590.88,
+   "words": [
+    886,
+    886
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 287,
+   "start": 591.5,
+   "end": 594.0,
+   "words": [
+    887,
+    893
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 288,
+   "start": 594.74,
+   "end": 595.1,
+   "words": [
+    894,
+    894
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 289,
+   "start": 595.56,
+   "end": 595.72,
+   "words": [
+    895,
+    895
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 290,
+   "start": 596.54,
+   "end": 597.06,
+   "words": [
+    896,
+    898
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 291,
+   "start": 598.1,
+   "end": 598.36,
+   "words": [
+    899,
+    899
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 292,
+   "start": 598.78,
+   "end": 601.08,
+   "words": [
+    900,
+    907
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 293,
+   "start": 601.98,
+   "end": 602.9,
+   "words": [
+    908,
+    910
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 294,
+   "start": 603.3,
+   "end": 604.56,
+   "words": [
+    911,
+    912
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 295,
+   "start": 605.86,
+   "end": 605.94,
+   "words": [
+    913,
+    913
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 296,
+   "start": 606.08,
+   "end": 606.56,
+   "words": [
+    914,
+    914
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 297,
+   "start": 607.36,
+   "end": 608.9,
+   "words": [
+    915,
+    919
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 298,
+   "start": 609.46,
+   "end": 609.74,
+   "words": [
+    920,
+    920
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 299,
+   "start": 610.72,
+   "end": 611.8,
+   "words": [
+    921,
+    922
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 300,
+   "start": 612.64,
+   "end": 613.76,
+   "words": [
+    923,
+    925
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 301,
+   "start": 614.1,
+   "end": 615.96,
+   "words": [
+    926,
+    930
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 302,
+   "start": 616.56,
+   "end": 619.339,
+   "words": [
+    931,
+    939
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 303,
+   "start": 619.52,
+   "end": 621.38,
+   "words": [
+    940,
+    943
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 304,
+   "start": 621.74,
+   "end": 622.06,
+   "words": [
+    944,
+    944
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 305,
+   "start": 622.68,
+   "end": 623.039,
+   "words": [
+    945,
+    945
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 306,
+   "start": 623.9,
+   "end": 624.92,
+   "words": [
+    946,
+    948
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Sindhu",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 307,
+   "start": 690.12,
+   "end": 690.68,
+   "words": [
+    949,
+    950
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 308,
+   "start": 700.28,
+   "end": 700.66,
+   "words": [
+    951,
+    951
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 309,
+   "start": 701.1,
+   "end": 702.64,
+   "words": [
+    952,
+    957
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 310,
+   "start": 703.28,
+   "end": 705.12,
+   "words": [
+    958,
+    962
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 311,
+   "start": 705.44,
+   "end": 706.66,
+   "words": [
+    963,
+    966
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 312,
+   "start": 708.42,
+   "end": 709.44,
+   "words": [
+    967,
+    969
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 313,
+   "start": 710.04,
+   "end": 712.38,
+   "words": [
+    970,
+    973
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 314,
+   "start": 715.18,
+   "end": 717.38,
+   "words": [
+    974,
+    982
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 315,
+   "start": 718.62,
+   "end": 720.0,
+   "words": [
+    983,
+    986
+   ],
+   "scribe": "speaker_3",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 316,
+   "start": 720.62,
+   "end": 721.68,
+   "words": [
+    987,
+    988
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 317,
+   "start": 722.22,
+   "end": 724.36,
+   "words": [
+    989,
+    994
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 318,
+   "start": 731.71,
+   "end": 732.35,
+   "words": [
+    995,
+    996
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 319,
+   "start": 733.15,
+   "end": 733.45,
+   "words": [
+    997,
+    998
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 320,
+   "start": 733.45,
+   "end": 733.97,
+   "words": [
+    999,
+    1000
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 321,
+   "start": 734.51,
+   "end": 735.43,
+   "words": [
+    1001,
+    1003
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 322,
+   "start": 736.51,
+   "end": 736.97,
+   "words": [
+    1004,
+    1004
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 323,
+   "start": 737.43,
+   "end": 738.11,
+   "words": [
+    1005,
+    1006
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 324,
+   "start": 742.63,
+   "end": 744.45,
+   "words": [
+    1007,
+    1010
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 325,
+   "start": 744.49,
+   "end": 745.21,
+   "words": [
+    1011,
+    1012
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 326,
+   "start": 746.33,
+   "end": 747.15,
+   "words": [
+    1013,
+    1015
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 327,
+   "start": 761.73,
+   "end": 762.43,
+   "words": [
+    1016,
+    1018
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 328,
+   "start": 763.45,
+   "end": 764.43,
+   "words": [
+    1019,
+    1021
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 329,
+   "start": 765.25,
+   "end": 766.31,
+   "words": [
+    1022,
+    1023
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 330,
+   "start": 767.53,
+   "end": 768.29,
+   "words": [
+    1024,
+    1026
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 331,
+   "start": 779.01,
+   "end": 779.03,
+   "words": [
+    1027,
+    1027
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 332,
+   "start": 779.07,
+   "end": 779.49,
+   "words": [
+    1028,
+    1028
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 333,
+   "start": 780.31,
+   "end": 780.91,
+   "words": [
+    1029,
+    1029
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 334,
+   "start": 781.71,
+   "end": 782.47,
+   "words": [
+    1030,
+    1032
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 335,
+   "start": 789.37,
+   "end": 789.71,
+   "words": [
+    1033,
+    1033
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 336,
+   "start": 790.37,
+   "end": 790.49,
+   "words": [
+    1034,
+    1034
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 337,
+   "start": 790.53,
+   "end": 791.37,
+   "words": [
+    1035,
+    1036
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 338,
+   "start": 792.91,
+   "end": 793.27,
+   "words": [
+    1037,
+    1037
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 339,
+   "start": 795.11,
+   "end": 798.51,
+   "words": [
+    1038,
+    1047
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 340,
+   "start": 799.81,
+   "end": 800.45,
+   "words": [
+    1048,
+    1049
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 341,
+   "start": 802.51,
+   "end": 802.79,
+   "words": [
+    1050,
+    1050
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 342,
+   "start": 803.65,
+   "end": 804.81,
+   "words": [
+    1051,
+    1052
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 343,
+   "start": 805.49,
+   "end": 806.11,
+   "words": [
+    1053,
+    1054
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 344,
+   "start": 806.93,
+   "end": 808.17,
+   "words": [
+    1055,
+    1057
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 345,
+   "start": 809.03,
+   "end": 809.43,
+   "words": [
+    1058,
+    1058
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 346,
+   "start": 809.79,
+   "end": 811.07,
+   "words": [
+    1059,
+    1062
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 347,
+   "start": 811.77,
+   "end": 812.49,
+   "words": [
+    1063,
+    1064
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 348,
+   "start": 813.19,
+   "end": 815.15,
+   "words": [
+    1065,
+    1068
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 349,
+   "start": 816.73,
+   "end": 817.81,
+   "words": [
+    1069,
+    1071
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 350,
+   "start": 819.03,
+   "end": 821.17,
+   "words": [
+    1072,
+    1076
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 351,
+   "start": 825.73,
+   "end": 827.03,
+   "words": [
+    1077,
+    1080
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 352,
+   "start": 828.79,
+   "end": 829.73,
+   "words": [
+    1081,
+    1082
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 353,
+   "start": 870.65,
+   "end": 871.99,
+   "words": [
+    1083,
+    1087
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 354,
+   "start": 872.63,
+   "end": 872.91,
+   "words": [
+    1088,
+    1088
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 355,
+   "start": 873.09,
+   "end": 873.35,
+   "words": [
+    1089,
+    1089
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 356,
+   "start": 874.47,
+   "end": 876.21,
+   "words": [
+    1090,
+    1095
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 357,
+   "start": 876.53,
+   "end": 877.09,
+   "words": [
+    1096,
+    1097
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 358,
+   "start": 877.67,
+   "end": 878.61,
+   "words": [
+    1098,
+    1099
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 359,
+   "start": 880.29,
+   "end": 881.81,
+   "words": [
+    1100,
+    1104
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 360,
+   "start": 882.33,
+   "end": 882.75,
+   "words": [
+    1105,
+    1105
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 361,
+   "start": 882.81,
+   "end": 883.05,
+   "words": [
+    1106,
+    1106
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Meera",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 362,
+   "start": 883.35,
+   "end": 883.57,
+   "words": [
+    1107,
+    1107
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 363,
+   "start": 895.35,
+   "end": 895.63,
+   "words": [
+    1108,
+    1108
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 364,
+   "start": 896.95,
+   "end": 897.99,
+   "words": [
+    1109,
+    1112
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 365,
+   "start": 898.89,
+   "end": 899.03,
+   "words": [
+    1113,
+    1113
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 366,
+   "start": 900.31,
+   "end": 901.29,
+   "words": [
+    1114,
+    1115
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 367,
+   "start": 902.17,
+   "end": 904.45,
+   "words": [
+    1116,
+    1121
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 368,
+   "start": 905.61,
+   "end": 906.63,
+   "words": [
+    1122,
+    1124
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 369,
+   "start": 908.47,
+   "end": 911.25,
+   "words": [
+    1125,
+    1132
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 370,
+   "start": 912.05,
+   "end": 913.97,
+   "words": [
+    1133,
+    1137
+   ],
+   "scribe": "speaker_0",
+   "key": null,
+   "name": null,
+   "confidence": 0.0,
+   "part": null,
+   "from_margin": false
+  },
+  {
+   "id": 371,
+   "start": 915.21,
+   "end": 917.23,
+   "words": [
+    1138,
+    1143
+   ],
+   "scribe": "speaker_0",
+   "key": null,
+   "name": null,
+   "confidence": 0.0,
+   "part": null,
+   "from_margin": false
+  },
+  {
+   "id": 372,
+   "start": 918.71,
+   "end": 923.47,
+   "words": [
+    1144,
+    1157
+   ],
+   "scribe": "speaker_0",
+   "key": null,
+   "name": null,
+   "confidence": 0.0,
+   "part": null,
+   "from_margin": false
+  },
+  {
+   "id": 373,
+   "start": 924.05,
+   "end": 924.71,
+   "words": [
+    1158,
+    1158
+   ],
+   "scribe": "speaker_0",
+   "key": null,
+   "name": null,
+   "confidence": 0.0,
+   "part": null,
+   "from_margin": false
+  },
+  {
+   "id": 374,
+   "start": 925.47,
+   "end": 926.77,
+   "words": [
+    1159,
+    1163
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 375,
+   "start": 928.09,
+   "end": 929.83,
+   "words": [
+    1164,
+    1166
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 376,
+   "start": 931.05,
+   "end": 931.21,
+   "words": [
+    1167,
+    1167
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 377,
+   "start": 932.85,
+   "end": 934.27,
+   "words": [
+    1168,
+    1171
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 378,
+   "start": 935.05,
+   "end": 938.35,
+   "words": [
+    1172,
+    1180
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 379,
+   "start": 939.69,
+   "end": 941.05,
+   "words": [
+    1181,
+    1187
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 380,
+   "start": 942.19,
+   "end": 944.99,
+   "words": [
+    1188,
+    1193
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 381,
+   "start": 947.29,
+   "end": 950.41,
+   "words": [
+    1194,
+    1201
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 382,
+   "start": 952.51,
+   "end": 952.67,
+   "words": [
+    1202,
+    1202
+   ],
+   "scribe": "speaker_0",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 383,
+   "start": 953.19,
+   "end": 955.71,
+   "words": [
+    1203,
+    1210
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 384,
+   "start": 956.73,
+   "end": 956.85,
+   "words": [
+    1211,
+    1211
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 385,
+   "start": 958.53,
+   "end": 959.77,
+   "words": [
+    1212,
+    1216
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Harshitha",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 386,
+   "start": 959.77,
+   "end": 959.89,
+   "words": [
+    1217,
+    1217
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 387,
+   "start": 960.17,
+   "end": 960.27,
+   "words": [
+    1218,
+    1218
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 388,
+   "start": 976.05,
+   "end": 978.13,
+   "words": [
+    1219,
+    1224
+   ],
+   "scribe": "speaker_3",
+   "key": "F",
+   "name": "Abhi's friend",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 389,
+   "start": 978.47,
+   "end": 979.63,
+   "words": [
+    1225,
+    1228
+   ],
+   "scribe": "speaker_3",
+   "key": "F",
+   "name": "Abhi's friend",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 390,
+   "start": 979.71,
+   "end": 980.33,
+   "words": [
+    1229,
+    1231
+   ],
+   "scribe": "speaker_3",
+   "key": "F",
+   "name": "Abhi's friend",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 391,
+   "start": 980.95,
+   "end": 982.03,
+   "words": [
+    1232,
+    1233
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 392,
+   "start": 982.31,
+   "end": 983.49,
+   "words": [
+    1234,
+    1237
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 393,
+   "start": 984.05,
+   "end": 985.53,
+   "words": [
+    1238,
+    1241
+   ],
+   "scribe": "speaker_3",
+   "key": "F",
+   "name": "Abhi's friend",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 394,
+   "start": 986.97,
+   "end": 990.449,
+   "words": [
+    1242,
+    1249
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 395,
+   "start": 990.77,
+   "end": 993.23,
+   "words": [
+    1250,
+    1256
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 396,
+   "start": 994.23,
+   "end": 995.47,
+   "words": [
+    1257,
+    1261
+   ],
+   "scribe": "speaker_3",
+   "key": "F",
+   "name": "Abhi's friend",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 397,
+   "start": 996.03,
+   "end": 998.39,
+   "words": [
+    1262,
+    1268
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 398,
+   "start": 999.27,
+   "end": 1000.13,
+   "words": [
+    1269,
+    1271
+   ],
+   "scribe": "speaker_3",
+   "key": "F",
+   "name": "Abhi's friend",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 399,
+   "start": 1002.11,
+   "end": 1004.93,
+   "words": [
+    1272,
+    1280
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 400,
+   "start": 1005.79,
+   "end": 1007.63,
+   "words": [
+    1281,
+    1285
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 401,
+   "start": 1008.33,
+   "end": 1010.79,
+   "words": [
+    1286,
+    1291
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 402,
+   "start": 1012.37,
+   "end": 1015.51,
+   "words": [
+    1292,
+    1301
+   ],
+   "scribe": "speaker_3",
+   "key": "F",
+   "name": "Abhi's friend",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 403,
+   "start": 1016.11,
+   "end": 1016.13,
+   "words": [
+    1302,
+    1302
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 404,
+   "start": 1016.15,
+   "end": 1016.39,
+   "words": [
+    1303,
+    1303
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 405,
+   "start": 1017.15,
+   "end": 1019.25,
+   "words": [
+    1304,
+    1309
+   ],
+   "scribe": "speaker_3",
+   "key": "F",
+   "name": "Abhi's friend",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 406,
+   "start": 1019.81,
+   "end": 1023.09,
+   "words": [
+    1310,
+    1320
+   ],
+   "scribe": "speaker_3",
+   "key": "F",
+   "name": "Abhi's friend",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 407,
+   "start": 1023.47,
+   "end": 1027.65,
+   "words": [
+    1321,
+    1339
+   ],
+   "scribe": "speaker_3",
+   "key": "F",
+   "name": "Abhi's friend",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 408,
+   "start": 1029.55,
+   "end": 1029.77,
+   "words": [
+    1340,
+    1340
+   ],
+   "scribe": "speaker_3",
+   "key": "F",
+   "name": "Abhi's friend",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 409,
+   "start": 1031.59,
+   "end": 1031.67,
+   "words": [
+    1341,
+    1341
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 410,
+   "start": 1031.71,
+   "end": 1031.89,
+   "words": [
+    1342,
+    1342
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Abhi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 411,
+   "start": 1032.81,
+   "end": 1033.19,
+   "words": [
+    1343,
+    1343
+   ],
+   "scribe": "speaker_3",
+   "key": "F",
+   "name": "Abhi's friend",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 412,
+   "start": 1040.79,
+   "end": 1041.21,
+   "words": [
+    1344,
+    1344
+   ],
+   "scribe": "speaker_2",
+   "key": "B",
+   "name": "Abhi's father",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 413,
+   "start": 1041.45,
+   "end": 1042.71,
+   "words": [
+    1345,
+    1348
+   ],
+   "scribe": "speaker_3",
+   "key": "G",
+   "name": "Informant",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 414,
+   "start": 1043.25,
+   "end": 1044.17,
+   "words": [
+    1349,
+    1352
+   ],
+   "scribe": "speaker_2",
+   "key": "H",
+   "name": "Shopkeeper",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 415,
+   "start": 1045.15,
+   "end": 1045.45,
+   "words": [
+    1353,
+    1353
+   ],
+   "scribe": "speaker_3",
+   "key": "B",
+   "name": "Abhi's father",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 416,
+   "start": 1046.85,
+   "end": 1048.17,
+   "words": [
+    1354,
+    1359
+   ],
+   "scribe": "speaker_2",
+   "key": "H",
+   "name": "Shopkeeper",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 417,
+   "start": 1049.09,
+   "end": 1051.03,
+   "words": [
+    1360,
+    1364
+   ],
+   "scribe": "speaker_3",
+   "key": "B",
+   "name": "Abhi's father",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  }
+ ],
+ "coverage": {
+  "n_lines": 418,
+  "assigned": 414,
+  "unknown": 0,
+  "missing": 4,
+  "from_margin": 0,
+  "duplicate_ids": 0,
+  "invalid_items": [],
+  "bad_keys": []
+ },
+ "cost": {
+  "projected": {
+   "chunks": [
+    {
+     "part": 1,
+     "core": [
+      0,
+      101
+     ],
+     "shown": [
+      0,
+      111
+     ],
+     "input_tokens": 3593,
+     "output_tokens": 3500,
+     "max_output_tokens": 8576,
+     "inr": 1.42,
+     "worst_case_inr": 3.14
+    },
+    {
+     "part": 2,
+     "core": [
+      102,
+      218
+     ],
+     "shown": [
+      92,
+      228
+     ],
+     "input_tokens": 4128,
+     "output_tokens": 3875,
+     "max_output_tokens": 9576,
+     "inr": 1.59,
+     "worst_case_inr": 3.51
+    },
+    {
+     "part": 3,
+     "core": [
+      219,
+      306
+     ],
+     "shown": [
+      209,
+      316
+     ],
+     "input_tokens": 3100,
+     "output_tokens": 3440,
+     "max_output_tokens": 8416,
+     "inr": 1.37,
+     "worst_case_inr": 3.05
+    },
+    {
+     "part": 4,
+     "core": [
+      307,
+      417
+     ],
+     "shown": [
+      297,
+      417
+     ],
+     "input_tokens": 3946,
+     "output_tokens": 3635,
+     "max_output_tokens": 8936,
+     "inr": 1.49,
+     "worst_case_inr": 3.28
+    }
+   ],
+   "inr": 5.87,
+   "worst_case_inr": 12.98
+  },
+  "actual": {
+   "inr": 2.27,
+   "chunks_ok": 4,
+   "chunks": 4
+  }
+ },
+ "stopped": null,
+ "failures": [],
+ "transcript": "scribe_dataset\\fjGrX8aBVAc\\fjGrX8aBVAc_scribe_transcript.json",
+ "asr_fix": true
+}

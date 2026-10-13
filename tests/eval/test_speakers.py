@@ -97,6 +97,13 @@ class TestScore(unittest.TestCase):
         self.assertEqual(S.match_name("Asha Reddy", t), "Asha")
         self.assertIsNone(S.match_name("Asha's boss", t))
         self.assertIsNone(S.match_name(None, t))
+        t = S.alias_table([{"name": "Ekta"}, {"name": "Harshita"}, {"name": "Coworker (Sindhu)"},
+                           {"name": "Pratyusha"}])
+        self.assertEqual(S.match_name("Ektha", t), "Ekta")
+        self.assertEqual(S.match_name("Harshitha", t), "Harshita")
+        self.assertEqual(S.match_name("Sindhu", t), "Coworker (Sindhu)")
+        self.assertEqual(S.match_name("Pratyushaa", t), "Pratyusha")
+        self.assertIsNone(S.match_name("Pratheeksha", t))                     # a different name, not a spelling
 
     def test_overall_pools_lines(self):
         a = {"video_id": "v1", "systems": {"x": {"one_to_one": {k: {"n": 2, "correct": 1} for k in

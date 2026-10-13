@@ -1,0 +1,4041 @@
+{
+ "video_id": "H41fJJJYTqo",
+ "schema": "speaker_fix/2",
+ "model": "gemini-3.8-flash",
+ "params": {
+  "thinking_level": "low"
+ },
+ "prompt": "2+38f3542f",
+ "chunks": [
+  {
+   "part": 1,
+   "core": [
+    0,
+    79
+   ],
+   "shown": [
+    0,
+    89
+   ],
+   "projected_inr": 1.3,
+   "ok": true,
+   "inr": 0.435,
+   "input_tokens": 2873,
+   "output_tokens": 715,
+   "thought_tokens": 0,
+   "missing_in_chunk": 0
+  },
+  {
+   "part": 2,
+   "core": [
+    80,
+    162
+   ],
+   "shown": [
+    70,
+    172
+   ],
+   "projected_inr": 1.41,
+   "ok": true,
+   "inr": 0.491,
+   "input_tokens": 3458,
+   "output_tokens": 762,
+   "thought_tokens": 0,
+   "missing_in_chunk": 0
+  },
+  {
+   "part": 3,
+   "core": [
+    163,
+    254
+   ],
+   "shown": [
+    153,
+    254
+   ],
+   "projected_inr": 1.43,
+   "ok": true,
+   "inr": 0.53,
+   "input_tokens": 3802,
+   "output_tokens": 809,
+   "thought_tokens": 0,
+   "missing_in_chunk": 0
+  }
+ ],
+ "cast": [
+  {
+   "key": "A",
+   "name": "Akshara",
+   "desc": "Delivery girl studying for group exams",
+   "aka": [],
+   "n_lines": 84,
+   "n_words": 318
+  },
+  {
+   "key": "B",
+   "name": "Ektha",
+   "desc": "Akshara's supportive roommate",
+   "aka": [],
+   "n_lines": 50,
+   "n_words": 205
+  },
+  {
+   "key": "C",
+   "name": "friend on phone",
+   "desc": "Akshara's fellow delivery worker/friend on phone",
+   "aka": [],
+   "n_lines": 14,
+   "n_words": 66
+  },
+  {
+   "key": "D",
+   "name": "roommate",
+   "desc": "Arrogant roommate embarrassed by delivery bags",
+   "aka": [],
+   "n_lines": 21,
+   "n_words": 79
+  },
+  {
+   "key": "E",
+   "name": "Akshara's mother",
+   "desc": "Akshara's mother in flashback",
+   "aka": [],
+   "n_lines": 5,
+   "n_words": 23
+  },
+  {
+   "key": "F",
+   "name": "Meenakshi",
+   "desc": "Akshara's good friend / classmate",
+   "aka": [],
+   "n_lines": 51,
+   "n_words": 310
+  },
+  {
+   "key": "G",
+   "name": "roommate 2",
+   "desc": "Snobbish friend/roommate of D",
+   "aka": [],
+   "n_lines": 4,
+   "n_words": 27
+  },
+  {
+   "key": "H",
+   "name": "Stalker guy",
+   "desc": "Guy persistently pursuing Meenakshi",
+   "aka": [],
+   "n_lines": 15,
+   "n_words": 140
+  },
+  {
+   "key": "I",
+   "name": "Customer / Manager",
+   "desc": "Rude man receiving banquet hall order",
+   "aka": [],
+   "n_lines": 11,
+   "n_words": 57
+  }
+ ],
+ "lines": [
+  {
+   "id": 0,
+   "start": 28.96,
+   "end": 29.24,
+   "words": [
+    0,
+    0
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Ektha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 1,
+   "start": 32.32,
+   "end": 33.72,
+   "words": [
+    1,
+    2
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 2,
+   "start": 34.0,
+   "end": 34.98,
+   "words": [
+    3,
+    4
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Ektha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 3,
+   "start": 43.34,
+   "end": 43.42,
+   "words": [
+    5,
+    6
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Ektha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 4,
+   "start": 43.44,
+   "end": 43.5,
+   "words": [
+    7,
+    7
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 5,
+   "start": 43.54,
+   "end": 43.66,
+   "words": [
+    8,
+    8
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Ektha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 6,
+   "start": 43.78,
+   "end": 43.88,
+   "words": [
+    9,
+    9
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 7,
+   "start": 44.56,
+   "end": 45.8,
+   "words": [
+    10,
+    14
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Ektha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 8,
+   "start": 46.3,
+   "end": 47.46,
+   "words": [
+    15,
+    17
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 9,
+   "start": 48.38,
+   "end": 48.54,
+   "words": [
+    18,
+    19
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 10,
+   "start": 58.82,
+   "end": 59.88,
+   "words": [
+    20,
+    24
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Ektha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 11,
+   "start": 60.5,
+   "end": 64.14,
+   "words": [
+    25,
+    33
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 12,
+   "start": 64.459,
+   "end": 67.3,
+   "words": [
+    34,
+    42
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 13,
+   "start": 67.52,
+   "end": 67.58,
+   "words": [
+    43,
+    43
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Ektha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 14,
+   "start": 74.7,
+   "end": 77.82,
+   "words": [
+    44,
+    51
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Ektha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 15,
+   "start": 78.36,
+   "end": 80.22,
+   "words": [
+    52,
+    54
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Ektha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 16,
+   "start": 92.28,
+   "end": 92.54,
+   "words": [
+    55,
+    56
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 17,
+   "start": 92.94,
+   "end": 93.72,
+   "words": [
+    57,
+    58
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "friend on phone",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 18,
+   "start": 94.02,
+   "end": 94.78,
+   "words": [
+    59,
+    60
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 19,
+   "start": 95.14,
+   "end": 96.34,
+   "words": [
+    61,
+    64
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "friend on phone",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 20,
+   "start": 96.74,
+   "end": 98.12,
+   "words": [
+    65,
+    69
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 21,
+   "start": 98.32,
+   "end": 100.06,
+   "words": [
+    70,
+    75
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 22,
+   "start": 100.34,
+   "end": 100.66,
+   "words": [
+    76,
+    76
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "friend on phone",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 23,
+   "start": 100.98,
+   "end": 102.88,
+   "words": [
+    77,
+    81
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 24,
+   "start": 103.24,
+   "end": 105.66,
+   "words": [
+    82,
+    90
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "friend on phone",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 25,
+   "start": 106.2,
+   "end": 106.38,
+   "words": [
+    91,
+    91
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 26,
+   "start": 107.2,
+   "end": 111.46,
+   "words": [
+    92,
+    103
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 27,
+   "start": 111.98,
+   "end": 115.88,
+   "words": [
+    104,
+    114
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "friend on phone",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 28,
+   "start": 117.0,
+   "end": 117.56,
+   "words": [
+    115,
+    116
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 29,
+   "start": 118.16,
+   "end": 120.62,
+   "words": [
+    117,
+    125
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 30,
+   "start": 120.94,
+   "end": 123.14,
+   "words": [
+    126,
+    133
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "friend on phone",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 31,
+   "start": 123.68,
+   "end": 125.66,
+   "words": [
+    134,
+    138
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 32,
+   "start": 126.08,
+   "end": 126.84,
+   "words": [
+    139,
+    141
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "friend on phone",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 33,
+   "start": 127.1,
+   "end": 127.1,
+   "words": [
+    142,
+    142
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 34,
+   "start": 128.96,
+   "end": 129.259,
+   "words": [
+    143,
+    143
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "roommate",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 35,
+   "start": 130.139,
+   "end": 130.9,
+   "words": [
+    144,
+    146
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "roommate",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 36,
+   "start": 160.34,
+   "end": 160.46,
+   "words": [
+    147,
+    147
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 37,
+   "start": 160.46,
+   "end": 161.56,
+   "words": [
+    148,
+    150
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "roommate",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 38,
+   "start": 162.26,
+   "end": 163.14,
+   "words": [
+    151,
+    151
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 39,
+   "start": 163.54,
+   "end": 163.98,
+   "words": [
+    152,
+    152
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "roommate",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 40,
+   "start": 164.08,
+   "end": 165.18,
+   "words": [
+    153,
+    154
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 41,
+   "start": 165.92,
+   "end": 165.94,
+   "words": [
+    155,
+    155
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "roommate",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 42,
+   "start": 166.78,
+   "end": 168.4,
+   "words": [
+    156,
+    160
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "roommate",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 43,
+   "start": 171.6,
+   "end": 171.6,
+   "words": [
+    161,
+    161
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 44,
+   "start": 171.62,
+   "end": 171.82,
+   "words": [
+    162,
+    162
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "roommate",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 45,
+   "start": 171.9,
+   "end": 171.94,
+   "words": [
+    163,
+    163
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 46,
+   "start": 172.48,
+   "end": 175.22,
+   "words": [
+    164,
+    172
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "roommate",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 47,
+   "start": 175.74,
+   "end": 177.28,
+   "words": [
+    173,
+    179
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "roommate",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 48,
+   "start": 177.8,
+   "end": 179.8,
+   "words": [
+    180,
+    183
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 49,
+   "start": 179.88,
+   "end": 180.72,
+   "words": [
+    184,
+    185
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "roommate",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 50,
+   "start": 181.62,
+   "end": 184.24,
+   "words": [
+    186,
+    194
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "roommate",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 51,
+   "start": 185.44,
+   "end": 185.74,
+   "words": [
+    195,
+    196
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 52,
+   "start": 186.52,
+   "end": 189.28,
+   "words": [
+    197,
+    207
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 53,
+   "start": 189.82,
+   "end": 191.0,
+   "words": [
+    208,
+    211
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 54,
+   "start": 191.44,
+   "end": 194.08,
+   "words": [
+    212,
+    220
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 55,
+   "start": 194.28,
+   "end": 195.26,
+   "words": [
+    221,
+    223
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "roommate",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 56,
+   "start": 195.68,
+   "end": 197.4,
+   "words": [
+    224,
+    228
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "roommate",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 57,
+   "start": 197.7,
+   "end": 198.86,
+   "words": [
+    229,
+    232
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "roommate",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 58,
+   "start": 199.26,
+   "end": 200.18,
+   "words": [
+    233,
+    235
+   ],
+   "scribe": "speaker_1",
+   "key": "B",
+   "name": "Ektha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 59,
+   "start": 204.84,
+   "end": 204.84,
+   "words": [
+    236,
+    236
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 60,
+   "start": 204.86,
+   "end": 204.88,
+   "words": [
+    237,
+    237
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Ektha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 61,
+   "start": 204.9,
+   "end": 205.8,
+   "words": [
+    238,
+    240
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 62,
+   "start": 206.14,
+   "end": 208.42,
+   "words": [
+    241,
+    245
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Ektha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 63,
+   "start": 208.86,
+   "end": 210.22,
+   "words": [
+    246,
+    249
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Ektha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 64,
+   "start": 210.62,
+   "end": 210.92,
+   "words": [
+    250,
+    251
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Ektha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 65,
+   "start": 211.58,
+   "end": 213.02,
+   "words": [
+    252,
+    255
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 66,
+   "start": 213.34,
+   "end": 214.42,
+   "words": [
+    256,
+    259
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 67,
+   "start": 214.48,
+   "end": 214.66,
+   "words": [
+    260,
+    260
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Ektha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 68,
+   "start": 215.92,
+   "end": 216.82,
+   "words": [
+    261,
+    262
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Ektha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 69,
+   "start": 216.94,
+   "end": 218.74,
+   "words": [
+    263,
+    267
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 70,
+   "start": 219.12,
+   "end": 220.6,
+   "words": [
+    268,
+    272
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 71,
+   "start": 221.38,
+   "end": 221.82,
+   "words": [
+    273,
+    274
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Ektha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 72,
+   "start": 222.6,
+   "end": 222.6,
+   "words": [
+    275,
+    275
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Ektha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 73,
+   "start": 222.7,
+   "end": 222.84,
+   "words": [
+    276,
+    276
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 74,
+   "start": 223.96,
+   "end": 225.66,
+   "words": [
+    277,
+    282
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 75,
+   "start": 226.28,
+   "end": 227.34,
+   "words": [
+    283,
+    285
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Ektha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 76,
+   "start": 228.34,
+   "end": 228.68,
+   "words": [
+    286,
+    286
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 77,
+   "start": 229.52,
+   "end": 231.26,
+   "words": [
+    287,
+    291
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 78,
+   "start": 231.72,
+   "end": 232.1,
+   "words": [
+    292,
+    294
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 79,
+   "start": 232.1,
+   "end": 232.12,
+   "words": [
+    295,
+    295
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Ektha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 80,
+   "start": 254.44,
+   "end": 254.46,
+   "words": [
+    296,
+    296
+   ],
+   "scribe": "speaker_0",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 81,
+   "start": 254.48,
+   "end": 255.86,
+   "words": [
+    297,
+    300
+   ],
+   "scribe": "speaker_1",
+   "key": "E",
+   "name": "Akshara's mother",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 82,
+   "start": 256.019,
+   "end": 257.3,
+   "words": [
+    301,
+    305
+   ],
+   "scribe": "speaker_1",
+   "key": "E",
+   "name": "Akshara's mother",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 83,
+   "start": 257.62,
+   "end": 259.519,
+   "words": [
+    306,
+    311
+   ],
+   "scribe": "speaker_0",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 84,
+   "start": 259.92,
+   "end": 260.88,
+   "words": [
+    312,
+    314
+   ],
+   "scribe": "speaker_1",
+   "key": "E",
+   "name": "Akshara's mother",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 85,
+   "start": 261.019,
+   "end": 262.32,
+   "words": [
+    315,
+    318
+   ],
+   "scribe": "speaker_1",
+   "key": "E",
+   "name": "Akshara's mother",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 86,
+   "start": 262.44,
+   "end": 265.72,
+   "words": [
+    319,
+    328
+   ],
+   "scribe": "speaker_0",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 87,
+   "start": 266.12,
+   "end": 268.06,
+   "words": [
+    329,
+    335
+   ],
+   "scribe": "speaker_1",
+   "key": "E",
+   "name": "Akshara's mother",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 88,
+   "start": 268.52,
+   "end": 270.36,
+   "words": [
+    336,
+    341
+   ],
+   "scribe": "speaker_0",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 89,
+   "start": 270.66,
+   "end": 271.94,
+   "words": [
+    342,
+    345
+   ],
+   "scribe": "speaker_0",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 90,
+   "start": 282.0,
+   "end": 282.22,
+   "words": [
+    346,
+    346
+   ],
+   "scribe": "speaker_1",
+   "key": "F",
+   "name": "Meenakshi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 91,
+   "start": 283.46,
+   "end": 286.1,
+   "words": [
+    347,
+    353
+   ],
+   "scribe": "speaker_1",
+   "key": "F",
+   "name": "Meenakshi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 92,
+   "start": 286.1,
+   "end": 286.1,
+   "words": [
+    354,
+    354
+   ],
+   "scribe": "speaker_0",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 93,
+   "start": 289.5,
+   "end": 289.72,
+   "words": [
+    355,
+    355
+   ],
+   "scribe": "speaker_0",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 94,
+   "start": 290.98,
+   "end": 292.08,
+   "words": [
+    356,
+    358
+   ],
+   "scribe": "speaker_1",
+   "key": "F",
+   "name": "Meenakshi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 95,
+   "start": 292.44,
+   "end": 292.5,
+   "words": [
+    359,
+    359
+   ],
+   "scribe": "speaker_0",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 96,
+   "start": 293.68,
+   "end": 294.2,
+   "words": [
+    360,
+    361
+   ],
+   "scribe": "speaker_0",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 97,
+   "start": 295.28,
+   "end": 297.1,
+   "words": [
+    362,
+    365
+   ],
+   "scribe": "speaker_1",
+   "key": "F",
+   "name": "Meenakshi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 98,
+   "start": 298.06,
+   "end": 298.9,
+   "words": [
+    366,
+    367
+   ],
+   "scribe": "speaker_0",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 99,
+   "start": 299.98,
+   "end": 301.88,
+   "words": [
+    368,
+    373
+   ],
+   "scribe": "speaker_1",
+   "key": "F",
+   "name": "Meenakshi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 100,
+   "start": 301.94,
+   "end": 303.34,
+   "words": [
+    374,
+    378
+   ],
+   "scribe": "speaker_1",
+   "key": "F",
+   "name": "Meenakshi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 101,
+   "start": 305.24,
+   "end": 306.96,
+   "words": [
+    379,
+    384
+   ],
+   "scribe": "speaker_1",
+   "key": "F",
+   "name": "Meenakshi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 102,
+   "start": 307.84,
+   "end": 309.48,
+   "words": [
+    385,
+    389
+   ],
+   "scribe": "speaker_1",
+   "key": "F",
+   "name": "Meenakshi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 103,
+   "start": 309.74,
+   "end": 311.1,
+   "words": [
+    390,
+    394
+   ],
+   "scribe": "speaker_1",
+   "key": "F",
+   "name": "Meenakshi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 104,
+   "start": 312.34,
+   "end": 314.56,
+   "words": [
+    395,
+    399
+   ],
+   "scribe": "speaker_0",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 105,
+   "start": 314.66,
+   "end": 317.88,
+   "words": [
+    400,
+    406
+   ],
+   "scribe": "speaker_1",
+   "key": "F",
+   "name": "Meenakshi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 106,
+   "start": 318.58,
+   "end": 319.94,
+   "words": [
+    407,
+    410
+   ],
+   "scribe": "speaker_1",
+   "key": "F",
+   "name": "Meenakshi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 107,
+   "start": 321.58,
+   "end": 322.68,
+   "words": [
+    411,
+    413
+   ],
+   "scribe": "speaker_0",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 108,
+   "start": 323.16,
+   "end": 323.9,
+   "words": [
+    414,
+    415
+   ],
+   "scribe": "speaker_1",
+   "key": "F",
+   "name": "Meenakshi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 109,
+   "start": 324.42,
+   "end": 327.74,
+   "words": [
+    416,
+    424
+   ],
+   "scribe": "speaker_1",
+   "key": "F",
+   "name": "Meenakshi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 110,
+   "start": 328.26,
+   "end": 331.72,
+   "words": [
+    425,
+    433
+   ],
+   "scribe": "speaker_1",
+   "key": "F",
+   "name": "Meenakshi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 111,
+   "start": 334.08,
+   "end": 334.72,
+   "words": [
+    434,
+    435
+   ],
+   "scribe": "speaker_1",
+   "key": "F",
+   "name": "Meenakshi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 112,
+   "start": 335.48,
+   "end": 337.62,
+   "words": [
+    436,
+    442
+   ],
+   "scribe": "speaker_1",
+   "key": "F",
+   "name": "Meenakshi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 113,
+   "start": 339.8,
+   "end": 341.88,
+   "words": [
+    443,
+    448
+   ],
+   "scribe": "speaker_1",
+   "key": "F",
+   "name": "Meenakshi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 114,
+   "start": 344.44,
+   "end": 344.56,
+   "words": [
+    449,
+    449
+   ],
+   "scribe": "speaker_0",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 115,
+   "start": 346.28,
+   "end": 347.52,
+   "words": [
+    450,
+    453
+   ],
+   "scribe": "speaker_1",
+   "key": "F",
+   "name": "Meenakshi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 116,
+   "start": 347.86,
+   "end": 348.0,
+   "words": [
+    454,
+    454
+   ],
+   "scribe": "speaker_0",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 117,
+   "start": 351.88,
+   "end": 353.06,
+   "words": [
+    455,
+    458
+   ],
+   "scribe": "speaker_0",
+   "key": "F",
+   "name": "Meenakshi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 118,
+   "start": 359.56,
+   "end": 361.02,
+   "words": [
+    459,
+    461
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "roommate",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 119,
+   "start": 361.776,
+   "end": 367.916,
+   "words": [
+    462,
+    475
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "roommate 2",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 120,
+   "start": 368.176,
+   "end": 369.856,
+   "words": [
+    476,
+    479
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "roommate 2",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 121,
+   "start": 370.236,
+   "end": 371.316,
+   "words": [
+    480,
+    482
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "roommate 2",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 122,
+   "start": 371.796,
+   "end": 374.616,
+   "words": [
+    483,
+    488
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "roommate 2",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 123,
+   "start": 375.276,
+   "end": 375.916,
+   "words": [
+    489,
+    490
+   ],
+   "scribe": "speaker_1",
+   "key": "D",
+   "name": "roommate",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 124,
+   "start": 376.556,
+   "end": 379.516,
+   "words": [
+    491,
+    498
+   ],
+   "scribe": "speaker_1",
+   "key": "D",
+   "name": "roommate",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 125,
+   "start": 379.576,
+   "end": 380.376,
+   "words": [
+    499,
+    500
+   ],
+   "scribe": "speaker_1",
+   "key": "D",
+   "name": "roommate",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 126,
+   "start": 385.236,
+   "end": 386.656,
+   "words": [
+    501,
+    503
+   ],
+   "scribe": "speaker_1",
+   "key": "D",
+   "name": "roommate",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 127,
+   "start": 394.576,
+   "end": 397.336,
+   "words": [
+    504,
+    509
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 128,
+   "start": 397.616,
+   "end": 399.016,
+   "words": [
+    510,
+    513
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 129,
+   "start": 399.756,
+   "end": 402.076,
+   "words": [
+    514,
+    520
+   ],
+   "scribe": "speaker_1",
+   "key": "B",
+   "name": "Ektha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 130,
+   "start": 408.396,
+   "end": 408.416,
+   "words": [
+    521,
+    521
+   ],
+   "scribe": "speaker_1",
+   "key": "B",
+   "name": "Ektha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 131,
+   "start": 408.456,
+   "end": 409.756,
+   "words": [
+    522,
+    524
+   ],
+   "scribe": "speaker_1",
+   "key": "B",
+   "name": "Ektha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 132,
+   "start": 410.356,
+   "end": 410.816,
+   "words": [
+    525,
+    525
+   ],
+   "scribe": "speaker_1",
+   "key": "B",
+   "name": "Ektha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 133,
+   "start": 410.876,
+   "end": 411.156,
+   "words": [
+    526,
+    526
+   ],
+   "scribe": "speaker_1",
+   "key": "B",
+   "name": "Ektha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 134,
+   "start": 411.436,
+   "end": 416.956,
+   "words": [
+    527,
+    540
+   ],
+   "scribe": "speaker_1",
+   "key": "B",
+   "name": "Ektha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 135,
+   "start": 417.156,
+   "end": 422.236,
+   "words": [
+    541,
+    552
+   ],
+   "scribe": "speaker_1",
+   "key": "B",
+   "name": "Ektha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 136,
+   "start": 422.436,
+   "end": 425.556,
+   "words": [
+    553,
+    561
+   ],
+   "scribe": "speaker_1",
+   "key": "B",
+   "name": "Ektha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 137,
+   "start": 426.016,
+   "end": 427.176,
+   "words": [
+    562,
+    566
+   ],
+   "scribe": "speaker_1",
+   "key": "B",
+   "name": "Ektha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 138,
+   "start": 428.136,
+   "end": 430.816,
+   "words": [
+    567,
+    571
+   ],
+   "scribe": "speaker_1",
+   "key": "B",
+   "name": "Ektha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 139,
+   "start": 431.596,
+   "end": 432.016,
+   "words": [
+    572,
+    572
+   ],
+   "scribe": "speaker_1",
+   "key": "B",
+   "name": "Ektha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 140,
+   "start": 432.836,
+   "end": 434.016,
+   "words": [
+    573,
+    574
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 141,
+   "start": 434.956,
+   "end": 436.756,
+   "words": [
+    575,
+    579
+   ],
+   "scribe": "speaker_1",
+   "key": "B",
+   "name": "Ektha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 142,
+   "start": 436.936,
+   "end": 440.516,
+   "words": [
+    580,
+    584
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 143,
+   "start": 441.476,
+   "end": 442.436,
+   "words": [
+    585,
+    586
+   ],
+   "scribe": "speaker_1",
+   "key": "B",
+   "name": "Ektha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 144,
+   "start": 459.876,
+   "end": 463.276,
+   "words": [
+    587,
+    594
+   ],
+   "scribe": "speaker_1",
+   "key": "F",
+   "name": "Meenakshi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 145,
+   "start": 466.116,
+   "end": 466.456,
+   "words": [
+    595,
+    595
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 146,
+   "start": 467.216,
+   "end": 468.036,
+   "words": [
+    596,
+    596
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 147,
+   "start": 469.076,
+   "end": 469.476,
+   "words": [
+    597,
+    597
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 148,
+   "start": 472.436,
+   "end": 474.476,
+   "words": [
+    598,
+    602
+   ],
+   "scribe": "speaker_1",
+   "key": "F",
+   "name": "Meenakshi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 149,
+   "start": 475.996,
+   "end": 476.576,
+   "words": [
+    603,
+    604
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 150,
+   "start": 479.876,
+   "end": 480.216,
+   "words": [
+    605,
+    605
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 151,
+   "start": 481.316,
+   "end": 481.856,
+   "words": [
+    606,
+    607
+   ],
+   "scribe": "speaker_1",
+   "key": "F",
+   "name": "Meenakshi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 152,
+   "start": 482.276,
+   "end": 485.116,
+   "words": [
+    608,
+    613
+   ],
+   "scribe": "speaker_1",
+   "key": "F",
+   "name": "Meenakshi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 153,
+   "start": 485.356,
+   "end": 485.556,
+   "words": [
+    614,
+    614
+   ],
+   "scribe": "speaker_1",
+   "key": "F",
+   "name": "Meenakshi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 154,
+   "start": 487.316,
+   "end": 490.775,
+   "words": [
+    615,
+    624
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 155,
+   "start": 491.555,
+   "end": 492.996,
+   "words": [
+    625,
+    628
+   ],
+   "scribe": "speaker_1",
+   "key": "F",
+   "name": "Meenakshi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 156,
+   "start": 493.796,
+   "end": 495.296,
+   "words": [
+    629,
+    632
+   ],
+   "scribe": "speaker_1",
+   "key": "F",
+   "name": "Meenakshi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 157,
+   "start": 495.876,
+   "end": 495.896,
+   "words": [
+    633,
+    633
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 158,
+   "start": 496.796,
+   "end": 497.196,
+   "words": [
+    634,
+    634
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 159,
+   "start": 498.236,
+   "end": 498.896,
+   "words": [
+    635,
+    636
+   ],
+   "scribe": "speaker_1",
+   "key": "F",
+   "name": "Meenakshi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 160,
+   "start": 499.536,
+   "end": 500.516,
+   "words": [
+    637,
+    642
+   ],
+   "scribe": "speaker_1",
+   "key": "F",
+   "name": "Meenakshi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 161,
+   "start": 500.796,
+   "end": 502.356,
+   "words": [
+    643,
+    647
+   ],
+   "scribe": "speaker_1",
+   "key": "F",
+   "name": "Meenakshi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 162,
+   "start": 502.496,
+   "end": 506.896,
+   "words": [
+    648,
+    659
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 163,
+   "start": 517.096,
+   "end": 517.816,
+   "words": [
+    660,
+    662
+   ],
+   "scribe": "speaker_1",
+   "key": "F",
+   "name": "Meenakshi",
+   "confidence": 0.6,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 164,
+   "start": 518.536,
+   "end": 528.396,
+   "words": [
+    663,
+    681
+   ],
+   "scribe": "speaker_1",
+   "key": "F",
+   "name": "Meenakshi",
+   "confidence": 0.6,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 165,
+   "start": 528.576,
+   "end": 530.196,
+   "words": [
+    682,
+    686
+   ],
+   "scribe": "speaker_1",
+   "key": "F",
+   "name": "Meenakshi",
+   "confidence": 0.6,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 166,
+   "start": 531.396,
+   "end": 534.596,
+   "words": [
+    687,
+    694
+   ],
+   "scribe": "speaker_1",
+   "key": "B",
+   "name": "Ektha",
+   "confidence": 0.6,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 167,
+   "start": 535.256,
+   "end": 535.496,
+   "words": [
+    695,
+    695
+   ],
+   "scribe": "speaker_1",
+   "key": "F",
+   "name": "Meenakshi",
+   "confidence": 0.6,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 168,
+   "start": 540.656,
+   "end": 542.516,
+   "words": [
+    696,
+    700
+   ],
+   "scribe": "speaker_1",
+   "key": "D",
+   "name": "roommate",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 169,
+   "start": 543.476,
+   "end": 549.336,
+   "words": [
+    701,
+    716
+   ],
+   "scribe": "speaker_1",
+   "key": "F",
+   "name": "Meenakshi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 170,
+   "start": 550.156,
+   "end": 550.656,
+   "words": [
+    717,
+    718
+   ],
+   "scribe": "speaker_1",
+   "key": "D",
+   "name": "roommate",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 171,
+   "start": 551.336,
+   "end": 555.096,
+   "words": [
+    719,
+    729
+   ],
+   "scribe": "speaker_1",
+   "key": "F",
+   "name": "Meenakshi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 172,
+   "start": 555.676,
+   "end": 558.356,
+   "words": [
+    730,
+    738
+   ],
+   "scribe": "speaker_1",
+   "key": "F",
+   "name": "Meenakshi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 173,
+   "start": 562.516,
+   "end": 563.956,
+   "words": [
+    739,
+    742
+   ],
+   "scribe": "speaker_1",
+   "key": "F",
+   "name": "Meenakshi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 174,
+   "start": 564.696,
+   "end": 566.636,
+   "words": [
+    743,
+    747
+   ],
+   "scribe": "speaker_1",
+   "key": "F",
+   "name": "Meenakshi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 175,
+   "start": 571.276,
+   "end": 571.696,
+   "words": [
+    748,
+    748
+   ],
+   "scribe": "speaker_1",
+   "key": "H",
+   "name": "Stalker guy",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 176,
+   "start": 572.536,
+   "end": 572.896,
+   "words": [
+    749,
+    749
+   ],
+   "scribe": "speaker_1",
+   "key": "F",
+   "name": "Meenakshi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 177,
+   "start": 573.736,
+   "end": 584.956,
+   "words": [
+    750,
+    779
+   ],
+   "scribe": "speaker_1",
+   "key": "H",
+   "name": "Stalker guy",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 178,
+   "start": 584.976,
+   "end": 591.516,
+   "words": [
+    780,
+    796
+   ],
+   "scribe": "speaker_1",
+   "key": "H",
+   "name": "Stalker guy",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 179,
+   "start": 591.676,
+   "end": 592.716,
+   "words": [
+    797,
+    800
+   ],
+   "scribe": "speaker_1",
+   "key": "F",
+   "name": "Meenakshi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 180,
+   "start": 594.476,
+   "end": 595.236,
+   "words": [
+    801,
+    802
+   ],
+   "scribe": "speaker_1",
+   "key": "F",
+   "name": "Meenakshi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 181,
+   "start": 598.796,
+   "end": 601.076,
+   "words": [
+    803,
+    807
+   ],
+   "scribe": "speaker_1",
+   "key": "B",
+   "name": "Ektha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 182,
+   "start": 601.816,
+   "end": 603.916,
+   "words": [
+    808,
+    812
+   ],
+   "scribe": "speaker_1",
+   "key": "B",
+   "name": "Ektha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 183,
+   "start": 604.556,
+   "end": 604.916,
+   "words": [
+    813,
+    813
+   ],
+   "scribe": "speaker_1",
+   "key": "B",
+   "name": "Ektha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 184,
+   "start": 605.796,
+   "end": 607.096,
+   "words": [
+    814,
+    816
+   ],
+   "scribe": "speaker_1",
+   "key": "B",
+   "name": "Ektha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 185,
+   "start": 607.596,
+   "end": 607.656,
+   "words": [
+    817,
+    817
+   ],
+   "scribe": "speaker_1",
+   "key": "B",
+   "name": "Ektha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 186,
+   "start": 612.356,
+   "end": 617.776,
+   "words": [
+    818,
+    830
+   ],
+   "scribe": "speaker_1",
+   "key": "B",
+   "name": "Ektha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 187,
+   "start": 618.295,
+   "end": 620.236,
+   "words": [
+    831,
+    836
+   ],
+   "scribe": "speaker_1",
+   "key": "B",
+   "name": "Ektha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 188,
+   "start": 620.376,
+   "end": 626.136,
+   "words": [
+    837,
+    851
+   ],
+   "scribe": "speaker_1",
+   "key": "B",
+   "name": "Ektha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 189,
+   "start": 626.896,
+   "end": 626.956,
+   "words": [
+    852,
+    852
+   ],
+   "scribe": "speaker_1",
+   "key": "B",
+   "name": "Ektha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 190,
+   "start": 628.476,
+   "end": 629.856,
+   "words": [
+    853,
+    857
+   ],
+   "scribe": "speaker_1",
+   "key": "H",
+   "name": "Stalker guy",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 191,
+   "start": 630.036,
+   "end": 637.516,
+   "words": [
+    858,
+    887
+   ],
+   "scribe": "speaker_1",
+   "key": "H",
+   "name": "Stalker guy",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 192,
+   "start": 637.556,
+   "end": 638.916,
+   "words": [
+    888,
+    892
+   ],
+   "scribe": "speaker_1",
+   "key": "H",
+   "name": "Stalker guy",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 193,
+   "start": 639.336,
+   "end": 640.336,
+   "words": [
+    893,
+    897
+   ],
+   "scribe": "speaker_1",
+   "key": "H",
+   "name": "Stalker guy",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 194,
+   "start": 641.716,
+   "end": 646.196,
+   "words": [
+    898,
+    913
+   ],
+   "scribe": "speaker_1",
+   "key": "H",
+   "name": "Stalker guy",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 195,
+   "start": 648.336,
+   "end": 653.256,
+   "words": [
+    914,
+    929
+   ],
+   "scribe": "speaker_1",
+   "key": "H",
+   "name": "Stalker guy",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 196,
+   "start": 653.416,
+   "end": 653.916,
+   "words": [
+    930,
+    932
+   ],
+   "scribe": "speaker_1",
+   "key": "H",
+   "name": "Stalker guy",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 197,
+   "start": 654.856,
+   "end": 655.996,
+   "words": [
+    933,
+    934
+   ],
+   "scribe": "speaker_1",
+   "key": "H",
+   "name": "Stalker guy",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 198,
+   "start": 656.976,
+   "end": 657.736,
+   "words": [
+    935,
+    936
+   ],
+   "scribe": "speaker_1",
+   "key": "B",
+   "name": "Ektha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 199,
+   "start": 658.956,
+   "end": 664.096,
+   "words": [
+    937,
+    953
+   ],
+   "scribe": "speaker_1",
+   "key": "B",
+   "name": "Ektha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 200,
+   "start": 665.136,
+   "end": 665.256,
+   "words": [
+    954,
+    954
+   ],
+   "scribe": "speaker_1",
+   "key": "B",
+   "name": "Ektha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 201,
+   "start": 667.156,
+   "end": 669.076,
+   "words": [
+    955,
+    958
+   ],
+   "scribe": "speaker_1",
+   "key": "B",
+   "name": "Ektha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 202,
+   "start": 669.936,
+   "end": 672.656,
+   "words": [
+    959,
+    967
+   ],
+   "scribe": "speaker_1",
+   "key": "F",
+   "name": "Meenakshi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 203,
+   "start": 673.996,
+   "end": 675.116,
+   "words": [
+    968,
+    969
+   ],
+   "scribe": "speaker_1",
+   "key": "B",
+   "name": "Ektha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 204,
+   "start": 677.596,
+   "end": 677.976,
+   "words": [
+    970,
+    970
+   ],
+   "scribe": "speaker_1",
+   "key": "B",
+   "name": "Ektha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 205,
+   "start": 679.056,
+   "end": 679.456,
+   "words": [
+    971,
+    971
+   ],
+   "scribe": "speaker_1",
+   "key": "B",
+   "name": "Ektha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 206,
+   "start": 707.936,
+   "end": 708.976,
+   "words": [
+    972,
+    976
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 207,
+   "start": 709.796,
+   "end": 710.256,
+   "words": [
+    977,
+    978
+   ],
+   "scribe": "speaker_1",
+   "key": "C",
+   "name": "friend on phone",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 208,
+   "start": 712.856,
+   "end": 714.616,
+   "words": [
+    979,
+    984
+   ],
+   "scribe": "speaker_1",
+   "key": "C",
+   "name": "friend on phone",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 209,
+   "start": 715.896,
+   "end": 717.836,
+   "words": [
+    985,
+    989
+   ],
+   "scribe": "speaker_1",
+   "key": "C",
+   "name": "friend on phone",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 210,
+   "start": 719.016,
+   "end": 724.696,
+   "words": [
+    990,
+    1000
+   ],
+   "scribe": "speaker_1",
+   "key": "C",
+   "name": "friend on phone",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 211,
+   "start": 725.956,
+   "end": 726.456,
+   "words": [
+    1001,
+    1002
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 212,
+   "start": 727.404,
+   "end": 728.624,
+   "words": [
+    1003,
+    1004
+   ],
+   "scribe": "speaker_2",
+   "key": "C",
+   "name": "friend on phone",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 213,
+   "start": 729.644,
+   "end": 731.084,
+   "words": [
+    1005,
+    1010
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 214,
+   "start": 731.424,
+   "end": 731.504,
+   "words": [
+    1011,
+    1011
+   ],
+   "scribe": "speaker_2",
+   "key": "C",
+   "name": "friend on phone",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 215,
+   "start": 731.544,
+   "end": 731.864,
+   "words": [
+    1012,
+    1013
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 216,
+   "start": 732.264,
+   "end": 732.484,
+   "words": [
+    1014,
+    1014
+   ],
+   "scribe": "speaker_2",
+   "key": "C",
+   "name": "friend on phone",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 217,
+   "start": 734.384,
+   "end": 734.504,
+   "words": [
+    1015,
+    1015
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 218,
+   "start": 737.244,
+   "end": 737.724,
+   "words": [
+    1016,
+    1018
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 219,
+   "start": 788.844,
+   "end": 789.824,
+   "words": [
+    1019,
+    1020
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 220,
+   "start": 801.024,
+   "end": 802.624,
+   "words": [
+    1021,
+    1025
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 221,
+   "start": 805.204,
+   "end": 806.704,
+   "words": [
+    1026,
+    1030
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 222,
+   "start": 815.124,
+   "end": 816.724,
+   "words": [
+    1031,
+    1036
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 223,
+   "start": 817.144,
+   "end": 818.204,
+   "words": [
+    1037,
+    1038
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 224,
+   "start": 818.944,
+   "end": 821.244,
+   "words": [
+    1039,
+    1045
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 225,
+   "start": 822.444,
+   "end": 824.104,
+   "words": [
+    1046,
+    1051
+   ],
+   "scribe": "speaker_2",
+   "key": "I",
+   "name": "Customer / Manager",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 226,
+   "start": 824.324,
+   "end": 824.344,
+   "words": [
+    1052,
+    1052
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 227,
+   "start": 830.584,
+   "end": 831.024,
+   "words": [
+    1053,
+    1054
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 228,
+   "start": 831.624,
+   "end": 833.444,
+   "words": [
+    1055,
+    1060
+   ],
+   "scribe": "speaker_2",
+   "key": "I",
+   "name": "Customer / Manager",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 229,
+   "start": 833.864,
+   "end": 836.444,
+   "words": [
+    1061,
+    1069
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 230,
+   "start": 837.284,
+   "end": 839.604,
+   "words": [
+    1070,
+    1075
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 231,
+   "start": 839.924,
+   "end": 840.524,
+   "words": [
+    1076,
+    1079
+   ],
+   "scribe": "speaker_2",
+   "key": "I",
+   "name": "Customer / Manager",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 232,
+   "start": 841.324,
+   "end": 843.384,
+   "words": [
+    1080,
+    1086
+   ],
+   "scribe": "speaker_2",
+   "key": "I",
+   "name": "Customer / Manager",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 233,
+   "start": 843.544,
+   "end": 845.144,
+   "words": [
+    1087,
+    1092
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 234,
+   "start": 845.944,
+   "end": 846.224,
+   "words": [
+    1093,
+    1094
+   ],
+   "scribe": "speaker_2",
+   "key": "I",
+   "name": "Customer / Manager",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 235,
+   "start": 846.524,
+   "end": 848.384,
+   "words": [
+    1095,
+    1099
+   ],
+   "scribe": "speaker_2",
+   "key": "I",
+   "name": "Customer / Manager",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 236,
+   "start": 848.684,
+   "end": 851.104,
+   "words": [
+    1100,
+    1108
+   ],
+   "scribe": "speaker_2",
+   "key": "I",
+   "name": "Customer / Manager",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 237,
+   "start": 851.804,
+   "end": 853.544,
+   "words": [
+    1109,
+    1114
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Akshara",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 238,
+   "start": 853.724,
+   "end": 855.584,
+   "words": [
+    1115,
+    1123
+   ],
+   "scribe": "speaker_2",
+   "key": "I",
+   "name": "Customer / Manager",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 239,
+   "start": 855.904,
+   "end": 856.464,
+   "words": [
+    1124,
+    1126
+   ],
+   "scribe": "speaker_2",
+   "key": "I",
+   "name": "Customer / Manager",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 240,
+   "start": 911.684,
+   "end": 912.364,
+   "words": [
+    1127,
+    1129
+   ],
+   "scribe": "speaker_2",
+   "key": "I",
+   "name": "Customer / Manager",
+   "confidence": 0.6,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 241,
+   "start": 913.544,
+   "end": 913.944,
+   "words": [
+    1130,
+    1130
+   ],
+   "scribe": "speaker_1",
+   "key": "F",
+   "name": "Meenakshi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 242,
+   "start": 914.064,
+   "end": 914.604,
+   "words": [
+    1131,
+    1133
+   ],
+   "scribe": "speaker_2",
+   "key": "I",
+   "name": "Customer / Manager",
+   "confidence": 0.6,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 243,
+   "start": 914.964,
+   "end": 925.004,
+   "words": [
+    1134,
+    1161
+   ],
+   "scribe": "speaker_1",
+   "key": "F",
+   "name": "Meenakshi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 244,
+   "start": 925.764,
+   "end": 934.524,
+   "words": [
+    1162,
+    1184
+   ],
+   "scribe": "speaker_1",
+   "key": "F",
+   "name": "Meenakshi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 245,
+   "start": 935.284,
+   "end": 936.124,
+   "words": [
+    1185,
+    1187
+   ],
+   "scribe": "speaker_1",
+   "key": "F",
+   "name": "Meenakshi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 246,
+   "start": 936.304,
+   "end": 938.124,
+   "words": [
+    1188,
+    1192
+   ],
+   "scribe": "speaker_1",
+   "key": "F",
+   "name": "Meenakshi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 247,
+   "start": 939.104,
+   "end": 940.784,
+   "words": [
+    1193,
+    1196
+   ],
+   "scribe": "speaker_1",
+   "key": "F",
+   "name": "Meenakshi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 248,
+   "start": 949.584,
+   "end": 949.924,
+   "words": [
+    1197,
+    1197
+   ],
+   "scribe": "speaker_2",
+   "key": "H",
+   "name": "Stalker guy",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 249,
+   "start": 950.504,
+   "end": 951.064,
+   "words": [
+    1198,
+    1200
+   ],
+   "scribe": "speaker_1",
+   "key": "F",
+   "name": "Meenakshi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 250,
+   "start": 951.804,
+   "end": 953.904,
+   "words": [
+    1201,
+    1206
+   ],
+   "scribe": "speaker_2",
+   "key": "H",
+   "name": "Stalker guy",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 251,
+   "start": 954.504,
+   "end": 958.044,
+   "words": [
+    1207,
+    1215
+   ],
+   "scribe": "speaker_1",
+   "key": "F",
+   "name": "Meenakshi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 252,
+   "start": 958.984,
+   "end": 959.684,
+   "words": [
+    1216,
+    1217
+   ],
+   "scribe": "speaker_2",
+   "key": "H",
+   "name": "Stalker guy",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 253,
+   "start": 963.384,
+   "end": 965.524,
+   "words": [
+    1218,
+    1223
+   ],
+   "scribe": "speaker_1",
+   "key": "F",
+   "name": "Meenakshi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 254,
+   "start": 966.004,
+   "end": 966.104,
+   "words": [
+    1224,
+    1224
+   ],
+   "scribe": "speaker_2",
+   "key": "H",
+   "name": "Stalker guy",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  }
+ ],
+ "coverage": {
+  "n_lines": 255,
+  "assigned": 255,
+  "unknown": 0,
+  "missing": 0,
+  "from_margin": 0,
+  "duplicate_ids": 0,
+  "invalid_items": [],
+  "bad_keys": []
+ },
+ "cost": {
+  "projected": {
+   "chunks": [
+    {
+     "part": 1,
+     "core": [
+      0,
+      79
+     ],
+     "shown": [
+      0,
+      89
+     ],
+     "input_tokens": 3350,
+     "output_tokens": 3170,
+     "max_output_tokens": 7696,
+     "inr": 1.3,
+     "worst_case_inr": 2.82
+    },
+    {
+     "part": 2,
+     "core": [
+      80,
+      162
+     ],
+     "shown": [
+      70,
+      172
+     ],
+     "input_tokens": 4020,
+     "output_tokens": 3365,
+     "max_output_tokens": 8216,
+     "inr": 1.41,
+     "worst_case_inr": 3.04
+    },
+    {
+     "part": 3,
+     "core": [
+      163,
+      254
+     ],
+     "shown": [
+      153,
+      254
+     ],
+     "input_tokens": 4491,
+     "output_tokens": 3350,
+     "max_output_tokens": 8176,
+     "inr": 1.43,
+     "worst_case_inr": 3.06
+    }
+   ],
+   "inr": 4.14,
+   "worst_case_inr": 8.92
+  },
+  "actual": {
+   "inr": 1.456,
+   "chunks_ok": 3,
+   "chunks": 3
+  }
+ },
+ "stopped": null,
+ "failures": [],
+ "transcript": "scribe_dataset\\H41fJJJYTqo\\H41fJJJYTqo_scribe_transcript.json",
+ "asr_fix": false
+}

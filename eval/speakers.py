@@ -194,21 +194,49 @@ def majority_map(pairs) -> dict:
 
 
 # ------------------------------------------------------------------ names
+# romanised Telugu names are spelled many ways (Ektha / Ekta, Harshitha / Harshita, Sreeja / Srija): fold the usual
+# variants before comparing. Applied to both the key and the prediction.
+_FOLD = [("th", "t"), ("dh", "d"), ("bh", "b"), ("kh", "k"), ("gh", "g"), ("ph", "p"), ("jh", "j"), ("ee", "i"),
+         ("oo", "u"), ("aa", "a"), ("w", "v"), ("sh", "s"), ("z", "j")]
+
+
+def fold(tok: str) -> str:
+    base, tail = (tok[:-2], "'s") if tok.endswith("'s") else (tok, "")
+    if not base.isascii():
+        return tok
+    for a, b in _FOLD:
+        base = base.replace(a, b)
+    base = re.sub(r"(.)+", r"", base)
+    return base + tail
+
+
 def norm_name(s: str) -> str:
     s = unicodedata.normalize("NFKC", str(s)).lower().replace("’", "'")
     s = re.sub(r"\(.*?\)", " ", s)                     # "Akshara (delivery girl)" -> "akshara"
     s = re.sub(r"[^\w' ]+", " ", s)
     toks = [t for t in s.split() if t not in ("the", "a", "an")]
-    toks = [REL_SYNONYMS.get(t, t) for t in toks]
+    toks = [fold(REL_SYNONYMS.get(t, t)) for t in toks]
     return " ".join(toks)
+
+
+def edit_distance(a: str, b: str) -> int:
+    prev = list(range(len(b) + 1))
+    for i, ca in enumerate(a, 1):
+        cur = [i]
+        for j, cb in enumerate(b, 1):
+            cur.append(min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + (ca != cb)))
+        prev = cur
+    return prev[-1]
 
 
 def alias_table(characters: list[dict], extra: dict | None = None) -> dict[str, str]:
     """normalised alias -> character name: full name, key aliases, and extra {alias: name}."""
     tab = {}
     for c in characters:
-        for a in [c["name"], *c.get("aliases", [])]:
-            tab.setdefault(norm_name(a), c["name"])
+        inner = re.findall(r"\((.*?)\)", c["name"])     # "Coworker (Sindhu)": "Sindhu" is an alias too
+        for a in [c["name"], *inner, *c.get("aliases", [])]:
+            if norm_name(a):
+                tab.setdefault(norm_name(a), c["name"])
     for a, name in (extra or {}).items():
         tab[norm_name(a)] = name
     return tab
@@ -231,6 +259,10 @@ def match_name(name, table: dict[str, str]):
             continue
         if any(toks[i:i + len(at)] == at for i in range(len(toks) - len(at) + 1)):
             best, blen = c, len(at)
+    if best is None and len(toks) == 1 and len(toks[0]) >= 5:   # one-letter spelling slip in a single name
+        near = {c for a, c in table.items() if " " not in a and len(a) >= 5 and edit_distance(a, toks[0]) <= 1}
+        if len(near) == 1:
+            best = near.pop()
     return best
 
 
