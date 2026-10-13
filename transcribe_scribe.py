@@ -134,8 +134,27 @@ def load_keyterms(path):
     return out
 
 
-def request_fields(language="", keyterms=None):
-    """Form fields of the upload. Without keyterms this is exactly the original request."""
+def diarization_opts(num_speakers=None, diarization_threshold=None):
+    """Validated optional diarization fields (ElevenLabs: num_speakers 1-32; diarization_threshold 0.1-0.4,
+    only when num_speakers is unset). Empty when neither is given."""
+    out = {}
+    if num_speakers is not None:
+        n = int(num_speakers)
+        if not 1 <= n <= 32:
+            raise SystemExit(f"num_speakers must be 1-32, got {num_speakers}")
+        out["num_speakers"] = n
+    if diarization_threshold is not None:
+        if num_speakers is not None:
+            raise SystemExit("diarization_threshold is only allowed when num_speakers is unset")
+        x = float(diarization_threshold)
+        if not 0.1 <= x <= 0.4:
+            raise SystemExit(f"diarization_threshold must be 0.1-0.4, got {diarization_threshold}")
+        out["diarization_threshold"] = x
+    return out
+
+
+def request_fields(language="", keyterms=None, num_speakers=None, diarization_threshold=None):
+    """Form fields of the upload. Without keyterms / diarization options this is exactly the original request."""
     fields = {
         "model_id": MODEL,
         "diarize": "true",
@@ -148,12 +167,17 @@ def request_fields(language="", keyterms=None):
         fields["language_code"] = language
     if keyterms:
         fields["keyterms"] = list(keyterms)   # requests sends a list as one repeated form part per term
+    for k, v in diarization_opts(num_speakers, diarization_threshold).items():
+        fields[k] = str(v)
     return fields
 
 
-def call(mp3, secs, language="", log=print, keyterms=None):
+def call(mp3, secs, language="", log=print, keyterms=None, num_speakers=None, diarization_threshold=None):
     timeout = max(MIN_TIMEOUT_S, int(secs / 60 * TIMEOUT_PER_MIN_S))
-    fields = request_fields(language, keyterms)
+    fields = request_fields(language, keyterms, num_speakers, diarization_threshold)
+    # recover() matches past transcripts by duration only: with keyterms or diarization options it would return
+    # an earlier transcript of the same audio (made without them) and silently fake the result.
+    may_recover = not keyterms and not diarization_opts(num_speakers, diarization_threshold)
     attempt = 0
     while attempt < 3:
         attempt += 1
@@ -179,9 +203,7 @@ def call(mp3, secs, language="", log=print, keyterms=None):
             raise
         except Exception as e:
             log(f"attempt {attempt} failed: {type(e).__name__}")
-            # recover() matches past transcripts by duration only: with keyterms it would return the earlier
-            # transcript of the same audio (made without them) and silently fake the result. Re-upload instead.
-            got = None if keyterms else recover(secs)
+            got = recover(secs) if may_recover else None   # re-upload instead of faking (see above)
             if got:
                 log("recovered an already-processed transcript")
                 return got
@@ -251,13 +273,16 @@ def real_speakers(words):
     return sorted(real, key=lambda s: -talk[s]), talk
 
 
-def transcribe(audio, language="", log=print, keyterms=None):
+def transcribe(audio, language="", log=print, keyterms=None, num_speakers=None, diarization_threshold=None):
     audio = Path(audio)
+    diar = diarization_opts(num_speakers, diarization_threshold)
     secs = duration_s(audio)
     mins = secs / 60.0
     need = int(mins * CREDITS_PER_MIN * (KEYTERMS_SURCHARGE if keyterms else 1.0))
     if keyterms:
         log(f"{len(keyterms)} keyterms (+{KEYTERMS_SURCHARGE - 1:.0%} cost); recovery by duration disabled")
+    if diar:
+        log(f"diarization options {diar}; recovery by duration disabled")
     # Start on the first key that has enough credits. A key that can't report its quota
     # (no user-read permission) is tried anyway; the upload switches keys if it's refused.
     while True:
@@ -279,7 +304,7 @@ def transcribe(audio, language="", log=print, keyterms=None):
         log("converting to mp3")
         to_mp3(audio, mp3)
 
-    raw = call(mp3, secs, language=language, log=log, keyterms=keyterms)
+    raw = call(mp3, secs, language=language, log=log, keyterms=keyterms, **diar)
     words, events = split_entries(raw)
     sents = build_sentences(words)
     real, talk = real_speakers(words)
@@ -303,6 +328,9 @@ def transcribe(audio, language="", log=print, keyterms=None):
     }
     if keyterms:
         out["keyterms"] = list(keyterms)
+    if diar:
+        out["diarization_options"] = diar
+    if keyterms or diar:
         out["transcription_id"] = raw.get("transcription_id")
     return out
 
@@ -325,19 +353,24 @@ def start_on_key(var):
 if __name__ == "__main__":
     import argparse
     ap = argparse.ArgumentParser(usage="python transcribe_scribe.py <audio.wav> [out.json] "
-                                       "[--keyterms terms.json] [--key ELEVENLABS_API_KEY_4]")
+                                       "[--keyterms terms.json] [--key ELEVENLABS_API_KEY_4] "
+                                       "[--num-speakers N | --diarization-threshold X]")
     ap.add_argument("audio")
     ap.add_argument("out", nargs="?")
     ap.add_argument("--keyterms", default="", help="json: a list of terms, or a glossary with 'keyterms'")
     ap.add_argument("--key", default="", help="env var of the key to start on")
+    ap.add_argument("--num-speakers", type=int, default=None, help="ElevenLabs num_speakers (1-32)")
+    ap.add_argument("--diarization-threshold", type=float, default=None,
+                    help="ElevenLabs diarization_threshold (0.1-0.4; lower = more speakers); not with --num-speakers")
     a = ap.parse_args()
+    diar = diarization_opts(a.num_speakers, a.diarization_threshold)
     src = Path(a.audio)
     dst = Path(a.out) if a.out else \
         src.with_name(src.stem.replace("_audio", "") + "_scribe_transcript.json")
     kt = load_keyterms(a.keyterms) if a.keyterms else None
-    if kt and dst.exists():
-        raise SystemExit(f"{dst} exists; a keyterms run never overwrites a transcript")
+    if (kt or diar) and dst.exists():
+        raise SystemExit(f"{dst} exists; a keyterms / diarization-option run never overwrites a transcript")
     if a.key:
         start_on_key(a.key)
-    save(transcribe(src, keyterms=kt), dst)
+    save(transcribe(src, keyterms=kt, **diar), dst)
     print(f"saved {dst}")

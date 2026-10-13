@@ -1,6 +1,6 @@
 {
- "total_usd": 16.501003,
- "calls": 1749,
+ "total_usd": 16.634422,
+ "calls": 1751,
  "entries": [
   {
    "t": "2026-09-27T00:00:00",
@@ -14031,6 +14031,22 @@
    "out": 271,
    "usd": 0.012863,
    "source": "v1_gate"
+  },
+  {
+   "t": "2026-10-13T16:58:21",
+   "model": "gemini-3.8-flash",
+   "in": 7101,
+   "out": 16368,
+   "usd": 0.066706,
+   "source": "speaker_fix"
+  },
+  {
+   "t": "2026-10-13T17:00:05",
+   "model": "gemini-3.8-flash",
+   "in": 7101,
+   "out": 16370,
+   "usd": 0.066713,
+   "source": "speaker_fix"
   }
  ]
 }
