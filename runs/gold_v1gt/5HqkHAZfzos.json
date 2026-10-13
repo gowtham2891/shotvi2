@@ -1,0 +1,263 @@
+{
+ "schema_version": "1.1",
+ "kind": "gold",
+ "video_id": "5HqkHAZfzos",
+ "transcript": {
+  "path": "scribe_dataset/5HqkHAZfzos/5HqkHAZfzos_scribe_transcript.json",
+  "sha256": "274907d7e90493dca591f246339c3c98d10b8a04754a36ab522bec07a36b31ec",
+  "n_words": 1566,
+  "audio_duration_secs": 1321.5405
+ },
+ "derived_params": {
+  "skip_s": 30.0
+ },
+ "labeler": "clip-gt-editor",
+ "created_at": "2026-10-13",
+ "independence": "Picked from the episode transcript (ASR fixes applied when reading), shot list and video keyframes only. The founder-rated pipeline clips (runs/v1_test, data/human/ratings_v1_test.csv) were read only to know which moments are covered. No creator/channel Shorts were opened or searched for.",
+ "coverage": {
+  "start": 0.0,
+  "end": 1321.5,
+  "complete": true,
+  "note": "Whole episode read in order. Excluded: 2:07-2:16 title music, 20:16-20:55 Sony FX3 sponsor read, 20:55-22:01 end music/credits."
+ },
+ "notes": "Queen (Infinitum Media) Ep3, family drama with a soft-romance thread. CANDIDATES for the clip-judge filter (2026-10-13), focused on what the v1 pipeline missed: founder YES clips w02, w04, w05, w06 are not repeated. Names from dialogue + frames: Mona ('Queen', influencer, light-brown hair), Soni (younger sister, 'అక్కా'), Smitha (Mona's friend pushing monetisation, dark hair), Suku/Sukku (boy who likes Mona) and his friend, Deepak (brand 'broker'), the father (moustache, grey polo; strict, drinks), the mother, Rao garu (father's friend at the bar). Scribe speaker ids are unreliable (Mona and Soni share ids; 'ఖర్చు పెట్టుకోమ్మ' is tagged as the mother but Mona says it on screen). Option-2 cutting: time_segments are the cut; pieces are the words inside them; no words trimmed inside a line. Every clip has founder_would_post 'pending'.",
+ "clips": [
+  {
+   "id": "q01",
+   "pieces": [
+    {
+     "start_word": 1118,
+     "end_word": 1154,
+     "start": 866.09,
+     "end": 887.09
+    },
+    {
+     "start_word": 1202,
+     "end_word": 1222,
+     "start": 927.05,
+     "end": 941.37
+    }
+   ],
+   "region": {
+    "start_word": 1118,
+    "end_word": 1222,
+    "start": 866.09,
+    "end": 941.37
+   },
+   "edited_duration": 35.32,
+   "reordered": false,
+   "n_blocks": 2,
+   "text": "ఇదిగో చీర కొనగా మిగిలిన డబ్బులు ఇవి తీసుకో. నాకెందుకులే నాన్న నువ్వు ఉంచుకో. అయినా ఎక్కడివి డబ్బులు. చెప్పాను కదమ్మా, దాచుకో. నీకే డబ్బులు అవసరం వస్తది. నువ్వు నాన్నని కూడా ఏం అడగవు. దాచుకో. నాకు వద్దులే. ఏదన్నా అవసరమైతే మీ నాన్నని నేను అడుగుతాను కదా. నీ దగ్గరే ఉండాలమ్మ డబ్బులు. నువ్వు వందో, రెండొందలకి నాన్నని అడగడం నాకు నచ్చట్లేదు. నేను బాగా సంపాదించి డబ్బులన్నీ నీకే ఇస్తా. తీసుకో. ఖర్చు పెట్టుకోమ్మ. హ్మ్",
+   "labeler": "clip-gt-editor",
+   "tightening_labeled": true,
+   "hook_line": {
+    "text": "ఇదిగో చీర కొనగా మిగిలిన డబ్బులు ఇవి తీసుకో.",
+    "start_word": 1118,
+    "end_word": 1124
+   },
+   "scores": {
+    "hook": 3,
+    "standalone": 4,
+    "payoff": 4,
+    "value_emotion": 4,
+    "overall": 4
+   },
+   "title": "నాన్నని వంద రూపాయలు కూడా అడగొద్దమ్మా… డబ్బులన్నీ నీకే ఇస్తా",
+   "why_it_works": "Mona presses the leftover money on her mother: she hates seeing her ask dad for a hundred rupees. Mom gives in with a shy smile and takes it; Mona glows.",
+   "category": "emotional",
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "characters": [
+    "Mona",
+    "Mona's mother"
+   ],
+   "visual_dependency": "medium",
+   "spoiler": false,
+   "confidence": 3,
+   "time_segments": [
+    {
+     "start": 865.85,
+     "end": 887.0
+    },
+    {
+     "start": 925.51,
+     "end": 951.95
+    }
+   ],
+   "video_duration": 47.59,
+   "cold_open": false,
+   "payoff_line": "నేను బాగా సంపాదించి డబ్బులన్నీ నీకే ఇస్తా. తీసుకో. / ఖర్చు పెట్టుకోమ్మ.",
+   "payoff_type": "emotional peak + visible reaction: mother smiles (942-944), takes the money (945.5), Mona's content smile held to the cut (948.5-951.9)",
+   "vs_pipeline": "new",
+   "standalone_risks": [
+    {
+     "type": "inside_reference",
+     "note": "'చీర కొనగా మిగిలిన డబ్బులు' points back to the saree gift (w05); it reads fine without it."
+    }
+   ],
+   "edit_notes": [
+    {
+     "type": "skip",
+     "after_piece": 0,
+     "reason": "drops the father's bar-talk chunk (887.0-925.5) that is intercut here; both edges are shot changes"
+    }
+   ],
+   "flags": [],
+   "tags": [],
+   "notes": "Mother-daughter follow-up to the saree gift (pipeline w05, founder yes, ends 12:50); this beat at 14:26-15:52 was never proposed. The scene is intercut with the father's bar talk about 'reels generation'; the one cut drops that chunk (shot changes at 887.01 and 925.51). Seg 1 ends on the shot change; the last word 'కదా' ends 887.09 (0.09 s tail). Option I did not take: keep the father's line 'మన పిల్లల్ని మనం జాగ్రత్తగా చూసుకుంటే చాలు' (921.3-925.2) right before Mona's line for dramatic irony; a stranger's line with no bar context would confuse a first-time viewer. The clip never says the money is reel money (she told mom it was a scholarship); the beat works as a daughter's love without it. Hook is a plain 'here, take this' (direct, with the money in hand), so hook 3; no lift meets the cold-open rules (the best line is the payoff itself).",
+   "founder_would_post": "pending"
+  },
+  {
+   "id": "q02",
+   "pieces": [
+    {
+     "start_word": 1375,
+     "end_word": 1414,
+     "start": 1113.934,
+     "end": 1152.474
+    },
+    {
+     "start_word": 1427,
+     "end_word": 1463,
+     "start": 1171.634,
+     "end": 1201.994
+    }
+   ],
+   "region": {
+    "start_word": 1375,
+    "end_word": 1463,
+    "start": 1113.934,
+    "end": 1201.994
+   },
+   "edited_duration": 68.9,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "college కి వెళ్ళామా? చదువుకున్నామా? ఇంటికి వచ్చామా? అన్నట్టుగా ఉండాలి. ఏదో social media, reels, followers, famous అని ఏవైనా పిచ్చి పిచ్చి వేషాలు వేస్తే అమ్మాయిలని కూడా చూడను. ఇంటి మొత్తాన్ని కాల్చి పడేస్తాను. నాన్నకి ఏం తెలియదు అనుకుంటున్నారేమో, నాకన్నీ తెలుసు. ఎవరి జాగ్రత్తలో వాళ్ళు ఉంటే మంచిది. లేదా? వెళ్ళండి. అక్కా! భయమేస్తుందే. నాన్నకి నీ గురించి తెలిస్తే ఇద్దర్నీ చంపేస్తాడు. నువ్వేం భయపడకే. నేను చూసుకుంటా. నాన్నీ చూస్తే భయమేస్తుంది. అరుస్తుంటే ఇంకా భయమేస్తుంది. నాన్న తాగొచ్చాడు. అందుకే ఇలా over గా react అవుతున్నాడు. సరే, నువ్వు పడుకో. నీ మీదకి రాకుండా నేను చూసుకుంటా. నా promise. పో.",
+   "labeler": "clip-gt-editor",
+   "tightening_labeled": true,
+   "hook_line": {
+    "text": "college కి వెళ్ళామా? చదువుకున్నామా? ఇంటికి వచ్చామా?",
+    "start_word": 1375,
+    "end_word": 1380
+   },
+   "scores": {
+    "hook": 4,
+    "standalone": 4,
+    "payoff": 4,
+    "value_emotion": 4,
+    "overall": 4
+   },
+   "title": "Reels చేస్తే ఇల్లు కాల్చేస్తా అన్న నాన్న… చెల్లికి అక్క promise",
+   "why_it_works": "Drunk father warns both daughters: reels, followers, fame and he burns the house down. Soni panics, 'if dad finds out about you he'll kill us'; Mona promises to shield her.",
+   "category": "emotional",
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "characters": [
+    "Father",
+    "Mona",
+    "Soni (younger sister)",
+    "Mother (silent, one shot)"
+   ],
+   "visual_dependency": "medium",
+   "spoiler": false,
+   "confidence": 3,
+   "time_segments": [
+    {
+     "start": 1113.7,
+     "end": 1152.48
+    },
+    {
+     "start": 1171.4,
+     "end": 1204.6
+    }
+   ],
+   "video_duration": 71.98,
+   "cold_open": false,
+   "payoff_line": "నీ మీదకి రాకుండా నేను చూసుకుంటా. నా promise. పో.",
+   "payoff_type": "emotional peak: elder sister's promise, then Soni's teary close-up held 2.4 s (1202.3-1204.6)",
+   "vs_pipeline": "better_cut_of:w07",
+   "standalone_risks": [],
+   "edit_notes": [
+    {
+     "type": "skip",
+     "after_piece": 0,
+     "reason": "drops mother's 'ఇప్పుడు ఏమైందని…' / 'అన్నం పెట్టు' and a 10 s music bridge (1152.5-1171.4)"
+    }
+   ],
+   "flags": [],
+   "tags": [],
+   "notes": "Better cut of w07 (founder no: hook 2, standalone 2, payoff 2). w07 opened on the name call 'మోనా!' and ended on the father's 'వెళ్ళండి' (a demand). This cut starts on his first line in close-up (frame 1114) and runs into the sisters' scene, so the threat (reels -> burn the house) is the setup and the clip lands on Mona's promise with Soni's reaction. Speaker ids: 'నాన్నీ చూస్తే భయమేస్తుంది. అరుస్తుంటే ఇంకా భయమేస్తుంది' is Soni (frame 1186) though tagged like Mona. 'నాన్నకి నీ గురించి తెలిస్తే' = Mona's secret reels; the father's speech supplies the referent. Doubts: the last word is 'పో' (go to sleep), a soft push rather than a demand in tone; Mona's own worried close-up follows at 1205.5-1216 but holding it would make a >3 s silent end. Alternative: keep the dropped mother/father exchange (+19 s) for the 'he's drunk' context.",
+   "founder_would_post": "pending"
+  },
+  {
+   "id": "q03",
+   "pieces": [
+    {
+     "start_word": 407,
+     "end_word": 504,
+     "start": 370.83,
+     "end": 423.25
+    }
+   ],
+   "region": {
+    "start_word": 407,
+    "end_word": 504,
+    "start": 370.83,
+    "end": 423.25
+   },
+   "edited_duration": 52.42,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ఇప్పుడు చెప్తున్నారా ముప్పై వేలు కాదురా ముప్పై లక్షల followers వచ్చినా మారదురా మోనా ఆ మోనా నీకో విషయం చెప్పాలి. చెప్పు నీకు ఒక లక్ష మంది followers ఉన్నారనుకో పది లక్షల మంది followers ఉన్న అబ్బాయితో friendship చేయాలి. ఎందుకు ఎందుకేంటే నీకు ఎలా చెప్పాలి మోనా. హా నాకు తెలిసిన ఒక influencer ఉంది. తను చాలా poor. కానీ ఇప్పుడు reels కొన్ని బాగా viral అయ్యాయి. ఇప్పుడు ఒక big shot కొడుకుని date చేస్తుంది. అయితే అయితే ఏంటి మోనా. హా ఇలాంటి local టమాటాలుగాళ్ళతో కొంచెం gap maintain చేయి. మన reels viral అయితే ఏ rich kid కి నచ్చుతామో చెప్పలేం. so వీలైనంత వరకు ఎవ్వరికీ connect అవ్వకు మోనా. నువ్వు చాలా ఆలోచిస్తున్నావు పాపా. సరేలే నువ్వేలా అంటే అలానే Okay.",
+   "labeler": "clip-gt-editor",
+   "tightening_labeled": true,
+   "hook_line": {
+    "text": "ఇప్పుడు చెప్తున్నారా ముప్పై వేలు కాదురా ముప్పై లక్షల followers వచ్చినా మారదురా మోనా",
+    "start_word": 407,
+    "end_word": 417
+   },
+   "scores": {
+    "hook": 4,
+    "standalone": 3,
+    "payoff": 3,
+    "value_emotion": 3,
+    "overall": 3
+   },
+   "title": "ముప్పై లక్షల followers వచ్చినా మారదురా… కానీ friend advice వేరే",
+   "why_it_works": "Suku swears Mona won't change even at 30 lakh followers; cut to Smitha telling Mona to drop 'local tomato' boys for a rich kid, and Mona smiling 'సరేలే'.",
+   "category": "reveal",
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "characters": [
+    "Suku",
+    "Smitha",
+    "Mona"
+   ],
+   "visual_dependency": "medium",
+   "spoiler": false,
+   "confidence": 2,
+   "time_segments": [
+    {
+     "start": 370.6,
+     "end": 424.3
+    }
+   ],
+   "video_duration": 53.7,
+   "cold_open": false,
+   "payoff_line": "నువ్వు చాలా ఆలోచిస్తున్నావు పాపా. సరేలే నువ్వేలా అంటే అలానే",
+   "payoff_type": "ironic reversal / setback: the boy's faith undercut by Mona agreeing, smile and side-hug on screen (419-424)",
+   "vs_pipeline": "better_cut_of:w03",
+   "standalone_risks": [
+    {
+     "type": "other",
+     "note": "downer ending (the lead lets the boy down); judge rule caps such beats at payoff 3"
+    }
+   ],
+   "edit_notes": [],
+   "flags": [],
+   "tags": [],
+   "notes": "Better cut of w03 (founder no: payoff 3, overall 2), which opened cold on Smitha's formula and ended on her stance line 'ఎవ్వరికీ connect అవ్వకు'. Opening on Suku's line (the last 7 s of w02, founder yes) turns the advice into irony and the clip ends on Mona's answer. Continuous: 377.4-381.4 is a wordless transition (boys' wide shot, then the girls walking). 'ఇప్పుడు చెప్తున్నారా' is probably 'ఇప్పుడు చెప్తున్నా రా'. Honest view: likely a maybe; 'local టమాటాలు' is not named as Suku, the viewer infers it from the edit.",
+   "founder_would_post": "pending"
+  }
+ ]
+}

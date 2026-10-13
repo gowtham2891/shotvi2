@@ -1,0 +1,757 @@
+{
+ "schema_version": "1.1",
+ "kind": "gold",
+ "video_id": "qIdAPG8UulE",
+ "transcript": {
+  "path": "scribe_dataset/qIdAPG8UulE/qIdAPG8UulE_scribe_transcript.json",
+  "sha256": "2a5c9fe404b84d4b41859ad83abe4bcb0bd25348b718020d0517d4bfca153637",
+  "n_words": 3475,
+  "audio_duration_secs": 2179.3935
+ },
+ "derived_params": {
+  "skip_s": 30.0
+ },
+ "labeler": "clip-gt-editor",
+ "created_at": "2026-10-13",
+ "independence": "Picked from the episode transcript (ASR fixes applied when reading), shot list and video keyframes only. The founder-rated pipeline clips (runs/v1_test, data/human/ratings_v1_test.csv) and the pipeline debug discover list were read only to know which moments are covered. No creator/channel Shorts were opened.",
+ "coverage": {
+  "start": 0.0,
+  "end": 2179.4,
+  "complete": true,
+  "note": "Whole film read in order. Excluded: 0:45-0:49 title music, 35:57-36:19 end music/credits."
+ },
+ "notes": "Office lo Krishna Leelalu Part 1 (Infinitum, 'Telugu Comedy Movie', 36 min): Prasad, a serial lover, chases several women. Comedy rule applied: only a real laugh beat (canned [నవ్వు] or a visible laugh/reaction to a punchline spoken on camera) counts as payoff. CANDIDATES for the clip-judge filter (2026-10-13); founder YES clips w02, w03, w06, w10 are not repeated. Names (dialogue + frames): Prasad (bearded lead); Vaishu/Vaishnavi (ex-girlfriend, curly hair; later married to a lawyer); Bhramara (he calls her 'బ్రహ్మ'/'బ్రహ్మారావు'; philophobia); Pooja (his cousin who lives with his family, 'బావ'; also Bhramara's friend; I think the cafe friend and the cousin are the same actress but am not certain); Pratyusha/Pratiksha (ASR spells both; the same actress plays the 'bro' colleague, the office boss and the final phone call; she is Bhramara's younger sister); Virajitha (ASR 'విరాజస్థ', lawyer friend). Scribe speaker ids are unreliable (speaker_1 covers Prasad and his father); speakers assigned from frames. Option-2 cutting: time_segments are the cut, pieces the words inside.",
+ "clips": [
+  {
+   "id": "k01",
+   "pieces": [
+    {
+     "start_word": 3295,
+     "end_word": 3365,
+     "start": 1996.264,
+     "end": 2040.064
+    }
+   ],
+   "region": {
+    "start_word": 3295,
+    "end_word": 3365,
+    "start": 1996.264,
+    "end": 2040.064
+   },
+   "edited_duration": 43.8,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "బావని పెళ్లి చేసుకుంటావా మమ్మీ ఛీ ఛీ వీడు నాకొద్దు ఛీయా మావాడికి ఏం తక్కువ వీడి గురించి మీకు తెలీదు uncle ఎంతమందిని try చేసాడో తెలుసా బావ పాపాల batch ఊహూ ఊహూ నీకు తెలియకుండా చేసాడా లేదు మరి ఇంకేంటి ఏమో uncle వీడు నాకొద్దు పూజ బావని పెళ్లి చేసుకుంటే permanent గా మాతోనే ఉండిపోవచ్చు కదా ఊ నన్ను కోతన్నాడు aunty రేయ్ sorry చెప్పు పూజకి నేనా చెప్పు రేయ్ చెప్పురా చెప్పు పూజ sorry It's okay నిజంగానే sorry It's okay Sorry పూజ It's okay బావ",
+   "labeler": "clip-gt-editor",
+   "tightening_labeled": true,
+   "hook_line": {
+    "text": "బావని పెళ్లి చేసుకుంటావా",
+    "start_word": 3295,
+    "end_word": 3297
+   },
+   "scores": {
+    "hook": 4,
+    "standalone": 4,
+    "payoff": 5,
+    "value_emotion": 4,
+    "overall": 4
+   },
+   "title": "బావని పెళ్లి చేసుకుంటావా? ఛీ వీడు నాకొద్దు… It's okay బావ",
+   "why_it_works": "Mom proposes cousin Pooja marry Prasad; she refuses, 'he tried so many girls'. Dad: 'behind your back?' 'No.' 'Then what?' Forced sorry x3 ends in 'It's okay బావ'.",
+   "category": "humour",
+   "content_type": "comedy",
+   "clip_purpose": "standalone",
+   "characters": [
+    "Prasad",
+    "Pooja (cousin)",
+    "Prasad's mother",
+    "Prasad's father"
+   ],
+   "visual_dependency": "medium",
+   "spoiler": false,
+   "confidence": 4,
+   "time_segments": [
+    {
+     "start": 1996.0,
+     "end": 2043.4
+    }
+   ],
+   "video_duration": 47.4,
+   "cold_open": false,
+   "payoff_line": "Sorry పూజ / It's okay బావ",
+   "payoff_type": "laugh beat: canned [నవ్వు] 2040.1-2043.4, Prasad grins and throws an arm round her (2041), family wide",
+   "vs_pipeline": "new",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "tags": [],
+   "notes": "Never proposed (discover found no moment between 32:06 and 34:26). Two laughs: the father's logic 'నీకు తెలియకుండా చేసాడా? / లేదు / మరి ఇంకేంటి' and the sorry/It's okay rhythm. 'నీకు తెలియకుండా చేసాడా' is tagged speaker_1 (Prasad's id) but it is the father (maroon shirt, frame 2009.5). Ends at 2043.4 before Prasad's 'ఇప్పుడు వస్తున్నాను'. 'కోతన్నాడు' is ASR for something like 'monkey' (he called her a monkey).",
+   "founder_would_post": "pending"
+  },
+  {
+   "id": "k02",
+   "pieces": [
+    {
+     "start_word": 2236,
+     "end_word": 2302,
+     "start": 1393.26,
+     "end": 1439.24
+    }
+   ],
+   "region": {
+    "start_word": 2236,
+    "end_word": 2302,
+    "start": 1393.26,
+    "end": 1439.24
+   },
+   "edited_duration": 45.98,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "అంటే మా నాన్న ఇష్టమే నా ఇష్టం ప్రసాద్ please అర్థం చేసుకో అసలు ఈ problem కి కారణం ఏంటో నాకు అర్థం కావట్లేదే మా అమ్మ మా ఇంట్లో ప్రతిరోజూ గొడవ జరుగుతూనే ఉండేది. ఆవిడకున్న trauma వల్ల మమ్మల్ని ఎప్పుడూ సరిగ్గా పట్టించుకునేదే కాదు అందర్నీ తన వాళ్ళు అనుకునేది. చివరికి ఆమె చనిపోయినప్పుడు కూడా ఎవ్వరూ రాలేదు బహుశా ఆమెను చూసే నేను ఇలా అయిపోయానేమో నాకు నీ flashback ఎన్ని flash cards చేసినా అర్థం కావట్లే. సరే ఇంక ఇది work out అవ్వట్లే bye",
+   "labeler": "clip-gt-editor",
+   "tightening_labeled": true,
+   "hook_line": {
+    "text": "అంటే మా నాన్న ఇష్టమే నా ఇష్టం ప్రసాద్ please అర్థం చేసుకో",
+    "start_word": 2236,
+    "end_word": 2245
+   },
+   "scores": {
+    "hook": 4,
+    "standalone": 4,
+    "payoff": 4,
+    "value_emotion": 4,
+    "overall": 4
+   },
+   "title": "Emotional flashback చెప్తే… flash cards చేసినా అర్థం కావట్లే, bye",
+   "why_it_works": "Bhramara, teary, explains why she can't love: her mother's trauma, nobody came when she died. Prasad, solemn, then: 'flash cards చేసినా నీ flashback అర్థం కావట్లే… bye'.",
+   "category": "humour",
+   "content_type": "comedy",
+   "clip_purpose": "standalone",
+   "characters": [
+    "Prasad",
+    "Bhramara"
+   ],
+   "visual_dependency": "medium",
+   "spoiler": false,
+   "confidence": 4,
+   "time_segments": [
+    {
+     "start": 1393.1,
+     "end": 1440.7
+    }
+   ],
+   "video_duration": 47.6,
+   "cold_open": false,
+   "payoff_line": "నాకు నీ flashback ఎన్ని flash cards చేసినా అర్థం కావట్లే. సరే ఇంక ఇది work out అవ్వట్లే bye",
+   "payoff_type": "comic reversal undercutting a tearful story; canned [నవ్వు] 1439.8-1440.7; she turns in surprise in the wide (1440.5)",
+   "vs_pipeline": "new",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [
+    "sensitive_content"
+   ],
+   "tags": [],
+   "notes": "Never proposed. The emotional build (her close-ups 1402-1427, his pensive close-up 1430-1434) is the setup the punch needs; the 4 s music pauses inside are part of it. Ends at 1440.7, just before her 'ప్రసాద్!' (1440.78), so the end hold is short (1.5 s after the last word, under the laugh). Sensitive: the joke undercuts a story about a mother's trauma and death. Hook frame is a wide two-shot (1392-1396), not a close-up.",
+   "founder_would_post": "pending"
+  },
+  {
+   "id": "k03",
+   "pieces": [
+    {
+     "start_word": 711,
+     "end_word": 865,
+     "start": 452.764,
+     "end": 522.784
+    }
+   ],
+   "region": {
+    "start_word": 711,
+    "end_word": 865,
+    "start": 452.764,
+    "end": 522.784
+   },
+   "edited_duration": 70.02,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "భ్రమరా, నీకు disorder ఉందని అందర్లా నేను దూరం పెట్టను. నేను ఎవరికీ దగ్గర అవ్వలేను, అదే కదా నా problem. కావాలంటే నీ medical bills నేను కడతాను. నీకు ఎలా చెప్తే అర్థమవుతుంది? అలా అయితే ఒక six months relationship లో ఉండి ఆ తర్వాత విడిపోదాం. ఆహా, ఈ relationship లు, love లు నాకు set కావు. అసలు పెళ్లి అనే ఆలోచనే నా mind లోనే లేదు. ఇప్పుడు పెళ్లి గురించి ఎవరు అడిగారు భ్రమరా? అంటే పెళ్లి చేసుకోవా? నాకు కొంచెం time కావాలి. ప్రేమించింది పెళ్లి చేసుకోవడానికి కాదా? Love చేసేటప్పుడు అంత ఆలోచించలేదు, ఇప్పుడు నువ్వు సడన్ గా వచ్చి పెళ్లి చేసుకోమ్మంటే ఎలా? నువ్వు ఇంత cheaterవి అనుకోలేదు ప్రసాద్. ఒకసారి తింగరి వాడు నిన్ను confuse చేస్తున్నాడు. నువ్వే పెళ్లి చేసుకోమని వాడిని request చేస్తున్నట్టు ఉంది. ప్రసాద్, నా వెంట పడి రాకేష్ పంపించాడు నీతో మాట్లాడాలి ఉందని cheap tricks play చేయకు please. పూజ కొంచెం love చేయడానికి help చేయొచ్చు కదా. Love చెయ్ బ్రహ్మ, car start అవలేదని road మీద వదిలేస్తాడు . ఎన్ని accounts ఉన్నాయి sir మనకి? వాడు వాలకాన్ని love కి సంబంధం లేనన్ని. నేను నిజంగా అంత ఎదవనైతే పూజ వెనక కూడా పడేవాడిని కదా. అమ్మబాబోయ్!",
+   "labeler": "clip-gt-editor",
+   "tightening_labeled": true,
+   "hook_line": {
+    "text": "భ్రమరా, నీకు disorder ఉందని అందర్లా నేను దూరం పెట్టను.",
+    "start_word": 711,
+    "end_word": 719
+   },
+   "scores": {
+    "hook": 4,
+    "standalone": 4,
+    "payoff": 4,
+    "value_emotion": 4,
+    "overall": 4
+   },
+   "title": "Philophobia ఉన్న అమ్మాయి పెళ్లి అడిగితే… పూజ వెనక కూడా పడేవాడిని కదా",
+   "why_it_works": "Prasad offers a 6-month trial to the girl who 'can't love'; she flips to 'so you won't marry me?', calls him a cheater; her friend roasts him, and his comeback gets 'అమ్మబాబోయ్!'",
+   "category": "humour",
+   "content_type": "comedy",
+   "clip_purpose": "standalone",
+   "characters": [
+    "Prasad",
+    "Bhramara",
+    "Pooja (her friend)"
+   ],
+   "visual_dependency": "low",
+   "spoiler": false,
+   "confidence": 3,
+   "time_segments": [
+    {
+     "start": 452.55,
+     "end": 526.1
+    }
+   ],
+   "video_duration": 73.55,
+   "cold_open": false,
+   "payoff_line": "నేను నిజంగా అంత ఎదవనైతే పూజ వెనక కూడా పడేవాడిని కదా / అమ్మబాబోయ్!",
+   "payoff_type": "laugh beat: Pooja's disgusted 'అమ్మబాబోయ్!' (frame 522) + canned [నవ్వు] 522.8-526.1, Bhramara's face to end",
+   "vs_pipeline": "new",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "tags": [],
+   "notes": "Never proposed (discover jumped from 6:39 to 11:06). Two reversals: the commitment-phobic girl demands marriage ('అంటే పెళ్లి చేసుకోవా?') and Prasad 'needs time'; then the Pooja punch. 73.6 s is long for comedy; a tighter version could start at 463.4 ('అలా అయితే ఒక six months relationship…') at 62.7 s, but then 'disorder/philophobia' is never stated. Bhramara's 'cheap tricks… రాకేష్ పంపించాడు' line (496.5-501.5) refers to an earlier setup (Rakesh sent him); harmless but could be dropped on a cut.",
+   "founder_would_post": "pending"
+  },
+  {
+   "id": "k04",
+   "pieces": [
+    {
+     "start_word": 85,
+     "end_word": 126,
+     "start": 56.9,
+     "end": 76.22
+    },
+    {
+     "start_word": 174,
+     "end_word": 190,
+     "start": 100.88,
+     "end": 112.42
+    },
+    {
+     "start_word": 254,
+     "end_word": 269,
+     "start": 153.4,
+     "end": 158.12
+    }
+   ],
+   "region": {
+    "start_word": 85,
+    "end_word": 269,
+    "start": 56.9,
+    "end": 158.12
+   },
+   "edited_duration": 35.58,
+   "reordered": false,
+   "n_blocks": 2,
+   "text": "birthday కి ఎవరైనా gold chain ఓ teddy bear ఓ bouquet ఓ లేదా at least chocolate ఓ gift ఇస్తారు ORS లు ఇచ్చావేంట్రా అంటే ఆ రోజు weak గా ఉన్నావని ఇంట్లో ఎవ్వరూ లేరు, ఒంటరిగా ఉన్నాను అని call చేస్తే YouTube open చేసి ఆంజనేయ దండకం link పంపించావ్ మా తాత చనిపోయి one year అయిందని సంవత్సరికం చేస్తుంటే తాత happy anniversary అని రాసి bouquet పంపిస్తావా సిగ్గుందారా నీకు February 14th కి ఎవరైనా pads gift గా ఇస్తారా రా ఆరోజు నువ్వు date లో ఉన్నావ్ అన్నావ్ కదా",
+   "labeler": "clip-gt-editor",
+   "tightening_labeled": true,
+   "hook_line": {
+    "text": "birthday కి ఎవరైనా gold chain ఓ teddy bear ఓ bouquet ఓ లేదా at least chocolate ఓ gift ఇస్తారు ORS లు ఇచ్చావేంట్రా",
+    "start_word": 85,
+    "end_word": 105
+   },
+   "scores": {
+    "hook": 4,
+    "standalone": 4,
+    "payoff": 4,
+    "value_emotion": 4,
+    "overall": 4
+   },
+   "title": "Birthday కి ORS, Valentine's Day కి pads… ఇదేం boyfriend రా",
+   "why_it_works": "Vaishu lists Prasad's gifts: ORS for her birthday ('you were weak'), a Hanuman chant when she was alone, 'happy anniversary' for grandpa's death rites, pads for Feb 14: 'you said you were on date'.",
+   "category": "humour",
+   "content_type": "comedy",
+   "clip_purpose": "standalone",
+   "characters": [
+    "Vaishu",
+    "Prasad"
+   ],
+   "visual_dependency": "medium",
+   "spoiler": false,
+   "confidence": 3,
+   "time_segments": [
+    {
+     "start": 56.7,
+     "end": 78.12
+    },
+    {
+     "start": 100.7,
+     "end": 114.41
+    },
+    {
+     "start": 153.2,
+     "end": 160.03
+    }
+   ],
+   "video_duration": 41.96,
+   "cold_open": false,
+   "payoff_line": "February 14th కి ఎవరైనా pads gift గా ఇస్తారా రా / ఆరోజు నువ్వు date లో ఉన్నావ్ అన్నావ్ కదా",
+   "payoff_type": "comic reversal (date = period pun); Vaishu's stunned look 158.2-160.0; no laugh track",
+   "vs_pipeline": "better_cut_of:w01",
+   "standalone_risks": [],
+   "edit_notes": [
+    {
+     "type": "skip",
+     "after_piece": 0,
+     "reason": "drops the pan-shop/cigarette story (78-100 s)"
+    },
+    {
+     "type": "skip",
+     "after_piece": 1,
+     "reason": "drops 'small reasons', the politics fight and the friend-message item (114-153 s)"
+    }
+   ],
+   "flags": [
+    "sensitive_content"
+   ],
+   "tags": [],
+   "notes": "Better cut of w01 (founder maybe: hook 3, standalone 3, payoff 2), which ran the whole list including the long pan-shop story and ended on 'ఏంటి ఇవి చిన్నవా' (a question). This keeps the three sharpest items and ends on the strongest punch with her reaction. Each segment ends on a reaction shot of Prasad (78.1, 114.4) or Vaishu (160.0), cut on shot changes. Sensitive: menstruation joke. Not a canned-laugh beat, so the payoff rests on the line and her stunned face; judge may give 3-4.",
+   "founder_would_post": "pending"
+  },
+  {
+   "id": "k05",
+   "pieces": [
+    {
+     "start_word": 1876,
+     "end_word": 1958,
+     "start": 1151.58,
+     "end": 1210.44
+    }
+   ],
+   "region": {
+    "start_word": 1876,
+    "end_word": 1958,
+    "start": 1151.58,
+    "end": 1210.44
+   },
+   "edited_duration": 58.86,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ఏం dream boy qualities లేకపోవడం నా తప్ప అందరు అన్నయ్య అయితే ఎలా? ప్రసాద్ ఏంటి? రాఖీ కట్టేస్తావా? నాకు ok సరే చెమ్కిలో ఉన్న రాఖీ కట్టు చూడ్డానికి బాగుంటది చెయ్యి రాఖీ గురించి కాదు, నిన్ను bro అన్నా కదా అంటే ఇప్పుడు బాబాయ్ అని పిలుస్తావా? ఏంట్రా నాకి torture ఆ No! నీకెందుకు అర్దం అవ్వట్లేదు నాకు చాలా అర్దం కావు అందుకే ఎవర్నీ నాతో... ఆ ఇదేంది ఇలా ఉంటదో. మరి ఎందుకు bro అన్నావ్ ఊరికే నిన్ను ఏడిపించడానికి. ఏ నువ్వు మాత్రం leave కావాలని mail పెట్టి date కూడా mention చేయవుగా. ఇది అంతే అంతేలే love అన్నాక surprises, చాలదనం లో ఉండాలి",
+   "labeler": "clip-gt-editor",
+   "tightening_labeled": true,
+   "hook_line": {
+    "text": "ఏం dream boy qualities లేకపోవడం నా తప్ప అందరు అన్నయ్య అయితే ఎలా?",
+    "start_word": 1876,
+    "end_word": 1886
+   },
+   "scores": {
+    "hook": 3,
+    "standalone": 4,
+    "payoff": 4,
+    "value_emotion": 4,
+    "overall": 4
+   },
+   "title": "Bro అన్నావ్ కదా… రాఖీ కట్టేస్తావా? ఊరికే ఏడిపించడానికి",
+   "why_it_works": "Brother-zoned Prasad sulks, offers his wrist for a rakhi, panics at 'babai' next, then she admits she called him bro only to tease him. He grins: 'love అన్నాక surprises ఉండాలి'.",
+   "category": "humour",
+   "content_type": "comedy",
+   "clip_purpose": "standalone",
+   "characters": [
+    "Prasad",
+    "Pratyusha/Pratiksha (office colleague)"
+   ],
+   "visual_dependency": "medium",
+   "spoiler": false,
+   "confidence": 3,
+   "time_segments": [
+    {
+     "start": 1151.35,
+     "end": 1211.05
+    }
+   ],
+   "video_duration": 59.7,
+   "cold_open": false,
+   "payoff_line": "మరి ఎందుకు bro అన్నావ్ / ఊరికే నిన్ను ఏడిపించడానికి … అంతేలే love అన్నాక surprises ఉండాలి",
+   "payoff_type": "comic reversal (the 'bro' was a prank) with [నవ్వు] 1195; ends on Prasad's grin (1210)",
+   "vs_pipeline": "new",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "tags": [],
+   "notes": "Continuation of w06 (founder yes, ends 19:06 on his walk-out); the reversal itself was never proposed. The clip restates the premise ('నా తప్ప అందరు అన్నయ్య', 'నిన్ను bro అన్నా కదా'), so it stands alone. 1185-1191 is a silent beat: he looks away and breaks into a shy giggle (frames 1190-1192), kept. The opener is him complaining aloud while walking back (face in frame, but not addressed to her): hook 3. Name: ASR 'ప్రతీక్ష' on the phone call, 'ప్రత్యూష' elsewhere; same actress in frames.",
+   "founder_would_post": "pending"
+  },
+  {
+   "id": "k06",
+   "pieces": [
+    {
+     "start_word": 2331,
+     "end_word": 2412,
+     "start": 1484.924,
+     "end": 1524.664
+    },
+    {
+     "start_word": 2453,
+     "end_word": 2464,
+     "start": 1546.144,
+     "end": 1549.784
+    }
+   ],
+   "region": {
+    "start_word": 2331,
+    "end_word": 2464,
+    "start": 1484.924,
+    "end": 1549.784
+   },
+   "edited_duration": 43.38,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "నువ్వు ఈ project లో లేవు అవును leave లో ఉన్నాను Complete గా లేవు అంటున్నా నాకు long leave వద్దు అంటున్నా నీకు అర్థం అవ్వట్లేదా లేకపోతే act చేస్తున్నావా pratyusha pratyusha pratyu నన్ను అంత close గా పిలవకు ఏ నువ్వు cheater vi prasad నీకోసం ఎవరైనా cheat చేయాలనిపించిందప్పుడు నువ్వు నన్ను cheat చేశావ్ రా అది flow లో అంటే సర్లే నాకు మీ అక్కీ పెళ్లి అయిన తర్వాత నీకు ఏదో average సంబంధం చూస్తా లే Average ఆ అంటే నువ్వు handsome అనుకుంటున్నావా Handsome గా ఉన్న వాళ్ళందరూ photo frame లో బాగుంటారే reality లో కాకి పెళ్ళే ముద్దు Ma'am వీడు నన్ను twenty thousand అప్పు అడుగుతున్నాడు ఇవ్వకపోతే propose చేస్తా అని బెదిరిస్తున్నాడు",
+   "labeler": "clip-gt-editor",
+   "tightening_labeled": true,
+   "hook_line": {
+    "text": "నువ్వు ఈ project లో లేవు",
+    "start_word": 2331,
+    "end_word": 2335
+   },
+   "scores": {
+    "hook": 4,
+    "standalone": 4,
+    "payoff": 4,
+    "value_emotion": 4,
+    "overall": 4
+   },
+   "title": "Boss ex కి… మీ అక్కని పెళ్లి చేసుకుంటా, 20k ఇవ్వకపోతే propose చేస్తా",
+   "why_it_works": "His boss and ex drops him from the project and calls him a cheater; he offers her an 'average' match once he weds her sister, till a colleague walks in: he threatens to propose unless she lends 20k.",
+   "category": "humour",
+   "content_type": "comedy",
+   "clip_purpose": "standalone",
+   "characters": [
+    "Prasad",
+    "Pratyusha (boss, Bhramara's sister)",
+    "a colleague"
+   ],
+   "visual_dependency": "medium",
+   "spoiler": false,
+   "confidence": 3,
+   "time_segments": [
+    {
+     "start": 1484.65,
+     "end": 1524.95
+    },
+    {
+     "start": 1545.21,
+     "end": 1551.88
+    }
+   ],
+   "video_duration": 46.97,
+   "cold_open": false,
+   "payoff_line": "Ma'am వీడు నన్ను twenty thousand అప్పు అడుగుతున్నాడు ఇవ్వకపోతే propose చేస్తా అని బెదిరిస్తున్నాడు",
+   "payoff_type": "third-party punchline exposing him; Prasad's caught sideways look 1548.7-1551.9; no laugh track",
+   "vs_pipeline": "new",
+   "standalone_risks": [],
+   "edit_notes": [
+    {
+     "type": "skip",
+     "after_piece": 0,
+     "reason": "drops 'we are done… ఆకులేస్తవా… మా అక్క…' (1525-1545) so the colleague cuts in after his 'handsome' line"
+    }
+   ],
+   "flags": [],
+   "tags": [],
+   "notes": "Never proposed (discover had nothing between 22:20 and 26:07). Hook: boss to employee in close-up, 'నువ్వు ఈ project లో లేవు'. The join after 'reality లో కాకి పెళ్ళే ముద్దు' into the colleague's complaint reads as an interruption; the dropped chunk is a whole exchange. 'pratyusha pratyusha pratyu' (he croons her name) and 'కాకి పెళ్ళే ముద్దు' (likely 'కాకి పిల్ల కాకికి ముద్దు') are ASR-rough. End hold 2.1 s.",
+   "founder_would_post": "pending"
+  },
+  {
+   "id": "k07",
+   "pieces": [
+    {
+     "start_word": 466,
+     "end_word": 518,
+     "start": 286.5,
+     "end": 318.78
+    },
+    {
+     "start_word": 539,
+     "end_word": 587,
+     "start": 332.1,
+     "end": 354.6
+    }
+   ],
+   "region": {
+    "start_word": 466,
+    "end_word": 587,
+    "start": 286.5,
+    "end": 354.6
+   },
+   "edited_duration": 54.78,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "madam మీరు చాలా అందంగా ఉన్నారండి Thank you అన్నా ప్రసాద్ madam Okay ప్రసాద్ అన్నా Only ప్రసాద్ madam చాలా simple ఏ మన్నా madam ప్రసాద్ is okay, అన్న is not okay ఎందుకు six months back ఒక అమ్మాయి ఇలాగే అన్నయ్యా అని పిలిచి అన్నం లేకుండా చచ్చిపోయింది madam ఆ తర్వాత తర్వాత ఆ అమ్మాయి దినానికి మేము వెళ్లి అన్నం తిని వచ్చామండి Yeah nice guy. మీరేం చదువుకున్నారు Ninth pass madam, tenth class summer coaching లో ఆపేశానండి చదువుకొని ఉంటే మీరు మాలాగే మంచి job చేసుకునే వాళ్ళు కదా అంటే మా ఇంటి దగ్గర ఒకడు బాగా చదువుకొని పిచ్చి అయిపోయాడండి. అప్పటి నుంచి నేను చదవడం మానేశాను మీరంత sensitive ఆ అత్తని ఆంటీ అని ఎవరు పిలిచినా కూడా తట్టుకోలేను sensitive అండి",
+   "labeler": "clip-gt-editor",
+   "tightening_labeled": true,
+   "hook_line": {
+    "text": "madam మీరు చాలా అందంగా ఉన్నారండి",
+    "start_word": 466,
+    "end_word": 470
+   },
+   "scores": {
+    "hook": 4,
+    "standalone": 4,
+    "payoff": 4,
+    "value_emotion": 3,
+    "overall": 3
+   },
+   "title": "అన్న is not okay madam… అన్నయ్యా అన్న అమ్మాయి కథ",
+   "why_it_works": "New driver Prasad compliments his passenger; she says 'Thank you అన్నా'. 'Prasad is okay, అన్న is not': the last girl who called him annayya died, they ate at her funeral feast.",
+   "category": "humour",
+   "content_type": "comedy",
+   "clip_purpose": "standalone",
+   "characters": [
+    "Prasad (driver)",
+    "Bhramara"
+   ],
+   "visual_dependency": "low",
+   "spoiler": false,
+   "confidence": 3,
+   "time_segments": [
+    {
+     "start": 286.24,
+     "end": 318.82
+    },
+    {
+     "start": 331.62,
+     "end": 356.1
+    }
+   ],
+   "video_duration": 57.06,
+   "cold_open": false,
+   "payoff_line": "అత్తని ఆంటీ అని ఎవరు పిలిచినా కూడా తట్టుకోలేను sensitive అండి",
+   "payoff_type": "deadpan punchline cap (rule of three: funeral feast, 'studied and went mad', 'aunt called aunty'); her reactions are flat looks except an incredulous 'మీరంత sensitive ఆ' (350)",
+   "vs_pipeline": "new",
+   "standalone_risks": [],
+   "edit_notes": [
+    {
+     "type": "skip",
+     "after_piece": 0,
+     "reason": "drops the Rakesh small talk (319-331); her 'Yeah nice guy' then reads as a dry reply to his story"
+    }
+   ],
+   "flags": [
+    "sensitive_content"
+   ],
+   "tags": [],
+   "notes": "Never proposed (right before w03, founder yes, which starts 5:57 at 'మీకు boyfriend ఉన్నాడా'; no overlap). Starts on the shot change into the car (286.24): the line's first word 'వైషు' (285.74) sits over the previous scene, so the clip opens on 'madam మీరు చాలా అందంగా ఉన్నారండి'. Doubt: reactions are flat, no laugh track; the funeral joke is dark (flag). A shorter variant ends at 318.8 on the funeral punch (32.6 s).",
+   "founder_would_post": "pending"
+  },
+  {
+   "id": "k08",
+   "pieces": [
+    {
+     "start_word": 3202,
+     "end_word": 3294,
+     "start": 1954.324,
+     "end": 1993.084
+    }
+   ],
+   "region": {
+    "start_word": 3202,
+    "end_word": 3294,
+    "start": 1954.324,
+    "end": 1993.084
+   },
+   "edited_duration": 38.76,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ఊరంతా కుక్కలా తిరిగే బదులు ఇంట్లో ఉన్న పూజ గురించి ఎప్పుడైనా ఆలోచించావా నేను తనలా ఎప్పుడూ చూడలేదు రా విరాజస్థ నీలో అంత మంచివాడు లేడే ఉన్నాడు నీకే పచ్చ కామర్లు పందికేం తెలుసు pond's powder వాసన విరాజస్థ నీకు Mansion House కి Royal stag కి తేడా తెలుసా తెలీదు అలా అని చెప్పి నిన్ను వేరే జంతువుతో పోల్చలేను కదా ఎవడి talent వాడిది సర్లే. నీ పెళ్ళికి నన్ను పిలవవా అక్కడ ఎవరైనా set అవుతారేమో చూద్దాం ఏ పోరా ఊ Get lost friends ఇలా పోనీ నీ friends లో ఎవరన్నా అమ్మగా ఉంటే చెప్పు తీసుకు కొడతా Okay happy wedding ఊ పెళ్లి చేసుకో బాగా వెళ్ళు ఆ గోరించు పోనీ మీ relatives బయలుదేరు",
+   "labeler": "clip-gt-editor",
+   "tightening_labeled": true,
+   "hook_line": {
+    "text": "ఊరంతా కుక్కలా తిరిగే బదులు ఇంట్లో ఉన్న పూజ గురించి ఎప్పుడైనా ఆలోచించావా",
+    "start_word": 3202,
+    "end_word": 3211
+   },
+   "scores": {
+    "hook": 4,
+    "standalone": 3,
+    "payoff": 4,
+    "value_emotion": 3,
+    "overall": 4
+   },
+   "title": "నీ పెళ్ళికి పిలువు, అక్కడ ఎవరైనా set అవుతారేమో… బయలుదేరు",
+   "why_it_works": "Virajitha tells serial-lover Prasad to look at Pooja at home; insults fly (pig, Mansion House vs Royal Stag), then he fishes for her friends, her relatives… 'బయలుదేరు'. She laughs as he goes.",
+   "category": "humour",
+   "content_type": "comedy",
+   "clip_purpose": "standalone",
+   "characters": [
+    "Prasad",
+    "Virajitha"
+   ],
+   "visual_dependency": "medium",
+   "spoiler": false,
+   "confidence": 3,
+   "time_segments": [
+    {
+     "start": 1954.1,
+     "end": 1995.85
+    }
+   ],
+   "video_duration": 41.75,
+   "cold_open": false,
+   "payoff_line": "పోనీ మీ relatives / బయలుదేరు",
+   "payoff_type": "rule-of-three escalation to a dismissal; comic music sting; she laughs as he walks off (1994.5)",
+   "vs_pipeline": "new",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "tags": [],
+   "notes": "Continues w10 (founder yes, ends 32:02 on 'విడాకుల case'); this banter 32:34-33:16 was never proposed. Standalone 3: 'ఇంట్లో ఉన్న పూజ' and who Virajitha is are not explained (reads as 'a girl at home' and 'a friend'). Brand names are ASR guesses ('Mansion House'). 'అమ్మగా' is probably 'అమ్మాయి'.",
+   "founder_would_post": "pending"
+  },
+  {
+   "id": "k09",
+   "pieces": [
+    {
+     "start_word": 1669,
+     "end_word": 1735,
+     "start": 993.124,
+     "end": 1028.564
+    },
+    {
+     "start_word": 1781,
+     "end_word": 1794,
+     "start": 1049.824,
+     "end": 1057.724
+    }
+   ],
+   "region": {
+    "start_word": 1669,
+    "end_word": 1794,
+    "start": 993.124,
+    "end": 1057.724
+   },
+   "edited_duration": 43.34,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ఇప్పుడే కదరా బ్రహ్మారావు వెనుక పడ్డావ్ మధ్యలో ప్రతీక్ష ఎవరురా? ప్రతీక్ష ఎప్పుడో కట్టిన insurance ఇప్పుడు mature అయింది. మరి బ్రహ్మారావు? ఆ బ్రహ్మారావు ఒక భ్రమ అనుకొని మర్చిపోవడమే. ఏంటి sudden గా change అయ్యావ్? యెహా ఎంతసేపు అమ్మా వాళ్ళ వెంట పడతాం. అలిసిపోవడం అలసిపోయి పోవడం తప్ప ఏం ఉండదు అక్కడ. పైగా వాళ్ళ బాబుని convince చేసేంత ఓపిక నాకు లేదు. love అనేది go with flow లా ఉండాలే, ఏదో వరదలు వచ్చి కొట్టుకెళ్ళిపోయినట్టు ఉండకూడదు. So ఇప్పుడు ప్రతీక్ష. Yes. తర్వాత. వైష్ణవి. ప్రతీక్షతో నాకు date ఉంది. Bye. ఆ ఆధార్ కార్డు పట్టుకొని RTC bus లో వెళ్ళిపో ok.",
+   "labeler": "clip-gt-editor",
+   "tightening_labeled": true,
+   "hook_line": {
+    "text": "ఇప్పుడే కదరా బ్రహ్మారావు వెనుక పడ్డావ్ మధ్యలో ప్రతీక్ష ఎవరురా?",
+    "start_word": 1669,
+    "end_word": 1676
+   },
+   "scores": {
+    "hook": 4,
+    "standalone": 3,
+    "payoff": 3,
+    "value_emotion": 3,
+    "overall": 3
+   },
+   "title": "ప్రతీక్ష ఎప్పుడో కట్టిన insurance ఇప్పుడు mature అయింది",
+   "why_it_works": "'You were just chasing Bhramara, who's Pratiksha?' 'An old insurance policy, just matured.' Love should flow, not flood. Then he leaves her stranded: 'take your Aadhaar, go by RTC bus'.",
+   "category": "humour",
+   "content_type": "comedy",
+   "clip_purpose": "standalone",
+   "characters": [
+    "Prasad",
+    "Pooja (likely)"
+   ],
+   "visual_dependency": "medium",
+   "spoiler": false,
+   "confidence": 2,
+   "time_segments": [
+    {
+     "start": 993.0,
+     "end": 1028.53
+    },
+    {
+     "start": 1049.6,
+     "end": 1060.15
+    }
+   ],
+   "video_duration": 46.08,
+   "cold_open": false,
+   "payoff_line": "ప్రతీక్షతో నాకు date ఉంది. Bye. ఆధార్ కార్డు పట్టుకొని RTC bus లో వెళ్ళిపో ok.",
+   "payoff_type": "comic exit insult (free bus for women); her deadpan glare 1057.7-1060.2; no laugh track",
+   "vs_pipeline": "new",
+   "standalone_risks": [],
+   "edit_notes": [
+    {
+     "type": "skip",
+     "after_piece": 0,
+     "reason": "drops the Vaishnavi 'game' / 'threatening is more fun than killing' exchange (1029-1049)"
+    }
+   ],
+   "flags": [],
+   "tags": [],
+   "notes": "Never proposed. The best line ('insurance mature') is 6 s in, then two softer beats; by the last-beat rule the ending must carry it, and the RTC-bus exit is a mild laugh, so payoff 3. A short alternative ends on 'love అనేది go with flow లా ఉండాలే, వరదలు వచ్చి కొట్టుకెళ్ళిపోయినట్టు ఉండకూడదు' (993.0-1021.6, 28.6 s). The woman asking is not named in this scene; I believe it is Pooja. The cut after 'వైష్ణవి' (1028.53) jumps to Prasad in the same set-up (1049.6), a visible jump.",
+   "founder_would_post": "pending"
+  },
+  {
+   "id": "k10",
+   "pieces": [
+    {
+     "start_word": 1481,
+     "end_word": 1579,
+     "start": 832.404,
+     "end": 899.184
+    }
+   ],
+   "region": {
+    "start_word": 1481,
+    "end_word": 1579,
+    "start": 832.404,
+    "end": 899.184
+   },
+   "edited_duration": 66.78,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ఇంకా ఈ discussion ఎంతసేపు? finally గా ఏదో clarity ఇవ్వు. అంటే ప్రసాద్ నాతో కాసేపు కూడా సరింగా మాట్లాడలేవా? Washroom urgent. ఛీ పోరా. ఆ పోవే. respect లేకుండా మాట్లాడితే అస్సలు బాగోదు చెప్తున్నా. అయినా పోవే. ఇంకొకసారి కనిపించావంటే అప్పుడు చెప్తా. ఆ కళ్ళు పొడుచుకో అయితే. అబ్బో! నీలాంటి వాళ్ళని ఎన్ని తిట్టినా సిగ్గురాదు. ఆ ముందు ఆ అమ్మాయి నచ్చగానే వదిలేయాల్సింది సిగ్గే. అబ్బా! నీకు ఎలా చెప్తే అర్థమవుతుంది. Hug చేసుకొని చెప్పు బ్రహ్మారావ్. ఊ... బాబు నీకు ఒక దండం. పతియే ప్రత్యక్ష దైవం. ఎలా హా. బ్రహ్మ, బ్రహ్మ వెళ్ళిపోతావెంటి బ్రహ్మ ఏయ్ philophobia. Philophobia. నీకన్నా నీ రోగానికి ఎక్కువ respect ఇస్తావెంటి self respect లేదా నీకు? మనుషుల్ని దూరం పెట్టడమంటే అది మానసిక రోగం కాదు పిరికితనం. నాకు washroom urgent bye.",
+   "labeler": "clip-gt-editor",
+   "tightening_labeled": true,
+   "hook_line": {
+    "text": "ఇంకా ఈ discussion ఎంతసేపు? finally గా ఏదో clarity ఇవ్వు.",
+    "start_word": 1481,
+    "end_word": 1489
+   },
+   "scores": {
+    "hook": 4,
+    "standalone": 3,
+    "payoff": 3,
+    "value_emotion": 3,
+    "overall": 3
+   },
+   "title": "అది మానసిక రోగం కాదు పిరికితనం… washroom urgent bye",
+   "why_it_works": "Bhramara keeps him at arm's length; he fakes 'washroom urgent', asks for a hug, gets a namaste. Parting shot: avoiding people isn't a disorder, it's cowardice. Then: 'washroom urgent, bye'.",
+   "category": "humour",
+   "content_type": "comedy",
+   "clip_purpose": "standalone",
+   "characters": [
+    "Prasad",
+    "Bhramara"
+   ],
+   "visual_dependency": "medium",
+   "spoiler": false,
+   "confidence": 2,
+   "time_segments": [
+    {
+     "start": 832.2,
+     "end": 900.1
+    }
+   ],
+   "video_duration": 67.9,
+   "cold_open": false,
+   "payoff_line": "మనుషుల్ని దూరం పెట్టడమంటే అది మానసిక రోగం కాదు పిరికితనం. / నాకు washroom urgent bye.",
+   "payoff_type": "quotable snap + callback exit; her look (891), he walks off (900); no laugh track",
+   "vs_pipeline": "new",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [
+    "sensitive_content"
+   ],
+   "tags": [],
+   "notes": "Never proposed (follows w05, founder no, 13:02-13:22; no overlap). Visual gag: he opens his arms for a hug and she folds her hands in namaste (865-869). Long (68 s) for comedy; the 846-862 insult exchange could be dropped but she walks off at 843 and is back facing him at 862, so a cut there jumps. Sensitive: calls a phobia 'cowardice'. Likely maybe: no laugh track and the payoff is a stance line plus a callback.",
+   "founder_would_post": "pending"
+  }
+ ]
+}

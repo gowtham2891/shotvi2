@@ -1,0 +1,542 @@
+{
+ "schema_version": "1.1",
+ "kind": "gold",
+ "video_id": "Sy8yZ4DgzrU",
+ "transcript": {
+  "path": "scribe_dataset/Sy8yZ4DgzrU/Sy8yZ4DgzrU_scribe_transcript.json",
+  "sha256": "e35aae9eef166554ceb325a8f5c6bc88a42416082808989c38f8be234fd9e8d0",
+  "n_words": 2144,
+  "audio_duration_secs": 1435.8535
+ },
+ "derived_params": {
+  "skip_s": 30.0
+ },
+ "labeler": "clip-gt-editor",
+ "created_at": "2026-10-13",
+ "independence": "Picked from the episode transcript (+ applied ASR fixes), shot list, video keyframes, and the v1_test pipeline clips + founder ratings (allowed, to target misses); no creator/channel Shorts or Reels were opened or searched for.",
+ "coverage": {
+  "start": 0.0,
+  "end": 1435.9,
+  "complete": true,
+  "note": "Whole episode read in order. 0:00-1:07 Satya wakes, Krishna missing (music); 1:07-1:48 confrontation (pipeline w01); 1:58-4:40 flashback: Krishna comforts crying Radha, she leans on his shoulder; 4:40-6:26 Satya and Krishna make up; 6:50-8:30 Radha vs Satya's brother game fight (pipeline w02 = first half); 8:30-9:10 Satya comforts Radha; 9:35-10:16 Raghu flirts with Satya at office; 10:16-11:52 Raghu and friend (pipeline w03); 12:00-15:30 Subbu gets Krishna a job; 15:53-17:20 job news to Satya; 17:20-18:35 party / ice cream; 18:42-19:35 house-loan idea; 19:42-22:30 dowry/house-money fight (pipeline w07); 22:30-23:56 music/credits."
+ },
+ "notes": "Project Pelli S2 Ep4 (Infinitum Media). CANDIDATE picks for the clip-judge filter, focused on moments the v1 pipeline missed or cut badly (founder yes on pipeline w02 6:50-7:16 is excluded). Characters from dialogue + frames: Krishna (husband, jobless until mid-episode), Satya/Satyabhama (wife, office job, earns more), Radha (Satya's cousin staying with them, calls Krishna బావ, Satya అక్క), a young man in a grey shirt who calls Satya అక్క (my inference: her younger brother; unnamed), Raghu (Satya's office colleague with a crush on her) and his friend, Subbu (Krishna's school friend, gets him a medical-rep job). Scribe speaker ids unreliable; speakers from frames. ASR fixes applied when reading. shots.json misses many cuts in this episode (e.g. 12:18-13:08 has alternating singles but no listed cuts). Option-2 cutting as above. vs_pipeline: 'new' or 'better_cut_of:<v1_test id>'.",
+ "founder_review": "pending (candidates for clip-judge filter)",
+ "clips": [
+  {
+   "id": "g01",
+   "pieces": [
+    {
+     "start_word": 565,
+     "end_word": 674,
+     "start": 450.68,
+     "end": 507.06
+    }
+   ],
+   "region": {
+    "start_word": 565,
+    "end_word": 674,
+    "start": 450.68,
+    "end": 507.06
+   },
+   "edited_duration": 56.38,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "touch అయింది ఇది cheating నేను ఇంకా ready గా లేను ఆ ఇందాక నేను కూడా అలాగే ready గా లేను. నువ్వు కొట్టవు నాకు కోపం వస్తుంది ఆ కోపం వస్తే ఏం చేస్తావ్ time మీరే cheating చేస్తారా చెప్తా నీ పని ఏంటా sound అమ్మా అమ్మా ఆ ఆ బండ నాయాల చవట నాయాల నన్నే కొడతావా ఉమ్ ఏయ్ ఉమ్ game లో cheating చేస్తావా ఏయ్ ఏయ్ ఆగండి చూడక్క చిన్న పిల్లోడిని చేసి కొడుతుంది. మా అక్క వచ్చింది కాబట్టి సరిపోయింది. లేకపోతే ఈపాటికి నేను చంపేసేవాడిని నువ్వే first నన్ను irritate చేశావు నేనేం చేశాను నా మానాన నేను పని చేసుకుంటుంటే game ఆడదామని పిలిచి cheating చేశావు నేనేమీ cheating చేయలేదు. నువ్వే నేను గెలుస్తాను అని కుళ్ళుపోయావు కుళ్ళు ముద్దనా గెలుస్తున్నావా ఏయ్ ఆగండి ఇద్దరూ. ఏంటిది చిన్న పిల్లల్లా ఊరికే గొడవ పడుతున్నారు నీతో కట్టిస్",
+   "labeler": "clip-gt-editor",
+   "tightening_labeled": true,
+   "hook_line": {
+    "text": "touch అయింది ఇది cheating నేను ఇంకా ready గా లేను",
+    "start_word": 565,
+    "end_word": 573
+   },
+   "scores": {
+    "hook": 3,
+    "standalone": 3,
+    "payoff": 4,
+    "value_emotion": 4,
+    "overall": 3.5
+   },
+   "title": "గేమ్ లో cheating… అక్క రాకపోతే చంపేసేవాడిని!",
+   "why_it_works": "Radha and Satya's younger brother fight over a cheating game; she pins him and slaps him, and once Satya walks in he brags he'd have 'killed' her; Satya scolds them like kids.",
+   "category": "humour",
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "characters": [
+    "Radha",
+    "Satya's younger brother (unnamed; calls Satya అక్క)",
+    "Satya"
+   ],
+   "visual_dependency": "high",
+   "spoiler": false,
+   "confidence": 3,
+   "time_segments": [
+    {
+     "start": 450.5,
+     "end": 508.9
+    }
+   ],
+   "video_duration": 58.4,
+   "internal_cuts": [],
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [
+    "sensitive: slapstick slapping and mild curses (బండ నాయాల, చవట నాయాల)"
+   ],
+   "tags": [],
+   "notes": "7:30-8:29, the beat right after founder-approved w02 (6:50-7:16, same game). Frames: 450-460 the two on the floor in singles; 460-466 Satya (purple saree) enters the flat (silent rustle, kept inside); 466-478 Radha jumps him and slaps him (close, physical); 481 Satya pulls her off; 484-509 all in a WIDE three-shot, so reactions are small. The opponent is NOT Krishna: a young man in a grey shirt who says 'మా అక్క వచ్చింది' (my inference: Satya's brother; never named). 'నీతో కట్టిస్' (507) is ASR, most likely 'నీతో కటీఫ్' (childish 'I'm not friends with you'); hold 1.8 s on his exit. Relisten heard 466 as 'game లో cheating చేస్తావా? చెప్తా నీ పని'. [నవ్వు] event 500.2 after 'కుళ్ళు ముద్దనా'. Sensitive (mild): slapping, curses 'బండ నాయాల చవట నాయాల'. Hook: 'touch అయింది / ఇది cheating…' (plain, mid-game, wide-ish first frame) = 3.",
+   "cold_open": false,
+   "payoff_line": "మా అక్క వచ్చింది కాబట్టి సరిపోయింది. లేకపోతే ఈపాటికి నేను చంపేసేవాడిని … కుళ్ళు ముద్దనా [నవ్వు] … ఏంటిది చిన్న పిల్లల్లా ఊరికే గొడవ పడుతున్నారు / నీతో కటీఫ్",
+   "payoff_type": "slapstick + comic bravado inversion, laugh event, sister scolds, childish storm-off exit",
+   "vs_pipeline": "new",
+   "founder_would_post": "pending"
+  },
+  {
+   "id": "g02",
+   "pieces": [
+    {
+     "start_word": 114,
+     "end_word": 131,
+     "start": 143.46,
+     "end": 155.74
+    },
+    {
+     "start_word": 132,
+     "end_word": 149,
+     "start": 160.56,
+     "end": 170.08
+    },
+    {
+     "start_word": 178,
+     "end_word": 270,
+     "start": 184.78,
+     "end": 235.3
+    }
+   ],
+   "region": {
+    "start_word": 114,
+    "end_word": 270,
+    "start": 143.46,
+    "end": 235.3
+   },
+   "edited_duration": 72.32,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ఏంటమ్మా. ఎందుకు చిన్నపిల్లలా చేస్తున్నావ్. చెప్పు ఏమైందో. చెప్తే నువ్వు తిడతావ్. నేనేం తిట్టనులే. చెప్పు నాకు. నాకు అమ్మ నాన్న గుర్తొచ్చారు. ఊ. || నేను ఎప్పుడూ వాళ్ళని వదిలేసి ఇన్ని రోజులుండలేదు. ఇక్కడికొచ్చినప్పటి నుంచి బానే ఉన్నా అనుకున్నా. కానీ ఇప్పుడు sudden గా వాళ్ళని miss అవుతున్నా. || అయినా, నేను ఇక్కడ ఉన్నా కదా. నేను ఉన్నా కూడా నీకు వాళ్ళు గుర్తొస్తున్నారా? ఇదంతా నీ వల్లే. నా వల్ల? అవును నీ వల్లే. నేనేం చేశా? నిన్న పొద్దున్న interview కి వెళ్ళే ముందు నువ్వు నన్ను తిట్టావ్. అప్పట్నుంచి నాకు ఏదోలా ఉంది. ఊరికి వెళ్లిపోవాలనిపిస్తుంది. ఇంకెప్పుడు నీ దగ్గరికి రాకూడదని కూడా అనిపిస్తుంది. హ్మ్. రాధమ్మ నాది అనుకున్నా కాబట్టి తిట్టా. నాకు ఆ మాత్రం హక్కు కూడా లేదా. సరే sorry. అయ్యో బావ. నువ్వెందుకు sorry చెప్తున్నావ్. అంటే నువ్వు feel అయ్యావు కదా నా వల్ల. అందుకే so sorry. నువ్వు అలా sorry చెప్పకు బావా. నాకేదోలా ఉంటుంది. అయినా నేనేం పెద్దగా feel అవ్వలేదులే. అమ్మ నాన్న కూడా నాకేం గుర్తు రాలేదు. ఊరికే ఏడ్చాను. సరే ఇంకెడవకు.",
+   "labeler": "clip-gt-editor",
+   "tightening_labeled": true,
+   "hook_line": {
+    "text": "ఏంటమ్మా. ఎందుకు చిన్నపిల్లలా చేస్తున్నావ్.",
+    "start_word": 114,
+    "end_word": 117
+   },
+   "scores": {
+    "hook": 3,
+    "standalone": 4,
+    "payoff": 4,
+    "value_emotion": 4,
+    "overall": 4.0
+   },
+   "title": "అమ్మ నాన్న గుర్తొచ్చి కాదు… బావ తిట్టాడని ఏడ్చింది!",
+   "why_it_works": "Krishna finds Radha crying at night 'for her parents'; she blames him for scolding her, he apologises, and she melts: she never missed her parents at all.",
+   "category": "emotional",
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "characters": [
+    "Radha",
+    "Krishna (her బావ)"
+   ],
+   "visual_dependency": "medium",
+   "spoiler": false,
+   "confidence": 3,
+   "time_segments": [
+    {
+     "start": 143.3,
+     "end": 156.99
+    },
+    {
+     "start": 160.4,
+     "end": 170.5
+    },
+    {
+     "start": 184.52,
+     "end": 235.6
+    }
+   ],
+   "video_duration": 74.87,
+   "internal_cuts": [
+    "156.99->160.40",
+    "170.50->184.52"
+   ],
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "tags": [
+    "relatable"
+   ],
+   "notes": "2:23-3:56, night. Two whole-chunk cuts: 156.99-160.4 (silent crying pause; out on a shot change, in 3.4 s into the next shot) and 170.5-184.52 (Krishna's 'ఓస్ పిచ్చిదానా… bus ఎక్కితే పొద్దున్నే…' consolation; both ends on shot changes; reads 'miss అవుతున్నా' -> 'అయినా, నేను ఇక్కడ ఉన్నా కదా'). Frames: 143.4 Krishna close, addressing her; Radha wiping tears 227-232; 233.4-235.6 Krishna smiling 'సరే ఇంకెడవకు' (shot change 235.65 = end). Not used: the scene goes on to 'నువ్వెళ్ళిపోతే నాకేదోలా ఉంటుంది. ఇంకొంచెం సేపు ఉండు' and her head on his shoulder (4:17-4:24), the moment Satya later confronts him about; that ending is ~5 s of silent lean under music (a silent end hold), so I ended on the reveal. Standalone: 'బావ' is stated; that Krishna is married is not, and this beat does not need it. 75 s (upper end).",
+   "cold_open": false,
+   "payoff_line": "అయినా నేనేం పెద్దగా feel అవ్వలేదులే. అమ్మ నాన్న కూడా నాకేం గుర్తు రాలేదు. ఊరికే ఏడ్చాను. / సరే ఇంకెడవకు.",
+   "payoff_type": "reveal that reframes (she wasn't missing her parents; she cried because bava scolded her) + Krishna's amused smile close-up (233.4-235.6)",
+   "vs_pipeline": "new",
+   "founder_would_post": "pending"
+  },
+  {
+   "id": "g03",
+   "pieces": [
+    {
+     "start_word": 1389,
+     "end_word": 1518,
+     "start": 976.116,
+     "end": 1036.756
+    }
+   ],
+   "region": {
+    "start_word": 1389,
+    "end_word": 1518,
+    "start": 976.116,
+    "end": 1036.756
+   },
+   "edited_duration": 60.64,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ఏంటి కృష్ణ? ఏమైంది ఇంత happy గా ఉన్నావ్? నిన్ను ఇంత happy గా నేను ఎప్పుడూ చూడలా. నాకు job వచ్చింది. అవునా ఊ.. ఎక్కడ? ఇక్కడే, మాదాపూర్ లో. నాకు హైదరాబాద్ లో job వచ్చింది. చాలా happy గా ఉంది కృష్ణ. ఇప్పటి నుండి మీ ఆయన కూడా సంపాదిస్తాడు. నీ అంత కాకపోయినా నాకు నెల నెల జీతం వస్తుంది. ఎంత salary వస్తుంది అన్నది important కాదు, job ఉందా లేదా అనేదే important. అయినా నీకు job ఉండాలని నేను ఎప్పుడూ అనుకోలేదు. నువ్వే life లో ఏదో ఒకటి చేయాలి, job తెచ్చుకోవాలి అనుకున్నావ్, so I am happy for you. నువ్వు నా కోసం job చేయాలని నేను ఎప్పుడూ అనుకోలేదు. నువ్వు ఇంట్లో ఉంటూ నన్ను ప్రేమించే పని చూసుకున్నా కూడా నాకు okay. నువ్వు నా కోసం సంపాదించాలని నేను ఎప్పుడూ అనుకోలేదు. ఊ.. ఈ job నీ కోసం కాదులే, మన కోసం, మన future కోసం, నేను ఏదో ఒకటి చేయగలననే నమ్మకం కోసం. ఊ.. ఇప్పుడు happy నా? ఊ.. చాలా happy సత్యభామ.",
+   "labeler": "clip-gt-editor",
+   "tightening_labeled": true,
+   "hook_line": {
+    "text": "ఏంటి కృష్ణ? ఏమైంది ఇంత happy గా ఉన్నావ్?",
+    "start_word": 1389,
+    "end_word": 1395
+   },
+   "scores": {
+    "hook": 3,
+    "standalone": 4,
+    "payoff": 4,
+    "value_emotion": 4,
+    "overall": 4.0
+   },
+   "title": "ఈ job నీ కోసం కాదు… మన కోసం",
+   "why_it_works": "Krishna finally gets a job; Satya, who earns more, says she never needed him to earn, and he answers it's for 'us' and his own self-belief, ending on 'చాలా happy సత్యభామ'.",
+   "category": "emotional",
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "characters": [
+    "Krishna",
+    "Satya"
+   ],
+   "visual_dependency": "medium",
+   "spoiler": false,
+   "confidence": 3,
+   "time_segments": [
+    {
+     "start": 976.0,
+     "end": 1037.9
+    }
+   ],
+   "video_duration": 61.9,
+   "internal_cuts": [],
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "tags": [
+    "relatable"
+   ],
+   "notes": "16:16-17:18, kitchen. Starts on Satya's first line after the song (961.9-976.0 song/hug excluded per the opener rule). Frames: 976 Satya smiling close; alternating singles; 1022-1030 Krishna's 'నమ్మకం కోసం' close; 1031-1033 Satya 'ఇప్పుడు happy నా?' smiling; 1034-1037 Krishna smiling 'చాలా happy సత్యభామ'; out on the shot change 1037.91 (hold 1.1 s). Strong relatable lines: 'నువ్వు ఇంట్లో ఉంటూ నన్ను ప్రేమించే పని చూసుకున్నా కూడా నాకు okay'. Soft romance with a hook of 3 (question, but no conflict). The next scene (dowry fight) gives it dramatic irony, not shown. 62 s, no cuts.",
+   "cold_open": false,
+   "payoff_line": "ఈ job నీ కోసం కాదులే, మన కోసం, మన future కోసం, నేను ఏదో ఒకటి చేయగలననే నమ్మకం కోసం. / ఇప్పుడు happy నా? / చాలా happy సత్యభామ.",
+   "payoff_type": "quotable conclusion + both faces smiling (close-ups 1031-1037)",
+   "vs_pipeline": "new",
+   "founder_would_post": "pending"
+  },
+  {
+   "id": "g04",
+   "pieces": [
+    {
+     "start_word": 994,
+     "end_word": 1103,
+     "start": 738.136,
+     "end": 787.856
+    }
+   ],
+   "region": {
+    "start_word": 994,
+    "end_word": 1103,
+    "start": 738.136,
+    "end": 787.856
+   },
+   "edited_duration": 49.72,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "అరే చాలా రోజుల నుంచి job కోసం try చేస్తున్నారా, ఏది work out అవ్వట్లేదు. English రాదనుకోళ్ళు, experience లేదనుకోళ్ళు, అసలు job వస్తుందో లేదో అని భయమేస్తుంది రా. అరే ఇప్పటివరకు వేరు, ఇప్పుడు వేరు. నేను ఉన్నాగా, మొత్తం అంతా నేను చూసుకుంటా పోదాం. అలా ఎలా రా? అదంతే రా, manager కి మనం ఎంత చెప్తే అంత. అయినా వారానికి నాలుగు సార్లు sitting వేయించి అంతా set చేశా. మనం చెప్పిందే చట్టం, రాసిందే గీత. రేయ్ సుబ్బు! నువ్వేనా రా? ఆ expression ఏంటి రా? హా అంటే school లో homework కూడా నాతోనే రాయించే సుబ్బు గాడు ఇప్పుడు ఇలా మాట్లాడుతుంటే. హా school లో homework కోసం నిన్ను set చేయించా, ఇక్కడ job కోసం వీడిని set చేయించా. అయినా ఈ society లో బ్రతకాలంటే ఆ మాత్రం లేకపోతే చాలా కష్టం రా బాబు. అంతే అంటావా? అంతేరా.",
+   "labeler": "clip-gt-editor",
+   "tightening_labeled": true,
+   "hook_line": {
+    "text": "అరే చాలా రోజుల నుంచి job కోసం try చేస్తున్నారా, ఏది work out అవ్వట్లేదు.",
+    "start_word": 994,
+    "end_word": 1005
+   },
+   "scores": {
+    "hook": 3,
+    "standalone": 4,
+    "payoff": 3,
+    "value_emotion": 4,
+    "overall": 3.5
+   },
+   "title": "School లో homework కి నిన్ను set చేశా, ఇప్పుడు job కి manager ని!",
+   "why_it_works": "Unemployed Krishna (no English, no experience) meets school friend Subbu, now a fixer: 'in school I set you up for homework, here I set the manager up for your job'.",
+   "category": "humour",
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "characters": [
+    "Krishna",
+    "Subbu (school friend)"
+   ],
+   "visual_dependency": "low",
+   "spoiler": false,
+   "confidence": 3,
+   "time_segments": [
+    {
+     "start": 738.0,
+     "end": 788.1
+    }
+   ],
+   "video_duration": 50.1,
+   "internal_cuts": [],
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "tags": [
+    "relatable"
+   ],
+   "notes": "12:18-13:08, office lobby. Frames: alternating singles, Krishna in grey shirt, Subbu in purple shirt (shots.json misses these cuts). The punchline (781.0) is not the last beat: Subbu rolls straight into 'ఈ society లో బ్రతకాలంటే…' (0.4 s later) and Krishna's 'అంతే అంటావా? / అంతేరా.' closes it; next word 0.4 s after the out-point, so there is no clean way to end on the punch itself. Founder rule 'last beat' may put this at payoff 3. Relatable unemployment hook. Not proposed by the pipeline.",
+   "cold_open": false,
+   "payoff_line": "హా school లో homework కోసం నిన్ను set చేయించా, ఇక్కడ job కోసం వీడిని set చేయించా. … అంతే అంటావా? / అంతేరా.",
+   "payoff_type": "punchline, then a shrug exchange as the last beat (no laugh event)",
+   "vs_pipeline": "new",
+   "founder_would_post": "pending"
+  },
+  {
+   "id": "g05",
+   "pieces": [
+    {
+     "start_word": 1726,
+     "end_word": 1779,
+     "start": 1182.132,
+     "end": 1206.572
+    },
+    {
+     "start_word": 1969,
+     "end_word": 2006,
+     "start": 1287.432,
+     "end": 1299.552
+    }
+   ],
+   "region": {
+    "start_word": 1726,
+    "end_word": 2006,
+    "start": 1182.132,
+    "end": 1299.552
+   },
+   "edited_duration": 36.56,
+   "reordered": false,
+   "n_blocks": 2,
+   "text": "అయినా అసలు నువ్ ఇప్పుడు loan తీసుకోవాల్సిన అవసరమే లేదు. ఎందుకు? ఎందుకంటే నువ్వు హైదరాబాద్ లోనే settle అవ్వాలి అని చెప్పిన తర్వాత నేను నాన్నకు చెప్పా. నాన్న కూడా సరే ఎంతకని rent కట్టుకుంటూ ఉంటారు, ఒక ఇల్లు కొనుక్కోండి అన్నారు. ఆయన ఒక రెండు ఎకరాల పొలం అమ్మేసి ఇస్తానన్నారు. ఆ డబ్బులతో ఇల్లు కట్టుకోమన్నారు. ఆయన ఎందుకు డబ్బులు ఇస్తారు? ఎందుకు ఏంటి? నీకు కట్నం ఇవ్వలేదు కదా. కట్నమా? || సత్య! ఒకసారి నువ్వే నా place లో ఉండి ఆలోచించు. ఇప్పుడు మీ నాన్న దగ్గర డబ్బులు తీసుకొని ఇల్లు కడితే ఆ ఇంటి ముందు నించొని ఇది నా ఇల్లు అని ఎలా అనుకోగలుగుతావ్ చెప్పు? అది నీ self respect కాదు ego. ego ఆ? అవును ego నే.",
+   "labeler": "clip-gt-editor",
+   "tightening_labeled": true,
+   "hook_line": {
+    "text": "అయినా అసలు నువ్ ఇప్పుడు loan తీసుకోవాల్సిన అవసరమే లేదు.",
+    "start_word": 1726,
+    "end_word": 1733
+   },
+   "scores": {
+    "hook": 3,
+    "standalone": 4,
+    "payoff": 3,
+    "value_emotion": 4,
+    "overall": 3.5
+   },
+   "title": "నీకు కట్నం ఇవ్వలేదు కదా… అది self respect కాదు, ego!",
+   "why_it_works": "Satya says her father will sell land to buy them a house 'since we gave you no dowry'; Krishna is stung ('కట్నమా?'), and when he pleads self-respect she snaps: 'that's not self-respect, it's ego'.",
+   "category": "controversy",
+   "content_type": "web_series",
+   "clip_purpose": "promo",
+   "characters": [
+    "Satya",
+    "Krishna"
+   ],
+   "visual_dependency": "medium",
+   "spoiler": false,
+   "confidence": 2,
+   "time_segments": [
+    {
+     "start": 1182.0,
+     "end": 1206.75
+    },
+    {
+     "start": 1287.3,
+     "end": 1299.75
+    }
+   ],
+   "video_duration": 37.2,
+   "internal_cuts": [
+    "1206.75->1287.30"
+   ],
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "tags": [
+    "relatable"
+   ],
+   "notes": "Better cut of pipeline w07 (founder 2/2/2/2). w07 started mid-fight ('ప్రేమ ఉంటే మన మీద నమ్మకం కూడా ఉండాలి', no setup of what the fight is about) and ended on a question. This sets up the offer and lands the trigger: 'నీకు కట్నం ఇవ్వలేదు కదా' -> Krishna's shocked 'కట్నమా?' close-up (1204.7-1206.75), then ONE cut (same scene, 80 s later; out on Krishna's shot change, in 0.5 s into a Krishna shot) to his 'నా place లో ఉండి ఆలోచించు' and Satya's 'అది నీ self respect కాదు ego / ego ఆ? / అవును ego నే.' Doubts: Satya continues talking 0.45 s after the out-point, no shot change there (shot runs to 1307.35), so the end may feel clipped; drama fights have not been posted by the founder so far.",
+   "cold_open": false,
+   "payoff_line": "అది నీ self respect కాదు ego. / ego ఆ? / అవును ego నే.",
+   "payoff_type": "snap line after a reveal ('కట్నమా?' shocked close-up mid-clip); drama, unresolved",
+   "vs_pipeline": "better_cut_of:w07",
+   "founder_would_post": "pending"
+  },
+  {
+   "id": "g06",
+   "pieces": [
+    {
+     "start_word": 1606,
+     "end_word": 1644,
+     "start": 1085.436,
+     "end": 1114.592
+    }
+   ],
+   "region": {
+    "start_word": 1606,
+    "end_word": 1644,
+    "start": 1085.436,
+    "end": 1114.592
+   },
+   "edited_duration": 29.156,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "మరి నాకు party? నీకా? ఏం కావాలో చెప్పు. ఊ.. బిర్యానీ? ఛ్.. పిజ్జా? నో కేక్? ఛ్.. మరి ఏంటి? ఐస్ క్రీమ్ మ్ ఏంటలా చూస్తున్నావ్? ఆ అది కాదు మ్ నీకు నిజంగా ఐస్ క్రీమ్ తినాలని ఉందా? అవును నాకు ఐస్ క్రీమ్ తినాలని ఉంది. పదా సరే",
+   "labeler": "clip-gt-editor",
+   "tightening_labeled": true,
+   "hook_line": {
+    "text": "మరి నాకు party?",
+    "start_word": 1606,
+    "end_word": 1608
+   },
+   "scores": {
+    "hook": 3,
+    "standalone": 3,
+    "payoff": 3,
+    "value_emotion": 3,
+    "overall": 3.0
+   },
+   "title": "Party కి బిర్యానీ వద్దు, పిజ్జా వద్దు… ఐస్ క్రీమ్ చాలు",
+   "why_it_works": "Krishna offers his wife a party for his new job: biryani? pizza? cake? She wants only ice cream, and he can't believe it.",
+   "category": "emotional",
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "characters": [
+    "Satya",
+    "Krishna"
+   ],
+   "visual_dependency": "medium",
+   "spoiler": false,
+   "confidence": 2,
+   "time_segments": [
+    {
+     "start": 1085.25,
+     "end": 1114.7
+    }
+   ],
+   "video_duration": 29.45,
+   "internal_cuts": [],
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "tags": [],
+   "notes": "18:05-18:35, kitchen. Frames: Satya pouting/shaking her head at each offer; Krishna's puzzled look ('ఏంటలా చూస్తున్నావ్?'); 1113-1114.7 wide as they walk out. Why ice cream matters (she is going easy on his budget; callback 'ఆరోజు నేను అన్నదానికి నువ్వు feel అయ్యావా?' at 18:56) is not in the clip, and the clip doesn't say what the party is for. Ends on a walk-out: probably payoff 3.",
+   "cold_open": false,
+   "payoff_line": "అవును నాకు ఐస్ క్రీమ్ తినాలని ఉంది. పదా [నవ్వు] / సరే",
+   "payoff_type": "cute insistence + laugh; they walk out in a wide shot",
+   "vs_pipeline": "new",
+   "founder_would_post": "pending"
+  },
+  {
+   "id": "g07",
+   "pieces": [
+    {
+     "start_word": 800,
+     "end_word": 859,
+     "start": 621.12,
+     "end": 655.24
+    },
+    {
+     "start_word": 882,
+     "end_word": 922,
+     "start": 666.92,
+     "end": 691.34
+    }
+   ],
+   "region": {
+    "start_word": 800,
+    "end_word": 922,
+    "start": 621.12,
+    "end": 691.34
+   },
+   "edited_duration": 58.54,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ఏంటన్నా ఏమైంది ఏం లేదురా ఏం లేదంటున్నావ్ పాత సినిమాల villain లా face వెలిగిపోతుంది అదే మన పిల్ల గురించి మన పిల్లా, మన పిల్ల ఎవరన్నా అదేరా ఆ సత్య ఓ ఆ story యా. ఇంకా నడుస్తుందా. ఆ అమ్మాయి పెళ్లి అయిపోయింది కదా తెలుసురా మరి పెళ్లి అయిపోయిన వాళ్ళతో ఎందుకన్నా అది దగ్గరుంటే చాలురా ఆ smell కే నాకు మెంటలెక్కుతది. తను ఏం చెప్పిందో కూడా నాకు అర్థం కాదురా. అంత పిచ్చి రా అదంటే నాకు || మరి ఇప్పుడు ఏం చేద్దాం అనుకుంటున్నావ్ సత్యా! ఏదో ఒకరోజు దాన్ని పడేయాలిరా తెలుగులో ఒక సామెత ఉంది ఆశ కదు-- చాలు చాలు చాలు. తర్వాత నాకు తెలుసు. ఆమె నార్మల్ గానే మగవాళ్ళని పురుగులు చూసినట్టు చూస్తది. అలాంటిది ఇప్పుడు పెళ్లయింది. ఆమెను పడేయాలి అంటున్నావ్. ఏయ్ పోర్రా. చూద్దాం try చేద్దాం. పోయేదేముందే.",
+   "labeler": "clip-gt-editor",
+   "tightening_labeled": true,
+   "hook_line": {
+    "text": "ఏంటన్నా ఏమైంది ఏం లేదురా ఏం లేదంటున్నావ్ పాత సినిమాల villain లా face వెలిగిపోతుంది",
+    "start_word": 800,
+    "end_word": 811
+   },
+   "scores": {
+    "hook": 3,
+    "standalone": 3,
+    "payoff": 3,
+    "value_emotion": 3,
+    "overall": 3.0
+   },
+   "title": "పెళ్లయిన అమ్మాయి మీద crush… పాత సినిమా villain లా face!",
+   "why_it_works": "Office colleague Raghu is obsessed with married Satya; his friend mocks his 'old-movie villain' glow and reminds him she looks at men like insects, but Raghu shrugs: 'let's try, what's to lose'.",
+   "category": "controversy",
+   "content_type": "web_series",
+   "clip_purpose": "promo",
+   "characters": [
+    "Raghu",
+    "Raghu's friend"
+   ],
+   "visual_dependency": "low",
+   "spoiler": false,
+   "confidence": 2,
+   "time_segments": [
+    {
+     "start": 621.0,
+     "end": 655.45
+    },
+    {
+     "start": 666.5,
+     "end": 692.2
+    }
+   ],
+   "video_duration": 60.15,
+   "internal_cuts": [
+    "655.45->666.50"
+   ],
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [
+    "sensitive: pursuing a married woman (\"పడేయాలి\"), creepy smell lines"
+   ],
+   "tags": [],
+   "notes": "Better cut of pipeline w03 (founder maybe: hook 4, standalone 3, payoff 2). Opens 16 s earlier on the friend's 'పాత సినిమాల villain లా face వెలిగిపోతుంది' (a funnier, direct opener), drops the repetitive perfume lines 655.45-666.5 (both ends on shot changes; reads 'అంత పిచ్చి రా అదంటే నాకు' -> 'మరి ఇప్పుడు ఏం చేద్దాం అనుకుంటున్నావ్'), and ends on the friend's roast + Raghu's defiance (686-691 Raghu waving him off; out on the shot change 692.23) instead of the insult to the husband. Honest: still a stance ending (payoff likely 3), and the premise is creepy. Raghu named in the preceding scene (Satya: 'అలా ఏం లేదు రఘు').",
+   "cold_open": false,
+   "payoff_line": "ఆమె నార్మల్ గానే మగవాళ్ళని పురుగులు చూసినట్టు చూస్తది. అలాంటిది ఇప్పుడు పెళ్లయింది. ఆమెను పడేయాలి అంటున్నావ్. / ఏయ్ పోర్రా. చూద్దాం try చేద్దాం. పోయేదేముందే.",
+   "payoff_type": "friend's roast + defiant stance (villain set-up)",
+   "vs_pipeline": "better_cut_of:w03",
+   "founder_would_post": "pending"
+  }
+ ]
+}
