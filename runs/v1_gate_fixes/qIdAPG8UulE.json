@@ -1,0 +1,1365 @@
+{
+ "schema_version": "1.1",
+ "kind": "proposals",
+ "video_id": "qIdAPG8UulE",
+ "transcript": {
+  "path": "scribe_dataset/qIdAPG8UulE/qIdAPG8UulE_scribe_transcript.json",
+  "sha256": "2a5c9fe404b84d4b41859ad83abe4bcb0bd25348b718020d0517d4bfca153637",
+  "n_words": 3475,
+  "audio_duration_secs": 2179.3935
+ },
+ "derived_params": {
+  "skip_s": 30.0
+ },
+ "run_id": "v1_gate_fixes",
+ "created_at": "2026-10-13T09:12:25Z",
+ "content_type": "web_series",
+ "pipeline": {
+  "version": "ws/0.2",
+  "git_commit": null,
+  "prompt_versions": {
+   "ws_discover": "3+27f4dce4",
+   "ws_review": "1+addbc14b"
+  },
+  "prompt_files": {
+   "ws_discover": "ws_discover_b_payoff",
+   "ws_review": "ws_review"
+  },
+  "config": {
+   "models": {
+    "ws_discover": {
+     "provider": "gemini",
+     "model": "gemini-3.8-flash",
+     "params": {
+      "thinking_level": "high",
+      "max_output_tokens": 32768
+     }
+    },
+    "ws_review": {
+     "provider": "gemini",
+     "model": "gemini-3.8-flash",
+     "params": {
+      "thinking_level": "medium",
+      "max_output_tokens": 16384
+     }
+    },
+    "video_end": {
+     "provider": "gemini",
+     "model": "gemini-3.8-flash",
+     "params": {
+      "thinking_level": "low"
+     }
+    }
+   },
+   "cut": {
+    "start_pad_s": 0.3,
+    "lift_min_s": 1.0,
+    "lift_max_s": 3.6,
+    "lift_cut_eps_s": 0.005,
+    "lift_start_snap_s": 0.4,
+    "lift_start_pad_s": 0.12,
+    "lift_max_tail_s": 2.0,
+    "lift_tail_measure_s": 0.4,
+    "lift_quiet_tail_db": 15.0,
+    "lift_level_warn_db": 10.0,
+    "max_cuts": 3,
+    "max_drop_s": 45.0,
+    "snap_s": 1.5,
+    "join_pad_s": 0.25,
+    "hold_min_s": 2.0,
+    "hold_max_s": 8.0,
+    "hold_short_min_s": 0.5,
+    "hold_default_s": 2.0,
+    "next_speech_margin_s": 0.1,
+    "long_silence_s": 20.0,
+    "long_silence_hold_max_s": 4.0,
+    "react_max_s": 1.5,
+    "react_max_words": 3,
+    "react_clear_s": 1.0,
+    "quick_cut_min_s": 0.02,
+    "quick_end_margin_s": 0.05,
+    "flash_s": 0.3,
+    "shot_tol_s": 0.05,
+    "word_clip_tol_s": 0.02,
+    "exchange_start": false,
+    "exchange_gap_s": 2.0,
+    "exchange_back_max_s": 30.0,
+    "exchange_back_max_lines": 12,
+    "exchange_on_cap": "keep",
+    "exchange_recap_s": 60.0,
+    "exchange_mode": "walk",
+    "qreply_require_speaker_change": false,
+    "qreply_setup_lines": 2,
+    "qreply_max_lines": 3,
+    "qreply_max_s": 12.0,
+    "exchange_max_play_s": 120.0
+   },
+   "review_view": "final",
+   "guardrails": {
+    "min_s": 15.0,
+    "soft_max_s": 120.0,
+    "hard_max_s": 150.0,
+    "skip_s": 30.0,
+    "dup_overlap": 0.5,
+    "blocks_flag_above": 3
+   },
+   "thresholds": {
+    "t_show": 3.5,
+    "t_rec": 4.0,
+    "t_rec_payoff": 4.0,
+    "rec_blockers": [
+     "needs_rescore",
+     "shot_flash",
+     "unreviewed_start",
+     "review_repair_failed"
+    ],
+    "verdict_strong_min": 3
+   },
+   "video_end_check": {
+    "enabled": false,
+    "max_shift_s": 8.0
+   },
+   "prompts": {
+    "ws_discover": "ws_discover_b_payoff",
+    "ws_review": "ws_review"
+   },
+   "budget_usd": 0.6,
+   "run_id": "v1_test"
+  }
+ },
+ "models": [
+  {
+   "role": "ws_discover",
+   "provider": "gemini",
+   "model": "gemini-3.8-flash",
+   "params": {
+    "thinking_level": "high",
+    "max_output_tokens": 32768
+   }
+  },
+  {
+   "role": "ws_review",
+   "provider": "gemini",
+   "model": "gemini-3.8-flash",
+   "params": {
+    "thinking_level": "medium",
+    "max_output_tokens": 16384
+   }
+  }
+ ],
+ "cost": {
+  "input_tokens": 35025,
+  "output_tokens": 40823,
+  "usd": 0.17935,
+  "usd_billed": 0.17935,
+  "wall_time_secs": 279.0,
+  "n_llm_calls": 2,
+  "by_role": {
+   "ws_discover": {
+    "n_llm_calls": 1,
+    "n_cache_hits": 0,
+    "n_failed_attempts": 0,
+    "input_tokens": 29352,
+    "output_tokens": 31498,
+    "thought_tokens": 27500,
+    "cached_input_tokens": 0,
+    "usd": 0.14013,
+    "usd_billed": 0.14013,
+    "models": [
+     "gemini-3.8-flash"
+    ]
+   },
+   "ws_review": {
+    "n_llm_calls": 1,
+    "n_cache_hits": 0,
+    "n_failed_attempts": 0,
+    "input_tokens": 5673,
+    "output_tokens": 9325,
+    "thought_tokens": 6775,
+    "cached_input_tokens": 0,
+    "usd": 0.03922,
+    "usd_billed": 0.03922,
+    "models": [
+     "gemini-3.8-flash"
+    ]
+   }
+  },
+  "projection": {
+   "ws_discover": {
+    "in": 29352,
+    "in_source": "countTokens",
+    "out_expected": 25000,
+    "out_guard": 32768,
+    "inr_expected": 10.42,
+    "inr": 13.04
+   },
+   "ws_review": {
+    "in_expected": 14700,
+    "out_expected": 15000,
+    "inr_expected": 6.05,
+    "in_guard": 14700,
+    "out_guard": 15000,
+    "inr": 6.05,
+    "assumes_clips": 15,
+    "expected_from": "defaults"
+   },
+   "video_end_check": {
+    "enabled": false,
+    "assumes_clips": 15,
+    "inr": 0.0,
+    "inr_expected": 0.0
+   },
+   "episode": {
+    "inr_expected": 16.47,
+    "inr": 19.09
+   }
+  }
+ },
+ "cutoff": {
+  "t_show": 3.5,
+  "t_rec": 4.0,
+  "t_rec_payoff": 4.0,
+  "rec_blockers": [
+   "needs_rescore",
+   "shot_flash",
+   "unreviewed_start",
+   "review_repair_failed"
+  ],
+  "n_candidates": 12,
+  "n_passed_hard_rules": 12,
+  "n_shown": 11,
+  "n_recommended": 10,
+  "n_worth_a_look": 1,
+  "n_rejected": 1,
+  "warnings": []
+ },
+ "episode_verdict": {
+  "verdict": "review",
+  "strong_clips": 3,
+  "worth_a_look": 2,
+  "note": "Video-gate re-cuts only (not rated yet). recommended = the re-check kept it."
+ },
+ "episode_notes": "Episode Map & Payoff Beats:\n- L0001-L0134: Vaishnavi & Prasad cafe breakup confrontation. Vaishnavi lists his bizarre gifts and embarrassing blunders (ORS, death anniversary bouquet, railway station date). Payoff beats: L0052 (punchline), L0126 (punchline).\n- L0135-L0272: Prasad meets Bhramara (madam/driver dynamic). Discussion on philophobia, father's permission, and therapy. Payoff beats: L0189 (punchline), L0268 (punchline).\n- L0273-L0345: Prasad with an ex who reveals she is married; her lawyer husband Paramajyothi arrives. Payoff beat: L0343 (reveal).\n- L0346-L0437: Prasad flirts with Bhramara; gets caught repeating the same lines to multiple girls. Payoff beat: L0385 (punchline).\n- L0438-L0540: Pratheeksha calls Prasad; in the cafe she brother-zones him. Payoff beat: L0501 (punchline).\n- L0541-L0611: Prasad at Pratyusha's house; Pooja exposes his double-timing between Bhramara and Pratyusha. Payoff beat: L0591 (emotional_peak).\n- L0612-L0645: Bhramara shares her family trauma with Prasad, giving him a clue about his own parents.\n- L0646-L0720: Vaishnavi and her lawyer husband Paramajyothi argue while riding; intense bickering. Payoff beat: L0693 (punchline).\n- L0721-L0776: Prasad meets Bhramara at coconut stall, mocking her upcoming arranged marriage and her teetotaler groom. Payoff beat: L0776 (punchline).\n- L0777-L0853: Prasad talks to Virajitha, proposes randomly and mocks her lawyer fiance. Payoff beat: L0811 (punchline).\n- L0854-L0884: Family panchayati with Pooja and Prasad's parents. Payoff beat: L0877 (punchline).\n- L0885-L0920: Climax twists: Bhramara cancels her wedding for Prasad (L0897, reveal), followed by Pratyusha's obsessive warning phone call (L0918, emotional_peak cliffhanger).",
+ "proposals": [
+  {
+   "id": "w05",
+   "pieces": [
+    {
+     "start_word": 1394,
+     "end_word": 1424,
+     "start": 782.064,
+     "end": 799.524
+    }
+   ],
+   "region": {
+    "start_word": 1394,
+    "end_word": 1424,
+    "start": 782.064,
+    "end": 799.524
+   },
+   "edited_duration": 17.46,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "నీ చుట్టూ చాలా మంది అమ్మాయిలు ఉన్నారు కదా! వాళ్లందరినీ వదిలేసి నా వెనుకాల ఎందుకు పడుతున్నావ్? ఓహ్ ఏం చెప్పాలి? చెత్త గాలికి కూడా ఎగరొస్తది బంగారం నే మనమే సంపాదించుకోవాలి. ఊ... ఈ విషయం ఎంతమందికి చెప్పారు sir? ముగ్గురికి.",
+   "rank": 1,
+   "tier": "recommended",
+   "scores": {
+    "hook": 4.0,
+    "standalone": 5.0,
+    "payoff": 4.5,
+    "value_emotion": 4.5,
+    "overall": 4.5
+   },
+   "title": "నా వెనకాల ఎందుకు పడుతున్నావ్?",
+   "hook_line": {
+    "text": "నీ చుట్టూ చాలా మంది అమ్మాయిలు ఉన్నారు కదా!",
+    "start_word": 1394,
+    "end_word": 1400
+   },
+   "why_it_works": "RE-CUT end_earlier 21->19 s, re-check keep: Ending right on his deadpan, prompt confession 'mugguriki' delivers the comic reversal cleanly with the comedic sound effect.",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 781.964,
+     "end": 800.614,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 18.65,
+   "spoiler": false,
+   "characters": [
+    "Bhramara",
+    "Prasad"
+   ],
+   "visual_dependency": "low",
+   "start_line": "L0377",
+   "end_line": "L0384",
+   "end_hold": {
+    "payoff_end": 799.524,
+    "next_speech": 800.664,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "end": 800.614,
+    "hold_s": 1.09,
+    "on_shot_cut": false,
+    "rule": "before_next_line",
+    "note": "next line starts quickly and no shot change before it"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": 4,
+    "what_happens": "Bhramara asks Prasad why he keeps following her despite having other options; Prasad dishes out a poetic line about earning gold, but when she asks how many girls he told that to, he shamelessly confesses three without hesitation.",
+    "hook": "Bhramara questioning why Prasad pursues her when there are many girls around him.",
+    "payoff": "Prasad immediately admits without flinching that he recited the same line to three other girls.",
+    "opening_strength": "strong",
+    "payoff_line": "ఏంట్రా తడుముకోకుండా చెప్పేస్తున్నావ్.",
+    "payoff_type": "punchline"
+   },
+   "review": {
+    "cold_open_note": "No cold open used.",
+    "cut_note": "No cuts made.",
+    "bad_cuts": [],
+    "changes": []
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "gate": {
+    "version": "gate/0.1",
+    "first": {
+     "scores": {
+      "hook": 4,
+      "standalone": 4,
+      "payoff": 3,
+      "overall": 3
+     },
+     "verdict": "fix",
+     "verdict_applied": "fix",
+     "payoff_kind": "scene_just_ends",
+     "why": {
+      "hook": "The clip begins right away on the woman confronting him with a pointed question about why he chases after her.",
+      "standalone": "The romantic banter and flirtatious conflict are completely self-explanatory between the two leads.",
+      "payoff": "The punchline lands on his blunt admission 'mugguriki' (L0384), but L0385 keeps the exchange open as a setup for his next quip.",
+      "overall": "Ending on her rhetorical question in L0385 dilutes the laugh from his blunt confession; ending earlier on his instant confession or extending to the slap makes a complete beat."
+     },
+     "last_beat": {
+      "line": "L0385",
+      "on_screen": "The woman looks at him with surprise and exasperation, but the conversation immediately continues into the next beat."
+     },
+     "fix": {
+      "new_start": "",
+      "new_end": "L0384",
+      "why": "Ending right on his deadpan, prompt confession 'mugguriki' delivers the comic reversal cleanly with the comedic sound effect."
+     },
+     "usage": {
+      "clip": "w05",
+      "stage": "first",
+      "cached": true,
+      "windows": [
+       [
+        741.96,
+        827.55
+       ]
+      ],
+      "input_tokens": 11511,
+      "output_tokens": 335,
+      "modalities": null,
+      "usd": 0.00989,
+      "inr": 0.89
+     }
+    },
+    "fix_applied": {
+     "changes": [
+      "end_earlier"
+     ],
+     "why": "Ending right on his deadpan, prompt confession 'mugguriki' delivers the comic reversal cleanly with the comedic sound effect.",
+     "old": {
+      "start_line": "L0377",
+      "end_line": "L0385",
+      "segments": [
+       [
+        781.964,
+        802.547,
+        "scene"
+       ]
+      ],
+      "plays_s": 20.58
+     },
+     "new": {
+      "start_line": "L0377",
+      "end_line": "L0384",
+      "segments": [
+       [
+        781.964,
+        800.614,
+        "scene"
+       ]
+      ],
+      "plays_s": 18.65
+     },
+     "cold_open_lost": false
+    },
+    "recheck": {
+     "scores": {
+      "hook": 4,
+      "standalone": 5,
+      "payoff": 5,
+      "overall": 5
+     },
+     "verdict": "keep",
+     "verdict_applied": "keep",
+     "payoff_kind": "laugh_beat",
+     "why": {
+      "hook": "Opens right away on the heroine confronting him directly asking why he is chasing after her when many girls surround him.",
+      "standalone": "The banter is entirely self-contained with no external plot needed to understand the flirtatious dialogue and punchline.",
+      "payoff": "A sharp comic reversal where after delivering a poetic line comparing her to gold, he instantly admits he used it on three other girls, backed by an immediate sound effect.",
+      "overall": "Paces smoothly from flattery to an immediate hilarious punchline that lands perfectly without overstaying its welcome."
+     },
+     "last_beat": {
+      "line": "L0384",
+      "on_screen": "Hero casually holds up three fingers saying 'Mugguriki' with an immediate funny sound effect playing over her stunned reaction."
+     },
+     "fix_ignored": null,
+     "usage": {
+      "clip": "w05",
+      "stage": "recheck",
+      "cached": true,
+      "windows": [
+       [
+        741.96,
+        825.61
+       ]
+      ],
+      "input_tokens": 11263,
+      "output_tokens": 290,
+      "modalities": null,
+      "usd": 0.00953,
+      "inr": 0.858
+     }
+    },
+    "final": "keep",
+    "gate_fixed": true,
+    "tier": "recommended"
+   },
+   "gate_fixed": true,
+   "gate_verdict": "keep",
+   "gate_scores": {
+    "hook": 4,
+    "standalone": 5,
+    "payoff": 5,
+    "overall": 5
+   },
+   "rank_in_source": 2
+  },
+  {
+   "id": "w03",
+   "pieces": [
+    {
+     "start_word": 588,
+     "end_word": 649,
+     "start": 357.3,
+     "end": 400.784
+    }
+   ],
+   "region": {
+    "start_word": 588,
+    "end_word": 649,
+    "start": 357.3,
+    "end": 400.784
+   },
+   "edited_duration": 43.484,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "మీకు boyfriend ఉన్నాడా ఏయ్! నీకు girlfriend లేదా వేరే వాడితో ఉంది నాకు philophobia అంటే మీరు ఎక్కువ రోజులు బతకరా, చచ్చిపోతారా? life అంటే అంతే madam. Care తీసుకునేవాడికి జుట్టు ఉండదు, బెచ్చగాడికి జుట్టు ఉండదు. Philophobia అంటే fear of falling in love or forming emotional attachments. ఇదెప్పుడు పెట్టారు? ఎప్పటినుంచో ఉంది. దానికి treatment లేదా? ఉన్నాయ్, psychotherapy, behavior therapy, exposure therapy. దీన్ని పడేయడం కన్నా cancer కి మందు కనుక్కోవడం easy. ఏంటి?",
+   "rank": 2,
+   "tier": "recommended",
+   "scores": {
+    "hook": 4.0,
+    "standalone": 4.5,
+    "payoff": 4.5,
+    "value_emotion": 4.0,
+    "overall": 4.2
+   },
+   "title": "Philophobia అంటే ఏంటో తెలుసా",
+   "hook_line": {
+    "text": "మీకు boyfriend ఉన్నాడా",
+    "start_word": 588,
+    "end_word": 590
+   },
+   "why_it_works": "RE-CUT end_later 42->44 s, re-check keep: Extend through her startled reaction ('Enti?') so the punchline lands properly before cutting.",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 357.0,
+     "end": 400.812,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 43.81,
+   "spoiler": false,
+   "characters": [
+    "Bhramara",
+    "Prasad"
+   ],
+   "visual_dependency": "low",
+   "start_line": "L0169",
+   "end_line": "L0190",
+   "end_hold": {
+    "payoff_end": 400.784,
+    "next_speech": 401.544,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "end": 400.812,
+    "hold_s": 0.03,
+    "on_shot_cut": true,
+    "rule": "shot_change_before_next_line",
+    "note": "next line starts quickly: ends on the shot change"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": 4,
+    "what_happens": "Prasad asks Bhramara if she has a boyfriend, leading her to reveal her philophobia and the long list of psychological therapies needed to cure it, leaving Prasad completely dumbfounded.",
+    "hook": "Prasad asking if she has a boyfriend and her countering by asking about his girlfriend.",
+    "payoff": "Prasad mutters that finding a cure for cancer would be easier than trying to woo her.",
+    "opening_strength": "strong",
+    "payoff_line": "దీన్ని పడేయడం కన్నా cancer కి మందు కనుక్కోవడం easy.",
+    "payoff_type": "punchline"
+   },
+   "review": {
+    "cold_open_note": "No cold open used.",
+    "cut_note": "No cuts made.",
+    "bad_cuts": [],
+    "changes": []
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "gate": {
+    "version": "gate/0.1",
+    "first": {
+     "scores": {
+      "hook": 4,
+      "standalone": 4,
+      "payoff": 4,
+      "overall": 3
+     },
+     "verdict": "fix",
+     "verdict_applied": "fix",
+     "payoff_kind": "quotable_line",
+     "why": {
+      "hook": "The driver directly asks her if she has a boyfriend in close-up, kicking off the banter immediately.",
+      "standalone": "The car conversation between the driver and the passenger is completely understandable on its own.",
+      "payoff": "The line comparing wooing her to finding a cancer cure lands as a witty comic punchline, though cut right on the line.",
+      "overall": "Cutting instantly at L0189 without her reaction ('Enti?') robs the joke of its comedic completion, making an extension to L0190 necessary."
+     },
+     "last_beat": {
+      "line": "L0189",
+      "on_screen": "The driver mutters a funny punchline under his breath while driving, but the clip cuts abruptly without her reaction or any hold."
+     },
+     "fix": {
+      "new_start": "",
+      "new_end": "L0190",
+      "why": "Extend through her startled reaction ('Enti?') so the punchline lands properly before cutting."
+     },
+     "usage": {
+      "clip": "w03",
+      "stage": "first",
+      "cached": true,
+      "windows": [
+       [
+        317.0,
+        424.02
+       ]
+      ],
+      "input_tokens": 13659,
+      "output_tokens": 329,
+      "modalities": null,
+      "usd": 0.01148,
+      "inr": 1.033
+     }
+    },
+    "fix_applied": {
+     "changes": [
+      "end_later"
+     ],
+     "why": "Extend through her startled reaction ('Enti?') so the punchline lands properly before cutting.",
+     "old": {
+      "start_line": "L0169",
+      "end_line": "L0189",
+      "segments": [
+       [
+        357.0,
+        399.019,
+        "scene"
+       ]
+      ],
+      "plays_s": 42.02
+     },
+     "new": {
+      "start_line": "L0169",
+      "end_line": "L0190",
+      "segments": [
+       [
+        357.0,
+        400.812,
+        "scene"
+       ]
+      ],
+      "plays_s": 43.81
+     },
+     "cold_open_lost": false
+    },
+    "recheck": {
+     "scores": {
+      "hook": 4,
+      "standalone": 4,
+      "payoff": 4,
+      "overall": 4
+     },
+     "verdict": "keep",
+     "verdict_applied": "keep",
+     "payoff_kind": "laugh_beat",
+     "why": {
+      "hook": "Driver turns directly to the passenger and asks 'Meeku boyfriend unnada?' engaging the viewer instantly.",
+      "standalone": "The casual car banter between the driver and passenger is completely self-contained and easy to follow.",
+      "payoff": "Driver's aside 'finding a cure for cancer is easier than wooing her' is a strong punchline, capped by her shocked 'Enti?' reaction.",
+      "overall": "Fun comedic banter throughout with consistent pacing and ends cleanly on a solid comedic punchline."
+     },
+     "last_beat": {
+      "line": "L0190",
+      "on_screen": "Woman looks back confused asking 'Enti?' after driver's comment"
+     },
+     "fix_ignored": null,
+     "usage": {
+      "clip": "w03",
+      "stage": "recheck",
+      "cached": true,
+      "windows": [
+       [
+        317.0,
+        425.81
+       ]
+      ],
+      "input_tokens": 13841,
+      "output_tokens": 270,
+      "modalities": null,
+      "usd": 0.01139,
+      "inr": 1.025
+     }
+    },
+    "final": "keep",
+    "gate_fixed": true,
+    "tier": "recommended"
+   },
+   "gate_fixed": true,
+   "gate_verdict": "keep",
+   "gate_scores": {
+    "hook": 4,
+    "standalone": 4,
+    "payoff": 4,
+    "overall": 4
+   },
+   "rank_in_source": 5
+  },
+  {
+   "id": "w10",
+   "pieces": [
+    {
+     "start_word": 3068,
+     "end_word": 3137,
+     "start": 1889.084,
+     "end": 1924.184
+    }
+   ],
+   "region": {
+    "start_word": 3068,
+    "end_word": 3137,
+    "start": 1889.084,
+    "end": 1924.184
+   },
+   "edited_duration": 35.1,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "Lover ని వెతుక్కోవడం కాదు మంచి soulmate ని వెతుక్కో నీకంటే యమధర్మరాజులా కనిపిస్తున్నా నేను నీకు ఆత్మీయతకి ఆత్మలకి తేడా తెలియదేంటిరా నువ్వు ఇది అని చెప్పి అమ్మాయిని పడేయడం కంటే నువ్వేంటో తెలిసిన అమ్మాయిని వెతుక్కోవడం better ఆ అంటే అర్థమైంది నాకు ఏంటి? I love you విరాజస్థ నేను నీకు ప్రేతాత్మ అవ్వాలనుకోవట్లేదు. అయినా నాకు already match fix అయింది అవునా ఊ అబ్బాయి ఎవరు తను కూడా lawyer ఏ పోన్లే మీ విడాకుల case మీరే వాదించుకోవచ్చు అది నోరా బోరా ఒక్క మంచి మాట కూడా రాదా",
+   "rank": 3,
+   "tier": "recommended",
+   "scores": {
+    "hook": 3.5,
+    "standalone": 4.5,
+    "payoff": 4.5,
+    "value_emotion": 4.0,
+    "overall": 4.0
+   },
+   "title": "లాయర్ సంబంధం తెచ్చిన తంటా",
+   "hook_line": {
+    "text": "Lover ని వెతుక్కోవడం కాదు మంచి soulmate ని వెతుక్కో",
+    "start_word": 3068,
+    "end_word": 3075
+   },
+   "why_it_works": "RE-CUT end_later 33->37 s, re-check keep: Extend the ending to include her exasperated retort ('adi nora bora...') and the comic sting for a full punchline payoff.",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 1888.784,
+     "end": 1925.964,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 37.18,
+   "spoiler": false,
+   "characters": [
+    "Virajitha",
+    "Prasad"
+   ],
+   "visual_dependency": "low",
+   "start_line": "L0796",
+   "end_line": "L0812",
+   "end_hold": {
+    "payoff_end": 1924.184,
+    "next_speech": 1926.064,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "end": 1925.964,
+    "hold_s": 1.78,
+    "on_shot_cut": false,
+    "rule": "gate_hold",
+    "note": "next line starts quickly and no shot change before it",
+    "gate_hold_from": "L0813"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": 4,
+    "what_happens": "Virajitha suggests Prasad find a true soulmate instead of chasing random girls. Prasad impulsively proposes to her, and when she replies that she is already marrying a fellow lawyer, Prasad cracks a sharp retort about their future divorce.",
+    "hook": "Virajitha giving Prasad advice about finding a meaningful soulmate.",
+    "payoff": "Prasad sarcastically remarks that being two lawyers, they can argue their own divorce case for free.",
+    "opening_strength": "strong",
+    "payoff_line": "పోన్లే మీ విడాకుల case మీరే వాదించుకోవచ్చు",
+    "payoff_type": "punchline"
+   },
+   "review": {
+    "cold_open_note": "No cold open used.",
+    "cut_note": "No cuts made.",
+    "bad_cuts": [],
+    "changes": []
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "gate": {
+    "version": "gate/0.1",
+    "first": {
+     "scores": {
+      "hook": 4,
+      "standalone": 4,
+      "payoff": 3,
+      "overall": 3
+     },
+     "verdict": "fix",
+     "verdict_applied": "fix",
+     "payoff_kind": "scene_just_ends",
+     "why": {
+      "hook": "The clip opens immediately with the woman advising him on looking for a soulmate rather than just a lover in medium shot.",
+      "standalone": "The dynamic between the two friends/exes and his sudden joke proposal is fully clear within the dialogue.",
+      "payoff": "The punchline is strong, but the clip cuts off in 0.4 seconds without including her audible, funny scolded reaction right after.",
+      "overall": "Cutting Prasad's punchline before the woman snaps back rob the comedic exchange of its proper conclusion beat."
+     },
+     "last_beat": {
+      "line": "L0811",
+      "on_screen": "Prasad delivers his deadpan comic line about arguing their own divorce case, cut immediately without the girl's reaction"
+     },
+     "fix": {
+      "new_start": "",
+      "new_end": "L0813",
+      "why": "Extend the ending to include her exasperated retort ('adi nora bora...') and the comic sting for a full punchline payoff."
+     },
+     "usage": {
+      "clip": "w10",
+      "stage": "first",
+      "cached": true,
+      "windows": [
+       [
+        1848.78,
+        1946.69
+       ]
+      ],
+      "input_tokens": 12828,
+      "output_tokens": 318,
+      "modalities": null,
+      "usd": 0.01081,
+      "inr": 0.973
+     }
+    },
+    "fix_applied": {
+     "changes": [
+      "end_later"
+     ],
+     "why": "Extend the ending to include her exasperated retort ('adi nora bora...') and the comic sting for a full punchline payoff.",
+     "old": {
+      "start_line": "L0796",
+      "end_line": "L0811",
+      "segments": [
+       [
+        1888.784,
+        1921.694,
+        "scene"
+       ]
+      ],
+      "plays_s": 32.91
+     },
+     "new": {
+      "start_line": "L0796",
+      "end_line": "L0812",
+      "segments": [
+       [
+        1888.784,
+        1925.964,
+        "scene"
+       ]
+      ],
+      "plays_s": 37.18,
+      "hold_to": {
+       "t": 1926.284,
+       "from": "L0813",
+       "kind": "event"
+      }
+     },
+     "cold_open_lost": false
+    },
+    "recheck": {
+     "scores": {
+      "hook": 3,
+      "standalone": 4,
+      "payoff": 4,
+      "overall": 4
+     },
+     "verdict": "keep",
+     "verdict_applied": "keep",
+     "payoff_kind": "laugh_beat",
+     "why": {
+      "hook": "Starts directly on Virajitha giving advice ('Lover ni vetukkovadam kaadu...'), but it opens mid-conversation between the two.",
+      "standalone": "The dynamic between the persistent guy proposing and his witty female friend rejecting him is immediately understandable.",
+      "payoff": "Prasad cracks a hilarious joke about them arguing their own divorce case, followed by Virajitha's angry reaction beat with comedic sound.",
+      "overall": "A solid comedic exchange that builds naturally to a sharp punchline and reaction that lands smoothly."
+     },
+     "last_beat": {
+      "line": "L0812",
+      "on_screen": "Virajitha retorts exasperatedly to Prasad's divorce quip, followed by comedic background music and Prasad looking back."
+     },
+     "fix_ignored": null,
+     "usage": {
+      "clip": "w10",
+      "stage": "recheck",
+      "cached": true,
+      "windows": [
+       [
+        1848.78,
+        1950.96
+       ]
+      ],
+      "input_tokens": 13232,
+      "output_tokens": 286,
+      "modalities": null,
+      "usd": 0.011,
+      "inr": 0.99
+     }
+    },
+    "final": "keep",
+    "gate_fixed": true,
+    "tier": "recommended"
+   },
+   "gate_fixed": true,
+   "gate_verdict": "keep",
+   "gate_scores": {
+    "hook": 3,
+    "standalone": 4,
+    "payoff": 4,
+    "overall": 4
+   },
+   "rank_in_source": 7
+  },
+  {
+   "id": "w01",
+   "pieces": [
+    {
+     "start_word": 85,
+     "end_word": 190,
+     "start": 56.9,
+     "end": 112.42
+    }
+   ],
+   "region": {
+    "start_word": 85,
+    "end_word": 190,
+    "start": 56.9,
+    "end": 112.42
+   },
+   "edited_duration": 55.52,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "birthday కి ఎవరైనా gold chain ఓ teddy bear ఓ bouquet ఓ లేదా at least chocolate ఓ gift ఇస్తారు ORS లు ఇచ్చావేంట్రా అంటే ఆ రోజు weak గా ఉన్నావని ఇంట్లో ఎవ్వరూ లేరు, ఒంటరిగా ఉన్నాను అని call చేస్తే YouTube open చేసి ఆంజనేయ దండకం link పంపించావ్ అది కూడా okay రా. నన్ను drop చేయడానికి వచ్చి మా ఇంటి దగ్గర pan shop లో cigarettes తాగి అరువు పెట్టి డబ్బులు అడిగితే నా పేరు చెప్పావంట ఆ shop వాడు మా నాన్న దగ్గర డబ్బులు తీసుకున్నాడు. మా నాన్న నన్ను అనుమానించారు రా నేను cigarettes తాగుతున్నానేమో అని అది కూడా excuse చేసేశా హా very good మా తాత చనిపోయి one year అయిందని సంవత్సరికం చేస్తుంటే తాత happy anniversary అని రాసి bouquet పంపిస్తావా సిగ్గుందారా నీకు",
+   "rank": 4,
+   "tier": "worth_a_look",
+   "scores": {
+    "hook": 4.5,
+    "standalone": 4.5,
+    "payoff": 4.0,
+    "value_emotion": 4.5,
+    "overall": 4.5
+   },
+   "title": "Birthday కి ORS గిఫ్ట్ ఇచ్చిన బాయ్‌ఫ్రెండ్",
+   "hook_line": {
+    "text": "birthday కి ఎవరైనా gold chain ఓ teddy bear ఓ bouquet ఓ లేదా at least chocolate ఓ gift ఇస్తారు",
+    "start_word": 85,
+    "end_word": 102
+   },
+   "why_it_works": "RE-CUT end_earlier 65->60 s, re-check fix: Ending on the laugh beat and his cheeky smile after sending an anniversary bouquet for her grandfather's death anniversary provides a hilarious punchline.",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": "review: hook 3.0 with the lift vs 4.5 without, overall 3.5 vs 4.5; The cold open is a generic scolding line that works far better in its original spot right after the death anniversary bouquet reveal.",
+   "time_segments": [
+    {
+     "start": 56.6,
+     "end": 116.26,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 59.66,
+   "spoiler": false,
+   "characters": [
+    "Vaishnavi",
+    "Prasad"
+   ],
+   "visual_dependency": "low",
+   "start_line": "L0027",
+   "end_line": "L0049",
+   "end_hold": {
+    "payoff_end": 112.42,
+    "end": 116.26,
+    "hold_s": 3.84,
+    "on_shot_cut": false,
+    "next_speech": 116.36,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "rule": "gate_hold",
+    "gate_hold_from": "L0050"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": 5,
+    "what_happens": "Vaishnavi details all the embarrassing and unromantic things Prasad did during their relationship—gifting ORS packets for her birthday, sending Anjaneya Dandakam when she felt lonely, and sending a happy anniversary bouquet for her grandfather's death anniversary—only for Prasad to casually dismiss them as minor matters.",
+    "hook": "Vaishnavi angrily contrasts romantic gifts like gold chains or teddy bears with Prasad gifting her ORS packets.",
+    "payoff": "After hearing an absurd list of blunders, Prasad deadpans that these are all very small reasons to break up.",
+    "opening_strength": "strong",
+    "payoff_line": "ఇవన్నీ చాలా చిన్న చిన్న కారణాలు కదా వైషు",
+    "payoff_type": "punchline"
+   },
+   "review": {
+    "cold_open_note": "The cold open is a generic scolding line that works far better in its original spot right after the death anniversary bouquet reveal.",
+    "cut_note": "Clean cut.",
+    "bad_cuts": [],
+    "changes": [
+     "cold open dropped, review: hook 3.0 with the lift vs 4.5 without, overall 3.5 vs 4.5; The cold open is a generic scolding line that works far better in its original spot right after the death anniver…"
+    ]
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "gate": {
+    "version": "gate/0.1",
+    "first": {
+     "scores": {
+      "hook": 4,
+      "standalone": 4,
+      "payoff": 2,
+      "overall": 2
+     },
+     "verdict": "fix",
+     "verdict_applied": "fix",
+     "payoff_kind": "question_or_demand",
+     "why": {
+      "hook": "Opens right on her listing typical gifts vs asking why he gave ORS packets, engaging immediate comedic contrast.",
+      "standalone": "Clear comedy listing the absurd things her boyfriend did throughout their relationship.",
+      "payoff": "The clip cuts off mid-conversation on an indignant question 'Are these small?' just as she starts narrating the next incident.",
+      "overall": "Ends awkwardly mid-exchange instead of concluding on one of the comedic punchlines."
+     },
+     "last_beat": {
+      "line": "L0053",
+      "on_screen": "Girl asks indignantly if these are small reasons, cutting right into her next complaint"
+     },
+     "fix": {
+      "new_start": "",
+      "new_end": "L0050",
+      "why": "Ending on the laugh beat and his cheeky smile after sending an anniversary bouquet for her grandfather's death anniversary provides a hilarious punchline."
+     },
+     "usage": {
+      "clip": "w01",
+      "stage": "first",
+      "cached": true,
+      "windows": [
+       [
+        16.6,
+        146.91
+       ]
+      ],
+      "input_tokens": 15874,
+      "output_tokens": 308,
+      "modalities": null,
+      "usd": 0.01306,
+      "inr": 1.175
+     }
+    },
+    "fix_applied": {
+     "changes": [
+      "end_earlier"
+     ],
+     "why": "Ending on the laugh beat and his cheeky smile after sending an anniversary bouquet for her grandfather's death anniversary provides a hilarious punchline.",
+     "old": {
+      "start_line": "L0027",
+      "end_line": "L0052",
+      "segments": [
+       [
+        56.6,
+        121.908,
+        "scene"
+       ]
+      ],
+      "plays_s": 65.31
+     },
+     "new": {
+      "start_line": "L0027",
+      "end_line": "L0049",
+      "segments": [
+       [
+        56.6,
+        116.26,
+        "scene"
+       ]
+      ],
+      "plays_s": 59.66,
+      "hold_to": {
+       "t": 116.54,
+       "from": "L0050",
+       "kind": "event"
+      }
+     },
+     "cold_open_lost": false
+    },
+    "recheck": {
+     "scores": {
+      "hook": 4,
+      "standalone": 4,
+      "payoff": 3,
+      "overall": 3
+     },
+     "verdict": "fix",
+     "verdict_applied": "fix",
+     "payoff_kind": "question_or_demand",
+     "why": {
+      "hook": "Starts directly with the girl listing ridiculous gifts and asking why he gave ORS packets.",
+      "standalone": "The comedic compilation of weird things the boyfriend did is self-explanatory and entertaining.",
+      "payoff": "The clip ends on an open scolding question ('సిగ్గుందారా నీకు') rather than the guy's funny reaction downplaying it.",
+      "overall": "The series of complaints is very funny, but cutting before the guy's dismissive reaction leaves the comedic exchange unresolved."
+     },
+     "last_beat": {
+      "line": "L0049",
+      "on_screen": "Girl angrily asks if he has shame, then it holds into awkward smiling/silence."
+     },
+     "fix_ignored": {
+      "new_start": "",
+      "new_end": "L0052",
+      "why": "Extend to let the guy casually respond that these are all very minor reasons, delivering the comedic punchline."
+     },
+     "usage": {
+      "clip": "w01",
+      "stage": "recheck",
+      "cached": true,
+      "windows": [
+       [
+        16.6,
+        141.26
+       ]
+      ],
+      "input_tokens": 15190,
+      "output_tokens": 300,
+      "modalities": null,
+      "usd": 0.01252,
+      "inr": 1.127
+     }
+    },
+    "final": "drop",
+    "gate_fixed": false,
+    "tier": "rejected"
+   },
+   "gate_fixed": false,
+   "gate_verdict": "drop",
+   "gate_scores": {
+    "hook": 4,
+    "standalone": 4,
+    "payoff": 3,
+    "overall": 3
+   },
+   "rank_in_source": 3
+  },
+  {
+   "id": "w07",
+   "pieces": [
+    {
+     "start_word": 2082,
+     "end_word": 2175,
+     "start": 1293.94,
+     "end": 1342.78
+    }
+   ],
+   "region": {
+    "start_word": 2082,
+    "end_word": 2175,
+    "start": 1293.94,
+    "end": 1342.78
+   },
+   "edited_duration": 48.84,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "చూడు ప్రత్యూష, వీడు మీ ఇంటికి వచ్చింది భ్రమరా కోసం చెప్పద్దు please ఆగు. నీకోసం అనుకో నువ్వు తెగ blush అయిపోతున్నావ్. సారు ప్రజల వద్దకే పాలన type. దేన్నైనా గోకేస్తాడు. వీడి innocent face చూసి అమ్మాయిలు అది నమ్మేస్తారు తను చెప్పేది నిజమేనా ప్రసాద్ వాడినేంటి అడిగేది భ్రమరాన్ని అడిగి వెళ్ళి చెప్పు ప్రసాద్ చెప్పు ప్రసాద్. చెప్పగానే చెప్పించి కొడుతుంది అంటే first భ్రమరా ని చూశాను. నాకు ఇంకా పడదు అని అర్థమైంది. ఆ time లోనే నువ్వు phone చేసి love confirm చేశావ్. phone లే ఏదో ఒకటి దొరికిందిలే అని చెప్పేసి yes చెప్పేశాను అందరూ ఇంతేనా! ఛీ! కనీసం నువ్వైనా మంచోడివి అనుకున్నాను. ఇంకోసారి నీ face నాకు చూపించకు ప్రసాద్ హే! ఇలాంటి face మీదికి ఒకటి ఉంటది",
+   "rank": 5,
+   "tier": "worth_a_look",
+   "scores": {
+    "hook": 4.0,
+    "standalone": 4.0,
+    "payoff": 4.0,
+    "value_emotion": 3.5,
+    "overall": 4.0
+   },
+   "title": "ఆఖరికి ఆ అమ్మాయిని కూడా మోసం చేశాడా",
+   "hook_line": {
+    "text": "చూడు ప్రత్యూష,",
+    "start_word": 2082,
+    "end_word": 2083
+   },
+   "why_it_works": "RE-CUT end_later 47->50 s, re-check fix: Extend through Pooja's funny quip mocking his face, which provides a natural comic payoff to the dramatic rejection.",
+   "category": "controversy",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": "review: hook 3.5 with the lift vs 4.0 without, overall 3.0 vs 4.0; The cold open spoils the offensive confession early and leaves the heroine's disgusted reaction without proper immediate context.",
+   "time_segments": [
+    {
+     "start": 1293.82,
+     "end": 1344.088,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 50.27,
+   "spoiler": false,
+   "characters": [
+    "Pooja",
+    "Pratyusha",
+    "Prasad"
+   ],
+   "visual_dependency": "low",
+   "start_line": "L0567",
+   "end_line": "L0593",
+   "end_hold": {
+    "payoff_end": 1342.78,
+    "end": 1344.088,
+    "hold_s": 1.31,
+    "on_shot_cut": true,
+    "next_speech": 1346.02,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "note": "short hold (next shot cut before the minimum hold)",
+    "rule": "hold"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": 4,
+    "what_happens": "Pooja exposes Prasad in front of Pratyusha, revealing he only came to her house for Bhramara. When pressured, Prasad shamelessly admits he said yes to Pratyusha simply because Bhramara seemed out of reach and Pratyusha called first.",
+    "hook": "Pooja bluntly exposing Prasad's scheme by telling Pratyusha that he came for Bhramara.",
+    "payoff": "Pratyusha realizes Prasad's opportunistic nature and furiously tells him never to show his face again.",
+    "opening_strength": "strong",
+    "payoff_line": "ఇంకోసారి నీ face నాకు చూపించకు ప్రసాద్",
+    "payoff_type": "emotional_peak"
+   },
+   "review": {
+    "cold_open_note": "The cold open spoils the offensive confession early and leaves the heroine's disgusted reaction without proper immediate context.",
+    "cut_note": "No bad cuts.",
+    "bad_cuts": [],
+    "changes": [
+     "cold open dropped, review: hook 3.5 with the lift vs 4.0 without, overall 3.0 vs 4.0; The cold open spoils the offensive confession early and leaves the heroine's disgusted reaction without proper im…"
+    ]
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "gate": {
+    "version": "gate/0.1",
+    "first": {
+     "scores": {
+      "hook": 4,
+      "standalone": 4,
+      "payoff": 2,
+      "overall": 3
+     },
+     "verdict": "fix",
+     "verdict_applied": "fix",
+     "payoff_kind": "scene_just_ends",
+     "why": {
+      "hook": "Opens immediately on Pooja confronting Pratyusha directly by name with a sharp reveal about Prasad's true intentions.",
+      "standalone": "The clip provides clear context of the romantic deception and confrontation without needing prior background.",
+      "payoff": "Ends on a generic angry dismissal with no beat hold, cutting off mid-scene right before the friend's comedic reaction line.",
+      "overall": "The conversation is lively and engaging, but cutting directly on Pratyusha's demand leaves the scene truncated right before the punchline reaction."
+     },
+     "last_beat": {
+      "line": "L0591",
+      "on_screen": "Pratyusha delivers an angry breakup line and the clip abruptly cuts off with minimal hold while the friend is about to speak."
+     },
+     "fix": {
+      "new_start": "",
+      "new_end": "L0593",
+      "why": "Extend through Pooja's funny quip mocking his face, which provides a natural comic payoff to the dramatic rejection."
+     },
+     "usage": {
+      "clip": "w07",
+      "stage": "first",
+      "cached": true,
+      "windows": [
+       [
+        1253.82,
+        1365.61
+       ]
+      ],
+      "input_tokens": 14185,
+      "output_tokens": 328,
+      "modalities": null,
+      "usd": 0.01187,
+      "inr": 1.068
+     }
+    },
+    "fix_applied": {
+     "changes": [
+      "end_later"
+     ],
+     "why": "Extend through Pooja's funny quip mocking his face, which provides a natural comic payoff to the dramatic rejection.",
+     "old": {
+      "start_line": "L0567",
+      "end_line": "L0591",
+      "segments": [
+       [
+        1293.82,
+        1340.61,
+        "scene"
+       ]
+      ],
+      "plays_s": 46.79
+     },
+     "new": {
+      "start_line": "L0567",
+      "end_line": "L0593",
+      "segments": [
+       [
+        1293.82,
+        1344.088,
+        "scene"
+       ]
+      ],
+      "plays_s": 50.27
+     },
+     "cold_open_lost": false
+    },
+    "recheck": {
+     "scores": {
+      "hook": 4,
+      "standalone": 4,
+      "payoff": 3,
+      "overall": 3
+     },
+     "verdict": "fix",
+     "verdict_applied": "fix",
+     "payoff_kind": "scene_just_ends",
+     "why": {
+      "hook": "Opens immediately on Pooja confronting Pratyusha directly by name with dramatic tension.",
+      "standalone": "The dynamic between Prasad, Pooja, and Pratyusha is self-explanatory within the clip dialogue.",
+      "payoff": "The scene continues right after Pooja's line; it cuts abruptly mid-interaction before the resolution between Prasad and Pratyusha.",
+      "overall": "Stopping right after L0593 leaves the confrontation unfinished and feels clipped before Pratyusha walks away and agrees to hide the secret."
+     },
+     "last_beat": {
+      "line": "L0593",
+      "on_screen": "Pooja makes a joke about Prasad's face while Pratyusha listens coldly and walks away, ending abruptly on the dialogue."
+     },
+     "fix_ignored": {
+      "new_start": "",
+      "new_end": "L0606",
+      "why": "Extending to L0606 allows Pratyusha's decision and departure to finish naturally, ending on Pooja's comedic relief sigh."
+     },
+     "usage": {
+      "clip": "w07",
+      "stage": "recheck",
+      "cached": true,
+      "windows": [
+       [
+        1253.82,
+        1369.09
+       ]
+      ],
+      "input_tokens": 14525,
+      "output_tokens": 321,
+      "modalities": null,
+      "usd": 0.0121,
+      "inr": 1.089
+     }
+    },
+    "final": "drop",
+    "gate_fixed": false,
+    "tier": "rejected"
+   },
+   "gate_fixed": false,
+   "gate_verdict": "drop",
+   "gate_scores": {
+    "hook": 4,
+    "standalone": 4,
+    "payoff": 3,
+    "overall": 3
+   },
+   "rank_in_source": 9
+  }
+ ],
+ "rejected": []
+}

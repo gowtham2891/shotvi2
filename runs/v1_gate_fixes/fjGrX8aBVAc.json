@@ -1,0 +1,465 @@
+{
+ "schema_version": "1.1",
+ "kind": "proposals",
+ "video_id": "fjGrX8aBVAc",
+ "transcript": {
+  "path": "scribe_dataset/fjGrX8aBVAc/fjGrX8aBVAc_scribe_transcript.json",
+  "sha256": "1f72b36bebd711d1ac575f6e194bbb619c3f6e78ee66fdab64f3e6752bbd0ca7",
+  "n_words": 1365,
+  "audio_duration_secs": 1113.1335
+ },
+ "derived_params": {
+  "skip_s": 30.0
+ },
+ "run_id": "v1_gate_fixes",
+ "created_at": "2026-10-13T09:12:25Z",
+ "content_type": "web_series",
+ "pipeline": {
+  "version": "ws/0.2",
+  "git_commit": null,
+  "prompt_versions": {
+   "ws_discover": "3+27f4dce4",
+   "ws_review": "1+addbc14b"
+  },
+  "prompt_files": {
+   "ws_discover": "ws_discover_b_payoff",
+   "ws_review": "ws_review"
+  },
+  "config": {
+   "models": {
+    "ws_discover": {
+     "provider": "gemini",
+     "model": "gemini-3.8-flash",
+     "params": {
+      "thinking_level": "high",
+      "max_output_tokens": 32768
+     }
+    },
+    "ws_review": {
+     "provider": "gemini",
+     "model": "gemini-3.8-flash",
+     "params": {
+      "thinking_level": "medium",
+      "max_output_tokens": 16384
+     }
+    },
+    "video_end": {
+     "provider": "gemini",
+     "model": "gemini-3.8-flash",
+     "params": {
+      "thinking_level": "low"
+     }
+    }
+   },
+   "cut": {
+    "start_pad_s": 0.3,
+    "lift_min_s": 1.0,
+    "lift_max_s": 3.6,
+    "lift_cut_eps_s": 0.005,
+    "lift_start_snap_s": 0.4,
+    "lift_start_pad_s": 0.12,
+    "lift_max_tail_s": 2.0,
+    "lift_tail_measure_s": 0.4,
+    "lift_quiet_tail_db": 15.0,
+    "lift_level_warn_db": 10.0,
+    "max_cuts": 3,
+    "max_drop_s": 45.0,
+    "snap_s": 1.5,
+    "join_pad_s": 0.25,
+    "hold_min_s": 2.0,
+    "hold_max_s": 8.0,
+    "hold_short_min_s": 0.5,
+    "hold_default_s": 2.0,
+    "next_speech_margin_s": 0.1,
+    "long_silence_s": 20.0,
+    "long_silence_hold_max_s": 4.0,
+    "react_max_s": 1.5,
+    "react_max_words": 3,
+    "react_clear_s": 1.0,
+    "quick_cut_min_s": 0.02,
+    "quick_end_margin_s": 0.05,
+    "flash_s": 0.3,
+    "shot_tol_s": 0.05,
+    "word_clip_tol_s": 0.02,
+    "exchange_start": false,
+    "exchange_gap_s": 2.0,
+    "exchange_back_max_s": 30.0,
+    "exchange_back_max_lines": 12,
+    "exchange_on_cap": "keep",
+    "exchange_recap_s": 60.0,
+    "exchange_mode": "walk",
+    "qreply_require_speaker_change": false,
+    "qreply_setup_lines": 2,
+    "qreply_max_lines": 3,
+    "qreply_max_s": 12.0,
+    "exchange_max_play_s": 120.0
+   },
+   "review_view": "final",
+   "guardrails": {
+    "min_s": 15.0,
+    "soft_max_s": 120.0,
+    "hard_max_s": 150.0,
+    "skip_s": 30.0,
+    "dup_overlap": 0.5,
+    "blocks_flag_above": 3
+   },
+   "thresholds": {
+    "t_show": 3.5,
+    "t_rec": 4.0,
+    "t_rec_payoff": 4.0,
+    "rec_blockers": [
+     "needs_rescore",
+     "shot_flash",
+     "unreviewed_start",
+     "review_repair_failed"
+    ],
+    "verdict_strong_min": 3
+   },
+   "video_end_check": {
+    "enabled": false,
+    "max_shift_s": 8.0
+   },
+   "prompts": {
+    "ws_discover": "ws_discover_b_payoff",
+    "ws_review": "ws_review"
+   },
+   "budget_usd": 0.6,
+   "run_id": "v1_test"
+  }
+ },
+ "models": [
+  {
+   "role": "ws_discover",
+   "provider": "gemini",
+   "model": "gemini-3.8-flash",
+   "params": {
+    "thinking_level": "high",
+    "max_output_tokens": 32768
+   }
+  },
+  {
+   "role": "ws_review",
+   "provider": "gemini",
+   "model": "gemini-3.8-flash",
+   "params": {
+    "thinking_level": "medium",
+    "max_output_tokens": 16384
+   }
+  }
+ ],
+ "cost": {
+  "input_tokens": 19083,
+  "output_tokens": 28547,
+  "usd": 0.12136,
+  "usd_billed": 0.12136,
+  "wall_time_secs": 187.0,
+  "n_llm_calls": 2,
+  "by_role": {
+   "ws_discover": {
+    "n_llm_calls": 1,
+    "n_cache_hits": 0,
+    "n_failed_attempts": 0,
+    "input_tokens": 14511,
+    "output_tokens": 25178,
+    "thought_tokens": 22139,
+    "cached_input_tokens": 0,
+    "usd": 0.1053,
+    "usd_billed": 0.1053,
+    "models": [
+     "gemini-3.8-flash"
+    ]
+   },
+   "ws_review": {
+    "n_llm_calls": 1,
+    "n_cache_hits": 0,
+    "n_failed_attempts": 0,
+    "input_tokens": 4572,
+    "output_tokens": 3369,
+    "thought_tokens": 1641,
+    "cached_input_tokens": 0,
+    "usd": 0.01606,
+    "usd_billed": 0.01606,
+    "models": [
+     "gemini-3.8-flash"
+    ]
+   }
+  },
+  "projection": {
+   "ws_discover": {
+    "in": 14511,
+    "in_source": "countTokens",
+    "out_expected": 25000,
+    "out_guard": 32768,
+    "inr_expected": 9.42,
+    "inr": 12.04
+   },
+   "ws_review": {
+    "in_expected": 14700,
+    "out_expected": 15000,
+    "inr_expected": 6.05,
+    "in_guard": 14700,
+    "out_guard": 15000,
+    "inr": 6.05,
+    "assumes_clips": 15,
+    "expected_from": "defaults"
+   },
+   "video_end_check": {
+    "enabled": false,
+    "assumes_clips": 15,
+    "inr": 0.0,
+    "inr_expected": 0.0
+   },
+   "episode": {
+    "inr_expected": 15.47,
+    "inr": 18.09
+   }
+  }
+ },
+ "cutoff": {
+  "t_show": 3.5,
+  "t_rec": 4.0,
+  "t_rec_payoff": 4.0,
+  "rec_blockers": [
+   "needs_rescore",
+   "shot_flash",
+   "unreviewed_start",
+   "review_repair_failed"
+  ],
+  "n_candidates": 9,
+  "n_passed_hard_rules": 9,
+  "n_shown": 9,
+  "n_recommended": 3,
+  "n_worth_a_look": 6,
+  "n_rejected": 0,
+  "warnings": []
+ },
+ "episode_verdict": {
+  "verdict": "review",
+  "strong_clips": 0,
+  "worth_a_look": 1,
+  "note": "Video-gate re-cuts only (not rated yet). recommended = the re-check kept it."
+ },
+ "episode_notes": "Payoff beats: L0033 (conclusion), L0073 (punchline), L0116 (punchline), L0164 (punchline), L0198 (punchline), L0329 (punchline), L0382 (emotional_peak), L0418 (conclusion), L0439 (punchline), L0457 (reveal).\n\nScene Breakdown:\n- L0001-L0044: Abhi on phone with his Dad. Dad wants him to meet Harshitba for marriage. Setup.\n- L0045-L0085: Harshitha confronts Abhi outside Meera's flat; Abhi explains his one-sided love logic. Conflict.\n- L0086-L0117: Meera appears calling him 'Vijay'. Harshitha realizes his fake identity and forces her way into the flat. Conflict / Escalation.\n- L0118-L0165: Inside flat: Harshitha quizzes him in front of Meera; Abhi frantically covers up name and college details. Comedic tension.\n- L0166-L0214: Prank travel agent call trying to bribe Harshitha with a free Bangkok trip. Comedy.\n- L0215-L0279: Harshitha stays in the flat; Dad calls and Harshitha answers. Conflict.\n- L0280-L0333: Cafe scene: Harshitha talks to Sindhu; Sindhu interrogates her background; Harshitha gives rich-to-poor punchline. Comedy.\n- L0334-L0365: Kitchen scene: Abhi cuts onions, Meera gets teary, Abhi tends to her eyes. Romance.\n- L0366-L0386: Harshitha asks Meera if she also loves Vijay. Romantic / emotional probe.\n- L0387-L0424: Abhi drops Harshitha off; she gracefully departs with advice on love. Resolution.\n- L0425-L0451: Abhi and friend have beer; friend reminds him his wealth is the real barrier. Reality check.\n- L0452-L0458: Dad enters the cafe asking for Abhi. Cliffhanger ending.",
+ "proposals": [
+  {
+   "id": "w06",
+   "pieces": [
+    {
+     "start_word": 1038,
+     "end_word": 1082,
+     "start": 795.11,
+     "end": 829.73
+    }
+   ],
+   "region": {
+    "start_word": 1038,
+    "end_word": 1082,
+    "start": 795.11,
+    "end": 829.73
+   },
+   "edited_duration": 34.62,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "నువ్వు విజయ్ తో room share చేసుకుంటున్నావు కదా, నీకెప్పుడు ఇబ్బంది అనిపించలేదా? విజయ్ తోనా? మొదట ఇబ్బందిగానే అనిపించింది. కానీ తర్వాత చాలా మంచోడని అర్థమైంది. ఊమ్. నీకెప్పుడూ doubt కూడా రాలేదా? Doubt దేనికి? విజయ్ నిన్ను love చేస్తున్నాడేమోనని. అలా ఎప్పుడూ అనిపించలేదే. ఎందుకంటే, నువ్వు కూడా love చేస్తున్నావేమో. ఛా, అలా ఏం లేదు. లేకపోతే మంచిదే.",
+   "rank": 1,
+   "tier": "worth_a_look",
+   "scores": {
+    "hook": 3.8,
+    "standalone": 4.0,
+    "payoff": 4.0,
+    "value_emotion": 4.0,
+    "overall": 3.9
+   },
+   "title": "నువ్వు కూడా love చేస్తున్నావేమో?",
+   "hook_line": {
+    "text": "నువ్వు విజయ్ తో room share చేసుకుంటున్నావు కదా, నీకెప్పుడు ఇబ్బంది అనిపించలేదా?",
+    "start_word": 1038,
+    "end_word": 1047
+   },
+   "why_it_works": "RE-CUT end_later 28->37 s, re-check drop: Extend to L0385 to include the denial and 'lekpothe manchide', giving the conversation a proper resolution.",
+   "category": "story",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 794.81,
+     "end": 831.73,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 36.92,
+   "spoiler": false,
+   "characters": [
+    "Harshitha",
+    "Meera"
+   ],
+   "visual_dependency": "low",
+   "start_line": "L0370",
+   "end_line": "L0385",
+   "end_hold": {
+    "payoff_end": 829.73,
+    "end": 831.73,
+    "hold_s": 2.0,
+    "on_shot_cut": false,
+    "next_speech": 870.65,
+    "long_silence_after": true,
+    "laugh_after": false,
+    "note": "hold not on a shot cut",
+    "rule": "hold"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": 4,
+    "what_happens": "Harshitha asks Meera if she feels uncomfortable sharing a flat with Vijay. Meera defends him as a good guy, and Harshitha gently reveals that Meera might secretly love him too.",
+    "hook": "Harshitha asks Meera point-blank if she ever felt uncomfortable sharing a flat with Vijay.",
+    "payoff": "Harshitha cuts straight to Meera's unspoken feelings: 'Because maybe you are in love with him too.'",
+    "opening_strength": "strong",
+    "payoff_line": "ఎందుకంటే, నువ్వు కూడా love చేస్తున్నావేమో.",
+    "payoff_type": "emotional_peak"
+   },
+   "review": {
+    "cold_open_note": "",
+    "cut_note": "",
+    "bad_cuts": [],
+    "changes": []
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "gate": {
+    "version": "gate/0.1",
+    "first": {
+     "scores": {
+      "hook": 4,
+      "standalone": 4,
+      "payoff": 2,
+      "overall": 3
+     },
+     "verdict": "fix",
+     "verdict_applied": "fix",
+     "payoff_kind": "question_or_demand",
+     "why": {
+      "hook": "Opens right away with a direct personal question about sharing a room with Vijay.",
+      "standalone": "The dynamic and context of the roommates and Vijay are readily understandable within the clip dialogue.",
+      "payoff": "Ending on a teasing question/speculation without showing the reaction or reply leaves the conversation hanging in mid-air.",
+      "overall": "The dialogue flows naturally, but cutting off right before Meera denies it leaves the beat incomplete."
+     },
+     "last_beat": {
+      "line": "L0382",
+      "on_screen": "Both girls lying on the bed talking quietly while one turns her head away pensively"
+     },
+     "fix": {
+      "new_start": "",
+      "new_end": "L0385",
+      "why": "Extend to L0385 to include the denial and 'lekpothe manchide', giving the conversation a proper resolution."
+     },
+     "usage": {
+      "clip": "w06",
+      "stage": "first",
+      "cached": true,
+      "windows": [
+       [
+        754.81,
+        848.17
+       ]
+      ],
+      "input_tokens": 11757,
+      "output_tokens": 306,
+      "modalities": null,
+      "usd": 0.00997,
+      "inr": 0.897
+     }
+    },
+    "fix_applied": {
+     "changes": [
+      "end_later"
+     ],
+     "why": "Extend to L0385 to include the denial and 'lekpothe manchide', giving the conversation a proper resolution.",
+     "old": {
+      "start_line": "L0370",
+      "end_line": "L0382",
+      "segments": [
+       [
+        794.81,
+        823.17,
+        "scene"
+       ]
+      ],
+      "plays_s": 28.36
+     },
+     "new": {
+      "start_line": "L0370",
+      "end_line": "L0385",
+      "segments": [
+       [
+        794.81,
+        831.73,
+        "scene"
+       ]
+      ],
+      "plays_s": 36.92
+     },
+     "cold_open_lost": false
+    },
+    "recheck": {
+     "scores": {
+      "hook": 4,
+      "standalone": 4,
+      "payoff": 3,
+      "overall": 3
+     },
+     "verdict": "drop",
+     "verdict_applied": "drop",
+     "payoff_kind": "scene_just_ends",
+     "why": {
+      "hook": "Starts immediately on a pointed question addressing the room sharing situation directly.",
+      "standalone": "The dialogue clearly explains the roommate dynamic and the unspoken romantic tension.",
+      "payoff": "The scene ends softly with 'Lekapothe manchide' as she checks her phone, fading out without a strong dramatic peak.",
+      "overall": "A casual bedtime conversation that sets up romantic curiosity but trails off uneventfully into background music."
+     },
+     "last_beat": {
+      "line": "L0385",
+      "on_screen": "Two women lying down in bed looking at their phones under low room light."
+     },
+     "fix_ignored": null,
+     "usage": {
+      "clip": "w06",
+      "stage": "recheck",
+      "cached": true,
+      "windows": [
+       [
+        754.81,
+        856.73
+       ]
+      ],
+      "input_tokens": 12663,
+      "output_tokens": 256,
+      "modalities": null,
+      "usd": 0.01046,
+      "inr": 0.941
+     }
+    },
+    "final": "drop",
+    "gate_fixed": false,
+    "tier": "rejected"
+   },
+   "gate_fixed": false,
+   "gate_verdict": "drop",
+   "gate_scores": {
+    "hook": 4,
+    "standalone": 4,
+    "payoff": 3,
+    "overall": 3
+   },
+   "rank_in_source": 5
+  }
+ ],
+ "rejected": []
+}

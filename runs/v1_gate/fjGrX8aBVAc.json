@@ -1,0 +1,1930 @@
+{
+ "schema_version": "1.1",
+ "kind": "proposals",
+ "video_id": "fjGrX8aBVAc",
+ "transcript": {
+  "path": "scribe_dataset/fjGrX8aBVAc/fjGrX8aBVAc_scribe_transcript.json",
+  "sha256": "1f72b36bebd711d1ac575f6e194bbb619c3f6e78ee66fdab64f3e6752bbd0ca7",
+  "n_words": 1365,
+  "audio_duration_secs": 1113.1335
+ },
+ "derived_params": {
+  "skip_s": 30.0
+ },
+ "run_id": "v1_gate",
+ "created_at": "2026-10-13T09:12:25Z",
+ "content_type": "web_series",
+ "pipeline": {
+  "version": "ws/0.2",
+  "git_commit": null,
+  "prompt_versions": {
+   "ws_discover": "3+27f4dce4",
+   "ws_review": "1+addbc14b"
+  },
+  "prompt_files": {
+   "ws_discover": "ws_discover_b_payoff",
+   "ws_review": "ws_review"
+  },
+  "config": {
+   "models": {
+    "ws_discover": {
+     "provider": "gemini",
+     "model": "gemini-3.8-flash",
+     "params": {
+      "thinking_level": "high",
+      "max_output_tokens": 32768
+     }
+    },
+    "ws_review": {
+     "provider": "gemini",
+     "model": "gemini-3.8-flash",
+     "params": {
+      "thinking_level": "medium",
+      "max_output_tokens": 16384
+     }
+    },
+    "video_end": {
+     "provider": "gemini",
+     "model": "gemini-3.8-flash",
+     "params": {
+      "thinking_level": "low"
+     }
+    }
+   },
+   "cut": {
+    "start_pad_s": 0.3,
+    "lift_min_s": 1.0,
+    "lift_max_s": 3.6,
+    "lift_cut_eps_s": 0.005,
+    "lift_start_snap_s": 0.4,
+    "lift_start_pad_s": 0.12,
+    "lift_max_tail_s": 2.0,
+    "lift_tail_measure_s": 0.4,
+    "lift_quiet_tail_db": 15.0,
+    "lift_level_warn_db": 10.0,
+    "max_cuts": 3,
+    "max_drop_s": 45.0,
+    "snap_s": 1.5,
+    "join_pad_s": 0.25,
+    "hold_min_s": 2.0,
+    "hold_max_s": 8.0,
+    "hold_short_min_s": 0.5,
+    "hold_default_s": 2.0,
+    "next_speech_margin_s": 0.1,
+    "long_silence_s": 20.0,
+    "long_silence_hold_max_s": 4.0,
+    "react_max_s": 1.5,
+    "react_max_words": 3,
+    "react_clear_s": 1.0,
+    "quick_cut_min_s": 0.02,
+    "quick_end_margin_s": 0.05,
+    "flash_s": 0.3,
+    "shot_tol_s": 0.05,
+    "word_clip_tol_s": 0.02,
+    "exchange_start": false,
+    "exchange_gap_s": 2.0,
+    "exchange_back_max_s": 30.0,
+    "exchange_back_max_lines": 12,
+    "exchange_on_cap": "keep",
+    "exchange_recap_s": 60.0,
+    "exchange_mode": "walk",
+    "qreply_require_speaker_change": false,
+    "qreply_setup_lines": 2,
+    "qreply_max_lines": 3,
+    "qreply_max_s": 12.0,
+    "exchange_max_play_s": 120.0
+   },
+   "review_view": "final",
+   "guardrails": {
+    "min_s": 15.0,
+    "soft_max_s": 120.0,
+    "hard_max_s": 150.0,
+    "skip_s": 30.0,
+    "dup_overlap": 0.5,
+    "blocks_flag_above": 3
+   },
+   "thresholds": {
+    "t_show": 3.5,
+    "t_rec": 4.0,
+    "t_rec_payoff": 4.0,
+    "rec_blockers": [
+     "needs_rescore",
+     "shot_flash",
+     "unreviewed_start",
+     "review_repair_failed"
+    ],
+    "verdict_strong_min": 3
+   },
+   "video_end_check": {
+    "enabled": false,
+    "max_shift_s": 8.0
+   },
+   "prompts": {
+    "ws_discover": "ws_discover_b_payoff",
+    "ws_review": "ws_review"
+   },
+   "budget_usd": 0.6,
+   "run_id": "v1_test"
+  }
+ },
+ "models": [
+  {
+   "role": "ws_discover",
+   "provider": "gemini",
+   "model": "gemini-3.8-flash",
+   "params": {
+    "thinking_level": "high",
+    "max_output_tokens": 32768
+   }
+  },
+  {
+   "role": "ws_review",
+   "provider": "gemini",
+   "model": "gemini-3.8-flash",
+   "params": {
+    "thinking_level": "medium",
+    "max_output_tokens": 16384
+   }
+  }
+ ],
+ "cost": {
+  "input_tokens": 19083,
+  "output_tokens": 28547,
+  "usd": 0.12136,
+  "usd_billed": 0.12136,
+  "wall_time_secs": 187.0,
+  "n_llm_calls": 2,
+  "by_role": {
+   "ws_discover": {
+    "n_llm_calls": 1,
+    "n_cache_hits": 0,
+    "n_failed_attempts": 0,
+    "input_tokens": 14511,
+    "output_tokens": 25178,
+    "thought_tokens": 22139,
+    "cached_input_tokens": 0,
+    "usd": 0.1053,
+    "usd_billed": 0.1053,
+    "models": [
+     "gemini-3.8-flash"
+    ]
+   },
+   "ws_review": {
+    "n_llm_calls": 1,
+    "n_cache_hits": 0,
+    "n_failed_attempts": 0,
+    "input_tokens": 4572,
+    "output_tokens": 3369,
+    "thought_tokens": 1641,
+    "cached_input_tokens": 0,
+    "usd": 0.01606,
+    "usd_billed": 0.01606,
+    "models": [
+     "gemini-3.8-flash"
+    ]
+   }
+  },
+  "projection": {
+   "ws_discover": {
+    "in": 14511,
+    "in_source": "countTokens",
+    "out_expected": 25000,
+    "out_guard": 32768,
+    "inr_expected": 9.42,
+    "inr": 12.04
+   },
+   "ws_review": {
+    "in_expected": 14700,
+    "out_expected": 15000,
+    "inr_expected": 6.05,
+    "in_guard": 14700,
+    "out_guard": 15000,
+    "inr": 6.05,
+    "assumes_clips": 15,
+    "expected_from": "defaults"
+   },
+   "video_end_check": {
+    "enabled": false,
+    "assumes_clips": 15,
+    "inr": 0.0,
+    "inr_expected": 0.0
+   },
+   "episode": {
+    "inr_expected": 15.47,
+    "inr": 18.09
+   }
+  }
+ },
+ "cutoff": {
+  "t_show": 3.5,
+  "t_rec": 4.0,
+  "t_rec_payoff": 4.0,
+  "rec_blockers": [
+   "needs_rescore",
+   "shot_flash",
+   "unreviewed_start",
+   "review_repair_failed"
+  ],
+  "n_candidates": 9,
+  "n_passed_hard_rules": 9,
+  "n_shown": 3,
+  "n_recommended": 3,
+  "n_worth_a_look": 0,
+  "n_rejected": 6,
+  "warnings": []
+ },
+ "episode_verdict": {
+  "strong_clips": 3,
+  "worth_a_look": 0,
+  "verdict": "strong",
+  "note": "3 strong clips cleared the bar."
+ },
+ "episode_notes": "Payoff beats: L0033 (conclusion), L0073 (punchline), L0116 (punchline), L0164 (punchline), L0198 (punchline), L0329 (punchline), L0382 (emotional_peak), L0418 (conclusion), L0439 (punchline), L0457 (reveal).\n\nScene Breakdown:\n- L0001-L0044: Abhi on phone with his Dad. Dad wants him to meet Harshitba for marriage. Setup.\n- L0045-L0085: Harshitha confronts Abhi outside Meera's flat; Abhi explains his one-sided love logic. Conflict.\n- L0086-L0117: Meera appears calling him 'Vijay'. Harshitha realizes his fake identity and forces her way into the flat. Conflict / Escalation.\n- L0118-L0165: Inside flat: Harshitha quizzes him in front of Meera; Abhi frantically covers up name and college details. Comedic tension.\n- L0166-L0214: Prank travel agent call trying to bribe Harshitha with a free Bangkok trip. Comedy.\n- L0215-L0279: Harshitha stays in the flat; Dad calls and Harshitha answers. Conflict.\n- L0280-L0333: Cafe scene: Harshitha talks to Sindhu; Sindhu interrogates her background; Harshitha gives rich-to-poor punchline. Comedy.\n- L0334-L0365: Kitchen scene: Abhi cuts onions, Meera gets teary, Abhi tends to her eyes. Romance.\n- L0366-L0386: Harshitha asks Meera if she also loves Vijay. Romantic / emotional probe.\n- L0387-L0424: Abhi drops Harshitha off; she gracefully departs with advice on love. Resolution.\n- L0425-L0451: Abhi and friend have beer; friend reminds him his wealth is the real barrier. Reality check.\n- L0452-L0458: Dad enters the cafe asking for Abhi. Cliffhanger ending.",
+ "proposals": [
+  {
+   "id": "w08",
+   "pieces": [
+    {
+     "start_word": 1242,
+     "end_word": 1301,
+     "start": 986.97,
+     "end": 1015.51
+    }
+   ],
+   "region": {
+    "start_word": 1242,
+    "end_word": 1301,
+    "start": 986.97,
+    "end": 1015.51
+   },
+   "edited_duration": 28.54,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "తెలుసా, హరిషిత వల్ల దొరికిపోతాం అనుకున్నారా కాళ్లు చేతులు వణికిపోయాయి. కానీ finally గా నన్ను అర్థం చేసుకొని వెళ్ళిపోయింది. అయినా హరిషిత మంచి పిల్లే రా. అది తన మంచితనం కాదురా, నా ప్రేమ గొప్పతనం. అలానే అనుకోవాలి మరి. You know, తను నా love story లో villain అనుకున్నా. కానీ silent గా side అయిపోయింది. ఇంక నన్నూ మీరాని ఎవ్వరూ విడదీయలేరు రా. నువ్వు rich fellow అనే విషయం తప్ప నిన్నూ మీరాని ఏదీ విడదీయలేదు.",
+   "rank": 1,
+   "tier": "recommended",
+   "scores": {
+    "hook": 3.5,
+    "standalone": 4.2,
+    "payoff": 4.2,
+    "value_emotion": 4.0,
+    "overall": 3.9
+   },
+   "title": "మన ప్రేమ గొప్పతనం రా",
+   "hook_line": {
+    "text": "తెలుసా, హరిషిత వల్ల దొరికిపోతాం అనుకున్నారా కాళ్లు చేతులు వణికిపోయాయి.",
+    "start_word": 1242,
+    "end_word": 1249
+   },
+   "why_it_works": "Comedic relief after surviving an awkward situation lands on a sharp reality-check punchline from the friend.",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 986.67,
+     "end": 1016.06,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 29.39,
+   "spoiler": false,
+   "characters": [
+    "Abhi",
+    "Friend"
+   ],
+   "visual_dependency": "low",
+   "start_line": "L0431",
+   "end_line": "L0439",
+   "end_hold": {
+    "payoff_end": 1015.51,
+    "next_speech": 1016.11,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "end": 1016.06,
+    "hold_s": 0.55,
+    "on_shot_cut": false,
+    "rule": "before_next_line",
+    "note": "next line starts quickly and no shot change before it"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": 5,
+    "what_happens": "Over beer, Abhi celebrates that Harshitha backed off and boasts that nothing can tear him and Meera apart. His friend drops an instant reality check.",
+    "hook": "Abhi admits his hands and legs were trembling in fear that Harshitha would expose him.",
+    "payoff": "Abhi's friend quips that nothing can separate them except the glaring truth that Abhi is actually a rich kid.",
+    "opening_strength": "strong",
+    "payoff_line": "నువ్వు rich fellow అనే విషయం తప్ప నిన్నూ మీరాని ఏదీ విడదీయలేదు.",
+    "payoff_type": "punchline"
+   },
+   "review": {
+    "cold_open_note": "",
+    "cut_note": "",
+    "bad_cuts": [],
+    "changes": []
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "gate": {
+    "version": "gate/0.1",
+    "first": {
+     "scores": {
+      "hook": 3,
+      "standalone": 4,
+      "payoff": 4,
+      "overall": 4
+     },
+     "verdict": "keep",
+     "verdict_applied": "keep",
+     "payoff_kind": "quotable_line",
+     "why": {
+      "hook": "Starts directly on dialogue in a medium close-up, but it jumps right into the middle of a casual chat about Harshitha.",
+      "standalone": "The dynamic between the guy bragging about his love life and his friend bringing him down to earth is very clear and understandable.",
+      "payoff": "The friend delivers a sharp, witty reality check that punctures the protagonist's romantic bubble, landing on a solid comic beat.",
+      "overall": "A solid, engaging comedic exchange with clean pacing and a punchy landing line from the friend."
+     },
+     "last_beat": {
+      "line": "L0439",
+      "on_screen": "The friend delivers a comic reality check punchline while gesturing, pointing out that only his being rich can tear them apart."
+     },
+     "fix": {
+      "new_start": "",
+      "new_end": "",
+      "why": ""
+     },
+     "usage": {
+      "clip": "w08",
+      "stage": "first",
+      "cached": true,
+      "windows": [
+       [
+        946.67,
+        1041.06
+       ]
+      ],
+      "input_tokens": 12141,
+      "output_tokens": 285,
+      "modalities": null,
+      "usd": 0.01017,
+      "inr": 0.916
+     }
+    },
+    "fix_applied": null,
+    "recheck": null,
+    "final": "keep",
+    "gate_fixed": false,
+    "tier": "recommended"
+   },
+   "gate_fixed": false,
+   "gate_verdict": "keep",
+   "gate_scores": {
+    "hook": 3,
+    "standalone": 4,
+    "payoff": 4,
+    "overall": 4
+   },
+   "tier_before_gate": "worth_a_look",
+   "rank_before_gate": 4
+  },
+  {
+   "id": "w01",
+   "pieces": [
+    {
+     "start_word": 132,
+     "end_word": 190,
+     "start": 147.36,
+     "end": 169.92
+    }
+   ],
+   "region": {
+    "start_word": 132,
+    "end_word": 190,
+    "start": 147.36,
+    "end": 169.92
+   },
+   "edited_duration": 22.56,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ఆ అమ్మాయి ఎవరు ఇందాక నీతో చూశాను? తనా? తను నా lover లే. ఆ? అంటే live-in లో ఉంటున్నావా? Flat లో ఉందా ఇప్పుడు? కాదు one side love. నిన్ను love చేయకపోతే నువ్వెందుకు తన ఇంట్లో ఉంటున్నావ్? నేను తనను love చేస్తున్నా కాబట్టి. మరి one side love అన్నావ్? తను నన్ను love చేయట్లేదు కదా. తను నిన్ను ignore చేస్తుందా? కాదు. నేను తనని love చేస్తున్న విషయం తనకు తెలియదో తెలియదో.",
+   "rank": 2,
+   "tier": "recommended",
+   "scores": {
+    "hook": 3.5,
+    "standalone": 4.2,
+    "payoff": 4.0,
+    "value_emotion": 3.8,
+    "overall": 3.8
+   },
+   "title": "One side love అంటే ఇదేనా?",
+   "hook_line": {
+    "text": "ఆ అమ్మాయి ఎవరు ఇందాక నీతో చూశాను?",
+    "start_word": 132,
+    "end_word": 137
+   },
+   "why_it_works": "Quick witty dialogue explaining a one-sided love living situation leads up to a funny closing confession.",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 147.3,
+     "end": 170.11,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 22.81,
+   "spoiler": false,
+   "characters": [
+    "Harshitha",
+    "Abhi"
+   ],
+   "visual_dependency": "low",
+   "start_line": "L0058",
+   "end_line": "L0073",
+   "end_hold": {
+    "payoff_end": 169.92,
+    "next_speech": 170.16,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "end": 170.11,
+    "hold_s": 0.19,
+    "on_shot_cut": false,
+    "rule": "before_next_line",
+    "note": "next line starts quickly and no shot change before it"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": 5,
+    "what_happens": "Harshitha confronts Abhi outside Meera's flat and asks who the girl is. Abhi insists it is one-sided love, and Harshitha grills him on why he lives in her flat if she doesn't even love him.",
+    "hook": "Harshitha spots Meera and asks who she is; Abhi casually claims she is his lover.",
+    "payoff": "Abhi hilariously reveals that Meera does not even know he is in love with her.",
+    "opening_strength": "strong",
+    "payoff_line": "నేను తనని love చేస్తున్న విషయం తనకు తెలియదో తెలియదో.",
+    "payoff_type": "punchline"
+   },
+   "review": {
+    "cold_open_note": "",
+    "cut_note": "",
+    "bad_cuts": [],
+    "changes": []
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "gate": {
+    "version": "gate/0.1",
+    "first": {
+     "scores": {
+      "hook": 4,
+      "standalone": 4,
+      "payoff": 4,
+      "overall": 4
+     },
+     "verdict": "keep",
+     "verdict_applied": "keep",
+     "payoff_kind": "laugh_beat",
+     "why": {
+      "hook": "Opens right into the girl confronting him directly about who the other woman was.",
+      "standalone": "The dynamic and comedic confusion about his strange living situation is self-contained.",
+      "payoff": "His confession that his 'lover' doesn't even know he loves her lands as a solid comic reversal punchline.",
+      "overall": "A fun, engaging comedic exchange with clear escalation and a funny landing point."
+     },
+     "last_beat": {
+      "line": "L0073",
+      "on_screen": "Male character explains that she doesn't even know he loves her with an exasperated head tilt, then cuts off abruptly"
+     },
+     "fix": {
+      "new_start": "",
+      "new_end": "",
+      "why": ""
+     },
+     "usage": {
+      "clip": "w01",
+      "stage": "first",
+      "cached": true,
+      "windows": [
+       [
+        107.3,
+        195.11
+       ]
+      ],
+      "input_tokens": 11792,
+      "output_tokens": 274,
+      "modalities": null,
+      "usd": 0.00987,
+      "inr": 0.888
+     }
+    },
+    "fix_applied": null,
+    "recheck": null,
+    "final": "keep",
+    "gate_fixed": false,
+    "tier": "recommended"
+   },
+   "gate_fixed": false,
+   "gate_verdict": "keep",
+   "gate_scores": {
+    "hook": 4,
+    "standalone": 4,
+    "payoff": 4,
+    "overall": 4
+   },
+   "tier_before_gate": "worth_a_look",
+   "rank_before_gate": 6
+  },
+  {
+   "id": "w05",
+   "pieces": [
+    {
+     "start_word": 870,
+     "end_word": 943,
+     "start": 581.9,
+     "end": 621.38
+    }
+   ],
+   "region": {
+    "start_word": 870,
+    "end_word": 943,
+    "start": 581.9,
+    "end": 621.38
+   },
+   "edited_duration": 39.48,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "నువ్వు విజయ్ friend ఆ? అవును. అంటే school friend ఆ? college friend ఆ? లేదా colony friend ఆ? మూడు. ఓహ్ అంటే close friends ఏ అయి ఉంటారుగా. హ్మ్. హ్మ్ నువ్వు ఏ school? ఏంటి? I mean ఏ school లో friends అని అడుగుతున్నా. Delhi public school. ఓహ్ college? St. Mary's. అయితే మీరు చాలా rich అనుకుంటానుగా. అవును. ఉమ్ దొరికేసింది. దీనికి doubt వచ్చినట్టుంది. హ్మ్ విజయ్ కూడా rich అనుకుంటానుగా. Actually మా parents మమ్మల్ని చదివించుకు ముందు చాలా rich ఉండేవాళ్ళం. మమ్మల్ని చదివించాకే poor అయిపోయాం.",
+   "rank": 3,
+   "tier": "recommended",
+   "scores": {
+    "hook": 3.0,
+    "standalone": 4.0,
+    "payoff": 4.0,
+    "value_emotion": 3.8,
+    "overall": 3.5
+   },
+   "title": "చదువుకున్నాకే poor అయిపోయాం",
+   "hook_line": {
+    "text": "నువ్వు విజయ్ friend ఆ?",
+    "start_word": 870,
+    "end_word": 873
+   },
+   "why_it_works": "A slow questioning cross-examination pays off with a genuinely funny relatable punchline about school fees.",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 581.6,
+     "end": 621.491,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 39.89,
+   "spoiler": false,
+   "characters": [
+    "Sindhu",
+    "Harshitha"
+   ],
+   "visual_dependency": "low",
+   "start_line": "L0307",
+   "end_line": "L0329",
+   "end_hold": {
+    "payoff_end": 621.38,
+    "next_speech": 621.74,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "end": 621.491,
+    "hold_s": 0.11,
+    "on_shot_cut": true,
+    "rule": "shot_change_before_next_line",
+    "note": "next line starts quickly: ends on the shot change"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": 5,
+    "what_happens": "Sindhu grills Harshitha at the cafe about her school and background with Vijay. When Sindhu suspects that they come from wealthy families, Harshitha delivers a witty retort.",
+    "hook": "Sindhu interrogates Harshitha: 'Are you Vijay's school, college, or colony friend?' and Harshitha replies: 'All three.'",
+    "payoff": "Harshitha deadpans that their parents were very rich before paying for their education, and became poor only afterwards.",
+    "opening_strength": "strong",
+    "payoff_line": "మమ్మల్ని చదివించాకే poor అయిపోయాం.",
+    "payoff_type": "punchline"
+   },
+   "review": {
+    "cold_open_note": "",
+    "cut_note": "",
+    "bad_cuts": [],
+    "changes": []
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "gate": {
+    "version": "gate/0.1",
+    "first": {
+     "scores": {
+      "hook": 3,
+      "standalone": 4,
+      "payoff": 4,
+      "overall": 4
+     },
+     "verdict": "keep",
+     "verdict_applied": "keep",
+     "payoff_kind": "laugh_beat",
+     "why": {
+      "hook": "Starts with the waitress asking if she is Vijay's friend, clear but standard setup.",
+      "standalone": "The interrogative dynamic between the waitress and the customer is completely self-explanatory.",
+      "payoff": "A witty punchline about being rich before their parents paid for their education, delivering a solid comic reversal.",
+      "overall": "Smooth conversational comedic flow leading directly to a sharp, quotable punchline without trailing baggage."
+     },
+     "last_beat": {
+      "line": "L0329",
+      "on_screen": "Girl in red delivers the punchline about becoming poor after paying for studies, with the waitress looking at her in disbelief."
+     },
+     "fix": {
+      "new_start": "",
+      "new_end": "",
+      "why": ""
+     },
+     "usage": {
+      "clip": "w05",
+      "stage": "first",
+      "cached": true,
+      "windows": [
+       [
+        541.6,
+        646.49
+       ]
+      ],
+      "input_tokens": 13002,
+      "output_tokens": 263,
+      "modalities": null,
+      "usd": 0.01074,
+      "inr": 0.966
+     }
+    },
+    "fix_applied": null,
+    "recheck": null,
+    "final": "keep",
+    "gate_fixed": false,
+    "tier": "recommended"
+   },
+   "gate_fixed": false,
+   "gate_verdict": "keep",
+   "gate_scores": {
+    "hook": 3,
+    "standalone": 4,
+    "payoff": 4,
+    "overall": 4
+   },
+   "tier_before_gate": "worth_a_look",
+   "rank_before_gate": 9
+  }
+ ],
+ "rejected": [
+  {
+   "id": "w02",
+   "pieces": [
+    {
+     "start_word": 226,
+     "end_word": 322,
+     "start": 188.82,
+     "end": 233.06
+    }
+   ],
+   "region": {
+    "start_word": 226,
+    "end_word": 322,
+    "start": 188.82,
+    "end": 233.06
+   },
+   "edited_duration": 44.24,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "అయినా నువ్వు వేరే అమ్మాయిని love చేస్తూ నాతో పెళ్ళికి ఎలా ready అయ్యావ్? నేను చెప్పానా పెళ్ళికి ready అయ్యా అని? మీ daddy చెప్పారు. అయితే వెళ్ళి మా daddy నే అడుగు. విజయ్! ఆ! ఎవర్ తను? ఆ... ఆ తను soap లమ్ముకునేదానివని చెప్తే ఏం అనుకోకు please. చంపుతా. హ్మ్. ఆ. ఎవరని అడిగితే ఏం చెప్పావేంటి విజయ్? అభి కదా విజయ్ అంటుందేంటి? అవన్నీ నేను తర్వాత చెప్తున్నా, ఇప్పుడు వెళ్ళిపోవా please. చెప్పు ఎవర్ తను? ఆ... ఆ... Friends, friends. తను నా friend. Friends ఆ? చెప్పు friend అని. హా friends, చాలా best friends. ఉమ్. Friend అయితే బయటే నిలబెట్టి మాట్లాడుతున్నావేంటి? లోపలికి రండి. ఆ రమ్మన్నాను, ఏదో పని ఉందంట వెళ్తానంటుం- నాకేం పనిలేదు, నేను వచ్చి కూర్చుంటాను.",
+   "rank": 1,
+   "tier": "rejected",
+   "scores": {
+    "hook": 4.2,
+    "standalone": 4.3,
+    "payoff": 4.0,
+    "value_emotion": 4.2,
+    "overall": 4.2
+   },
+   "title": "అభి కాస్తా విజయ్ ఎలా అయ్యాడు?",
+   "hook_line": {
+    "text": "అయినా నువ్వు వేరే అమ్మాయిని love చేస్తూ నాతో పెళ్ళికి ఎలా ready అయ్యావ్?",
+    "start_word": 226,
+    "end_word": 236
+   },
+   "why_it_works": "High-tension confrontation hook about marriage turns into hilarious cover-up lies when the roommate walks in.",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 188.76,
+     "end": 235.313,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 46.55,
+   "spoiler": false,
+   "characters": [
+    "Harshitha",
+    "Abhi",
+    "Meera"
+   ],
+   "visual_dependency": "medium",
+   "start_line": "L0086",
+   "end_line": "L0116",
+   "end_hold": {
+    "payoff_end": 233.06,
+    "end": 235.313,
+    "hold_s": 2.25,
+    "on_shot_cut": true,
+    "next_speech": 235.7,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "rule": "hold"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": 4,
+    "what_happens": "Harshitha argues with Abhi about his wedding proposal when Meera suddenly comes out calling him Vijay. Abhi tries to cover up and send Harshitha away, but she brazenly steps inside.",
+    "hook": "Harshitha angrily confronts Abhi about how he agreed to marry her while loving someone else.",
+    "payoff": "When Abhi tries to shoo Harshitha away claiming she has work, she bluntly announces she has no work and walks right inside.",
+    "opening_strength": "strong",
+    "payoff_line": "నాకేం పనిలేదు, నేను వచ్చి కూర్చుంటాను.",
+    "payoff_type": "punchline"
+   },
+   "review": {
+    "cold_open_note": "",
+    "cut_note": "",
+    "bad_cuts": [],
+    "changes": []
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "gate": {
+    "version": "gate/0.1",
+    "first": {
+     "scores": {
+      "hook": 4,
+      "standalone": 4,
+      "payoff": 3,
+      "overall": 3
+     },
+     "verdict": "drop",
+     "verdict_applied": "drop",
+     "payoff_kind": "scene_just_ends",
+     "why": {
+      "hook": "The girl directly confronts him asking how he agreed to marry her while loving someone else, starting right in medium close-up.",
+      "standalone": "The comedic mess of a guy juggling an arranged match and a secret live-in crush is completely clear within the clip.",
+      "payoff": "The scene merely transitions inside when the girl decides to enter; the real comedic trap and identity reveal happens further along at the table.",
+      "overall": "The premise is fun and the hook is sharp, but cutting right as she enters leaves the comedic scenario hanging without a proper climax."
+     },
+     "last_beat": {
+      "line": "L0116",
+      "on_screen": "The visitor girl walks inside declaring she has no work, while the roommate looks on with a suspicious face before cut."
+     },
+     "fix": {
+      "new_start": "",
+      "new_end": "",
+      "why": ""
+     },
+     "usage": {
+      "clip": "w02",
+      "stage": "first",
+      "cached": true,
+      "windows": [
+       [
+        148.76,
+        260.31
+       ]
+      ],
+      "input_tokens": 14688,
+      "output_tokens": 306,
+      "modalities": null,
+      "usd": 0.01216,
+      "inr": 1.095
+     }
+    },
+    "fix_applied": null,
+    "recheck": null,
+    "final": "drop",
+    "gate_fixed": false,
+    "tier": "rejected"
+   },
+   "gate_fixed": false,
+   "gate_verdict": "drop",
+   "gate_scores": {
+    "hook": 4,
+    "standalone": 4,
+    "payoff": 3,
+    "overall": 3
+   },
+   "tier_before_gate": "recommended",
+   "reject_reasons": [
+    "G1: video gate drop (first pass drop; payoff 3, overall 3: The scene merely transitions inside when the girl decides to enter; the real comedic trap and identity reveal happens further along at the table.)"
+   ]
+  },
+  {
+   "id": "w03",
+   "pieces": [
+    {
+     "start_word": 350,
+     "end_word": 468,
+     "start": 250.74,
+     "end": 313.44
+    }
+   ],
+   "region": {
+    "start_word": 350,
+    "end_word": 468,
+    "start": 250.74,
+    "end": 313.44
+   },
+   "edited_duration": 62.7,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "నా గురించి ఏం మాట్లాడుకుంటున్నారు విజయ్? విజయా? నీ పేరు అభి కదా! ఇరికించేసింది. అభియా? అభి ఏంటి? ఆ అంటే నేను college లో shows చేసేటప్పుడు నా పేరు అభిరామ్ అన్నమాట. so వీళ్ళందరూ అభి అని పిలుస్తూ ఉంటారు. తను అలాగే చాలా jokes చేస్తూ ఉంటది. కాకపోతే అస్సలు నవ్వరాదు. ఉమ్. మీరిద్దరూ చాలా close friends అనుకుంటా. ఆ అవ్వాల్సి వచ్చింది. యా same university కదా. ఏ college? University of Melbourne. అబ్బా! ఆస్ట్రేలియాలో? నువ్వు ఆస్ట్రేలియాలో చదువుకున్నావా? మళ్ళీ joke వేస్తుంది. తను కొత్త కదా ఇంకా అలవాటు కాలే. Vizag లో కదా మనం చదివింది. హా. అవునులే ఆస్ట్రేలియాలో చదవాలంటే డబ్బులుండాలి. ఉమ్. నీకు డబ్బులుంటే cafe లో ఎందుకు పనిచేస్తావ్? ఉమ్. నువ్వు cafe లో పనిచేస్తున్నావా? అదేంటి నీకు పెద్ద పెద్ద companies ఉన్నాయి కదా? companies ఏంటి? ఆ అంటే నేను college లో ఉన్నప్పుడు పెద్ద companies పెట్టి వీళ్ళకి jobs ఇస్తా అన్నానన్నమాట. దాని గురించి చెప్తుంది.",
+   "rank": 2,
+   "tier": "rejected",
+   "scores": {
+    "hook": 4.0,
+    "standalone": 4.5,
+    "payoff": 4.0,
+    "value_emotion": 4.2,
+    "overall": 4.1
+   },
+   "title": "దొరికిపోయిన అబద్ధాల హీరో",
+   "hook_line": {
+    "text": "నా గురించి ఏం మాట్లాడుకుంటున్నారు విజయ్?",
+    "start_word": 350,
+    "end_word": 354
+   },
+   "why_it_works": "Instant hook of a secret name being exposed develops into rapid comical cover-ups about Melbourne college and companies.",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 250.667,
+     "end": 316.937,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 66.27,
+   "spoiler": false,
+   "characters": [
+    "Abhi",
+    "Harshitha",
+    "Meera"
+   ],
+   "visual_dependency": "medium",
+   "start_line": "L0128",
+   "end_line": "L0164",
+   "end_hold": {
+    "payoff_end": 313.44,
+    "end": 316.937,
+    "hold_s": 3.5,
+    "on_shot_cut": true,
+    "next_speech": 329.22,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "rule": "hold"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": 5,
+    "what_happens": "In front of Meera, Harshitha addresses Abhi by his real name and brings up his overseas education and companies. Abhi sweats profusely and makes up ridiculous excuses.",
+    "hook": "Harshitha drops a bombshell in front of Meera: 'Vijay? Isn't your name Abhi?'",
+    "payoff": "Abhi desperately covers up Harshitha's remark about his corporate empire by claiming he jokingly promised jobs to college friends.",
+    "opening_strength": "strong",
+    "payoff_line": "దాని గురించి చెప్తుంది.",
+    "payoff_type": "punchline"
+   },
+   "review": {
+    "cold_open_note": "",
+    "cut_note": "",
+    "bad_cuts": [],
+    "changes": []
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "gate": {
+    "version": "gate/0.1",
+    "first": {
+     "scores": {
+      "hook": 3,
+      "standalone": 3,
+      "payoff": 3,
+      "overall": 3
+     },
+     "verdict": "drop",
+     "verdict_applied": "drop",
+     "payoff_kind": "scene_just_ends",
+     "why": {
+      "hook": "Opens on a girl directly questioning what they were talking about, but it steps right into an ongoing conversation without immediate punch.",
+      "standalone": "The dynamic of a guy trapped between two women's questions is clear, but who the two women are to him relies on outside episode context.",
+      "payoff": "The scene simply halts on his latest weak cover-up explanation without an actual punchline landing or comedic resolution.",
+      "overall": "It is an engaging comedic situation, but it stretches on repetitively across multiple lies and fizzles out rather than ending on a strong punchline."
+     },
+     "last_beat": {
+      "line": "L0164",
+      "on_screen": "The guy finishes another frantic excuse while looking uneasy, followed by a cut to the suspicious girl looking down thoughtfully."
+     },
+     "fix": {
+      "new_start": "",
+      "new_end": "",
+      "why": ""
+     },
+     "usage": {
+      "clip": "w03",
+      "stage": "first",
+      "cached": true,
+      "windows": [
+       [
+        210.67,
+        341.94
+       ]
+      ],
+      "input_tokens": 16610,
+      "output_tokens": 294,
+      "modalities": null,
+      "usd": 0.01356,
+      "inr": 1.22
+     }
+    },
+    "fix_applied": null,
+    "recheck": null,
+    "final": "drop",
+    "gate_fixed": false,
+    "tier": "rejected"
+   },
+   "gate_fixed": false,
+   "gate_verdict": "drop",
+   "gate_scores": {
+    "hook": 3,
+    "standalone": 3,
+    "payoff": 3,
+    "overall": 3
+   },
+   "tier_before_gate": "recommended",
+   "reject_reasons": [
+    "G1: video gate drop (first pass drop; payoff 3, overall 3: The scene simply halts on his latest weak cover-up explanation without an actual punchline landing or comedic resolution.)"
+   ]
+  },
+  {
+   "id": "w09",
+   "pieces": [
+    {
+     "start_word": 1310,
+     "end_word": 1343,
+     "start": 1019.81,
+     "end": 1033.19
+    },
+    {
+     "start_word": 1344,
+     "end_word": 1364,
+     "start": 1040.79,
+     "end": 1051.03
+    }
+   ],
+   "region": {
+    "start_word": 1310,
+    "end_word": 1364,
+    "start": 1019.81,
+    "end": 1051.03
+   },
+   "edited_duration": 23.62,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "నువ్వు ఎంత తొందరగా అయితే అంత తొందరగా మీరాతో నీ love confirm చేసుకో. Once నీ love confirm అయితే, నువ్వు rich అని తెలిసినా కూడా మీ ఇద్దరి మధ్య love ఉంటది కాబట్టి strong గా ఉంటారు. అంతే. ఉమ్. రా. Cheers. ఇక్కడేనా? ఇక్కడే sir, ఇక్కడే చూసినా. ఊ, ఏం కావాలి sir? అభి. అలాంటి items ఇక్కడెక్కడా ఏం దొరకవు sir. Idiot, నా కొడుకు అభి కావాలి.",
+   "rank": 3,
+   "tier": "rejected",
+   "scores": {
+    "hook": 3.5,
+    "standalone": 3.8,
+    "payoff": 4.5,
+    "value_emotion": 4.2,
+    "overall": 4.0
+   },
+   "title": "నా కొడుకు అభి కావాలి!",
+   "hook_line": {
+    "text": "నువ్వు ఎంత తొందరగా అయితే అంత తొందరగా మీరాతో నీ love confirm చేసుకో.",
+    "start_word": 1310,
+    "end_word": 1320
+   },
+   "why_it_works": "Sensible relationship advice transitions into a sudden dramatic cliffhanger as the father arrives searching for him.",
+   "category": "reveal",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "promo",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 1019.51,
+     "end": 1033.44,
+     "kind": "scene"
+    },
+    {
+     "start": 1040.54,
+     "end": 1053.03,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 26.42,
+   "spoiler": true,
+   "characters": [
+    "Friend",
+    "Abhi",
+    "Dad",
+    "Server"
+   ],
+   "visual_dependency": "medium",
+   "start_line": "L0444",
+   "end_line": "L0457",
+   "end_hold": {
+    "payoff_end": 1051.03,
+    "end": 1053.03,
+    "hold_s": 2.0,
+    "on_shot_cut": false,
+    "next_speech": null,
+    "long_silence_after": true,
+    "laugh_after": false,
+    "note": "hold not on a shot cut",
+    "rule": "hold"
+   },
+   "chunk_drops": [
+    {
+     "after_line": "L0450",
+     "before_line": "L0452",
+     "removed_lines": [
+      "L0451"
+     ],
+     "lift_skip": false,
+     "start": 1033.44,
+     "end": 1040.54,
+     "removed_s": 7.1,
+     "why": "Drop the background music transition between the bar and the cafe to connect the friend's warning straight to Dad's sudden entrance."
+    }
+   ],
+   "discovery": {
+    "strength": 5,
+    "what_happens": "Abhi's friend warns him to confirm his love with Meera before she discovers his wealth. As they cheers, the scene abruptly cuts to Abhi's father storming into the cafe demanding to find Abhi.",
+    "hook": "Abhi's friend urgently warns him to secure Meera's love before his wealthy background is discovered.",
+    "payoff": "Abhi's father marches into the cafe and barks at the staff that he wants his son Abhi, setting up a massive cliffhanger.",
+    "opening_strength": "strong",
+    "payoff_line": "Idiot, నా(?) కొడుకు అభి కావాలి.",
+    "payoff_type": "reveal"
+   },
+   "review": {
+    "cold_open_note": "",
+    "cut_note": "",
+    "bad_cuts": [],
+    "changes": []
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "gate": {
+    "version": "gate/0.1",
+    "first": {
+     "scores": {
+      "hook": 3,
+      "standalone": 2,
+      "payoff": 3,
+      "overall": 1
+     },
+     "verdict": "drop",
+     "verdict_applied": "drop",
+     "payoff_kind": "scene_just_ends",
+     "why": {
+      "hook": "Starts with friendship advice about love on a balcony, plain dialogue.",
+      "standalone": "The clip joins two completely different scenes (friends drinking on balcony and father searching for son at cafe).",
+      "payoff": "The joke 'idiot, I want my son Abhi' is an abrupt sitcom line with no strong laugh beat or reaction payoff.",
+      "overall": "Two completely separate scenes with an awkward skip jump cut together."
+     },
+     "last_beat": {
+      "line": "L0457",
+      "on_screen": "Elderly man scolds the cafe waiter clarifying he wants his son Abhi"
+     },
+     "fix": {
+      "new_start": "",
+      "new_end": "",
+      "why": ""
+     },
+     "usage": {
+      "clip": "w09",
+      "stage": "first",
+      "cached": true,
+      "windows": [
+       [
+        979.51,
+        1078.03
+       ]
+      ],
+      "input_tokens": 12437,
+      "output_tokens": 256,
+      "modalities": null,
+      "usd": 0.01029,
+      "inr": 0.926
+     }
+    },
+    "fix_applied": null,
+    "recheck": null,
+    "final": "drop",
+    "gate_fixed": false,
+    "tier": "rejected"
+   },
+   "gate_fixed": false,
+   "gate_verdict": "drop",
+   "gate_scores": {
+    "hook": 3,
+    "standalone": 2,
+    "payoff": 3,
+    "overall": 1
+   },
+   "tier_before_gate": "recommended",
+   "reject_reasons": [
+    "G1: video gate drop (first pass drop; payoff 3, overall 1: The joke 'idiot, I want my son Abhi' is an abrupt sitcom line with no strong laugh beat or reaction payoff.)"
+   ]
+  },
+  {
+   "id": "w06",
+   "pieces": [
+    {
+     "start_word": 1038,
+     "end_word": 1076,
+     "start": 795.11,
+     "end": 821.17
+    }
+   ],
+   "region": {
+    "start_word": 1038,
+    "end_word": 1076,
+    "start": 795.11,
+    "end": 821.17
+   },
+   "edited_duration": 26.06,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "నువ్వు విజయ్ తో room share చేసుకుంటున్నావు కదా, నీకెప్పుడు ఇబ్బంది అనిపించలేదా? విజయ్ తోనా? మొదట ఇబ్బందిగానే అనిపించింది. కానీ తర్వాత చాలా మంచోడని అర్థమైంది. ఊమ్. నీకెప్పుడూ doubt కూడా రాలేదా? Doubt దేనికి? విజయ్ నిన్ను love చేస్తున్నాడేమోనని. అలా ఎప్పుడూ అనిపించలేదే. ఎందుకంటే, నువ్వు కూడా love చేస్తున్నావేమో.",
+   "rank": 5,
+   "tier": "rejected",
+   "scores": {
+    "hook": 3.8,
+    "standalone": 4.0,
+    "payoff": 4.0,
+    "value_emotion": 4.0,
+    "overall": 3.9
+   },
+   "title": "నువ్వు కూడా love చేస్తున్నావేమో?",
+   "hook_line": {
+    "text": "నువ్వు విజయ్ తో room share చేసుకుంటున్నావు కదా, నీకెప్పుడు ఇబ్బంది అనిపించలేదా?",
+    "start_word": 1038,
+    "end_word": 1047
+   },
+   "why_it_works": "Intriguing roommate question builds romantic curiosity, ending with a perceptive observation.",
+   "category": "story",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 794.81,
+     "end": 823.17,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 28.36,
+   "spoiler": false,
+   "characters": [
+    "Harshitha",
+    "Meera"
+   ],
+   "visual_dependency": "low",
+   "start_line": "L0370",
+   "end_line": "L0382",
+   "end_hold": {
+    "payoff_end": 821.17,
+    "end": 823.17,
+    "hold_s": 2.0,
+    "on_shot_cut": false,
+    "next_speech": 825.73,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "note": "hold not on a shot cut",
+    "rule": "hold"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": 4,
+    "what_happens": "Harshitha asks Meera if she feels uncomfortable sharing a flat with Vijay. Meera defends him as a good guy, and Harshitha gently reveals that Meera might secretly love him too.",
+    "hook": "Harshitha asks Meera point-blank if she ever felt uncomfortable sharing a flat with Vijay.",
+    "payoff": "Harshitha cuts straight to Meera's unspoken feelings: 'Because maybe you are in love with him too.'",
+    "opening_strength": "strong",
+    "payoff_line": "ఎందుకంటే, నువ్వు కూడా love చేస్తున్నావేమో.",
+    "payoff_type": "emotional_peak"
+   },
+   "review": {
+    "cold_open_note": "",
+    "cut_note": "",
+    "bad_cuts": [],
+    "changes": []
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "gate": {
+    "version": "gate/0.1",
+    "first": {
+     "scores": {
+      "hook": 4,
+      "standalone": 4,
+      "payoff": 2,
+      "overall": 3
+     },
+     "verdict": "fix",
+     "verdict_applied": "fix",
+     "payoff_kind": "question_or_demand",
+     "why": {
+      "hook": "Opens right away with a direct personal question about sharing a room with Vijay.",
+      "standalone": "The dynamic and context of the roommates and Vijay are readily understandable within the clip dialogue.",
+      "payoff": "Ending on a teasing question/speculation without showing the reaction or reply leaves the conversation hanging in mid-air.",
+      "overall": "The dialogue flows naturally, but cutting off right before Meera denies it leaves the beat incomplete."
+     },
+     "last_beat": {
+      "line": "L0382",
+      "on_screen": "Both girls lying on the bed talking quietly while one turns her head away pensively"
+     },
+     "fix": {
+      "new_start": "",
+      "new_end": "L0385",
+      "why": "Extend to L0385 to include the denial and 'lekpothe manchide', giving the conversation a proper resolution."
+     },
+     "usage": {
+      "clip": "w06",
+      "stage": "first",
+      "cached": true,
+      "windows": [
+       [
+        754.81,
+        848.17
+       ]
+      ],
+      "input_tokens": 11757,
+      "output_tokens": 306,
+      "modalities": null,
+      "usd": 0.00997,
+      "inr": 0.897
+     }
+    },
+    "fix_applied": {
+     "changes": [
+      "end_later"
+     ],
+     "why": "Extend to L0385 to include the denial and 'lekpothe manchide', giving the conversation a proper resolution.",
+     "old": {
+      "start_line": "L0370",
+      "end_line": "L0382",
+      "segments": [
+       [
+        794.81,
+        823.17,
+        "scene"
+       ]
+      ],
+      "plays_s": 28.36
+     },
+     "new": {
+      "start_line": "L0370",
+      "end_line": "L0385",
+      "segments": [
+       [
+        794.81,
+        831.73,
+        "scene"
+       ]
+      ],
+      "plays_s": 36.92
+     },
+     "cold_open_lost": false
+    },
+    "recheck": {
+     "scores": {
+      "hook": 4,
+      "standalone": 4,
+      "payoff": 3,
+      "overall": 3
+     },
+     "verdict": "drop",
+     "verdict_applied": "drop",
+     "payoff_kind": "scene_just_ends",
+     "why": {
+      "hook": "Starts immediately on a pointed question addressing the room sharing situation directly.",
+      "standalone": "The dialogue clearly explains the roommate dynamic and the unspoken romantic tension.",
+      "payoff": "The scene ends softly with 'Lekapothe manchide' as she checks her phone, fading out without a strong dramatic peak.",
+      "overall": "A casual bedtime conversation that sets up romantic curiosity but trails off uneventfully into background music."
+     },
+     "last_beat": {
+      "line": "L0385",
+      "on_screen": "Two women lying down in bed looking at their phones under low room light."
+     },
+     "fix_ignored": null,
+     "usage": {
+      "clip": "w06",
+      "stage": "recheck",
+      "cached": true,
+      "windows": [
+       [
+        754.81,
+        856.73
+       ]
+      ],
+      "input_tokens": 12663,
+      "output_tokens": 256,
+      "modalities": null,
+      "usd": 0.01046,
+      "inr": 0.941
+     }
+    },
+    "final": "drop",
+    "gate_fixed": false,
+    "tier": "rejected"
+   },
+   "gate_fixed": false,
+   "gate_verdict": "drop",
+   "gate_scores": {
+    "hook": 4,
+    "standalone": 4,
+    "payoff": 3,
+    "overall": 3
+   },
+   "tier_before_gate": "worth_a_look",
+   "reject_reasons": [
+    "G1: video gate drop (first pass fix; payoff 3, overall 3: Ending on a teasing question/speculation without showing the reaction or reply leaves the conversation hanging in mid-air.); re-check after fix: drop"
+   ]
+  },
+  {
+   "id": "w07",
+   "pieces": [
+    {
+     "start_word": 1125,
+     "end_word": 1211,
+     "start": 908.47,
+     "end": 956.85
+    }
+   ],
+   "region": {
+    "start_word": 1125,
+    "end_word": 1211,
+    "start": 908.47,
+    "end": 956.85
+   },
+   "edited_duration": 48.38,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "Sorry హరిషిత, నీ feelings ఏమైనా hurt చేసి ఉంటే. రేయ్, నువ్వు అంత feel అయిపోకు. నువ్వంటే ఇష్టమే, as a friend గా. ఏదో మా Daddy, మీ Daddy friends అని ఇద్దరికీ పెళ్లి చేయాలనుకున్నారు, ఏదో వాళ్ళ లాభం కోసం. అంతేగాని rule ఏం లేదు పెళ్లి చేసుకోవాలని. Thanks, అర్థం చేసుకున్నందుకు. ఊమ్. మీరా నీకు చాలా perfect, and ఇంతకంటే మంచి అమ్మాయి మీ Daddy ఎక్కడ వెతికినా దొరకదు. So, you guys are the best couple. But, నిజం తెలుస్తే ఏం చేయాలో ఆలోచించు. And తను నిజం తీసుకోవడానికి ready ఉందో లేదో తెలీదు. ఊమ్. Love లో sincerity ఉండాలి, serious గా ఉంటే సరిపోదు. ఊమ్.",
+   "rank": 7,
+   "tier": "rejected",
+   "scores": {
+    "hook": 3.2,
+    "standalone": 4.0,
+    "payoff": 3.8,
+    "value_emotion": 3.8,
+    "overall": 3.6
+   },
+   "title": "Love లో sincerity ఉండాలి",
+   "hook_line": {
+    "text": "Sorry హరిషిత, నీ feelings ఏమైనా hurt చేసి ఉంటే.",
+    "start_word": 1125,
+    "end_word": 1132
+   },
+   "why_it_works": "Mature rejection scene ends on a meaningful relationship advice quote about sincerity.",
+   "category": "emotional",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 908.17,
+     "end": 957.41,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 49.24,
+   "spoiler": false,
+   "characters": [
+    "Abhi",
+    "Harshitha"
+   ],
+   "visual_dependency": "low",
+   "start_line": "L0404",
+   "end_line": "L0418",
+   "end_hold": {
+    "payoff_end": 955.71,
+    "next_speech": 958.53,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "end": 957.41,
+    "hold_s": 1.7,
+    "on_shot_cut": true,
+    "rule": "reaction",
+    "reaction": {
+     "line": "L0419",
+     "text": "ఊమ్.",
+     "end": 956.85
+    }
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": 5,
+    "what_happens": "Abhi apologizes to Harshitha for hurting her feelings. Harshitha gracefully bows out, supports his relationship with Meera, and leaves him with mature words on love.",
+    "hook": "Abhi genuinely apologizes: 'Sorry Harshitha, if I hurt your feelings in any way.'",
+    "payoff": "Harshitha drops a memorable relationship truth: Love requires sincerity, being merely serious isn't enough.",
+    "opening_strength": "strong",
+    "payoff_line": "Love లో sincerity ఉండాలి, serious గా ఉంటే సరిపోదు.",
+    "payoff_type": "conclusion"
+   },
+   "review": {
+    "cold_open_note": "",
+    "cut_note": "",
+    "bad_cuts": [],
+    "changes": []
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "gate": {
+    "version": "gate/0.1",
+    "first": {
+     "scores": {
+      "hook": 4,
+      "standalone": 3,
+      "payoff": 3,
+      "overall": 3
+     },
+     "verdict": "drop",
+     "verdict_applied": "drop",
+     "payoff_kind": "scene_just_ends",
+     "why": {
+      "hook": "Opens immediately on the male character addressing Harshitha and apologizing directly for hurting her feelings.",
+      "standalone": "Mentions family arrangements, Meera, and an undisclosed truth without context, but the relationship conversation is clear.",
+      "payoff": "The clip ends on a philosophical advice line followed by a soft acknowledgement nod, lacking a definitive emotional peak or resolution.",
+      "overall": "A decent conversational exchange, but cuts off abruptly right before the farewell and lacks a strong landing punch or emotional climax."
+     },
+     "last_beat": {
+      "line": "L0419",
+      "on_screen": "Male character softly nods with 'ఊమ్' while listening to her advice, cut before the goodbye"
+     },
+     "fix": {
+      "new_start": "",
+      "new_end": "",
+      "why": ""
+     },
+     "usage": {
+      "clip": "w07",
+      "stage": "first",
+      "cached": true,
+      "windows": [
+       [
+        868.17,
+        982.41
+       ]
+      ],
+      "input_tokens": 14137,
+      "output_tokens": 287,
+      "modalities": null,
+      "usd": 0.01043,
+      "inr": 0.939
+     }
+    },
+    "fix_applied": null,
+    "recheck": null,
+    "final": "drop",
+    "gate_fixed": false,
+    "tier": "rejected"
+   },
+   "gate_fixed": false,
+   "gate_verdict": "drop",
+   "gate_scores": {
+    "hook": 4,
+    "standalone": 3,
+    "payoff": 3,
+    "overall": 3
+   },
+   "tier_before_gate": "worth_a_look",
+   "reject_reasons": [
+    "G1: video gate drop (first pass drop; payoff 3, overall 3: The clip ends on a philosophical advice line followed by a soft acknowledgement nod, lacking a definitive emotional peak or resolution.)"
+   ]
+  },
+  {
+   "id": "w04",
+   "pieces": [
+    {
+     "start_word": 506,
+     "end_word": 586,
+     "start": 356.04,
+     "end": 389.7
+    }
+   ],
+   "region": {
+    "start_word": 506,
+    "end_word": 586,
+    "start": 356.04,
+    "end": 389.7
+   },
+   "edited_duration": 33.66,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ఆ మా company తరపు నుంచి Bangkok trip కి మీరు select అయ్యారు. It's a free trip. నేనెందుకు select అయ్యాను? Free trip అంటే ఎందుకండి అడ్డమైన questions అడుగుతారు? bags సర్దుకొని flight ఎక్కేయండి. నువ్వేంటి? ఈ cafe లో work చేయడం ఏంటి? పేరు మార్చుకోవడం ఏంటి? అంటే Meera కోసం. అది అర్థమవుతుంది. నాకంటే తను దేంట్లో ఎక్కువ? అది నీకు చెప్పినా అర్థం కాదులే. అయితే Bangkok trip వద్దంటారు. పోనీ Malaysia, Japan, Singapore అలాంటివి ఏమన్నా try చేద్దామా? నాకెక్కడికి వెళ్లాలని లేదు. ఉన్నచోటే ప్రశాంతంగా ఉంది. అలా అందరూ ఉన్నచోటే ప్రశాంతత వెతుకుతుంటే మాలాంటి companies ఎలా బతకాలి madam?",
+   "rank": 8,
+   "tier": "rejected",
+   "scores": {
+    "hook": 3.5,
+    "standalone": 3.8,
+    "payoff": 3.6,
+    "value_emotion": 3.5,
+    "overall": 3.6
+   },
+   "title": "Free Bangkok trip ఎందుకు ఆఫర్ చేశాడు?",
+   "hook_line": {
+    "text": "ఆ మా company తరపు నుంచి Bangkok trip కి మీరు select అయ్యారు.",
+    "start_word": 506,
+    "end_word": 516
+   },
+   "why_it_works": "Curious opening offer turns into a sharp discussion about trying to send an ex-prospect away for love.",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 355.74,
+     "end": 390.302,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 34.56,
+   "spoiler": false,
+   "characters": [
+    "Friend",
+    "Harshitha",
+    "Abhi"
+   ],
+   "visual_dependency": "low",
+   "start_line": "L0181",
+   "end_line": "L0198",
+   "end_hold": {
+    "payoff_end": 389.7,
+    "next_speech": 390.7,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "end": 390.302,
+    "hold_s": 0.6,
+    "on_shot_cut": true,
+    "rule": "shot_change_before_next_line",
+    "note": "next line starts quickly: ends on the shot change"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": 4,
+    "what_happens": "Abhi's friend calls Harshitha pretending to be a travel agency offering a free international trip to get rid of her. Harshitha sees through it, while the fake agent keeps hilariously pitching packages.",
+    "hook": "A travel agent calls offering Harshitha a completely free Bangkok trip out of nowhere.",
+    "payoff": "When Harshitha says she finds peace where she is, the agent laments how travel agencies would survive if people stayed peaceful at home.",
+    "opening_strength": "strong",
+    "payoff_line": "అలా అందరూ ఉన్నచోటే ప్రశాంతత వెతుకుతుంటే మాలాంటి companies ఎలా బతకాలి madam?",
+    "payoff_type": "punchline"
+   },
+   "review": {
+    "cold_open_note": "",
+    "cut_note": "",
+    "bad_cuts": [],
+    "changes": []
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "gate": {
+    "version": "gate/0.1",
+    "first": {
+     "scores": {
+      "hook": 3,
+      "standalone": 1,
+      "payoff": 2,
+      "overall": 1
+     },
+     "verdict": "drop",
+     "verdict_applied": "drop",
+     "payoff_kind": "scene_just_ends",
+     "why": {
+      "hook": "Starts with a generic phone pitch about winning a Bangkok trip.",
+      "standalone": "Two completely different scenes (a telemarketing phone call and an argument at a dining table) are intercut back and forth, creating complete confusion.",
+      "payoff": "The clip cuts off mid-conversation on an open promotional call pitch.",
+      "overall": "The edit chops back and forth between two parallel plotlines with no coherence or punchline."
+     },
+     "last_beat": {
+      "line": "L0198",
+      "on_screen": "Speaker gestures while talking on the phone on the street."
+     },
+     "fix": {
+      "new_start": "",
+      "new_end": "",
+      "why": ""
+     },
+     "usage": {
+      "clip": "w04",
+      "stage": "first",
+      "cached": true,
+      "windows": [
+       [
+        315.74,
+        415.3
+       ]
+      ],
+      "input_tokens": 13055,
+      "output_tokens": 266,
+      "modalities": null,
+      "usd": 0.01079,
+      "inr": 0.971
+     }
+    },
+    "fix_applied": null,
+    "recheck": null,
+    "final": "drop",
+    "gate_fixed": false,
+    "tier": "rejected"
+   },
+   "gate_fixed": false,
+   "gate_verdict": "drop",
+   "gate_scores": {
+    "hook": 3,
+    "standalone": 1,
+    "payoff": 2,
+    "overall": 1
+   },
+   "tier_before_gate": "worth_a_look",
+   "reject_reasons": [
+    "G1: video gate drop (first pass drop; payoff 2, overall 1: The clip cuts off mid-conversation on an open promotional call pitch.)"
+   ]
+  }
+ ],
+ "video_gate": {
+  "version": "gate/0.1",
+  "source_run": "v1_test",
+  "prompt": {
+   "file": "ws_gate",
+   "version": "1+902eb83d"
+  },
+  "model": {
+   "provider": "gemini",
+   "model": "gemini-3.8-flash",
+   "params": {
+    "thinking_level": "low",
+    "max_output_tokens": 8192
+   }
+  },
+  "fps": 1.0,
+  "window": {
+   "before_s": 40.0,
+   "after_s": 25.0
+  },
+  "n_gated": 9,
+  "n_keep": 3,
+  "n_fixed_kept": 0,
+  "cost": {
+   "calls": 10,
+   "fresh_calls": 0,
+   "input_tokens": 132282,
+   "output_tokens": 2793,
+   "usd": 0.10844,
+   "inr": 9.76,
+   "inr_billed_this_run": 0,
+   "note": "usd / inr = full cost of the calls (an uncached production run)"
+  },
+  "calls": [
+   {
+    "clip": "w02",
+    "stage": "first",
+    "cached": true,
+    "windows": [
+     [
+      148.76,
+      260.31
+     ]
+    ],
+    "input_tokens": 14688,
+    "output_tokens": 306,
+    "modalities": null,
+    "usd": 0.01216,
+    "inr": 1.095
+   },
+   {
+    "clip": "w03",
+    "stage": "first",
+    "cached": true,
+    "windows": [
+     [
+      210.67,
+      341.94
+     ]
+    ],
+    "input_tokens": 16610,
+    "output_tokens": 294,
+    "modalities": null,
+    "usd": 0.01356,
+    "inr": 1.22
+   },
+   {
+    "clip": "w09",
+    "stage": "first",
+    "cached": true,
+    "windows": [
+     [
+      979.51,
+      1078.03
+     ]
+    ],
+    "input_tokens": 12437,
+    "output_tokens": 256,
+    "modalities": null,
+    "usd": 0.01029,
+    "inr": 0.926
+   },
+   {
+    "clip": "w08",
+    "stage": "first",
+    "cached": true,
+    "windows": [
+     [
+      946.67,
+      1041.06
+     ]
+    ],
+    "input_tokens": 12141,
+    "output_tokens": 285,
+    "modalities": null,
+    "usd": 0.01017,
+    "inr": 0.916
+   },
+   {
+    "clip": "w01",
+    "stage": "first",
+    "cached": true,
+    "windows": [
+     [
+      107.3,
+      195.11
+     ]
+    ],
+    "input_tokens": 11792,
+    "output_tokens": 274,
+    "modalities": null,
+    "usd": 0.00987,
+    "inr": 0.888
+   },
+   {
+    "clip": "w06",
+    "stage": "first",
+    "cached": true,
+    "windows": [
+     [
+      754.81,
+      848.17
+     ]
+    ],
+    "input_tokens": 11757,
+    "output_tokens": 306,
+    "modalities": null,
+    "usd": 0.00997,
+    "inr": 0.897
+   },
+   {
+    "clip": "w07",
+    "stage": "first",
+    "cached": true,
+    "windows": [
+     [
+      868.17,
+      982.41
+     ]
+    ],
+    "input_tokens": 14137,
+    "output_tokens": 287,
+    "modalities": null,
+    "usd": 0.01043,
+    "inr": 0.939
+   },
+   {
+    "clip": "w06",
+    "stage": "recheck",
+    "cached": true,
+    "windows": [
+     [
+      754.81,
+      856.73
+     ]
+    ],
+    "input_tokens": 12663,
+    "output_tokens": 256,
+    "modalities": null,
+    "usd": 0.01046,
+    "inr": 0.941
+   },
+   {
+    "clip": "w05",
+    "stage": "first",
+    "cached": true,
+    "windows": [
+     [
+      541.6,
+      646.49
+     ]
+    ],
+    "input_tokens": 13002,
+    "output_tokens": 263,
+    "modalities": null,
+    "usd": 0.01074,
+    "inr": 0.966
+   },
+   {
+    "clip": "w04",
+    "stage": "first",
+    "cached": true,
+    "windows": [
+     [
+      315.74,
+      415.3
+     ]
+    ],
+    "input_tokens": 13055,
+    "output_tokens": 266,
+    "modalities": null,
+    "usd": 0.01079,
+    "inr": 0.971
+   }
+  ]
+ }
+}

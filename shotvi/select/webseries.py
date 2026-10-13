@@ -159,6 +159,8 @@ DEFAULTS: dict = {
                    "rec_blockers": ["needs_rescore", "shot_flash", "unreviewed_start", "review_repair_failed"],
                    "verdict_strong_min": 3},
     "video_end_check": {"enabled": False, "max_shift_s": 8.0},
+    # video gate (shotvi.select.video_gate, OFF by default): one video call per shown clip -> keep / fix / drop
+    "video_gate": {"enabled": False},
     # prompt file per role (prompts/<name>.md); an A/B arm swaps exactly one (CLI --prompt ROLE=FILE)
     "prompts": {"ws_discover": "ws_discover_b_payoff", "ws_review": "ws_review"},  # v1 (2026-10-07): payoff-first
     "budget_usd": 0.6,
@@ -1594,6 +1596,9 @@ def run_episode(vid: str, cfg: dict, llm, guard: Guard, out_dir: Path, log=print
         # spend guard on EVERY billed attempt (retries and schema retries included; cache hits never reach it)
         call_proj = {"ws_discover": proj["ws_discover"]["inr"], "ws_review": proj["ws_review"]["inr"],
                      "video_end": VIDEO_END_INR_PER_CLIP}
+        if gate_on(cfg):
+            from shotvi.select.video_gate import GATE_INR_GUARD_PER_CALL
+            call_proj["ws_gate"] = GATE_INR_GUARD_PER_CALL
         llm.before_call = lambda role, _spec: guard.check(f"{vid} {role}",
                                                           call_proj.get(role, max(call_proj.values())))
         if not disc_cached:
@@ -1684,8 +1689,14 @@ def run_episode(vid: str, cfg: dict, llm, guard: Guard, out_dir: Path, log=print
     # ---------------------------------------------------------------- 4. optional video end check
     if dry_run:
         n = len(kept) if cfg["video_end_check"]["enabled"] else 0
-        return dry_result(vid, proj, "video_end" if n else None, VIDEO_END_INR_EXPECTED * n,
-                          VIDEO_END_INR_PER_CLIP * n, log, n_clips=len(kept))
+        ng = len(kept) if gate_on(cfg) else 0
+        if ng:
+            from shotvi.select.video_gate import GATE_INR_EXPECTED_PER_CLIP, GATE_INR_GUARD_PER_CLIP
+        else:
+            GATE_INR_EXPECTED_PER_CLIP = GATE_INR_GUARD_PER_CLIP = 0.0
+        return dry_result(vid, proj, "video_end" if n else ("ws_gate" if ng else None),
+                          VIDEO_END_INR_EXPECTED * n + GATE_INR_EXPECTED_PER_CLIP * ng,
+                          VIDEO_END_INR_PER_CLIP * n + GATE_INR_GUARD_PER_CLIP * ng, log, n_clips=len(kept))
     if cfg["video_end_check"]["enabled"] and kept:
         video_end_check(ep, kept, cfg, llm, guard, log)
 
@@ -1695,6 +1706,10 @@ def run_episode(vid: str, cfg: dict, llm, guard: Guard, out_dir: Path, log=print
         if ep.is_speech(r):
             line_of_word[r["words"][0]] = r
     shown = rank_clips(kept, rejected, cfg)
+    if gate_on(cfg) and shown:
+        # ---------------------------------------------------------------- 5b. optional video gate
+        from shotvi.select import video_gate
+        shown = video_gate.gate_shown(ep, shown, rejected, cfg, llm, guard, log)
     out_props = [proposal_doc(ep, x, k + 1, cfg, line_of_word) for k, x in enumerate(shown)]
     out_rej = [rejected_doc(ep, x, cfg) for x in rejected]
     debug["rejected"] = rejected
@@ -1876,6 +1891,20 @@ def episode_verdict(props: list[dict], th: dict) -> dict:
     return {"strong_clips": n_rec, "worth_a_look": n_wal, "verdict": v, "note": note}
 
 
+def gate_on(cfg: dict) -> bool:
+    return bool((cfg.get("video_gate") or {}).get("enabled"))
+
+
+def video_gate_prompt(cfg: dict) -> str:
+    from shotvi.select.video_gate import gate_cfg
+    return gate_cfg(cfg)["prompt"]
+
+
+def video_gate_model(cfg: dict) -> dict:
+    from shotvi.select.video_gate import gate_cfg
+    return gate_cfg(cfg)["model"]
+
+
 def video_end_check(ep: Episode, kept: list, cfg, llm, guard: Guard, log):
     """Optional: video_check clip2 (shot lines) per clip; apply only the END suggestion, capped and flagged."""
     from shotvi.llm.gemini import upload_file
@@ -1981,6 +2010,9 @@ def proposal_doc(ep: Episode, x: dict, rank: int, cfg, line_of_word) -> dict:
            "build_warnings": c["warnings"]}
     if c.get("video_end_check"):
         doc["video_end_check"] = c["video_end_check"]
+    if x.get("gate"):
+        from shotvi.select.video_gate import gate_doc_fields
+        doc.update(gate_doc_fields(x["gate"]))
     return doc
 
 
@@ -2014,6 +2046,9 @@ def rejected_doc(ep: Episode, x: dict, cfg) -> dict | None:
     if x.get("needs_rescore"):
         out["needs_rescore"] = True
         out["rescore_reason"] = x["needs_rescore"]
+    if x.get("gate"):
+        from shotvi.select.video_gate import gate_doc_fields
+        out.update(gate_doc_fields(x["gate"]))
     return out
 
 
@@ -2040,10 +2075,12 @@ def run_document(ep, tp, props, rejected, cfg, llm, n_moments, n_passed, t_start
         "run_id": cfg.get("run_id", "ws"), "created_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "content_type": "web_series",
         "pipeline": {"version": PIPELINE_VERSION, "git_commit": None,
-                     "prompt_versions": {n: load_prompt(prompt_file(cfg, n)).tag for n in PROMPTS},
+                     "prompt_versions": {**{n: load_prompt(prompt_file(cfg, n)).tag for n in PROMPTS},
+                                         **({"ws_gate": load_prompt(video_gate_prompt(cfg)).tag} if gate_on(cfg) else {})},
                      "prompt_files": {n: prompt_file(cfg, n) for n in PROMPTS}, "config": cfg},
         "models": [{"role": k, **v} for k, v in cfg["models"].items()
-                   if k != "video_end" or cfg["video_end_check"]["enabled"]],
+                   if k != "video_end" or cfg["video_end_check"]["enabled"]]
+        + ([{"role": "ws_gate", **video_gate_model(cfg)}] if gate_on(cfg) else []),
         "cost": {"input_tokens": summ["input_tokens"], "output_tokens": summ["output_tokens"],
                  "usd": summ["usd"], "usd_billed": summ["usd_billed"], "wall_time_secs": round(time.time() - t_start, 1),
                  "n_llm_calls": summ["n_llm_calls"], "by_role": summ["by_role"], "projection": debug["projection"]},
@@ -2122,6 +2159,8 @@ def main(argv=None):
     ap.add_argument("--max-ledger-inr", type=float, default=None,
                     help="stop before any call whose projection would push the project ledger past this")
     ap.add_argument("--video-end-check", action="store_true", help="stage 4 (paid, ~₹1.35 per clip)")
+    ap.add_argument("--video-gate", action="store_true",
+                    help="stage 5b: video gate keep / fix / drop per shown clip (paid; shotvi.select.video_gate)")
     ap.add_argument("--prompt", action="append", default=[], metavar="ROLE=FILE",
                     help="use prompts/FILE.md for ROLE (ws_discover / ws_review): one A/B arm = one swapped file")
     ap.add_argument("--calibrate-from", default=None, metavar="RUN_DIR",
@@ -2145,6 +2184,8 @@ def main(argv=None):
     cfg = deep_merge(DEFAULTS, json.loads(Path(a.config).read_text(encoding="utf-8")) if a.config else {})
     if a.video_end_check:
         cfg["video_end_check"]["enabled"] = True
+    if a.video_gate:
+        cfg["video_gate"]["enabled"] = True
     for kv in a.prompt:
         role, _, name = kv.partition("=")
         if role not in PROMPTS or not name or not (ROOT / "prompts" / f"{name}.md").exists():

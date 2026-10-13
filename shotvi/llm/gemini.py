@@ -112,6 +112,26 @@ class GeminiProvider(Provider):
         d = self._post(f"{API}/{spec.model}:countTokens", {"contents": [{"parts": [{"text": text}]}]})
         return int(d["totalTokens"])
 
+    def count_tokens_request(self, spec: ModelSpec, system: str, prompt: str, media: list[dict] | None = None,
+                             details: bool = False):
+        """countTokens (free, no generation) for a full request: system + media parts (video windows with offsets
+        and fps) + prompt, with the spec's media resolution. ``details``: also return promptTokensDetails."""
+        gen = {}
+        res = spec.params.get("media_resolution")
+        if res:
+            gen["mediaResolution"] = "MEDIA_RESOLUTION_" + str(res).upper()
+        req = {"model": f"models/{spec.model}",
+               "contents": [{"role": "user", "parts": [_media_part(m) for m in media or []] + [{"text": prompt}]}]}
+        if system:
+            req["systemInstruction"] = {"parts": [{"text": system}]}
+        if gen:
+            req["generationConfig"] = gen
+        d = self._post(f"{API}/{spec.model}:countTokens", {"generateContentRequest": req})
+        n = int(d["totalTokens"])
+        if details:
+            return n, {x.get("modality"): x.get("tokenCount", 0) for x in d.get("promptTokensDetails") or []}
+        return n
+
 
 def _grounding(cand: dict) -> dict | None:
     gm = cand.get("groundingMetadata")

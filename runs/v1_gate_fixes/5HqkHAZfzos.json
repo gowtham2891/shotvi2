@@ -1,0 +1,469 @@
+{
+ "schema_version": "1.1",
+ "kind": "proposals",
+ "video_id": "5HqkHAZfzos",
+ "transcript": {
+  "path": "scribe_dataset/5HqkHAZfzos/5HqkHAZfzos_scribe_transcript.json",
+  "sha256": "274907d7e90493dca591f246339c3c98d10b8a04754a36ab522bec07a36b31ec",
+  "n_words": 1566,
+  "audio_duration_secs": 1321.5405
+ },
+ "derived_params": {
+  "skip_s": 30.0
+ },
+ "run_id": "v1_gate_fixes",
+ "created_at": "2026-10-13T09:12:25Z",
+ "content_type": "web_series",
+ "pipeline": {
+  "version": "ws/0.2",
+  "git_commit": null,
+  "prompt_versions": {
+   "ws_discover": "3+27f4dce4",
+   "ws_review": "1+addbc14b"
+  },
+  "prompt_files": {
+   "ws_discover": "ws_discover_b_payoff",
+   "ws_review": "ws_review"
+  },
+  "config": {
+   "models": {
+    "ws_discover": {
+     "provider": "gemini",
+     "model": "gemini-3.8-flash",
+     "params": {
+      "thinking_level": "high",
+      "max_output_tokens": 32768
+     }
+    },
+    "ws_review": {
+     "provider": "gemini",
+     "model": "gemini-3.8-flash",
+     "params": {
+      "thinking_level": "medium",
+      "max_output_tokens": 16384
+     }
+    },
+    "video_end": {
+     "provider": "gemini",
+     "model": "gemini-3.8-flash",
+     "params": {
+      "thinking_level": "low"
+     }
+    }
+   },
+   "cut": {
+    "start_pad_s": 0.3,
+    "lift_min_s": 1.0,
+    "lift_max_s": 3.6,
+    "lift_cut_eps_s": 0.005,
+    "lift_start_snap_s": 0.4,
+    "lift_start_pad_s": 0.12,
+    "lift_max_tail_s": 2.0,
+    "lift_tail_measure_s": 0.4,
+    "lift_quiet_tail_db": 15.0,
+    "lift_level_warn_db": 10.0,
+    "max_cuts": 3,
+    "max_drop_s": 45.0,
+    "snap_s": 1.5,
+    "join_pad_s": 0.25,
+    "hold_min_s": 2.0,
+    "hold_max_s": 8.0,
+    "hold_short_min_s": 0.5,
+    "hold_default_s": 2.0,
+    "next_speech_margin_s": 0.1,
+    "long_silence_s": 20.0,
+    "long_silence_hold_max_s": 4.0,
+    "react_max_s": 1.5,
+    "react_max_words": 3,
+    "react_clear_s": 1.0,
+    "quick_cut_min_s": 0.02,
+    "quick_end_margin_s": 0.05,
+    "flash_s": 0.3,
+    "shot_tol_s": 0.05,
+    "word_clip_tol_s": 0.02,
+    "exchange_start": false,
+    "exchange_gap_s": 2.0,
+    "exchange_back_max_s": 30.0,
+    "exchange_back_max_lines": 12,
+    "exchange_on_cap": "keep",
+    "exchange_recap_s": 60.0,
+    "exchange_mode": "walk",
+    "qreply_require_speaker_change": false,
+    "qreply_setup_lines": 2,
+    "qreply_max_lines": 3,
+    "qreply_max_s": 12.0,
+    "exchange_max_play_s": 120.0
+   },
+   "review_view": "final",
+   "guardrails": {
+    "min_s": 15.0,
+    "soft_max_s": 120.0,
+    "hard_max_s": 150.0,
+    "skip_s": 30.0,
+    "dup_overlap": 0.5,
+    "blocks_flag_above": 3
+   },
+   "thresholds": {
+    "t_show": 3.5,
+    "t_rec": 4.0,
+    "t_rec_payoff": 4.0,
+    "rec_blockers": [
+     "needs_rescore",
+     "shot_flash",
+     "unreviewed_start",
+     "review_repair_failed"
+    ],
+    "verdict_strong_min": 3
+   },
+   "video_end_check": {
+    "enabled": false,
+    "max_shift_s": 8.0
+   },
+   "prompts": {
+    "ws_discover": "ws_discover_b_payoff",
+    "ws_review": "ws_review"
+   },
+   "budget_usd": 0.6,
+   "run_id": "v1_test"
+  }
+ },
+ "models": [
+  {
+   "role": "ws_discover",
+   "provider": "gemini",
+   "model": "gemini-3.8-flash",
+   "params": {
+    "thinking_level": "high",
+    "max_output_tokens": 32768
+   }
+  },
+  {
+   "role": "ws_review",
+   "provider": "gemini",
+   "model": "gemini-3.8-flash",
+   "params": {
+    "thinking_level": "medium",
+    "max_output_tokens": 16384
+   }
+  }
+ ],
+ "cost": {
+  "input_tokens": 19408,
+  "output_tokens": 36384,
+  "usd": 0.151,
+  "usd_billed": 0.151,
+  "wall_time_secs": 264.3,
+  "n_llm_calls": 2,
+  "by_role": {
+   "ws_discover": {
+    "n_llm_calls": 1,
+    "n_cache_hits": 0,
+    "n_failed_attempts": 0,
+    "input_tokens": 14913,
+    "output_tokens": 32212,
+    "thought_tokens": 30194,
+    "cached_input_tokens": 0,
+    "usd": 0.13198,
+    "usd_billed": 0.13198,
+    "models": [
+     "gemini-3.8-flash"
+    ]
+   },
+   "ws_review": {
+    "n_llm_calls": 1,
+    "n_cache_hits": 0,
+    "n_failed_attempts": 0,
+    "input_tokens": 4495,
+    "output_tokens": 4172,
+    "thought_tokens": 2684,
+    "cached_input_tokens": 0,
+    "usd": 0.01902,
+    "usd_billed": 0.01902,
+    "models": [
+     "gemini-3.8-flash"
+    ]
+   }
+  },
+  "projection": {
+   "ws_discover": {
+    "in": 14913,
+    "in_source": "countTokens",
+    "out_expected": 25000,
+    "out_guard": 32768,
+    "inr_expected": 9.44,
+    "inr": 12.07
+   },
+   "ws_review": {
+    "in_expected": 14700,
+    "out_expected": 15000,
+    "inr_expected": 6.05,
+    "in_guard": 14700,
+    "out_guard": 15000,
+    "inr": 6.05,
+    "assumes_clips": 15,
+    "expected_from": "defaults"
+   },
+   "video_end_check": {
+    "enabled": false,
+    "assumes_clips": 15,
+    "inr": 0.0,
+    "inr_expected": 0.0
+   },
+   "episode": {
+    "inr_expected": 15.49,
+    "inr": 18.12
+   }
+  }
+ },
+ "cutoff": {
+  "t_show": 3.5,
+  "t_rec": 4.0,
+  "t_rec_payoff": 4.0,
+  "rec_blockers": [
+   "needs_rescore",
+   "shot_flash",
+   "unreviewed_start",
+   "review_repair_failed"
+  ],
+  "n_candidates": 7,
+  "n_passed_hard_rules": 7,
+  "n_shown": 6,
+  "n_recommended": 4,
+  "n_worth_a_look": 2,
+  "n_rejected": 1,
+  "warnings": []
+ },
+ "episode_verdict": {
+  "verdict": "review",
+  "strong_clips": 0,
+  "worth_a_look": 1,
+  "note": "Video-gate re-cuts only (not rated yet). recommended = the re-check kept it."
+ },
+ "episode_notes": "Payoff beats: L0092 (conclusion: 'కరిగిపోయే లోపే followers ని తెచ్చుకొని సంపాదించుకోవాలి.'), L0140 (conclusion: 'ఇప్పుడు చెప్తున్నారా ముప్పై వేలు కాదురా ముప్పై లక్షల followers వచ్చినా మారదురా మోనా'), L0155 (conclusion: 'so వీలైనంత వరకు ఎవ్వరికీ connect అవ్వకు మోనా.'), L0281 (conclusion: 'ఈ మాత్రం దానికి ఓ tension పడిపోతావ్.'), L0306 (emotional_peak: 'లక్ష్మి ఆంటీ దగ్గరే installment లో తీసుకున్న అని చెప్తాలే'), L0409 (emotional_peak: 'importance లా అనిపిస్తుంది.'), L0427 (conclusion: 'ఎవరి జాగ్రత్తలో వాళ్ళు ఉంటే మంచిది.'). Episode structure: L0001-L0054 (Mona & Sony at home discussing salon shoot), L0055-L0102 (Mona & Smitha debating monetization vs free promotion), L0103-L0140 (Sukku & friend outside college discussing Mona's rising followers), L0141-L0248 (Smitha advising Mona on rich kids; broker Deepak pitching commercial promotions), L0249-L0281 (Strict father calls for live location; fake location app trick), L0282-L0307 (Mona surprises mother with saree), L0308-L0371 (Father drinking at bar discussing vulgar social media reels intercut with Mona giving earnings to mother), L0372-L0410 (Mona & Sukku romantic conversation about noticing vs observing and first likes), L0411-L0434 (Drunk father confronts daughters with threats of burning house down; cliffhanger), L0435-L0450 (Sony panicking and Mona reassuring her), L0451-L0461 (Camera promotional plug - skip entirely).",
+ "proposals": [
+  {
+   "id": "w03",
+   "pieces": [
+    {
+     "start_word": 424,
+     "end_word": 504,
+     "start": 384.27,
+     "end": 423.25
+    }
+   ],
+   "region": {
+    "start_word": 424,
+    "end_word": 504,
+    "start": 384.27,
+    "end": 423.25
+   },
+   "edited_duration": 38.98,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "నీకు ఒక లక్ష మంది followers ఉన్నారనుకో పది లక్షల మంది followers ఉన్న అబ్బాయితో friendship చేయాలి. ఎందుకు ఎందుకేంటే నీకు ఎలా చెప్పాలి మోనా. హా నాకు తెలిసిన ఒక influencer ఉంది. తను చాలా poor. కానీ ఇప్పుడు reels కొన్ని బాగా viral అయ్యాయి. ఇప్పుడు ఒక big shot కొడుకుని date చేస్తుంది. అయితే అయితే ఏంటి మోనా. హా ఇలాంటి local టమాటాలుగాళ్ళతో కొంచెం gap maintain చేయి. మన reels viral అయితే ఏ rich kid కి నచ్చుతామో చెప్పలేం. so వీలైనంత వరకు ఎవ్వరికీ connect అవ్వకు మోనా. నువ్వు చాలా ఆలోచిస్తున్నావు పాపా. సరేలే నువ్వేలా అంటే అలానే Okay.",
+   "rank": 1,
+   "tier": "worth_a_look",
+   "scores": {
+    "hook": 4.5,
+    "standalone": 4.5,
+    "payoff": 4.5,
+    "value_emotion": 4.5,
+    "overall": 4.5
+   },
+   "title": "Influencer friend ఇచ్చిన toxic dating advice",
+   "hook_line": {
+    "text": "నీకు ఒక లక్ష మంది followers ఉన్నారనుకో పది లక్షల మంది followers ఉన్న అబ్బాయితో friendship చేయాలి.",
+    "start_word": 424,
+    "end_word": 437
+   },
+   "why_it_works": "RE-CUT end_later 34->42 s, re-check drop: Extending to Mona's reaction line ('నువ్వేలా అంటే అలానే') completes the conversation beat before they sit down.",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 383.97,
+     "end": 425.587,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 41.62,
+   "spoiler": false,
+   "characters": [
+    "Smitha",
+    "Mona"
+   ],
+   "visual_dependency": "low",
+   "start_line": "L0144",
+   "end_line": "L0157",
+   "end_hold": {
+    "payoff_end": 422.61,
+    "next_speech": 427.57,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "end": 425.587,
+    "hold_s": 2.98,
+    "on_shot_cut": true,
+    "rule": "reaction",
+    "reaction": {
+     "line": "L0158",
+     "text": "Okay.",
+     "end": 423.25
+    }
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": 4,
+    "what_happens": "Smitha advises Mona on social media dating hierarchy, telling her to avoid local ordinary guys and hold out for rich kids who might notice her viral reels.",
+    "hook": "Smitha opens with an outrageous formula: நீకు లక్ష followers ఉంటే, 10 లక్షల followers ఉన్నవాడితోనే friendship చేయాలి.",
+    "payoff": "Smitha orders Mona to stay detached and ignore local guys because any rich kid might fall for her reels.",
+    "opening_strength": "strong",
+    "payoff_line": "so వీలైనంత వరకు ఎవ్వరికీ connect అవ్వకు మోనా.",
+    "payoff_type": "conclusion"
+   },
+   "review": {
+    "cold_open_note": "No cold open used.",
+    "cut_note": "Smooth continuous dialogue without cuts.",
+    "bad_cuts": [],
+    "changes": []
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "gate": {
+    "version": "gate/0.1",
+    "first": {
+     "scores": {
+      "hook": 3,
+      "standalone": 3,
+      "payoff": 2,
+      "overall": 2
+     },
+     "verdict": "fix",
+     "verdict_applied": "fix",
+     "payoff_kind": "scene_just_ends",
+     "why": {
+      "hook": "Opens right on dialogue about followers, but it is mid-walk conversation without a sharp visual setup.",
+      "standalone": "The casual talk about social media and dating makes sense in isolation, though it feels like a snippet of banter.",
+      "payoff": "The clip ends on continuous advice without letting Mona respond at all, cutting right before Mona's reply.",
+      "overall": "Cutting off Mona's reply leaves the entire conversation feeling truncated and without a resolution."
+     },
+     "last_beat": {
+      "line": "L0155",
+      "on_screen": "Speaker 1 finishes giving advice to Mona while walking on the road, cutting abruptly with only 0.2s hold"
+     },
+     "fix": {
+      "new_start": "",
+      "new_end": "L0157",
+      "why": "Extending to Mona's reaction line ('నువ్వేలా అంటే అలానే') completes the conversation beat before they sit down."
+     },
+     "usage": {
+      "clip": "w03",
+      "stage": "first",
+      "cached": true,
+      "windows": [
+       [
+        343.97,
+        443.37
+       ]
+      ],
+      "input_tokens": 12192,
+      "output_tokens": 305,
+      "modalities": null,
+      "usd": 0.01029,
+      "inr": 0.926
+     }
+    },
+    "fix_applied": {
+     "changes": [
+      "end_later"
+     ],
+     "why": "Extending to Mona's reaction line ('నువ్వేలా అంటే అలానే') completes the conversation beat before they sit down.",
+     "old": {
+      "start_line": "L0144",
+      "end_line": "L0155",
+      "segments": [
+       [
+        383.97,
+        418.371,
+        "scene"
+       ]
+      ],
+      "plays_s": 34.4
+     },
+     "new": {
+      "start_line": "L0144",
+      "end_line": "L0157",
+      "segments": [
+       [
+        383.97,
+        425.587,
+        "scene"
+       ]
+      ],
+      "plays_s": 41.62
+     },
+     "cold_open_lost": false
+    },
+    "recheck": {
+     "scores": {
+      "hook": 4,
+      "standalone": 4,
+      "payoff": 3,
+      "overall": 3
+     },
+     "verdict": "drop",
+     "verdict_applied": "drop",
+     "payoff_kind": "scene_just_ends",
+     "why": {
+      "hook": "Opens immediately with a direct provocative statement advising to date guys with more followers, framing the conflict directly.",
+      "standalone": "The social-media advice dialogue between the two friends is clear and self-contained without needing prior plot knowledge.",
+      "payoff": "The clip simply trails off with a casual agreement ('sarele nuvvela ante alane') and 'okay' with no punchline, laugh beat, or dramatic twist.",
+      "overall": "The advice discussion has an engaging premise, but the conclusion lacks any real punchline or sharp ending beat."
+     },
+     "last_beat": {
+      "line": "L0158",
+      "on_screen": "Both girls smile and agree casually as they keep walking side by side down the street."
+     },
+     "fix_ignored": null,
+     "usage": {
+      "clip": "w03",
+      "stage": "recheck",
+      "cached": true,
+      "windows": [
+       [
+        343.97,
+        450.59
+       ]
+      ],
+      "input_tokens": 13036,
+      "output_tokens": 297,
+      "modalities": null,
+      "usd": 0.01089,
+      "inr": 0.98
+     }
+    },
+    "final": "drop",
+    "gate_fixed": false,
+    "tier": "rejected"
+   },
+   "gate_fixed": false,
+   "gate_verdict": "drop",
+   "gate_scores": {
+    "hook": 4,
+    "standalone": 4,
+    "payoff": 3,
+    "overall": 3
+   },
+   "rank_in_source": 1
+  }
+ ],
+ "rejected": []
+}
