@@ -1124,7 +1124,14 @@ def is_cached(llm, spec, system: str, prompt: str, schema: dict) -> bool:
         return False
 
 
-def project_usd(in_tok: int, out_tok: int) -> float:
+def project_usd(in_tok: int, out_tok: int, model: str | None = None) -> float:
+    """Projected USD for one call. ``model``: price it from pricing.PRICES (a Pro review costs ~3x a Flash one);
+    None or an unpriced model: the Flash promo price USD_PER_M."""
+    if model:
+        from shotvi.llm.pricing import cost_usd
+        usd = cost_usd(model, in_tok, out_tok)
+        if usd is not None:
+            return usd
     return (in_tok * USD_PER_M["in"] + out_tok * USD_PER_M["out"]) / 1e6
 
 
@@ -1271,7 +1278,8 @@ def project_episode(ep: Episode, ix, cfg: dict, system: str, user: str, llm=None
     d_max = int(spec.params.get("max_output_tokens", 32768))
     d_exp = int((cb.get("ws_discover") or {}).get("output_tokens") or DISCOVER_OUT_EXPECTED)
     disc = {"in": n_in, "in_source": src, "out_expected": d_exp, "out_guard": d_max,
-            "inr_expected": round(inr(project_usd(n_in, d_exp)), 2), "inr": round(inr(project_usd(n_in, d_max)), 2)}
+            "inr_expected": round(inr(project_usd(n_in, d_exp, spec.model)), 2),
+            "inr": round(inr(project_usd(n_in, d_max, spec.model)), 2)}
     # review: a calibration run only counts when it reviewed with the same model settings
     same = (calib or {}).get("models", {}).get("ws_review") == cfg["models"]["ws_review"]
     rcb = cb.get("ws_review") if same else None
@@ -1279,8 +1287,8 @@ def project_episode(ep: Episode, ix, cfg: dict, system: str, user: str, llm=None
     rv_exp_out = int(rcb["output_tokens"]) if rcb else review_out_guard(rspec.params, N_CLIPS_GUESS)
     rv_g_in = 1200 + REVIEW_IN_PER_CLIP * N_CLIPS_GUESS
     rv_g_out = review_out_guard(rspec.params, N_CLIPS_GUESS)
-    rev = {"in_expected": rv_in, "out_expected": rv_exp_out, "inr_expected": round(inr(project_usd(rv_in, rv_exp_out)), 2),
-           "in_guard": rv_g_in, "out_guard": rv_g_out, "inr": round(inr(project_usd(rv_g_in, rv_g_out)), 2),
+    rev = {"in_expected": rv_in, "out_expected": rv_exp_out, "inr_expected": round(inr(project_usd(rv_in, rv_exp_out, rspec.model)), 2),
+           "in_guard": rv_g_in, "out_guard": rv_g_out, "inr": round(inr(project_usd(rv_g_in, rv_g_out, rspec.model)), 2),
            "assumes_clips": N_CLIPS_GUESS,
            "expected_from": f"{calib['run']} ({calib.get('n_reviewed')} clips)" if rcb else "defaults"}
     n_vc = (calib or {}).get("n_reviewed") or N_CLIPS_GUESS
@@ -1410,9 +1418,9 @@ def project_scenes(ep: Episode, ix, cfg: dict, calls: list[tuple[str, str]], cal
     for k, (s, u) in enumerate(calls):
         n_in = int(round(len(s + "\n" + u) * ratio)) if ratio else int(estimate_tokens(s + u) * 1.25)
         rows.append({"call": k + 1, "in": n_in,
-                     "inr_expected": round(inr(project_usd(n_in, out_exp)), 2),
-                     "inr_worst": round(inr(project_usd(n_in, out_worst)), 2),
-                     "inr": round(inr(project_usd(n_in, out_guard)), 2)})
+                     "inr_expected": round(inr(project_usd(n_in, out_exp, spec.model)), 2),
+                     "inr_worst": round(inr(project_usd(n_in, out_worst, spec.model)), 2),
+                     "inr": round(inr(project_usd(n_in, out_guard, spec.model)), 2)})
     disc = {"calls": len(calls), "in_total": sum(r["in"] for r in rows), "in_source": src,
             "out_expected_per_call": out_exp, "out_expected_source": out_src, "out_worst_per_call": out_worst,
             "out_guard_per_call": out_guard, "per_call": rows,
@@ -1427,9 +1435,9 @@ def project_scenes(ep: Episode, ix, cfg: dict, calls: list[tuple[str, str]], cal
     g_in, g_out = 1200 + REVIEW_IN_PER_CLIP * n_worst, review_out_guard(rspec.params, n_worst)
     cap = int(rspec.params.get("max_output_tokens") or 10 ** 9)
     rev = {"assumes_clips_expected": n_exp, "assumes_clips_worst": n_worst, "expected_from": e_src,
-           "in_expected": e_in, "out_expected": e_out, "inr_expected": round(inr(project_usd(e_in, e_out)), 2),
-           "in_worst": w_in, "out_worst": w_out, "inr_worst": round(inr(project_usd(w_in, w_out)), 2),
-           "in_guard": g_in, "out_guard": g_out, "inr": round(inr(project_usd(g_in, g_out)), 2),
+           "in_expected": e_in, "out_expected": e_out, "inr_expected": round(inr(project_usd(e_in, e_out, rspec.model)), 2),
+           "in_worst": w_in, "out_worst": w_out, "inr_worst": round(inr(project_usd(w_in, w_out, rspec.model)), 2),
+           "in_guard": g_in, "out_guard": g_out, "inr": round(inr(project_usd(g_in, g_out, rspec.model)), 2),
            **({"warning": f"{n_worst} clips may need ~{rcb['output_tokens'] * n_worst // max(1, n_cal or 1)} output "
                           f"tokens, above the review's max_output_tokens {cap}: a truncated answer fails"}
               if rcb and n_cal and rcb["output_tokens"] * n_worst / n_cal > cap else {})}
@@ -1658,7 +1666,7 @@ def run_episode(vid: str, cfg: dict, llm, guard: Guard, out_dir: Path, log=print
         except Exception:   # noqa: BLE001
             rin = len(rs + ru) // 2
         rout = review_out_guard(rspec.params, len(kept))
-        call_proj["ws_review"] = inr(project_usd(rin, rout))
+        call_proj["ws_review"] = inr(project_usd(rin, rout, rspec.model))
         if not is_cached(llm, rspec, rs, ru, REVIEW_SCHEMA):
             if dry_run:
                 vend = (VIDEO_END_INR_PER_CLIP, VIDEO_END_INR_EXPECTED) if cfg["video_end_check"]["enabled"] \

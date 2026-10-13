@@ -1,0 +1,298 @@
+{
+ "schema_version": "1.1",
+ "kind": "proposals",
+ "video_id": "qIdAPG8UulE",
+ "transcript": {
+  "path": "scribe_dataset/qIdAPG8UulE/qIdAPG8UulE_scribe_transcript.json",
+  "sha256": "2a5c9fe404b84d4b41859ad83abe4bcb0bd25348b718020d0517d4bfca153637",
+  "n_words": 3475,
+  "audio_duration_secs": 2179.3935
+ },
+ "derived_params": {
+  "skip_s": 30.0
+ },
+ "run_id": "v1_test",
+ "created_at": "2026-10-07T16:22:58Z",
+ "content_type": "web_series",
+ "pipeline": {
+  "version": "ws/0.2",
+  "git_commit": null,
+  "prompt_versions": {
+   "ws_discover": "3+27f4dce4",
+   "ws_review": "1+addbc14b"
+  },
+  "prompt_files": {
+   "ws_discover": "ws_discover_b_payoff",
+   "ws_review": "ws_review"
+  },
+  "config": {
+   "models": {
+    "ws_discover": {
+     "provider": "gemini",
+     "model": "gemini-3.8-flash",
+     "params": {
+      "thinking_level": "high",
+      "max_output_tokens": 32768
+     }
+    },
+    "ws_review": {
+     "provider": "gemini",
+     "model": "gemini-3.8-flash",
+     "params": {
+      "thinking_level": "medium",
+      "max_output_tokens": 16384
+     }
+    },
+    "video_end": {
+     "provider": "gemini",
+     "model": "gemini-3.8-flash",
+     "params": {
+      "thinking_level": "low"
+     }
+    }
+   },
+   "cut": {
+    "start_pad_s": 0.3,
+    "lift_min_s": 1.0,
+    "lift_max_s": 3.6,
+    "lift_cut_eps_s": 0.005,
+    "lift_start_snap_s": 0.4,
+    "lift_start_pad_s": 0.12,
+    "lift_max_tail_s": 2.0,
+    "lift_tail_measure_s": 0.4,
+    "lift_quiet_tail_db": 15.0,
+    "lift_level_warn_db": 10.0,
+    "max_cuts": 3,
+    "max_drop_s": 45.0,
+    "snap_s": 1.5,
+    "join_pad_s": 0.25,
+    "hold_min_s": 2.0,
+    "hold_max_s": 8.0,
+    "hold_short_min_s": 0.5,
+    "hold_default_s": 2.0,
+    "next_speech_margin_s": 0.1,
+    "long_silence_s": 20.0,
+    "long_silence_hold_max_s": 4.0,
+    "react_max_s": 1.5,
+    "react_max_words": 3,
+    "react_clear_s": 1.0,
+    "quick_cut_min_s": 0.02,
+    "quick_end_margin_s": 0.05,
+    "flash_s": 0.3,
+    "shot_tol_s": 0.05,
+    "word_clip_tol_s": 0.02,
+    "exchange_start": false,
+    "exchange_gap_s": 2.0,
+    "exchange_back_max_s": 30.0,
+    "exchange_back_max_lines": 12,
+    "exchange_on_cap": "keep",
+    "exchange_recap_s": 60.0,
+    "exchange_mode": "walk",
+    "qreply_require_speaker_change": false,
+    "qreply_setup_lines": 2,
+    "qreply_max_lines": 3,
+    "qreply_max_s": 12.0,
+    "exchange_max_play_s": 120.0
+   },
+   "review_view": "final",
+   "guardrails": {
+    "min_s": 15.0,
+    "soft_max_s": 120.0,
+    "hard_max_s": 150.0,
+    "skip_s": 30.0,
+    "dup_overlap": 0.5,
+    "blocks_flag_above": 3
+   },
+   "thresholds": {
+    "t_show": 3.5,
+    "t_rec": 4.0,
+    "t_rec_payoff": 4.0,
+    "rec_blockers": [
+     "needs_rescore",
+     "shot_flash",
+     "unreviewed_start",
+     "review_repair_failed"
+    ],
+    "verdict_strong_min": 3
+   },
+   "video_end_check": {
+    "enabled": false,
+    "max_shift_s": 8.0
+   },
+   "prompts": {
+    "ws_discover": "ws_discover_b_payoff",
+    "ws_review": "ws_review"
+   },
+   "budget_usd": 0.6,
+   "run_id": "v1_test"
+  }
+ },
+ "models": [
+  {
+   "role": "ws_discover",
+   "provider": "gemini",
+   "model": "gemini-3.8-flash",
+   "params": {
+    "thinking_level": "high",
+    "max_output_tokens": 32768
+   }
+  },
+  {
+   "role": "ws_review",
+   "provider": "gemini",
+   "model": "gemini-3.8-flash",
+   "params": {
+    "thinking_level": "medium",
+    "max_output_tokens": 16384
+   }
+  }
+ ],
+ "cost": {
+  "input_tokens": 35025,
+  "output_tokens": 40823,
+  "usd": 0.17935,
+  "usd_billed": 0.17935,
+  "wall_time_secs": 279.0,
+  "n_llm_calls": 2,
+  "by_role": {
+   "ws_discover": {
+    "n_llm_calls": 1,
+    "n_cache_hits": 0,
+    "n_failed_attempts": 0,
+    "input_tokens": 29352,
+    "output_tokens": 31498,
+    "thought_tokens": 27500,
+    "cached_input_tokens": 0,
+    "usd": 0.14013,
+    "usd_billed": 0.14013,
+    "models": [
+     "gemini-3.8-flash"
+    ]
+   },
+   "ws_review": {
+    "n_llm_calls": 1,
+    "n_cache_hits": 0,
+    "n_failed_attempts": 0,
+    "input_tokens": 5673,
+    "output_tokens": 9325,
+    "thought_tokens": 6775,
+    "cached_input_tokens": 0,
+    "usd": 0.03922,
+    "usd_billed": 0.03922,
+    "models": [
+     "gemini-3.8-flash"
+    ]
+   }
+  },
+  "projection": {
+   "ws_discover": {
+    "in": 29352,
+    "in_source": "countTokens",
+    "out_expected": 25000,
+    "out_guard": 32768,
+    "inr_expected": 10.42,
+    "inr": 13.04
+   },
+   "ws_review": {
+    "in_expected": 14700,
+    "out_expected": 15000,
+    "inr_expected": 6.05,
+    "in_guard": 14700,
+    "out_guard": 15000,
+    "inr": 6.05,
+    "assumes_clips": 15,
+    "expected_from": "defaults"
+   },
+   "video_end_check": {
+    "enabled": false,
+    "assumes_clips": 15,
+    "inr": 0.0,
+    "inr_expected": 0.0
+   },
+   "episode": {
+    "inr_expected": 16.47,
+    "inr": 19.09
+   }
+  }
+ },
+ "cutoff": {
+  "t_show": 3.5,
+  "t_rec": 4.0,
+  "t_rec_payoff": 4.0,
+  "rec_blockers": [
+   "needs_rescore",
+   "shot_flash",
+   "unreviewed_start",
+   "review_repair_failed"
+  ],
+  "n_candidates": 12,
+  "n_passed_hard_rules": 12,
+  "n_shown": 11,
+  "n_recommended": 10,
+  "n_worth_a_look": 1,
+  "n_rejected": 1,
+  "warnings": []
+ },
+ "episode_verdict": {
+  "strong_clips": 10,
+  "worth_a_look": 1,
+  "verdict": "strong",
+  "note": "10 strong clips cleared the bar (plus 1 worth a look)."
+ },
+ "episode_notes": "Episode Map & Payoff Beats:\n- L0001-L0134: Vaishnavi & Prasad cafe breakup confrontation. Vaishnavi lists his bizarre gifts and embarrassing blunders (ORS, death anniversary bouquet, railway station date). Payoff beats: L0052 (punchline), L0126 (punchline).\n- L0135-L0272: Prasad meets Bhramara (madam/driver dynamic). Discussion on philophobia, father's permission, and therapy. Payoff beats: L0189 (punchline), L0268 (punchline).\n- L0273-L0345: Prasad with an ex who reveals she is married; her lawyer husband Paramajyothi arrives. Payoff beat: L0343 (reveal).\n- L0346-L0437: Prasad flirts with Bhramara; gets caught repeating the same lines to multiple girls. Payoff beat: L0385 (punchline).\n- L0438-L0540: Pratheeksha calls Prasad; in the cafe she brother-zones him. Payoff beat: L0501 (punchline).\n- L0541-L0611: Prasad at Pratyusha's house; Pooja exposes his double-timing between Bhramara and Pratyusha. Payoff beat: L0591 (emotional_peak).\n- L0612-L0645: Bhramara shares her family trauma with Prasad, giving him a clue about his own parents.\n- L0646-L0720: Vaishnavi and her lawyer husband Paramajyothi argue while riding; intense bickering. Payoff beat: L0693 (punchline).\n- L0721-L0776: Prasad meets Bhramara at coconut stall, mocking her upcoming arranged marriage and her teetotaler groom. Payoff beat: L0776 (punchline).\n- L0777-L0853: Prasad talks to Virajitha, proposes randomly and mocks her lawyer fiance. Payoff beat: L0811 (punchline).\n- L0854-L0884: Family panchayati with Pooja and Prasad's parents. Payoff beat: L0877 (punchline).\n- L0885-L0920: Climax twists: Bhramara cancels her wedding for Prasad (L0897, reveal), followed by Pratyusha's obsessive warning phone call (L0918, emotional_peak cliffhanger).",
+ "proposals": [
+  {
+   "id": "w12",
+   "tier": "hidden",
+   "reject_reasons": [
+    "Q1: below the bar (overall 3.0 < 3.5; hook 2.5, standalone 3.5, payoff 4.0)"
+   ],
+   "pieces": [
+    {
+     "start_word": 3428,
+     "end_word": 3474,
+     "start": 2127.064,
+     "end": 2157.324
+    }
+   ],
+   "region": {
+    "start_word": 3428,
+    "end_word": 3474,
+    "start": 2127.064,
+    "end": 2157.324
+   },
+   "edited_duration": 30.26,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ప్రసాద్ నేను ఒకడిని love చేసి వాడు కూడా correct లేకపోతే ఇంకొకడిని love చేసి ఇలా correct person కోసం వెతికే బదులు నేను ప్రేమించిన వాడినే నాకు కావలసినట్టు మార్చుకోవచ్చుగా ఊ So మా అక్కతో ఏం చెప్పుకుంటావో నాకు తెలీదు ఆ నాన్న ఒప్పుకోకపోయినా పర్లేదు ఆ నన్ను కాదని ఇంకెవరినైనా చూసావో నేనైనా చచ్చిపోతా లేదా నిన్నైనా చంపేస్తా ఆ",
+   "time_segments": [
+    {
+     "start": 2127.064,
+     "end": 2159.611,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 32.55,
+   "clip_purpose": "promo",
+   "cold_open": false,
+   "discovery": {
+    "strength": 5,
+    "hook": "Pratyusha explaining her new mindset of forcing the person she loves to change for her.",
+    "payoff": "A dark, intense threat that leaves Prasad in shock and serves as the ultimate cliffhanger.",
+    "payoff_line": "లేదా నిన్నైనా చంపేస్తా",
+    "payoff_type": "emotional_peak"
+   },
+   "scores": {
+    "hook": 2.5,
+    "standalone": 3.5,
+    "payoff": 4.0,
+    "value_emotion": 3.5,
+    "overall": 3.0
+   },
+   "rank": 1,
+   "title": "లేదా నిన్నైనా చంపేస్తా",
+   "hook_line": "",
+   "why_it_works": "Q1: below the bar (overall 3.0 < 3.5; hook 2.5, standalone 3.5, payoff 4.0)"
+  }
+ ]
+}

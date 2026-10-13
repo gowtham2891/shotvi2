@@ -1,0 +1,303 @@
+{
+ "schema_version": "1.1",
+ "kind": "proposals",
+ "video_id": "5HqkHAZfzos",
+ "transcript": {
+  "path": "scribe_dataset/5HqkHAZfzos/5HqkHAZfzos_scribe_transcript.json",
+  "sha256": "274907d7e90493dca591f246339c3c98d10b8a04754a36ab522bec07a36b31ec",
+  "n_words": 1566,
+  "audio_duration_secs": 1321.5405
+ },
+ "derived_params": {
+  "skip_s": 30.0
+ },
+ "run_id": "v1_test",
+ "created_at": "2026-10-07T16:05:24Z",
+ "content_type": "web_series",
+ "pipeline": {
+  "version": "ws/0.2",
+  "git_commit": null,
+  "prompt_versions": {
+   "ws_discover": "3+27f4dce4",
+   "ws_review": "1+addbc14b"
+  },
+  "prompt_files": {
+   "ws_discover": "ws_discover_b_payoff",
+   "ws_review": "ws_review"
+  },
+  "config": {
+   "models": {
+    "ws_discover": {
+     "provider": "gemini",
+     "model": "gemini-3.8-flash",
+     "params": {
+      "thinking_level": "high",
+      "max_output_tokens": 32768
+     }
+    },
+    "ws_review": {
+     "provider": "gemini",
+     "model": "gemini-3.8-flash",
+     "params": {
+      "thinking_level": "medium",
+      "max_output_tokens": 16384
+     }
+    },
+    "video_end": {
+     "provider": "gemini",
+     "model": "gemini-3.8-flash",
+     "params": {
+      "thinking_level": "low"
+     }
+    }
+   },
+   "cut": {
+    "start_pad_s": 0.3,
+    "lift_min_s": 1.0,
+    "lift_max_s": 3.6,
+    "lift_cut_eps_s": 0.005,
+    "lift_start_snap_s": 0.4,
+    "lift_start_pad_s": 0.12,
+    "lift_max_tail_s": 2.0,
+    "lift_tail_measure_s": 0.4,
+    "lift_quiet_tail_db": 15.0,
+    "lift_level_warn_db": 10.0,
+    "max_cuts": 3,
+    "max_drop_s": 45.0,
+    "snap_s": 1.5,
+    "join_pad_s": 0.25,
+    "hold_min_s": 2.0,
+    "hold_max_s": 8.0,
+    "hold_short_min_s": 0.5,
+    "hold_default_s": 2.0,
+    "next_speech_margin_s": 0.1,
+    "long_silence_s": 20.0,
+    "long_silence_hold_max_s": 4.0,
+    "react_max_s": 1.5,
+    "react_max_words": 3,
+    "react_clear_s": 1.0,
+    "quick_cut_min_s": 0.02,
+    "quick_end_margin_s": 0.05,
+    "flash_s": 0.3,
+    "shot_tol_s": 0.05,
+    "word_clip_tol_s": 0.02,
+    "exchange_start": false,
+    "exchange_gap_s": 2.0,
+    "exchange_back_max_s": 30.0,
+    "exchange_back_max_lines": 12,
+    "exchange_on_cap": "keep",
+    "exchange_recap_s": 60.0,
+    "exchange_mode": "walk",
+    "qreply_require_speaker_change": false,
+    "qreply_setup_lines": 2,
+    "qreply_max_lines": 3,
+    "qreply_max_s": 12.0,
+    "exchange_max_play_s": 120.0
+   },
+   "review_view": "final",
+   "guardrails": {
+    "min_s": 15.0,
+    "soft_max_s": 120.0,
+    "hard_max_s": 150.0,
+    "skip_s": 30.0,
+    "dup_overlap": 0.5,
+    "blocks_flag_above": 3
+   },
+   "thresholds": {
+    "t_show": 3.5,
+    "t_rec": 4.0,
+    "t_rec_payoff": 4.0,
+    "rec_blockers": [
+     "needs_rescore",
+     "shot_flash",
+     "unreviewed_start",
+     "review_repair_failed"
+    ],
+    "verdict_strong_min": 3
+   },
+   "video_end_check": {
+    "enabled": false,
+    "max_shift_s": 8.0
+   },
+   "prompts": {
+    "ws_discover": "ws_discover_b_payoff",
+    "ws_review": "ws_review"
+   },
+   "budget_usd": 0.6,
+   "run_id": "v1_test"
+  }
+ },
+ "models": [
+  {
+   "role": "ws_discover",
+   "provider": "gemini",
+   "model": "gemini-3.8-flash",
+   "params": {
+    "thinking_level": "high",
+    "max_output_tokens": 32768
+   }
+  },
+  {
+   "role": "ws_review",
+   "provider": "gemini",
+   "model": "gemini-3.8-flash",
+   "params": {
+    "thinking_level": "medium",
+    "max_output_tokens": 16384
+   }
+  }
+ ],
+ "cost": {
+  "input_tokens": 19408,
+  "output_tokens": 36384,
+  "usd": 0.151,
+  "usd_billed": 0.151,
+  "wall_time_secs": 264.3,
+  "n_llm_calls": 2,
+  "by_role": {
+   "ws_discover": {
+    "n_llm_calls": 1,
+    "n_cache_hits": 0,
+    "n_failed_attempts": 0,
+    "input_tokens": 14913,
+    "output_tokens": 32212,
+    "thought_tokens": 30194,
+    "cached_input_tokens": 0,
+    "usd": 0.13198,
+    "usd_billed": 0.13198,
+    "models": [
+     "gemini-3.8-flash"
+    ]
+   },
+   "ws_review": {
+    "n_llm_calls": 1,
+    "n_cache_hits": 0,
+    "n_failed_attempts": 0,
+    "input_tokens": 4495,
+    "output_tokens": 4172,
+    "thought_tokens": 2684,
+    "cached_input_tokens": 0,
+    "usd": 0.01902,
+    "usd_billed": 0.01902,
+    "models": [
+     "gemini-3.8-flash"
+    ]
+   }
+  },
+  "projection": {
+   "ws_discover": {
+    "in": 14913,
+    "in_source": "countTokens",
+    "out_expected": 25000,
+    "out_guard": 32768,
+    "inr_expected": 9.44,
+    "inr": 12.07
+   },
+   "ws_review": {
+    "in_expected": 14700,
+    "out_expected": 15000,
+    "inr_expected": 6.05,
+    "in_guard": 14700,
+    "out_guard": 15000,
+    "inr": 6.05,
+    "assumes_clips": 15,
+    "expected_from": "defaults"
+   },
+   "video_end_check": {
+    "enabled": false,
+    "assumes_clips": 15,
+    "inr": 0.0,
+    "inr_expected": 0.0
+   },
+   "episode": {
+    "inr_expected": 15.49,
+    "inr": 18.12
+   }
+  }
+ },
+ "cutoff": {
+  "t_show": 3.5,
+  "t_rec": 4.0,
+  "t_rec_payoff": 4.0,
+  "rec_blockers": [
+   "needs_rescore",
+   "shot_flash",
+   "unreviewed_start",
+   "review_repair_failed"
+  ],
+  "n_candidates": 7,
+  "n_passed_hard_rules": 7,
+  "n_shown": 6,
+  "n_recommended": 4,
+  "n_worth_a_look": 2,
+  "n_rejected": 1,
+  "warnings": []
+ },
+ "episode_verdict": {
+  "strong_clips": 4,
+  "worth_a_look": 2,
+  "verdict": "strong",
+  "note": "4 strong clips cleared the bar (plus 2 worth a look)."
+ },
+ "episode_notes": "Payoff beats: L0092 (conclusion: 'కరిగిపోయే లోపే followers ని తెచ్చుకొని సంపాదించుకోవాలి.'), L0140 (conclusion: 'ఇప్పుడు చెప్తున్నారా ముప్పై వేలు కాదురా ముప్పై లక్షల followers వచ్చినా మారదురా మోనా'), L0155 (conclusion: 'so వీలైనంత వరకు ఎవ్వరికీ connect అవ్వకు మోనా.'), L0281 (conclusion: 'ఈ మాత్రం దానికి ఓ tension పడిపోతావ్.'), L0306 (emotional_peak: 'లక్ష్మి ఆంటీ దగ్గరే installment లో తీసుకున్న అని చెప్తాలే'), L0409 (emotional_peak: 'importance లా అనిపిస్తుంది.'), L0427 (conclusion: 'ఎవరి జాగ్రత్తలో వాళ్ళు ఉంటే మంచిది.'). Episode structure: L0001-L0054 (Mona & Sony at home discussing salon shoot), L0055-L0102 (Mona & Smitha debating monetization vs free promotion), L0103-L0140 (Sukku & friend outside college discussing Mona's rising followers), L0141-L0248 (Smitha advising Mona on rich kids; broker Deepak pitching commercial promotions), L0249-L0281 (Strict father calls for live location; fake location app trick), L0282-L0307 (Mona surprises mother with saree), L0308-L0371 (Father drinking at bar discussing vulgar social media reels intercut with Mona giving earnings to mother), L0372-L0410 (Mona & Sukku romantic conversation about noticing vs observing and first likes), L0411-L0434 (Drunk father confronts daughters with threats of burning house down; cliffhanger), L0435-L0450 (Sony panicking and Mona reassuring her), L0451-L0461 (Camera promotional plug - skip entirely).",
+ "proposals": [
+  {
+   "id": "w01",
+   "tier": "hidden",
+   "reject_reasons": [
+    "Q1: below the bar (overall 2.5 < 3.5; hook 3.0, standalone 3.0, payoff 3.0); scores are for the cut before the review repair: re-score to reconsider"
+   ],
+   "pieces": [
+    {
+     "start_word": 159,
+     "end_word": 294,
+     "start": 162.12,
+     "end": 233.76
+    }
+   ],
+   "region": {
+    "start_word": 159,
+    "end_word": 294,
+    "start": 162.12,
+    "end": 233.76
+   },
+   "edited_duration": 71.64,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ఓసేయ్. దొరికిందంతా తీసుకోవాలి. ఏది కనిపిస్తే ఆ video చేయాలి. ఇలా అయితే ఎప్పుడు rich అవుతాం, ఎప్పుడు flat కొంటాం, ఎప్పుడు సంపాదిస్తాం నేనేదో నీతో collab చేసి followers పెంచుకుందామని plan చేస్తుంటే ఇప్పుడు ఏమైంది మొన్న beauty parlour లో fifteen k కి మాట్లాడితే five k కి okay చేశావ్. ఈరోజు store promotion free అంటున్నావ్. అంటే ఆ రోజు అంటే ఇద్దరికీ కలిపి చేస్తున్నాడు కదా అందుకు మరి ఇది అంటే Sony వాళ్ళ friend ఏ కదా. డబ్బులు తీసుకోవడం ఎందుకు అని చేస్తే ఏంటి videos తీసుకొని వాళ్ళ ID లో post చేసుకొని జనాలు రప్పించుకొని సంపాదించుకోవట్లేదా. మనం సంపాదిస్తే తప్పేంటి సరే sorry అని చెప్పేస్తానులే. ఇంకొకసారి ఆ number నుంచి phone వస్తే, నీ number ఇస్తా. నువ్వు మాట్లాడుకో. okay నా నాకు నీ వల్ల thousand followers వచ్చారు. ఇంకేదైనా మంచి post పెడితే దెబ్బకి one lakh followers రావాలి నీకు వస్తారులేవే మెల్లగా అలా కాదే. నేను చెప్పింది విను. ఈ age, ఈ fame ice cream లాంటిది. ఉమ్ కరిగిపోయే లోపే followers ని తెచ్చుకొని సంపాదించుకోవాలి.",
+   "time_segments": [
+    {
+     "start": 161.82,
+     "end": 233.812,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 71.99,
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "discovery": {
+    "strength": 4,
+    "hook": "Smitha gets shocked and scolds Mona: ఓసేయ్. దొరికిందంతా తీసుకోవాలి. ఏది కనిపిస్తే ఆ video చేయాలి. ఇలా అయితే ఎప్పుడు rich అవుతాం!",
+    "payoff": "Smitha delivers a cynical reality check on social media fame: fame is like ice cream, you must cash in before it melts.",
+    "payoff_line": "కరిగిపోయే లోపే followers ని తెచ్చుకొని సంపాదించుకోవాలి.",
+    "payoff_type": "conclusion"
+   },
+   "scores": {
+    "hook": 3.0,
+    "standalone": 3.0,
+    "payoff": 3.0,
+    "value_emotion": 3.0,
+    "overall": 2.5
+   },
+   "flaws": [
+    "needs_rescore"
+   ],
+   "needs_rescore": true,
+   "rescore_reason": "repaired after review (restored drop(s) [0]: Cut X1 removes the apology and follower discussion, making speaker_1 awkwardly counter her own preceding point with అలా కాదే.); scores (overall 2.5, hook 3.0, standalone 3.0, payoff 3.0) are for the cut before the repair",
+   "rank": 1,
+   "title": "కరిగిపోయే లోపే followers ని తెచ్చుకొని సంపాదించుకోవాలి.",
+   "hook_line": "",
+   "why_it_works": "Q1: below the bar (overall 2.5 < 3.5; hook 3.0, standalone 3.0, payoff 3.0); scores are for the cut before the review repair: re-score to reconsider"
+  }
+ ]
+}

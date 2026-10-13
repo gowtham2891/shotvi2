@@ -231,8 +231,11 @@ class V1Default(unittest.TestCase):
         self.assertEqual(ws.prompt_file(ws.DEFAULTS, "ws_discover"), "ws_discover_b_payoff")
 
     def test_pre_v1_configs_pin_the_old_prompt(self):
+        """Every ws config pins its discover prompt explicitly: pre-v1 configs the old ws_discover, v1-based
+        A/B configs (ws_v1_*) the payoff-first prompt, so a future default change cannot silently move them."""
         import json
         from pathlib import Path
         for f in sorted(Path("shotvi/select/configs").glob("ws_*.json")):
             cfg = json.loads(f.read_text(encoding="utf-8"))
-            self.assertEqual(cfg.get("prompts", {}).get("ws_discover"), "ws_discover", f.name)
+            want = "ws_discover_b_payoff" if f.name.startswith("ws_v1_") else "ws_discover"
+            self.assertEqual(cfg.get("prompts", {}).get("ws_discover"), want, f.name)
