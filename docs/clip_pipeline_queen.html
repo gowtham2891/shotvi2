@@ -1,0 +1,391 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Queen Ep3 Clip Pipeline</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Sans+3:wght@400;600&family=Anek+Telugu:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>body{margin:0}
+/* Layout: an editing-suite walkthrough — a sticky step rail, then one section per pipeline step, each with a timeline-style visual drawn from the real run. */
+:root{
+  --bg:#F4F5FA; --surface:#FFFFFF; --ink:#1B1E3A; --muted:#5B6083; --line:#DCDFEC;
+  --accent:#B87C00; --accent-soft:#F6E7C2; --keep:#0F7C78; --keep-soft:#D3EEEC; --bad:#B9412C; --bad-soft:#F5DCD6;
+  --t-punch:#B87C00; --t-reveal:#6B4BC2; --t-concl:#0F7C78; --t-emo:#C2457A;
+  --f-display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --f-body:"Source Sans 3",ui-sans-serif,system-ui,sans-serif;
+  --f-te:"Anek Telugu","Noto Sans Telugu",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#10122A; --surface:#181B3A; --ink:#ECEDF7; --muted:#A3A7C8; --line:#2D3160;
+  --accent:#F0B83A; --accent-soft:#3A3220; --keep:#46C2BC; --keep-soft:#173A3D; --bad:#F07A63; --bad-soft:#41231F;
+  --t-punch:#F0B83A; --t-reveal:#A890F0; --t-concl:#46C2BC; --t-emo:#F07FAE; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#10122A; --surface:#181B3A; --ink:#ECEDF7; --muted:#A3A7C8; --line:#2D3160;
+  --accent:#F0B83A; --accent-soft:#3A3220; --keep:#46C2BC; --keep-soft:#173A3D; --bad:#F07A63; --bad-soft:#41231F;
+  --t-punch:#F0B83A; --t-reveal:#A890F0; --t-concl:#46C2BC; --t-emo:#F07FAE; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 var(--f-body);margin:0}
+.wrap{max-width:980px;margin:0 auto;padding-inline:20px;padding-block:28px 80px}
+h1,h2{font-family:var(--f-display);text-wrap:balance;margin:0}
+h1{font-size:clamp(28px,5vw,44px);line-height:1.08;letter-spacing:-.01em}
+h2{font-size:clamp(21px,3vw,27px);line-height:1.2}
+p{margin:0;max-width:68ch}
+.te{font-family:var(--f-te)}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.muted{color:var(--muted)}
+.lede{font-size:18px;color:var(--muted);margin-top:10px}
+
+/* step rail */
+.rail{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);margin-inline:-20px;padding:10px 20px}
+.rail-in{display:flex;gap:6px;flex-wrap:wrap;align-items:center;max-width:980px;margin:0 auto}
+.rail a{font:500 13px var(--f-mono);color:var(--muted);text-decoration:none;padding:5px 9px;border:1px solid var(--line);border-radius:6px;background:var(--surface)}
+.rail a.on{color:var(--ink);border-color:var(--accent);box-shadow:inset 0 -2px 0 var(--accent)}
+.rail button{margin-left:auto}
+button{font:600 14px var(--f-body);color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:7px 13px;cursor:pointer}
+button:hover{border-color:var(--accent)}
+button:focus-visible,.rail a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+button.primary{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+
+/* sections */
+section{padding-block:34px;border-bottom:1px solid var(--line);scroll-margin-top:64px}
+.head{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:start}
+.num{font:700 15px var(--f-mono);color:var(--accent);border:1.5px solid var(--accent);border-radius:50%;width:38px;height:38px;display:grid;place-items:center}
+.head p{margin-top:6px}
+.pills{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.pill{font:500 12px var(--f-mono);padding:3px 8px;border-radius:999px;background:var(--accent-soft);color:var(--ink)}
+.pill.free{background:var(--keep-soft)}
+.viz{margin-top:20px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px;min-width:0}
+.caption{font-size:14px;color:var(--muted);margin-top:12px}
+.stat{display:flex;gap:28px;flex-wrap:wrap;margin-top:6px}
+.stat b{display:block;font:700 26px var(--f-display)}
+.stat span{font-size:13px;color:var(--muted)}
+
+/* timelines */
+.tl{position:relative;height:56px;border-radius:6px;background:linear-gradient(var(--line),var(--line)) 0 50%/100% 1px no-repeat}
+.tick{position:absolute;top:10px;width:1px;height:36px;background:var(--ink);opacity:.55;transform-origin:bottom}
+.axis{display:flex;justify-content:space-between;font:12px var(--f-mono);color:var(--muted);margin-top:4px}
+.span{position:absolute;top:8px;height:40px;border-radius:4px;opacity:.85;cursor:pointer;border:0;padding:0}
+.span:focus-visible{outline:2px solid var(--ink)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--muted);margin-top:10px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+
+/* line list */
+.lines{display:grid;gap:6px}
+.line{display:grid;grid-template-columns:62px 62px 92px 1fr;gap:10px;align-items:baseline;font-size:15px;padding:6px 8px;border-radius:6px}
+.line:nth-child(odd){background:color-mix(in srgb,var(--line) 35%,transparent)}
+.line .mono{font-size:12.5px;color:var(--muted)}
+@media (max-width:560px){.line{grid-template-columns:54px 1fr}.line .spk,.line .tc{display:none}}
+
+/* fixes */
+.fixes{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.fix{border:1px solid var(--line);border-radius:8px;padding:12px;display:grid;gap:6px}
+.fix s{color:var(--bad);text-decoration-thickness:2px}
+.fix .to{color:var(--keep);font-weight:600}
+
+/* moment list */
+.mlist{display:grid;gap:8px;margin-top:16px}
+.mrow{display:grid;grid-template-columns:96px 120px 1fr;gap:10px;align-items:baseline;font-size:15px}
+.chip{font:500 11.5px var(--f-mono);padding:2px 7px;border-radius:4px;color:var(--bg);white-space:nowrap;justify-self:start}
+@media (max-width:560px){.mrow{grid-template-columns:1fr}}
+
+/* cut zoom */
+.zoom{position:relative;height:120px;margin-top:6px}
+.zbar{position:absolute;top:44px;height:26px;border-radius:4px}
+.zmark{position:absolute;top:22px;width:2px;height:70px;background:var(--ink)}
+.zlab{position:absolute;font:12px var(--f-mono);color:var(--ink);white-space:nowrap;transform:translateX(-50%)}
+.zcut{position:absolute;top:36px;width:1px;height:42px;background:var(--muted)}
+.playhead{position:absolute;top:30px;width:2px;height:56px;background:var(--accent);left:0;opacity:0}
+.zoom-scroll{overflow-x:auto}
+.zoom-inner{min-width:620px}
+
+/* scores */
+.scores{width:100%;border-collapse:collapse;font-size:14.5px}
+.scores th{font:500 12px var(--f-mono);color:var(--muted);text-align:left;padding:6px 8px;border-bottom:1px solid var(--line)}
+.scores td{padding:8px;border-bottom:1px solid var(--line);vertical-align:middle}
+.bar{height:8px;border-radius:4px;background:var(--line);position:relative;min-width:70px}
+.bar > i{position:absolute;inset:0 auto 0 0;border-radius:4px;transform-origin:left}
+.sc{font:500 12.5px var(--f-mono);margin-top:3px;font-variant-numeric:tabular-nums}
+.verdict{font:600 12px var(--f-mono);padding:2px 8px;border-radius:999px}
+.v-yes{background:var(--keep-soft);color:var(--keep)} .v-no{background:var(--bad-soft);color:var(--bad)} .v-maybe{background:var(--accent-soft);color:var(--ink)}
+.flag{font-size:12.5px;color:var(--bad);font-weight:600}
+.table-scroll{overflow-x:auto}
+
+/* ranking */
+.rank{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:640px){.rank{grid-template-columns:1fr}}
+.col h3{font:600 13px var(--f-mono);color:var(--muted);margin:0 0 8px;letter-spacing:.04em;text-transform:uppercase}
+.card{border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin-bottom:8px;display:grid;gap:4px;background:var(--surface)}
+.card .t{font-weight:600}
+.card.strong{border-left:3px solid var(--accent)}
+.tierlab{font:500 11.5px var(--f-mono);color:var(--muted)}
+
+/* output */
+.outs{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.out{border:1px solid var(--line);border-radius:8px;padding:12px}
+.out b{display:block;margin-bottom:4px}
+.callout{margin-top:18px;border:1px solid var(--accent);background:var(--accent-soft);border-radius:10px;padding:14px 16px}
+.callout b{font-family:var(--f-display)}
+
+.hw{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+@media (max-width:640px){.hw{grid-template-columns:1fr}}
+.hw div{border-radius:8px;padding:12px 14px;font-size:15px;min-width:0}
+.hw .how{background:color-mix(in srgb,var(--line) 40%,transparent)}
+.hw .why{background:var(--keep-soft)}
+.hw b{display:block;font:600 12px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px;color:var(--muted)}
+.hw ul{margin:0;padding-left:18px;display:grid;gap:3px}
+.pre{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:22px}
+.pre .viz{margin-top:0}
+.replay{font-size:13px;padding:5px 10px}
+
+/* animations: everything is visible at rest; .play re-runs the entrance */
+@keyframes rise{from{opacity:0;transform:translateY(6px)}}
+@keyframes grow{from{transform:scaleY(0)}}
+@keyframes growx{from{transform:scaleX(0)}}
+@keyframes strike{from{text-decoration-color:transparent}}
+@keyframes sweep{0%{opacity:1;left:var(--from)}100%{opacity:1;left:var(--to)}}
+.play .tick{animation:grow .35s ease-out backwards;animation-delay:calc(var(--i)*4ms)}
+.play .line,.play .fix,.play .mrow,.play .card,.play .out,.play tr{animation:rise .45s ease-out backwards;animation-delay:calc(var(--i)*110ms)}
+.play .span{animation:growx .5s ease-out backwards;transform-origin:left;animation-delay:calc(var(--i)*140ms)}
+.play .bar > i{animation:growx .7s ease-out backwards;animation-delay:calc(var(--i)*120ms)}
+.play .fix s{animation:strike .6s ease-out backwards;animation-delay:calc(var(--i)*110ms + .3s)}
+.play .zbar,.play .zlab,.play .zmark{animation:rise .45s ease-out backwards;animation-delay:calc(var(--i)*350ms + .2s)}
+.play .playhead{animation:sweep 2.6s linear forwards}
+@media (prefers-reduced-motion: reduce){.play *{animation:none!important}}
+</style>
+
+<div class="wrap">
+  <header>
+    <p class="mono muted" style="font-size:13px">Shotvi · web-series clip selection v1 · real run</p>
+    <h1 style="margin-top:8px">How one episode becomes clips</h1>
+    <p class="lede">Follow <b>Queen, Episode 3</b> (22 min family drama) through every step after transcription. Every number and line below comes from the actual run, and the last steps show your own ratings next to the pipeline's.</p>
+    <div class="pre">
+      <div class="viz"><div class="mono muted" style="font-size:12px">STEPS 1–2 · DOWNLOAD + TRANSCRIBE</div>
+        <div class="stat" id="pre-stats"></div></div>
+      <div class="viz"><div class="mono muted" style="font-size:12px">SOUND TAGS SCRIBE HEARD</div>
+        <div class="te" id="pre-events" style="margin-top:8px;font-size:15px"></div></div>
+    </div>
+  </header>
+
+  <nav class="rail" aria-label="Pipeline steps"><div class="rail-in" id="rail"></div></nav>
+
+  <section id="s3" data-step="3">
+    <div class="head"><div class="num">3</div><div><h2>Find every shot change</h2>
+      <p class="muted">ffmpeg scans the video and marks each cut. Later, every clip starts and ends on one of these, so a clip never shows a split-second flash of the next shot.</p>
+      <div class="pills"><span class="pill free">ffmpeg</span><span class="pill free">free</span></div></div>
+      <button class="replay" data-replay="s3">Replay</button></div>
+    <div class="viz"><div class="tl" id="cuts"></div><div class="axis" id="cuts-axis"></div>
+      <div class="stat" style="margin-top:14px" id="cut-stats"></div></div>
+  </section>
+
+  <section id="s4" data-step="4">
+    <div class="head"><div class="num">4</div><div><h2>Number every line</h2>
+      <p class="muted">The transcript becomes numbered lines, with sound tags as lines of their own. Gemini only ever answers with these numbers, never with timestamps; code turns numbers into exact times.</p>
+      <div class="pills"><span class="pill free">code</span><span class="pill free">free</span></div></div>
+      <button class="replay" data-replay="s4">Replay</button></div>
+    <div class="viz"><div class="lines" id="lines"></div><p class="caption" id="lines-cap"></p></div>
+  </section>
+
+  <section id="s5" data-step="5">
+    <div class="head"><div class="num">5</div><div><h2>Fix misheard words</h2>
+      <p class="muted">Gemini flags words Scribe was unsure of, reads the episode for words that don't fit, then re-listens to just those audio snippets. Fixes are stored as a layer on top; Scribe's transcript is never overwritten.</p>
+      <div class="pills"><span class="pill">Gemini 3.8 Flash · low thinking</span><span class="pill">≈ ₹2</span></div></div>
+      <button class="replay" data-replay="s5">Replay</button></div>
+    <div class="viz"><div class="fixes" id="fixes"></div><p class="caption" id="fixes-cap"></p></div>
+  </section>
+
+  <section id="s6" data-step="6">
+    <div class="head"><div class="num">6</div><div><h2>Find moments, payoff first</h2>
+      <p class="muted">Gemini reads the whole episode and looks for beats that land: a punchline, a reveal, a quotable line, an emotional peak. For each one it names the payoff line, then works back to the setup the payoff needs. Tap a block to see its payoff.</p>
+      <div class="pills"><span class="pill">Gemini 3.8 Flash · high thinking</span><span class="pill">≈ ₹9–12</span></div></div>
+      <button class="replay" data-replay="s6">Replay</button></div>
+    <div class="viz"><div class="tl" id="moments-tl"></div><div class="axis" id="moments-axis"></div>
+      <div class="legend" id="legend"></div><div class="mlist" id="mlist"></div></div>
+  </section>
+
+  <section id="s7" data-step="7">
+    <div class="head"><div class="num">7</div><div><h2>Cut each clip</h2>
+      <p class="muted">Code turns each moment into exact cuts with your rules: start on the first spoken word (at most 0.3 s before it), end on the payoff, then hold on the reaction until the next shot change (2–8 s). Here is the saree-gift clip, zoomed in.</p>
+      <div class="pills"><span class="pill free">code</span><span class="pill free">free</span></div></div>
+      <button class="replay" data-replay="s7">Replay</button></div>
+    <div class="viz"><div class="zoom-scroll"><div class="zoom-inner"><div class="zoom" id="zoom"></div></div></div>
+      <div class="lines" id="w05-lines" style="margin-top:10px"></div><p class="caption" id="zoom-cap"></p></div>
+  </section>
+
+  <section id="s8" data-step="8">
+    <div class="head"><div class="num">8</div><div><h2>Review each clip</h2>
+      <p class="muted">Gemini scores every clip as cut: hook, standalone, payoff, overall. This is the weak step. Next to its scores are yours: it rated the two clips you would reject as highly as the ones you would post.</p>
+      <div class="pills"><span class="pill">Gemini 3.8 Flash · medium thinking</span><span class="pill">≈ ₹1.5–3.5</span></div></div>
+      <button class="replay" data-replay="s8">Replay</button></div>
+    <div class="viz table-scroll"><table class="scores" id="scores"><thead><tr>
+      <th>Clip</th><th>Gemini overall</th><th>Your overall</th><th>Would you post?</th><th></th></tr></thead><tbody></tbody></table>
+      <p class="caption">Scores out of 5. Gemini's full scores (hook / standalone / payoff / overall) are under each bar.</p></div>
+  </section>
+
+  <section id="s9" data-step="9">
+    <div class="head"><div class="num">9</div><div><h2>Rank and label</h2>
+      <p class="muted">Strong candidates (overall ≥ 4 and payoff ≥ 4, no flaw) go first, then other candidates. Only clear failures (≤ 2.5) are hidden. The episode gets a verdict: strong, thin or none.</p>
+      <div class="pills"><span class="pill free">code</span><span class="pill free">free</span></div></div>
+      <button class="replay" data-replay="s9">Replay</button></div>
+    <div class="viz"><div class="rank"><div class="col"><h3>What the pipeline shows</h3><div id="rank-pipe"></div></div>
+      <div class="col"><h3>What you would post</h3><div id="rank-you"></div></div></div>
+      <p class="caption" id="verdict"></p></div>
+  </section>
+
+  <section id="s10" data-step="10">
+    <div class="head"><div class="num">10</div><div><h2>Output</h2>
+      <p class="muted">Three files per episode, ready for the creator to pick from.</p>
+      <div class="pills"><span class="pill free">code + ffmpeg</span><span class="pill free">free</span></div></div>
+      <button class="replay" data-replay="s10">Replay</button></div>
+    <div class="viz"><div class="outs" id="outs"></div>
+      <div class="callout"><b>Where it stands.</b> <span>Finding moments works: 4 of the 6 clips shown are ones you'd post. Cutting works. Ranking doesn't: step 8 can't tell your yes from your no. The next idea for step 8 is to predict the emotion each clip triggers (laugh, aww, shock, tension, tears) and rank by the emotions that work for this kind of show.</span></div>
+      <p class="caption">Cost for this episode: about ₹15 in Gemini plus about 1,470 ElevenLabs credits.</p></div>
+  </section>
+</div>
+
+<script>
+const D = {"title": "Queen · Episode 3", "duration": 1321.5, "words": 1566, "sentences": 419, "speakers": 8, "events": 42, "event_kinds": ["[phone ringing]", "[whistling]", "[గ్లాసుల శబ్దం]", "[తగ్గుబాటు సంగీతం]", "[నవ్వు]", "[నిశబ్దం]", "[నిశ్వాసం]", "[పక్షుల శబ్దం]"], "cuts": [4.8, 18.9, 20.4, 25.9, 27.2, 29.2, 30.5, 33.2, 35.0, 36.9, 39.2, 43.7, 48.0, 49.0, 54.8, 60.1, 62.3, 64.0, 67.6, 69.5, 71.3, 77.6, 115.6, 120.5, 121.7, 123.8, 142.6, 145.3, 153.0, 159.9, 161.1, 165.5, 166.2, 169.3, 171.8, 175.3, 177.1, 180.9, 181.8, 184.2, 187.2, 190.0, 191.4, 192.8, 196.4, 203.3, 211.8, 219.1, 222.4, 227.1, 228.3, 233.8, 237.1, 246.5, 251.5, 253.4, 255.2, 258.0, 263.3, 268.7, 274.0, 285.2, 292.5, 296.2, 300.4, 301.7, 304.6, 334.2, 337.4, 339.0, 340.4, 342.1, 346.8, 348.4, 352.6, 360.4, 368.0, 374.6, 377.4, 383.7, 388.7, 390.7, 397.6, 402.9, 404.9, 410.8, 418.4, 422.5, 425.6, 458.2, 464.6, 467.1, 468.4, 469.6, 471.4, 473.5, 474.6, 475.4, 477.4, 478.6, 480.6, 482.8, 484.5, 485.9, 489.4, 491.2, 492.8, 494.9, 497.0, 499.7, 501.7, 507.0, 510.6, 511.8, 516.6, 519.4, 524.1, 525.7, 527.4, 529.8, 531.4, 534.7, 540.4, 547.7, 550.5, 552.5, 553.8, 556.8, 560.1, 561.4, 565.3, 566.9, 568.9, 570.0, 571.0, 573.3, 574.3, 575.5, 577.3, 579.2, 581.1, 582.6, 583.6, 584.8, 585.5, 590.3, 595.8, 601.5, 606.1, 611.4, 613.9, 617.0, 626.3, 628.0, 631.5, 634.8, 636.6, 640.3, 643.2, 650.4, 652.1, 654.1, 655.6, 656.9, 658.4, 666.4, 672.2, 679.6, 686.1, 694.0, 696.2, 704.9, 707.0, 709.5, 710.5, 714.6, 716.5, 720.3, 721.6, 722.3, 725.5, 729.2, 731.9, 735.7, 737.7, 738.8, 740.4, 741.2, 743.6, 744.5, 754.0, 756.0, 757.3, 759.8, 762.4, 766.3, 770.1, 777.6, 791.7, 799.2, 805.0, 820.7, 824.1, 829.5, 836.6, 843.4, 844.9, 851.2, 863.9, 871.0, 875.4, 883.1, 887.0, 913.9, 915.7, 925.5, 931.1, 932.2, 936.2, 938.8, 941.6, 945.5, 947.7, 952.0, 961.7, 963.5, 967.8, 970.4, 975.0, 982.9, 986.9, 996.1, 1001.0, 1007.2, 1010.3, 1012.5, 1018.9, 1021.1, 1025.1, 1026.4, 1029.6, 1032.6, 1035.7, 1039.9, 1043.9, 1047.6, 1049.1, 1050.7, 1052.1, 1053.3, 1056.2, 1058.5, 1061.6, 1063.6, 1068.0, 1071.8, 1076.6, 1084.5, 1085.4, 1087.5, 1089.0, 1092.0, 1093.9, 1097.3, 1102.8, 1104.1, 1104.9, 1107.3, 1112.7, 1118.3, 1120.0, 1133.4, 1135.4, 1139.3, 1144.3, 1145.4, 1147.3, 1148.9, 1151.3, 1152.5, 1155.6, 1158.3, 1161.5, 1167.3, 1173.9, 1175.0, 1178.9, 1182.9, 1188.4, 1193.9, 1194.9, 1196.6, 1197.7, 1202.3, 1205.5, 1222.0, 1227.4, 1229.6, 1233.7, 1240.4], "n_lines": 461, "sample_lines": [{"id": "L0061", "t": 159.4, "spk": "speaker_1", "text": "నాకు ఇచ్చినా బాగుండు."}, {"id": "L0062", "t": 162.1, "spk": "speaker_0", "text": "ఓసేయ్."}, {"id": "L0063", "t": 162.8, "spk": "speaker_0", "text": "దొరికిందంతా తీసుకోవాలి."}, {"id": "L0064", "t": 164.4, "spk": "speaker_0", "text": "ఏది కనిపిస్తే ఆ video చేయాలి."}, {"id": "L0065", "t": 166.3, "spk": "speaker_0", "text": "ఇలా అయితే ఎప్పుడు rich అవుతాం, ఎప్పుడు flat కొంటాం, ఎప్పుడు సంపాదిస్తాం"}, {"id": "L0066", "t": 170.0, "spk": "event", "text": "[నిశ్వాసం]"}], "fixes": [{"heard": "సుకు", "fixed": "సుక్కు"}, {"heard": "ఓ ఓ k", "fixed": "ఓకే"}, {"heard": "దెబ్బుతో", "fixed": "దెబ్బతో"}, {"heard": "అమ్మాయికి రాలవా.", "fixed": "అమాయకురాలివా?"}, {"heard": "కదా అమ్మ", "fixed": "కదమ్మా,"}, {"heard": "వన్నా,", "fixed": "వందో,"}, {"heard": "అనే observe", "fixed": "లానే observe"}], "candidates_checked": 12, "moments": [{"start": 162.1, "end": 233.8, "type": "conclusion", "purpose": "standalone", "payoff": "కరిగిపోయే లోపే followers ని తెచ్చుకొని సంపాదించుకోవాలి.", "lines": "L0062–L0092"}, {"start": 269.0, "end": 374.2, "type": "conclusion", "purpose": "standalone", "payoff": "ఇప్పుడు చెప్తున్నారా ముప్పై వేలు కాదురా ముప్పై లక్షల followers వచ్చినా మారదురా మోనా", "lines": "L0108–L0140"}, {"start": 384.3, "end": 418.2, "type": "conclusion", "purpose": "standalone", "payoff": "so వీలైనంత వరకు ఎవ్వరికీ connect అవ్వకు మోనా.", "lines": "L0144–L0155"}, {"start": 625.2, "end": 690.8, "type": "conclusion", "purpose": "standalone", "payoff": "ఈ మాత్రం దానికి ఓ tension పడిపోతావ్.", "lines": "L0250–L0281"}, {"start": 708.2, "end": 766.6, "type": "emotional_peak", "purpose": "standalone", "payoff": "లక్ష్మి ఆంటీ దగ్గరే installment లో తీసుకున్న అని చెప్తాలే", "lines": "L0283–L0306"}, {"start": 992.5, "end": 1091.8, "type": "emotional_peak", "purpose": "standalone", "payoff": "importance లా అనిపిస్తుంది.", "lines": "L0372–L0409"}, {"start": 1103.5, "end": 1148.1, "type": "conclusion", "purpose": "promo", "payoff": "ఎవరి జాగ్రత్తలో వాళ్ళు ఉంటే మంచిది.", "lines": "L0411–L0427"}], "clips": [{"id": "w03", "title": "Influencer friend ఇచ్చిన toxic dating advice", "tier": "recommended", "start": 384.0, "end": 418.4, "dur": 34.4, "payoff": "so వీలైనంత వరకు ఎవ్వరికీ connect అవ్వకు మోనా.", "why": "The outrageous 10 lakh followers dating rule hooks immediately, paying off with hilarious and cynical Gen-Z advice.", "review": [4.5, 4.5, 4.5, 4.5], "founder": [3, 4, 3, 2], "post": "no", "hold": 0.16}, {"id": "w06", "title": "నీ like నాకు count కాదు importance", "tier": "recommended", "start": 992.1, "end": 1097.3, "dur": 105.1, "payoff": "importance లా అనిపిస్తుంది.", "why": "Hooks with an insightful observe vs notice line and delivers a touching, poetic romantic payoff about social media likes.", "review": [4.0, 4.5, 4.5, 4.5], "founder": [4, 4, 5, 4], "post": "yes", "hold": 5.51}, {"id": "w05", "title": "అమ్మకి తెలియకుండా saree gift ఇచ్చిన కూతురు", "tier": "recommended", "start": 707.9, "end": 770.1, "dur": 62.2, "payoff": "లక్ష్మి ఆంటీ దగ్గరే installment లో తీసుకున్న అని చెప్తాలే", "why": "Casual start builds into a heartwarming emotional peak when the mother plans to hide the gift from the dad.", "review": [3.0, 4.5, 4.5, 4.0], "founder": [3, 4, 5, 4], "post": "yes", "hold": 3.57}, {"id": "w07", "title": "Reels చేస్తే ఇల్లు కాల్చేస్తా అన్న తండ్రి", "tier": "recommended", "start": 1103.2, "end": 1151.3, "dur": 48.1, "payoff": "ఎవరి జాగ్రత్తలో వాళ్ళు ఉంటే మంచిది.", "why": "Fierce patriarchal warning grabs immediate attention and cuts cleanly on an ominous open threat.", "review": [4.0, 4.0, 4.5, 4.0], "founder": [2, 2, 2, 2], "post": "no", "hold": 3.22}, {"id": "w02", "title": "Followers వచ్చినా తను మారదురా", "tier": "worth_a_look", "start": 268.7, "end": 377.4, "dur": 86.5, "payoff": "ఇప్పుడు చెప్తున్నారా ముప్పై వేలు కాదురా ముప్పై లక్షల followers వచ్చినా మారదురా మోనా", "why": "Opens with relatable guy talk about a girl changing after fame and pays off with his unshakeable trust in her.", "review": [3.5, 4.0, 4.0, 3.5], "founder": [4, 4, 4, 4], "post": "yes", "hold": 3.12}, {"id": "w04", "title": "నాన్నకి fake location పంపించిన కూతురు", "tier": "worth_a_look", "start": 624.9, "end": 694.0, "dur": 69.1, "payoff": "ఈ మాత్రం దానికి ఓ tension పడిపోతావ్.", "why": "Parental phone check creates instant panic and hooks viewers, resolving in a cheeky tech-enabled escape.", "review": [3.5, 4.0, 3.5, 3.5], "founder": [4, 4, 5, 4], "post": "yes", "hold": 3.21}], "w05": {"start": 707.89, "first_word": 708.19, "first_text": "pani", "payoff_end": 766.57, "end": 770.14, "hold": 3.57, "lines": [{"id": "L0283", "t": 708.2, "text": "pani puri కి డబ్బులు కావాలా రేపు ఇస్తా లే"}, {"id": "L0284", "t": 711.5, "text": "అది అమ్మ"}, {"id": "L0285", "t": 713.4, "text": "నీకోకటి చెప్పాలి."}, {"id": "L0304", "t": 761.2, "text": "నాన్న చూసేమన్నడు కదా."}, {"id": "L0305", "t": 762.9, "text": "ఏం అనర్లే."}, {"id": "L0306", "t": 763.8, "text": "లక్ష్మి ఆంటీ దగ్గరే installment లో తీసుకున్న అని చెప్తాలే"}], "n_lines": 24, "cuts": [706.96, 709.46, 710.5, 714.59, 716.51, 720.3, 721.55, 722.3, 725.52, 729.23, 731.86, 735.74, 737.7, 738.82, 740.45, 741.16, 743.58, 744.53, 753.96, 756.0, 757.3, 759.8, 762.43, 766.35, 770.14]}, "hidden": [{"id": "w01", "overall": 2.5}]};
+const $ = s => document.querySelector(s);
+const el = (tag, cls, html) => { const e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; };
+const fmt = t => `${Math.floor(t / 60)}:${String(Math.floor(t % 60)).padStart(2, "0")}`;
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const TYPE = {punchline:["var(--t-punch)","Punchline"],reveal:["var(--t-reveal)","Reveal"],conclusion:["var(--t-concl)","Quotable line"],emotional_peak:["var(--t-emo)","Emotional peak"]};
+const T = k => TYPE[k] || ["var(--muted)", k || "other"];
+
+// steps 1-2
+$("#pre-stats").innerHTML = [[`${(D.duration/60).toFixed(0)} min`,"episode"],[D.words.toLocaleString(),"words"],[D.sentences,"sentences"],[D.events,"sound tags"]]
+  .map(([b,s]) => `<div><b>${b}</b><span>${s}</span></div>`).join("");
+$("#pre-events").textContent = D.event_kinds.join("  ·  ");
+
+// how + why for every step
+const HW = {
+  s3: [["ffmpeg compares each frame with the one before it, on small 320-pixel frames.", "When the picture changes by more than a set amount (0.25), it records a cut with its exact time."],
+       ["Cuts are the natural places to start and end a clip.", "Ending a few frames after a cut shows a flash of the next shot, which looks like a mistake.", "Cuts inside a long silence also show where one scene ends and the next begins."]],
+  s4: [["Scribe's sentences and its sound tags are sorted by time and numbered L0001, L0002, …", "Each line keeps its exact start and end time and its words."],
+       ["Gemini is bad at timestamps: an earlier full-episode map asked for times and drifted by 1.6×.", "Line numbers are exact. Gemini picks lines; code converts them to the precise second, so cuts never land mid-word."]],
+  s5: [["Mark words Scribe was less than 50% sure of.", "One Gemini read of the whole episode lists words that don't fit the scene.", "For each suspect, send the 4–6 s of audio around it and ask what was actually said.", "Accept a fix only if it changes just the suspect words and Gemini is confident."],
+       ["Jokes and names get misheard (కూరంటా for గోరింటాకు, ప్రతికించారు for బ్రతికించారు). A misheard punchline can't be recognised as funny in step 6.", "Fixes sit in a separate layer, so a wrong fix can be dropped without touching Scribe's original."]],
+  s6: [["One Gemini call reads all the numbered lines of the episode.", "The prompt says: find every beat that lands, name its type and quote the payoff line, then pick the earliest line that payoff depends on.", "It answers with line numbers only, plus an optional 1–3 s cold-open line and up to 3 whole chunks to drop."],
+       ["Your ratings showed the payoff decides whether you'd post: every clip with payoff 4+ was a yes, and clips ending on an open question never were.", "Payoff-first beat the old prompt on 3 episodes: 8 → 10 recommended clips you'd post, none you'd reject.", "It reads the whole episode because setup and payoff can be minutes apart."]],
+  s7: [["Start on the first spoken word, at most 0.3 s before it.", "Move each edge onto a shot change when one is within 1.5 s and no word is clipped.", "End on the payoff, then hold the reaction to the next shot change (2–8 s), never into the next line or scene.", "A cold open is kept only if it is 1–3.6 s, ends on a shot change, and is skipped when the scene reaches it."],
+       ["Every rule comes from your feedback:", "Clips opening on music didn't hook (round 1, hooks 3.3).", "Cutting on the last word lost the reaction (6 of 9 clips in Ep1).", "Cold opens that replayed felt off.", "One-frame flashes of the next shot looked like mistakes."]],
+  s8: [["One Gemini call gets every clip as it plays, line by line, with the cut points marked.", "It scores hook, standalone, payoff and overall from 1 to 5 and can flag a join that reads badly; code then puts the dropped chunk back.", "If Gemini's safety filter blocks the call, the clips are split into smaller groups so one clip can't block the episode."],
+       ["Ranking needs a score, and a second read catches bad joins.", "The problem: it reads text only. It can't see whether anyone laughs or reacts, so nearly every clip lands at 3.5–4.5.", "A bigger model (Pro), a video check and corrected speaker names didn't fix this either. That's why the emotion idea is next."]],
+  s9: [["Strong candidate: overall ≥ 4 and payoff ≥ 4, with no flaw such as a kept flash or an unreviewed start.", "Candidate: anything above 2.5. Below that it is hidden as a clear failure.", "Verdict: strong (3+ strong candidates), thin (1–2) or none."],
+       ["You said not every episode has good clips, so the verdict says so plainly instead of padding the list.", "Hidden clips were sometimes your yeses, so v1 now hides only clear failures and lets the creator pick."]],
+  s10:[["The clips file holds the exact cuts and scores. The readable list and the review page are built from it, with ffmpeg cutting the previews."],
+       ["The creator always reviews before posting, so every clip must explain itself (hook, payoff, why) and its cuts must be easy to change."]],
+};
+Object.entries(HW).forEach(([id, [how, why]]) => {
+  const box = el("div", "hw");
+  box.innerHTML = `<div class="how"><b>How</b><ul>${how.map(x => `<li>${esc(x)}</li>`).join("")}</ul></div><div class="why"><b>Why</b><ul>${why.map(x => `<li>${esc(x)}</li>`).join("")}</ul></div>`;
+  document.querySelector(`#${id} .head`).after(box);
+});
+
+// rail
+const steps =[...document.querySelectorAll("section[data-step]")];
+const rail = $("#rail");
+steps.forEach(s => { const a = el("a", "", `Step ${s.dataset.step}`); a.href = "#" + s.id; rail.append(a); });
+const playAll = el("button", "primary", "Play the whole flow"); rail.append(playAll);
+
+// axis helper
+const axis = (node, dur) => { node.innerHTML = [0,.25,.5,.75,1].map(f => `<span>${fmt(dur*f)}</span>`).join(""); };
+
+// step 3: cuts
+const cutsEl = $("#cuts");
+D.cuts.forEach((c, i) => { const t = el("i", "tick"); t.style.left = (c / D.duration * 100) + "%"; t.style.setProperty("--i", i); cutsEl.append(t); });
+axis($("#cuts-axis"), D.duration);
+$("#cut-stats").innerHTML = `<div><b>${D.cuts.length}</b><span>shot changes</span></div><div><b>${(D.duration / D.cuts.length).toFixed(1)} s</b><span>average shot</span></div>`;
+
+// step 4: lines
+D.sample_lines.forEach((l, i) => { const r = el("div", "line"); r.style.setProperty("--i", i);
+  r.innerHTML = `<span class="mono">${l.id}</span><span class="mono tc">${fmt(l.t)}</span><span class="mono spk">${esc(l.spk)}</span><span class="te">${esc(l.text)}</span>`; $("#lines").append(r); });
+$("#lines-cap").textContent = `${D.n_lines} lines in this episode. The speaker labels come from Scribe and are often wrong.`;
+
+// step 5: fixes
+D.fixes.forEach((f, i) => { const r = el("div", "fix"); r.style.setProperty("--i", i);
+  r.innerHTML = `<span class="mono muted" style="font-size:12px">Scribe heard</span><s class="te">${esc(f.heard)}</s><span class="mono muted" style="font-size:12px">Corrected</span><span class="te to">${esc(f.fixed)}</span>`; $("#fixes").append(r); });
+$("#fixes-cap").textContent = `${D.candidates_checked} suspect words checked, ${D.fixes.length} corrected after re-listening to the audio.`;
+
+// step 6: moments
+const mtl = $("#moments-tl");
+D.moments.forEach((m, i) => {
+  const [col, lab] = T(m.type);
+  const b = el("button", "span"); b.style.left = (m.start / D.duration * 100) + "%";
+  b.style.width = Math.max(.8, (m.end - m.start) / D.duration * 100) + "%"; b.style.background = col; b.style.setProperty("--i", i);
+  b.setAttribute("aria-label", `${lab}: ${m.payoff}`); b.title = m.payoff;
+  b.addEventListener("click", () => { document.querySelectorAll(".mrow").forEach(r => r.style.outline = ""); const r = document.getElementById("m" + i); r.style.outline = "2px solid " + col; r.scrollIntoView({block: "nearest", behavior: "smooth"}); });
+  mtl.append(b);
+  const row = el("div", "mrow"); row.id = "m" + i; row.style.setProperty("--i", i); row.style.borderRadius = "6px"; row.style.padding = "4px";
+  row.innerHTML = `<span class="mono muted" style="font-size:12.5px">${fmt(m.start)}–${fmt(m.end)}</span><span class="chip" style="background:${col}">${lab}${m.purpose === "promo" ? " · promo" : ""}</span><span class="te">${esc(m.payoff)}</span>`;
+  $("#mlist").append(row);
+});
+axis($("#moments-axis"), D.duration);
+$("#legend").innerHTML = Object.values(TYPE).map(([c, l]) => `<span><i style="background:${c}"></i>${l}</span>`).join("") + `<span>${D.moments.length} moments found</span>`;
+
+// step 7: zoom on the saree clip
+(() => {
+  const w = D.w05, a = w.start - 2, b = w.end + 3, X = t => ((t - a) / (b - a) * 100) + "%";
+  const z = $("#zoom");
+  w.cuts.forEach(c => { const k = el("i", "zcut"); k.style.left = X(c); z.append(k); });
+  const pad = el("div", "zbar"); pad.style.left = X(w.start); pad.style.width = `calc(${X(w.first_word)} - ${X(w.start)})`; pad.style.background = "var(--muted)"; pad.style.setProperty("--i", 0); z.append(pad);
+  const body = el("div", "zbar"); body.style.left = X(w.first_word); body.style.width = `calc(${X(w.payoff_end)} - ${X(w.first_word)})`; body.style.background = "var(--keep)"; body.style.setProperty("--i", 1); z.append(body);
+  const hold = el("div", "zbar"); hold.style.left = X(w.payoff_end); hold.style.width = `calc(${X(w.end)} - ${X(w.payoff_end)})`; hold.style.background = "var(--accent)"; hold.style.setProperty("--i", 2); z.append(hold);
+  [[w.first_word, `first word ${fmt(w.first_word)}`, 0, "4px"], [w.payoff_end, `payoff ends ${fmt(w.payoff_end)}`, 2, "96px"], [w.end, `cut ${fmt(w.end)}`, 3, "4px"]]
+    .forEach(([t, txt, i, top]) => { const m = el("i", "zmark"); m.style.left = X(t); m.style.setProperty("--i", i); z.append(m);
+      const l = el("span", "zlab", txt); l.style.left = X(t); l.style.top = top; l.style.setProperty("--i", i); z.append(l); });
+  const ph = el("i", "playhead"); ph.style.setProperty("--from", X(w.start)); ph.style.setProperty("--to", X(w.end)); z.append(ph);
+  const lineRows = w.lines.map((l, i) => `<div class="line" style="--i:${i}"><span class="mono">${l.id}</span><span class="mono tc">${fmt(l.t)}</span><span class="mono spk">${i === 3 ? "…" : ""}</span><span class="te">${esc(l.text)}</span></div>`);
+  lineRows.splice(3, 0, `<div class="line" style="--i:3"><span class="mono">⋮</span><span></span><span></span><span class="muted">${w.n_lines - 6} more lines</span></div>`);
+  $("#w05-lines").innerHTML = lineRows.join("");
+  $("#zoom-cap").innerHTML = `<span style="color:var(--muted)">■</span> ${(w.first_word - w.start).toFixed(1)} s before the first word &nbsp; <span style="color:var(--keep)">■</span> the scene, ${(w.payoff_end - w.first_word).toFixed(0)} s &nbsp; <span style="color:var(--accent)">■</span> reaction hold, ${w.hold.toFixed(1)} s to the next shot change. Thin grey lines are shot changes.`;
+})();
+
+// step 8: scores
+const tb = $("#scores tbody");
+D.clips.forEach((c, i) => {
+  const r = el("tr"); r.style.setProperty("--i", i);
+  const gov = c.review[3], you = c.founder[3], post = c.post;
+  const wrong = (gov >= 4 && post === "no") || (gov < 4 && post === "yes");
+  r.innerHTML = `<td><b>${c.id}</b><div class="te" style="font-size:14px">${esc(c.title)}</div></td>
+    <td><div class="bar"><i style="width:${gov / 5 * 100}%;background:var(--accent);--i:${i}"></i></div><div class="sc">${c.review.join(" / ")}</div></td>
+    <td><div class="bar"><i style="width:${you / 5 * 100}%;background:var(--keep);--i:${i}"></i></div><div class="sc">${c.founder.join(" / ")}</div></td>
+    <td><span class="verdict v-${post}">${post}</span></td>
+    <td>${wrong ? `<span class="flag">${gov >= 4 ? "rated high, you'd reject" : "rated low, you'd post"}</span>` : ""}</td>`;
+  tb.append(r);
+});
+
+// step 9: ranking
+const card = (c, i, right) => { const d = el("div", "card" + (c.tier === "recommended" ? " strong" : "")); d.style.setProperty("--i", i);
+  d.innerHTML = `<span class="tierlab">${right ? `you: ${c.founder.join(" / ")}` : (c.tier === "recommended" ? "strong candidate" : "candidate") + " · " + c.dur.toFixed(0) + " s"}</span><span class="t te">${esc(c.title)}</span>${right ? `<span><span class="verdict v-${c.post}">${c.post}</span></span>` : ""}`; return d; };
+D.clips.forEach((c, i) => $("#rank-pipe").append(card(c, i, false)));
+const order = {yes: 0, maybe: 1, no: 2};
+[...D.clips].sort((a, b) => order[a.post] - order[b.post] || b.founder[3] - a.founder[3]).forEach((c, i) => $("#rank-you").append(card(c, i, true)));
+const strong = D.clips.filter(c => c.tier === "recommended").length;
+$("#verdict").textContent = `Episode verdict: strong (${strong} strong candidates, ${D.clips.length - strong} other candidates). ${D.hidden.length} clip hidden as a clear failure (overall ${D.hidden.map(h => h.overall).join(", ")}).`;
+
+// step 10: outputs
+[["Clips file", "Every clip's cut (time segments), scores, payoff line and type, tier, and why: for code and for editing."],
+ ["Readable list", "Title, hook, payoff and why for each clip, strong candidates first, with the episode verdict on top."],
+ ["Review page", "A video preview of each clip next to its transcript, with a rating sheet."]]
+  .forEach(([t, s], i) => { const d = el("div", "out", `<b>${t}</b><span class="muted">${s}</span>`); d.style.setProperty("--i", i); $("#outs").append(d); });
+
+// animation control: visible at rest; .play replays the entrance
+const replay = id => { const s = document.getElementById(id); s.classList.remove("play"); void s.offsetWidth; s.classList.add("play"); };
+document.querySelectorAll("[data-replay]").forEach(b => b.addEventListener("click", () => replay(b.dataset.replay)));
+const seen = new Set();
+const io = new IntersectionObserver(es => es.forEach(e => {
+  const a = rail.querySelector(`a[href="#${e.target.id}"]`);
+  if (e.isIntersecting) { rail.querySelectorAll("a").forEach(x => x.classList.toggle("on", x === a)); if (!seen.has(e.target.id)) { seen.add(e.target.id); replay(e.target.id); } }
+}), {rootMargin: "-40% 0px -50% 0px"});
+steps.forEach(s => io.observe(s));
+let timer = null;
+playAll.addEventListener("click", () => {
+  if (timer) { clearTimeout(timer); timer = null; playAll.textContent = "Play the whole flow"; return; }
+  playAll.textContent = "Stop";
+  let k = 0;
+  const next = () => { if (k >= steps.length) { timer = null; playAll.textContent = "Play the whole flow"; return; }
+    const s = steps[k++]; s.scrollIntoView({behavior: "smooth", block: "start"}); replay(s.id); timer = setTimeout(next, 4200); };
+  next();
+});
+</script>
+</html>
