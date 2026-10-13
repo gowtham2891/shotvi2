@@ -16,6 +16,11 @@ spans more than ``MAX_TALK_LINES`` dialogue lines is returned as ``{"invalid": r
 ASR layer (``asr_fix=True``, opt-in, off by default): speech lines with an audio-confirmed correction or a leftover
 low-confidence word show ``{fixed: corrected words}`` / ``word(?)`` (``ASR_LEGEND`` explains both to a model);
 line ids and times never change. Off, the text is Scribe's, byte-identical to before the option existed.
+Speaker names (``names`` in ``render``, opt-in, off by default): ``speaker_name_map`` reads the speaker correction layer
+(``runs/speaker_fix/<id>.json``, schema speaker_fix/2, ``shotvi.segment.speaker_fix``) and maps each speech line to its
+corrected name, so a line renders as ``[Prasad]`` instead of ``[speaker_3]``. Lines the layer has no name for keep
+Scribe's label; the line dicts (ids, times, ``speaker``) never change, only the rendered label. Off (``names=None``),
+``render`` is byte-identical to before the option existed.
 """
 from __future__ import annotations
 
@@ -89,11 +94,61 @@ def build_lines(video_id: str, asr_fix: bool | dict = False, transcript: dict | 
     return rows
 
 
-def render(lines: list[dict], tags: dict[str, str] | None = None) -> str:
+def speaker_label(r: dict, names: dict[str, str] | None = None) -> str:
+    """The speaker as shown to a model: the corrected name when ``names`` (line id -> name) has one, else Scribe's
+    label (``speaker_3``)."""
+    return (names or {}).get(r["id"]) or r["speaker"]
+
+
+def speaker_fix_path(video_id: str) -> Path:
+    return Path(__file__).resolve().parents[2] / "runs" / "speaker_fix" / f"{video_id}.json"
+
+
+def clean_name(name) -> str | None:
+    """One-line display name; brackets would break the ``[name]`` label, so they become parentheses."""
+    s = " ".join(str(name or "").split()).replace("[", "(").replace("]", ")")
+    return s or None
+
+
+def speaker_name_map(video_id: str, lines: list[dict], fix: dict | None = None,
+                     log=lambda m: print(m, file=sys.stderr)) -> dict[str, str]:
+    """Line id -> corrected speaker name from the speaker correction layer (``fix``: the speaker_fix/2 document,
+    default ``runs/speaker_fix/<id>.json``; a missing file raises FileNotFoundError). A speech line is matched to the
+    layer's line with the same Scribe word range [i0, i1] and start time, so a layer made from another transcript
+    version matches nothing (and warns). Lines with no name (``X`` / missing) are left out: they keep Scribe's label."""
+    if fix is None:
+        p = speaker_fix_path(video_id)
+        if not p.exists():
+            raise FileNotFoundError(f"{video_id}: speaker names requested but {p} does not exist "
+                                    f"(run python -m shotvi.segment.speaker_fix {video_id})")
+        fix = json.loads(p.read_text(encoding="utf-8"))
+    if fix.get("schema") != "speaker_fix/2":
+        raise ValueError(f"{video_id}: speaker_fix schema {fix.get('schema')!r}, expected 'speaker_fix/2'")
+    by_words = {tuple(ln["words"]): ln for ln in fix.get("lines") or [] if ln.get("words")}
+    out, unmatched = {}, 0
+    for r in lines:
+        if r.get("kind") != "speech" or not r.get("words"):
+            continue
+        ln = by_words.get(tuple(r["words"]))
+        if ln is None or abs(float(ln.get("start", r["start"])) - float(r["start"])) > 0.01:
+            unmatched += 1
+            continue
+        name = clean_name(ln.get("name"))
+        if name:
+            out[r["id"]] = name
+    if unmatched:
+        log(f"warning: {video_id}: {unmatched} speech lines have no matching speaker_fix line "
+            f"(stale layer?); they keep Scribe's label")
+    return out
+
+
+def render(lines: list[dict], tags: dict[str, str] | None = None, names: dict[str, str] | None = None) -> str:
+    """``names`` (opt-in, default None): line id -> corrected speaker name (``speaker_name_map``); None = Scribe's
+    labels, byte-identical to before the option existed."""
     out = []
     for r in lines:
         tag = f" <{tags[r['id']]}>" if tags and r["id"] in tags else ""
-        who = {"event": "(audio event)", "shot": "(shot, no dialogue)"}.get(r["kind"], f"[{r['speaker']}]")
+        who = {"event": "(audio event)", "shot": "(shot, no dialogue)"}.get(r["kind"], f"[{speaker_label(r, names)}]")
         out.append(f"{r['id']} [{fmt(r['start'])}]{tag} {who}" + (f": {r['text']}" if r["text"] else ""))
     return "\n".join(out)
 

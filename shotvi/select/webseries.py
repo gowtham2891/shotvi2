@@ -2,6 +2,10 @@
 
 Stages (per episode):
   1. transcript in: Scribe lines + audio-event lines with the ASR correction layer (``LineIndex(asr_fix=True)``).
+     Optional speaker names (config ``"speaker_names": true``, OFF by default; configs/ws_v1_speakers.json): the
+     discover and review prompts show each line's corrected speaker name from runs/speaker_fix/<id>.json
+     (``shotvi.segment.speaker_fix``) instead of Scribe's label; lines without a name keep the label. Only the
+     rendered label changes: line ids, times and the cut builder's ``speaker`` field are Scribe's either way.
   2. discover (one text call, prompt ``ws_discover``): web-series moments as LINE IDS only: purpose (standalone /
      promo), start line, payoff/end line, hook and payoff rationale, an optional cold-open lift (line ids), up to 3
      whole-chunk drops (line ranges) and a spoiler flag.
@@ -164,6 +168,8 @@ DEFAULTS: dict = {
     # prompt file per role (prompts/<name>.md); an A/B arm swaps exactly one (CLI --prompt ROLE=FILE)
     "prompts": {"ws_discover": "ws_discover_b_payoff", "ws_review": "ws_review"},  # v1 (2026-10-07): payoff-first
     "budget_usd": 0.6,
+    # "speaker_names": True (opt-in, read with cfg.get so replays keep their config byte-identical): render corrected
+    # speaker names (runs/speaker_fix/<id>.json) in the discover and review prompts; see stage 1
 }
 CATEGORIES = ["story", "advice", "humour", "controversy", "emotional", "insight", "reveal", "motivation", "other"]
 LAUGH_TOKENS = ("నవ్వు", "laugh")
@@ -210,6 +216,7 @@ class Episode:
     cuts: list[float]
     duration: float
     loudness: Callable[[float, float], float | None] | None = None
+    names: dict | None = None  # line id -> corrected speaker name (cfg speaker_names, opt-in); None = Scribe labels
     by_id: dict = field(init=False)
     pos: dict = field(init=False)
 
@@ -980,11 +987,13 @@ def hook_line(ep: Episode, pieces: list[dict], line_of_word: dict) -> dict:
 
 # ======================================================================================== play-order text (review)
 def play_text(ep: Episode, cid: str, m: dict, c: dict) -> str:
-    """The clip as it plays, for the review call: cold open, scene lines, cut markers, end hold."""
+    """The clip as it plays, for the review call: cold open, scene lines, cut markers, end hold. Speakers are the
+    corrected names when ``ep.names`` is set (cfg speaker_names), else Scribe's labels."""
+    from shotvi.select.lines import speaker_label
     out = [f"### {cid} | {m.get('purpose', 'standalone')} | plays {c['video_duration']:.1f} s"]
 
     def row(r):
-        who = "(audio event)" if r["kind"] == "event" else f"[{r['speaker']}]"
+        who = "(audio event)" if r["kind"] == "event" else f"[{speaker_label(r, ep.names)}]"
         return f"{r['id']} {who}: {r['text']}"
     segs = c["time_segments"]
     if c["cold_open"]:
@@ -1150,8 +1159,12 @@ VIDEO_END_INR_EXPECTED = 1.35
 
 
 # ======================================================================================== stages
-def load_episode(vid: str, with_loudness: bool = True):
-    from shotvi.select.lines import LineIndex
+def load_episode(vid: str, with_loudness: bool = True, speaker_names: bool = False, require_names: bool = True):
+    """``speaker_names`` (opt-in, default off): ``ep.names`` = line id -> corrected speaker name from
+    runs/speaker_fix/<id>.json (``lines.speaker_name_map``); with cfg ``speaker_names`` the discover and review
+    prompts show those names instead of Scribe's labels. A missing layer raises unless ``require_names`` is False
+    (dry run: warn and project with Scribe's labels)."""
+    from shotvi.select.lines import LineIndex, speaker_name_map
     tp = ROOT / "scribe_dataset" / vid / f"{vid}_scribe_transcript.json"
     tr = json.loads(tp.read_text(encoding="utf-8"))
     ix = LineIndex(vid, asr_fix=True)
@@ -1159,7 +1172,15 @@ def load_episode(vid: str, with_loudness: bool = True):
     dur = float(shots.get("duration") or tr.get("audio_duration_secs") or tr["word_timestamps"][-1]["end"])
     wav = ROOT / "scribe_dataset" / vid / f"{vid}_audio.wav"
     loud = (lambda a, b: mean_db(wav, a, b)) if with_loudness and wav.exists() else None
-    ep = Episode(vid, ix.lines, tr["word_timestamps"], shots["cuts"], dur, loud)
+    names = None
+    if speaker_names:
+        try:
+            names = speaker_name_map(vid, ix.lines)
+        except FileNotFoundError as e:
+            if require_names:
+                raise
+            print(f"warning: {e}; projecting with Scribe's labels", file=sys.stderr)
+    ep = Episode(vid, ix.lines, tr["word_timestamps"], shots["cuts"], dur, loud, names)
     return ep, ix, tr, tp
 
 
@@ -1205,13 +1226,24 @@ def prompt_file(cfg: dict | None, role: str) -> str:
     return ((cfg or {}).get("prompts") or {}).get(role) or role
 
 
+def names_of(ep: Episode, cfg: dict | None) -> dict | None:
+    """Speaker names to render (``cfg["speaker_names"]``, opt-in, default off): None = Scribe's labels."""
+    return ep.names if (cfg or {}).get("speaker_names") else None
+
+
+def names_missing(ep: Episode, cfg: dict | None) -> bool:
+    """Names requested but no speaker_fix layer loaded (dry run only; a real run raises in load_episode). The dry run
+    then projects the prompt with Scribe's labels but counts it as UNCACHED: the real prompt will differ."""
+    return bool((cfg or {}).get("speaker_names")) and ep.names is None
+
+
 def discover_prompt(ep: Episode, ix, cfg: dict | None = None) -> tuple[str, str]:
     from shotvi.select.lines import ASR_LEGEND, render
     from shotvi.select.prompts import load_prompt
     p = load_prompt(prompt_file(cfg, "ws_discover"))
     tags = {lid: "lift-ok" for lid in liftable_lines(ep, (cfg or DEFAULTS)["cut"])}
     return p.system, p.render(episode_len=fmt(ep.duration), n_lines=len(ep.lines), asr_legend=ASR_LEGEND,
-                              transcript=render(ep.lines, tags))
+                              transcript=render(ep.lines, tags, names_of(ep, cfg)))
 
 
 def review_prompt(texts: list[str], cfg: dict | None = None) -> tuple[str, str]:
@@ -1241,6 +1273,7 @@ def calibration_of(run_dir: str | Path | None, vid: str) -> dict | None:
             "prompt_files": pipe.get("prompt_files") or {},
             "models": (pipe.get("config") or {}).get("models") or {},
             "discover_mode": (pipe.get("config") or {}).get("discover_mode", "episode"),
+            "speaker_names": bool((pipe.get("config") or {}).get("speaker_names", False)),
             "calls_chars": (doc.get("discover_scenes") or {}).get("calls_chars")}
 
 
@@ -1271,7 +1304,9 @@ def project_episode(ep: Episode, ix, cfg: dict, system: str, user: str, llm=None
             log(f"countTokens unavailable ({e}); estimating offline")
     if n_in is None and (cb.get("ws_discover") or {}).get("input_tokens"):
         role_file = (calib.get("prompt_files") or {}).get("ws_discover", "ws_discover")
-        bcfg = deep_merge(cfg, {"prompts": {"ws_discover": role_file}})
+        # the calibration run's own prompt: its discover file and its speaker labels
+        bcfg = deep_merge(cfg, {"prompts": {"ws_discover": role_file},
+                                "speaker_names": bool(calib.get("speaker_names"))})
         bs, bu = discover_prompt(ep, ix, bcfg)
         n_in = int(round(cb["ws_discover"]["input_tokens"] * len(text) / max(1, len(bs + "\n" + bu))))
         src = f"calibrated on {calib['run']} ({cb['ws_discover']['input_tokens']} tokens for its prompt)"
@@ -1351,12 +1386,12 @@ def scene_plan(ep: Episode, tr: dict, cfg: dict, zones: dict | None = None) -> d
     return {"excluded": ex, "params": params, "scenes": scs, "windows": SC.scene_windows(ep, scs, ex, params)}
 
 
-def render_window(ep: Episode, win: dict, tags: dict) -> str:
+def render_window(ep: Episode, win: dict, tags: dict, names: dict | None = None) -> str:
     from shotvi.select.lines import render
 
     def block(name, ps):
         rows = [ep.lines[q] for q in ps]
-        return f"<{name}>\n{render(rows, tags) if rows else '(none)'}\n</{name}>"
+        return f"<{name}>\n{render(rows, tags, names) if rows else '(none)'}\n</{name}>"
     sc = win["scene"]
     return "\n".join([block("context_before", win["before"]), block("scene", range(sc["p0"], sc["p1"] + 1)),
                       block("context_after", win["after"])])
@@ -1376,7 +1411,8 @@ def scene_prompts(ep: Episode, cfg: dict, plan: dict) -> list[tuple[str, str]]:
         out.append((p.system, p.render(
             episode_len=fmt(ep.duration), n_lines=len(ep.lines), asr_legend=ASR_LEGEND, scene_no=sc["no"],
             n_scenes=n, scene_first=sc["first_line"], scene_last=sc["last_line"],
-            scene_span=f"{fmt(sc['start'])}-{fmt(sc['end'])}", transcript=render_window(ep, win, tags))))
+            scene_span=f"{fmt(sc['start'])}-{fmt(sc['end'])}",
+            transcript=render_window(ep, win, tags, names_of(ep, cfg)))))
     return out
 
 
@@ -1404,7 +1440,8 @@ def project_scenes(ep: Episode, ix, cfg: dict, calls: list[tuple[str, str]], cal
     cd = cb.get("ws_discover") or {}
     if cd.get("input_tokens") and calib.get("discover_mode", "episode") == "episode":
         role_file = (calib.get("prompt_files") or {}).get("ws_discover", "ws_discover")
-        bs, bu = discover_prompt(ep, ix, deep_merge(cfg, {"prompts": {"ws_discover": role_file}}))
+        bs, bu = discover_prompt(ep, ix, deep_merge(cfg, {"prompts": {"ws_discover": role_file},
+                                                          "speaker_names": bool(calib.get("speaker_names"))}))
         ratio = cd["input_tokens"] / max(1, len(bs + "\n" + bu))
         src = f"calibrated on {calib['run']} ({cd['input_tokens']} tokens for its whole-episode prompt)"
     elif cd.get("input_tokens") and calib.get("calls_chars"):
@@ -1470,7 +1507,8 @@ def discover_by_scene(ep: Episode, ix, tr: dict, cfg: dict, llm, guard: Guard, v
     log(f"{vid}: projection {json.dumps({k: v for k, v in proj.items() if k != 'ws_discover'}, ensure_ascii=False)}; "
         f"discover {json.dumps({k: v for k, v in proj['ws_discover'].items() if k != 'per_call'})}")
     schema = discover_schema(cfg)
-    uncached = [k for k, (s, u) in enumerate(calls) if not is_cached(llm, spec, s, u, schema)]
+    uncached = [k for k, (s, u) in enumerate(calls)
+                if names_missing(ep, cfg) or not is_cached(llm, spec, s, u, schema)]
     pc = proj["ws_discover"]["per_call"]
     rest = {k: proj["ws_review"][k] + proj["video_end_check"][k] for k in ("inr_expected", "inr_worst", "inr")}
     bill = {k: sum(pc[j][k] for j in uncached) + rest[k] for k in rest}
@@ -1570,7 +1608,8 @@ def run_episode(vid: str, cfg: dict, llm, guard: Guard, out_dir: Path, log=print
     t_start = time.time()
     if cfg["cut"].get("exchange_max_play_s") is None:
         cfg["cut"]["exchange_max_play_s"] = cfg["guardrails"]["soft_max_s"]
-    ep, ix, tr, tp = load_episode(vid)
+    ep, ix, tr, tp = (load_episode(vid, speaker_names=True, require_names=not dry_run) if cfg.get("speaker_names")
+                      else load_episode(vid))
     check_prompt_mode(cfg)
     pre_rejected: list = []
     if scene_mode(cfg):
@@ -1587,7 +1626,7 @@ def run_episode(vid: str, cfg: dict, llm, guard: Guard, out_dir: Path, log=print
                                calib=calib, log=log)
         log(f"{vid}: projection {json.dumps(proj, ensure_ascii=False)}")
         schema = discover_schema(cfg)
-        disc_cached = is_cached(llm, spec, system, user, schema)
+        disc_cached = not names_missing(ep, cfg) and is_cached(llm, spec, system, user, schema)
         if dry_run:
             if not disc_cached:
                 return dry_result(vid, proj, "ws_discover", proj["episode"]["inr_expected"], proj["episode"]["inr"],

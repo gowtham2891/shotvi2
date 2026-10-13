@@ -1,7 +1,7 @@
 """One command for a new Telugu web-series episode, from a YouTube link to the review page.
 
     python -m shotvi.run_episode <youtube_url_or_video_id> [--out runs/ep_<id>] [--max-ledger-inr N]
-                                 [--skip-asr-fix] [--dry-run]
+                                 [--skip-asr-fix] [--speaker-fix] [--dry-run]
 
 Steps (each one is skipped when its output already exists, so the command can be re-run after a failure):
 
@@ -11,6 +11,10 @@ Steps (each one is skipped when its output already exists, so the command can be
   3. shots       ffmpeg select=gt(scene,0.25) on 320px frames -> runs/video/<id>/shots.json (+ ffmpeg_scene.log)
   4. segments    python -m shotvi.segment <transcript> --out runs/segment_r3/<id>/segments.json --intro rules
   5. asr_fix     python -m shotvi.segment.asr_fix <id>      (Gemini, ~₹2; --skip-asr-fix skips it)
+  5b. speaker_fix (opt-in, --speaker-fix; off by default, and then not listed at all)
+                 python -m shotvi.segment.speaker_fix <id> -> runs/speaker_fix/<id>.json (Gemini, ₹1.5-4.6 measured
+                 per 13-34 min episode); step 6 then runs with --config shotvi/select/configs/ws_v1_speakers.json
+                 (corrected speaker names in the discover and review prompts)
   6. select      python -m shotvi.select.webseries <id> --out <out> --no-retry  (Gemini, ~₹10-15), default config
   7. preview     python tools/preview_clips.py <out> --top 50 -> runs/previews/<out name>/review.html
   8. summary     title, length, credits, rupees (project ledger before/after), clips per tier, verdict, page path
@@ -41,6 +45,8 @@ SCENE_THRESHOLD = 0.25
 SCENE_WIDTH = 320
 ASR_FIX_INR_FALLBACK = 2.0        # used only when the transcript is missing, so asr_fix cannot project itself
 SELECT_INR_FALLBACK = 15.0        # idem for the clip pipeline (measured ₹13-16 per 20-min episode)
+SPEAKER_FIX_INR_FALLBACK = 15.0   # idem for speaker_fix (its own worst case is ~₹3.3 per ~110-line chunk)
+SPEAKERS_CONFIG = "shotvi/select/configs/ws_v1_speakers.json"   # select config when --speaker-fix is on
 EXIT_BUDGET_STOP = 2              # a sub-step stopped on its own ledger guard
 EXIT_GUARD_REFUSED = 3            # this runner refused to start a paid step
 VIDEO_ID_RE = re.compile(r"^[A-Za-z0-9_-]{11}$")
@@ -194,6 +200,10 @@ class Paths:
         return ROOT / "runs" / "asr_fix" / self.vid / "corrections.json"
 
     @property
+    def speakers(self) -> Path:
+        return ROOT / "runs" / "speaker_fix" / f"{self.vid}.json"
+
+    @property
     def clips(self) -> Path:
         return self.out / f"{self.vid}.json"
 
@@ -210,6 +220,7 @@ class Ctx:
     limit_inr: float | None
     skip_asr_fix: bool
     ledger0: float
+    speaker_fix: bool = False           # opt-in step 5b; select then uses SPEAKERS_CONFIG
     credits_used: float = 0.0
     inr_projected: float = 0.0          # dry run: rupees the paid steps would bill
     credits_projected: float = 0.0
@@ -332,6 +343,34 @@ class AsrFix(Step):
         run_cmd(args)
 
 
+class SpeakerFix(Step):
+    """Opt-in (--speaker-fix): LLM speaker names per line (runs/speaker_fix/<id>.json, never edits the transcript)."""
+    name = "speaker_fix"
+    paid = True
+
+    def outputs(self, p):
+        return [p.speakers]
+
+    def project(self, ctx):
+        if not ctx.p.transcript.exists():
+            return SPEAKER_FIX_INR_FALLBACK, (f"~₹{SPEAKER_FIX_INR_FALLBACK:.0f} (rough; speaker_fix projects itself "
+                                              f"once the transcript exists)")
+        out = run_cmd([PY, "-m", "shotvi.segment.speaker_fix", ctx.p.vid, "--dry-run"], capture=True)
+        m = re.search(r"projected total ₹\s*([0-9.]+) \(worst case ₹\s*([0-9.]+)\)", out)
+        if not m:
+            raise RuntimeError("could not read speaker_fix's projection from its --dry-run output")
+        expected, worst = float(m.group(1)), float(m.group(2))
+        # the guard checks the worst case (every chunk at its whole output budget), like select's guard projection
+        return worst, (f"Gemini, projected ₹{expected:.2f} expected (conservative: the measured runs billed ~0.4x "
+                       f"of it), ₹{worst:.2f} worst case (speaker_fix --dry-run)")
+
+    def run(self, ctx):
+        args = [PY, "-m", "shotvi.segment.speaker_fix", ctx.p.vid]
+        if ctx.limit_inr is not None:
+            args += ["--max-ledger-inr", f"{ctx.limit_inr:g}"]
+        run_cmd(args)
+
+
 class Select(Step):
     name = "select"
     paid = True
@@ -339,12 +378,17 @@ class Select(Step):
     def outputs(self, p):
         return [p.clips]
 
+    @staticmethod
+    def config_args(ctx) -> list[str]:
+        return ["--config", SPEAKERS_CONFIG] if ctx.speaker_fix else []
+
     def project(self, ctx):
         p = ctx.p
         if not (p.transcript.exists() and p.shots.exists()):
             return SELECT_INR_FALLBACK, (f"~₹{SELECT_INR_FALLBACK:.0f} (rough; the pipeline projects itself once the "
                                          f"transcript and shots exist)")
-        out = run_cmd([PY, "-m", "shotvi.select.webseries", p.vid, "--out", rel(p.out), "--dry-run"], capture=True)
+        out = run_cmd([PY, "-m", "shotvi.select.webseries", p.vid, "--out", rel(p.out), *self.config_args(ctx),
+                       "--dry-run"], capture=True)
         guard = parse_inr(out, r"guard projection ₹\s*([0-9.]+)")
         expected = parse_inr(out, r"DRY RUN total: ₹\s*([0-9.]+)")
         if guard is None or expected is None:
@@ -353,7 +397,7 @@ class Select(Step):
 
     def run(self, ctx):
         p = ctx.p
-        args = [PY, "-m", "shotvi.select.webseries", p.vid, "--out", rel(p.out), "--no-retry"]
+        args = [PY, "-m", "shotvi.select.webseries", p.vid, "--out", rel(p.out), *self.config_args(ctx), "--no-retry"]
         if ctx.limit_inr is not None:
             args += ["--max-ledger-inr", f"{ctx.limit_inr:g}"]
         run_cmd(args)
@@ -379,9 +423,17 @@ class Preview(Step):
 STEPS: list[Step] = [Download(), Transcribe(), Shots(), Segments(), AsrFix(), Select(), Preview()]
 
 
+def steps_for(speaker_fix: bool) -> list[Step]:
+    """The default steps; --speaker-fix inserts the speaker_fix step between asr_fix and select."""
+    if not speaker_fix:
+        return list(STEPS)
+    k = next(i for i, s in enumerate(STEPS) if s.name == "asr_fix") + 1
+    return STEPS[:k] + [SpeakerFix()] + STEPS[k:]
+
+
 # ----------------------------------------------------------------------------------------------- driver
-def run_step(i: int, step: Step, ctx: Ctx) -> None:
-    tag = f"[{i}/{len(STEPS)}] {step.name:10}"
+def run_step(i: int, step: Step, ctx: Ctx, n_steps: int = len(STEPS)) -> None:
+    tag = f"[{i}/{n_steps}] {step.name:10}"
     if step.name == "asr_fix" and ctx.skip_asr_fix and not step.done(ctx.p):
         print(f"{tag} skipped (--skip-asr-fix)   cost: ₹0")
         ctx.skipped.append(step.name)
@@ -469,6 +521,9 @@ def main(argv=None) -> int:
                     help="refuse a paid Gemini step when ledger + projection would exceed this "
                          "(default: SHOTVI_SPEND_CAP_INR from .env)")
     ap.add_argument("--skip-asr-fix", action="store_true", help="skip the Gemini ASR correction layer")
+    ap.add_argument("--speaker-fix", action="store_true",
+                    help="opt-in: run the LLM speaker-name layer (shotvi.segment.speaker_fix) after asr_fix and "
+                         f"select with {SPEAKERS_CONFIG} (speaker names in the prompts)")
     ap.add_argument("--dry-run", action="store_true",
                     help="check the free steps and print the paid steps' projections; no provider call")
     a = ap.parse_args(argv)
@@ -480,18 +535,19 @@ def main(argv=None) -> int:
     if not out.is_absolute():
         out = ROOT / out
     limit = a.max_ledger_inr if a.max_ledger_inr is not None else spend_cap_inr()
-    ctx = Ctx(Paths(vid, out), url, a.dry_run, limit, a.skip_asr_fix, ledger_inr())
+    ctx = Ctx(Paths(vid, out), url, a.dry_run, limit, a.skip_asr_fix, ledger_inr(), speaker_fix=a.speaker_fix)
+    steps = steps_for(a.speaker_fix)
     print(f"{'DRY RUN: ' if a.dry_run else ''}{vid} -> {rel(out)}   ledger ₹{ctx.ledger0:.2f}, limit ₹{limit:.2f}")
     code = 0
     try:
-        for i, step in enumerate(STEPS, 1):
-            run_step(i, step, ctx)
+        for i, step in enumerate(steps, 1):
+            run_step(i, step, ctx, len(steps))
     except GuardRefused as e:
         print(f"REFUSED: {e}")
         code = EXIT_GUARD_REFUSED
     except subprocess.CalledProcessError as e:
-        name = next((s.name for s in STEPS if s.name not in ctx.ran and s.name not in ctx.skipped), "?")
-        if e.returncode == 2 and name in ("asr_fix", "select"):
+        name = next((s.name for s in steps if s.name not in ctx.ran and s.name not in ctx.skipped), "?")
+        if e.returncode == 2 and name in ("asr_fix", "speaker_fix", "select"):
             print(f"STOP: {name} stopped on its ledger guard (exit 2); nothing after it ran")
             code = EXIT_BUDGET_STOP
         else:
