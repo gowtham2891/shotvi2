@@ -505,8 +505,11 @@ def summary(ctx: Ctx) -> dict:
     else:
         print("  clips:     (no clip document yet)")
     if verdict:
-        print(f"  verdict:   {str(verdict.get('verdict', '')).upper()} ({verdict.get('strong_clips')} recommended, "
-              f"{verdict.get('worth_a_look')} worth a look){': ' + verdict['note'] if verdict.get('note') else ''}")
+        print(f"  verdict:   {str(verdict.get('verdict', '')).upper()} "
+              f"({verdict.get('strong_clips')} strong candidates, "
+              f"{verdict.get('worth_a_look')} other candidates"
+              + (f", {verdict['unchecked']} unchecked" if verdict.get("unchecked") else "")
+              + f"){': ' + verdict['note'] if verdict.get('note') else ''}")
     print(f"  review:    {s['review_page'] or '(not built)'}")
     return s
 

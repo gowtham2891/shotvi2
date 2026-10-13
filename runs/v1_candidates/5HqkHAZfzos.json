@@ -1,0 +1,924 @@
+{
+ "schema_version": "1.1",
+ "kind": "proposals",
+ "video_id": "5HqkHAZfzos",
+ "transcript": {
+  "path": "scribe_dataset/5HqkHAZfzos/5HqkHAZfzos_scribe_transcript.json",
+  "sha256": "274907d7e90493dca591f246339c3c98d10b8a04754a36ab522bec07a36b31ec",
+  "n_words": 1566,
+  "audio_duration_secs": 1321.5405
+ },
+ "derived_params": {
+  "skip_s": 30.0
+ },
+ "run_id": "v1_candidates",
+ "created_at": "2026-10-13T16:02:38Z",
+ "content_type": "web_series",
+ "pipeline": {
+  "version": "ws/0.2",
+  "git_commit": null,
+  "prompt_versions": {
+   "ws_discover": "3+27f4dce4",
+   "ws_review": "1+addbc14b"
+  },
+  "prompt_files": {
+   "ws_discover": "ws_discover_b_payoff",
+   "ws_review": "ws_review"
+  },
+  "config": {
+   "models": {
+    "ws_discover": {
+     "provider": "gemini",
+     "model": "gemini-3.8-flash",
+     "params": {
+      "thinking_level": "high",
+      "max_output_tokens": 32768
+     }
+    },
+    "ws_review": {
+     "provider": "gemini",
+     "model": "gemini-3.8-flash",
+     "params": {
+      "thinking_level": "medium",
+      "max_output_tokens": 16384
+     }
+    },
+    "video_end": {
+     "provider": "gemini",
+     "model": "gemini-3.8-flash",
+     "params": {
+      "thinking_level": "low"
+     }
+    }
+   },
+   "cut": {
+    "start_pad_s": 0.3,
+    "lift_min_s": 1.0,
+    "lift_max_s": 3.6,
+    "lift_cut_eps_s": 0.005,
+    "lift_start_snap_s": 0.4,
+    "lift_start_pad_s": 0.12,
+    "lift_max_tail_s": 2.0,
+    "lift_tail_measure_s": 0.4,
+    "lift_quiet_tail_db": 15.0,
+    "lift_level_warn_db": 10.0,
+    "max_cuts": 3,
+    "max_drop_s": 45.0,
+    "snap_s": 1.5,
+    "join_pad_s": 0.25,
+    "hold_min_s": 2.0,
+    "hold_max_s": 8.0,
+    "hold_short_min_s": 0.5,
+    "hold_default_s": 2.0,
+    "next_speech_margin_s": 0.1,
+    "long_silence_s": 20.0,
+    "long_silence_hold_max_s": 4.0,
+    "react_max_s": 1.5,
+    "react_max_words": 3,
+    "react_clear_s": 1.0,
+    "quick_cut_min_s": 0.02,
+    "quick_end_margin_s": 0.05,
+    "flash_s": 0.3,
+    "shot_tol_s": 0.05,
+    "word_clip_tol_s": 0.02,
+    "exchange_start": false,
+    "exchange_gap_s": 2.0,
+    "exchange_back_max_s": 30.0,
+    "exchange_back_max_lines": 12,
+    "exchange_on_cap": "keep",
+    "exchange_recap_s": 60.0,
+    "exchange_mode": "walk",
+    "qreply_require_speaker_change": false,
+    "qreply_setup_lines": 2,
+    "qreply_max_lines": 3,
+    "qreply_max_s": 12.0,
+    "exchange_max_play_s": 120.0
+   },
+   "review_view": "final",
+   "guardrails": {
+    "min_s": 15.0,
+    "soft_max_s": 120.0,
+    "hard_max_s": 150.0,
+    "skip_s": 30.0,
+    "dup_overlap": 0.5,
+    "blocks_flag_above": 3
+   },
+   "thresholds": {
+    "show_rule": "candidates",
+    "t_hide": 2.5,
+    "show_unchecked": true,
+    "t_show": 3.5,
+    "t_rec": 4.0,
+    "t_rec_payoff": 4.0,
+    "rec_blockers": [
+     "needs_rescore",
+     "shot_flash",
+     "unreviewed_start",
+     "review_repair_failed"
+    ],
+    "verdict_strong_min": 3
+   },
+   "video_end_check": {
+    "enabled": false,
+    "max_shift_s": 8.0
+   },
+   "video_gate": {
+    "enabled": false
+   },
+   "prompts": {
+    "ws_discover": "ws_discover_b_payoff",
+    "ws_review": "ws_review"
+   },
+   "budget_usd": 0.6,
+   "run_id": "v1_candidates"
+  }
+ },
+ "models": [
+  {
+   "role": "ws_discover",
+   "provider": "gemini",
+   "model": "gemini-3.8-flash",
+   "params": {
+    "thinking_level": "high",
+    "max_output_tokens": 32768
+   }
+  },
+  {
+   "role": "ws_review",
+   "provider": "gemini",
+   "model": "gemini-3.8-flash",
+   "params": {
+    "thinking_level": "medium",
+    "max_output_tokens": 16384
+   }
+  }
+ ],
+ "cost": {
+  "input_tokens": 19408,
+  "output_tokens": 36384,
+  "usd": 0.151,
+  "usd_billed": 0.0,
+  "wall_time_secs": 0.4,
+  "n_llm_calls": 2,
+  "by_role": {
+   "ws_discover": {
+    "n_llm_calls": 1,
+    "n_cache_hits": 1,
+    "n_failed_attempts": 0,
+    "input_tokens": 14913,
+    "output_tokens": 32212,
+    "thought_tokens": 30194,
+    "cached_input_tokens": 0,
+    "usd": 0.13198,
+    "usd_billed": 0.0,
+    "models": [
+     "gemini-3.8-flash"
+    ]
+   },
+   "ws_review": {
+    "n_llm_calls": 1,
+    "n_cache_hits": 1,
+    "n_failed_attempts": 0,
+    "input_tokens": 4495,
+    "output_tokens": 4172,
+    "thought_tokens": 2684,
+    "cached_input_tokens": 0,
+    "usd": 0.01902,
+    "usd_billed": 0.0,
+    "models": [
+     "gemini-3.8-flash"
+    ]
+   }
+  },
+  "projection": {
+   "ws_discover": {
+    "in": 14083,
+    "in_source": "character estimate x1.25",
+    "out_expected": 25000,
+    "out_guard": 32768,
+    "inr_expected": 9.39,
+    "inr": 12.01
+   },
+   "ws_review": {
+    "in_expected": 14700,
+    "out_expected": 15000,
+    "inr_expected": 6.05,
+    "in_guard": 14700,
+    "out_guard": 15000,
+    "inr": 6.05,
+    "assumes_clips": 15,
+    "expected_from": "defaults",
+    "inr_fallback": 12.2
+   },
+   "video_end_check": {
+    "enabled": false,
+    "assumes_clips": 15,
+    "inr": 0.0,
+    "inr_expected": 0.0
+   },
+   "episode": {
+    "inr_expected": 15.44,
+    "inr": 30.26
+   }
+  }
+ },
+ "cutoff": {
+  "show_rule": "candidates",
+  "t_hide": 2.5,
+  "t_show": 3.5,
+  "t_rec": 4.0,
+  "t_rec_payoff": 4.0,
+  "rec_blockers": [
+   "needs_rescore",
+   "shot_flash",
+   "unreviewed_start",
+   "review_repair_failed"
+  ],
+  "n_candidates": 7,
+  "n_passed_hard_rules": 7,
+  "n_shown": 6,
+  "n_recommended": 4,
+  "n_worth_a_look": 2,
+  "n_unchecked": 0,
+  "n_rejected": 1,
+  "warnings": []
+ },
+ "episode_verdict": {
+  "strong_clips": 4,
+  "worth_a_look": 2,
+  "unchecked": 0,
+  "verdict": "strong",
+  "note": "4 strong candidates (plus 2 other candidates)."
+ },
+ "episode_notes": "Payoff beats: L0092 (conclusion: 'కరిగిపోయే లోపే followers ని తెచ్చుకొని సంపాదించుకోవాలి.'), L0140 (conclusion: 'ఇప్పుడు చెప్తున్నారా ముప్పై వేలు కాదురా ముప్పై లక్షల followers వచ్చినా మారదురా మోనా'), L0155 (conclusion: 'so వీలైనంత వరకు ఎవ్వరికీ connect అవ్వకు మోనా.'), L0281 (conclusion: 'ఈ మాత్రం దానికి ఓ tension పడిపోతావ్.'), L0306 (emotional_peak: 'లక్ష్మి ఆంటీ దగ్గరే installment లో తీసుకున్న అని చెప్తాలే'), L0409 (emotional_peak: 'importance లా అనిపిస్తుంది.'), L0427 (conclusion: 'ఎవరి జాగ్రత్తలో వాళ్ళు ఉంటే మంచిది.'). Episode structure: L0001-L0054 (Mona & Sony at home discussing salon shoot), L0055-L0102 (Mona & Smitha debating monetization vs free promotion), L0103-L0140 (Sukku & friend outside college discussing Mona's rising followers), L0141-L0248 (Smitha advising Mona on rich kids; broker Deepak pitching commercial promotions), L0249-L0281 (Strict father calls for live location; fake location app trick), L0282-L0307 (Mona surprises mother with saree), L0308-L0371 (Father drinking at bar discussing vulgar social media reels intercut with Mona giving earnings to mother), L0372-L0410 (Mona & Sukku romantic conversation about noticing vs observing and first likes), L0411-L0434 (Drunk father confronts daughters with threats of burning house down; cliffhanger), L0435-L0450 (Sony panicking and Mona reassuring her), L0451-L0461 (Camera promotional plug - skip entirely).",
+ "proposals": [
+  {
+   "id": "w03",
+   "pieces": [
+    {
+     "start_word": 424,
+     "end_word": 495,
+     "start": 384.27,
+     "end": 418.21
+    }
+   ],
+   "region": {
+    "start_word": 424,
+    "end_word": 495,
+    "start": 384.27,
+    "end": 418.21
+   },
+   "edited_duration": 33.94,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "నీకు ఒక లక్ష మంది followers ఉన్నారనుకో పది లక్షల మంది followers ఉన్న అబ్బాయితో friendship చేయాలి. ఎందుకు ఎందుకేంటే నీకు ఎలా చెప్పాలి మోనా. హా నాకు తెలిసిన ఒక influencer ఉంది. తను చాలా poor. కానీ ఇప్పుడు reels కొన్ని బాగా viral అయ్యాయి. ఇప్పుడు ఒక big shot కొడుకుని date చేస్తుంది. అయితే అయితే ఏంటి మోనా. హా ఇలాంటి local టమాటాలుగాళ్ళతో కొంచెం gap maintain చేయి. మన reels viral అయితే ఏ rich kid కి నచ్చుతామో చెప్పలేం. so వీలైనంత వరకు ఎవ్వరికీ connect అవ్వకు మోనా.",
+   "rank": 1,
+   "tier": "recommended",
+   "tier_label": "strong candidate",
+   "scores": {
+    "hook": 4.5,
+    "standalone": 4.5,
+    "payoff": 4.5,
+    "value_emotion": 4.5,
+    "overall": 4.5
+   },
+   "title": "Influencer friend ఇచ్చిన toxic dating advice",
+   "hook_line": {
+    "text": "నీకు ఒక లక్ష మంది followers ఉన్నారనుకో పది లక్షల మంది followers ఉన్న అబ్బాయితో friendship చేయాలి.",
+    "start_word": 424,
+    "end_word": 437
+   },
+   "payoff_line": "so వీలైనంత వరకు ఎవ్వరికీ connect అవ్వకు మోనా.",
+   "payoff_type": "conclusion",
+   "payoff_line_source": "discover",
+   "why_it_works": "The outrageous 10 lakh followers dating rule hooks immediately, paying off with hilarious and cynical Gen-Z advice.",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 383.97,
+     "end": 418.371,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 34.4,
+   "spoiler": false,
+   "characters": [
+    "Smitha",
+    "Mona"
+   ],
+   "visual_dependency": "low",
+   "start_line": "L0144",
+   "end_line": "L0155",
+   "end_hold": {
+    "payoff_end": 418.21,
+    "next_speech": 419.71,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "end": 418.371,
+    "hold_s": 0.16,
+    "on_shot_cut": true,
+    "rule": "shot_change_before_next_line",
+    "note": "next line starts quickly: ends on the shot change"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": 4,
+    "what_happens": "Smitha advises Mona on social media dating hierarchy, telling her to avoid local ordinary guys and hold out for rich kids who might notice her viral reels.",
+    "hook": "Smitha opens with an outrageous formula: நீకు లక్ష followers ఉంటే, 10 లక్షల followers ఉన్నవాడితోనే friendship చేయాలి.",
+    "payoff": "Smitha orders Mona to stay detached and ignore local guys because any rich kid might fall for her reels.",
+    "opening_strength": "strong",
+    "payoff_line": "so వీలైనంత వరకు ఎవ్వరికీ connect అవ్వకు మోనా.",
+    "payoff_type": "conclusion"
+   },
+   "review": {
+    "cold_open_note": "No cold open used.",
+    "cut_note": "Smooth continuous dialogue without cuts.",
+    "bad_cuts": [],
+    "changes": []
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": []
+  },
+  {
+   "id": "w06",
+   "pieces": [
+    {
+     "start_word": 1260,
+     "end_word": 1371,
+     "start": 992.45,
+     "end": 1091.75
+    }
+   ],
+   "region": {
+    "start_word": 1260,
+    "end_word": 1371,
+    "start": 992.45,
+    "end": 1091.75
+   },
+   "edited_duration": 99.3,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "so నువ్వు కూడా నా followers అనే observe చేస్తున్నావా? నీ followers నిన్ను observe చేస్తారు. నేను నిన్ను notice చేస్తా. so నీకేమనిపిస్తుంది. ఏమైనా change కనిపిస్తుందా? character change అయిందని ఏం కాదు. హ్మ్ మరి మరీ అంటే నీ life చాలా change అయింది మోనా. followers పెరిగారు, opportunities పెరిగాయి, నీ చుట్టూ జనం పెరిగారు. వీళ్ళ మధ్యలో నేను ఎక్కడున్నానేమో అని confusion. హ్మ్ కానీ నువ్వు ఎక్కడున్నావో నాకు తెలుసు. అయితే okay. హ్మ్ follower list లో అయితే కాదులే. okay. అది చాలు. ఒక్క నిమిషం reel upload చేయాలి. మళ్ళా? yes సరే చెయ్. One last question. హ్మ్ ఏంటి నీ reel కి first like ఎవరిది ఉంటే ఇష్టం. నీదే likes కోసం అయితే కాదు కదా ఊహూ నువ్వు like చేస్తే ఏదో follower count లానో, viewership count లానో అనిపీయదు. మరి importance లా అనిపిస్తుంది.",
+   "rank": 2,
+   "tier": "recommended",
+   "tier_label": "strong candidate",
+   "scores": {
+    "hook": 4.0,
+    "standalone": 4.5,
+    "payoff": 4.5,
+    "value_emotion": 4.5,
+    "overall": 4.5
+   },
+   "title": "నీ like నాకు count కాదు importance",
+   "hook_line": {
+    "text": "so నువ్వు కూడా నా followers అనే observe చేస్తున్నావా?",
+    "start_word": 1260,
+    "end_word": 1267
+   },
+   "payoff_line": "importance లా అనిపిస్తుంది.",
+   "payoff_type": "emotional_peak",
+   "payoff_line_source": "discover",
+   "why_it_works": "Hooks with an insightful observe vs notice line and delivers a touching, poetic romantic payoff about social media likes.",
+   "category": "emotional",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 992.15,
+     "end": 1097.258,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 105.11,
+   "spoiler": false,
+   "characters": [
+    "Mona",
+    "Sukku"
+   ],
+   "visual_dependency": "medium",
+   "start_line": "L0372",
+   "end_line": "L0409",
+   "end_hold": {
+    "payoff_end": 1091.75,
+    "end": 1097.258,
+    "hold_s": 5.51,
+    "on_shot_cut": true,
+    "next_speech": 1103.514,
+    "long_silence_after": false,
+    "laugh_after": true,
+    "note": "short hold (next shot cut before the minimum hold)",
+    "rule": "hold"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": 5,
+    "what_happens": "Sukku admits he feels lost among Mona's booming follower base. Mona reassures him that he is never just in her follower list. When she uploads a reel and Sukku asks whose first like she desires, she confesses his like feels like personal importance, not just view count.",
+    "hook": "Charming romantic banter: నీ followers నిన్ను observe చేస్తారు, నేను నిన్ను notice చేస్తా.",
+    "payoff": "Mona's heart-melting confession that his like feels like personal importance above millions of followers.",
+    "opening_strength": "strong",
+    "payoff_line": "importance లా అనిపిస్తుంది.",
+    "payoff_type": "emotional_peak"
+   },
+   "review": {
+    "cold_open_note": "No cold open used.",
+    "cut_note": "No cuts present; pacing feels natural and intimate.",
+    "bad_cuts": [],
+    "changes": []
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": []
+  },
+  {
+   "id": "w05",
+   "pieces": [
+    {
+     "start_word": 976,
+     "end_word": 1057,
+     "start": 708.19,
+     "end": 766.57
+    }
+   ],
+   "region": {
+    "start_word": 976,
+    "end_word": 1057,
+    "start": 708.19,
+    "end": 766.57
+   },
+   "edited_duration": 58.38,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "pani puri కి డబ్బులు కావాలా రేపు ఇస్తా లే అది అమ్మ నీకోకటి చెప్పాలి. ఏంటో చెప్పవే నువ్వు last చీర ఎప్పుడు కొనుక్కున్నావమ్మా చీరనా Lakshmi aunty దగ్గర ఎప్పుడో installment లో తీసుకున్నానే. తర్వాత మీ నాన్న నేను పెద్ద గొడవ పడ్డాం కదా ఆ అప్పుడు ఒక్కసారి తీసుకున్నాను. ఇప్పుడెందుకు అడుగుతున్నావ్ అంటే నేను నీకు ఒక చీర కొన్నానమ్మా తీసుకో చాలా బాగుంది నాన్న. డబ్బులు ఎక్కడివి? డబ్బులు? నేనొక exam రాశాను. దానికి స్కాలర్షిప్ వచ్చిందమ్మ. డబ్బులు అలా కూడా ఇస్తారా? హా ఇస్తారు. చాలా బాగుంది నాన్న. నాన్న చూసేమన్నడు కదా. ఏం అనర్లే. లక్ష్మి ఆంటీ దగ్గరే installment లో తీసుకున్న అని చెప్తాలే",
+   "rank": 3,
+   "tier": "recommended",
+   "tier_label": "strong candidate",
+   "scores": {
+    "hook": 3.0,
+    "standalone": 4.5,
+    "payoff": 4.5,
+    "value_emotion": 4.5,
+    "overall": 4.0
+   },
+   "title": "అమ్మకి తెలియకుండా saree gift ఇచ్చిన కూతురు",
+   "hook_line": {
+    "text": "pani puri కి డబ్బులు కావాలా రేపు ఇస్తా లే",
+    "start_word": 976,
+    "end_word": 983
+   },
+   "payoff_line": "లక్ష్మి ఆంటీ దగ్గరే installment లో తీసుకున్న అని చెప్తాలే",
+   "payoff_type": "emotional_peak",
+   "payoff_line_source": "discover",
+   "why_it_works": "Casual start builds into a heartwarming emotional peak when the mother plans to hide the gift from the dad.",
+   "category": "emotional",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 707.89,
+     "end": 770.139,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 62.25,
+   "spoiler": false,
+   "characters": [
+    "Mona",
+    "Mother"
+   ],
+   "visual_dependency": "medium",
+   "start_line": "L0283",
+   "end_line": "L0306",
+   "end_hold": {
+    "payoff_end": 766.57,
+    "end": 770.139,
+    "hold_s": 3.57,
+    "on_shot_cut": true,
+    "next_speech": 803.69,
+    "long_silence_after": true,
+    "laugh_after": false,
+    "rule": "hold"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": 5,
+    "what_happens": "Mona surprises her mother by gifting her a brand new saree bought with her reel earnings. When the mother asks how she got the money, Mona claims it is scholarship money, and the mother agrees to lie to the strict father to protect her.",
+    "hook": "Mother offers pani puri pocket money, but Mona asks when she last bought a saree for herself.",
+    "payoff": "Mother cherishes the saree and instantly schemes to protect Mona from the strict father by lying about installment purchase.",
+    "opening_strength": "strong",
+    "payoff_line": "లక్ష్మి ఆంటీ దగ్గరే installment లో తీసుకున్న అని చెప్తాలే",
+    "payoff_type": "emotional_peak"
+   },
+   "review": {
+    "cold_open_note": "No cold open used.",
+    "cut_note": "Complete natural scene flow.",
+    "bad_cuts": [],
+    "changes": []
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": []
+  },
+  {
+   "id": "w07",
+   "pieces": [
+    {
+     "start_word": 1372,
+     "end_word": 1413,
+     "start": 1103.514,
+     "end": 1150.134
+    }
+   ],
+   "region": {
+    "start_word": 1372,
+    "end_word": 1413,
+    "start": 1103.514,
+    "end": 1150.134
+   },
+   "edited_duration": 46.62,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "మోనా! హ్మ్ సోని! college కి వెళ్ళామా? చదువుకున్నామా? ఇంటికి వచ్చామా? అన్నట్టుగా ఉండాలి. ఏదో social media, reels, followers, famous అని ఏవైనా పిచ్చి పిచ్చి వేషాలు వేస్తే అమ్మాయిలని కూడా చూడను. ఇంటి మొత్తాన్ని కాల్చి పడేస్తాను. నాన్నకి ఏం తెలియదు అనుకుంటున్నారేమో, నాకన్నీ తెలుసు. ఎవరి జాగ్రత్తలో వాళ్ళు ఉంటే మంచిది. లేదా?",
+   "rank": 4,
+   "tier": "recommended",
+   "tier_label": "strong candidate",
+   "scores": {
+    "hook": 4.0,
+    "standalone": 4.0,
+    "payoff": 4.5,
+    "value_emotion": 4.0,
+    "overall": 4.0
+   },
+   "title": "Reels చేస్తే ఇల్లు కాల్చేస్తా అన్న తండ్రి",
+   "hook_line": {
+    "text": "మోనా!",
+    "start_word": 1372,
+    "end_word": 1372
+   },
+   "payoff_line": "ఎవరి జాగ్రత్తలో వాళ్ళు ఉంటే మంచిది.",
+   "payoff_type": "conclusion",
+   "payoff_line_source": "discover",
+   "why_it_works": "Fierce patriarchal warning grabs immediate attention and cuts cleanly on an ominous open threat.",
+   "category": "controversy",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "promo",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 1103.214,
+     "end": 1151.312,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 48.1,
+   "spoiler": false,
+   "characters": [
+    "Father",
+    "Mona",
+    "Sony"
+   ],
+   "visual_dependency": "medium",
+   "start_line": "L0411",
+   "end_line": "L0427",
+   "end_hold": {
+    "payoff_end": 1148.094,
+    "next_speech": 1152.014,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "end": 1151.312,
+    "hold_s": 3.22,
+    "on_shot_cut": true,
+    "rule": "reaction",
+    "reaction": {
+     "line": "L0428",
+     "text": "లేదా?",
+     "end": 1150.134
+    }
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": 5,
+    "what_happens": "The strict father comes home drunk and unleashes a ferocious tirade against social media and reels, threatening to burn down the house and warning that he knows everything they are up to.",
+    "hook": "Father screams their names violently: మోనా! సోని! college కి వెళ్ళామా? చదువుకున్నామా? ఇంటికి వచ్చామా? అన్నట్టుగా ఉండాలి!",
+    "payoff": "Father drops a chilling ultimatum that he knows everything and warns them to watch their steps.",
+    "opening_strength": "strong",
+    "payoff_line": "ఎవరి జాగ్రత్తలో వాళ్ళు ఉంటే మంచిది.",
+    "payoff_type": "conclusion"
+   },
+   "review": {
+    "cold_open_note": "No cold open used.",
+    "cut_note": "No interior cuts; intense promo delivery.",
+    "bad_cuts": [],
+    "changes": []
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": []
+  },
+  {
+   "id": "w02",
+   "pieces": [
+    {
+     "start_word": 329,
+     "end_word": 406,
+     "start": 268.98,
+     "end": 347.84
+    },
+    {
+     "start_word": 407,
+     "end_word": 417,
+     "start": 370.83,
+     "end": 374.25
+    }
+   ],
+   "region": {
+    "start_word": 329,
+    "end_word": 417,
+    "start": 268.98,
+    "end": 374.25
+   },
+   "edited_duration": 82.28,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "మోనకి నేనంటే ఇష్టమేనరా నువ్వు మాట్లాడవు. తను మాట్లాడదు. కానీ నిన్నెప్పుడూ ఇష్టమున్నట్టే చూస్తుంటదిరా కదా. నాకూ అలాగే అనిపిస్తదిరా. కానీ followers వచ్చాక పాత ఇష్టాలు పోతాయ్ రా పక్కా అవుతాయి. కానీ నాకెందుకో మోన అలాంటిది కాదనిపిస్తుంది రా. అయినా change అయ్యే chances కూడా చాలా తక్కువేరా ఎక్కడున్నావే ఒక్క నిమిషం ఇప్పుడే వస్తా వస్తున్నా ఉండు మోనా congrats మోనా. మొన్న నీ video viral అయింది కదా Thank you ఇంకా బాగా చేయ్. నీ dressing style బాగుంటది మోనా సరే సుకు Bye Bye ఏరా ఎలా మాట్లాడింది ఇష్టంగానే మాట్లాడిందిరా. followers వచ్చాక కూడా మార్లేదు చూసా చూద్దాం ఇప్పుడు చెప్తున్నారా ముప్పై వేలు కాదురా ముప్పై లక్షల followers వచ్చినా మారదురా మోనా",
+   "rank": 5,
+   "tier": "worth_a_look",
+   "tier_label": "candidate",
+   "scores": {
+    "hook": 3.5,
+    "standalone": 4.0,
+    "payoff": 4.0,
+    "value_emotion": 4.0,
+    "overall": 3.5
+   },
+   "title": "Followers వచ్చినా తను మారదురా",
+   "hook_line": {
+    "text": "మోనకి నేనంటే ఇష్టమేనరా",
+    "start_word": 329,
+    "end_word": 331
+   },
+   "payoff_line": "ఇప్పుడు చెప్తున్నారా ముప్పై వేలు కాదురా ముప్పై లక్షల followers వచ్చినా మారదురా మోనా",
+   "payoff_type": "conclusion",
+   "payoff_line_source": "discover",
+   "why_it_works": "Opens with relatable guy talk about a girl changing after fame and pays off with his unshakeable trust in her.",
+   "category": "story",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [
+    "song_overlap"
+   ],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 268.685,
+     "end": 348.426,
+     "kind": "scene"
+    },
+    {
+     "start": 370.58,
+     "end": 377.372,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 86.53,
+   "spoiler": false,
+   "characters": [
+    "Sukku",
+    "Friend",
+    "Mona"
+   ],
+   "visual_dependency": "medium",
+   "start_line": "L0108",
+   "end_line": "L0140",
+   "end_hold": {
+    "payoff_end": 374.25,
+    "end": 377.372,
+    "hold_s": 3.12,
+    "on_shot_cut": true,
+    "next_speech": 380.77,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "rule": "hold"
+   },
+   "chunk_drops": [
+    {
+     "after_line": "L0138",
+     "before_line": "L0140",
+     "removed_lines": [
+      "L0139"
+     ],
+     "lift_skip": false,
+     "start": 348.426,
+     "end": 370.58,
+     "removed_s": 22.15,
+     "why": "Drop the 23-second music bridge between Sukku meeting Mona and returning to talk to his friend."
+    }
+   ],
+   "discovery": {
+    "strength": 5,
+    "what_happens": "Sukku wonders whether Mona will forget him after getting thousands of followers. He goes and speaks with her; she greets him warmly as always. Sukku proudly declares to his friend that even with 30 lakh followers, Mona will never change.",
+    "hook": "Sukku opens with an earnest doubt: మోనకి నేనంటే ఇష్టమేనరా. Friend reminds him how she always looks at him.",
+    "payoff": "Sukku delivers a triumphant punchline proving his unshakeable faith in Mona.",
+    "opening_strength": "strong",
+    "payoff_line": "ఇప్పుడు చెప్తున్నారా ముప్పై వేలు కాదురా ముప్పై లక్షల followers వచ్చినా మారదురా మోనా",
+    "payoff_type": "conclusion"
+   },
+   "review": {
+    "cold_open_note": "No cold open used.",
+    "cut_note": "Song sequence cut smoothly connects the conversation.",
+    "bad_cuts": [],
+    "changes": []
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": []
+  },
+  {
+   "id": "w04",
+   "pieces": [
+    {
+     "start_word": 890,
+     "end_word": 973,
+     "start": 625.19,
+     "end": 690.81
+    }
+   ],
+   "region": {
+    "start_word": 890,
+    "end_word": 973,
+    "start": 625.19,
+    "end": 690.81
+   },
+   "edited_duration": 65.62,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "హా నాన్న phone చేస్తున్నాడే. మాట్లాడు check చేస్తాడే. location పంపియ్యమంటాడు. ఉమ్ సరే నేను ఒక app చెప్తాను. అది install చెయ్. App ఆ హా అందులో నుంచి నువ్వు ఎక్కడంటే అక్కడి నుంచి location పంపించచ్చు. install చెయ్. Sure ఆ పక్కా sure. నేను already అది వాడుతున్నా. ఎక్కడున్నావ్ college లోనే నాకు తెలియదనుకుంటున్నావా? location పెట్టు హా పంపిస్తున్నా. హా just miss ఏ. చెప్పా app ఏది ఏది ఇవ్వు. హా ఇదే. పంపి. location పంపి. ఏం కాదు. దీన్లో నుంచి పంపిస్తే మనం college లో ఉన్నట్టే కనిపిస్తుందేమో. హా అదే కనిపిస్తుంది పంపియ్యు. హుమ్ అమ్మయ్య ఈ మాత్రం దానికి ఓ tension పడిపోతావ్.",
+   "rank": 6,
+   "tier": "worth_a_look",
+   "tier_label": "candidate",
+   "scores": {
+    "hook": 3.5,
+    "standalone": 4.0,
+    "payoff": 3.5,
+    "value_emotion": 3.5,
+    "overall": 3.5
+   },
+   "title": "నాన్నకి fake location పంపించిన కూతురు",
+   "hook_line": {
+    "text": "హా నాన్న phone చేస్తున్నాడే.",
+    "start_word": 890,
+    "end_word": 893
+   },
+   "payoff_line": "ఈ మాత్రం దానికి ఓ tension పడిపోతావ్.",
+   "payoff_type": "conclusion",
+   "payoff_line_source": "discover",
+   "why_it_works": "Parental phone check creates instant panic and hooks viewers, resolving in a cheeky tech-enabled escape.",
+   "category": "story",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 624.89,
+     "end": 694.022,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 69.13,
+   "spoiler": false,
+   "characters": [
+    "Mona",
+    "Smitha",
+    "Father"
+   ],
+   "visual_dependency": "medium",
+   "start_line": "L0250",
+   "end_line": "L0281",
+   "end_hold": {
+    "payoff_end": 690.81,
+    "end": 694.022,
+    "hold_s": 3.21,
+    "on_shot_cut": true,
+    "next_speech": 706.29,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "rule": "hold"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": 4,
+    "what_happens": "Mona panics when her strict father rings asking for live location while she is outside. Smitha steps in with a spoof location app, successfully faking her location to college and fooling the father.",
+    "hook": "Dad rings unexpectedly: హా నాన్న phone చేస్తున్నాడే. check చేస్తాడే. location పంపియ్యమంటాడు!",
+    "payoff": "The spoof location sends successfully, Mona sighs in relief, and Smitha mocks her panic.",
+    "opening_strength": "strong",
+    "payoff_line": "ఈ మాత్రం దానికి ఓ tension పడిపోతావ్.",
+    "payoff_type": "conclusion"
+   },
+   "review": {
+    "cold_open_note": "No cold open used.",
+    "cut_note": "Clean uncut scene.",
+    "bad_cuts": [],
+    "changes": []
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": []
+  }
+ ],
+ "rejected": [
+  {
+   "id": "w01",
+   "tier": "rejected",
+   "reject_reasons": [
+    "Q1: clear failure (overall 2.5 <= 2.5; hook 3.0, standalone 3.0, payoff 3.0); scores are for the cut before the review repair: re-score to reconsider"
+   ],
+   "pieces": [
+    {
+     "start_word": 159,
+     "end_word": 294,
+     "start": 162.12,
+     "end": 233.76
+    }
+   ],
+   "region": {
+    "start_word": 159,
+    "end_word": 294,
+    "start": 162.12,
+    "end": 233.76
+   },
+   "edited_duration": 71.64,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ఓసేయ్. దొరికిందంతా తీసుకోవాలి. ఏది కనిపిస్తే ఆ video చేయాలి. ఇలా అయితే ఎప్పుడు rich అవుతాం, ఎప్పుడు flat కొంటాం, ఎప్పుడు సంపాదిస్తాం నేనేదో నీతో collab చేసి followers పెంచుకుందామని plan చేస్తుంటే ఇప్పుడు ఏమైంది మొన్న beauty parlour లో fifteen k కి మాట్లాడితే five k కి okay చేశావ్. ఈరోజు store promotion free అంటున్నావ్. అంటే ఆ రోజు అంటే ఇద్దరికీ కలిపి చేస్తున్నాడు కదా అందుకు మరి ఇది అంటే Sony వాళ్ళ friend ఏ కదా. డబ్బులు తీసుకోవడం ఎందుకు అని చేస్తే ఏంటి videos తీసుకొని వాళ్ళ ID లో post చేసుకొని జనాలు రప్పించుకొని సంపాదించుకోవట్లేదా. మనం సంపాదిస్తే తప్పేంటి సరే sorry అని చెప్పేస్తానులే. ఇంకొకసారి ఆ number నుంచి phone వస్తే, నీ number ఇస్తా. నువ్వు మాట్లాడుకో. okay నా నాకు నీ వల్ల thousand followers వచ్చారు. ఇంకేదైనా మంచి post పెడితే దెబ్బకి one lakh followers రావాలి నీకు వస్తారులేవే మెల్లగా అలా కాదే. నేను చెప్పింది విను. ఈ age, ఈ fame ice cream లాంటిది. ఉమ్ కరిగిపోయే లోపే followers ని తెచ్చుకొని సంపాదించుకోవాలి.",
+   "time_segments": [
+    {
+     "start": 161.82,
+     "end": 233.812,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 71.99,
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "discovery": {
+    "strength": 4,
+    "hook": "Smitha gets shocked and scolds Mona: ఓసేయ్. దొరికిందంతా తీసుకోవాలి. ఏది కనిపిస్తే ఆ video చేయాలి. ఇలా అయితే ఎప్పుడు rich అవుతాం!",
+    "payoff": "Smitha delivers a cynical reality check on social media fame: fame is like ice cream, you must cash in before it melts.",
+    "payoff_line": "కరిగిపోయే లోపే followers ని తెచ్చుకొని సంపాదించుకోవాలి.",
+    "payoff_type": "conclusion"
+   },
+   "scores": {
+    "hook": 3.0,
+    "standalone": 3.0,
+    "payoff": 3.0,
+    "value_emotion": 3.0,
+    "overall": 2.5
+   },
+   "flaws": [
+    "needs_rescore"
+   ],
+   "needs_rescore": true,
+   "rescore_reason": "repaired after review (restored drop(s) [0]: Cut X1 removes the apology and follower discussion, making speaker_1 awkwardly counter her own preceding point with అలా కాదే.); scores (overall 2.5, hook 3.0, standalone 3.0, payoff 3.0) are for the cut before the repair"
+  }
+ ]
+}

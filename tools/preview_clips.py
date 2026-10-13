@@ -12,11 +12,16 @@ words, marked (page: hover / tap shows what Scribe heard and why; .txt: [✎ ...
 and low-confidence words with no correction get "(?)". Scribe's transcript is never changed. --no-asr-fix: off.
 
 usage: python tools/preview_clips.py runs/<run_id> [--top 5] [--video <id>] [--skip-existing] [--no-asr-fix]
+                                     [--reuse runs/<earlier_run> ...]
 writes runs/previews/<run_id>/<video_id>/NN_<clip_id>.mp4 and NN_<clip_id>.txt
+
+--reuse RUN_DIR (repeatable): copy an already rendered preview (runs/previews/<RUN_DIR name>/...) instead of
+rendering again when that run has a clip of the same video with exactly the same played segments.
 """
 import argparse
 import csv
 import json
+import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -155,6 +160,9 @@ def clip_meta(c):
     s = c.get("scores", {})
     return {"rank": c["rank"], "id": c["id"], "title": c["title"], "hook": hook_text(c),
             "why": c.get("why_it_works", ""), "flags": c.get("flags") or [], "tier": c.get("tier", ""),
+            "tier_label": c.get("tier_label") or c.get("tier", ""),
+            "payoff": c.get("payoff_line") or "", "payoff_type": c.get("payoff_type") or "",
+            "review_note": c.get("review_note") or "",
             "category": " · ".join(x for x in (c.get("content_type", ""), c.get("clip_purpose", ""),
                                                 c.get("category", "")) if x),
             "score": s.get("overall"), "scores": s,
@@ -175,8 +183,14 @@ def transcript_text(meta, lines, video_name):
     """Readable .txt beside the video."""
     out = [f"#{meta['rank']} {meta['title']}",
            f"Video: {video_name} | {meta['duration']:.0f}s edited | source {mmss(meta['src_start'])}–"
-           f"{mmss(meta['src_end'])} | {meta['n_pieces']} pieces | pipeline score {meta['score']} ({meta['tier']})",
-           f"Hook: {meta['hook']}", f"Why: {meta['why']}"]
+           f"{mmss(meta['src_end'])} | {meta['n_pieces']} pieces | pipeline score {meta['score']} "
+           f"({meta.get('tier_label') or meta['tier']})"]
+    if meta.get("review_note"):
+        out.append(f"Note: {meta['review_note']}")
+    out.append(f"Hook: {meta['hook']}")
+    if meta.get("payoff"):
+        out.append(f"Payoff ({meta.get('payoff_type') or '?'}): {meta['payoff']}")
+    out.append(f"Why: {meta['why']}")
     if meta["flags"]:
         out.append(f"Flags: {', '.join(meta['flags'])}")
     out += [f"Edit note: {n}" for n in meta["edit_notes"] if n]
@@ -251,6 +265,31 @@ def render(src, segs, out):
         raise RuntimeError(f"ffmpeg failed for {out.name}: {r.stderr[-400:]}")
 
 
+def seg_key(segs):
+    return tuple((round(a, 3), round(b, 3)) for a, b in segs)
+
+
+def clip_segments(c, words):
+    """Played segments: web-series clips carry time_segments (may include silent visual beats); else padded pieces."""
+    return ([(t["start"], t["end"]) for t in c["time_segments"]] if c.get("time_segments")
+            else padded_segments(c["pieces"], words))
+
+
+def reuse_index(run_dirs, vid, words):
+    """{segment key: rendered mp4} for this video's clips in earlier runs whose previews exist."""
+    out = {}
+    for rd in run_dirs:
+        f = Path(rd) / f"{vid}.json"
+        if not f.exists():
+            continue
+        doc = json.loads(f.read_text(encoding="utf-8"))
+        for c in doc.get("proposals") or []:
+            mp4 = Path("runs/previews") / Path(rd).name / vid / f"{c['rank']:02d}_{c['id']}.mp4"
+            if mp4.exists():
+                out.setdefault(seg_key(clip_segments(c, words)), mp4)
+    return out
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("run")
@@ -259,6 +298,8 @@ def main():
     ap.add_argument("--skip-existing", action="store_true", help="don't re-render videos that exist")
     ap.add_argument("--no-asr-fix", action="store_true",
                     help="show Scribe's words as is (no ASR corrections, no low-confidence marks)")
+    ap.add_argument("--reuse", action="append", default=[], metavar="RUN_DIR",
+                    help="copy an earlier run's rendered preview when its clip plays exactly the same segments")
     args = ap.parse_args()
     run = Path(args.run)
     out_root = Path("runs/previews") / run.name
@@ -281,22 +322,28 @@ def main():
                   f"{sum(m['kind'] == 'unsure' for m in marks.values())} low-confidence words marked")
         out_dir = out_root / vid
         out_dir.mkdir(parents=True, exist_ok=True)
+        reuse = reuse_index(args.reuse, vid, words) if args.reuse else {}
         index.append(f"\n## {vid}\n")
         page.append({"video_id": vid, "n_total": len(doc["proposals"]), "clips": [],
                      **({"verdict": doc["episode_verdict"]} if doc.get("episode_verdict") else {})})
         for c in sorted(doc["proposals"], key=lambda c: c["rank"])[:args.top]:
             out = out_dir / f"{c['rank']:02d}_{c['id']}.mp4"
             # web-series GT clips carry time_segments (may include silent visual beats): play those as is
-            segs = ([(t["start"], t["end"]) for t in c["time_segments"]] if c.get("time_segments")
-                    else padded_segments(c["pieces"], words))
+            segs = clip_segments(c, words)
             if not (out.exists() and args.skip_existing):
-                render(vdir / f"{vid}.mp4", segs, out)
+                same = reuse.get(seg_key(segs))
+                if same is not None and same.resolve() != out.resolve():
+                    shutil.copy2(same, out)
+                    print(f"{vid} #{c['rank']}: same cut as {same.as_posix()}: copied")
+                else:
+                    render(vdir / f"{vid}.mp4", segs, out)
             meta, lines = clip_meta(c), transcript_lines(c, segs, words, labels, marks)
             out.with_suffix(".txt").write_text(transcript_text(meta, lines, out.name), encoding="utf-8")
             page[-1]["clips"].append({**meta, "video": out.relative_to(out_root).as_posix(), "lines": lines})
             s = c.get("scores", {})
             print(f"{vid} #{c['rank']}: {len(c['pieces'])} pieces -> {len(segs)} cuts -> {out}")
-            index.append(f"- **#{c['rank']} {c['title']}** ({c['edited_duration']:.0f}s, pipeline score "
+            index.append(f"- **#{c['rank']} {c['title']}** ({c['edited_duration']:.0f}s, "
+                         f"{c.get('tier_label') or c.get('tier', '')}, pipeline score "
                          f"{s.get('overall')}) — `{out.relative_to(out_root).as_posix()}` + transcript "
                          f"`{out.with_suffix('.txt').relative_to(out_root).as_posix()}`\n"
                          f"  - hook: {hook_text(c)}\n  - why: {c.get('why_it_works', '')}\n")

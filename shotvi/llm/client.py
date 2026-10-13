@@ -8,7 +8,9 @@ Usage::
                             system=..., prompt=..., schema=...)
 
 Cache key = sha256 of (provider, model, params, system, prompt, schema). Only responses that parse and validate are
-cached, so an eval rerun with unchanged prompts costs nothing. The ledger records every call with its *full* cost
+cached, so an eval rerun with unchanged prompts costs nothing. A prompt the provider refuses on safety grounds
+(``SafetyBlocked``: never retried) is remembered too, as a ``{"blocked": reason}`` entry: a rerun raises the same
+SafetyBlocked without a call. The ledger records every call with its *full* cost
 (what an uncached production run pays) and the billed cost (0 on a cache hit).
 """
 from __future__ import annotations
@@ -20,7 +22,7 @@ import threading
 import time
 from pathlib import Path
 
-from .base import BudgetExceeded, LLMError, ModelSpec, Provider, RawResponse, RetryableError
+from .base import BudgetExceeded, LLMError, ModelSpec, Provider, RawResponse, RetryableError, SafetyBlocked
 from .pricing import SEARCH_USD_PER_QUERY, cost_usd
 
 try:
@@ -166,6 +168,20 @@ class LLMClient:
                                   ensure_ascii=False), encoding="utf-8")
         tmp.replace(p)
 
+    def _cache_put_block(self, spec, key, reason: str, input_tokens: int, meta: dict):
+        """Remember a safety block of this exact prompt (attempt 0 key), so a rerun / replay / dry run raises the same
+        SafetyBlocked for free instead of paying for the same refusal again. Delete the file to try the prompt
+        again."""
+        if not self.use_cache:
+            return
+        p = self._cache_path(spec, key)
+        p.parent.mkdir(parents=True, exist_ok=True)
+        tmp = p.with_suffix(".tmp")
+        tmp.write_text(json.dumps({"blocked": reason, "input_tokens": input_tokens, "meta": meta,
+                                   "created": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())},
+                                  ensure_ascii=False), encoding="utf-8")
+        tmp.replace(p)
+
     # --------------------------------------------------------------- generate
     def _parse(self, text: str, schema: dict | None, text_ok: bool = False):
         if text_ok and schema is None:  # free-text answer requested (e.g. a grounded research call)
@@ -203,6 +219,12 @@ class LLMClient:
             key = self.cache_key(spec, system, prompt + mkey, schema,
                                  salt="" if attempt == 0 else f"retry{attempt}")
             hit = self._cache_get(spec, key)
+            if hit is not None and hit.get("blocked"):
+                # a remembered safety block of this prompt: no call (a retry would be refused and billed again)
+                self.ledger.record(role, spec, RawResponse("", int(hit.get("input_tokens") or 0), 0), cached=True,
+                                   latency=0.0, ok=False)
+                raise SafetyBlocked(f"{role}/{spec.model}: prompt blocked by the provider's safety check "
+                                    f"(blockReason {hit['blocked']}; cached block)", reason=str(hit["blocked"]))
             if hit is not None and spec.params.get("google_search") and not hit.get("grounding"):
                 hit = None  # a grounded answer without its grounding metadata cannot be verified: call again
             if hit is not None:
@@ -219,7 +241,15 @@ class LLMClient:
                 est = (len(system) + len(prompt)) // 3
                 self.misses.append({"role": role, "model": spec.model, "est_input_tokens": est})
                 raise LLMError(f"{role}/{spec.model}: cache miss (cache-only dry run)")
-            raw = self._call_with_retries(role, prov, spec, system, prompt, schema, media)
+            try:
+                raw = self._call_with_retries(role, prov, spec, system, prompt, schema, media)
+            except SafetyBlocked as e:
+                if attempt == 0:
+                    resp = e.response
+                    self._cache_put_block(spec, key, e.reason, int(getattr(resp, "input_tokens", 0) or 0),
+                                          {"role": role, **(meta or {})})
+                raise SafetyBlocked(f"{role}/{spec.model}: prompt blocked by the provider's safety check "
+                                    f"(blockReason {e.reason})", reason=e.reason, response=e.response) from e
             try:
                 obj = self._parse(raw.text, schema, text_ok)
             except RetryableError as e:
@@ -239,6 +269,11 @@ class LLMClient:
             try:
                 raw = prov.generate(spec, system, prompt, schema, media) if media else \
                     prov.generate(spec, system, prompt, schema)
+            except SafetyBlocked as e:
+                # never retried (the same prompt is refused again); the refused prompt may still be billed
+                if e.response is not None:
+                    self.ledger.record(role, spec, e.response, cached=False, latency=time.time() - t, ok=False)
+                raise
             except RetryableError as e:
                 billed = getattr(e, "response", None)
                 if billed is not None:

@@ -30,18 +30,27 @@ Stages (per episode):
      a cold open or flag bad cuts (code then rebuilds without them; no further call), writes title / why.
      A clip repaired this way is flagged ``needs_rescore`` (its scores belong to the cut before the repair): it is
      tiered on those scores like any other clip but can never be ``recommended``.
+     Safety fallback: the combined call goes first (same prompt and cache key as before the fallback existed). Only
+     when Gemini blocks it (``promptFeedback.blockReason``, e.g. PROHIBITED_CONTENT: not adjustable, never retried;
+     any other error behaves as before) are the clips reviewed in halves, recursively, down to single clips. A clip
+     still blocked alone gets ``review_status: "blocked"``, no scores, tier ``unchecked``, and is shown last with a
+     note. A blocked discover stops the episode with a message naming the block reason (CLI exit code 4).
   4. (optional, off by default) video end check: ``video_check`` clip2 with shot lines; only the END suggestion
      is applied, capped and flagged.
-  5. absolute tiers, no padding (founder, 2026-10-07: the count depends on the video; show only clips that clear
-     the bar and say plainly when an episode has few or none):
-       recommended   review overall >= t_rec AND review payoff >= t_rec_payoff AND no blocking flaw
-                     (thresholds.rec_blockers: needs_rescore, a shot flash kept, an unreviewed start, a failed
+  5. output policy (thresholds.show_rule). Default "candidates" (founder, 2026-10-13): v1 is a ranked candidate list
+     the creator picks from, not the final judge (on 4 new episodes no scorer told the founder's yeses apart):
+       recommended   ("strong candidate") review overall >= t_rec AND review payoff >= t_rec_payoff AND no blocking
+                     flaw (thresholds.rec_blockers: needs_rescore, a shot flash kept, an unreviewed start, a failed
                      review repair)
-       worth_a_look  review overall >= t_show, not recommended
-       rejected      everything else (scores kept in the file, never shown); no "top 3 below threshold"
-     Within a tier: review overall, then payoff; ties keep discovery order. ``episode_verdict`` counts the tiers:
-     none (0 recommended) / thin (1-2) / strong (>= verdict_strong_min). Write ``<out>/<video_id>.json``
-     (schema 1.1 + web-series fields).
+       worth_a_look  ("candidate") every other reviewed clip that is not a clear failure
+       unchecked     review blocked by the safety check (shown last, no scores)
+       rejected      clear failures only: review overall <= t_hide (2.5) or a part score <= 2; hard-rule failures
+                     (length outside 15-150 s, censored audio, far stitch, replayed words) never reach the review
+     show_rule "tiers" = the 2026-10-07 rule (worth_a_look needs overall >= t_show; reversible by config).
+     Order: strong candidates, then the rest by review overall, then payoff, then discovery order; unchecked last.
+     Every shown clip carries title, hook line, payoff line + payoff type (discover's, else the end line) and a
+     one-sentence why. ``episode_verdict`` counts strong candidates: none (0) / thin (1-2) / strong
+     (>= verdict_strong_min). Write ``<out>/<video_id>.json`` (schema 1.1 + web-series fields).
 
 CLI::
 
@@ -85,6 +94,8 @@ import time
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Callable
+
+from shotvi.llm.base import SafetyBlocked
 
 ROOT = Path(__file__).resolve().parents[2]
 PIPELINE_VERSION = "ws/0.2"
@@ -153,8 +164,14 @@ DEFAULTS: dict = {
     "review_view": "final",
     "guardrails": {"min_s": 15.0, "soft_max_s": 120.0, "hard_max_s": 150.0, "skip_s": 30.0, "dup_overlap": 0.5,
                    "blocks_flag_above": 3},
-    # absolute tiers (see module docstring, stage 5); no padding below t_show
-    "thresholds": {"t_show": 3.5, "t_rec": 4.0, "t_rec_payoff": 4.0,
+    # output policy (see module docstring, stage 5). show_rule "candidates" (v1, founder 2026-10-13): a ranked
+    # candidate list for the creator: every built clip is shown except clear failures (review overall <= t_hide, or
+    # a part score <= 2, which caps overall at 2.0); hard-rule failures never reach the review. "tiers" = the
+    # 2026-10-07 rule (shown only when overall >= t_show). recommended / worth_a_look stay the internal tier names
+    # (user-facing: "strong candidate" / "candidate"); show_unchecked: clips whose review Gemini's safety check
+    # blocked are shown last, unscored
+    "thresholds": {"show_rule": "candidates", "t_hide": 2.5, "show_unchecked": True,
+                   "t_show": 3.5, "t_rec": 4.0, "t_rec_payoff": 4.0,
                    # flaws that keep a clip out of `recommended` (it stays worth_a_look if its overall allows):
                    # needs_rescore (repaired after review, scores are for the cut before), shot_flash (a flash of
                    # another shot kept at a segment edge), unreviewed_start (plays a start the review did not
@@ -1104,6 +1121,9 @@ class BudgetStop(RuntimeError):
     pass
 
 
+EXIT_SAFETY_BLOCKED = 4     # CLI exit code: an episode's discover was blocked by the provider's safety check
+
+
 USD_PER_M = {"in": 0.75, "out": 3.75}   # gemini-3.8-flash (promo price, pricing.PRICES)
 
 
@@ -1152,6 +1172,7 @@ def project_usd(in_tok: int, out_tok: int, model: str | None = None) -> float:
 # could let a review push the ledger past --max-ledger-inr.
 PROJ_REVIEW = {"high": (6000, 1800), "medium": (3000, 800), "low": (2000, 250)}   # (base, per clip)
 REVIEW_IN_PER_CLIP = 900
+REVIEW_IN_BASE = 1200           # review prompt input without clips (system prompt + header)
 # video end check per clip: guard value, and expected from the clip-check calls of 2026-10-05 (video_clip_shots:
 # ₹1.1-1.7 per clip, mean ~₹1.35; the 8-clip text-free variant ~₹1.0)
 VIDEO_END_INR_PER_CLIP = 2.0
@@ -1252,6 +1273,75 @@ def review_prompt(texts: list[str], cfg: dict | None = None) -> tuple[str, str]:
     return p.system, p.render(n_clips=len(texts), clips="\n\n".join(texts))
 
 
+def review_in_tokens(llm, rspec, rs: str, ru: str) -> int:
+    """Input tokens of a review prompt: countTokens (free network call), else a character estimate."""
+    try:
+        return llm.count_tokens(rspec, rs + "\n" + ru)
+    except Exception:   # noqa: BLE001
+        return len(rs + ru) // 2
+
+
+class _DryBill(Exception):
+    """Dry run: the split-review fallback reached a call that is not cached (``inr`` = guard rupees from there)."""
+
+    def __init__(self, inr_guard: float):
+        super().__init__(f"split review would bill ₹{inr_guard:.2f}")
+        self.inr = inr_guard
+
+
+BLOCKED_NOTE = "Gemini's safety check blocked this clip; review it manually"
+
+
+def discover_blocked(vid: str, e, where: str = "") -> SafetyBlocked:
+    """A blocked discover is fatal for the episode (no moments, nothing to review): say so plainly."""
+    return SafetyBlocked(
+        f"{vid}: ws_discover{' (' + where + ')' if where else ''} was blocked by Gemini's safety check "
+        f"(blockReason {e.reason}). This block is not adjustable (safetySettings cannot turn it off), so no clips "
+        f"were proposed for this episode: pick clips manually or try another discover model.", reason=e.reason)
+
+
+def review_split(llm, rspec, cfg: dict, items: list[tuple[str, str]], reason: str, vid: str, guard, call_proj: dict,
+                 fb_inr: float, calls: list, log=print, dry_run: bool = False) -> tuple[dict, dict]:
+    """Review ``items`` [(clip id, play text)] whose combined review was blocked (``reason``): review each half,
+    recursing into a half that is blocked again, down to single clips. Returns (reviews by id, {id: block reason}
+    for single clips still blocked). Every split call goes through the spend guard: ``call_proj["ws_review"]`` is set
+    to that call's own projection (llm.before_call checks it before every billed attempt), and before the first
+    uncached split the whole worst-case fallback (``fb_inr``) is checked once. ``calls`` collects one record per
+    call. Dry run: raises _DryBill at the first uncached call."""
+    reviews: dict = {}
+    blocked: dict = {}
+    if len(items) <= 1:
+        return reviews, {i: reason for i, _ in items}
+    k = len(items) // 2
+    parts = [items[:k], items[k:]]
+    prompts = [review_prompt([t for _, t in part], cfg) for part in parts]
+    first_level = not calls
+    if first_level and not all(is_cached(llm, rspec, s, u, REVIEW_SCHEMA) for s, u in prompts):
+        if dry_run:
+            raise _DryBill(fb_inr)
+        guard.check(f"{vid} ws_review split fallback (worst case)", fb_inr)
+    for part, (s, u) in zip(parts, prompts):
+        ids = [i for i, _ in part]
+        n_in = review_in_tokens(llm, rspec, s, u)
+        call_proj["ws_review"] = inr(project_usd(n_in, review_out_guard(rspec.params, len(part)), rspec.model))
+        if dry_run and not is_cached(llm, rspec, s, u, REVIEW_SCHEMA):
+            raise _DryBill(call_proj["ws_review"])
+        try:
+            rv = llm.generate_json("ws_review", rspec, s, u, REVIEW_SCHEMA, meta={"video": vid, "split": ids})
+        except SafetyBlocked as e:
+            calls.append({"clips": ids, "status": "blocked", "reason": e.reason})
+            log(f"  split review {ids[0]}..{ids[-1]} ({len(ids)} clips): blocked ({e.reason})")
+            r2, b2 = review_split(llm, rspec, cfg, part, e.reason, vid, guard, call_proj, fb_inr, calls, log,
+                                  dry_run)
+            reviews.update(r2)
+            blocked.update(b2)
+            continue
+        calls.append({"clips": ids, "status": "ok"})
+        got = {str(r["id"]).strip(): r for r in rv["clips"]}
+        reviews.update({i: got[i] for i in ids if i in got})
+    return reviews, blocked
+
+
 # ======================================================================================== projection (free)
 DISCOVER_OUT_EXPECTED = 25000   # discover (high) output incl. thinking without a calibration run: 19-25k measured
 N_CLIPS_GUESS = 15              # clips reviewed, before discovery has run
@@ -1281,6 +1371,34 @@ def review_out_guard(params: dict, n_clips: int) -> int:
     """Conservative review output (visible + thinking), never above the call's output budget."""
     rb, rc = PROJ_REVIEW[params.get("thinking_level", "high")]
     return min(rb + rc * n_clips, int(params.get("max_output_tokens") or 10 ** 9))
+
+
+# ---- review safety fallback (see run_episode stage 3b): the combined review call goes first; only when Gemini blocks
+# the prompt (promptFeedback.blockReason) are the clips reviewed in halves, recursively, down to single clips.
+def review_split_sizes(n: int) -> list[int]:
+    """Batch sizes of the split-review fallback in its worst single-block case: both halves are reviewed and the half
+    holding the blocked clip (the larger) splits again, down to one clip. n=12: [6, 6, 3, 3, 1, 2, 1, 1] (23 clip
+    reviews in 8 calls, ~2x the combined review)."""
+    out, m = [], n
+    while m > 1:
+        a = m // 2
+        out += [a, m - a]
+        m -= a
+    return out
+
+
+def review_fallback_usd(rspec, n: int, in_full: int | None = None) -> float:
+    """Guard USD of the split fallback for n clips in its worst single-block case (review_split_sizes: ~2n clip
+    reviews), ~2x the combined review's guard. Input per call: the prompt's fixed part plus its clips pro rata;
+    output: the combined call's guard (review_out_guard) pro rata to its clips, since measured review output scales
+    with the clips (medium: 3.4k for 5 clips, 6.3k for 8). Each split call is still checked on its own, at its full
+    review_out_guard, before it is billed. ``in_full`` = the combined call's input tokens (default REVIEW_IN_BASE +
+    REVIEW_IN_PER_CLIP per clip)."""
+    in_full = in_full if in_full is not None else REVIEW_IN_BASE + REVIEW_IN_PER_CLIP * n
+    base = min(REVIEW_IN_BASE, in_full)
+    per_in = max(0.0, in_full - base) / max(1, n)
+    per_out = review_out_guard(rspec.params, n) / max(1, n)
+    return sum(project_usd(int(base + per_in * k), int(per_out * k), rspec.model) for k in review_split_sizes(n))
 
 
 def project_episode(ep: Episode, ix, cfg: dict, system: str, user: str, llm=None, calib: dict | None = None,
@@ -1327,14 +1445,16 @@ def project_episode(ep: Episode, ix, cfg: dict, system: str, user: str, llm=None
     rev = {"in_expected": rv_in, "out_expected": rv_exp_out, "inr_expected": round(inr(project_usd(rv_in, rv_exp_out, rspec.model)), 2),
            "in_guard": rv_g_in, "out_guard": rv_g_out, "inr": round(inr(project_usd(rv_g_in, rv_g_out, rspec.model)), 2),
            "assumes_clips": N_CLIPS_GUESS,
-           "expected_from": f"{calib['run']} ({calib.get('n_reviewed')} clips)" if rcb else "defaults"}
+           "expected_from": f"{calib['run']} ({calib.get('n_reviewed')} clips)" if rcb else "defaults",
+           # split fallback when Gemini's safety check blocks the combined review (guard only: not expected)
+           "inr_fallback": round(inr(review_fallback_usd(rspec, N_CLIPS_GUESS, rv_g_in)), 2)}
     n_vc = (calib or {}).get("n_reviewed") or N_CLIPS_GUESS
     vend = {"enabled": bool(cfg["video_end_check"]["enabled"]), "assumes_clips": n_vc,
             "inr": round(VIDEO_END_INR_PER_CLIP * n_vc, 2) if cfg["video_end_check"]["enabled"] else 0.0,
             "inr_expected": round(VIDEO_END_INR_EXPECTED * n_vc, 2) if cfg["video_end_check"]["enabled"] else 0.0}
     return {"ws_discover": disc, "ws_review": rev, "video_end_check": vend,
             "episode": {"inr_expected": round(disc["inr_expected"] + rev["inr_expected"] + vend["inr_expected"], 2),
-                        "inr": round(disc["inr"] + rev["inr"] + vend["inr"], 2)}}
+                        "inr": round(disc["inr"] + rev["inr"] + rev["inr_fallback"] + vend["inr"], 2)}}
 
 
 def spec_of(cfg, role):
@@ -1477,6 +1597,7 @@ def project_scenes(ep: Episode, ix, cfg: dict, calls: list[tuple[str, str]], cal
            "in_expected": e_in, "out_expected": e_out, "inr_expected": round(inr(project_usd(e_in, e_out, rspec.model)), 2),
            "in_worst": w_in, "out_worst": w_out, "inr_worst": round(inr(project_usd(w_in, w_out, rspec.model)), 2),
            "in_guard": g_in, "out_guard": g_out, "inr": round(inr(project_usd(g_in, g_out, rspec.model)), 2),
+           "inr_fallback": round(inr(review_fallback_usd(rspec, n_worst, g_in)), 2),   # safety-block split (guard)
            **({"warning": f"{n_worst} clips may need ~{rcb['output_tokens'] * n_worst // max(1, n_cal or 1)} output "
                           f"tokens, above the review's max_output_tokens {cap}: a truncated answer fails"}
               if rcb and n_cal and rcb["output_tokens"] * n_worst / n_cal > cap else {})}
@@ -1517,7 +1638,7 @@ def discover_by_scene(ep: Episode, ix, tr: dict, cfg: dict, llm, guard: Guard, v
     # and the guard value for the review; each discover ATTEMPT then needs room for itself at its whole budget
     # PLUS the review (and end check) at theirs, so no discover call is ever paid whose review the limit would
     # refuse. A run stopped between scene calls keeps the paid calls in the cache: a rerun resumes for free.
-    tail_guard = proj["ws_review"]["inr"] + proj["video_end_check"]["inr"]
+    tail_guard = proj["ws_review"]["inr"] + proj["ws_review"]["inr_fallback"] + proj["video_end_check"]["inr"]
     precheck = sum(pc[j]["inr_worst"] for j in uncached) + tail_guard
     if dry_run:
         if uncached:
@@ -1539,7 +1660,10 @@ def discover_by_scene(ep: Episode, ix, tr: dict, cfg: dict, llm, guard: Guard, v
     moments, rejected, per_call, notes = [], [], [], []
     for win, (s, u) in zip(plan["windows"], calls):
         sc = win["scene"]
-        d = llm.generate_json("ws_discover", spec, s, u, schema, meta={"video": vid, "scene": sc["no"]})
+        try:
+            d = llm.generate_json("ws_discover", spec, s, u, schema, meta={"video": vid, "scene": sc["no"]})
+        except SafetyBlocked as e:
+            raise discover_blocked(vid, e, f"scene {sc['no']} of {len(calls)}") from e
         ids = SC.window_ids(ep, win)
         rec = {"scene": sc["no"], "lines": [sc["first_line"], sc["last_line"]],
                "context_before": ids["before"][:1] + ids["before"][-1:], "context_after": ids["after"][:1]
@@ -1579,6 +1703,20 @@ def hard_rules(ep: Episode, c: dict, cfg) -> list[str]:
         if any(t in ev["text"] for t in CENSOR_TOKENS) and any(
                 ev["start"] < s["end"] and ev["end"] > s["start"] for s in c["time_segments"]):
             out.append(f"A1: overlaps censored event at {ev['start']:.1f}s")
+    # the cut builder never makes these (drops > max_drop_s are ignored, a cold open is skipped in place); checked
+    # anyway because they are clear failures the candidate list must never show
+    scene = [s for s in c["time_segments"] if s.get("kind") == "scene"]
+    max_drop = float(cfg["cut"]["max_drop_s"]) if "cut" in cfg else 45.0
+    for a, b in zip(scene, scene[1:]):
+        if b["start"] - a["end"] > max_drop + 0.5:
+            out.append(f"S1: far stitch: skips {b['start'] - a['end']:.0f} s (> {max_drop:.0f} s)")
+    seen: set = set()
+    for p in c["pieces"]:
+        ws_ = set(range(p["start_word"], p["end_word"] + 1))
+        if ws_ & seen:
+            out.append(f"S2: replays {len(ws_ & seen)} word(s) (a cold open played twice)")
+            break
+        seen |= ws_
     return out
 
 
@@ -1647,7 +1785,10 @@ def run_episode(vid: str, cfg: dict, llm, guard: Guard, out_dir: Path, log=print
 
         debug = {"video_id": vid, "projection": proj, "warnings": []}
         # ------------------------------------------------------------ 2. discover
-        disc = llm.generate_json("ws_discover", spec, system, user, schema, meta={"video": vid})
+        try:
+            disc = llm.generate_json("ws_discover", spec, system, user, schema, meta={"video": vid})
+        except SafetyBlocked as e:
+            raise discover_blocked(vid, e) from e
         moments = disc["moments"]
         debug["discover"] = disc
         log(f"{vid}: {len(moments)} moments nominated")
@@ -1705,23 +1846,43 @@ def run_episode(vid: str, cfg: dict, llm, guard: Guard, out_dir: Path, log=print
     if kept:
         rs, ru = review_prompt(texts, cfg)
         rspec = spec_of(cfg, "ws_review")
-        try:
-            rin = llm.count_tokens(rspec, rs + "\n" + ru)
-        except Exception:   # noqa: BLE001
-            rin = len(rs + ru) // 2
+        rin = review_in_tokens(llm, rspec, rs, ru)
         rout = review_out_guard(rspec.params, len(kept))
         call_proj["ws_review"] = inr(project_usd(rin, rout, rspec.model))
+        fb_inr = inr(review_fallback_usd(rspec, len(kept), rin))
         if not is_cached(llm, rspec, rs, ru, REVIEW_SCHEMA):
             if dry_run:
                 vend = (VIDEO_END_INR_PER_CLIP, VIDEO_END_INR_EXPECTED) if cfg["video_end_check"]["enabled"] \
                     else (0.0, 0.0)
                 return dry_result(vid, proj, "ws_review", proj["ws_review"]["inr_expected"] + vend[1] * len(kept),
-                                  call_proj["ws_review"] + vend[0] * len(kept), log, n_clips=len(kept))
-            guard.check(f"{vid} ws_review", call_proj["ws_review"])
-        rv = llm.generate_json("ws_review", rspec, rs, ru, REVIEW_SCHEMA, meta={"video": vid})
-        debug["review"] = rv
-        debug["review_input"] = texts
-        reviews = {str(r["id"]).strip(): r for r in rv["clips"]}
+                                  call_proj["ws_review"] + fb_inr + vend[0] * len(kept), log, n_clips=len(kept))
+            # never pay for a review whose safety fallback (if Gemini blocks it) the limit would then refuse
+            guard.check(f"{vid} ws_review (+ split fallback if blocked)", call_proj["ws_review"] + fb_inr)
+        try:
+            # the combined call first: the same prompt (and cache key) as before the fallback existed
+            rv = llm.generate_json("ws_review", rspec, rs, ru, REVIEW_SCHEMA, meta={"video": vid})
+            debug["review"] = rv
+            debug["review_input"] = texts
+            reviews = {str(r["id"]).strip(): r for r in rv["clips"]}
+        except SafetyBlocked as e:
+            log(f"{vid}: ws_review blocked by Gemini's safety check (blockReason {e.reason}): reviewing in halves")
+            items = [(x["id"], t) for x, t in zip(kept, texts)]
+            calls: list = []
+            try:
+                reviews, blocked = review_split(llm, rspec, cfg, items, e.reason, vid, guard, call_proj, fb_inr,
+                                                calls, log, dry_run)
+            except _DryBill as d:
+                return dry_result(vid, proj, "ws_review_split", d.inr, d.inr, log, n_clips=len(kept),
+                                  review_blocked=e.reason)
+            debug["review"] = {"clips": [reviews[x["id"]] for x in kept if x["id"] in reviews]}
+            debug["review_input"] = texts
+            debug["review_fallback"] = {"combined_block": e.reason, "calls": calls,
+                                        "blocked_clips": blocked}
+            for x in kept:
+                if x["id"] in blocked:
+                    x["review_blocked"] = blocked[x["id"]]
+            log(f"{vid}: split review: {len(calls)} calls, {len(blocked)} clip(s) still blocked "
+                f"{sorted(blocked) or ''}".rstrip())
 
     apply_review(ep, kept, reviews, cfg)
 
@@ -1748,8 +1909,14 @@ def run_episode(vid: str, cfg: dict, llm, guard: Guard, out_dir: Path, log=print
     if gate_on(cfg) and shown:
         # ---------------------------------------------------------------- 5b. optional video gate
         from shotvi.select import video_gate
-        shown = video_gate.gate_shown(ep, shown, rejected, cfg, llm, guard, log)
+        # clips the text review could not score (safety block) skip the gate and stay last, unchecked
+        unchecked = [x for x in shown if x["tier"] == "unchecked"]
+        checked = [x for x in shown if x["tier"] != "unchecked"]
+        shown = (video_gate.gate_shown(ep, checked, rejected, cfg, llm, guard, log) if checked else []) + unchecked
     out_props = [proposal_doc(ep, x, k + 1, cfg, line_of_word) for k, x in enumerate(shown)]
+    for prob in shown_field_problems(out_props):
+        log(f"  WARNING: {prob}")
+        debug["warnings"].append(prob)
     out_rej = [rejected_doc(ep, x, cfg) for x in rejected]
     debug["rejected"] = rejected
     debug["clips"] = {x["id"]: x["clip"] for x in kept}
@@ -1762,8 +1929,8 @@ def run_episode(vid: str, cfg: dict, llm, guard: Guard, out_dir: Path, log=print
                                                    encoding="utf-8")
     (out_dir / f"{vid}.md").write_text(clips_md(ep, doc), encoding="utf-8")
     ev = doc.get("episode_verdict") or episode_verdict(out_props, cfg["thresholds"])
-    log(f"{vid}: verdict {ev['verdict']} ({ev['strong_clips']} recommended, {ev['worth_a_look']} worth a look, "
-        f"{len(out_rej)} rejected) -> {out_dir / (vid + '.json')}")
+    log(f"{vid}: verdict {ev['verdict']} ({ev['strong_clips']} strong candidates, {ev['worth_a_look']} other "
+        f"candidates, {ev.get('unchecked', 0)} unchecked, {len(out_rej)} hidden) -> {out_dir / (vid + '.json')}")
     return doc
 
 
@@ -1774,7 +1941,8 @@ def apply_review(ep: Episode, kept: list, reviews: dict, cfg: dict) -> None:
         r = reviews.get(x["id"])
         x["review"] = r
         if not r:
-            x["warnings_review"] = "no review returned for this clip"
+            x["warnings_review"] = (f"{BLOCKED_NOTE} (blockReason {x['review_blocked']})" if x.get("review_blocked")
+                                    else "no review returned for this clip")
             continue
         c = x["clip"]
         # the lift stays only when the reviewer keeps it AND it beats the plain opening (hook up, overall not down)
@@ -1829,7 +1997,7 @@ def apply_review(ep: Episode, kept: list, reviews: dict, cfg: dict) -> None:
             c["unreviewed_start_words"] = lead
 
 
-TIER_ORDER = {"recommended": 0, "worth_a_look": 1}
+TIER_ORDER = {"recommended": 0, "worth_a_look": 1, "unchecked": 2}
 
 
 def clip_flaws(x: dict) -> list[str]:
@@ -1849,9 +2017,24 @@ def clip_flaws(x: dict) -> list[str]:
     return out
 
 
+TIER_LABEL = {"recommended": "strong candidate", "worth_a_look": "candidate", "unchecked": "unchecked"}
+
+
+def candidates_rule(th: dict) -> bool:
+    """show_rule "candidates" (v1 default): hide only clear failures. A thresholds dict without the key (written
+    before 2026-10-13) keeps the "tiers" rule."""
+    return th.get("show_rule", "tiers") == "candidates"
+
+
 def tier_of(sc: dict, flaws: list[str], th: dict) -> str:
-    """Absolute tier of a scored clip: recommended / worth_a_look / rejected (no padding, no relative cut-off)."""
-    if min(sc["hook"], sc["standalone"], sc["payoff"]) <= 2 or sc["overall"] < th["t_show"]:
+    """Absolute tier of a scored clip: recommended / worth_a_look / rejected (no padding, no relative cut-off).
+    candidates rule: rejected = a clear failure (overall <= t_hide or a part score <= 2); tiers rule: overall below
+    t_show (or a part score <= 2)."""
+    low_part = min(sc["hook"], sc["standalone"], sc["payoff"]) <= 2
+    if candidates_rule(th):
+        if low_part or sc["overall"] <= th["t_hide"]:
+            return "rejected"
+    elif low_part or sc["overall"] < th["t_show"]:
         return "rejected"
     blocked = [f for f in flaws if f in th["rec_blockers"]]
     if sc["overall"] >= th["t_rec"] and sc["payoff"] >= th["t_rec_payoff"] and not blocked:
@@ -1874,6 +2057,14 @@ def rank_clips(kept: list, rejected: list, cfg: dict) -> list:
     shown = []
     for pos, x in enumerate(kept):
         r, c, m = x["review"], x["clip"], x["moment"]
+        if not r and x.get("review_blocked") and th.get("show_unchecked", True):
+            # Gemini's safety check blocked this clip's review even alone: no scores, shown last, never dropped
+            x["scores"] = {}
+            x["flaws"] = clip_flaws(x)
+            x["tier"] = "unchecked"
+            x["_disc"] = _disc_order(x, pos)
+            shown.append(x)
+            continue
         if not r:
             rejected.append({"id": x["id"], "moment": m, "clip": c, "reject_reasons": ["R0: no review"]})
             continue
@@ -1896,7 +2087,9 @@ def rank_clips(kept: list, rejected: list, cfg: dict) -> list:
         x["_disc"] = _disc_order(x, pos)
         if x["tier"] == "rejected":
             low_part = min(sc["hook"], sc["standalone"], sc["payoff"]) <= 2
-            why = [f"Q1: below the bar (overall {sc['overall']} < {th['t_show']}"
+            bar = (f"Q1: clear failure (overall {sc['overall']} <= {th['t_hide']}" if candidates_rule(th)
+                   else f"Q1: below the bar (overall {sc['overall']} < {th['t_show']}")
+            why = [bar
                    + ("; a part score <= 2" if low_part else "")
                    + f"; hook {sc['hook']}, standalone {sc['standalone']}, payoff {sc['payoff']})"
                    + ("; scores are for the cut before the review repair: re-score to reconsider"
@@ -1906,28 +2099,36 @@ def rank_clips(kept: list, rejected: list, cfg: dict) -> list:
                              **({"needs_rescore": x["needs_rescore"]} if x.get("needs_rescore") else {})})
             continue
         shown.append(x)
-    shown.sort(key=lambda x: (TIER_ORDER[x["tier"]], -x["scores"]["overall"], -x["scores"]["payoff"], x["_disc"]))
+    shown.sort(key=lambda x: (TIER_ORDER[x["tier"]], -x["scores"].get("overall", 0.0), -x["scores"].get("payoff", 0.0),
+                              x["_disc"]))
     return shown
 
 
+def _n(k: int, word: str) -> str:
+    return f"{k} {word}{'s' if k != 1 else ''}"
+
+
 def episode_verdict(props: list[dict], th: dict) -> dict:
-    """How much this episode yields (founder, 2026-10-07): count the tiers, never pad."""
+    """How much this episode yields (founder, 2026-10-07): count the strong candidates (internal tier
+    "recommended"), never pad. ``worth_a_look`` = the other candidates shown, ``unchecked`` = shown without a review
+    (safety block)."""
     n_rec = sum(p["tier"] == "recommended" for p in props)
     n_wal = sum(p["tier"] == "worth_a_look" for p in props)
+    n_unc = sum(p["tier"] == "unchecked" for p in props)
     strong_min = int(th.get("verdict_strong_min", 3))
-    plus = f" (plus {n_wal} worth a look)" if n_wal else ""
+    rest = [x for x in ((_n(n_wal, "other candidate") if n_wal else ""),
+                        (f"{n_unc} unchecked" if n_unc else "")) if x]
+    plus = f" (plus {' and '.join(rest)})" if rest else ""
     if n_rec == 0:
         v = "none"
-        note = ("No clip in this episode cleared the bar"
-                + (f" ({n_wal} worth a look, none recommended)" if n_wal else "")
-                + "; skipping the episode beats posting a weak clip.")
+        note = (f"No strong candidate in this episode{plus}; skipping the episode beats posting a weak clip.")
     elif n_rec < strong_min:
         v = "thin"
-        note = f"This episode yields only {n_rec} strong clip{'s' if n_rec > 1 else ''}{plus}; do not expect more from it."
+        note = f"This episode yields only {_n(n_rec, 'strong candidate')}{plus}; do not expect more from it."
     else:
         v = "strong"
-        note = f"{n_rec} strong clips cleared the bar{plus}."
-    return {"strong_clips": n_rec, "worth_a_look": n_wal, "verdict": v, "note": note}
+        note = f"{_n(n_rec, 'strong candidate')}{plus}."
+    return {"strong_clips": n_rec, "worth_a_look": n_wal, "unchecked": n_unc, "verdict": v, "note": note}
 
 
 def gate_on(cfg: dict) -> bool:
@@ -1984,6 +2185,13 @@ def video_end_check(ep: Episode, kept: list, cfg, llm, guard: Guard, log):
 
 def proposal_doc(ep: Episode, x: dict, rank: int, cfg, line_of_word) -> dict:
     c, m, r, sc = x["clip"], x["moment"], x["review"], x["scores"]
+    blocked = x.get("review_blocked") if not r else None
+    if blocked:
+        # no review: title, why and category come from discover; the note says why there are no scores
+        r = {"title": one_line(payoff_of(ep, x)["payoff_line"], 60),
+             "why_it_works": one_line(f"{BLOCKED_NOTE} (discover: {m.get('payoff') or m.get('what_happens') or '-'})",
+                                      240),
+             "category": m.get("category") if m.get("category") in CATEGORIES else "other"}
     th, g = cfg["thresholds"], cfg["guardrails"]
     pieces = c["pieces"]
     core = core_fields(ep, pieces, g["skip_s"])
@@ -2014,8 +2222,10 @@ def proposal_doc(ep: Episode, x: dict, rank: int, cfg, line_of_word) -> dict:
     title = r["title"].strip()
     if not any("ఀ" <= ch <= "౿" for ch in title):
         title = (title + " | తెలుగు")[:100]
-    doc = {"id": x["id"], "pieces": pieces, **core, "rank": rank, "tier": tier, "scores": sc,
+    doc = {"id": x["id"], "pieces": pieces, **core, "rank": rank, "tier": tier,
+           "tier_label": TIER_LABEL.get(tier, tier), "scores": sc,
            "title": title[:100], "hook_line": hook_line(ep, pieces, line_of_word),
+           **payoff_of(ep, x),
            "why_it_works": one_line(r["why_it_works"]), "category": r["category"],
            "standalone_risks": [], "edit_notes": notes, "flags": flags,
            # web-series fields
@@ -2047,6 +2257,12 @@ def proposal_doc(ep: Episode, x: dict, rank: int, cfg, line_of_word) -> dict:
            # `flags` enum has no such value; repaired ones are listed in build_warnings)
            "shot_flags": [flash_text(f) for f in c.get("flashes") or [] if not f["fixed"]],
            "build_warnings": c["warnings"]}
+    if blocked:
+        doc["review_status"] = "blocked"
+        doc["review_block_reason"] = blocked
+        doc["review_note"] = BLOCKED_NOTE
+        doc["flags"].append("review_blocked")
+        doc["edit_notes"].insert(0, {"type": "review_blocked", "reason": f"{BLOCKED_NOTE} (blockReason {blocked})"})
     if c.get("video_end_check"):
         doc["video_end_check"] = c["video_end_check"]
     if x.get("gate"):
@@ -2096,6 +2312,34 @@ def payoff_fields(m: dict) -> dict:
     return {k: m[k] for k in DISCOVER_EXTRA_FIELDS if m.get(k)}
 
 
+SHOWN_FIELDS = ("title", "hook_line", "payoff_line", "payoff_type", "why_it_works")
+
+
+def shown_field_problems(props: list[dict]) -> list[str]:
+    """Every shown clip must carry a title, a hook line, a payoff line + payoff type and a one-sentence why (the
+    creator picks from these). Returns one message per missing / empty field (empty list = all present)."""
+    out = []
+    for p in props:
+        for f in SHOWN_FIELDS:
+            v = p.get(f)
+            v = v.get("text") if isinstance(v, dict) else v
+            if not str(v or "").strip() or str(v).strip() == "-":
+                out.append(f"{p.get('id')}: shown without {f}")
+    return out
+
+
+def payoff_of(ep: Episode, x: dict) -> dict:
+    """The payoff every shown clip carries: discover's payoff_line (word for word) and payoff_type; without them
+    (a prompt that does not ask for them) the end line's words and "unspecified"."""
+    m, c = x["moment"], x["clip"]
+    line, src = str(m.get("payoff_line") or "").strip(), "discover"
+    if not line:
+        r = ep.by_id.get(c["end_line"])
+        line, src = (raw_text(ep, r) if r and r.get("words") else ""), "end_line"
+    return {"payoff_line": one_line(line, 300), "payoff_type": m.get("payoff_type") or "unspecified",
+            "payoff_line_source": src}
+
+
 def one_line(s: str, n: int = 200) -> str:
     s = " ".join(str(s or "").split())
     return (s[:n - 1] + "…") if len(s) > n else (s or "-")
@@ -2123,12 +2367,14 @@ def run_document(ep, tp, props, rejected, cfg, llm, n_moments, n_passed, t_start
         "cost": {"input_tokens": summ["input_tokens"], "output_tokens": summ["output_tokens"],
                  "usd": summ["usd"], "usd_billed": summ["usd_billed"], "wall_time_secs": round(time.time() - t_start, 1),
                  "n_llm_calls": summ["n_llm_calls"], "by_role": summ["by_role"], "projection": debug["projection"]},
-        "cutoff": {"t_show": cfg["thresholds"]["t_show"], "t_rec": cfg["thresholds"]["t_rec"],
+        "cutoff": {"show_rule": cfg["thresholds"].get("show_rule", "tiers"), "t_hide": cfg["thresholds"].get("t_hide"),
+                   "t_show": cfg["thresholds"]["t_show"], "t_rec": cfg["thresholds"]["t_rec"],
                    "t_rec_payoff": cfg["thresholds"]["t_rec_payoff"],
                    "rec_blockers": cfg["thresholds"]["rec_blockers"],
                    "n_candidates": n_moments, "n_passed_hard_rules": n_passed, "n_shown": len(props),
                    "n_recommended": sum(p["tier"] == "recommended" for p in props),
                    "n_worth_a_look": sum(p["tier"] == "worth_a_look" for p in props),
+                   "n_unchecked": sum(p["tier"] == "unchecked" for p in props),
                    "n_rejected": len([r for r in rejected if r]),
                    "warnings": debug.get("warnings", [])},
         "episode_verdict": episode_verdict(props, cfg["thresholds"]),
@@ -2141,14 +2387,25 @@ def run_document(ep, tp, props, rejected, cfg, llm, n_moments, n_passed, t_start
 
 def clips_md(ep: Episode, doc: dict) -> str:
     v = doc.get("episode_verdict") or episode_verdict(doc["proposals"], {"verdict_strong_min": 3})
+    cut = doc.get("cutoff") or {}
     out = [f"# {doc['video_id']} web-series clips ({doc['run_id']})\n",
-           f"Episode verdict: {v['verdict'].upper()} ({v['strong_clips']} recommended, {v['worth_a_look']} worth a "
-           f"look, {len(doc['rejected'])} rejected). {v['note']}\n",
-           f"Cost ${doc['cost']['usd']:.4f}.\n"]
+           f"Episode verdict: {v['verdict'].upper()} ({_n(v['strong_clips'], 'strong candidate')}, "
+           f"{_n(v['worth_a_look'], 'other candidate')}"
+           + (f", {v['unchecked']} unchecked" if v.get("unchecked") else "")
+           + f", {len(doc['rejected'])} hidden). {v['note']}\n"]
+    if cut.get("show_rule") == "candidates":
+        out.append(f"A ranked candidate list for the creator to pick from: every built clip except clear failures "
+                   f"(review overall <= {cut.get('t_hide')}, or a hard-rule failure); strong candidates first. No "
+                   f"scorer yet predicts which clips the founder would post.\n")
+    out.append(f"Cost ${doc['cost']['usd']:.4f}.\n")
     for p in doc["proposals"]:
         segs = " + ".join(f"{fmt(s['start'])}-{fmt(s['end'])}" for s in p["time_segments"])
-        out.append(f"\n## #{p['rank']} {p['id']} {p['title']} ({p['clip_purpose']}, {p['tier']}, "
-                   f"overall {p['scores']['overall']})\n")
+        label = p.get("tier_label") or TIER_LABEL.get(p["tier"], p["tier"])
+        score = (f"overall {p['scores']['overall']}" if (p.get("scores") or {}).get("overall") is not None
+                 else "no review scores")
+        out.append(f"\n## #{p['rank']} {p['id']} {p['title']} ({p['clip_purpose']}, {label}, {score})\n")
+        if p.get("review_status") == "blocked":
+            out.append(f"- NOTE: {p.get('review_note') or BLOCKED_NOTE} (blockReason {p.get('review_block_reason')})")
         out.append(f"- plays {p['video_duration']:.1f} s: {segs}")
         if p["cold_open"]:
             out.append(f"- cold open: {p['cold_open_detail']['text']} ({p['cold_open_detail']['duration']} s)")
@@ -2168,20 +2425,24 @@ def clips_md(ep: Episode, doc: dict) -> str:
         if p.get("needs_rescore"):
             out.append(f"- NEEDS RESCORE: {p['rescore_reason']}")
         if p.get("flaws"):
-            out.append(f"- flaws (not recommended while present): {', '.join(p['flaws'])}")
+            out.append(f"- flaws (not a strong candidate while present): {', '.join(p['flaws'])}")
         for s in p.get("shot_flags") or []:
             out.append(f"- shot flag: {s}")
         out.append(f"- why: {p['why_it_works']}")
         out.append(f"- hook line: {p['hook_line']['text']}")
         d = p.get("discovery") or {}
-        if d.get("payoff_type") or d.get("payoff_line"):
+        if p.get("payoff_line"):
+            out.append(f"- payoff ({p.get('payoff_type', '?')}"
+                       + (", the end line" if p.get("payoff_line_source") == "end_line" else "")
+                       + f"): {p['payoff_line']}")
+        elif d.get("payoff_type") or d.get("payoff_line"):
             out.append(f"- payoff ({d.get('payoff_type', '?')}): {d.get('payoff_line', '')}")
         for cu in p["chunk_drops"]:
             out.append(f"- cut {fmt(cu['start'])}-{fmt(cu['end'])} ({cu['removed_s']} s): "
                        f"{'cold-open skip ' if cu['lift_skip'] else ''}{cu['why']}")
         if p["build_warnings"]:
             out.append(f"- warnings: {'; '.join(p['build_warnings'])}")
-    out.append("\n## Rejected\n")
+    out.append("\n## Hidden (not shown)\n")
     for r in doc["rejected"]:
         sc = r.get("scores")
         out.append(f"- {r['id']}: {'; '.join(r['reject_reasons'])}"
@@ -2244,7 +2505,7 @@ def main(argv=None):
     if a.dry_run:
         print(f"DRY RUN (no provider call, countTokens included): ledger ₹{led0:.2f}"
               + (f", limit ₹{a.max_ledger_inr:.2f}" if a.max_ledger_inr is not None else ""))
-    results = []
+    results, blocked_eps = [], []
     for vid in a.video_ids:
         llm = LLMClient(Ledger(max_usd=cfg["budget_usd"]), cache_dir="runs/cache",
                         **({"max_retries": 0, "schema_retries": 0} if a.no_retry else {}))
@@ -2254,6 +2515,10 @@ def main(argv=None):
         except BudgetStop as e:
             print(f"STOP: {e}")
             return 2
+        except SafetyBlocked as e:
+            # a blocked discover: the episode has no moments (a blocked review falls back inside run_episode)
+            print(f"BLOCKED: {e}")
+            blocked_eps.append(vid)
     if a.dry_run:
         exp = sum(r.get("would_bill_inr_expected", 0.0) for r in results)
         grd = sum(r.get("would_bill_inr_guard", 0.0) for r in results)
@@ -2264,8 +2529,14 @@ def main(argv=None):
               f"₹{led0:.2f} -> ~₹{led0 + exp:.2f}"
               + (f" (limit ₹{a.max_ledger_inr:.2f}: {'fits' if led0 + grd <= a.max_ledger_inr else 'the guard may stop a later episode'})"
                  if a.max_ledger_inr is not None else ""))
+        if blocked_eps:
+            print(f"BLOCKED (no clips): {', '.join(blocked_eps)}")
+            return EXIT_SAFETY_BLOCKED
         return 0
     print(f"ledger now ₹{total_inr():.2f} (this run ₹{total_inr() - led0:.2f})")
+    if blocked_eps:
+        print(f"BLOCKED (no clips): {', '.join(blocked_eps)}")
+        return EXIT_SAFETY_BLOCKED
     return 0
 
 

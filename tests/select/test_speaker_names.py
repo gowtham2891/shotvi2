@@ -171,8 +171,10 @@ class RealEpisode(unittest.TestCase):
         s, u = W.discover_prompt(self.off, self.ix, W.DEFAULTS)
         if not W.is_cached(llm, W.spec_of(W.DEFAULTS, "ws_discover"), s, u, W.discover_schema(W.DEFAULTS)):
             self.skipTest("v1_test discover response not in the local cache")
+        # the names prompt is a different call (its own cache key; runs/v1_speakers has since cached it too)
         s2, u2 = W.discover_prompt(self.on, self.ix, self.on_cfg)
-        self.assertFalse(W.is_cached(llm, W.spec_of(W.DEFAULTS, "ws_discover"), s2, u2, W.discover_schema(W.DEFAULTS)))
+        spec, schema = W.spec_of(W.DEFAULTS, "ws_discover"), W.discover_schema(W.DEFAULTS)
+        self.assertNotEqual(llm.cache_key(spec, s2, u2, schema), llm.cache_key(spec, s, u, schema))
 
     def test_calibration_renders_the_calibration_runs_labels(self):
         cal = W.calibration_of(ROOT / "runs" / "v1_test", REAL)

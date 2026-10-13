@@ -224,7 +224,14 @@ class RepairedClip(unittest.TestCase):
         self.assertFalse(x.get("needs_rescore"))
 
     def test_no_padding_below_the_bar(self):
-        # absolute tiers: a repaired clip scored 2.0 and a 3.2 clip are both rejected; only the 3.6 clip is shown
+        # absolute tiers (show_rule "tiers"): a repaired clip scored 2.0 and a 3.2 clip are both rejected; only the
+        # 3.6 clip is shown. The candidate list (default) also shows the 3.2 clip; the 2.0 one stays hidden.
+        self.cfg["thresholds"]["show_rule"] = "tiers"
+        self.check_three(["w02"], ["w01", "w03"])
+        self.cfg["thresholds"]["show_rule"] = "candidates"
+        self.check_three(["w02", "w03"], ["w01"])
+
+    def check_three(self, want_shown, want_rejected):
         a = self.kept("w01", drops=[{"first_line": "L0005", "last_line": "L0006", "why": ""}])
         b = self.kept("w02")
         c = self.kept("w03")
@@ -234,9 +241,9 @@ class RepairedClip(unittest.TestCase):
                    "w03": review(id="w03", hook=3.5, standalone=3.5, payoff=3.5, overall=3.2,
                                  hook_without_cold_open=3.5, overall_without_cold_open=3.2)}
         shown, rejected = self.run_review([a, b, c], reviews)
-        self.assertEqual([y["id"] for y in shown], ["w02"])
-        self.assertEqual(shown[0]["tier"], "worth_a_look")
-        self.assertEqual(sorted(r["id"] for r in rejected), ["w01", "w03"])
+        self.assertEqual([y["id"] for y in shown], want_shown)
+        self.assertTrue(all(y["tier"] == "worth_a_look" for y in shown))
+        self.assertEqual(sorted(r["id"] for r in rejected), want_rejected)
         self.assertTrue(all(r["scores"] for r in rejected))           # scores kept on rejected entries
 
 

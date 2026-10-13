@@ -38,6 +38,11 @@ decision must generalize to any Telugu podcast a creator uploads.
   ws/0.2 on 3 episodes (₹34.96): recommended clips the founder would post 8 → 10, founder "no" shown 0 → 0,
   recall over yes 17 → 16 of 26. Pre-v1 configs pin `ws_discover`. Run a new episode with
   `python -m shotvi.run_episode <url|id>`. Tuning stops here; it improves only from new founder ratings.
+- **v1 output = a ranked candidate list for the creator to pick from (founder, 2026-10-13).** Every built clip is
+  shown except clear failures (review overall ≤ 2.5 or a hard-rule failure); "strong candidates" first. On 4 new
+  episodes no scorer (Flash/Pro text review, video gate, clip-judge, corrected speaker names) predicted the
+  founder's yes (11 of 30 shown were yes; old top tier 8 yes / 5 maybe / 6 no). Safety fallback: a Gemini
+  PROHIBITED_CONTENT block on the review splits the clips; a clip still blocked is shown last as `unchecked`.
 - **The podcast pipeline is preserved** at git tag `podcast-pipeline-v1`; web-series work must not break it.
 - **Ground truth for these types comes from the `clip-gt-editor` agent** reading the whole episode (plus keyframes
   for web series), reviewed by the founder. The channel's own published Shorts/Reels are NOT used as ground truth.

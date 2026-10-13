@@ -154,7 +154,7 @@ function buildNav() {
   let h = "", i = 0;
   DATA.forEach(v => {
     h += `<h2>${esc(v.video_id)} · top ${v.clips.length} of ${v.n_total}</h2>`;
-    if (v.verdict) h += `<div class="verdict">Episode verdict: ${esc(v.verdict.verdict)} — ${v.verdict.strong_clips} recommended, ${v.verdict.worth_a_look} worth a look. ${esc(v.verdict.note)}</div>`;
+    if (v.verdict) h += `<div class="verdict">Episode verdict: ${esc(v.verdict.verdict)} — ${v.verdict.strong_clips} strong candidate${v.verdict.strong_clips === 1 ? "" : "s"}, ${v.verdict.worth_a_look} other candidate${v.verdict.worth_a_look === 1 ? "" : "s"}${v.verdict.unchecked ? `, ${v.verdict.unchecked} unchecked` : ""}. ${esc(v.verdict.note)}</div>`;
     v.clips.forEach(c => { h += `<a href="#" data-i="${i}"><span class="rk">#${c.rank}</span><span class="tt te">${esc(c.title)}</span><span class="st"></span></a>`; i++; });
   });
   const nav = document.getElementById("nav"); nav.innerHTML = h;
@@ -168,7 +168,7 @@ function show(i) {
   const c = clips[cur], r = store[keyOf(c)] || {};
   document.querySelectorAll("nav a").forEach(a => a.classList.toggle("on", +a.dataset.i === cur));
   const chips = [`${c.duration}s`, `${c.n_pieces} pieces`, `source ${mmss(c.src_start)}–${mmss(c.src_end)}`, c.category,
-                 (c.score != null ? `pipeline ${c.score} · ${c.tier}` : null)].filter(Boolean).map(x => `<span class="chip">${esc(x)}</span>`).join("")
+                 (c.score != null ? `pipeline ${c.score} · ${c.tier_label || c.tier}` : (c.tier_label || c.tier || null))].filter(Boolean).map(x => `<span class="chip">${esc(x)}</span>`).join("")
               + c.flags.map(f => `<span class="chip flag">${esc(f.replace(/_/g, " "))}</span>`).join("");
   let tx = "";
   c.lines.forEach((ln, k) => {
@@ -192,7 +192,9 @@ function show(i) {
       <h2 class="te">#${c.rank} ${esc(c.title)}</h2>
       <div class="chips">${chips}</div>
       <div class="meta">
+        ${c.review_note ? `<div><b>Note</b>${esc(c.review_note)}</div>` : ""}
         <div><b>Hook</b><span class="te">${esc(c.hook)}</span></div>
+        ${c.payoff ? `<div><b>Payoff</b><span class="te">${esc(c.payoff)}</span>${c.payoff_type ? ` <small>(${esc(c.payoff_type)})</small>` : ""}</div>` : ""}
         <div><b>Why</b>${esc(c.why)}</div>
         ${c.edit_notes.filter(Boolean).map(n => `<div><b>Edit</b>${esc(n)}</div>`).join("")}
       </div>

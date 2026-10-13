@@ -8,6 +8,17 @@ class LLMError(RuntimeError):
     """Non-retryable failure (bad request, auth, schema never satisfied)."""
 
 
+class SafetyBlocked(LLMError):
+    """The provider refused the PROMPT on safety grounds (Gemini: no candidates, ``promptFeedback.blockReason``, e.g.
+    PROHIBITED_CONTENT; a non-adjustable protection that safetySettings cannot turn off). Not retryable: the same
+    prompt is blocked again. ``reason`` = the block reason; ``response`` = the billed usage, if any."""
+
+    def __init__(self, msg: str, reason: str, response=None):
+        super().__init__(msg)
+        self.reason = reason
+        self.response = response
+
+
 class RetryableError(RuntimeError):
     """Transient failure (rate limit, 5xx, timeout, truncated or unparsable output)."""
 

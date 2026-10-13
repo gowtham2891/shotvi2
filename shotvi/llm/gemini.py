@@ -6,7 +6,7 @@ import os
 import requests
 
 from . import spend
-from .base import LLMError, ModelSpec, Provider, RawResponse, RetryableError
+from .base import LLMError, ModelSpec, Provider, RawResponse, RetryableError, SafetyBlocked
 
 API = "https://generativelanguage.googleapis.com/v1beta/models"
 RETRY_STATUS = {408, 429, 500, 502, 503, 504}
@@ -90,6 +90,12 @@ class GeminiProvider(Provider):
                      source=os.environ.get("SHOTVI_SPEND_SOURCE", ""), search_queries=n_queries)
         if not cands:
             fb = d.get("promptFeedback")
+            if isinstance(fb, dict) and fb.get("blockReason"):
+                # the prompt itself was blocked: retrying the same prompt is blocked (and billed) again
+                raise SafetyBlocked(f"gemini blocked the prompt: blockReason {fb['blockReason']} (promptFeedback={fb})",
+                                    reason=str(fb["blockReason"]),
+                                    response=RawResponse(text="", input_tokens=int(um.get("promptTokenCount", 0)),
+                                                         output_tokens=0, model_version=d.get("modelVersion")))
             raise RetryableError(f"gemini returned no candidates (promptFeedback={fb})")
         c = cands[0]
         parts = (c.get("content") or {}).get("parts") or []
