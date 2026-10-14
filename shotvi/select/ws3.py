@@ -21,7 +21,13 @@ Design (per episode):
            by the hook and the payoff; what remains is assembly and a title.
   code     each clip is built with the EXISTING cut builder (webseries.build_clip: first-word start <= 0.3 s, shot
            snapping, <= 3 drops on shot changes, reaction hold, no replayed cold open) and checked by the existing
-           hard rules; clips whose source spans overlap > 50% are de-duplicated (higher intensity wins); ranking is
+           hard rules. ws3/0.2 (2026-10-14, Queen Ep3 built 5 of 11): an end_line / start_line / cold_open_line
+           that is an audio-event line ([నవ్వు] after the payoff) is mapped to the last spoken line before it
+           (end: the reaction hold then runs through the laugh) or the next spoken line after it (start, cold
+           open), recorded as ``end_mapped_from_event`` etc.; a clip under guardrails.min_s is rebuilt from the
+           hook's needs_from_line, then from the scene start within ``extend.window_s`` before the payoff (no
+           silence > ``extend.gap_s``, no music), recorded as ``start_extended_for_length``; still too short =
+           rejected. Clips whose source spans overlap > 50% are de-duplicated (higher intensity wins); ranking is
            intensity, then watch_whole_clip, then would_stop_scrolling, then source order. The run document uses the
            shared schema (1.1, kind proposals) plus the ws3 fields (payoff, hook, emotion, intensity,
            would_stop_scrolling, watch_whole_clip, reasons) and an ``episode_summary``.
@@ -56,7 +62,7 @@ from shotvi.llm.base import BudgetExceeded, CacheUnavailable, LLMError, SafetyBl
 from shotvi.select import webseries as ws
 
 ROOT = ws.ROOT
-PIPELINE_VERSION = "ws3/0.1"
+PIPELINE_VERSION = "ws3/0.2"
 ROLES = ("ws3_payoffs", "ws3_hook", "ws3_clip")
 CONTEXT_ROLE = "ws3_context"
 EXIT_SAFETY_BLOCKED = 4
@@ -77,6 +83,10 @@ DEFAULTS: dict = {
     "cut": copy.deepcopy(ws.DEFAULTS["cut"]),           # the v1 cut builder's settings, unchanged
     "guardrails": copy.deepcopy(ws.DEFAULTS["guardrails"]),
     "rank": {"strong_min_intensity": 4, "verdict_strong_min": 3},
+    # a built clip under guardrails.min_s is rebuilt from the hook's needs_from_line, then from the earliest line
+    # within window_s before the payoff that keeps the same scene (no silence > gap_s, no music between it and the
+    # clip); still too short = rejected (2026-10-14: Queen Ep3 lost 4 of 11 payoffs at 9-14 s)
+    "extend": {"window_s": 60.0, "gap_s": 6.0},
     "speaker_names": True,                              # corrected names when runs/speaker_fix/<id>.json exists
     "budget_usd": 1.0,
     "calibrate_from": "runs/v1_test",
@@ -202,6 +212,31 @@ def prev_speech(ep: ws.Episode, pos: int):
         if ep.is_speech(ep.lines[k]):
             return ep.lines[k]
     return None
+
+
+def next_speech(ep: ws.Episode, pos: int):
+    for k in range(pos, len(ep.lines)):
+        if ep.is_speech(ep.lines[k]):
+            return ep.lines[k]
+    return None
+
+
+def event_mapped(ep: ws.Episode, lid, what: str, flags: list, forward: bool) -> tuple[int | None, dict | None]:
+    """Position of ``lid`` when it is a spoken line; when it is an audio-event line (laughter, music), the position
+    of the nearest spoken line after it (``forward``: a start / cold open) or before it (an end: the payoff, whose
+    reaction hold then runs through the event). Returns (pos, mapping) with pos None for an unknown id."""
+    n = ws.norm_id(lid)
+    r = ep.by_id.get(n) if n else None
+    if r is None:
+        return None, None
+    if ep.is_speech(r):
+        return ep.pos[n], None
+    r2 = next_speech(ep, ep.pos[n]) if forward else prev_speech(ep, ep.pos[n])
+    if r2 is None:
+        return None, None
+    flags.append(f"{what}_mapped_from_event: {n} {r['text']} is an audio event; "
+                 f"{what} {'moved to the next' if forward else 'ends on the last'} spoken line {r2['id']}")
+    return ep.pos[r2["id"]], {"event": n, "event_text": r["text"], "line": r2["id"]}
 
 
 # ---------------------------------------------------------------------------------------------------- cache handle
@@ -363,12 +398,18 @@ def validate_clip(ep: ws.Episode, payoff: dict, hook: dict, c: dict, cfg: dict) 
     (later ends are pulled back to the payoff with a flag); drops and the cold open are left to the builder."""
     pc = cfg["payoffs"]
     pp, ph = ep.pos[payoff["line"]], ep.pos[hook["hook_line"]]
-    ps, pe = speech_pos(ep, c.get("start_line")), speech_pos(ep, c.get("end_line"))
-    flags = []
+    flags: list[str] = []
+    mapped = {}
+    ps, m_s = event_mapped(ep, c.get("start_line"), "start", flags, forward=True)
+    pe, m_e = event_mapped(ep, c.get("end_line"), "end", flags, forward=False)
     if ps is None:
-        raise ValueError(f"start_line {c.get('start_line')!r} is not a spoken line of the transcript")
+        raise ValueError(f"start_line {c.get('start_line')!r} is not a line of the transcript")
     if pe is None:
-        raise ValueError(f"end_line {c.get('end_line')!r} is not a spoken line of the transcript")
+        raise ValueError(f"end_line {c.get('end_line')!r} is not a line of the transcript")
+    if m_s:
+        mapped["start_mapped_from_event"] = m_s
+    if m_e:
+        mapped["end_mapped_from_event"] = m_e
     if ps > ph:
         flags.append(f"start_line {ep.lines[ps]['id']} came after the hook {hook['hook_line']}; moved to the hook")
         ps = ph
@@ -390,16 +431,99 @@ def validate_clip(ep: ws.Episode, payoff: dict, hook: dict, c: dict, cfg: dict) 
             continue
         drops.append({"first_line": a, "last_line": b, "why": str(d.get("why") or "")})
     col = ws.norm_id(c.get("cold_open_line")) if str(c.get("cold_open_line") or "").strip() else None
-    if col is not None and col not in ep.by_id:
-        flags.append(f"cold_open_line {c.get('cold_open_line')!r}: unknown line id; ignored")
-        col = None
+    if col is not None:
+        pc_, m_c = event_mapped(ep, col, "cold_open", flags, forward=True)
+        if pc_ is None:
+            flags.append(f"cold_open_line {c.get('cold_open_line')!r}: unknown line id; ignored")
+            col = None
+        else:
+            col = ep.lines[pc_]["id"]
+            if m_c:
+                mapped["cold_open_mapped_from_event"] = m_c
     title = " ".join(str(c.get("title") or "").split())
     moment = {"purpose": "standalone", "start_line": ep.lines[ps]["id"], "end_line": ep.lines[pe]["id"],
               "cold_open_lines": [col] if col else [], "drops": drops[:3], "strength": payoff["intensity"],
               "payoff_line": payoff["text"], "payoff_type": payoff["type"]}
     return {"moment": moment, "title": title, "emotion_arc": str(c.get("emotion_arc") or ""),
             "watch_whole_clip": "yes" if str(c.get("watch_whole_clip")).lower() == "yes" else "no",
-            "reason": str(c.get("reason") or ""), "flags": flags}
+            "reason": str(c.get("reason") or ""), "flags": flags, **mapped}
+
+
+# ---------------------------------------------------------------------------------------------------- length
+def scene_start_before(ep: ws.Episode, start_id: str, payoff_id: str, cfg: dict) -> dict:
+    """The earliest spoken line within ``extend.window_s`` before the payoff that keeps the same scene as
+    ``start_id``: walking back one spoken line at a time, stops at a silence > ``extend.gap_s``, a music event
+    between two lines, or the window edge. Returns {line, lines (walked), stop}."""
+    xc = cfg["extend"]
+    cur = ep.by_id[start_id]
+    t_pay = ep.w0(ep.by_id[payoff_id])
+    walked, stop = 0, None
+    while True:
+        prev = prev_speech(ep, ep.pos[cur["id"]] - 1) if ep.pos[cur["id"]] > 0 else None
+        if prev is None:
+            stop = "start of the transcript"
+            break
+        if t_pay - ep.w0(prev) > xc["window_s"]:
+            stop = f"window: {prev['id']} starts more than {xc['window_s']:.0f} s before the payoff"
+            break
+        gap = ep.w0(cur) - ep.w1(prev)
+        if gap > xc["gap_s"]:
+            stop = f"gap: {gap:.1f} s silence before {cur['id']} (> {xc['gap_s']:.0f} s)"
+            break
+        mus = [ev for ev in ep.events if ws._is_music(ev["text"]) and (
+            ep.pos[prev["id"]] < ep.pos[ev["id"]] < ep.pos[cur["id"]]
+            or (ev["start"] < ep.w0(cur) and ev["end"] > ep.w1(prev)))]
+        if mus:
+            stop = f"music: {mus[0]['text']} between {prev['id']} and {cur['id']}"
+            break
+        cur, walked = prev, walked + 1
+    return {"line": cur["id"], "lines": walked, "stop": stop}
+
+
+def build_for_length(ep: ws.Episode, payoff: dict, hook: dict, c3: dict, cfg: dict) -> dict:
+    """The cut builder on the clip call's moment; when the clip plays under ``guardrails.min_s`` (a hook one or two
+    lines before its payoff), it is rebuilt from the hook's ``needs_from_line``, then from the scene start
+    (``scene_start_before``). The returned clip carries ``start_extended_for_length`` when a rebuild was tried
+    (``extended`` true when the extension made the length; else the hard rules reject it as before). Raises
+    ws.Reject only when the original moment itself cannot be built."""
+    min_s = float(cfg["guardrails"]["min_s"])
+    moment = c3["moment"]
+    clip = ws.build_clip(ep, moment, cfg["cut"])
+    if clip["video_duration"] >= min_s:
+        return clip
+    info = {"extended": False, "min_s": min_s, "from_line": clip["start_line"],
+            "plays_s_before": clip["video_duration"], "tried": []}
+    start = clip["start_line"]
+    steps = []
+    nf = hook["needs_from_line"]
+    if ep.pos[nf] < ep.pos[start]:
+        steps.append(("needs_from_line", nf))
+    base = nf if steps else start
+    walk = scene_start_before(ep, base, payoff["line"], cfg)
+    if ep.pos[walk["line"]] < ep.pos[base]:
+        steps.append(("scene_start", walk["line"]))
+    info["scene_walk"] = walk
+    best = clip
+    for rule, line in steps:
+        try:
+            c2 = ws.build_clip(ep, {**moment, "start_line": line}, cfg["cut"])
+        except ws.Reject as e:
+            info["tried"].append({"rule": rule, "start_line": line, "rejected": str(e)})
+            continue
+        info["tried"].append({"rule": rule, "start_line": line, "plays_s": c2["video_duration"]})
+        if c2["video_duration"] > best["video_duration"]:
+            best = c2
+        if c2["video_duration"] >= min_s:
+            info.update(extended=True, rule=rule, to_line=line, first_new_line=line_text(ep, line),
+                        plays_s_after=c2["video_duration"])
+            best = c2
+            break
+    if not info["extended"]:
+        info["kept_original"] = (f"no start within {cfg['extend']['window_s']:.0f} s before the payoff in the same "
+                                 f"scene makes {min_s:.0f} s" + (f" ({walk['stop']})" if walk.get("stop") else ""))
+    best = dict(best)
+    best["start_extended_for_length"] = info
+    return best
 
 
 # ---------------------------------------------------------------------------------------------------- rank / dedupe
@@ -663,13 +787,16 @@ def run_episode(vid: str, cfg: dict, llm, guard: ws.Guard, out_dir: Path, log=pr
                 continue
             rec["clip3"] = c3
             try:
-                clip = ws.build_clip(ep, c3["moment"], cfg["cut"])
+                clip = build_for_length(ep, p, hook, c3, cfg)
             except ws.Reject as e:
                 rejected.append({"id": p["id"], "payoff": p, "hook": hook, "clip3": c3,
                                  "reject_reasons": [f"B1: {e}"]})
                 log(f"  {p['id']} {p['line']}: rejected by the cut builder: {e}")
                 continue
             rr = ws.hard_rules(ep, clip, cfg)
+            ext = clip.get("start_extended_for_length")
+            if ext and not ext["extended"]:
+                rr = rr + [f"L1x: start extension for length failed: {ext['kept_original']}"]
             if rr:
                 rejected.append({"id": p["id"], "payoff": p, "hook": hook, "clip3": c3, "clip": clip,
                                  "reject_reasons": rr})
@@ -677,7 +804,11 @@ def run_episode(vid: str, cfg: dict, llm, guard: ws.Guard, out_dir: Path, log=pr
                 continue
             cands.append({"id": p["id"], "payoff": p, "hook": hook, "clip3": c3, "clip": clip})
             log(f"  {p['id']} {p['line']}: clip {clip['start_line']}..{clip['end_line']} plays "
-                f"{clip['video_duration']:.1f} s" + (", cold open" if clip["cold_open"] else ""))
+                f"{clip['video_duration']:.1f} s" + (", cold open" if clip["cold_open"] else "")
+                + (f", start extended for length ({ext['rule']}: {ext['from_line']} -> {ext['to_line']}, "
+                   f"{ext['plays_s_before']:.1f} -> {ext['plays_s_after']:.1f} s)" if ext else "")
+                + (f", end mapped from event {c3['end_mapped_from_event']['event']}"
+                   if c3.get("end_mapped_from_event") else ""))
     finally:
         debug["cache"] = cache.close()
     kept, dups = dedupe(cands, cfg["guardrails"]["dup_overlap"])
@@ -759,7 +890,11 @@ def proposal_doc(ep: ws.Episode, x: dict, rank_: int, cfg: dict, line_of_word: d
             "intensity": p["intensity"], "emotion": p["emotion"], "would_stop_scrolling": h["would_stop_scrolling"],
             "watch_whole_clip": c3["watch_whole_clip"], "emotion_arc": c3["emotion_arc"],
             "clip_reason": c3["reason"],
-            "validation_flags": p.get("flags", []) + h.get("flags", []) + c3.get("flags", [])}
+            "validation_flags": p.get("flags", []) + h.get("flags", []) + c3.get("flags", []),
+            "start_mapped_from_event": c3.get("start_mapped_from_event"),
+            "end_mapped_from_event": c3.get("end_mapped_from_event"),
+            "cold_open_mapped_from_event": c3.get("cold_open_mapped_from_event"),
+            "start_extended_for_length": c.get("start_extended_for_length")}
 
 
 def rejected_doc(ep: ws.Episode, x: dict, cfg: dict) -> dict | None:
@@ -771,7 +906,8 @@ def rejected_doc(ep: ws.Episode, x: dict, cfg: dict) -> dict | None:
     if c:
         return {**base, "pieces": c["pieces"], **ws.core_fields(ep, c["pieces"], cfg["guardrails"]["skip_s"]),
                 "time_segments": c["time_segments"], "video_duration": c["video_duration"],
-                "title": (x.get("clip3") or {}).get("title")}
+                "title": (x.get("clip3") or {}).get("title"),
+                "start_extended_for_length": c.get("start_extended_for_length")}
     m = (x.get("clip3") or {}).get("moment")
     sid = ws.norm_id((m or {}).get("start_line")) or x["payoff"]["line"]
     eid = ws.norm_id((m or {}).get("end_line")) or x["payoff"]["line"]
@@ -891,6 +1027,10 @@ def clips_md(ep: ws.Episode, doc: dict) -> str:
                        f"{'cold-open skip ' if cu['lift_skip'] else ''}{cu['why']}")
         for f in p.get("shot_flags") or []:
             out.append(f"- shot flag: {f}")
+        ext = p.get("start_extended_for_length")
+        if ext:
+            out.append(f"- start extended for length ({ext['rule']}): {ext['from_line']} -> {ext['to_line']} "
+                       f"'{ext['first_new_line']}', plays {ext['plays_s_before']:.1f} -> {ext['plays_s_after']:.1f} s")
         if p.get("validation_flags"):
             out.append(f"- validation: {'; '.join(p['validation_flags'])}")
         if p["build_warnings"]:

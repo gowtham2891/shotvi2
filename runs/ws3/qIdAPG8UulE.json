@@ -1,0 +1,2464 @@
+{
+ "schema_version": "1.1",
+ "kind": "proposals",
+ "video_id": "qIdAPG8UulE",
+ "transcript": {
+  "path": "scribe_dataset/qIdAPG8UulE/qIdAPG8UulE_scribe_transcript.json",
+  "sha256": "2a5c9fe404b84d4b41859ad83abe4bcb0bd25348b718020d0517d4bfca153637",
+  "n_words": 3475,
+  "audio_duration_secs": 2179.3935
+ },
+ "derived_params": {
+  "skip_s": 30.0
+ },
+ "run_id": "ws3",
+ "created_at": "2026-10-14T13:40:22Z",
+ "content_type": "web_series",
+ "pipeline": {
+  "version": "ws3/0.2",
+  "git_commit": null,
+  "prompt_versions": {
+   "ws3_context": "1+e606d3c6",
+   "ws3_payoffs": "1+5bfc974a",
+   "ws3_hook": "1+d91ba57c",
+   "ws3_clip": "1+ac264835"
+  },
+  "prompt_files": {
+   "ws3_context": "ws3_context",
+   "ws3_payoffs": "ws3_payoffs",
+   "ws3_hook": "ws3_hook",
+   "ws3_clip": "ws3_clip"
+  },
+  "config": {
+   "models": {
+    "ws3_payoffs": {
+     "provider": "gemini",
+     "model": "gemini-3.8-flash",
+     "params": {
+      "thinking_level": "high",
+      "max_output_tokens": 32768
+     }
+    },
+    "ws3_hook": {
+     "provider": "gemini",
+     "model": "gemini-3.8-flash",
+     "params": {
+      "thinking_level": "medium",
+      "max_output_tokens": 8192
+     }
+    },
+    "ws3_clip": {
+     "provider": "gemini",
+     "model": "gemini-3.8-flash",
+     "params": {
+      "thinking_level": "low",
+      "max_output_tokens": 4096
+     }
+    }
+   },
+   "prompts": {
+    "ws3_context": "ws3_context",
+    "ws3_payoffs": "ws3_payoffs",
+    "ws3_hook": "ws3_hook",
+    "ws3_clip": "ws3_clip"
+   },
+   "cache": {
+    "mode": "explicit",
+    "ttl_s": 3600
+   },
+   "payoffs": {
+    "min_intensity": 3,
+    "max_payoffs": 20,
+    "max_end_after_payoff_lines": 3,
+    "max_end_after_payoff_s": 10.0
+   },
+   "cut": {
+    "start_pad_s": 0.3,
+    "lift_min_s": 1.0,
+    "lift_max_s": 3.6,
+    "lift_cut_eps_s": 0.005,
+    "lift_start_snap_s": 0.4,
+    "lift_start_pad_s": 0.12,
+    "lift_max_tail_s": 2.0,
+    "lift_tail_measure_s": 0.4,
+    "lift_quiet_tail_db": 15.0,
+    "lift_level_warn_db": 10.0,
+    "max_cuts": 3,
+    "max_drop_s": 45.0,
+    "snap_s": 1.5,
+    "join_pad_s": 0.25,
+    "hold_min_s": 2.0,
+    "hold_max_s": 8.0,
+    "hold_short_min_s": 0.5,
+    "hold_default_s": 2.0,
+    "next_speech_margin_s": 0.1,
+    "long_silence_s": 20.0,
+    "long_silence_hold_max_s": 4.0,
+    "react_max_s": 1.5,
+    "react_max_words": 3,
+    "react_clear_s": 1.0,
+    "quick_cut_min_s": 0.02,
+    "quick_end_margin_s": 0.05,
+    "flash_s": 0.3,
+    "shot_tol_s": 0.05,
+    "word_clip_tol_s": 0.02,
+    "exchange_start": false,
+    "exchange_gap_s": 2.0,
+    "exchange_back_max_s": 30.0,
+    "exchange_back_max_lines": 12,
+    "exchange_on_cap": "keep",
+    "exchange_recap_s": 60.0,
+    "exchange_mode": "walk",
+    "qreply_require_speaker_change": false,
+    "qreply_setup_lines": 2,
+    "qreply_max_lines": 3,
+    "qreply_max_s": 12.0,
+    "exchange_max_play_s": null
+   },
+   "guardrails": {
+    "min_s": 15.0,
+    "soft_max_s": 120.0,
+    "hard_max_s": 150.0,
+    "skip_s": 30.0,
+    "dup_overlap": 0.5,
+    "blocks_flag_above": 3
+   },
+   "rank": {
+    "strong_min_intensity": 4,
+    "verdict_strong_min": 3
+   },
+   "extend": {
+    "window_s": 60.0,
+    "gap_s": 6.0
+   },
+   "speaker_names": true,
+   "budget_usd": 1.0,
+   "calibrate_from": "runs/v1_test",
+   "run_id": "ws3"
+  },
+  "design": "founder 2026-10-14: payoffs -> hook per payoff -> clip per (hook, payoff); transcript sent once and context-cached"
+ },
+ "models": [
+  {
+   "role": "ws3_payoffs",
+   "provider": "gemini",
+   "model": "gemini-3.8-flash",
+   "params": {
+    "thinking_level": "high",
+    "max_output_tokens": 32768
+   }
+  },
+  {
+   "role": "ws3_hook",
+   "provider": "gemini",
+   "model": "gemini-3.8-flash",
+   "params": {
+    "thinking_level": "medium",
+    "max_output_tokens": 8192
+   }
+  },
+  {
+   "role": "ws3_clip",
+   "provider": "gemini",
+   "model": "gemini-3.8-flash",
+   "params": {
+    "thinking_level": "low",
+    "max_output_tokens": 4096
+   }
+  }
+ ],
+ "cost": {
+  "input_tokens": 1128916,
+  "output_tokens": 49162,
+  "cached_input_tokens": 1092773,
+  "usd": 0.30675,
+  "usd_billed": 0.30675,
+  "wall_time_secs": 519.3,
+  "n_llm_calls": 42,
+  "by_role": {
+   "ws3_cache": {
+    "n_llm_calls": 1,
+    "n_cache_hits": 0,
+    "n_failed_attempts": 0,
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "thought_tokens": 0,
+    "cached_input_tokens": 0,
+    "usd": 0.01333,
+    "usd_billed": 0.01333,
+    "models": [
+     "gemini-3.8-flash"
+    ]
+   },
+   "ws3_clip": {
+    "n_llm_calls": 20,
+    "n_cache_hits": 0,
+    "n_failed_attempts": 0,
+    "input_tokens": 554709,
+    "output_tokens": 2918,
+    "thought_tokens": 0,
+    "cached_input_tokens": 533060,
+    "usd": 0.06716,
+    "usd_billed": 0.06716,
+    "models": [
+     "gemini-3.8-flash"
+    ]
+   },
+   "ws3_hook": {
+    "n_llm_calls": 20,
+    "n_cache_hits": 0,
+    "n_failed_attempts": 0,
+    "input_tokens": 546898,
+    "output_tokens": 31265,
+    "thought_tokens": 29322,
+    "cached_input_tokens": 533060,
+    "usd": 0.1676,
+    "usd_billed": 0.1676,
+    "models": [
+     "gemini-3.8-flash"
+    ]
+   },
+   "ws3_payoffs": {
+    "n_llm_calls": 1,
+    "n_cache_hits": 0,
+    "n_failed_attempts": 0,
+    "input_tokens": 27309,
+    "output_tokens": 14979,
+    "thought_tokens": 10577,
+    "cached_input_tokens": 26653,
+    "usd": 0.05866,
+    "usd_billed": 0.05866,
+    "models": [
+     "gemini-3.8-flash"
+    ]
+   }
+  },
+  "projection": {
+   "tokens": {
+    "cache_system": 540,
+    "cache_transcript": 25599,
+    "cache_total": 26139,
+    "chars_per_token": 1.977,
+    "calibration": "runs/v1_test/qIdAPG8UulE.json: 29352 tokens for its 61774 chars discover prompt",
+    "transcript_chars": 50609,
+    "n_lines": 920
+   },
+   "cache": {
+    "mode": "explicit",
+    "ttl_s": 3600,
+    "storage_inr": 1.176,
+    "write_inr_worst_case": 1.764,
+    "min_tokens": 4096,
+    "under_minimum": false
+   },
+   "calls": {
+    "ws3_payoffs": {
+     "model": "gemini-3.8-flash",
+     "thinking_level": "high",
+     "in_uncached_tokens": 620,
+     "in_cached_tokens": 26139,
+     "out_expected": 28000,
+     "out_max": 32768,
+     "inr_expected": 9.668,
+     "inr_worst": 11.277
+    },
+    "ws3_hook": {
+     "model": "gemini-3.8-flash",
+     "thinking_level": "medium",
+     "in_uncached_tokens": 770,
+     "in_cached_tokens": 26139,
+     "out_expected": 2000,
+     "out_max": 8192,
+     "inr_expected": 0.903,
+     "inr_worst": 2.993
+    },
+    "ws3_clip": {
+     "model": "gemini-3.8-flash",
+     "thinking_level": "low",
+     "in_uncached_tokens": 1242,
+     "in_cached_tokens": 26139,
+     "out_expected": 1200,
+     "out_max": 4096,
+     "inr_expected": 0.665,
+     "inr_worst": 1.643
+    }
+   },
+   "table": [
+    {
+     "n": 8,
+     "n_processed": 8,
+     "inr_expected": 23.39,
+     "inr_worst": 51.31
+    },
+    {
+     "n": 12,
+     "n_processed": 12,
+     "inr_expected": 29.66,
+     "inr_worst": 69.85
+    },
+    {
+     "n": 16,
+     "n_processed": 16,
+     "inr_expected": 35.93,
+     "inr_worst": 88.39
+    }
+   ],
+   "n_estimate": {
+    "n": 21,
+    "n_processed": 20,
+    "inr_expected": 42.2,
+    "inr_worst": 106.94,
+    "label": "estimate: ~1 payoff per 1.75 min"
+   },
+   "n_cap": {
+    "n": 20,
+    "n_processed": 20,
+    "inr_expected": 42.2,
+    "inr_worst": 106.94
+   },
+   "episode": {
+    "inr_expected": 42.2,
+    "inr_worst": 106.94,
+    "inr_worst_at_16": 88.39
+   }
+  },
+  "cache": {
+   "mode": "explicit",
+   "key": "5afa7e8db9148d0d096210db",
+   "name": "cachedContents/wg3vnsvrjdvi6mqurzqxu1zbefwqtzuqrz828h15",
+   "tokens": 26653,
+   "ttl_s": 3600,
+   "storage_usd": 0.0133265,
+   "deleted": true,
+   "lived_s": 515.8
+  }
+ },
+ "cutoff": {
+  "show_rule": "ws3_all_built",
+  "strong_min_intensity": 4,
+  "n_candidates": 20,
+  "n_passed_hard_rules": 18,
+  "n_shown": 15,
+  "n_recommended": 13,
+  "n_worth_a_look": 2,
+  "n_rejected": 5,
+  "warnings": []
+ },
+ "episode_summary": {
+  "n_payoffs_listed": 48,
+  "n_payoffs_used": 20,
+  "n_payoffs_rejected": 28,
+  "payoffs_by_type": {
+   "punchline": 17,
+   "quotable_line": 1,
+   "reveal": 2
+  },
+  "payoffs_by_emotion": {
+   "laugh": 17,
+   "shock": 3
+  },
+  "payoffs_by_intensity": {
+   "5": 6,
+   "4": 14
+  },
+  "n_clips_built": 18,
+  "n_shown": 15,
+  "n_strong": 13,
+  "shown_by_emotion": {
+   "laugh": 12,
+   "shock": 3
+  },
+  "verdict": {
+   "strong_clips": 13,
+   "worth_a_look": 2,
+   "unchecked": 0,
+   "verdict": "strong",
+   "note": "13 strong candidates (plus 2 other candidates)."
+  },
+  "cache": {
+   "mode": "explicit",
+   "key": "5afa7e8db9148d0d096210db",
+   "name": "cachedContents/wg3vnsvrjdvi6mqurzqxu1zbefwqtzuqrz828h15",
+   "tokens": 26653,
+   "ttl_s": 3600,
+   "storage_usd": 0.0133265,
+   "deleted": true,
+   "lived_s": 515.8
+  },
+  "speaker_labels": "names",
+  "episode_notes": "A Telugu comedy-drama episode centered on Prasad, a shameless serial flirt, who tries to woo Vaishu (who claims to have philophobia) while juggling messy dynamics with his married cousin Pooja and office colleague Pratheeksha. The central twist occurs when Vaishu unexpectedly calls off her arranged marriage to pursue Prasad with possessive conditions; clipping L0328 (Pooja's marriage reveal) or L0888/L0918 (Vaishu's final twist confession) would spoil the episode's major reveals."
+ },
+ "episode_verdict": {
+  "strong_clips": 13,
+  "worth_a_look": 2,
+  "unchecked": 0,
+  "verdict": "strong",
+  "note": "13 strong candidates (plus 2 other candidates)."
+ },
+ "episode_notes": "A Telugu comedy-drama episode centered on Prasad, a shameless serial flirt, who tries to woo Vaishu (who claims to have philophobia) while juggling messy dynamics with his married cousin Pooja and office colleague Pratheeksha. The central twist occurs when Vaishu unexpectedly calls off her arranged marriage to pursue Prasad with possessive conditions; clipping L0328 (Pooja's marriage reveal) or L0888/L0918 (Vaishu's final twist confession) would spoil the episode's major reveals.",
+ "proposals": [
+  {
+   "id": "p03",
+   "pieces": [
+    {
+     "start_word": 254,
+     "end_word": 262,
+     "start": 153.4,
+     "end": 156.28
+    },
+    {
+     "start_word": 230,
+     "end_word": 249,
+     "start": 140.22,
+     "end": 148.3
+    },
+    {
+     "start_word": 263,
+     "end_word": 269,
+     "start": 156.7,
+     "end": 158.12
+    }
+   ],
+   "region": {
+    "start_word": 230,
+    "end_word": 269,
+    "start": 140.22,
+    "end": 158.12
+   },
+   "edited_duration": 12.38,
+   "reordered": true,
+   "n_blocks": 2,
+   "text": "February 14th కి ఎవరైనా pads gift గా ఇస్తారా రా నా friend కి breakup అయితే ఏం message పెట్టారు sir ఓదార్చాను చాలా బాగా ఓదార్చావ్. నువ్వేం బాధపడకు నీకు నేనున్నాను అని message పెట్టావ్ ఆరోజు నువ్వు date లో ఉన్నావ్ అన్నావ్ కదా",
+   "rank": 1,
+   "tier": "recommended",
+   "tier_label": "strong candidate",
+   "scores": {
+    "hook": 4.5,
+    "standalone": 4.0,
+    "payoff": 5.0,
+    "value_emotion": 5.0,
+    "overall": 4.62
+   },
+   "scores_source": "ws3: derived from intensity / would_stop_scrolling / watch_whole_clip (no review call)",
+   "title": "Valentine's Day కి pads గిఫ్ట్ ఆ?",
+   "hook_line": {
+    "text": "February 14th కి ఎవరైనా pads gift గా ఇస్తారా రా",
+    "start_word": 254,
+    "end_word": 262
+   },
+   "payoff_line": "ఆరోజు నువ్వు date లో ఉన్నావ్ అన్నావ్ కదా",
+   "payoff_type": "punchline",
+   "payoff_line_source": "ws3_payoffs",
+   "why_it_works": "The clip hooks instantly with an absurd cold open about gifting pads on Valentine's Day, establishes Boyfriend's ridiculous logic, and lands cleanly on his deadpan punchline.",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [
+    {
+     "type": "cold_open",
+     "after_piece": 0,
+     "reason": "Lifted L0069 (3.0 s) to the front; skipped in place, not replayed."
+    }
+   ],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": true,
+   "cold_open_detail": {
+    "lines": [
+     "L0069"
+    ],
+    "text": "February 14th కి ఎవరైనా pads gift గా ఇస్తారా రా",
+    "start": 153.28,
+    "end": 156.318,
+    "duration": 3.04,
+    "tail_s": 0.04,
+    "start_on_cut": false,
+    "word_range": [
+     254,
+     262
+    ],
+    "level_vs_scene_db": 0.2
+   },
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 153.28,
+     "end": 156.318,
+     "kind": "cold_open"
+    },
+    {
+     "start": 139.92,
+     "end": 149.728,
+     "kind": "scene"
+    },
+    {
+     "start": 156.49,
+     "end": 161.448,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 17.8,
+   "start_line": "L0061",
+   "end_line": "L0070",
+   "end_hold": {
+    "payoff_end": 158.12,
+    "end": 161.448,
+    "hold_s": 3.33,
+    "on_shot_cut": true,
+    "next_speech": 161.98,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "rule": "hold"
+   },
+   "chunk_drops": [
+    {
+     "after_line": "L0065",
+     "before_line": "L0070",
+     "removed_lines": [
+      "L0067",
+      "L0068",
+      "L0069"
+     ],
+     "lift_skip": true,
+     "start": 149.728,
+     "end": 156.49,
+     "removed_s": 6.76,
+     "why": "Removes the audio bridge and filler reaction between the two breakup complaints so the pacing remains tight."
+    }
+   ],
+   "shot_flags": [],
+   "build_warnings": [],
+   "payoff": {
+    "line": "L0070",
+    "text": "ఆరోజు నువ్వు date లో ఉన్నావ్ అన్నావ్ కదా",
+    "type": "punchline",
+    "emotion": "laugh",
+    "intensity": 5,
+    "reason": "When asked who gifts sanitary pads on Valentine's Day, Boyfriend deadpans his clueless reasoning: 'ఆరోజు నువ్వు date లో ఉన్నావ్ అన్నావ్ కదా'.",
+    "lands_on_screen": true
+   },
+   "hook": {
+    "hook_line": "L0069",
+    "hook_text": "February 14th కి ఎవరైనా pads gift గా ఇస్తారా రా",
+    "needs_from_line": "L0069",
+    "needs_from_text": "February 14th కి ఎవరైనా pads gift గా ఇస్తారా రా",
+    "hook_emotion": "laugh",
+    "would_stop_scrolling": "yes",
+    "reason": "Vaishu's outraged question asking who gives sanitary pads as a Valentine's Day gift immediately arrests attention with its bizarre premise and serves as the direct setup for the punchline."
+   },
+   "intensity": 5,
+   "emotion": "laugh",
+   "would_stop_scrolling": "yes",
+   "watch_whole_clip": "yes",
+   "emotion_arc": "laugh -> laugh",
+   "clip_reason": "The clip hooks instantly with an absurd cold open about gifting pads on Valentine's Day, establishes Boyfriend's ridiculous logic, and lands cleanly on his deadpan punchline.",
+   "validation_flags": [],
+   "start_mapped_from_event": null,
+   "end_mapped_from_event": null,
+   "cold_open_mapped_from_event": null,
+   "start_extended_for_length": null
+  },
+  {
+   "id": "p05",
+   "pieces": [
+    {
+     "start_word": 393,
+     "end_word": 447,
+     "start": 239.04,
+     "end": 274.72
+    }
+   ],
+   "region": {
+    "start_word": 393,
+    "end_word": 447,
+    "start": 239.04,
+    "end": 274.72
+   },
+   "edited_duration": 35.68,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "అది కాదు రా, నువ్వు first time నన్ను ఎక్కడ చూసావ్ ఆ city bus లో white color చుడీదార్ లో ఉన్నావ్ అప్పుడే నిన్ను first time చూశాను. అలా చూస్తూ ఉండిపోవాలనిపించింది bus లో చాలా మంది జనం ఉన్నారు. ఆ జనాలందరినీ దాటి conductor ని దగ్గరికి వచ్చి టికెట్ డబ్బులు అడిగే లోపు నీవు దిగిపోయావు ఆరోజు నీ దగ్గర డబ్బులు లేవా అమ్మాయిలకి bus free రా దరిద్రుడా",
+   "rank": 2,
+   "tier": "recommended",
+   "tier_label": "strong candidate",
+   "scores": {
+    "hook": 4.5,
+    "standalone": 4.0,
+    "payoff": 5.0,
+    "value_emotion": 5.0,
+    "overall": 4.62
+   },
+   "scores_source": "ws3: derived from intensity / would_stop_scrolling / watch_whole_clip (no review call)",
+   "title": "First Time ఎక్కడ చూశావ్?",
+   "hook_line": {
+    "text": "అది కాదు రా, నువ్వు first time నన్ను ఎక్కడ చూసావ్",
+    "start_word": 393,
+    "end_word": 401
+   },
+   "payoff_line": "అమ్మాయిలకి bus free రా దరిద్రుడా",
+   "payoff_type": "punchline",
+   "payoff_line_source": "ws3_payoffs",
+   "why_it_works": "The clip hooks the viewer with what looks like a nostalgic, romantic flashback question, builds up with the boyfriend's poetic memory of her on a bus, and lands on a hilarious, sharp punchline about …",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [
+    "song_overlap"
+   ],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 238.74,
+     "end": 275.854,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 37.11,
+   "start_line": "L0111",
+   "end_line": "L0126",
+   "end_hold": {
+    "payoff_end": 274.72,
+    "end": 275.854,
+    "hold_s": 1.13,
+    "on_shot_cut": true,
+    "next_speech": 277.52,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "note": "short hold (next shot cut before the minimum hold)",
+    "rule": "hold"
+   },
+   "chunk_drops": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "payoff": {
+    "line": "L0126",
+    "text": "అమ్మాయిలకి bus free రా దరిద్రుడా",
+    "type": "punchline",
+    "emotion": "laugh",
+    "intensity": 5,
+    "reason": "Boyfriend reminisces about seeing her rush off the bus without paying for a ticket, only for Vaishu to scream the reality: 'అమ్మాయిలకి bus free రా దరిద్రుడా'.",
+    "lands_on_screen": true
+   },
+   "hook": {
+    "hook_line": "L0111",
+    "hook_text": "అది కాదు రా, నువ్వు first time నన్ను ఎక్కడ చూసావ్",
+    "needs_from_line": "L0111",
+    "needs_from_text": "అది కాదు రా, నువ్వు first time నన్ను ఎక్కడ చూసావ్",
+    "hook_emotion": "curiosity",
+    "would_stop_scrolling": "yes",
+    "reason": "Asking 'Where did you see me for the first time?' sets up the expectation of a nostalgic romantic story, perfectly establishing the setup for the hilarious reality check in the payoff."
+   },
+   "intensity": 5,
+   "emotion": "laugh",
+   "would_stop_scrolling": "yes",
+   "watch_whole_clip": "yes",
+   "emotion_arc": "curiosity -> laugh",
+   "clip_reason": "The clip hooks the viewer with what looks like a nostalgic, romantic flashback question, builds up with the boyfriend's poetic memory of her on a bus, and lands on a hilarious, sharp punchline about free bus rides for women.",
+   "validation_flags": [],
+   "start_mapped_from_event": null,
+   "end_mapped_from_event": null,
+   "cold_open_mapped_from_event": null,
+   "start_extended_for_length": null
+  },
+  {
+   "id": "p15",
+   "pieces": [
+    {
+     "start_word": 1132,
+     "end_word": 1192,
+     "start": 650.664,
+     "end": 678.264
+    }
+   ],
+   "region": {
+    "start_word": 1132,
+    "end_word": 1192,
+    "start": 650.664,
+    "end": 678.264
+   },
+   "edited_duration": 27.6,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "వాళ్ళని పట్టుకోవడం కష్టం. అందుకే కొందరితో ఎక్కువసేపు నిలబడను. ఉమ్ నీ language లో చెప్పాలంటే red flag. మరి ఆ మంచి అమ్మాయి దొరికిందా? నువ్వే. బాబోయ్! నన్ను వదిలేయి రా. I am out of your league. ఎవరో set అవకపోతే నా పరిస్థితి ఏంటే. నీ సంగతి నాకెందుకురా? మనం love చేసుకున్నాం కదా. Yo! Yo! గట్టిగా అనకురా బాబు. ఈ విషయాన్ని నువ్వు ఎంత తొందరగా మర్చిపోతే అంత మంచిది. ఏ? Okay, ప్రసాద్ నాకు పెళ్లయింది.",
+   "rank": 3,
+   "tier": "recommended",
+   "tier_label": "strong candidate",
+   "scores": {
+    "hook": 4.5,
+    "standalone": 4.0,
+    "payoff": 5.0,
+    "value_emotion": 5.0,
+    "overall": 4.62
+   },
+   "scores_source": "ws3: derived from intensity / would_stop_scrolling / watch_whole_clip (no review call)",
+   "title": "మనం Love చేసుకున్నాం కదా!",
+   "hook_line": {
+    "text": "వాళ్ళని పట్టుకోవడం కష్టం.",
+    "start_word": 1132,
+    "end_word": 1134
+   },
+   "payoff_line": "Okay, ప్రసాద్ నాకు పెళ్లయింది.",
+   "payoff_type": "reveal",
+   "payoff_line_source": "ws3_payoffs",
+   "why_it_works": "Prasad's bold claim of their past romance immediately creates intrigue, quickly escalating to Pooja's shocked hush and shocking marriage confession.",
+   "category": "reveal",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 650.364,
+     "end": 681.009,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 30.64,
+   "start_line": "L0310",
+   "end_line": "L0328",
+   "end_hold": {
+    "payoff_end": 678.264,
+    "end": 681.009,
+    "hold_s": 2.75,
+    "on_shot_cut": true,
+    "next_speech": 685.964,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "rule": "hold"
+   },
+   "chunk_drops": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "payoff": {
+    "line": "L0328",
+    "text": "Okay, ప్రసాద్ నాకు పెళ్లయింది.",
+    "type": "reveal",
+    "emotion": "shock",
+    "intensity": 5,
+    "reason": "Pooja halts Prasad's flirtatious advances with the sudden reveal that she is already married: 'ప్రసాద్ నాకు పెళ్లయింది'.",
+    "lands_on_screen": true
+   },
+   "hook": {
+    "hook_line": "L0321",
+    "hook_text": "మనం love చేసుకున్నాం కదా.",
+    "needs_from_line": "L0321",
+    "needs_from_text": "మనం love చేసుకున్నాం కదా.",
+    "hook_emotion": "curiosity",
+    "would_stop_scrolling": "yes",
+    "reason": "Prasad's abrupt claim that they were in love instantly sparks curiosity about their relationship, serving as the direct trigger for Pooja's hushed panic and marital status reveal."
+   },
+   "intensity": 5,
+   "emotion": "shock",
+   "would_stop_scrolling": "yes",
+   "watch_whole_clip": "yes",
+   "emotion_arc": "curiosity -> shock",
+   "clip_reason": "Prasad's bold claim of their past romance immediately creates intrigue, quickly escalating to Pooja's shocked hush and shocking marriage confession.",
+   "validation_flags": [],
+   "start_mapped_from_event": null,
+   "end_mapped_from_event": null,
+   "cold_open_mapped_from_event": null,
+   "start_extended_for_length": {
+    "extended": true,
+    "min_s": 15.0,
+    "from_line": "L0321",
+    "plays_s_before": 14.8,
+    "tried": [
+     {
+      "rule": "scene_start",
+      "start_line": "L0310",
+      "plays_s": 30.64
+     }
+    ],
+    "scene_walk": {
+     "line": "L0310",
+     "lines": 11,
+     "stop": "music: [పਿੱనలి సంగీతం] between L0308 and L0310"
+    },
+    "rule": "scene_start",
+    "to_line": "L0310",
+    "first_new_line": "వాళ్ళని పట్టుకోవడం కష్టం.",
+    "plays_s_after": 30.64
+   }
+  },
+  {
+   "id": "p18",
+   "pieces": [
+    {
+     "start_word": 1815,
+     "end_word": 1847,
+     "start": 1104.904,
+     "end": 1134.26
+    }
+   ],
+   "region": {
+    "start_word": 1815,
+    "end_word": 1847,
+    "start": 1104.904,
+    "end": 1134.26
+   },
+   "edited_duration": 29.356,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ప్రసాద్ emotionally గా నీతో చాలా connect అయ్యాను. అంటే నాకెప్పుడు బోర్ కొట్టినా నవ్విస్తావ్ and చాలా care చూపిస్తావ్ so So So you are like my brother hello అన్నయ్య అవ్వడానికి ఇవన్నీ ఎవడు చేయడండి. నల్లకుంటే అన్నయ్య అనేస్తావా?",
+   "rank": 4,
+   "tier": "recommended",
+   "tier_label": "strong candidate",
+   "scores": {
+    "hook": 4.5,
+    "standalone": 4.0,
+    "payoff": 5.0,
+    "value_emotion": 5.0,
+    "overall": 4.62
+   },
+   "scores_source": "ws3: derived from intensity / would_stop_scrolling / watch_whole_clip (no review call)",
+   "title": "Emotionally connect అయ్యాను అన్నది కానీ!",
+   "hook_line": {
+    "text": "ప్రసాద్",
+    "start_word": 1815,
+    "end_word": 1815
+   },
+   "payoff_line": "So you are like my brother",
+   "payoff_type": "reveal",
+   "payoff_line_source": "ws3_payoffs",
+   "why_it_works": "The clip hooks the audience with an apparent emotional confession before delivering a sudden brother-zoning twist topped by Prasad's hilarious outraged reaction.",
+   "category": "reveal",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 1104.604,
+     "end": 1134.378,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 29.77,
+   "start_line": "L0485",
+   "end_line": "L0495",
+   "end_hold": {
+    "payoff_end": 1134.26,
+    "next_speech": 1134.76,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "end": 1134.378,
+    "hold_s": 0.12,
+    "on_shot_cut": true,
+    "rule": "shot_change_before_next_line",
+    "note": "next line starts quickly: ends on the shot change"
+   },
+   "chunk_drops": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "payoff": {
+    "line": "L0491",
+    "text": "So you are like my brother",
+    "type": "reveal",
+    "emotion": "shock",
+    "intensity": 5,
+    "reason": "Pratheeksha builds up what sounds like a romantic confession only to drop the ultimate brother-zone bomb: 'So you are like my brother'.",
+    "lands_on_screen": true
+   },
+   "hook": {
+    "hook_line": "L0486",
+    "hook_text": "emotionally గా నీతో చాలా connect అయ్యాను.",
+    "needs_from_line": "L0486",
+    "needs_from_text": "emotionally గా నీతో చాలా connect అయ్యాను.",
+    "hook_emotion": "curiosity",
+    "would_stop_scrolling": "yes",
+    "reason": "Pratheeksha confessing that she feels deeply emotionally connected creates immediate romantic curiosity, perfectly setting up the hilarious shock of her brother-zoning him."
+   },
+   "intensity": 5,
+   "emotion": "shock",
+   "would_stop_scrolling": "yes",
+   "watch_whole_clip": "yes",
+   "emotion_arc": "curiosity -> shock",
+   "clip_reason": "The clip hooks the audience with an apparent emotional confession before delivering a sudden brother-zoning twist topped by Prasad's hilarious outraged reaction.",
+   "validation_flags": [],
+   "start_mapped_from_event": null,
+   "end_mapped_from_event": null,
+   "cold_open_mapped_from_event": null,
+   "start_extended_for_length": null
+  },
+  {
+   "id": "p20",
+   "pieces": [
+    {
+     "start_word": 3428,
+     "end_word": 3474,
+     "start": 2127.064,
+     "end": 2157.324
+    }
+   ],
+   "region": {
+    "start_word": 3428,
+    "end_word": 3474,
+    "start": 2127.064,
+    "end": 2157.324
+   },
+   "edited_duration": 30.26,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ప్రసాద్ నేను ఒకడిని love చేసి వాడు కూడా correct లేకపోతే ఇంకొకడిని love చేసి ఇలా correct person కోసం వెతికే బదులు నేను ప్రేమించిన వాడినే నాకు కావలసినట్టు మార్చుకోవచ్చుగా ఊ So మా అక్కతో ఏం చెప్పుకుంటావో నాకు తెలీదు ఆ నాన్న ఒప్పుకోకపోయినా పర్లేదు ఆ నన్ను కాదని ఇంకెవరినైనా చూసావో నేనైనా చచ్చిపోతా లేదా నిన్నైనా చంపేస్తా ఆ",
+   "rank": 5,
+   "tier": "recommended",
+   "tier_label": "strong candidate",
+   "scores": {
+    "hook": 4.5,
+    "standalone": 4.0,
+    "payoff": 5.0,
+    "value_emotion": 5.0,
+    "overall": 4.62
+   },
+   "scores_source": "ws3: derived from intensity / would_stop_scrolling / watch_whole_clip (no review call)",
+   "title": "నేనైనా చస్తా లేదా నిన్నైనా చంపేస్తా!",
+   "hook_line": {
+    "text": "ప్రసాద్ నేను ఒకడిని love చేసి వాడు కూడా correct లేకపోతే ఇంకొకడిని love చేసి",
+    "start_word": 3428,
+    "end_word": 3439
+   },
+   "payoff_line": "లేదా నిన్నైనా చంపేస్తా",
+   "payoff_type": "punchline",
+   "payoff_line_source": "ws3_payoffs",
+   "why_it_works": "Vaishu's surprisingly intense monologue flips from philosophical relationship logic into an unhinged life-or-death ultimatum, leaving Prasad stunned.",
+   "category": "reveal",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 2127.064,
+     "end": 2159.611,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 32.55,
+   "start_line": "L0907",
+   "end_line": "L0919",
+   "end_hold": {
+    "payoff_end": 2157.324,
+    "end": 2159.611,
+    "hold_s": 2.29,
+    "on_shot_cut": true,
+    "next_speech": null,
+    "long_silence_after": true,
+    "laugh_after": false,
+    "rule": "hold"
+   },
+   "chunk_drops": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "payoff": {
+    "line": "L0918",
+    "text": "లేదా నిన్నైనా చంపేస్తా",
+    "type": "punchline",
+    "emotion": "shock",
+    "intensity": 5,
+    "reason": "Vaishu seals her proposal with a terrifying obsessive threat: if Prasad ever looks at another woman, she will either die or murder him.",
+    "lands_on_screen": true
+   },
+   "hook": {
+    "hook_line": "L0907",
+    "hook_text": "ప్రసాద్ నేను ఒకడిని love చేసి వాడు కూడా correct లేకపోతే ఇంకొకడిని love చేసి",
+    "needs_from_line": "L0907",
+    "needs_from_text": "ప్రసాద్ నేను ఒకడిని love చేసి వాడు కూడా correct లేకపోతే ఇంకొకడిని love చేసి",
+    "hook_emotion": "curiosity",
+    "would_stop_scrolling": "yes",
+    "reason": "Vaishu opens the call with an unconventional relationship philosophy about moulding a lover rather than finding someone perfect, perfectly setting up the bizarrely extreme ultimatum that follows."
+   },
+   "intensity": 5,
+   "emotion": "shock",
+   "would_stop_scrolling": "yes",
+   "watch_whole_clip": "yes",
+   "emotion_arc": "curiosity -> shock",
+   "clip_reason": "Vaishu's surprisingly intense monologue flips from philosophical relationship logic into an unhinged life-or-death ultimatum, leaving Prasad stunned.",
+   "validation_flags": [],
+   "start_mapped_from_event": null,
+   "end_mapped_from_event": null,
+   "cold_open_mapped_from_event": null,
+   "start_extended_for_length": null
+  },
+  {
+   "id": "p19",
+   "pieces": [
+    {
+     "start_word": 2358,
+     "end_word": 2464,
+     "start": 1501.424,
+     "end": 1549.784
+    }
+   ],
+   "region": {
+    "start_word": 2358,
+    "end_word": 2464,
+    "start": 1501.424,
+    "end": 1549.784
+   },
+   "edited_duration": 48.36,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "నన్ను అంత close గా పిలవకు ఏ నువ్వు cheater vi prasad నీకోసం ఎవరైనా cheat చేయాలనిపించిందప్పుడు నువ్వు నన్ను cheat చేశావ్ రా అది flow లో అంటే సర్లే నాకు మీ అక్కీ పెళ్లి అయిన తర్వాత నీకు ఏదో average సంబంధం చూస్తా లే Average ఆ అంటే నువ్వు handsome అనుకుంటున్నావా Handsome గా ఉన్న వాళ్ళందరూ photo frame లో బాగుంటారే reality లో కాకి పెళ్ళే ముద్దు అయినా ఇవన్నీ నువ్వు నాకెందుకు చెప్తున్నావ్ we are done prasad నీకు నాకు ఏ సంబంధం లేదు ఏ సంబంధం లేదా అంటే నాకు మీ అక్కీ పెళ్లి అయితే ఆ పెళ్లిలో ఆకులేస్తవా ఆ వృద్ధా నీకు What నాకేం అవసరం నేనెందుకు చేస్తాను మా అక్కేదో నువ్వు మంచోడివి అనుకుంటుంది ప్రసాద్ Ma'am వీడు నన్ను twenty thousand అప్పు అడుగుతున్నాడు ఇవ్వకపోతే propose చేస్తా అని బెదిరిస్తున్నాడు",
+   "rank": 6,
+   "tier": "worth_a_look",
+   "tier_label": "candidate",
+   "scores": {
+    "hook": 2.5,
+    "standalone": 4.0,
+    "payoff": 5.0,
+    "value_emotion": 5.0,
+    "overall": 4.12
+   },
+   "scores_source": "ws3: derived from intensity / would_stop_scrolling / watch_whole_clip (no review call)",
+   "title": "Propose చేస్తా అని బెదిరిస్తున్నాడు",
+   "hook_line": {
+    "text": "నన్ను అంత close గా పిలవకు",
+    "start_word": 2358,
+    "end_word": 2362
+   },
+   "payoff_line": "Ma'am వీడు నన్ను twenty thousand అప్పు అడుగుతున్నాడు ఇవ్వకపోతే propose చేస్తా అని బెదిరిస్తున్నాడు",
+   "payoff_type": "punchline",
+   "payoff_line_source": "ws3_payoffs",
+   "why_it_works": "The tense office confrontation between Pratheeksha and Prasad escalates right into the hilarious payoff where a colleague exposes his bizarre blackmail tactics.",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 1501.124,
+     "end": 1551.879,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 50.75,
+   "start_line": "L0654",
+   "end_line": "L0671",
+   "end_hold": {
+    "payoff_end": 1549.784,
+    "end": 1551.879,
+    "hold_s": 2.09,
+    "on_shot_cut": true,
+    "next_speech": 1555.244,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "rule": "hold"
+   },
+   "chunk_drops": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "payoff": {
+    "line": "L0671",
+    "text": "Ma'am వీడు నన్ను twenty thousand అప్పు అడుగుతున్నాడు ఇవ్వకపోతే propose చేస్తా అని బెదిరిస్తున్నాడు",
+    "type": "punchline",
+    "emotion": "laugh",
+    "intensity": 5,
+    "reason": "A female colleague storms in to report that Prasad threatened to propose to her if she didn't lend him twenty thousand rupees.",
+    "lands_on_screen": true
+   },
+   "hook": {
+    "hook_line": "L0670",
+    "hook_text": "మా అక్కేదో నువ్వు మంచోడివి అనుకుంటుంది ప్రసాద్",
+    "needs_from_line": "L0670",
+    "needs_from_text": "మా అక్కేదో నువ్వు మంచోడివి అనుకుంటుంది ప్రసాద్",
+    "hook_emotion": "none",
+    "would_stop_scrolling": "no",
+    "reason": "Pratheeksha's remark that her sister thinks Prasad is a good guy serves as the immediate setup claim that the colleague's absurd blackmail complaint overturns."
+   },
+   "intensity": 5,
+   "emotion": "laugh",
+   "would_stop_scrolling": "no",
+   "watch_whole_clip": "yes",
+   "emotion_arc": "confrontation -> laugh",
+   "clip_reason": "The tense office confrontation between Pratheeksha and Prasad escalates right into the hilarious payoff where a colleague exposes his bizarre blackmail tactics.",
+   "validation_flags": [],
+   "start_mapped_from_event": null,
+   "end_mapped_from_event": null,
+   "cold_open_mapped_from_event": null,
+   "start_extended_for_length": null
+  },
+  {
+   "id": "p02",
+   "pieces": [
+    {
+     "start_word": 174,
+     "end_word": 190,
+     "start": 100.88,
+     "end": 112.42
+    },
+    {
+     "start_word": 191,
+     "end_word": 201,
+     "start": 116.36,
+     "end": 121.06
+    }
+   ],
+   "region": {
+    "start_word": 174,
+    "end_word": 201,
+    "start": 100.88,
+    "end": 121.06
+   },
+   "edited_duration": 16.24,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "మా తాత చనిపోయి one year అయిందని సంవత్సరికం చేస్తుంటే తాత happy anniversary అని రాసి bouquet పంపిస్తావా సిగ్గుందారా నీకు ఆ ఇవన్నీ చాలా చిన్న చిన్న కారణాలు కదా వైషు ఏంటి ఇవి చిన్నవా",
+   "rank": 7,
+   "tier": "recommended",
+   "tier_label": "strong candidate",
+   "scores": {
+    "hook": 4.5,
+    "standalone": 4.0,
+    "payoff": 4.0,
+    "value_emotion": 4.0,
+    "overall": 4.12
+   },
+   "scores_source": "ws3: derived from intensity / would_stop_scrolling / watch_whole_clip (no review call)",
+   "title": "తాతకి Happy Anniversary ఆ?!",
+   "hook_line": {
+    "text": "మా తాత చనిపోయి one year అయిందని సంవత్సరికం చేస్తుంటే",
+    "start_word": 174,
+    "end_word": 181
+   },
+   "payoff_line": "తాత happy anniversary అని రాసి bouquet పంపిస్తావా",
+   "payoff_type": "punchline",
+   "payoff_line_source": "ws3_payoffs",
+   "why_it_works": "The solemn setup of a grandfather's death anniversary immediately hooks curiosity and delivers a hilarious, absurd punchline capped off perfectly by his shameless reaction.",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 100.58,
+     "end": 112.67,
+     "kind": "scene"
+    },
+    {
+     "start": 115.782,
+     "end": 121.908,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 18.22,
+   "start_line": "L0045",
+   "end_line": "L0052",
+   "end_hold": {
+    "payoff_end": 119.26,
+    "next_speech": 122.28,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "end": 121.908,
+    "hold_s": 2.65,
+    "on_shot_cut": true,
+    "rule": "reaction",
+    "reaction": {
+     "line": "L0053",
+     "text": "ఏంటి ఇవి చిన్నవా",
+     "end": 121.06
+    }
+   },
+   "chunk_drops": [
+    {
+     "after_line": "L0049",
+     "before_line": "L0051",
+     "removed_lines": [
+      "L0050"
+     ],
+     "lift_skip": false,
+     "start": 112.67,
+     "end": 115.782,
+     "removed_s": 3.11,
+     "why": "Trims a brief audio event pause between the reaction and the boyfriend's nonchalant response."
+    }
+   ],
+   "shot_flags": [],
+   "build_warnings": [],
+   "payoff": {
+    "line": "L0047",
+    "text": "తాత happy anniversary అని రాసి bouquet పంపిస్తావా",
+    "type": "punchline",
+    "emotion": "laugh",
+    "intensity": 4,
+    "reason": "Vaishu exposes Boyfriend's absurdity by recounting how he sent a bouquet saying 'happy anniversary' for her grandfather's death anniversary.",
+    "lands_on_screen": true
+   },
+   "hook": {
+    "hook_line": "L0045",
+    "hook_text": "మా తాత చనిపోయి one year అయిందని సంవత్సరికం చేస్తుంటే",
+    "needs_from_line": "L0045",
+    "needs_from_text": "మా తాత చనిపోయి one year అయిందని సంవత్సరికం చేస్తుంటే",
+    "hook_emotion": "curiosity",
+    "would_stop_scrolling": "yes",
+    "reason": "Setting up the solemn scene of a grandfather's one-year death anniversary creates instant curiosity, providing the essential premise for the absurd punchline to land."
+   },
+   "intensity": 4,
+   "emotion": "laugh",
+   "would_stop_scrolling": "yes",
+   "watch_whole_clip": "yes",
+   "emotion_arc": "curiosity -> laugh",
+   "clip_reason": "The solemn setup of a grandfather's death anniversary immediately hooks curiosity and delivers a hilarious, absurd punchline capped off perfectly by his shameless reaction.",
+   "validation_flags": [],
+   "start_mapped_from_event": null,
+   "end_mapped_from_event": null,
+   "cold_open_mapped_from_event": null,
+   "start_extended_for_length": null
+  },
+  {
+   "id": "p04",
+   "pieces": [
+    {
+     "start_word": 322,
+     "end_word": 359,
+     "start": 187.04,
+     "end": 212.82
+    }
+   ],
+   "region": {
+    "start_word": 322,
+    "end_word": 359,
+    "start": 187.04,
+    "end": 212.82
+   },
+   "edited_duration": 25.78,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ఒక్క chance ఇవ్వేయ్ ఈసారి, నీ expectation కచ్చితంగా reach చేస్తా ఉమ్ okay. నన్ను ఏదైనా romantic place కి తీసుకెళ్ళు Romantic అంటే, ఆ ఉమ్ పదా ఎక్కడికి వెళ్తున్నాం ఆ సికింద్రాబాద్ railway station కి సికింద్రాబాద్ railway sta-- అక్కడికెందుకు అక్కడ చెరువు రసం చాలా బాగుంటుంది",
+   "rank": 8,
+   "tier": "recommended",
+   "tier_label": "strong candidate",
+   "scores": {
+    "hook": 4.5,
+    "standalone": 4.0,
+    "payoff": 4.0,
+    "value_emotion": 4.0,
+    "overall": 4.12
+   },
+   "scores_source": "ws3: derived from intensity / would_stop_scrolling / watch_whole_clip (no review call)",
+   "title": "రొమాంటిక్ ప్లేస్ అంటే సికింద్రాబాద్ స్టేషనా!",
+   "hook_line": {
+    "text": "ఒక్క chance ఇవ్వేయ్ ఈసారి, నీ expectation కచ్చితంగా reach చేస్తా",
+    "start_word": 322,
+    "end_word": 330
+   },
+   "payoff_line": "అక్కడ చెరువు రసం చాలా బాగుంటుంది",
+   "payoff_type": "punchline",
+   "payoff_line_source": "ws3_payoffs",
+   "why_it_works": "The clip sets up high expectations when the boyfriend begs for one last chance to be romantic, delivering a hilarious punchline when his chosen romantic destination is simply a railway station sugarc…",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 186.74,
+     "end": 214.82,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 28.08,
+   "start_line": "L0087",
+   "end_line": "L0100",
+   "end_hold": {
+    "payoff_end": 212.82,
+    "end": 214.82,
+    "hold_s": 2.0,
+    "on_shot_cut": false,
+    "next_speech": 215.76,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "note": "hold not on a shot cut",
+    "rule": "hold"
+   },
+   "chunk_drops": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "payoff": {
+    "line": "L0100",
+    "text": "అక్కడ చెరువు రసం చాలా బాగుంటుంది",
+    "type": "punchline",
+    "emotion": "laugh",
+    "intensity": 4,
+    "reason": "After promising to take her to a romantic location, Boyfriend brings her to Secunderabad railway station specifically because the 'చెరకు రసం' (sugarcane juice) is good there.",
+    "lands_on_screen": true
+   },
+   "hook": {
+    "hook_line": "L0087",
+    "hook_text": "ఒక్క chance ఇవ్వేయ్ ఈసారి, నీ expectation కచ్చితంగా reach చేస్తా",
+    "needs_from_line": "L0087",
+    "needs_from_text": "ఒక్క chance ఇవ్వేయ్ ఈసారి, నీ expectation కచ్చితంగా reach చేస్తా",
+    "hook_emotion": "curiosity",
+    "would_stop_scrolling": "yes",
+    "reason": "Boyfriend's desperate plea for one last chance to meet her expectations instantly hooks viewer curiosity and sets up her test to take her somewhere romantic."
+   },
+   "intensity": 4,
+   "emotion": "laugh",
+   "would_stop_scrolling": "yes",
+   "watch_whole_clip": "yes",
+   "emotion_arc": "curiosity -> laugh",
+   "clip_reason": "The clip sets up high expectations when the boyfriend begs for one last chance to be romantic, delivering a hilarious punchline when his chosen romantic destination is simply a railway station sugarcane juice stall.",
+   "validation_flags": [],
+   "start_mapped_from_event": null,
+   "end_mapped_from_event": null,
+   "cold_open_mapped_from_event": null,
+   "start_extended_for_length": null
+  },
+  {
+   "id": "p06",
+   "pieces": [
+    {
+     "start_word": 465,
+     "end_word": 518,
+     "start": 285.74,
+     "end": 318.78
+    }
+   ],
+   "region": {
+    "start_word": 465,
+    "end_word": 518,
+    "start": 285.74,
+    "end": 318.78
+   },
+   "edited_duration": 33.04,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "వైషు madam మీరు చాలా అందంగా ఉన్నారండి Thank you అన్నా ప్రసాద్ madam Okay ప్రసాద్ అన్నా Only ప్రసాద్ madam చాలా simple ఏ మన్నా madam ప్రసాద్ is okay, అన్న is not okay ఎందుకు six months back ఒక అమ్మాయి ఇలాగే అన్నయ్యా అని పిలిచి అన్నం లేకుండా చచ్చిపోయింది madam ఆ తర్వాత తర్వాత ఆ అమ్మాయి దినానికి మేము వెళ్లి అన్నం తిని వచ్చామండి",
+   "rank": 9,
+   "tier": "recommended",
+   "tier_label": "strong candidate",
+   "scores": {
+    "hook": 4.5,
+    "standalone": 4.0,
+    "payoff": 4.0,
+    "value_emotion": 4.0,
+    "overall": 4.12
+   },
+   "scores_source": "ws3: derived from intensity / would_stop_scrolling / watch_whole_clip (no review call)",
+   "title": "అన్న అని పిలవొద్దు ప్లీజ్!",
+   "hook_line": {
+    "text": "వైషు madam మీరు చాలా అందంగా ఉన్నారండి",
+    "start_word": 465,
+    "end_word": 470
+   },
+   "payoff_line": "తర్వాత ఆ అమ్మాయి దినానికి మేము వెళ్లి అన్నం తిని వచ్చామండి",
+   "payoff_type": "punchline",
+   "payoff_line_source": "ws3_payoffs",
+   "why_it_works": "Prasad's bizarre refusal to be brother-zoned hooks the viewer instantly, leading cleanly into his hilariously dark funeral punchline.",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": "lift speech is 3.9 s (> 3.6 s)",
+   "time_segments": [
+    {
+     "start": 285.44,
+     "end": 318.813,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 33.37,
+   "start_line": "L0135",
+   "end_line": "L0148",
+   "end_hold": {
+    "payoff_end": 318.78,
+    "next_speech": 320.52,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "end": 318.813,
+    "hold_s": 0.03,
+    "on_shot_cut": true,
+    "rule": "shot_change_before_next_line",
+    "note": "next line starts quickly: ends on the shot change"
+   },
+   "chunk_drops": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "payoff": {
+    "line": "L0148",
+    "text": "తర్వాత ఆ అమ్మాయి దినానికి మేము వెళ్లి అన్నం తిని వచ్చామండి",
+    "type": "punchline",
+    "emotion": "laugh",
+    "intensity": 4,
+    "reason": "Prasad explains his refusal to be called brother through a morbid joke about eating at a girl's funeral after she died without food: 'ఆ అమ్మాయి దినానికి మేము వెళ్లి అన్నం తిని వచ్చామండి'.",
+    "lands_on_screen": true
+   },
+   "hook": {
+    "hook_line": "L0146",
+    "hook_text": "six months back ఒక అమ్మాయి ఇలాగే అన్నయ్యా అని పిలిచి అన్నం లేకుండా చచ్చిపోయింది madam",
+    "needs_from_line": "L0135",
+    "needs_from_text": "వైషు madam మీరు చాలా అందంగా ఉన్నారండి",
+    "hook_emotion": "curiosity",
+    "would_stop_scrolling": "yes",
+    "reason": "Prasad's bizarre statement about a girl starving to death after calling him brother is an absurd comedic hook, while the clip needs to start from L0135 where he flirts and gets brother-zoned to provide full context."
+   },
+   "intensity": 4,
+   "emotion": "laugh",
+   "would_stop_scrolling": "yes",
+   "watch_whole_clip": "yes",
+   "emotion_arc": "curiosity -> laugh",
+   "clip_reason": "Prasad's bizarre refusal to be brother-zoned hooks the viewer instantly, leading cleanly into his hilariously dark funeral punchline.",
+   "validation_flags": [],
+   "start_mapped_from_event": null,
+   "end_mapped_from_event": null,
+   "cold_open_mapped_from_event": null,
+   "start_extended_for_length": null
+  },
+  {
+   "id": "p07",
+   "pieces": [
+    {
+     "start_word": 524,
+     "end_word": 575,
+     "start": 324.08,
+     "end": 348.7
+    }
+   ],
+   "region": {
+    "start_word": 524,
+    "end_word": 575,
+    "start": 324.08,
+    "end": 348.7
+   },
+   "edited_duration": 24.62,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "హా! రాకేష్ is very genuine. కొంచెం work చేసినా ఎక్కువ appreciate చేస్తాడాయన. అమ్మాయిలకి చాలా care తీసుకుంటాడు Yeah nice guy. మీరేం చదువుకున్నారు Ninth pass madam, tenth class summer coaching లో ఆపేశానండి చదువుకొని ఉంటే మీరు మాలాగే మంచి job చేసుకునే వాళ్ళు కదా అంటే మా ఇంటి దగ్గర ఒకడు బాగా చదువుకొని పిచ్చి అయిపోయాడండి. అప్పటి నుంచి నేను చదవడం మానేశాను",
+   "rank": 10,
+   "tier": "recommended",
+   "tier_label": "strong candidate",
+   "scores": {
+    "hook": 4.5,
+    "standalone": 4.0,
+    "payoff": 4.0,
+    "value_emotion": 4.0,
+    "overall": 4.12
+   },
+   "scores_source": "ws3: derived from intensity / would_stop_scrolling / watch_whole_clip (no review call)",
+   "title": "Ninth Pass Tenth Summer Coaching Prasad | తెలుగు",
+   "hook_line": {
+    "text": "హా!",
+    "start_word": 524,
+    "end_word": 524
+   },
+   "payoff_line": "అప్పటి నుంచి నేను చదవడం మానేశాను",
+   "payoff_type": "punchline",
+   "payoff_line_source": "ws3_payoffs",
+   "why_it_works": "This clip opens with an absurd educational qualification and lands cleanly on Prasad's hilarious justification that studying drove his neighbor crazy.",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 323.78,
+     "end": 348.76,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 24.98,
+   "start_line": "L0153",
+   "end_line": "L0164",
+   "end_hold": {
+    "payoff_end": 348.7,
+    "next_speech": 350.12,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "end": 348.76,
+    "hold_s": 0.06,
+    "on_shot_cut": true,
+    "rule": "shot_change_before_next_line",
+    "note": "next line starts quickly: ends on the shot change"
+   },
+   "chunk_drops": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "payoff": {
+    "line": "L0164",
+    "text": "అప్పటి నుంచి నేను చదవడం మానేశాను",
+    "type": "punchline",
+    "emotion": "laugh",
+    "intensity": 4,
+    "reason": "Prasad hilariously defends dropping out in 9th grade because an educated neighbor went mad, so he decided studying was dangerous.",
+    "lands_on_screen": true
+   },
+   "hook": {
+    "hook_line": "L0159",
+    "hook_text": "Ninth pass madam, tenth class summer coaching లో ఆపేశానండి",
+    "needs_from_line": "L0158",
+    "needs_from_text": "మీరేం చదువుకున్నారు",
+    "hook_emotion": "laugh",
+    "would_stop_scrolling": "yes",
+    "reason": "Prasad's bizarre qualification of being a ninth-grade pass who quit during tenth-class summer coaching is a hilarious hook, which requires Vaishu's initial question about his education to set the context."
+   },
+   "intensity": 4,
+   "emotion": "laugh",
+   "would_stop_scrolling": "yes",
+   "watch_whole_clip": "yes",
+   "emotion_arc": "laugh -> laugh",
+   "clip_reason": "This clip opens with an absurd educational qualification and lands cleanly on Prasad's hilarious justification that studying drove his neighbor crazy.",
+   "validation_flags": [],
+   "start_mapped_from_event": null,
+   "end_mapped_from_event": null,
+   "cold_open_mapped_from_event": null,
+   "start_extended_for_length": {
+    "extended": true,
+    "min_s": 15.0,
+    "from_line": "L0158",
+    "plays_s_before": 14.88,
+    "tried": [
+     {
+      "rule": "scene_start",
+      "start_line": "L0153",
+      "plays_s": 24.98
+     }
+    ],
+    "scene_walk": {
+     "line": "L0153",
+     "lines": 5,
+     "stop": "music: [పాట] between L0151 and L0153"
+    },
+    "rule": "scene_start",
+    "to_line": "L0153",
+    "first_new_line": "హా!",
+    "plays_s_after": 24.98
+   }
+  },
+  {
+   "id": "p09",
+   "pieces": [
+    {
+     "start_word": 598,
+     "end_word": 648,
+     "start": 363.56,
+     "end": 398.984
+    }
+   ],
+   "region": {
+    "start_word": 598,
+    "end_word": 648,
+    "start": 363.56,
+    "end": 398.984
+   },
+   "edited_duration": 35.424,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "నాకు philophobia అంటే మీరు ఎక్కువ రోజులు బతకరా, చచ్చిపోతారా? life అంటే అంతే madam. Care తీసుకునేవాడికి జుట్టు ఉండదు, బెచ్చగాడికి జుట్టు ఉండదు. Philophobia అంటే fear of falling in love or forming emotional attachments. ఇదెప్పుడు పెట్టారు? ఎప్పటినుంచో ఉంది. దానికి treatment లేదా? ఉన్నాయ్, psychotherapy, behavior therapy, exposure therapy. దీన్ని పడేయడం కన్నా cancer కి మందు కనుక్కోవడం easy.",
+   "rank": 11,
+   "tier": "recommended",
+   "tier_label": "strong candidate",
+   "scores": {
+    "hook": 4.5,
+    "standalone": 4.0,
+    "payoff": 4.0,
+    "value_emotion": 4.0,
+    "overall": 4.12
+   },
+   "scores_source": "ws3: derived from intensity / would_stop_scrolling / watch_whole_clip (no review call)",
+   "title": "దీన్ని పడేయడం కంటే Cancer కి మందు కనుక్కోవడం Easy!",
+   "hook_line": {
+    "text": "నాకు philophobia",
+    "start_word": 598,
+    "end_word": 599
+   },
+   "payoff_line": "దీన్ని పడేయడం కన్నా cancer కి మందు కనుక్కోవడం easy.",
+   "payoff_type": "punchline",
+   "payoff_line_source": "ws3_payoffs",
+   "why_it_works": "Vaishu's unusual declaration of 'philophobia' sparks immediate curiosity, leading into Prasad's hilariously ignorant reactions about fatal illnesses and treatments before ending on a sharp, laugh-out…",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 363.26,
+     "end": 399.019,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 35.76,
+   "start_line": "L0174",
+   "end_line": "L0189",
+   "end_hold": {
+    "payoff_end": 398.984,
+    "next_speech": 400.463,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "end": 399.019,
+    "hold_s": 0.04,
+    "on_shot_cut": true,
+    "rule": "shot_change_before_next_line",
+    "note": "next line starts quickly: ends on the shot change"
+   },
+   "chunk_drops": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "payoff": {
+    "line": "L0189",
+    "text": "దీన్ని పడేయడం కన్నా cancer కి మందు కనుక్కోవడం easy.",
+    "type": "punchline",
+    "emotion": "laugh",
+    "intensity": 4,
+    "reason": "Overwhelmed by Vaishu's list of psychological therapies for philophobia, Prasad remarks that finding a cure for cancer is easier than wooing her.",
+    "lands_on_screen": true
+   },
+   "hook": {
+    "hook_line": "L0174",
+    "hook_text": "నాకు philophobia",
+    "needs_from_line": "L0174",
+    "needs_from_text": "నాకు philophobia",
+    "hook_emotion": "curiosity",
+    "would_stop_scrolling": "yes",
+    "reason": "Vaishu's blunt declaration that she has 'philophobia' instantly triggers curiosity and sets up the premise of Prasad mistaking her psychological condition for a fatal illness before landing the punchline."
+   },
+   "intensity": 4,
+   "emotion": "laugh",
+   "would_stop_scrolling": "yes",
+   "watch_whole_clip": "yes",
+   "emotion_arc": "curiosity -> laugh",
+   "clip_reason": "Vaishu's unusual declaration of 'philophobia' sparks immediate curiosity, leading into Prasad's hilariously ignorant reactions about fatal illnesses and treatments before ending on a sharp, laugh-out-loud punchline.",
+   "validation_flags": [],
+   "start_mapped_from_event": null,
+   "end_mapped_from_event": null,
+   "cold_open_mapped_from_event": null,
+   "start_extended_for_length": null
+  },
+  {
+   "id": "p10",
+   "pieces": [
+    {
+     "start_word": 758,
+     "end_word": 813,
+     "start": 470.604,
+     "end": 493.264
+    }
+   ],
+   "region": {
+    "start_word": 758,
+    "end_word": 813,
+    "start": 470.604,
+    "end": 493.264
+   },
+   "edited_duration": 22.66,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "అసలు పెళ్లి అనే ఆలోచనే నా mind లోనే లేదు. ఇప్పుడు పెళ్లి గురించి ఎవరు అడిగారు బ్రహ్మ రా. అంటే పెళ్లి చేసుకోవా? నాకు కొంచెం time కావాలి. ప్రేమించింది పెళ్లి చేసుకోవడానికి కాదా? Love చేసేటప్పుడు అంత ఆలోచించలేదు, ఇప్పుడు నువ్వు సడన్ గా వచ్చి పెళ్లి చేసుకోమ్మంటే ఎలా? నువ్వు ఇంత cheaterవి అనుకోలేదు ప్రసాద్. ఒకసారి తింగరి వాడు నిన్ను confuse చేస్తున్నాడు. నువ్వే పెళ్లి చేసుకోమని వాడిని request చేస్తున్నట్టు ఉంది.",
+   "rank": 12,
+   "tier": "recommended",
+   "tier_label": "strong candidate",
+   "scores": {
+    "hook": 4.5,
+    "standalone": 4.0,
+    "payoff": 4.0,
+    "value_emotion": 4.0,
+    "overall": 4.12
+   },
+   "scores_source": "ws3: derived from intensity / would_stop_scrolling / watch_whole_clip (no review call)",
+   "title": "నువ్వే పెళ్లి చేసుకోమని అడుగుతున్నావ్",
+   "hook_line": {
+    "text": "అసలు పెళ్లి అనే ఆలోచనే నా mind లోనే లేదు.",
+    "start_word": 758,
+    "end_word": 765
+   },
+   "payoff_line": "నువ్వే పెళ్లి చేసుకోమని వాడిని request చేస్తున్నట్టు ఉంది.",
+   "payoff_type": "punchline",
+   "payoff_line_source": "ws3_payoffs",
+   "why_it_works": "The clip tightly captures Prasad skillfully flipping Vaishu's anti-marriage stance into her demanding why he won't marry her, paying off with Pooja's hilarious reality check.",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 470.304,
+     "end": 494.155,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 23.85,
+   "start_line": "L0224",
+   "end_line": "L0233",
+   "end_hold": {
+    "payoff_end": 493.264,
+    "end": 494.155,
+    "hold_s": 0.89,
+    "on_shot_cut": true,
+    "next_speech": 496.504,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "note": "short hold (next shot cut before the minimum hold)",
+    "rule": "hold"
+   },
+   "chunk_drops": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "payoff": {
+    "line": "L0233",
+    "text": "నువ్వే పెళ్లి చేసుకోమని వాడిని request చేస్తున్నట్టు ఉంది.",
+    "type": "punchline",
+    "emotion": "laugh",
+    "intensity": 4,
+    "reason": "Pooja points out Prasad's manipulative mind games by noting that he twisted the talk so much that it looks like Vaishu is begging him to marry her.",
+    "lands_on_screen": true
+   },
+   "hook": {
+    "hook_line": "L0224",
+    "hook_text": "అసలు పెళ్లి అనే ఆలోచనే నా mind లోనే లేదు.",
+    "needs_from_line": "L0224",
+    "needs_from_text": "అసలు పెళ్లి అనే ఆలోచనే నా mind లోనే లేదు.",
+    "hook_emotion": "curiosity",
+    "would_stop_scrolling": "yes",
+    "reason": "Vaishu firmly claiming she has zero interest in marriage establishes the exact premise that Prasad immediately twists into making her demand why he won't marry her."
+   },
+   "intensity": 4,
+   "emotion": "laugh",
+   "would_stop_scrolling": "yes",
+   "watch_whole_clip": "yes",
+   "emotion_arc": "curiosity -> laugh",
+   "clip_reason": "The clip tightly captures Prasad skillfully flipping Vaishu's anti-marriage stance into her demanding why he won't marry her, paying off with Pooja's hilarious reality check.",
+   "validation_flags": [],
+   "start_mapped_from_event": null,
+   "end_mapped_from_event": null,
+   "cold_open_mapped_from_event": null,
+   "start_extended_for_length": null
+  },
+  {
+   "id": "p12",
+   "pieces": [
+    {
+     "start_word": 910,
+     "end_word": 1016,
+     "start": 548.964,
+     "end": 604.324
+    }
+   ],
+   "region": {
+    "start_word": 910,
+    "end_word": 1016,
+    "start": 548.964,
+    "end": 604.324
+   },
+   "edited_duration": 55.36,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ఇది బుర్ర వాడాలన్నా దీని బాబు permission కావాలేమో. బ్రహ్మ నిన్ను తిడుతున్నాడు. అబ్బే! ఉమ్. అదే బ్రహ్మ, మీ నాన్నగారికి ఏ రోగం లేదు కదా. అంటే నీ గురించి ఆయన్ని convince చేయడానికి వెళ్ళి, ఆయన disorder వల్ల ఆయనే confuse అయి ఆయనే convince అయిపోతే... ఒక జంటలో ఒక్కళ్ళకే మీసాలు, గడ్డాలు ఉండాలి బ్రహ్మ. ఓరమ్మో! ఛీ, ఉమ్. ఆ బ్రహ్మ రా, బ్రహ్మ రా. ఏంటి workout అవలేదా? ప్రాతఃకాలం అందరూ ఒకే దగ్గర ఉన్నారేంటే. ఏం తెలుసు నీకు? నువ్వొక అమ్మాయి వెనుక sincere గా పడతావ్. ఆ కానీ అక్కడతో ఆగిపోతావ్. అంటే? ఉమ్, ఆ అమ్మాయి ఏం చెప్పినా నీకు అర్థం కాదు, నువ్వేంటో తనకు అర్థం కాదు. కనీసం efforts కూడా పెట్టవు. అసలు మా అబ్బాయిలు ఎందుకు efforts పెట్టాలి? మేము already మిమ్మల్ని నమ్మి love చేస్తున్నాం కదా. మేము మిమ్మల్ని నమ్మి మోసపోతున్నాం కదా.",
+   "rank": 13,
+   "tier": "recommended",
+   "tier_label": "strong candidate",
+   "scores": {
+    "hook": 4.5,
+    "standalone": 4.0,
+    "payoff": 4.0,
+    "value_emotion": 4.0,
+    "overall": 4.12
+   },
+   "scores_source": "ws3: derived from intensity / would_stop_scrolling / watch_whole_clip (no review call)",
+   "title": "అబ్బాయిలు ఎందుకు efforts పెట్టాలి?",
+   "hook_line": {
+    "text": "ఇది బుర్ర వాడాలన్నా దీని బాబు permission కావాలేమో.",
+    "start_word": 910,
+    "end_word": 916
+   },
+   "payoff_line": "మేము మిమ్మల్ని నమ్మి మోసపోతున్నాం కదా.",
+   "payoff_type": "quotable_line",
+   "payoff_line_source": "ws3_payoffs",
+   "why_it_works": "Prasad starts with a provocative question on why men need to put effort into love, prompting Pooja's rebuttal which sets up his snappy, comedic punchline immediately without any filler.",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 548.798,
+     "end": 605.134,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 56.34,
+   "start_line": "L0262",
+   "end_line": "L0286",
+   "end_hold": {
+    "payoff_end": 604.324,
+    "next_speech": 605.184,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "end": 605.134,
+    "hold_s": 0.81,
+    "on_shot_cut": false,
+    "rule": "before_next_line",
+    "note": "next line starts quickly and no shot change before it"
+   },
+   "chunk_drops": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "payoff": {
+    "line": "L0286",
+    "text": "మేము మిమ్మల్ని నమ్మి మోసపోతున్నాం కదా.",
+    "type": "quotable_line",
+    "emotion": "laugh",
+    "intensity": 4,
+    "reason": "Prasad flips Pooja's argument that women trust and love men by countering that men trust women and get cheated in return.",
+    "lands_on_screen": true
+   },
+   "hook": {
+    "hook_line": "L0284",
+    "hook_text": "అసలు మా అబ్బాయిలు ఎందుకు efforts పెట్టాలి?",
+    "needs_from_line": "L0284",
+    "needs_from_text": "అసలు మా అబ్బాయిలు ఎందుకు efforts పెట్టాలి?",
+    "hook_emotion": "curiosity",
+    "would_stop_scrolling": "yes",
+    "reason": "Prasad's provocative question about why men should even put effort into relationships immediately hooks viewers into the gender debate setup."
+   },
+   "intensity": 4,
+   "emotion": "laugh",
+   "would_stop_scrolling": "yes",
+   "watch_whole_clip": "yes",
+   "emotion_arc": "curiosity -> laugh",
+   "clip_reason": "Prasad starts with a provocative question on why men need to put effort into love, prompting Pooja's rebuttal which sets up his snappy, comedic punchline immediately without any filler.",
+   "validation_flags": [],
+   "start_mapped_from_event": null,
+   "end_mapped_from_event": null,
+   "cold_open_mapped_from_event": null,
+   "start_extended_for_length": {
+    "extended": true,
+    "min_s": 15.0,
+    "from_line": "L0284",
+    "plays_s_before": 6.91,
+    "tried": [
+     {
+      "rule": "scene_start",
+      "start_line": "L0262",
+      "plays_s": 56.34
+     }
+    ],
+    "scene_walk": {
+     "line": "L0262",
+     "lines": 20,
+     "stop": "music: [పਿੱనలి సంగీతం] between L0260 and L0262"
+    },
+    "rule": "scene_start",
+    "to_line": "L0262",
+    "first_new_line": "ఇది బుర్ర వాడాలన్నా దీని బాబు permission కావాలేమో.",
+    "plays_s_after": 56.34
+   }
+  },
+  {
+   "id": "p14",
+   "pieces": [
+    {
+     "start_word": 1035,
+     "end_word": 1152,
+     "start": 614.604,
+     "end": 660.584
+    }
+   ],
+   "region": {
+    "start_word": 1035,
+    "end_word": 1152,
+    "start": 614.604,
+    "end": 660.584
+   },
+   "edited_duration": 45.98,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "అబ్బాయిలు ఎదవోలే ఓకే fix, మరి అమ్మాయిలు ఎందుకు మోసం చేస్తున్నారు? ఎవరో కొందరు ఉంటారు. ఈ pub లో మందు కొట్టే ఆడవాళ్ళు? కొందరు తాగుతున్నారని అందర్నీ అనకూడదు కదా. మరి smoke చేసేవాళ్ళు? కొందరు smoke చేస్తే అందర్నీ అనకూడదు కదా. తిన్నగా job ఉండి కూడా డబ్బులు ఎక్కువ కావాలని prostitution చేసేవాళ్ళు? వాళ్ళ situations ఏంటో మనకు తెలీదు. ఎవరో కొందరు చేస్తున్నారని- మరి divorce తీసుకొని alimony కోసం లక్షల లక్షలు డబ్బులు demand చేసేవాళ్ళు? See, తాహతకు మించి అడగడం తప్పే. కానీ కొందర్ని బట్టి అందర్నీ judge చేయలేం కదా. ఈ love చేసుకున్నన్నాలో లేదా పరిస్థితులు బాగున్నన్నాలో తిన్నగా ఉండి, situation లో తేడా రాగానే అబ్బాలు ఇరిగించేసేవాళ్ళు? నీ బాధ ఏంటిరా? చూసావా, ఇన్ని కొందరిలో మంచి వాళ్ళు కొందరి percentage తక్కువ ఉంది. వాళ్ళని పట్టుకోవడం కష్టం. అందుకే కొందరితో ఎక్కువసేపు నిలబడను. ఉమ్ నీ language లో చెప్పాలంటే red flag. మరి ఆ మంచి అమ్మాయి దొరికిందా? నువ్వే. బాబోయ్!",
+   "rank": 14,
+   "tier": "recommended",
+   "tier_label": "strong candidate",
+   "scores": {
+    "hook": 4.5,
+    "standalone": 4.0,
+    "payoff": 4.0,
+    "value_emotion": 4.0,
+    "overall": 4.12
+   },
+   "scores_source": "ws3: derived from intensity / would_stop_scrolling / watch_whole_clip (no review call)",
+   "title": "అమ్మాయిలు ఎందుకు మోసం చేస్తున్నారు?",
+   "hook_line": {
+    "text": "అబ్బాయిలు ఎదవోలే ఓకే fix, మరి అమ్మాయిలు ఎందుకు మోసం చేస్తున్నారు?",
+    "start_word": 1035,
+    "end_word": 1043
+   },
+   "payoff_line": "నువ్వే.",
+   "payoff_type": "punchline",
+   "payoff_line_source": "ws3_payoffs",
+   "why_it_works": "Prasad's provocative question sparks a sharp comedic banter about girls and red flags, building perfectly to his sudden confession of Pooja being the only good girl, capped by her hilarious reaction.",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 614.304,
+     "end": 660.754,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 46.45,
+   "start_line": "L0293",
+   "end_line": "L0316",
+   "end_hold": {
+    "payoff_end": 660.584,
+    "next_speech": 660.804,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "end": 660.754,
+    "hold_s": 0.17,
+    "on_shot_cut": false,
+    "rule": "before_next_line",
+    "note": "next line starts quickly and no shot change before it"
+   },
+   "chunk_drops": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "payoff": {
+    "line": "L0315",
+    "text": "నువ్వే.",
+    "type": "punchline",
+    "emotion": "laugh",
+    "intensity": 4,
+    "reason": "After Prasad claims good girls are rare, Pooja asks if he ever found one, and Prasad catches her off guard by declaring 'నువ్వే'.",
+    "lands_on_screen": true
+   },
+   "hook": {
+    "hook_line": "L0293",
+    "hook_text": "అబ్బాయిలు ఎదవోలే ఓకే fix, మరి అమ్మాయిలు ఎందుకు మోసం చేస్తున్నారు?",
+    "needs_from_line": "L0293",
+    "needs_from_text": "అబ్బాయిలు ఎదవోలే ఓకే fix, మరి అమ్మాయిలు ఎందుకు మోసం చేస్తున్నారు?",
+    "hook_emotion": "curiosity",
+    "would_stop_scrolling": "yes",
+    "reason": "Prasad's provocative opener questioning why girls cheat immediately grabs attention and initiates the humorous debate on finding a good girl, perfectly culminating in him naming Pooja."
+   },
+   "intensity": 4,
+   "emotion": "laugh",
+   "would_stop_scrolling": "yes",
+   "watch_whole_clip": "yes",
+   "emotion_arc": "curiosity -> laugh",
+   "clip_reason": "Prasad's provocative question sparks a sharp comedic banter about girls and red flags, building perfectly to his sudden confession of Pooja being the only good girl, capped by her hilarious reaction.",
+   "validation_flags": [],
+   "start_mapped_from_event": null,
+   "end_mapped_from_event": null,
+   "cold_open_mapped_from_event": null,
+   "start_extended_for_length": null
+  },
+  {
+   "id": "p17",
+   "pieces": [
+    {
+     "start_word": 1189,
+     "end_word": 1192,
+     "start": 675.904,
+     "end": 678.264
+    },
+    {
+     "start_word": 1193,
+     "end_word": 1232,
+     "start": 685.964,
+     "end": 706.084
+    }
+   ],
+   "region": {
+    "start_word": 1189,
+    "end_word": 1232,
+    "start": 675.904,
+    "end": 706.084
+   },
+   "edited_duration": 22.48,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "Okay, ప్రసాద్ నాకు పెళ్లయింది. అలా ఎలా చేసుకున్నావ్? Okay, పర్లేదు మీ ఆయన్ని చంపేద్దాం . ఏం మాట్లాడుతున్నావ్ రా? case మన మీద రాకుండా మంచి lawyer ని నేను set చేస్తా, okay. నా గురించే మాట్లాడుకుంటున్నారా? పరమజ్యోతి పరమజ్యోతి పరమజ్యోతి పరమజ్యోతి మంచి love story లో item song లో మీరేంటండీ? Item ఆ?",
+   "rank": 15,
+   "tier": "worth_a_look",
+   "tier_label": "candidate",
+   "scores": {
+    "hook": 4.5,
+    "standalone": 4.0,
+    "payoff": 4.0,
+    "value_emotion": 4.0,
+    "overall": 4.12
+   },
+   "scores_source": "ws3: derived from intensity / would_stop_scrolling / watch_whole_clip (no review call)",
+   "title": "లవ్ స్టోరీలో Item Song లాంటి మొగుడు!",
+   "hook_line": {
+    "text": "Okay, ప్రసాద్ నాకు పెళ్లయింది.",
+    "start_word": 1189,
+    "end_word": 1192
+   },
+   "payoff_line": "మంచి love story లో item song లో మీరేంటండీ?",
+   "payoff_type": "punchline",
+   "payoff_line_source": "ws3_payoffs",
+   "why_it_works": "The clip hooks instantly with Pooja's sudden revelation that she is married and escalates quickly into Prasad plotting murder before delivering a hilarious roast when the husband abruptly walks in.",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 675.604,
+     "end": 678.514,
+     "kind": "scene"
+    },
+    {
+     "start": 685.714,
+     "end": 708.084,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 25.28,
+   "start_line": "L0328",
+   "end_line": "L0342",
+   "end_hold": {
+    "payoff_end": 706.084,
+    "end": 708.084,
+    "hold_s": 2.0,
+    "on_shot_cut": false,
+    "next_speech": 709.824,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "note": "hold not on a shot cut",
+    "rule": "hold"
+   },
+   "chunk_drops": [
+    {
+     "after_line": "L0328",
+     "before_line": "L0331",
+     "removed_lines": [
+      "L0329"
+     ],
+     "lift_skip": false,
+     "start": 678.514,
+     "end": 685.714,
+     "removed_s": 7.2,
+     "why": "Trims a long audio pause right after Pooja reveals she is married to keep the comedic timing brisk."
+    }
+   ],
+   "shot_flags": [
+    "flash kept: seg0 (scene) end shows 0.29 s after the shot change at 678.22 s; moving it would clip 'పెళ్లయింది.' (0.04 s of the word lies after the cut)"
+   ],
+   "build_warnings": [
+    "flash kept: seg0 (scene) end shows 0.29 s after the shot change at 678.22 s; moving it would clip 'పెళ్లయింది.' (0.04 s of the word lies after the cut)"
+   ],
+   "payoff": {
+    "line": "L0341",
+    "text": "మంచి love story లో item song లో మీరేంటండీ?",
+    "type": "punchline",
+    "emotion": "laugh",
+    "intensity": 4,
+    "reason": "Prasad roasts Pooja's husband for barging into their conversation by asking why he entered like an item song in a serious love story.",
+    "lands_on_screen": true
+   },
+   "hook": {
+    "hook_line": "L0328",
+    "hook_text": "Okay, ప్రసాద్ నాకు పెళ్లయింది.",
+    "needs_from_line": "L0328",
+    "needs_from_text": "Okay, ప్రసాద్ నాకు పెళ్లయింది.",
+    "hook_emotion": "shock",
+    "would_stop_scrolling": "yes",
+    "reason": "Pooja's sudden revelation that she is married serves as an instant shock hook and establishes the premise for Prasad's hilarious murder plot and the husband's ill-timed arrival."
+   },
+   "intensity": 4,
+   "emotion": "laugh",
+   "would_stop_scrolling": "yes",
+   "watch_whole_clip": "yes",
+   "emotion_arc": "shock -> laugh",
+   "clip_reason": "The clip hooks instantly with Pooja's sudden revelation that she is married and escalates quickly into Prasad plotting murder before delivering a hilarious roast when the husband abruptly walks in.",
+   "validation_flags": [],
+   "start_mapped_from_event": null,
+   "end_mapped_from_event": null,
+   "cold_open_mapped_from_event": null,
+   "start_extended_for_length": null
+  }
+ ],
+ "rejected": [
+  {
+   "id": "p01",
+   "tier": "rejected",
+   "reject_reasons": [
+    "L1: plays 12.4 s < min 15 s",
+    "L1x: start extension for length failed: no start within 60 s before the payoff in the same scene makes 15 s (music: [పాట] between L0024 and L0026)"
+   ],
+   "payoff": {
+    "line": "L0030",
+    "text": "అంటే ఆ రోజు weak గా ఉన్నావని",
+    "type": "punchline",
+    "emotion": "laugh",
+    "intensity": 4,
+    "reason": "When Vaishu questions why he gifted ORS packets for her birthday instead of gold or chocolates, Boyfriend innocently justifies it by saying she looked 'weak' that day."
+   },
+   "hook": {
+    "hook_line": "L0028",
+    "needs_from_line": "L0027",
+    "would_stop_scrolling": "yes"
+   },
+   "pieces": [
+    {
+     "start_word": 84,
+     "end_word": 105,
+     "start": 55.62,
+     "end": 63.6
+    },
+    {
+     "start_word": 106,
+     "end_word": 111,
+     "start": 64.36,
+     "end": 66.22
+    }
+   ],
+   "region": {
+    "start_word": 84,
+    "end_word": 111,
+    "start": 55.62,
+    "end": 66.22
+   },
+   "edited_duration": 9.84,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ఉమ్ birthday కి ఎవరైనా gold chain ఓ teddy bear ఓ bouquet ఓ లేదా at least chocolate ఓ gift ఇస్తారు ORS లు ఇచ్చావేంట్రా అంటే ఆ రోజు weak గా ఉన్నావని",
+   "time_segments": [
+    {
+     "start": 55.32,
+     "end": 63.642,
+     "kind": "scene"
+    },
+    {
+     "start": 64.11,
+     "end": 68.22,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 12.43,
+   "title": "Birthday Gift గా ORS పాకెట్లా?",
+   "start_extended_for_length": {
+    "extended": false,
+    "min_s": 15.0,
+    "from_line": "L0027",
+    "plays_s_before": 11.15,
+    "tried": [
+     {
+      "rule": "scene_start",
+      "start_line": "L0026",
+      "plays_s": 12.43
+     }
+    ],
+    "scene_walk": {
+     "line": "L0026",
+     "lines": 1,
+     "stop": "music: [పాట] between L0024 and L0026"
+    },
+    "kept_original": "no start within 60 s before the payoff in the same scene makes 15 s (music: [పాట] between L0024 and L0026)"
+   }
+  },
+  {
+   "id": "p08",
+   "tier": "rejected",
+   "reject_reasons": [
+    "L1: plays 8.1 s < min 15 s",
+    "L1x: start extension for length failed: no start within 60 s before the payoff in the same scene makes 15 s (music: [పాట] between L0167 and L0169)"
+   ],
+   "payoff": {
+    "line": "L0172",
+    "text": "వేరే వాడితో ఉంది",
+    "type": "punchline",
+    "emotion": "laugh",
+    "intensity": 4,
+    "reason": "When Vaishu asks if he doesn't have a girlfriend, Prasad deadpans with 'వేరే వాడితో ఉంది', acknowledging she is seeing someone else."
+   },
+   "hook": {
+    "hook_line": "L0169",
+    "needs_from_line": "L0169",
+    "would_stop_scrolling": "no"
+   },
+   "pieces": [
+    {
+     "start_word": 588,
+     "end_word": 599,
+     "start": 357.3,
+     "end": 364.92
+    }
+   ],
+   "region": {
+    "start_word": 588,
+    "end_word": 599,
+    "start": 357.3,
+    "end": 364.92
+   },
+   "edited_duration": 7.62,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "మీకు boyfriend ఉన్నాడా ఏయ్! నీకు girlfriend లేదా వేరే వాడితో ఉంది నాకు philophobia",
+   "time_segments": [
+    {
+     "start": 357.0,
+     "end": 365.068,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 8.07,
+   "title": "Girlfriend లేదా బ్రో? Prasad Comedy",
+   "start_extended_for_length": {
+    "extended": false,
+    "min_s": 15.0,
+    "from_line": "L0169",
+    "plays_s_before": 8.07,
+    "tried": [],
+    "scene_walk": {
+     "line": "L0169",
+     "lines": 0,
+     "stop": "music: [పాట] between L0167 and L0169"
+    },
+    "kept_original": "no start within 60 s before the payoff in the same scene makes 15 s (music: [పాట] between L0167 and L0169)"
+   }
+  },
+  {
+   "id": "p13",
+   "tier": "rejected",
+   "reject_reasons": [
+    "D1: overlaps p12 (100% of the shorter; intensity 4 vs 4)"
+   ],
+   "payoff": {
+    "line": "L0288",
+    "text": "ఊరికే, ముందు జాగ్రత్తకి.",
+    "type": "punchline",
+    "emotion": "laugh",
+    "intensity": 4,
+    "reason": "When Pooja presses him to name which girl actually cheated him, Prasad nonchalantly admits he said it purely as a precautionary measure."
+   },
+   "hook": {
+    "hook_line": "L0284",
+    "needs_from_line": "L0284",
+    "would_stop_scrolling": "yes"
+   },
+   "pieces": [
+    {
+     "start_word": 910,
+     "end_word": 1024,
+     "start": 548.964,
+     "end": 608.544
+    }
+   ],
+   "region": {
+    "start_word": 910,
+    "end_word": 1024,
+    "start": 548.964,
+    "end": 608.544
+   },
+   "edited_duration": 59.58,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ఇది బుర్ర వాడాలన్నా దీని బాబు permission కావాలేమో. బ్రహ్మ నిన్ను తిడుతున్నాడు. అబ్బే! ఉమ్. అదే బ్రహ్మ, మీ నాన్నగారికి ఏ రోగం లేదు కదా. అంటే నీ గురించి ఆయన్ని convince చేయడానికి వెళ్ళి, ఆయన disorder వల్ల ఆయనే confuse అయి ఆయనే convince అయిపోతే... ఒక జంటలో ఒక్కళ్ళకే మీసాలు, గడ్డాలు ఉండాలి బ్రహ్మ. ఓరమ్మో! ఛీ, ఉమ్. ఆ బ్రహ్మ రా, బ్రహ్మ రా. ఏంటి workout అవలేదా? ప్రాతఃకాలం అందరూ ఒకే దగ్గర ఉన్నారేంటే. ఏం తెలుసు నీకు? నువ్వొక అమ్మాయి వెనుక sincere గా పడతావ్. ఆ కానీ అక్కడతో ఆగిపోతావ్. అంటే? ఉమ్, ఆ అమ్మాయి ఏం చెప్పినా నీకు అర్థం కాదు, నువ్వేంటో తనకు అర్థం కాదు. కనీసం efforts కూడా పెట్టవు. అసలు మా అబ్బాయిలు ఎందుకు efforts పెట్టాలి? మేము already మిమ్మల్ని నమ్మి love చేస్తున్నాం కదా. మేము మిమ్మల్ని నమ్మి మోసపోతున్నాం కదా. ఏ అమ్మాయిరా నిన్ను మోసం చేసింది? ఊరికే, ముందు జాగ్రత్తకి.",
+   "time_segments": [
+    {
+     "start": 548.798,
+     "end": 608.728,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 59.93,
+   "title": "అబ్బాయిలు ఎందుకు efforts పెట్టాలి?",
+   "start_extended_for_length": {
+    "extended": true,
+    "min_s": 15.0,
+    "from_line": "L0284",
+    "plays_s_before": 10.5,
+    "tried": [
+     {
+      "rule": "scene_start",
+      "start_line": "L0262",
+      "plays_s": 59.93
+     }
+    ],
+    "scene_walk": {
+     "line": "L0262",
+     "lines": 20,
+     "stop": "window: L0260 starts more than 60 s before the payoff"
+    },
+    "rule": "scene_start",
+    "to_line": "L0262",
+    "first_new_line": "ఇది బుర్ర వాడాలన్నా దీని బాబు permission కావాలేమో.",
+    "plays_s_after": 59.93
+   }
+  },
+  {
+   "id": "p11",
+   "tier": "rejected",
+   "reject_reasons": [
+    "D1: overlaps p12 (65% of the shorter; intensity 4 vs 4)"
+   ],
+   "payoff": {
+    "line": "L0268",
+    "text": "ఒక జంటలో ఒక్కళ్ళకే మీసాలు, గడ్డాలు ఉండాలి బ్రహ్మ.",
+    "type": "punchline",
+    "emotion": "laugh",
+    "intensity": 4,
+    "reason": "Prasad mocks the prospect of convincing Vaishu's father, stating that in a couple, only one person should have a beard and mustache."
+   },
+   "hook": {
+    "hook_line": "L0256",
+    "needs_from_line": "L0255",
+    "would_stop_scrolling": "yes"
+   },
+   "pieces": [
+    {
+     "start_word": 885,
+     "end_word": 916,
+     "start": 537.504,
+     "end": 551.204
+    },
+    {
+     "start_word": 922,
+     "end_word": 958,
+     "start": 557.784,
+     "end": 575.064
+    }
+   ],
+   "region": {
+    "start_word": 885,
+    "end_word": 958,
+    "start": 537.504,
+    "end": 575.064
+   },
+   "edited_duration": 30.98,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ఏమైనా ఉంటే మా నాన్నగారితో మాట్లాడుకో. నేను ఆయన్ని love చేయట్లేదు కదా . కానీ నేను ఒక person ని accept చేయాలంటే ఆయన okay చెప్పాలి. అప్పుడు at least ఆలోచిస్తా. ఇది బుర్ర వాడాలన్నా దీని బాబు permission కావాలేమో. అదే బ్రహ్మ, మీ నాన్నగారికి ఏ రోగం లేదు కదా. అంటే నీ గురించి ఆయన్ని convince చేయడానికి వెళ్ళి, ఆయన disorder వల్ల ఆయనే confuse అయి ఆయనే convince అయిపోతే... ఒక జంటలో ఒక్కళ్ళకే మీసాలు, గడ్డాలు ఉండాలి బ్రహ్మ. ఓరమ్మో! ఛీ, ఉమ్. ఆ బ్రహ్మ రా,",
+   "time_segments": [
+    {
+     "start": 537.204,
+     "end": 551.212,
+     "kind": "scene"
+    },
+    {
+     "start": 556.598,
+     "end": 575.82,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 33.23,
+   "title": "ఒక్కరికే మీసాలు గడ్డాలు ఉండాలి!",
+   "start_extended_for_length": null
+  },
+  {
+   "id": "p16",
+   "tier": "rejected",
+   "reject_reasons": [
+    "D1: overlaps p15 (63% of the shorter; intensity 4 vs 5)"
+   ],
+   "payoff": {
+    "line": "L0333",
+    "text": "పర్లేదు మీ ఆయన్ని చంపేద్దాం",
+    "type": "punchline",
+    "emotion": "laugh",
+    "intensity": 4,
+    "reason": "Unfazed by Pooja's marriage reveal, Prasad casually proposes killing her husband and arranging a lawyer to beat the case."
+   },
+   "hook": {
+    "hook_line": "L0328",
+    "needs_from_line": "L0321",
+    "would_stop_scrolling": "yes"
+   },
+   "pieces": [
+    {
+     "start_word": 1171,
+     "end_word": 1192,
+     "start": 666.424,
+     "end": 678.264
+    },
+    {
+     "start_word": 1193,
+     "end_word": 1204,
+     "start": 685.964,
+     "end": 692.424
+    }
+   ],
+   "region": {
+    "start_word": 1171,
+    "end_word": 1204,
+    "start": 666.424,
+    "end": 692.424
+   },
+   "edited_duration": 18.3,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "మనం love చేసుకున్నాం కదా. Yo! Yo! గట్టిగా అనకురా బాబు. ఈ విషయాన్ని నువ్వు ఎంత తొందరగా మర్చిపోతే అంత మంచిది. ఏ? Okay, ప్రసాద్ నాకు పెళ్లయింది. అలా ఎలా చేసుకున్నావ్? Okay, పర్లేదు మీ ఆయన్ని చంపేద్దాం . ఏం మాట్లాడుతున్నావ్ రా?",
+   "time_segments": [
+    {
+     "start": 666.207,
+     "end": 678.514,
+     "kind": "scene"
+    },
+    {
+     "start": 685.714,
+     "end": 692.974,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 19.57,
+   "title": "పర్లేదు మీ ఆయన్ని చంపేద్దాం",
+   "start_extended_for_length": null
+  }
+ ]
+}

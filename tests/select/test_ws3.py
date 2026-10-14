@@ -188,7 +188,7 @@ class ThreeCallFlow(unittest.TestCase):
         self.assertEqual((s["n_payoffs_listed"], s["n_payoffs_used"], s["n_clips_built"], s["n_shown"]), (3, 3, 3, 3))
         self.assertEqual(s["cache"]["mode"], "explicit")
         self.assertEqual(s["verdict"]["strong_clips"], 1)        # only intensity >= 4 with both "yes"
-        self.assertEqual(self.doc["pipeline"]["version"], "ws3/0.1")
+        self.assertEqual(self.doc["pipeline"]["version"], "ws3/0.2")
         self.assertEqual(set(self.doc["pipeline"]["prompt_versions"]),
                          {"ws3_context", "ws3_payoffs", "ws3_hook", "ws3_clip"})
         self.assertTrue((self.run.out / "vid.json").exists())
@@ -465,3 +465,152 @@ class GeminiCachePlumbing(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+# ============================================================================ 7. event-line ids (ws3/0.2)
+class EventLineMapping(unittest.TestCase):
+    """The clip call may name the laugh right after the payoff as end_line (the prompt asks for the reaction): an
+    audio-event id maps to the last spoken line before it and the hold runs through the event; a start / cold open
+    on an event maps to the next spoken line."""
+
+    def setUp(self):
+        # a laugh after L0008 (31-33 s) becomes line L0009; the old L0009.. shift by one
+        self.ep = make_ep(SPEC, CUTS, events=[(33.2, 33.8, "[నవ్వు]")], duration=400.0)
+        self.ev = next(r for r in self.ep.lines if r["kind"] == "event")
+        self.assertEqual(self.ev["id"], "L0009")
+
+    def test_end_line_on_an_event_ends_on_the_payoff_and_is_recorded(self):
+        p = {"line": "L0008", "text": "t", "intensity": 4, "type": "punchline", "emotion": "laugh", "reason": ""}
+        h = ws3.validate_hook(self.ep, p, hook("L0004"))
+        c = ws3.validate_clip(self.ep, p, h, clip("L0004", "L0009"), ws3.DEFAULTS)
+        self.assertEqual(c["moment"]["end_line"], "L0008")
+        self.assertEqual(c["end_mapped_from_event"], {"event": "L0009", "event_text": "[నవ్వు]", "line": "L0008"})
+        self.assertTrue(any(f.startswith("end_mapped_from_event") for f in c["flags"]))
+        built = ws.build_clip(self.ep, c["moment"], ws3.DEFAULTS["cut"])
+        self.assertEqual(built["end_line"], "L0008")
+        self.assertGreaterEqual(built["time_segments"][-1]["end"], self.ev["end"])   # the hold covers the laugh
+
+    def test_start_and_cold_open_on_an_event_move_to_the_next_spoken_line(self):
+        p = {"line": "L0016", "text": "t", "intensity": 4, "type": "punchline", "emotion": "laugh", "reason": ""}
+        h = ws3.validate_hook(self.ep, p, hook("L0012"))
+        c = ws3.validate_clip(self.ep, p, h, clip("L0009", "L0016", cold_open="L0009"), ws3.DEFAULTS)
+        self.assertEqual(c["moment"]["start_line"], "L0010")
+        self.assertEqual(c["moment"]["cold_open_lines"], ["L0010"])
+        self.assertEqual(c["start_mapped_from_event"]["line"], "L0010")
+        self.assertEqual(c["cold_open_mapped_from_event"]["line"], "L0010")
+        with self.assertRaises(ValueError):                              # unknown ids still fail
+            ws3.validate_clip(self.ep, p, h, clip("L0012", "L0999"), ws3.DEFAULTS)
+
+    def test_end_on_the_laugh_builds_a_clip_in_the_run(self):
+        payoffs = [payoff("L0008", 5), payoff("L0030", 4)]
+        hooks = {"L0008": hook("L0002"), "L0030": hook("L0024")}
+        clips = {"L0008": clip("L0002", "L0009"), "L0030": clip("L0024", "L0030")}
+        run = Run(FakeProvider(payoffs, hooks, clips), ep=self.ep)
+        doc = run()
+        self.assertEqual(len(doc["proposals"]), 2)
+        first = next(x for x in doc["proposals"] if x["payoff"]["line"] == "L0008")
+        self.assertEqual(first["end_line"], "L0008")
+        self.assertEqual(first["end_mapped_from_event"]["event"], "L0009")
+        self.assertGreaterEqual(first["time_segments"][-1]["end"], self.ev["end"])
+        self.assertTrue(any("end_mapped_from_event" in f for f in first["validation_flags"]))
+        self.assertIn("end_mapped_from_event", (run.out / "vid.md").read_text(encoding="utf-8"))
+
+
+# ============================================================================ 8. too-short clips (ws3/0.2)
+class LengthExtension(unittest.TestCase):
+    """A hook one or two lines before its payoff builds a 5-12 s clip: the start is moved back to the hook's
+    needs_from_line, then to the scene start within 60 s before the payoff (no gap > 6 s, no music); when neither
+    makes the minimum the clip stays rejected with the reason."""
+
+    def c3(self, ep, payoff_line, hook_line, needs_from):
+        p = {"line": payoff_line, "text": "t", "intensity": 4, "type": "punchline", "emotion": "laugh", "reason": ""}
+        h = ws3.validate_hook(ep, p, hook(hook_line, needs_from=needs_from))
+        return p, h, ws3.validate_clip(ep, p, h, clip(hook_line, payoff_line), ws3.DEFAULTS)
+
+    def test_needs_from_line_is_enough(self):
+        ep = episode()
+        p, h, c3 = self.c3(ep, "L0012", "L0011", "L0005")           # L0011..L0012 plays ~6 s; L0005 at 22 s
+        c = ws3.build_for_length(ep, p, h, c3, ws3.DEFAULTS)
+        ext = c["start_extended_for_length"]
+        self.assertTrue(ext["extended"])
+        self.assertEqual((ext["rule"], ext["from_line"], ext["to_line"]), ("needs_from_line", "L0011", "L0005"))
+        self.assertEqual(c["start_line"], "L0005")
+        self.assertGreaterEqual(c["video_duration"], 15.0)
+        self.assertLess(ext["plays_s_before"], 15.0)
+
+    def test_then_the_scene_start_within_60_s(self):
+        ep = episode()
+        p, h, c3 = self.c3(ep, "L0008", "L0007", "L0005")           # needs_from gives ~12 s: still short
+        c = ws3.build_for_length(ep, p, h, c3, ws3.DEFAULTS)
+        ext = c["start_extended_for_length"]
+        self.assertTrue(ext["extended"])
+        self.assertEqual(ext["rule"], "scene_start")
+        self.assertEqual([t["rule"] for t in ext["tried"]], ["needs_from_line", "scene_start"])
+        self.assertEqual(c["start_line"], "L0001")                     # the scene starts at the transcript start
+        self.assertEqual(ext["scene_walk"]["stop"], "start of the transcript")
+        self.assertGreaterEqual(c["video_duration"], 15.0)
+        self.assertEqual(ws.hard_rules(ep, c, ws3.DEFAULTS), [])
+
+    def test_scene_walk_stays_within_60_s_of_the_payoff(self):
+        ep = episode()
+        p, h, c3 = self.c3(ep, "L0030", "L0029", "L0029")           # payoff at 97 s: lines before 37 s are out
+        c = ws3.build_for_length(ep, p, h, c3, ws3.DEFAULTS)
+        ext = c["start_extended_for_length"]
+        self.assertTrue(ext["extended"])
+        self.assertEqual(c["start_line"], "L0010")                     # L0010 starts at 37 s
+        self.assertIn("window", ext["scene_walk"]["stop"])
+        self.assertLessEqual(c["video_duration"], 70.0)
+
+    def test_a_long_silence_or_music_ends_the_walk(self):
+        spec = block(10, 4, "a") + block(30, 10, "b")                  # 9 s silence between L0004 and L0005
+        ep = make_ep(spec, shot_cuts(spec), duration=100.0)
+        walk = ws3.scene_start_before(ep, "L0007", "L0008", ws3.DEFAULTS)
+        self.assertEqual(walk["line"], "L0005")
+        self.assertIn("gap", walk["stop"])
+        ep2 = make_ep(SPEC, CUTS, events=[(21.3, 21.7, "[పాట]")], duration=400.0)   # music between L0004 and L0005
+        walk2 = ws3.scene_start_before(ep2, "L0008", "L0010", ws3.DEFAULTS)       # ids shifted by the event line
+        self.assertEqual(walk2["line"], "L0006")
+        self.assertIn("music", walk2["stop"])
+
+    def test_still_too_short_stays_rejected_with_the_reason(self):
+        spec = block(10, 4, "a") + block(30, 10, "b")
+        ep = make_ep(spec, shot_cuts(spec), duration=100.0)
+        p, h, c3 = self.c3(ep, "L0008", "L0007", "L0006")           # scene b starts at 30 s, payoff 39-41 s
+        c = ws3.build_for_length(ep, p, h, c3, ws3.DEFAULTS)
+        ext = c["start_extended_for_length"]
+        self.assertFalse(ext["extended"])
+        self.assertEqual(c["start_line"], "L0005")                     # the longest attempt is returned
+        self.assertIn("gap", ext["kept_original"])
+        rr = ws.hard_rules(ep, c, ws3.DEFAULTS)
+        self.assertTrue(rr and rr[0].startswith("L1"))
+
+    def test_extension_in_the_run_and_the_documents(self):
+        payoffs = [payoff("L0008", 5), payoff("L0040", 4)]
+        hooks = {"L0008": hook("L0007", needs_from="L0005"), "L0040": hook("L0039", needs_from="L0039")}
+        clips = {"L0008": clip("L0007", "L0008"), "L0040": clip("L0039", "L0040")}
+        run = Run(FakeProvider(payoffs, hooks, clips))
+        doc = run()
+        self.assertEqual(len(doc["proposals"]), 2)
+        a = next(x for x in doc["proposals"] if x["payoff"]["line"] == "L0008")
+        self.assertEqual(a["start_line"], "L0001")
+        self.assertEqual(a["start_extended_for_length"]["rule"], "scene_start")
+        self.assertGreaterEqual(a["video_duration"], 15.0)
+        self.assertEqual(a["hook_line"]["start_word"], a["pieces"][0]["start_word"])
+        b = next(x for x in doc["proposals"] if x["payoff"]["line"] == "L0040")
+        self.assertEqual(b["start_extended_for_length"]["rule"], "scene_start")
+        self.assertEqual(b["start_line"], "L0020")                     # 60 s window: L0020 at 67 s, payoff at 127 s
+        self.assertIn("start extended for length", (run.out / "vid.md").read_text(encoding="utf-8"))
+        self.assertEqual(doc["episode_summary"]["n_clips_built"], 2)
+
+    def test_short_clip_that_cannot_be_extended_is_rejected_in_the_run(self):
+        spec = block(10, 4, "a") + block(30, 10, "b")
+        ep = make_ep(spec, shot_cuts(spec), duration=100.0)
+        payoffs = [payoff("L0008", 5)]
+        hooks = {"L0008": hook("L0007", needs_from="L0006")}
+        clips = {"L0008": clip("L0007", "L0008")}
+        doc = Run(FakeProvider(payoffs, hooks, clips), ep=ep)()
+        self.assertEqual(doc["proposals"], [])
+        r = doc["rejected"][0]
+        self.assertTrue(r["reject_reasons"][0].startswith("L1: plays"))
+        self.assertTrue(any(x.startswith("L1x") for x in r["reject_reasons"]))
+        self.assertFalse(r["start_extended_for_length"]["extended"])
