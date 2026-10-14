@@ -163,6 +163,8 @@ def clip_meta(c):
             "tier_label": c.get("tier_label") or c.get("tier", ""),
             "payoff": c.get("payoff_line") or "", "payoff_type": c.get("payoff_type") or "",
             "review_note": c.get("review_note") or "",
+            # a labelled section after the main list (merged pipeline: "beat v1 missed"), shown as a chip + nav heading
+            "badge": c.get("badge") or "", "section": c.get("section") or "",
             "category": " · ".join(x for x in (c.get("content_type", ""), c.get("clip_purpose", ""),
                                                 c.get("category", "")) if x),
             "score": s.get("overall"), "scores": s,
@@ -181,7 +183,7 @@ def _txt(ln):
 
 def transcript_text(meta, lines, video_name):
     """Readable .txt beside the video."""
-    out = [f"#{meta['rank']} {meta['title']}",
+    out = [f"#{meta['rank']} {meta['title']}" + (f"  [{meta['badge']}]" if meta.get("badge") else ""),
            f"Video: {video_name} | {meta['duration']:.0f}s edited | source {mmss(meta['src_start'])}–"
            f"{mmss(meta['src_end'])} | {meta['n_pieces']} pieces | pipeline score {meta['score']} "
            f"({meta.get('tier_label') or meta['tier']})"]
@@ -280,6 +282,9 @@ def reuse_index(run_dirs, vid, words):
     out = {}
     for rd in run_dirs:
         f = Path(rd) / f"{vid}.json"
+        if not f.exists() and Path(rd).parent.name == "previews":   # --reuse runs/previews/<run>: its run is runs/<run>
+            rd = Path("runs") / Path(rd).name
+            f = rd / f"{vid}.json"
         if not f.exists():
             continue
         doc = json.loads(f.read_text(encoding="utf-8"))
@@ -326,6 +331,7 @@ def main():
         index.append(f"\n## {vid}\n")
         page.append({"video_id": vid, "n_total": len(doc["proposals"]), "clips": [],
                      **({"verdict": doc["episode_verdict"]} if doc.get("episode_verdict") else {})})
+        prev_section = ""
         for c in sorted(doc["proposals"], key=lambda c: c["rank"])[:args.top]:
             out = out_dir / f"{c['rank']:02d}_{c['id']}.mp4"
             # web-series GT clips carry time_segments (may include silent visual beats): play those as is
@@ -342,6 +348,9 @@ def main():
             page[-1]["clips"].append({**meta, "video": out.relative_to(out_root).as_posix(), "lines": lines})
             s = c.get("scores", {})
             print(f"{vid} #{c['rank']}: {len(c['pieces'])} pieces -> {len(segs)} cuts -> {out}")
+            if c.get("section") and c["section"] != prev_section:
+                index.append(f"\n### {c['section']}\n")
+            prev_section = c.get("section") or ""
             index.append(f"- **#{c['rank']} {c['title']}** ({c['edited_duration']:.0f}s, "
                          f"{c.get('tier_label') or c.get('tier', '')}, pipeline score "
                          f"{s.get('overall')}) — `{out.relative_to(out_root).as_posix()}` + transcript "
