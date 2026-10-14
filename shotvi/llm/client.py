@@ -91,6 +91,14 @@ class Ledger:
                 "priced": usd is not None,
             })
 
+    def record_fixed(self, role: str, spec: ModelSpec, usd: float, note: str = "", tokens: int = 0):
+        """A billed item that is not a generate call (explicit cache storage for its TTL)."""
+        with self._lock:
+            self.calls.append({"role": role, "provider": spec.provider, "model": spec.model, "cached": False,
+                               "ok": True, "input_tokens": 0, "output_tokens": 0, "thought_tokens": 0,
+                               "cached_tokens": 0, "usd": usd, "usd_billed": usd, "latency_s": 0.0, "priced": True,
+                               "note": note, "cache_tokens": tokens})
+
     def summary(self) -> dict:
         with self._lock:
             calls = list(self.calls)
@@ -206,9 +214,12 @@ class LLMClient:
 
     def generate_json(self, role: str, spec: ModelSpec, system: str, prompt: str, schema: dict | None,
                       meta: dict | None = None, want_raw: bool = False, text_ok: bool = False,
-                      media: list[dict] | None = None):
+                      media: list[dict] | None = None, cached_content: dict | None = None):
         """Return the parsed JSON object (``(obj, RawResponse)`` if want_raw, e.g. for grounding metadata).
-        Raises LLMError after retries, BudgetExceeded at the cap."""
+        Raises LLMError after retries, BudgetExceeded at the cap.
+        ``cached_content`` = ``{"name": <provider cache name>, "key": <hash of the cached system + prefix>}``: the
+        provider gets the name; the response cache is keyed by ``key`` (the cached CONTENT), never by the
+        expiring cache name, so a rerun of the same prompts over the same transcript is free."""
         prov = get_provider(spec.provider)
         last_err = None
         for attempt in range(self.schema_retries + 1):
@@ -216,7 +227,8 @@ class LLMClient:
             # media enters the cache key by its stable "key" (file content id + offsets + fps), never by the
             # expiring upload uri; inline media ("data") enter by their "key" too, never by the bytes
             mkey = json.dumps([_media_key(m) for m in media or []], sort_keys=True) if media else ""
-            key = self.cache_key(spec, system, prompt + mkey, schema,
+            ckey = f"\n<cached_content {cached_content['key']}>" if cached_content else ""
+            key = self.cache_key(spec, system, prompt + mkey + ckey, schema,
                                  salt="" if attempt == 0 else f"retry{attempt}")
             hit = self._cache_get(spec, key)
             if hit is not None and hit.get("blocked"):
@@ -242,7 +254,8 @@ class LLMClient:
                 self.misses.append({"role": role, "model": spec.model, "est_input_tokens": est})
                 raise LLMError(f"{role}/{spec.model}: cache miss (cache-only dry run)")
             try:
-                raw = self._call_with_retries(role, prov, spec, system, prompt, schema, media)
+                raw = self._call_with_retries(role, prov, spec, system, prompt, schema, media,
+                                              (cached_content or {}).get("name"))
             except SafetyBlocked as e:
                 if attempt == 0:
                     resp = e.response
@@ -259,7 +272,8 @@ class LLMClient:
             return (obj, raw) if want_raw else obj
         raise LLMError(f"{role}/{spec.model}: no valid JSON after {self.schema_retries + 1} attempts: {last_err}")
 
-    def _call_with_retries(self, role, prov, spec, system, prompt, schema, media=None) -> RawResponse:
+    def _call_with_retries(self, role, prov, spec, system, prompt, schema, media=None,
+                           cached_name: str | None = None) -> RawResponse:
         delay = 2.0
         for attempt in range(self.max_retries + 1):
             self.ledger.check_budget()
@@ -267,8 +281,11 @@ class LLMClient:
                 self.before_call(role, spec)
             t = time.time()
             try:
-                raw = prov.generate(spec, system, prompt, schema, media) if media else \
-                    prov.generate(spec, system, prompt, schema)
+                if cached_name:
+                    raw = prov.generate(spec, system, prompt, schema, media, cached_content=cached_name)
+                else:
+                    raw = prov.generate(spec, system, prompt, schema, media) if media else \
+                        prov.generate(spec, system, prompt, schema)
             except SafetyBlocked as e:
                 # never retried (the same prompt is refused again); the refused prompt may still be billed
                 if e.response is not None:

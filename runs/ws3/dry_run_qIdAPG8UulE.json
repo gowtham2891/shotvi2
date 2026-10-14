@@ -1,0 +1,103 @@
+{
+ "video_id": "qIdAPG8UulE",
+ "dry_run": true,
+ "projection": {
+  "tokens": {
+   "cache_system": 540,
+   "cache_transcript": 25599,
+   "cache_total": 26139,
+   "chars_per_token": 1.977,
+   "calibration": "runs/v1_test/qIdAPG8UulE.json: 29352 tokens for its 61774 chars discover prompt",
+   "transcript_chars": 50609,
+   "n_lines": 920
+  },
+  "cache": {
+   "mode": "explicit",
+   "ttl_s": 3600,
+   "storage_inr": 1.176,
+   "write_inr_worst_case": 1.764,
+   "min_tokens": 4096,
+   "under_minimum": false
+  },
+  "calls": {
+   "ws3_payoffs": {
+    "model": "gemini-3.8-flash",
+    "thinking_level": "high",
+    "in_uncached_tokens": 620,
+    "in_cached_tokens": 26139,
+    "out_expected": 28000,
+    "out_max": 32768,
+    "inr_expected": 9.668,
+    "inr_worst": 11.277
+   },
+   "ws3_hook": {
+    "model": "gemini-3.8-flash",
+    "thinking_level": "medium",
+    "in_uncached_tokens": 770,
+    "in_cached_tokens": 26139,
+    "out_expected": 2000,
+    "out_max": 8192,
+    "inr_expected": 0.903,
+    "inr_worst": 2.993
+   },
+   "ws3_clip": {
+    "model": "gemini-3.8-flash",
+    "thinking_level": "low",
+    "in_uncached_tokens": 1242,
+    "in_cached_tokens": 26139,
+    "out_expected": 1200,
+    "out_max": 4096,
+    "inr_expected": 0.665,
+    "inr_worst": 1.643
+   }
+  },
+  "table": [
+   {
+    "n": 8,
+    "n_processed": 8,
+    "inr_expected": 23.39,
+    "inr_worst": 51.31
+   },
+   {
+    "n": 12,
+    "n_processed": 12,
+    "inr_expected": 29.66,
+    "inr_worst": 69.85
+   },
+   {
+    "n": 16,
+    "n_processed": 16,
+    "inr_expected": 35.93,
+    "inr_worst": 88.39
+   }
+  ],
+  "n_estimate": {
+   "n": 21,
+   "n_processed": 20,
+   "inr_expected": 42.2,
+   "inr_worst": 106.94,
+   "label": "estimate: ~1 payoff per 1.75 min"
+  },
+  "n_cap": {
+   "n": 20,
+   "n_processed": 20,
+   "inr_expected": 42.2,
+   "inr_worst": 106.94
+  },
+  "episode": {
+   "inr_expected": 42.2,
+   "inr_worst": 106.94,
+   "inr_worst_at_16": 88.39
+  }
+ },
+ "call1_cached": false,
+ "speaker_labels": "names",
+ "would_bill_inr_expected": 42.2,
+ "would_bill_inr_worst": 106.94,
+ "prompt_versions": {
+  "ws3_context": "1+e606d3c6",
+  "ws3_payoffs": "1+5bfc974a",
+  "ws3_hook": "1+d91ba57c",
+  "ws3_clip": "1+ac264835"
+ }
+}

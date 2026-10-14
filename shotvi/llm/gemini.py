@@ -6,10 +6,18 @@ import os
 import requests
 
 from . import spend
-from .base import LLMError, ModelSpec, Provider, RawResponse, RetryableError, SafetyBlocked
+from .base import CacheUnavailable, LLMError, ModelSpec, Provider, RawResponse, RetryableError, SafetyBlocked
 
 API = "https://generativelanguage.googleapis.com/v1beta/models"
+API_ROOT = "https://generativelanguage.googleapis.com/v1beta"
 RETRY_STATUS = {408, 429, 500, 502, 503, 504}
+# Explicit context caching (ai.google.dev/gemini-api/docs/generate-content/caching, checked 2026-10-14): v1beta
+# cachedContents, Beta; supported on Gemini 3.x and 2.5 (NOT on gemini-4-argon and later, which only cache
+# implicitly). The docs give one minimum per model for caching (3.8 Flash / 3.6 Flash / 3.1 Pro 4,096 tokens;
+# 2.5 Flash / Pro 2,048) and no separate explicit minimum; a create under the minimum is a 400 and is treated as
+# CacheUnavailable. Default TTL 1 h when unset. Cached tokens are billed at the "cached" rate per call plus storage
+# per token-hour (pricing.PRICES); the pricing page lists no separate charge for creating a cache.
+CACHE_MIN_TOKENS = {"default": 4096, "gemini-2.5": 2048}
 
 
 class GeminiProvider(Provider):
@@ -51,8 +59,10 @@ class GeminiProvider(Provider):
                 raise LLMError(f"{m}: thinking_level 'minimal' is not supported by this model; use 'low'")
 
     def generate(self, spec: ModelSpec, system: str, prompt: str, schema: dict | None,
-                 media: list[dict] | None = None) -> RawResponse:
+                 media: list[dict] | None = None, cached_content: str | None = None) -> RawResponse:
         self.check_params(spec)
+        if cached_content and system:
+            raise LLMError("gemini: with cachedContent the system instruction lives in the cache; pass system=''")
         p = spec.params
         gen: dict = {"maxOutputTokens": int(p.get("max_output_tokens", 16384))}
         if p.get("temperature") is not None:
@@ -74,6 +84,8 @@ class GeminiProvider(Provider):
             gen["mediaResolution"] = "MEDIA_RESOLUTION_" + str(res).upper()
         parts = [_media_part(m) for m in media or []] + [{"text": prompt}]
         body = {"contents": [{"role": "user", "parts": parts}], "generationConfig": gen}
+        if cached_content:
+            body["cachedContent"] = cached_content
         if system:
             body["systemInstruction"] = {"parts": [{"text": system}]}
         if p.get("google_search"):
@@ -87,7 +99,8 @@ class GeminiProvider(Provider):
         n_queries = len([q for q in (grounding or {}).get("queries", []) if q and str(q).strip()])
         spend.record(spec.model, int(um.get("promptTokenCount", 0)),
                      int(um.get("candidatesTokenCount", 0)) + int(um.get("thoughtsTokenCount", 0)),
-                     source=os.environ.get("SHOTVI_SPEND_SOURCE", ""), search_queries=n_queries)
+                     source=os.environ.get("SHOTVI_SPEND_SOURCE", ""), search_queries=n_queries,
+                     cached_tokens=int(um.get("cachedContentTokenCount", 0)))
         if not cands:
             fb = d.get("promptFeedback")
             if isinstance(fb, dict) and fb.get("blockReason"):
@@ -117,6 +130,53 @@ class GeminiProvider(Provider):
     def count_tokens(self, spec: ModelSpec, text: str) -> int:
         d = self._post(f"{API}/{spec.model}:countTokens", {"contents": [{"parts": [{"text": text}]}]})
         return int(d["totalTokens"])
+
+    # ------------------------------------------------------------------ explicit context caching (v1beta, Beta)
+    @staticmethod
+    def cache_min_tokens(model: str) -> int:
+        return CACHE_MIN_TOKENS["gemini-2.5"] if model.startswith("gemini-2.5") else CACHE_MIN_TOKENS["default"]
+
+    def create_cache(self, spec: ModelSpec, system: str, prefix: str, ttl_s: int = 3600,
+                     display_name: str = "") -> dict:
+        """POST cachedContents: ``system`` as the cache's systemInstruction, ``prefix`` as one user text part, for
+        ``ttl_s`` seconds. Later generate calls pass the returned ``name`` as ``cached_content`` and send only the
+        per-call text. Storage for the whole TTL is recorded in the project ledger at creation (conservative: the
+        cache is usually deleted earlier). Raises CacheUnavailable on any 4xx (model without explicit caching,
+        content under the minimum, no storage price known), so callers can fall back to implicit caching."""
+        from .pricing import cache_storage_usd
+        if cache_storage_usd(spec.model, 1, 1.0) is None:
+            raise CacheUnavailable(f"{spec.model}: no explicit-cache storage price in pricing.PRICES")
+        body = {"model": f"models/{spec.model}", "contents": [{"role": "user", "parts": [{"text": prefix}]}],
+                "ttl": f"{int(ttl_s)}s"}
+        if system:
+            body["systemInstruction"] = {"parts": [{"text": system}]}
+        if display_name:
+            body["displayName"] = display_name[:128]
+        spend.check()
+        try:
+            r = self.session.post(f"{API_ROOT}/cachedContents", headers={"x-goog-api-key": self.api_key}, json=body,
+                                  timeout=self.timeout)
+        except (requests.Timeout, requests.ConnectionError) as e:
+            raise RetryableError(f"gemini network error (cachedContents): {e}") from e
+        if r.status_code in RETRY_STATUS:
+            raise RetryableError(f"gemini cachedContents HTTP {r.status_code}: {r.text[:300]}")
+        if r.status_code != 200:
+            raise CacheUnavailable(f"gemini cachedContents HTTP {r.status_code}: {r.text[:400]}")
+        d = r.json()
+        um = d.get("usageMetadata") or {}
+        tokens = int(um.get("totalTokenCount", 0))
+        usd = cache_storage_usd(spec.model, tokens, ttl_s / 3600.0) or 0.0
+        spend.record_fixed(spec.model, usd, source=os.environ.get("SHOTVI_SPEND_SOURCE", ""),
+                           note=f"cache storage {tokens} tok x {ttl_s} s", tokens=tokens)
+        return {"name": d["name"], "tokens": tokens, "ttl_s": int(ttl_s), "expire_time": d.get("expireTime"),
+                "storage_usd": usd, "model": spec.model}
+
+    def delete_cache(self, name: str) -> bool:
+        try:
+            r = self.session.delete(f"{API_ROOT}/{name}", headers={"x-goog-api-key": self.api_key}, timeout=60)
+        except (requests.Timeout, requests.ConnectionError):
+            return False
+        return r.status_code == 200
 
     def count_tokens_request(self, spec: ModelSpec, system: str, prompt: str, media: list[dict] | None = None,
                              details: bool = False):

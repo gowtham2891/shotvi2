@@ -12,9 +12,14 @@ SEARCH_USD_PER_QUERY = 0.014
 
 PRICES: dict[str, dict] = {
     # Gemini 3.x Flash: promotional price through 2026-12-31, list price after (1.50 / 7.50).
-    "gemini-3.8-flash": {"input": 0.75, "output": 3.75, "cached": 0.075, "note": "promo to 2026-12-31; list 1.50/7.50"},
+    # "cached": explicit (cachedContents) and implicit cache hits, per 1M cached input tokens;
+    # "cache_storage_hour": explicit cache storage per 1M tokens per hour (checked 2026-10-14 on the pricing page:
+    # 3.8 Flash / 3.6 Flash $0.075 cached, $0.50 storage, promo to 2026-12-31; list $0.15 / $1.00).
+    "gemini-3.8-flash": {"input": 0.75, "output": 3.75, "cached": 0.075, "cache_storage_hour": 0.50,
+                         "note": "promo to 2026-12-31; list 1.50/7.50"},
     "gemini-3.7-flash": {"input": 0.75, "output": 3.75, "note": "promo to 2026-12-31; list 1.50/7.50"},
-    "gemini-3.6-flash": {"input": 0.75, "output": 3.75, "note": "promo to 2026-12-31; list 1.50/7.50"},
+    "gemini-3.6-flash": {"input": 0.75, "output": 3.75, "cached": 0.075, "cache_storage_hour": 0.50,
+                         "note": "promo to 2026-12-31; list 1.50/7.50"},
     "gemini-3.5-flash": {"input": 1.50, "output": 9.00},
     "gemini-3.5-flash-lite": {"input": 0.30, "output": 2.50, "cached": 0.03},
     "gemini-3.1-pro-preview": {"input": 2.00, "output": 12.00, "long_threshold": 200_000,
@@ -43,3 +48,12 @@ def cost_usd(model: str, input_tokens: int, output_tokens: int, overrides: dict 
         p = {**p, **p["long"]}
     cached = min(cached_tokens, input_tokens) if "cached" in p else 0
     return ((input_tokens - cached) * p["input"] + cached * p.get("cached", 0) + output_tokens * p["output"]) / 1e6
+
+
+def cache_storage_usd(model: str, tokens: int, hours: float, overrides: dict | None = None) -> float | None:
+    """Explicit-cache storage for ``tokens`` kept ``hours`` (billed per token-hour). None if the model has no
+    known storage price (explicit caching is then unpriced: callers should treat it as unavailable)."""
+    p = price_of(model, overrides)
+    if p is None or "cache_storage_hour" not in p:
+        return None
+    return tokens * hours * p["cache_storage_hour"] / 1e6

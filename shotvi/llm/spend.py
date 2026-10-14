@@ -83,24 +83,36 @@ def check():
                              f"(raise SHOTVI_SPEND_CAP_INR to continue)")
 
 
-def record(model: str, input_tokens: int, output_tokens: int, source: str = "", search_queries: int = 0):
+def record(model: str, input_tokens: int, output_tokens: int, source: str = "", search_queries: int = 0,
+           cached_tokens: int = 0):
     """Record one billed call. output_tokens must include thinking tokens. ``search_queries`` (Google Search
-    grounding) are charged at pricing.SEARCH_USD_PER_QUERY each, even inside the free tier."""
+    grounding) are charged at pricing.SEARCH_USD_PER_QUERY each, even inside the free tier. ``cached_tokens``
+    (part of input_tokens; explicit or implicit context-cache hits) are priced at the model's cached-input rate."""
     from .pricing import SEARCH_USD_PER_QUERY, cost_usd
-    usd = cost_usd(model, input_tokens, output_tokens)
+    usd = cost_usd(model, input_tokens, output_tokens, cached_tokens=cached_tokens)
     if usd is None:   # unknown price: record tokens, count it expensive so the cap still bites
         usd = (input_tokens * 5 + output_tokens * 20) / 1e6
     usd += search_queries * SEARCH_USD_PER_QUERY
+    _append({"model": model, "in": input_tokens, "out": output_tokens, "usd": round(usd, 6), "source": source,
+             **({"search_queries": search_queries} if search_queries else {}),
+             **({"cached_in": cached_tokens} if cached_tokens else {})})
+    return usd
+
+
+def record_fixed(model: str, usd: float, source: str = "", note: str = "", tokens: int = 0):
+    """Record a billed item that is not a generate call (explicit cache storage for its TTL, a cache write)."""
+    _append({"model": model, "in": tokens, "out": 0, "usd": round(usd, 6), "source": source, "note": note})
+    return usd
+
+
+def _append(entry: dict):
     with _lock:
         d = _load()
-        d["total_usd"] = round(d["total_usd"] + usd, 6)
+        d["total_usd"] = round(d["total_usd"] + entry["usd"], 6)
         d["calls"] += 1
-        d["entries"].append({"t": time.strftime("%Y-%m-%dT%H:%M:%S"), "model": model, "in": input_tokens,
-                             "out": output_tokens, "usd": round(usd, 6), "source": source,
-                             **({"search_queries": search_queries} if search_queries else {})})
+        d["entries"].append({"t": time.strftime("%Y-%m-%dT%H:%M:%S"), **entry})
         d["entries"] = d["entries"][-2000:]
         _save(d)
-    return usd
 
 
 if __name__ == "__main__":

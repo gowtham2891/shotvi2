@@ -27,6 +27,12 @@ class BudgetExceeded(RuntimeError):
     """The run's spend cap was reached; no further calls are made."""
 
 
+class CacheUnavailable(LLMError):
+    """Explicit context caching is not available (provider has none, the model rejects cachedContents, the content
+    is under the model's minimum, or no storage price is known). Callers fall back to sending the same prefix
+    in every call (implicit caching) and must say so."""
+
+
 @dataclass(frozen=True)
 class ModelSpec:
     """Which model plays a role. Lives in config, never in pipeline code.
@@ -68,9 +74,20 @@ class Provider:
     name = "base"
 
     def generate(self, spec: ModelSpec, system: str, prompt: str, schema: dict | None,
-                 media: list[dict] | None = None) -> RawResponse:
-        """``media``: optional list of {file_uri, mime_type, start_s?, end_s?, fps?} parts placed before the text."""
+                 media: list[dict] | None = None, cached_content: str | None = None) -> RawResponse:
+        """``media``: optional list of {file_uri, mime_type, start_s?, end_s?, fps?} parts placed before the text.
+        ``cached_content``: name of an explicit context cache (``create_cache``) holding the system instruction
+        and the shared prefix; ``system`` must then be empty (it lives in the cache)."""
         raise NotImplementedError
 
     def count_tokens(self, spec: ModelSpec, text: str) -> int:
         raise NotImplementedError
+
+    def create_cache(self, spec: ModelSpec, system: str, prefix: str, ttl_s: int = 3600,
+                     display_name: str = "") -> dict:
+        """Explicit context cache of (system instruction + one user text part) for ``ttl_s`` seconds. Returns
+        ``{name, tokens, ttl_s, expire_time}``. Providers without it raise CacheUnavailable."""
+        raise CacheUnavailable(f"{self.name}: explicit context caching is not implemented")
+
+    def delete_cache(self, name: str) -> bool:
+        return False
