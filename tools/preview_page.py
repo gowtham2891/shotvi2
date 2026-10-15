@@ -65,6 +65,8 @@ main{padding:20px;min-width:0}
 .chip{background:var(--chip);padding:2px 8px;border-radius:999px;color:var(--muted)}
 .chip.flag{background:var(--accent-soft);color:var(--accent)}
 .chip.badge{background:#1f6f43;color:#fff;font-weight:600}
+.chip.ret-yes{background:#15803d;color:#fff;font-weight:600}.chip.ret-maybe{background:#b45309;color:#fff;font-weight:600}
+.chip.ret-no{background:#b91c1c;color:#fff;font-weight:600}.chip.ret-unchecked{background:#6b6a66;color:#fff;font-weight:600}
 nav .sec{margin:10px 0 4px;padding:3px 8px;font-size:12px;font-weight:700;color:#fff;background:#1f6f43;border-radius:6px}
 .meta{margin-top:10px;font-size:14px;display:grid;gap:4px}
 .meta b{color:var(--muted);font-weight:600;margin-right:6px;font-size:12px;text-transform:uppercase;letter-spacing:.04em}
@@ -170,7 +172,7 @@ function show(i) {
   cur = Math.max(0, Math.min(clips.length - 1, i));
   const c = clips[cur], r = store[keyOf(c)] || {};
   document.querySelectorAll("nav a").forEach(a => a.classList.toggle("on", +a.dataset.i === cur));
-  const chips = (c.badge ? `<span class="chip badge">${esc(c.badge)}</span>` : "") + [`${c.duration}s`, `${c.n_pieces} pieces`, `source ${mmss(c.src_start)}–${mmss(c.src_end)}`, c.category,
+  const chips = (c.retention ? `<span class="chip ret-${esc(c.retention)}">retention: ${esc(c.retention)}</span>` : "") + (c.badge ? `<span class="chip badge">${esc(c.badge)}</span>` : "") + [`${c.duration}s`, `${c.n_pieces} pieces`, `source ${mmss(c.src_start)}–${mmss(c.src_end)}`, c.category,
                  (c.score != null ? `pipeline ${c.score} · ${c.tier_label || c.tier}` : (c.tier_label || c.tier || null))].filter(Boolean).map(x => `<span class="chip">${esc(x)}</span>`).join("")
               + c.flags.map(f => `<span class="chip flag">${esc(f.replace(/_/g, " "))}</span>`).join("");
   let tx = "";
@@ -196,6 +198,7 @@ function show(i) {
       <div class="chips">${chips}</div>
       <div class="meta">
         ${c.review_note ? `<div><b>Note</b>${esc(c.review_note)}</div>` : ""}
+        ${c.retention ? `<div><b>Retention</b>${esc(c.retention)}${c.retention_reason ? ": " + esc(c.retention_reason) : ""}</div>` : ""}
         <div><b>Hook</b><span class="te">${esc(c.hook)}</span></div>
         ${c.payoff ? `<div><b>Payoff</b><span class="te">${esc(c.payoff)}</span>${c.payoff_type ? ` <small>(${esc(c.payoff_type)})</small>` : ""}</div>` : ""}
         <div><b>Why</b>${esc(c.why)}</div>

@@ -48,6 +48,12 @@ Stages (per episode):
                      (length outside 15-150 s, censored audio, far stitch, replayed words) never reach the review
      show_rule "tiers" = the 2026-10-07 rule (worth_a_look needs overall >= t_show; reversible by config).
      Order: strong candidates, then the rest by review overall, then payoff, then discovery order; unchecked last.
+  5c. (optional, OFF by default: ``"emotion_select": {"enabled": true}``, read with cfg.get so replay configs stay
+     byte-identical) emotion select (``shotvi.select.emotion_select``, prompt ``ws_emotion``): one call per batch of
+     <= 8 shown clips as played; Gemini points at the stop / land lines and names what the viewer stays for, with a
+     level each; code checks the pointers and sets verdict yes / maybe / no / unchecked + a one-sentence reason on
+     every proposal. The shown list is then ordered yes, maybe, no, unchecked (the order above inside each group);
+     nothing more is hidden.
      Every shown clip carries title, hook line, payoff line + payoff type (discover's, else the end line) and a
      one-sentence why. ``episode_verdict`` counts strong candidates: none (0) / thin (1-2) / strong
      (>= verdict_strong_min). Write ``<out>/<video_id>.json`` (schema 1.1 + web-series fields).
@@ -187,6 +193,8 @@ DEFAULTS: dict = {
     "budget_usd": 0.6,
     # "speaker_names": True (opt-in, read with cfg.get so replays keep their config byte-identical): render corrected
     # speaker names (runs/speaker_fix/<id>.json) in the discover and review prompts; see stage 1
+    # "emotion_select": {"enabled": True, ...} (opt-in, read with cfg.get; keys: shotvi.select.emotion_select.DEFAULTS):
+    # stage 5c, the retention verdict and its order of the shown list
 }
 CATEGORIES = ["story", "advice", "humour", "controversy", "emotional", "insight", "reveal", "motivation", "other"]
 LAUGH_TOKENS = ("నవ్వు", "laugh")
@@ -1452,9 +1460,15 @@ def project_episode(ep: Episode, ix, cfg: dict, system: str, user: str, llm=None
     vend = {"enabled": bool(cfg["video_end_check"]["enabled"]), "assumes_clips": n_vc,
             "inr": round(VIDEO_END_INR_PER_CLIP * n_vc, 2) if cfg["video_end_check"]["enabled"] else 0.0,
             "inr_expected": round(VIDEO_END_INR_EXPECTED * n_vc, 2) if cfg["video_end_check"]["enabled"] else 0.0}
-    return {"ws_discover": disc, "ws_review": rev, "video_end_check": vend,
-            "episode": {"inr_expected": round(disc["inr_expected"] + rev["inr_expected"] + vend["inr_expected"], 2),
-                        "inr": round(disc["inr"] + rev["inr"] + rev["inr_fallback"] + vend["inr"], 2)}}
+    out = {"ws_discover": disc, "ws_review": rev, "video_end_check": vend,
+           "episode": {"inr_expected": round(disc["inr_expected"] + rev["inr_expected"] + vend["inr_expected"], 2),
+                       "inr": round(disc["inr"] + rev["inr"] + rev["inr_fallback"] + vend["inr"], 2)}}
+    if emotion_on(cfg):     # opt-in stage 5c: added only when on, so the projection of a v1 run is unchanged
+        emo = _emotion_guess(cfg, n_vc)
+        out["emotion_select"] = emo
+        out["episode"] = {"inr_expected": round(out["episode"]["inr_expected"] + emo["inr_expected"], 2),
+                          "inr": round(out["episode"]["inr"] + emo["inr"], 2)}
+    return out
 
 
 def spec_of(cfg, role):
@@ -1854,8 +1868,11 @@ def run_episode(vid: str, cfg: dict, llm, guard: Guard, out_dir: Path, log=print
             if dry_run:
                 vend = (VIDEO_END_INR_PER_CLIP, VIDEO_END_INR_EXPECTED) if cfg["video_end_check"]["enabled"] \
                     else (0.0, 0.0)
-                return dry_result(vid, proj, "ws_review", proj["ws_review"]["inr_expected"] + vend[1] * len(kept),
-                                  call_proj["ws_review"] + fb_inr + vend[0] * len(kept), log, n_clips=len(kept))
+                emo = _emotion_guess(cfg, len(kept))
+                return dry_result(vid, proj, "ws_review",
+                                  proj["ws_review"]["inr_expected"] + vend[1] * len(kept) + emo["inr_expected"],
+                                  call_proj["ws_review"] + fb_inr + vend[0] * len(kept) + emo["inr"], log,
+                                  n_clips=len(kept))
             # never pay for a review whose safety fallback (if Gemini blocks it) the limit would then refuse
             guard.check(f"{vid} ws_review (+ split fallback if blocked)", call_proj["ws_review"] + fb_inr)
         try:
@@ -1894,9 +1911,18 @@ def run_episode(vid: str, cfg: dict, llm, guard: Guard, out_dir: Path, log=print
             from shotvi.select.video_gate import GATE_INR_EXPECTED_PER_CLIP, GATE_INR_GUARD_PER_CLIP
         else:
             GATE_INR_EXPECTED_PER_CLIP = GATE_INR_GUARD_PER_CLIP = 0.0
-        return dry_result(vid, proj, "video_end" if n else ("ws_gate" if ng else None),
-                          VIDEO_END_INR_EXPECTED * n + GATE_INR_EXPECTED_PER_CLIP * ng,
-                          VIDEO_END_INR_PER_CLIP * n + GATE_INR_GUARD_PER_CLIP * ng, log, n_clips=len(kept))
+        if not emotion_on(cfg):
+            return dry_result(vid, proj, "video_end" if n else ("ws_gate" if ng else None),
+                              VIDEO_END_INR_EXPECTED * n + GATE_INR_EXPECTED_PER_CLIP * ng,
+                              VIDEO_END_INR_PER_CLIP * n + GATE_INR_GUARD_PER_CLIP * ng, log, n_clips=len(kept))
+        # stage 5c: the clips it would judge = the shown list as ranked now (before an optional video gate)
+        from shotvi.select.emotion_select import project_shown
+        emo = project_shown(ep, rank_clips(copy.deepcopy(kept), [], cfg), cfg, llm)
+        stage = "video_end" if n else ("ws_gate" if ng else ("ws_emotion" if emo["dry_run_calls"] else None))
+        return dry_result(vid, proj, stage,
+                          VIDEO_END_INR_EXPECTED * n + GATE_INR_EXPECTED_PER_CLIP * ng + emo["inr_expected"],
+                          VIDEO_END_INR_PER_CLIP * n + GATE_INR_GUARD_PER_CLIP * ng + emo["inr_worst"]
+                          + emo["preflight"]["inr_fallback_worst"], log, n_clips=len(kept), emotion_select=emo)
     if cfg["video_end_check"]["enabled"] and kept:
         video_end_check(ep, kept, cfg, llm, guard, log)
 
@@ -1913,6 +1939,10 @@ def run_episode(vid: str, cfg: dict, llm, guard: Guard, out_dir: Path, log=print
         unchecked = [x for x in shown if x["tier"] == "unchecked"]
         checked = [x for x in shown if x["tier"] != "unchecked"]
         shown = (video_gate.gate_shown(ep, checked, rejected, cfg, llm, guard, log) if checked else []) + unchecked
+    if emotion_on(cfg) and shown:
+        # ---------------------------------------------------------------- 5c. optional emotion select (retention)
+        from shotvi.select import emotion_select
+        shown = emotion_select.apply_to_shown(ep, shown, cfg, llm, guard, log, call_proj=call_proj, debug=debug)
     out_props = [proposal_doc(ep, x, k + 1, cfg, line_of_word) for k, x in enumerate(shown)]
     for prob in shown_field_problems(out_props):
         log(f"  WARNING: {prob}")
@@ -2135,6 +2165,29 @@ def gate_on(cfg: dict) -> bool:
     return bool((cfg.get("video_gate") or {}).get("enabled"))
 
 
+def emotion_on(cfg: dict) -> bool:
+    """Stage 5c (opt-in): read with .get, so a config without the key is unchanged."""
+    return bool(((cfg or {}).get("emotion_select") or {}).get("enabled"))
+
+
+def _emotion_guess(cfg: dict, n_clips: int) -> dict:
+    """Stage 5c projection before its clips exist (rupees: expected, and the guard's worst case incl. one split)."""
+    if not emotion_on(cfg):
+        return {"inr_expected": 0.0, "inr": 0.0}
+    from shotvi.select.emotion_select import project_guess
+    return project_guess(cfg, n_clips)
+
+
+def _emotion_prompt(cfg: dict) -> str:
+    from shotvi.select.emotion_select import emo_cfg
+    return emo_cfg(cfg, pipeline=True)["prompt"]
+
+
+def _emotion_model(cfg: dict) -> dict:
+    from shotvi.select.emotion_select import emo_cfg
+    return emo_cfg(cfg, pipeline=True)["model"]
+
+
 def video_gate_prompt(cfg: dict) -> str:
     from shotvi.select.video_gate import gate_cfg
     return gate_cfg(cfg)["prompt"]
@@ -2268,6 +2321,9 @@ def proposal_doc(ep: Episode, x: dict, rank: int, cfg, line_of_word) -> dict:
     if x.get("gate"):
         from shotvi.select.video_gate import gate_doc_fields
         doc.update(gate_doc_fields(x["gate"]))
+    if x.get("emotion"):
+        from shotvi.select.emotion_select import doc_fields, emo_cfg
+        doc.update(doc_fields(x["emotion"], emo_cfg(cfg, pipeline=True)))
     return doc
 
 
@@ -2359,11 +2415,14 @@ def run_document(ep, tp, props, rejected, cfg, llm, n_moments, n_passed, t_start
         "content_type": "web_series",
         "pipeline": {"version": PIPELINE_VERSION, "git_commit": None,
                      "prompt_versions": {**{n: load_prompt(prompt_file(cfg, n)).tag for n in PROMPTS},
-                                         **({"ws_gate": load_prompt(video_gate_prompt(cfg)).tag} if gate_on(cfg) else {})},
+                                         **({"ws_gate": load_prompt(video_gate_prompt(cfg)).tag} if gate_on(cfg) else {}),
+                                         **({"ws_emotion": load_prompt(_emotion_prompt(cfg)).tag}
+                                            if emotion_on(cfg) else {})},
                      "prompt_files": {n: prompt_file(cfg, n) for n in PROMPTS}, "config": cfg},
         "models": [{"role": k, **v} for k, v in cfg["models"].items()
                    if k != "video_end" or cfg["video_end_check"]["enabled"]]
-        + ([{"role": "ws_gate", **video_gate_model(cfg)}] if gate_on(cfg) else []),
+        + ([{"role": "ws_gate", **video_gate_model(cfg)}] if gate_on(cfg) else [])
+        + ([{"role": "ws_emotion", **_emotion_model(cfg)}] if emotion_on(cfg) else []),
         "cost": {"input_tokens": summ["input_tokens"], "output_tokens": summ["output_tokens"],
                  "usd": summ["usd"], "usd_billed": summ["usd_billed"], "wall_time_secs": round(time.time() - t_start, 1),
                  "n_llm_calls": summ["n_llm_calls"], "by_role": summ["by_role"], "projection": debug["projection"]},
@@ -2428,6 +2487,8 @@ def clips_md(ep: Episode, doc: dict) -> str:
             out.append(f"- flaws (not a strong candidate while present): {', '.join(p['flaws'])}")
         for s in p.get("shot_flags") or []:
             out.append(f"- shot flag: {s}")
+        if p.get("emotion_verdict"):
+            out.append(f"- retention: {p['emotion_verdict']}: {p.get('emotion_reason') or '-'}")
         out.append(f"- why: {p['why_it_works']}")
         out.append(f"- hook line: {p['hook_line']['text']}")
         d = p.get("discovery") or {}
@@ -2461,6 +2522,9 @@ def main(argv=None):
     ap.add_argument("--video-end-check", action="store_true", help="stage 4 (paid, ~₹1.35 per clip)")
     ap.add_argument("--video-gate", action="store_true",
                     help="stage 5b: video gate keep / fix / drop per shown clip (paid; shotvi.select.video_gate)")
+    ap.add_argument("--emotion-select", action="store_true",
+                    help="stage 5c: retention verdict (yes / maybe / no) per shown clip, list ordered by it (paid; "
+                         "shotvi.select.emotion_select)")
     ap.add_argument("--prompt", action="append", default=[], metavar="ROLE=FILE",
                     help="use prompts/FILE.md for ROLE (ws_discover / ws_review): one A/B arm = one swapped file")
     ap.add_argument("--calibrate-from", default=None, metavar="RUN_DIR",
@@ -2486,6 +2550,8 @@ def main(argv=None):
         cfg["video_end_check"]["enabled"] = True
     if a.video_gate:
         cfg["video_gate"]["enabled"] = True
+    if a.emotion_select:
+        cfg["emotion_select"] = {**(cfg.get("emotion_select") or {}), "enabled": True}
     for kv in a.prompt:
         role, _, name = kv.partition("=")
         if role not in PROMPTS or not name or not (ROOT / "prompts" / f"{name}.md").exists():

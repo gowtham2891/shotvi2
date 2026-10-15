@@ -165,6 +165,8 @@ def clip_meta(c):
             "review_note": c.get("review_note") or "",
             # a labelled section after the main list (merged pipeline: "beat v1 missed"), shown as a chip + nav heading
             "badge": c.get("badge") or "", "section": c.get("section") or "",
+            # emotion select (shotvi.select.emotion_select): retention verdict yes / maybe / no / unchecked + reason
+            "retention": c.get("emotion_verdict") or "", "retention_reason": c.get("emotion_reason") or "",
             "category": " · ".join(x for x in (c.get("content_type", ""), c.get("clip_purpose", ""),
                                                 c.get("category", "")) if x),
             "score": s.get("overall"), "scores": s,
@@ -189,6 +191,8 @@ def transcript_text(meta, lines, video_name):
            f"({meta.get('tier_label') or meta['tier']})"]
     if meta.get("review_note"):
         out.append(f"Note: {meta['review_note']}")
+    if meta.get("retention"):
+        out.append(f"Retention: {meta['retention']}: {meta.get('retention_reason') or '-'}")
     out.append(f"Hook: {meta['hook']}")
     if meta.get("payoff"):
         out.append(f"Payoff ({meta.get('payoff_type') or '?'}): {meta['payoff']}")
@@ -313,7 +317,9 @@ def main():
              "Rough jump-cuts from the source (no captions or reframing). Open `review.html` to watch and rate.\n"]
     for f in sorted(run.glob("*.json")):
         doc = json.loads(f.read_text(encoding="utf-8"))
-        if doc.get("kind") not in ("proposals", "gold") or (args.video and doc["video_id"] != args.video):
+        # a run dir may hold other JSON (emotion_select's results.json is a list): skip anything not a document
+        if not isinstance(doc, dict) or doc.get("kind") not in ("proposals", "gold") \
+                or (args.video and doc["video_id"] != args.video):
             continue
         if doc["kind"] == "gold":   # GT picks have no rank: keep the labeller's order
             doc["proposals"] = [{**c, "rank": c.get("rank") or i + 1} for i, c in enumerate(doc.get("clips") or [])]
@@ -355,7 +361,9 @@ def main():
                          f"{c.get('tier_label') or c.get('tier', '')}, pipeline score "
                          f"{s.get('overall')}) — `{out.relative_to(out_root).as_posix()}` + transcript "
                          f"`{out.with_suffix('.txt').relative_to(out_root).as_posix()}`\n"
-                         f"  - hook: {hook_text(c)}\n  - why: {c.get('why_it_works', '')}\n")
+                         + (f"  - retention: {c['emotion_verdict']}: {c.get('emotion_reason') or '-'}\n"
+                            if c.get("emotion_verdict") else "")
+                         + f"  - hook: {hook_text(c)}\n  - why: {c.get('why_it_works', '')}\n")
             rows.append({"video_id": vid, "rank": c["rank"], "clip_id": c["id"], "title": c["title"],
                          "file": out.relative_to(out_root).as_posix(), "pipeline_overall": s.get("overall"),
                          "hook_1to5": "", "standalone_1to5": "", "payoff_1to5": "", "overall_1to5": "",
