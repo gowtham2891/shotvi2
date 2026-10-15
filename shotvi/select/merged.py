@@ -229,9 +229,11 @@ def attach_payoffs(props: list[dict], payoffs: list[dict], covered: dict) -> Non
 
 
 # ---------------------------------------------------------------------------------------------------- call C
-def lift_ok_near(ep: ws.Episode, lift_ids: list[str], p: dict, cfg: dict) -> str:
+def lift_ok_near(ep: ws.Episode, lift_ids: list[str], p: dict, cfg: dict, window: dict | None = None) -> str:
+    """The <lift-ok> lines from ``lift_before_s`` before payoff ``p`` to ``lift_after_s`` after it, quoted for a
+    task. ``window``: those two keys (default ``cfg["missed"]``; shotvi.select.emotion_pick passes its own)."""
     t = ep.w0(ep.by_id[p["line"]])
-    mc = cfg["missed"]
+    mc = window if window is not None else cfg["missed"]
     near = [lid for lid in lift_ids
             if t - mc["lift_before_s"] <= ep.w0(ep.by_id[lid]) <= t + mc["lift_after_s"]]
     if not near:
@@ -363,17 +365,26 @@ def dedupe_new(cands: list[dict], v1props: list[dict], dup: float) -> tuple[list
                                                     f"v1 wins"], "dup_of": ov[0][1]})
             continue
         kept.append(x)
-    out = []
-    for x in sorted(kept, key=lambda x: (-x["payoff"]["intensity"], -int(x["moment"].get("strength") or 0),
-                                         x["payoff"]["order"])):
+    out, d3 = dedupe_among(kept, dup, key=lambda x: (-x["payoff"]["intensity"],
+                                                     -int(x["moment"].get("strength") or 0), x["payoff"]["order"]))
+    dropped += d3
+    out.sort(key=lambda x: x["payoff"]["order"])
+    return out, dropped
+
+
+def dedupe_among(cands: list[dict], dup: float, key, code: str = "D3", what: str = "new clip") -> tuple[list, list]:
+    """Greedy dedupe in ``key`` order (best first): a clip whose source time overlaps an already kept one by > dup
+    (of the shorter) is dropped with the reason ``<code>: overlaps <what> <id> (..; intensity a vs b)``. Returns
+    (kept in key order, dropped). Shared by dedupe_new and shotvi.select.emotion_pick."""
+    out, dropped = [], []
+    for x in sorted(cands, key=key):
         d = next((y for y in out if ws.overlap_frac(x["clip"], y["clip"]) > dup), None)
         if d:
             dropped.append({**x, "reject_reasons": [
-                f"D3: overlaps new clip {d['id']} ({ws.overlap_frac(x['clip'], d['clip']):.0%} of the shorter; "
+                f"{code}: overlaps {what} {d['id']} ({ws.overlap_frac(x['clip'], d['clip']):.0%} of the shorter; "
                 f"intensity {x['payoff']['intensity']} vs {d['payoff']['intensity']})"], "dup_of": d["id"]})
             continue
         out.append(x)
-    out.sort(key=lambda x: x["payoff"]["order"])
     return out, dropped
 
 

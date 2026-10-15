@@ -1,0 +1,896 @@
+"""Emotion-first web-series clip selection (founder, 2026-10-16): clips are SELECTED by the feeling they trigger in a
+stranger, and that reason (what makes a stranger stop, stay and feel) drives the pick and the cut. Two focused calls,
+no review / judging call after building. Additive: v1 (``webseries``), ws3 and merged keep their behaviour and
+defaults; this module only imports them (two behaviour-preserving helpers were factored out of merged.py:
+``lift_ok_near(window=...)`` and ``dedupe_among``).
+
+Why two calls: v1's single discover call already used 25-32k of its 32,768 output cap and found far fewer moments
+than a focused finder (Queen 7 vs 11, Krishna Leelalu 12 vs 48); quality drops as items per call grow. But ws3 split
+hook and clip into separate calls and cut fragments, so stop / stay / land are decided TOGETHER, per moment.
+
+Per episode (the whole transcript sits in ONE Gemini explicit context cache: ws3.ContextCache with the ws3_context
+persona, exactly as ws3 and merged do it; each call sends only its small task):
+  1 FIND   (``ws_emotion_find``, thinking HIGH, once): the moments a stranger with zero context would FEEL. Per moment:
+           land line id, feeling (laugh / aww / shock / tension / tears), intensity, one-sentence why (plus ws3's
+           type and lands_on_screen). Nothing about starts, cuts or hooks. Strict, no quota. Validated by
+           ``ws3.validate_payoffs`` (ids checked, an audio-event id mapped to the spoken line before it, duplicates
+           merged, intensity >= find.min_intensity) with NO list cap. ``find_prompt: "ws3_payoffs"`` (CLI
+           ``--find ws3_payoffs``) runs ws3's call 1 unchanged instead (its cached answers replay at Rs 0).
+  2 BUILD  (``ws_emotion_build``, thinking MEDIUM, one call per moment, highest intensity first, ``--max-moments``
+           caps the count): given ONE moment, answer together: stop (the first line heard: start_line or a liftable
+           cold-open line), stay (the question that keeps them watching), land (line + reaction id or "hold"),
+           start_line, end_line, <= 3 whole-chunk drops, purpose, spoiler, characters, Telugu title, reason ("Viewer
+           stops because ..., stays to find out ..., and it ends on ... (feeling)."), or no_clip with why. No scores.
+  code     validate: the land must stay within ``build.land_window_lines`` spoken lines of the found line; start must
+           not come after the land; an end before the land, or more than 3 spoken lines after it, is moved to the land
+           (merged.validate_moment); stop must be start_line or a line inside the clip.
+           build: v1's cut builder (``ws.build_clip``). stop == start_line: the clip starts there; else stop is the
+           cold-open lift and must pass v1's lift checks (a failed lift = REJECT). v1's hard rules apply (under
+           guardrails.min_s rejected, never padded; hard max; censored; far stitch; replay).
+           check on the clip as played (``emotion_select.render_clip``): the stop line starts within
+           ``check.stop_window_s`` (3.0 s); the land line is among the last ``check.land_last_lines`` (3) spoken
+           lines. Else REJECT with the reason.
+           dedupe: a clip overlapping another by > guardrails.dup_overlap (50% of the shorter) loses to the higher
+           intensity, then the earlier land line.
+  output   v1 run-document format (schema 1.1, kind proposals; tools/preview_clips.py works), proposals in EPISODE
+           order (no score ranking), each with feeling, intensity, stop, stay, land, reason, title and its source
+           moment; ``episode_summary`` (moments found, built, rejected with reasons, deduped, shown) and a per-moment
+           table.
+
+Rejection codes: N0 the build call said no_clip; X1 Gemini safety block (the moment is skipped); C1 call failed /
+invalid answer; V1 answer ids invalid; B1 v1 cut builder; L1/L2/A1/S1/S2 v1 hard rules; K1 stop-first check (incl. a
+failed cold-open lift); K2 land-last check; D1 duplicate.
+
+Spend: one paid attempt per call (no retries); the spend guard (``--max-ledger-inr``) is checked up front (cache
+storage + one call, worst case) and before EVERY billed call with that call's worst case (``before_call``); after
+FIND the build list is cut to what the limit still allows (lowest intensity first). The project ledger records with
+SHOTVI_SPEND_SOURCE. Cached answers replay at Rs 0. ``--dry-run`` makes no generate call: it replays a cached FIND,
+counts input tokens with Gemini countTokens (free; ``--offline`` = estimate) and prints Rs expected / worst per
+episode, with and without the moment cap.
+
+CLI::
+
+    python -m shotvi.select.emotion_pick 5HqkHAZfzos Sy8yZ4DgzrU --out runs/emotion1 --dry-run
+    SHOTVI_SPEND_SOURCE=emotion1 python -m shotvi.select.emotion_pick 5HqkHAZfzos --out runs/emotion1 \\
+        --max-ledger-inr 1700 --max-moments 15
+    python tools/preview_clips.py runs/emotion1 --top 50
+"""
+from __future__ import annotations
+
+import argparse
+import copy
+import json
+import math
+import os
+import sys
+import time
+from collections import Counter
+from pathlib import Path
+
+from shotvi.llm.base import BudgetExceeded, LLMError, SafetyBlocked
+from shotvi.select import merged as M
+from shotvi.select import webseries as ws
+from shotvi.select import ws3
+
+ROOT = ws.ROOT
+PIPELINE_VERSION = "emotion_pick/0.1"
+ROLE_FIND = "ws_emotion_find"
+ROLE_BUILD = "ws_emotion_build"
+FEELINGS = ["laugh", "aww", "shock", "tension", "tears"]
+TIER = "emotion_pick"
+TIER_LABEL = "emotion pick"
+EXIT_SAFETY_BLOCKED = 4
+PROJ_CAP = 15                 # the dry run always also shows this cap (founder's test: <= 15 build calls per episode)
+
+_FLASH = {"provider": "gemini", "model": "gemini-3.8-flash"}
+DEFAULTS: dict = {
+    # "ws_emotion_find" (strict stranger test, this module's prompt) or "ws3_payoffs" (ws3's call 1 unchanged)
+    "find_prompt": ROLE_FIND,
+    "models": {
+        "find": {**_FLASH, "params": {"thinking_level": "high", "max_output_tokens": 32768}},     # = ws3_payoffs
+        "build": {**_FLASH, "params": {"thinking_level": "medium", "max_output_tokens": 8192}},   # = merged call C
+    },
+    "prompts": {ROLE_BUILD: "ws_emotion_build"},
+    "ctx": {},       # deep-merged over ws3.DEFAULTS: persona prompt, explicit cache (TTL 1 h), speaker_names
+    "v1": {},        # deep-merged over ws.DEFAULTS: the cut builder's settings and the guardrails, unchanged
+    "find": {"min_intensity": 3},
+    # build: max_moments None = a call for every found moment. The lift-ok list in the task covers lines from
+    # lift_before_s before the land line to lift_after_s after it (as merged call C).
+    "build": {"max_moments": None, "lift_before_s": 150.0, "lift_after_s": 20.0, "land_window_lines": 3,
+              "max_end_after_payoff_lines": 3},
+    "check": {"stop_window_s": 3.0, "land_last_lines": 3},
+    "budget_usd": 3.0,          # per-episode USD cap of the LLM client; the rupee guard (--max-ledger-inr) is the limit
+    "calibrate_from": {"ws3": "runs/ws3"},   # measured find counts (projection of N before FIND has run)
+}
+
+# ---------------------------------------------------------------------------------------------------- projection
+# Expected billed output (visible + thinking). FIND: ws3_payoffs (same task shape, HIGH) measured 7.9k (Queen, 11
+# payoffs) and 15.0k (Krishna Leelalu, 48) -> the larger. BUILD: merged call C (medium, one whole v1 moment) is
+# projected at 3.0k; the build answer adds stop / stay / land / title / reason (~300 visible tokens) -> 3.5k.
+FIND_OUT_EXPECTED = 15000
+BUILD_OUT_EXPECTED = 3500
+TYPE_TO_V1 = {"punchline": "punchline", "reveal": "reveal", "quotable_line": "conclusion",
+              "emotional_peak": "emotional_peak"}
+
+_STR = {"type": "string"}
+BUILD_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "no_clip": {"type": "boolean"},
+        "no_clip_why": _STR,
+        "stop": {"type": "object", "properties": {
+            "line": {"type": "string", "description": "the first line heard: start_line or a cold-open line id"},
+            "why": {"type": "string", "description": "why a stranger stops scrolling; quote the words"}},
+            "required": ["line", "why"]},
+        "stay": {"type": "string", "description": "the question that keeps the viewer watching to the landing"},
+        "land": {"type": "object", "properties": {
+            "line": {"type": "string", "description": "the line id where the feeling hits"},
+            "reaction": {"type": "string", "description": "the reaction line id after it, or hold"}},
+            "required": ["line", "reaction"]},
+        "start_line": _STR, "end_line": _STR,
+        "drops": {"type": "array", "items": {"type": "object", "properties": {
+            "first_line": _STR, "last_line": _STR, "why": _STR}, "required": ["first_line", "last_line", "why"]}},
+        "purpose": {"type": "string", "enum": ["standalone", "promo"]},
+        "spoiler": {"type": "boolean"},
+        "characters": {"type": "array", "items": _STR},
+        "title": _STR,
+        "reason": _STR,
+    },
+    "required": ["no_clip", "no_clip_why", "stop", "stay", "land", "start_line", "end_line", "drops", "purpose",
+                 "spoiler", "characters", "title", "reason"],
+}
+
+
+class EpisodeStop(RuntimeError):
+    """The episode cannot continue (FIND failed / was blocked)."""
+
+
+class Rejected(Exception):
+    def __init__(self, code: str, msg: str):
+        self.code = code
+        super().__init__(f"{code}: {msg}")
+
+
+# ---------------------------------------------------------------------------------------------------- config
+def find_role(cfg: dict) -> str:
+    return cfg["find_prompt"]
+
+
+def find_schema(cfg: dict) -> dict:
+    """ws3_payoffs: ws3's schema object itself (the response-cache key needs it byte-identical). The new prompt: the
+    same shape, feelings limited to the founder's five (no "other")."""
+    if find_role(cfg) == "ws3_payoffs":
+        return ws3.PAYOFFS_SCHEMA
+    s = copy.deepcopy(ws3.PAYOFFS_SCHEMA)
+    s["properties"]["payoffs"]["items"]["properties"]["emotion"]["enum"] = list(FEELINGS)
+    return s
+
+
+def ctx_cfg(cfg: dict) -> dict:
+    """ws3's config (persona, cache, speaker names, validation) with the FIND role, its prompt and model; no list
+    cap (``--max-moments`` caps the build calls instead)."""
+    a = ws.deep_merge(ws3.DEFAULTS, cfg.get("ctx") or {})
+    r = find_role(cfg)
+    a["prompts"][r] = cfg["find_prompt"]
+    a["models"][r] = copy.deepcopy(cfg["models"]["find"])
+    a["payoffs"]["min_intensity"] = int(cfg["find"]["min_intensity"])
+    a["payoffs"]["max_payoffs"] = 10 ** 6
+    return a
+
+
+def v1_cfg(cfg: dict) -> dict:
+    return ws.deep_merge(ws.DEFAULTS, cfg.get("v1") or {})
+
+
+def spec_build(cfg: dict):
+    from shotvi.llm.base import ModelSpec
+    return ModelSpec.from_dict(cfg["models"]["build"])
+
+
+# ---------------------------------------------------------------------------------------------------- call 2 task
+def task_build(cfg: dict, ep: ws.Episode, p: dict, lift_ids: list[str]) -> str:
+    from shotvi.select.prompts import load_prompt
+    pr = load_prompt(cfg["prompts"][ROLE_BUILD])
+    return pr.system.strip() + "\n\n" + pr.render(
+        episode_len=ws.fmt(ep.duration), land_line=p["line"], feeling=p["emotion"], intensity=p["intensity"],
+        on_screen="the transcript shows the reaction" if p["lands_on_screen"] else "no reaction shown in the transcript",
+        land_text=ws.one_line(p["text"], 400), why=ws.one_line(p["reason"], 400),
+        lift_ok=M.lift_ok_near(ep, lift_ids, p, cfg, window=cfg["build"])).strip()
+
+
+# ---------------------------------------------------------------------------------------------------- validation
+def _sid(x) -> str | None:
+    if isinstance(x, dict):
+        x = x.get("line")
+    s = str(x or "").strip()
+    return None if s.lower() in ("", "none", "null", "-", "hold") else ws.norm_id(s)
+
+
+def validate_build(ep: ws.Episode, p: dict, ans: dict, cfg: dict) -> tuple[dict, dict, list[str]]:
+    """Build answer -> (v1 moment for the cut builder, emotion fields, flags). Raises Rejected (N0 / V1 / K1)."""
+    if ans.get("no_clip"):
+        raise Rejected("N0", f"no clip: {ws.one_line(ans.get('no_clip_why') or '-', 300)}")
+    flags: list[str] = []
+    sp_idx = M._spoken_index(ep)
+    # land: a spoken line near the found one (an audio-event id maps to the spoken line before it)
+    land_raw = _sid(ans.get("land"))
+    pos, _ = ws3.event_mapped(ep, land_raw, "land", flags, forward=False)
+    if pos is None:
+        raise Rejected("V1", f"land line {(ans.get('land') or {}).get('line')!r} is not a line of the transcript")
+    land = ep.lines[pos]["id"]
+    d = sp_idx[land] - sp_idx[p["line"]]
+    win = int(cfg["build"]["land_window_lines"])
+    if abs(d) > win:
+        raise Rejected("V1", f"land {land} is {abs(d)} spoken lines {'after' if d > 0 else 'before'} the found "
+                             f"moment {p['line']} (> {win}): a different moment")
+    if land != p["line"]:
+        flags.append(f"land moved from the found line {p['line']} to {land}")
+    # start: a spoken line (an audio-event id maps to the next spoken line)
+    pos_s, _ = ws3.event_mapped(ep, _sid(ans.get("start_line")), "start", flags, forward=True)
+    if pos_s is None:
+        raise Rejected("V1", f"start_line {ans.get('start_line')!r} is not a line of the transcript")
+    raw = {"start_line": ep.lines[pos_s]["id"], "end_line": ans.get("end_line"), "cold_open_lines": [],
+           "drops": ans.get("drops") or []}
+    try:
+        m, f2 = M.validate_moment(ep, {"line": land}, raw,
+                                  {"moment": {"max_end_after_payoff_lines": cfg["build"]["max_end_after_payoff_lines"]}})
+    except ValueError as e:
+        raise Rejected("V1", str(e)) from e
+    flags += f2
+    # stop: start_line itself, or a spoken line inside the clip (the cold-open lift)
+    stop = _sid(ans.get("stop"))
+    r = ep.by_id.get(stop) if stop else None
+    if not ep.is_speech(r):
+        raise Rejected("K1", f"stop line {(ans.get('stop') or {}).get('line')!r} is not a spoken line")
+    ps, pe, pst = ep.pos[m["start_line"]], ep.pos[m["end_line"]], ep.pos[stop]
+    lift = stop != m["start_line"]
+    if lift and not ps < pst <= pe:
+        raise Rejected("K1", f"stop line {stop} is outside the clip {m['start_line']}..{m['end_line']}")
+    reaction = str((ans.get("land") or {}).get("reaction") or "").strip()
+    rid = _sid(reaction)
+    stop_why = str((ans.get("stop") or {}).get("why") or "")
+    m.update(purpose=ans.get("purpose") or "standalone", spoiler=bool(ans.get("spoiler")),
+             characters=list(ans.get("characters") or []), cold_open_lines=[stop] if lift else [],
+             cold_open_why=stop_why if lift else "", payoff_line=ws3.line_text(ep, land),
+             payoff_type=TYPE_TO_V1.get(p["type"]), hook=stop_why, payoff=ws3.line_text(ep, land),
+             what_happens=str(ans.get("stay") or ""), category=ws3.EMOTION_CATEGORY.get(p["emotion"], "other"))
+    emo = {"stop": {"line": stop, "text": ws3.line_text(ep, stop), "why": stop_why, "cold_open": lift},
+           "stay": str(ans.get("stay") or ""),
+           "land": {"line": land, "text": ws3.line_text(ep, land),
+                    "reaction": rid if rid else ("hold" if reaction.lower() == "hold" else (reaction or "hold")),
+                    **({"reaction_text": ws3.line_text(ep, rid)} if rid and rid in ep.by_id else {})},
+           "title": str(ans.get("title") or "").strip(), "reason": str(ans.get("reason") or "").strip()}
+    return m, emo, flags
+
+
+def check_built(ep: ws.Episode, c: dict, emo: dict, cfg: dict) -> dict:
+    """The clip as played: the stop line must open it (a requested lift must have passed v1's lift checks) and start
+    within check.stop_window_s; the land line must be among the last check.land_last_lines spoken lines. Raises
+    Rejected (K1 / K2); returns the measured positions."""
+    from shotvi.select.emotion_select import render_clip
+    win, n = float(cfg["check"]["stop_window_s"]), int(cfg["check"]["land_last_lines"])
+    stop, land = emo["stop"]["line"], emo["land"]["line"]
+    if emo["stop"]["cold_open"] and not c["cold_open"]:
+        raise Rejected("K1", f"stop line {stop} could not be lifted to the front (v1 lift check: "
+                             f"{c.get('lift_rejected') or 'lift not built'})")
+    rd = render_clip(ep, {"time_segments": c["time_segments"], "cold_open": bool(c["cold_open"])}, "C1")
+    t = rd.first_start(stop)
+    if t is None:
+        raise Rejected("K1", f"stop line {stop} is not played")
+    if t > win + 1e-6:
+        raise Rejected("K1", f"stop line {stop} starts at {t:.1f} s of playback (> {win:g} s)")
+    last = rd.last_ids(n)
+    if land not in last:
+        raise Rejected("K2", f"land line {land} is not among the last {n} spoken lines (last: {', '.join(last)})")
+    rid = emo["land"].get("reaction")
+    note = None
+    if rid and rid != "hold" and rid not in rd.ids():
+        note = f"reaction {rid} is not played (the end hold shows the reaction)"
+    return {"stop_play_s": t, "land_play_s": rd.last_start(land), "last_lines": last, "plays_s": rd.duration,
+            **({"note": note} if note else {})}
+
+
+# ---------------------------------------------------------------------------------------------------- tokens + Rs
+class Tokens:
+    """Input-token counts for the projection: Gemini countTokens (free, no generation) unless ``offline``; an
+    offline estimate (ws3.est_tokens) on failure."""
+
+    def __init__(self, spec, offline: bool = False, log=print):
+        self.spec, self.offline, self.log, self.src = spec, offline, log, "countTokens"
+        if offline:
+            self.src = "offline estimate"
+
+    def _prov(self):
+        from shotvi.llm.client import get_provider
+        return get_provider(self.spec.provider)
+
+    def text(self, text: str) -> int:
+        if not self.offline:
+            try:
+                return int(self._prov().count_tokens(self.spec, text))
+            except Exception as e:   # noqa: BLE001 (projection only)
+                self.log(f"countTokens unavailable ({str(e)[:120]}); estimating offline")
+                self.offline, self.src = True, "offline estimate (countTokens failed)"
+        return ws3.est_tokens(text)
+
+    def context(self, system: str, prefix: str, ratio: float | None = None) -> int:
+        if not self.offline:
+            try:
+                prov = self._prov()
+                if hasattr(prov, "count_tokens_request"):
+                    return int(prov.count_tokens_request(self.spec, system, prefix))
+                return int(prov.count_tokens(self.spec, system + "\n" + prefix))
+            except Exception as e:   # noqa: BLE001
+                self.log(f"countTokens unavailable ({str(e)[:120]}); estimating offline")
+                self.offline, self.src = True, "offline estimate (countTokens failed)"
+        return ws3.est_tokens(system) + ws3.est_tokens(prefix, ratio)
+
+
+def find_rate(cfg: dict) -> dict:
+    """Moments per second of episode for the projection before FIND has run: ws3's measured call-1 counts
+    (runs/ws3/<id>.json: payoffs listed / episode length). expected = pooled rate, worst = the highest episode."""
+    d = (cfg.get("calibrate_from") or {}).get("ws3")
+    rows = []
+    for f in sorted((ROOT / d).glob("*.json")) if d and (ROOT / d).exists() else []:
+        if f.name.startswith("dry_run"):
+            continue
+        try:
+            doc = json.loads(f.read_text(encoding="utf-8"))
+            n = int(doc["episode_summary"]["n_payoffs_listed"])
+            dur = float(doc["transcript"]["audio_duration_secs"])
+            rows.append((doc["video_id"], n, dur))
+        except Exception:   # noqa: BLE001 (projection only)
+            continue
+    if not rows:
+        r = ws3.PAYOFFS_PER_SEC
+        return {"expected": r, "worst": r, "basis": "default ~1 moment per 1.75 min (ws3.PAYOFFS_PER_SEC)",
+                "per_episode": {}}
+    pooled = sum(n for _, n, _ in rows) / sum(d_ for _, _, d_ in rows)
+    worst = max(n / d_ for _, n, d_ in rows)
+    basis = "; ".join(f"{v}: {n} in {d_ / 60:.1f} min" for v, n, d_ in rows)
+    return {"expected": pooled, "worst": worst, "per_episode": {v: n for v, n, _ in rows},
+            "basis": f"ws3 call 1 measured ({basis}): pooled {pooled * 60:.2f}/min expected, {worst * 60:.2f}/min "
+                     f"worst"}
+
+
+def project(cfg: dict, acfg: dict, spec_f, spec_b, t_cache: int, t_find: int, f_hit: bool,
+            build_tasks: list[tuple[int, bool]] | None, n_est: dict | None, t_build_sample: int | None,
+            cap: int | None) -> dict:
+    """Rupees of one episode. build_tasks = [(input tokens, cached)] in call order (FIND cached: exact), else
+    n_est = {"expected": n, "worst": n} moments with t_build_sample tokens each. Rows: no cap and the cap."""
+    from shotvi.llm.pricing import cache_storage_usd, cost_usd
+    explicit = acfg["cache"].get("mode", "explicit") == "explicit"
+    ttl_h = float(acfg["cache"]["ttl_s"]) / 3600.0
+    storage = ws.inr(cache_storage_usd(spec_f.model, t_cache, ttl_h) or 0.0) if explicit else 0.0
+    write_worst = ws.inr(cost_usd(spec_f.model, t_cache, 0) or 0.0) if explicit else 0.0
+    max_f = int(spec_f.params.get("max_output_tokens", 32768))
+    max_b = int(spec_b.params.get("max_output_tokens", 8192))
+
+    def call(spec, t_in, out):
+        return ws.inr(cost_usd(spec.model, t_in + t_cache, out, cached_tokens=t_cache if explicit else 0) or 0.0)
+
+    f_exp = 0.0 if f_hit else call(spec_f, t_find, min(FIND_OUT_EXPECTED, max_f))
+    f_worst = 0.0 if f_hit else call(spec_f, t_find, max_f)
+
+    def row(c):
+        if build_tasks is not None:
+            sel = build_tasks if c is None else build_tasks[:c]
+            unc = [t for t, hit in sel if not hit]
+            be = sum(call(spec_b, t, BUILD_OUT_EXPECTED) for t in unc)
+            bw = sum(call(spec_b, t, max_b) for t in unc)
+            n_e = n_w = len(sel)
+            n_unc_e = n_unc_w = len(unc)
+        else:
+            n_e = n_est["expected"] if c is None else min(c, n_est["expected"])
+            n_w = n_est["worst"] if c is None else min(c, n_est["worst"])
+            n_unc_e, n_unc_w = n_e, n_w
+            be = n_e * call(spec_b, t_build_sample, BUILD_OUT_EXPECTED)
+            bw = n_w * call(spec_b, t_build_sample, max_b)
+        any_e = n_unc_e > 0 or not f_hit
+        any_w = n_unc_w > 0 or not f_hit
+        st_e = storage if any_e else 0.0
+        st_w = storage + write_worst if any_w else 0.0
+        return {"cap": c, "n_build_expected": n_e, "n_build_worst": n_w, "n_build_uncached": n_unc_e,
+                "find_inr_expected": round(f_exp, 2), "find_inr_worst": round(f_worst, 2),
+                "build_inr_expected": round(be, 2), "build_inr_worst": round(bw, 2),
+                "storage_inr": round(st_e, 2),
+                "inr_expected": round(f_exp + be + st_e, 2), "inr_worst": round(f_worst + bw + st_w, 2)}
+
+    return {"context_tokens": t_cache, "find_task_tokens": t_find, "find_cached": f_hit,
+            "build_task_tokens": [t for t, _ in build_tasks] if build_tasks is not None else None,
+            "build_task_tokens_sample": t_build_sample, "n_moments": n_est,
+            "storage_inr": round(storage, 2), "write_inr_worst": round(write_worst, 2),
+            "find": {"model": spec_f.model, "thinking_level": spec_f.params.get("thinking_level"),
+                     "out_expected": FIND_OUT_EXPECTED, "out_max": max_f,
+                     "inr_expected": round(call(spec_f, t_find, min(FIND_OUT_EXPECTED, max_f)), 2),
+                     "inr_worst": round(call(spec_f, t_find, max_f), 2)},
+            "build": {"model": spec_b.model, "thinking_level": spec_b.params.get("thinking_level"),
+                      "out_expected": BUILD_OUT_EXPECTED, "out_max": max_b,
+                      "inr_worst_each": round(call(spec_b, max([t for t, _ in build_tasks] or [0])
+                                                   if build_tasks is not None else t_build_sample, max_b), 2)},
+            "rows": {"no_cap": row(None), "cap": row(cap) if cap is not None else None}}
+
+
+def build_worst_inr(spec_b, t_cache: int, t_task: int = 4000) -> float:
+    from shotvi.llm.pricing import cost_usd
+    return ws.inr(cost_usd(spec_b.model, t_task + t_cache, int(spec_b.params.get("max_output_tokens", 8192)),
+                           cached_tokens=t_cache) or 0.0)
+
+
+# ---------------------------------------------------------------------------------------------------- the episode
+def run_episode(vid: str, cfg: dict, llm, guard: ws.Guard, out_dir: Path, log=print, dry_run: bool = False,
+                offline: bool = False) -> dict:
+    t0 = time.time()
+    acfg, vcfg = ctx_cfg(cfg), v1_cfg(cfg)
+    ep, ix, _tr, tp = ws.load_episode(vid, with_loudness=not dry_run, speaker_names=bool(acfg.get("speaker_names")),
+                                      require_names=False)
+    system, prefix = ws3.context_prompt(ep, acfg)
+    rf = find_role(cfg)
+    spec_f, spec_b = ws3.spec_of(acfg, rf), spec_build(cfg)
+    schema_f = find_schema(cfg)
+    cache = ws3.ContextCache(system, prefix, spec_f, acfg, log)
+    task_f = ws3.task_text(acfg, rf, episode_len=ws.fmt(ep.duration), n_lines=len(ep.lines))
+    f_hit = cache.is_hit(llm, spec_f, task_f, schema_f)
+    cap = cfg["build"].get("max_moments")
+    debug: dict = {"video_id": vid, "warnings": []}
+    if dry_run:
+        llm.cache_only = True
+        tok = Tokens(spec_f, offline, log)
+        ratio = None if not offline else ws3.calibration_ratio(vid, ep, ix, acfg, log)[0]
+        t_cache = tok.context(system, prefix, ratio)
+        t_find = tok.text(task_f)
+    else:
+        tok = None
+        t_cache, _src = M.context_tokens(vid, ep, ix, acfg, cfg, system, prefix, log)
+        t_find = ws3.est_tokens(task_f)
+
+    from shotvi.llm.pricing import cache_storage_usd, cost_usd
+    f_worst = ws.inr(cost_usd(spec_f.model, t_find + t_cache, int(spec_f.params.get("max_output_tokens", 32768)),
+                              cached_tokens=t_cache) or 0.0)
+    b_worst = build_worst_inr(spec_b, t_cache)
+    storage = ws.inr((cache_storage_usd(spec_f.model, t_cache, float(acfg["cache"]["ttl_s"]) / 3600) or 0.0)
+                     + (cost_usd(spec_f.model, t_cache, 0) or 0.0))
+    call_proj = {rf: f_worst, ROLE_BUILD: b_worst}
+    llm.before_call = lambda role, _spec: guard.check(f"{vid} {role}", call_proj.get(role, max(call_proj.values())))
+    if not f_hit and not dry_run:
+        guard.check(f"{vid} episode (cache + find + one build, worst case)", storage + f_worst + b_worst)
+
+    lift_ids = ws.liftable_lines(ep, vcfg["cut"])
+    try:
+        # ------------------------------------------------------------------ 1 FIND
+        disc, moments, rej_moments = {}, None, []
+        if not (dry_run and not f_hit):
+            try:
+                disc = M.ask_cached(llm, cache, rf, spec_f, task_f, schema_f, {"video": vid, "emotion_pick": "find"})
+            except SafetyBlocked as e:
+                raise EpisodeStop(f"{vid}: {rf} blocked by Gemini's safety check ({e.reason}); no moments") from e
+            except LLMError as e:
+                raise EpisodeStop(f"{vid}: {rf} failed ({e}); one attempt per call") from e
+            moments, rej_moments = ws3.validate_payoffs(ep, disc, acfg)
+            debug["find_raw"] = disc
+            log(f"{vid}: FIND: {len(disc.get('payoffs') or [])} moments listed, {len(moments)} valid (by feeling "
+                f"{dict(Counter(p['emotion'] for p in moments))}; by intensity "
+                f"{dict(sorted(Counter(p['intensity'] for p in moments).items(), reverse=True))})")
+        order = sorted(moments or [], key=lambda p: (-p["intensity"], ep.pos[p["line"]]))
+        tasks = {p["id"]: task_build(cfg, ep, p, lift_ids) for p in order}
+
+        if dry_run:
+            if moments is not None:
+                bt = [(tok.text(tasks[p["id"]]), cache.is_hit(llm, spec_b, tasks[p["id"]], BUILD_SCHEMA))
+                      for p in order]
+                proj = project(cfg, acfg, spec_f, spec_b, t_cache, t_find, f_hit, bt, None, None,
+                               cap if cap is not None else PROJ_CAP)
+                tdir = out_dir / "tasks" / vid
+                tdir.mkdir(parents=True, exist_ok=True)
+                for p in order:
+                    (tdir / f"{p['id']}_{p['line']}.txt").write_text(tasks[p["id"]] + "\n", encoding="utf-8")
+            else:
+                rate = find_rate(cfg)
+                if vid in rate["per_episode"]:     # ws3's call 1 on this episode (the "be complete" list)
+                    n0 = rate["per_episode"][vid]
+                    n_est = {"expected": n0, "worst": n0,
+                             "basis": f"ws3 call 1 listed {n0} on this episode (a strict find should list fewer)"}
+                else:
+                    n_est = {"expected": int(math.ceil(ep.duration * rate["expected"])),
+                             "worst": int(math.ceil(ep.duration * rate["worst"])), "basis": rate["basis"]}
+                long_line = max((r for r in ep.lines if ep.is_speech(r)), key=lambda r: len(ws3.line_text(ep, r["id"])))
+                sample = {"line": long_line["id"], "text": ws3.line_text(ep, long_line["id"]), "emotion": "laugh",
+                          "intensity": 5, "lands_on_screen": True, "reason": "x" * 300, "type": "punchline"}
+                t_sample = tok.text(task_build(cfg, ep, sample, lift_ids))
+                proj = project(cfg, acfg, spec_f, spec_b, t_cache, t_find, f_hit, None, n_est, t_sample,
+                               cap if cap is not None else PROJ_CAP)
+            proj["token_source"] = tok.src
+            return dry_doc(vid, out_dir, proj, moments, rej_moments, f_hit, rf, log)
+
+        # ------------------------------------------------------------------ the build list (cap, spend limit)
+        called = order if cap is None else order[:cap]
+        beyond = {p["id"]: "beyond --max-moments cap" for p in ([] if cap is None else order[cap:])}
+        hits = {p["id"]: cache.is_hit(llm, spec_b, tasks[p["id"]], BUILD_SCHEMA) for p in called}
+        if guard.limit is not None and called:
+            from shotvi.llm.spend import total_inr
+            room = guard.limit - total_inr() - (storage if cache.name is None and cache.mode == "explicit" else 0.0)
+            n_fit, spent = 0, 0.0
+            for p in called:
+                add = 0.0 if hits[p["id"]] else build_worst_inr(spec_b, t_cache, ws3.est_tokens(tasks[p["id"]]))
+                if spent + add > room:
+                    break
+                spent += add
+                n_fit += 1
+            if n_fit < len(called):
+                for p in called[n_fit:]:
+                    beyond[p["id"]] = "spend limit (--max-ledger-inr)"
+                debug["warnings"].append(f"spend limit: build calls for {n_fit} of {len(called)} moments")
+                log(f"{vid}: spend limit: build calls for {n_fit} of {len(called)} moments")
+                called = called[:n_fit]
+
+        if any(not hits[p["id"]] for p in called) and cache.mode == "explicit" and cache.name is None:
+            # the first uncached build creates the provider cache (storage is billed at creation)
+            guard.check(f"{vid} cache + first build call (worst case)", storage + b_worst)
+
+        # ------------------------------------------------------------------ 2 BUILD, one call per moment
+        cands, rejected, calls = [], [], []
+        for p in called:
+            x = {"id": "e" + p["id"][1:], "payoff": p}
+            rec = {"moment": p["id"], "line": p["line"]}
+            calls.append(rec)
+            try:
+                ans = M.ask_cached(llm, cache, ROLE_BUILD, spec_b, tasks[p["id"]], BUILD_SCHEMA,
+                                   {"video": vid, "moment": p["line"], "emotion_pick": "build"})
+            except SafetyBlocked as e:
+                rec["error"] = str(e)
+                rejected.append({**x, "reject_reasons": [f"X1: Gemini's safety check blocked this moment's build "
+                                                         f"call ({e.reason}); skipped"]})
+                log(f"  {x['id']} {p['line']}: blocked ({e.reason}); skipped")
+                continue
+            except LLMError as e:
+                rec["error"] = str(e)
+                rejected.append({**x, "reject_reasons": [f"C1: {e}"]})
+                log(f"  {x['id']} {p['line']}: call failed: {e}")
+                continue
+            rec["answer"] = ans
+            x["answer"] = ans
+            try:
+                x["moment"], x["emo"], x["flags"] = validate_build(ep, p, ans, cfg)
+                try:
+                    c = ws.build_clip(ep, x["moment"], vcfg["cut"])
+                except ws.Reject as e:
+                    raise Rejected("B1", str(e)) from e
+                x["clip"] = c
+                rr = ws.hard_rules(ep, c, vcfg)
+                if rr:
+                    rejected.append({**x, "reject_reasons": rr})
+                    log(f"  {x['id']} {p['line']}: rejected: {rr}")
+                    continue
+                x["check"] = check_built(ep, c, x["emo"], cfg)
+            except Rejected as e:
+                rejected.append({**x, "reject_reasons": [str(e)]})
+                log(f"  {x['id']} {p['line']}: rejected: {e}")
+                continue
+            cands.append(x)
+            log(f"  {x['id']} {p['line']}: clip {c['start_line']}..{c['end_line']} plays {c['video_duration']:.1f} s"
+                + (", cold open" if c["cold_open"] else ""))
+        debug["calls"] = calls
+        n_built = len(cands)
+        kept, dups = M.dedupe_among(cands, vcfg["guardrails"]["dup_overlap"],
+                                    key=lambda x: (-x["payoff"]["intensity"], ep.pos[x["emo"]["land"]["line"]]),
+                                    code="D1", what="clip")
+        rejected += dups
+        kept.sort(key=lambda x: scene_start(x["clip"]))
+    finally:
+        debug["cache"] = cache.close()
+
+    # ------------------------------------------------------------------ output
+    line_of_word = {r["words"][0]: r for r in ep.lines if ep.is_speech(r)}
+    props = [proposal_doc(ep, x, k + 1, vcfg, line_of_word) for k, x in enumerate(kept)]
+    rej_docs = [rejected_doc(ep, x, vcfg) for x in rejected]
+    table = moment_table(moments, called, beyond, rejected, kept)
+    summary = episode_summary(disc, moments, rej_moments, order, called, beyond, n_built, rejected, kept, cap, debug)
+    doc = run_document(ep, tp, props, rej_docs, cfg, acfg, vcfg, llm, summary, table, t0, debug)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    (out_dir / f"{vid}.json").write_text(json.dumps(doc, ensure_ascii=False, indent=1), encoding="utf-8")
+    (out_dir / "debug").mkdir(exist_ok=True)
+    debug["rejected_moments"] = rej_moments
+    (out_dir / "debug" / f"{vid}.json").write_text(json.dumps(debug, ensure_ascii=False, indent=1, default=str),
+                                                   encoding="utf-8")
+    (out_dir / f"{vid}.md").write_text(clips_md(ep, doc), encoding="utf-8")
+    s = doc["episode_summary"]
+    log(f"{vid}: {s['n_moments_valid']} moments -> {s['n_build_calls']} build calls -> {s['n_built']} built -> "
+        f"{s['n_shown']} shown; ${doc['cost']['usd_billed']:.4f} billed -> {out_dir / (vid + '.json')}")
+    return doc
+
+
+def scene_start(c: dict) -> float:
+    sc = [s["start"] for s in c["time_segments"] if s.get("kind", "scene") == "scene"]
+    return min(sc) if sc else c["time_segments"][0]["start"]
+
+
+# ---------------------------------------------------------------------------------------------------- documents
+def moment_public(p: dict) -> dict:
+    return {"id": p["id"], "line": p["line"], "text": p["text"], "feeling": p["emotion"], "intensity": p["intensity"],
+            "why": p["reason"], "type": p["type"], "lands_on_screen": p["lands_on_screen"]}
+
+
+def proposal_doc(ep: ws.Episode, x: dict, rank: int, vcfg: dict, line_of_word: dict) -> dict:
+    """v1's proposal document (ws.proposal_doc: pieces, time segments, cold open, cuts, end hold, flags) with no
+    review: title and why come from the build call; plus the emotion fields."""
+    p, emo = x["payoff"], x["emo"]
+    title = emo["title"] or ws.one_line(emo["land"]["text"], 60)
+    review = {"title": title, "why_it_works": emo["reason"] or p["reason"],
+              "category": ws3.EMOTION_CATEGORY.get(p["emotion"], "other")}
+    d = ws.proposal_doc(ep, {**x, "review": review, "scores": {}, "flaws": [], "tier": TIER}, rank, vcfg,
+                        line_of_word)
+    ck = x.get("check") or {}
+    # stop / land carry the keys tools/preview_clips.py renders (via, plays_at_s, reaction, reaction_text)
+    d.update(tier_label=TIER_LABEL, source="emotion_pick", feeling=p["emotion"], intensity=p["intensity"],
+             stop={**emo["stop"], "via": "cold_open" if emo["stop"]["cold_open"] else "start_line",
+                   "plays_at_s": ck.get("stop_play_s")}, stay=emo["stay"],
+             land={**emo["land"], "plays_at_s": ck.get("land_play_s")}, reason=emo["reason"],
+             moment=moment_public(p), build_flags=x.get("flags") or [],
+             **({"check_note": ck["note"]} if ck.get("note") else {}))
+    d.pop("review", None)
+    return d
+
+
+def rejected_doc(ep: ws.Episode, x: dict, vcfg: dict) -> dict:
+    p = x["payoff"]
+    base = {"id": x["id"], "tier": "rejected", "source": "emotion_pick", "reject_reasons": x["reject_reasons"],
+            "moment": moment_public(p)}
+    if x.get("dup_of"):
+        base["dup_of"] = x["dup_of"]
+    if x.get("emo"):
+        base.update(stop=x["emo"]["stop"], stay=x["emo"]["stay"], land=x["emo"]["land"], reason=x["emo"]["reason"],
+                    title=x["emo"]["title"])
+    elif x.get("answer"):
+        base["answer"] = x["answer"]
+    c = x.get("clip")
+    if c:
+        base.update(pieces=c["pieces"], **ws.core_fields(ep, c["pieces"], vcfg["guardrails"]["skip_s"]),
+                    time_segments=c["time_segments"], video_duration=c["video_duration"],
+                    start_line=c["start_line"], end_line=c["end_line"], cold_open=bool(c["cold_open"]))
+    else:   # nothing built: the land line as one piece (the schema needs pieces)
+        r = ep.by_id[p["line"]]
+        W = ep.words
+        pieces = [{"start_word": r["words"][0], "end_word": r["words"][1],
+                   "start": round(W[r["words"][0]]["start"], 3), "end": round(W[r["words"][1]]["end"], 3)}]
+        base.update(pieces=pieces, **ws.core_fields(ep, pieces, vcfg["guardrails"]["skip_s"]))
+    if x.get("moment"):
+        base["build_moment"] = {k: x["moment"].get(k) for k in ("purpose", "start_line", "end_line",
+                                                                "cold_open_lines", "drops")}
+    return base
+
+
+def moment_table(moments, called, beyond, rejected, kept) -> list[dict]:
+    called_ids = {p["id"] for p in called}
+    rej = {x["payoff"]["id"]: x["reject_reasons"][0] for x in rejected}
+    shown = {x["payoff"]["id"]: x["id"] for x in kept}
+    out = []
+    for p in moments or []:
+        row = {"id": p["id"], "line": p["line"], "feeling": p["emotion"], "intensity": p["intensity"],
+               "text": ws.one_line(p["text"], 120), "why": ws.one_line(p["reason"], 240)}
+        if p["id"] in shown:
+            row.update(status="shown", clip=shown[p["id"]])
+        elif p["id"] in rej:
+            row.update(status="rejected", reason=rej[p["id"]])
+        elif p["id"] in beyond:
+            row.update(status="not_built", reason=beyond[p["id"]])
+        elif p["id"] in called_ids:
+            row.update(status="called")
+        else:
+            row.update(status="not_built")
+        out.append(row)
+    return out
+
+
+def episode_summary(disc, moments, rej_moments, order, called, beyond, n_built, rejected, kept, cap, debug) -> dict:
+    code = Counter(x["reject_reasons"][0].split(":")[0] for x in rejected)
+    hard = sum(n for k, n in code.items() if k in ("L1", "L2", "A1", "S1", "S2"))
+    return {"n_moments_listed": len(disc.get("payoffs") or []), "n_moments_valid": len(moments or []),
+            "n_moments_rejected": len(rej_moments),
+            "moments_rejected": [{"line": (r["payoff"] or {}).get("line"), "reason": r["reason"]} for r in rej_moments],
+            "moments_by_feeling": dict(Counter(p["emotion"] for p in moments or [])),
+            "moments_by_intensity": {str(k): n for k, n in sorted(Counter(p["intensity"] for p in moments or [])
+                                                                  .items(), reverse=True)},
+            "max_moments": cap, "n_build_calls": len(called),
+            "n_not_built_cap": sum(1 for v in beyond.values() if v.startswith("beyond")),
+            "n_not_built_spend": sum(1 for v in beyond.values() if v.startswith("spend")),
+            "n_no_clip": code.get("N0", 0), "n_blocked": code.get("X1", 0), "n_call_failed": code.get("C1", 0),
+            "n_invalid": code.get("V1", 0), "n_builder_rejected": code.get("B1", 0), "n_hard_rules": hard,
+            "n_stop_check_failed": code.get("K1", 0), "n_land_check_failed": code.get("K2", 0),
+            "n_built": n_built, "n_deduped": code.get("D1", 0), "n_shown": len(kept),
+            "shown_by_feeling": dict(Counter(x["payoff"]["emotion"] for x in kept)),
+            "rejected": [{"clip": x["id"], "moment": x["payoff"]["id"], "line": x["payoff"]["line"],
+                          "reason": x["reject_reasons"][0]} for x in rejected],
+            "warnings": debug.get("warnings", []), "episode_notes": disc.get("episode_notes", "")}
+
+
+def run_document(ep, tp, props, rej_docs, cfg, acfg, vcfg, llm, summary, table, t0, debug) -> dict:
+    """v1's run document (ws.run_document: schema 1.1, kind proposals, transcript, cost) with this pipeline's
+    version, prompts, models, cutoff and summary; no episode verdict (no tiers)."""
+    from shotvi.select.prompts import load_prompt
+    rf = find_role(cfg)
+    doc = ws.run_document(ep, tp, props, rej_docs, vcfg, llm, summary["n_moments_valid"], summary["n_built"], t0,
+                          {"projection": None, "warnings": debug.get("warnings", [])})
+    doc.pop("episode_verdict", None)
+    doc.update({
+        "run_id": cfg.get("run_id", "emotion_pick"),
+        "pipeline": {"version": PIPELINE_VERSION, "git_commit": None,
+                     "design": "founder 2026-10-16: emotion-first, two focused calls (find the moments a stranger "
+                               "feels; build stop / stay / land + the cut per moment); no review call",
+                     "prompt_versions": {ws3.CONTEXT_ROLE: ws3.load_p(acfg, ws3.CONTEXT_ROLE).tag,
+                                         rf: ws3.load_p(acfg, rf).tag,
+                                         ROLE_BUILD: load_prompt(cfg["prompts"][ROLE_BUILD]).tag},
+                     "prompt_files": {ws3.CONTEXT_ROLE: ws3.prompt_name(acfg, ws3.CONTEXT_ROLE), rf: cfg["find_prompt"],
+                                      ROLE_BUILD: cfg["prompts"][ROLE_BUILD]},
+                     "config": cfg},
+        "models": [{"role": rf, **cfg["models"]["find"]}, {"role": ROLE_BUILD, **cfg["models"]["build"]}],
+        "cutoff": {"show_rule": "emotion_pick: every clip that passes the build checks (stop first, land last, v1 "
+                                "hard rules) and the dedupe; no review, no score",
+                   "order": "episode order", "n_candidates": summary["n_moments_valid"],
+                   "n_passed_hard_rules": summary["n_built"], "n_shown": len(props),
+                   "n_rejected": len(rej_docs), "warnings": debug.get("warnings", [])},
+        "episode_notes": summary.get("episode_notes", ""),
+        "episode_note": {"text": episode_note_text(summary)},
+        "episode_summary": summary, "moment_table": table,
+    })
+    doc["cost"]["cache"] = debug.get("cache")
+    return doc
+
+
+def episode_note_text(s: dict) -> str:
+    rej = Counter(r["reason"].split(":")[0] for r in s["rejected"] if not r["reason"].startswith("D1"))
+    return (f"{s['n_moments_valid']} moments a stranger would feel; {s['n_build_calls']} built by the build call"
+            + (f" ({s['n_not_built_cap']} over the cap, {s['n_not_built_spend']} over the spend limit not built)"
+               if s["n_not_built_cap"] or s["n_not_built_spend"] else "")
+            + f"; {sum(rej.values())} rejected" + (f" ({', '.join(f'{k} {n}' for k, n in sorted(rej.items()))})"
+                                                   if rej else "")
+            + f"; {s['n_deduped']} duplicates dropped; {s['n_shown']} shown, in episode order.")
+
+
+def clips_md(ep: ws.Episode, doc: dict) -> str:
+    s = doc["episode_summary"]
+    out = [f"# {doc['video_id']} emotion-first clips ({doc['run_id']})\n",
+           f"Moments a stranger would feel: {s['n_moments_listed']} listed, {s['n_moments_valid']} valid (by feeling "
+           f"{s['moments_by_feeling']}). Build calls {s['n_build_calls']}"
+           + (f" (cap {s['max_moments']}: {s['n_not_built_cap']} not built)" if s["n_not_built_cap"] else "")
+           + (f" ({s['n_not_built_spend']} not built: spend limit)" if s["n_not_built_spend"] else "")
+           + f": {s['n_no_clip']} no clip, {s['n_blocked']} blocked, {s['n_call_failed']} failed, {s['n_invalid']} "
+             f"invalid, {s['n_builder_rejected']} rejected by the cut builder, {s['n_hard_rules']} by hard rules, "
+             f"{s['n_stop_check_failed']} failed stop-first, {s['n_land_check_failed']} failed land-last; "
+             f"{s['n_built']} built, {s['n_deduped']} duplicates dropped, {s['n_shown']} shown (episode order, no "
+             f"review, no score).\n",
+           f"Cost ${doc['cost']['usd']:.4f} (${doc['cost']['usd_billed']:.4f} billed this run).\n"]
+    for p in doc["proposals"]:
+        segs = " + ".join(f"{ws.fmt(x['start'])}-{ws.fmt(x['end'])}" for x in p["time_segments"])
+        st, ld = p["stop"], p["land"]
+        out.append(f"\n## #{p['rank']} {p['id']} {p['title']} ({p['feeling']}, intensity {p['intensity']}, "
+                   f"{p['clip_purpose']})\n")
+        out.append(f"- plays {p['video_duration']:.1f} s: {segs}")
+        out.append(f"- reason: {p['reason']}")
+        out.append(f"- stop ({st['line']}{', cold open' if st['cold_open'] else ''}, at {st.get('plays_at_s')} s): "
+                   f"{st['text']} | {st['why']}")
+        out.append(f"- stay: {p['stay']}")
+        out.append(f"- land ({ld['line']}, reaction {ld['reaction']}): {ld['text']}")
+        out.append(f"- moment: {p['moment']['line']} {p['moment']['why']}")
+        eh = p["end_hold"]
+        out.append(f"- end: payoff ends {ws.fmt(eh['payoff_end'])}, hold {eh['hold_s']} s")
+        for cu in p["chunk_drops"]:
+            out.append(f"- cut {ws.fmt(cu['start'])}-{ws.fmt(cu['end'])} ({cu['removed_s']} s): "
+                       f"{'cold-open skip ' if cu['lift_skip'] else ''}{cu['why']}")
+        if p["build_warnings"]:
+            out.append(f"- warnings: {'; '.join(p['build_warnings'])}")
+    out.append("\n## Not shown\n")
+    for r in doc["rejected"]:
+        out.append(f"- {r['id']} ({r['moment']['line']}, {r['moment']['feeling']} {r['moment']['intensity']}): "
+                   f"{'; '.join(r['reject_reasons'])}")
+    out.append("\n## Moments\n")
+    for r in doc["moment_table"]:
+        out.append(f"- {r['id']} {r['line']} ({r['feeling']} {r['intensity']}): {r['status']}"
+                   + (f" {r['clip']}" if r.get("clip") else "") + (f": {r['reason']}" if r.get("reason") else "")
+                   + f". {r['text']}")
+    return "\n".join(out) + "\n"
+
+
+def dry_doc(vid, out_dir, proj, moments, rej_moments, f_hit, rf, log) -> dict:
+    res = {"video_id": vid, "dry_run": True, "find_prompt": rf, "find_cached": f_hit, "projection": proj}
+    if moments is not None:
+        res.update(n_moments_valid=len(moments), n_moments_rejected=len(rej_moments),
+                   moments=[{"id": p["id"], "line": p["line"], "feeling": p["emotion"], "intensity": p["intensity"]}
+                            for p in moments])
+    out_dir.mkdir(parents=True, exist_ok=True)
+    (out_dir / f"dry_run_{vid}.json").write_text(json.dumps(res, ensure_ascii=False, indent=1, default=str),
+                                                 encoding="utf-8")
+    log(projection_text(vid, res))
+    return res
+
+
+def projection_text(vid: str, res: dict) -> str:
+    pr = res["projection"]
+    n = (f"{res['n_moments_valid']} moments (cached {res['find_prompt']} answer)" if res.get("n_moments_valid")
+         is not None else f"moments estimated {pr['n_moments']['expected']} expected / {pr['n_moments']['worst']} "
+                          f"worst ({pr['n_moments']['basis']})")
+    out = [f"{vid}: find {res['find_prompt']} {'cached (Rs 0)' if res['find_cached'] else 'NOT cached'}; {n}",
+           f"  context {pr['context_tokens']} tokens, find task {pr['find_task_tokens']} tokens ({pr['token_source']});"
+           f" find Rs {pr['find']['inr_expected']} exp / Rs {pr['find']['inr_worst']} worst; build Rs "
+           f"{pr['build']['inr_worst_each']} worst each; cache storage Rs {pr['storage_inr']}",
+           "  setting | builds (exp/worst) | find exp | build exp | build worst | total exp | total worst"]
+    for r in pr["rows"].values():
+        if r is None:
+            continue
+        lab = "no cap" if r["cap"] is None else f"cap {r['cap']}"
+        out.append(f"  {lab:7} | {r['n_build_expected']:>5} / {r['n_build_worst']:<5}     | {r['find_inr_expected']:8.2f}"
+                   f" | {r['build_inr_expected']:9.2f} | {r['build_inr_worst']:11.2f} | {r['inr_expected']:9.2f} | "
+                   f"{r['inr_worst']:11.2f}")
+    return "\n".join(out)
+
+
+# ---------------------------------------------------------------------------------------------------- CLI
+def main(argv=None):
+    ap = argparse.ArgumentParser(description="Emotion-first web-series clip selection (find -> build per moment)")
+    ap.add_argument("video_ids", nargs="+")
+    ap.add_argument("--out", default="runs/emotion1")
+    ap.add_argument("--dry-run", action="store_true",
+                    help="free: no generate call; replays a cached find, countTokens for input, prints Rs")
+    ap.add_argument("--offline", action="store_true", help="dry run without countTokens (offline token estimate)")
+    ap.add_argument("--max-ledger-inr", type=float, default=None,
+                    help="stop before any call whose worst case would push the project ledger past this")
+    ap.add_argument("--max-moments", type=int, default=None,
+                    help="cap on build calls per episode (highest intensity first); 0 = no cap; default: config")
+    ap.add_argument("--find", choices=(ROLE_FIND, "ws3_payoffs"), default=None,
+                    help="find prompt: ws_emotion_find (default) or ws3_payoffs (ws3's call 1 unchanged)")
+    ap.add_argument("--config", default=None, help="JSON deep-merged over DEFAULTS")
+    ap.add_argument("--cache-only", action="store_true",
+                    help="never call the provider: rebuild from cached responses (free); a miss fails")
+    a = ap.parse_args(argv)
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8")
+    os.chdir(ROOT)
+    from dotenv import load_dotenv
+    load_dotenv(ROOT / ".env")
+    from shotvi.llm import Ledger, LLMClient
+    cfg = ws.deep_merge(DEFAULTS, json.loads(Path(a.config).read_text(encoding="utf-8")) if a.config else {})
+    if a.max_moments is not None:
+        cfg["build"]["max_moments"] = None if a.max_moments <= 0 else a.max_moments
+    if a.find:
+        cfg["find_prompt"] = a.find
+    out = Path(a.out)
+    cfg["run_id"] = out.name
+    guard = ws.Guard(a.max_ledger_inr)
+    from shotvi.llm.spend import total_inr
+    led0 = total_inr()
+    if a.dry_run:
+        print(f"DRY RUN (no generate call; countTokens {'off' if a.offline else 'on'}): ledger Rs {led0:.2f}"
+              + (f", limit Rs {a.max_ledger_inr:.2f}" if a.max_ledger_inr is not None else ""))
+    results, stopped = [], []
+    for vid in a.video_ids:
+        llm = LLMClient(Ledger(max_usd=cfg["budget_usd"]), cache_dir="runs/cache", max_retries=0, schema_retries=0)
+        llm.cache_only = a.cache_only or a.dry_run
+        try:
+            results.append(run_episode(vid, cfg, llm, guard, out, dry_run=a.dry_run, offline=a.offline))
+        except (ws.BudgetStop, BudgetExceeded) as e:
+            print(f"STOP: {e}")
+            return 2
+        except EpisodeStop as e:
+            print(f"STOPPED EPISODE: {e}")
+            stopped.append(vid)
+    if a.dry_run:
+        for key in ("no_cap", "cap"):
+            rows = [r["projection"]["rows"][key] for r in results if r["projection"]["rows"].get(key)]
+            if rows:
+                lab = "no cap" if key == "no_cap" else f"cap {rows[0]['cap']}"
+                exp, wst = sum(x["inr_expected"] for x in rows), sum(x["inr_worst"] for x in rows)
+                print(f"DRY RUN total ({lab}): builds {sum(x['n_build_expected'] for x in rows)} expected / "
+                      f"{sum(x['n_build_worst'] for x in rows)} worst; Rs {exp:.2f} expected, Rs {wst:.2f} worst; "
+                      f"ledger Rs {led0:.2f} -> ~Rs {led0 + exp:.2f}"
+                      + (f" (limit Rs {a.max_ledger_inr:.2f}: "
+                         f"{'fits the worst case' if led0 + wst <= a.max_ledger_inr else 'fits the expected case only' if led0 + exp <= a.max_ledger_inr else 'does NOT fit'})"
+                         if a.max_ledger_inr is not None else ""))
+        return 0
+    print(f"ledger now Rs {total_inr():.2f} (this run Rs {total_inr() - led0:.2f})")
+    if stopped:
+        print(f"NO CLIPS: {', '.join(stopped)}")
+        return EXIT_SAFETY_BLOCKED
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

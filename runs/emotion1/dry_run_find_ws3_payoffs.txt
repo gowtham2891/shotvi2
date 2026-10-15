@@ -1,0 +1,25 @@
+DRY RUN (no generate call; countTokens on): ledger Rs 1595.51, limit Rs 1695.51
+5HqkHAZfzos: FIND: 11 moments listed, 11 valid (by feeling {'laugh': 4, 'aww': 5, 'tears': 1, 'tension': 1}; by intensity {5: 2, 4: 5, 3: 4})
+5HqkHAZfzos: find ws3_payoffs cached (Rs 0); 11 moments (cached ws3_payoffs answer)
+  context 12721 tokens, find task 655 tokens (countTokens); find Rs 5.19 exp / Rs 11.19 worst; build Rs 3.01 worst each; cache storage Rs 0.57
+  setting | builds (exp/worst) | find exp | build exp | build worst | total exp | total worst
+  no cap  |    11 / 11        |     0.00 |     15.56 |       32.98 |     16.13 |       34.41
+  cap 15  |    11 / 11        |     0.00 |     15.56 |       32.98 |     16.13 |       34.41
+Sy8yZ4DgzrU: find ws3_payoffs NOT cached; moments estimated 25 expected / 32 worst (ws3 call 1 measured (5HqkHAZfzos: 11 in 22.0 min; qIdAPG8UulE: 48 in 36.3 min): pooled 1.01/min expected, 1.32/min worst)
+  context 15448 tokens, find task 655 tokens (countTokens); find Rs 5.21 exp / Rs 11.21 worst; build Rs 3.01 worst each; cache storage Rs 0.7
+  setting | builds (exp/worst) | find exp | build exp | build worst | total exp | total worst
+  no cap  |    25 / 32        |     5.21 |     35.61 |       96.26 |     41.52 |      109.20
+  cap 15  |    15 / 15        |     5.21 |     21.37 |       45.12 |     27.27 |       58.07
+fjGrX8aBVAc: find ws3_payoffs NOT cached; moments estimated 19 expected / 25 worst (ws3 call 1 measured (5HqkHAZfzos: 11 in 22.0 min; qIdAPG8UulE: 48 in 36.3 min): pooled 1.01/min expected, 1.32/min worst)
+  context 12606 tokens, find task 655 tokens (countTokens); find Rs 5.19 exp / Rs 11.19 worst; build Rs 3.01 worst each; cache storage Rs 0.57
+  setting | builds (exp/worst) | find exp | build exp | build worst | total exp | total worst
+  no cap  |    19 / 25        |     5.19 |     27.04 |       75.16 |     32.79 |       87.77
+  cap 15  |    15 / 15        |     5.19 |     21.34 |       45.10 |     27.10 |       57.70
+qIdAPG8UulE: FIND: 48 moments listed, 48 valid (by feeling {'laugh': 40, 'shock': 4, 'tension': 2, 'aww': 2}; by intensity {5: 6, 4: 41, 3: 1})
+qIdAPG8UulE: find ws3_payoffs cached (Rs 0); 48 moments (cached ws3_payoffs answer)
+  context 26653 tokens, find task 655 tokens (countTokens); find Rs 5.29 exp / Rs 11.28 worst; build Rs 3.11 worst each; cache storage Rs 1.2
+  setting | builds (exp/worst) | find exp | build exp | build worst | total exp | total worst
+  no cap  |    48 / 48        |     0.00 |     72.51 |      148.52 |     73.71 |      151.52
+  cap 15  |    15 / 15        |     0.00 |     22.71 |       46.47 |     23.91 |       49.46
+DRY RUN total (no cap): builds 103 expected / 116 worst; Rs 164.15 expected, Rs 382.90 worst; ledger Rs 1595.51 -> ~Rs 1759.66 (limit Rs 1695.51: does NOT fit)
+DRY RUN total (cap 15): builds 56 expected / 56 worst; Rs 94.41 expected, Rs 199.64 worst; ledger Rs 1595.51 -> ~Rs 1689.92 (limit Rs 1695.51: fits the expected case only)

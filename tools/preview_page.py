@@ -66,6 +66,7 @@ main{padding:20px;min-width:0}
 .chip.flag{background:var(--accent-soft);color:var(--accent)}
 .chip.badge{background:#1f6f43;color:#fff;font-weight:600}
 .chip.ret-yes{background:#15803d;color:#fff;font-weight:600}.chip.ret-maybe{background:#b45309;color:#fff;font-weight:600}
+.chip.feel{background:#6d28d9;color:#fff;font-weight:600}
 .chip.ret-no{background:#b91c1c;color:#fff;font-weight:600}.chip.ret-unchecked{background:#6b6a66;color:#fff;font-weight:600}
 nav .sec{margin:10px 0 4px;padding:3px 8px;font-size:12px;font-weight:700;color:#fff;background:#1f6f43;border-radius:6px}
 .meta{margin-top:10px;font-size:14px;display:grid;gap:4px}
@@ -158,6 +159,7 @@ function buildNav() {
   let h = "", i = 0;
   DATA.forEach(v => {
     h += `<h2>${esc(v.video_id)} · top ${v.clips.length} of ${v.n_total}</h2>`;
+    if (v.episode_note) h += `<div class="verdict">${esc(v.episode_note)}</div>`;
     if (v.verdict) h += `<div class="verdict">Episode verdict: ${esc(v.verdict.verdict)} — ${v.verdict.strong_clips} strong candidate${v.verdict.strong_clips === 1 ? "" : "s"}, ${v.verdict.worth_a_look} other candidate${v.verdict.worth_a_look === 1 ? "" : "s"}${v.verdict.unchecked ? `, ${v.verdict.unchecked} unchecked` : ""}. ${esc(v.verdict.note)}</div>`;
     let sec = "";
     v.clips.forEach(c => { if (c.section && c.section !== sec) h += `<div class="sec">${esc(c.section)}</div>`; sec = c.section || sec; h += `<a href="#" data-i="${i}"><span class="rk">#${c.rank}</span><span class="tt te">${esc(c.title)}</span><span class="st"></span></a>`; i++; });
@@ -172,7 +174,7 @@ function show(i) {
   cur = Math.max(0, Math.min(clips.length - 1, i));
   const c = clips[cur], r = store[keyOf(c)] || {};
   document.querySelectorAll("nav a").forEach(a => a.classList.toggle("on", +a.dataset.i === cur));
-  const chips = (c.retention ? `<span class="chip ret-${esc(c.retention)}">retention: ${esc(c.retention)}</span>` : "") + (c.badge ? `<span class="chip badge">${esc(c.badge)}</span>` : "") + [`${c.duration}s`, `${c.n_pieces} pieces`, `source ${mmss(c.src_start)}–${mmss(c.src_end)}`, c.category,
+  const chips = (c.feeling ? `<span class="chip feel">feeling: ${esc(c.feeling)}</span>` : "") + (c.retention ? `<span class="chip ret-${esc(c.retention)}">retention: ${esc(c.retention)}</span>` : "") + (c.badge ? `<span class="chip badge">${esc(c.badge)}</span>` : "") + [`${c.duration}s`, `${c.n_pieces} pieces`, `source ${mmss(c.src_start)}–${mmss(c.src_end)}`, c.category,
                  (c.score != null ? `pipeline ${c.score} · ${c.tier_label || c.tier}` : (c.tier_label || c.tier || null))].filter(Boolean).map(x => `<span class="chip">${esc(x)}</span>`).join("")
               + c.flags.map(f => `<span class="chip flag">${esc(f.replace(/_/g, " "))}</span>`).join("");
   let tx = "";
@@ -199,6 +201,10 @@ function show(i) {
       <div class="meta">
         ${c.review_note ? `<div><b>Note</b>${esc(c.review_note)}</div>` : ""}
         ${c.retention ? `<div><b>Retention</b>${esc(c.retention)}${c.retention_reason ? ": " + esc(c.retention_reason) : ""}</div>` : ""}
+        ${c.reason ? `<div><b>Reason</b>${esc(c.reason)}</div>` : ""}
+        ${c.stop ? `<div><b>Stop</b><span class="te">${esc(c.stop)}</span></div>` : ""}
+        ${c.stay ? `<div><b>Stay</b>${esc(c.stay)}</div>` : ""}
+        ${c.land ? `<div><b>Land</b><span class="te">${esc(c.land)}</span></div>` : ""}
         <div><b>Hook</b><span class="te">${esc(c.hook)}</span></div>
         ${c.payoff ? `<div><b>Payoff</b><span class="te">${esc(c.payoff)}</span>${c.payoff_type ? ` <small>(${esc(c.payoff_type)})</small>` : ""}</div>` : ""}
         <div><b>Why</b>${esc(c.why)}</div>

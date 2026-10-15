@@ -1,0 +1,23 @@
+DRY RUN (no generate call; countTokens on): ledger Rs 1595.51, limit Rs 1695.51
+5HqkHAZfzos: find ws_emotion_find NOT cached; moments estimated 11 expected / 11 worst (ws3 call 1 listed 11 on this episode (a strict find should list fewer))
+  context 12721 tokens, find task 700 tokens (countTokens); find Rs 5.2 exp / Rs 11.19 worst; build Rs 3.0 worst each; cache storage Rs 0.57
+  setting | builds (exp/worst) | find exp | build exp | build worst | total exp | total worst
+  no cap  |    11 / 11        |     5.20 |     15.54 |       32.96 |     21.31 |       45.58
+  cap 15  |    11 / 11        |     5.20 |     15.54 |       32.96 |     21.31 |       45.58
+Sy8yZ4DgzrU: find ws_emotion_find NOT cached; moments estimated 25 expected / 32 worst (ws3 call 1 measured (5HqkHAZfzos: 11 in 22.0 min; qIdAPG8UulE: 48 in 36.3 min): pooled 1.01/min expected, 1.32/min worst)
+  context 15448 tokens, find task 700 tokens (countTokens); find Rs 5.21 exp / Rs 11.21 worst; build Rs 3.01 worst each; cache storage Rs 0.7
+  setting | builds (exp/worst) | find exp | build exp | build worst | total exp | total worst
+  no cap  |    25 / 32        |     5.21 |     35.61 |       96.26 |     41.52 |      109.20
+  cap 15  |    15 / 15        |     5.21 |     21.37 |       45.12 |     27.28 |       58.07
+fjGrX8aBVAc: find ws_emotion_find NOT cached; moments estimated 19 expected / 25 worst (ws3 call 1 measured (5HqkHAZfzos: 11 in 22.0 min; qIdAPG8UulE: 48 in 36.3 min): pooled 1.01/min expected, 1.32/min worst)
+  context 12606 tokens, find task 700 tokens (countTokens); find Rs 5.19 exp / Rs 11.19 worst; build Rs 3.01 worst each; cache storage Rs 0.57
+  setting | builds (exp/worst) | find exp | build exp | build worst | total exp | total worst
+  no cap  |    19 / 25        |     5.19 |     27.04 |       75.16 |     32.80 |       87.77
+  cap 15  |    15 / 15        |     5.19 |     21.34 |       45.10 |     27.11 |       57.71
+qIdAPG8UulE: find ws_emotion_find NOT cached; moments estimated 48 expected / 48 worst (ws3 call 1 listed 48 on this episode (a strict find should list fewer))
+  context 26653 tokens, find task 700 tokens (countTokens); find Rs 5.29 exp / Rs 11.29 worst; build Rs 3.09 worst each; cache storage Rs 1.2
+  setting | builds (exp/worst) | find exp | build exp | build worst | total exp | total worst
+  no cap  |    48 / 48        |     5.29 |     72.44 |      148.45 |     78.93 |      162.73
+  cap 15  |    15 / 15        |     5.29 |     22.64 |       46.39 |     29.13 |       60.67
+DRY RUN total (no cap): builds 103 expected / 116 worst; Rs 174.56 expected, Rs 405.28 worst; ledger Rs 1595.51 -> ~Rs 1770.07 (limit Rs 1695.51: does NOT fit)
+DRY RUN total (cap 15): builds 56 expected / 56 worst; Rs 104.83 expected, Rs 222.03 worst; ledger Rs 1595.51 -> ~Rs 1700.34 (limit Rs 1695.51: does NOT fit)

@@ -1,0 +1,64 @@
+{
+ "video_id": "fjGrX8aBVAc",
+ "dry_run": true,
+ "find_prompt": "ws3_payoffs",
+ "find_cached": false,
+ "projection": {
+  "context_tokens": 12606,
+  "find_task_tokens": 655,
+  "find_cached": false,
+  "build_task_tokens": null,
+  "build_task_tokens_sample": 2320,
+  "n_moments": {
+   "expected": 19,
+   "worst": 25,
+   "basis": "ws3 call 1 measured (5HqkHAZfzos: 11 in 22.0 min; qIdAPG8UulE: 48 in 36.3 min): pooled 1.01/min expected, 1.32/min worst"
+  },
+  "storage_inr": 0.57,
+  "write_inr_worst": 0.85,
+  "find": {
+   "model": "gemini-3.8-flash",
+   "thinking_level": "high",
+   "out_expected": 15000,
+   "out_max": 32768,
+   "inr_expected": 5.19,
+   "inr_worst": 11.19
+  },
+  "build": {
+   "model": "gemini-3.8-flash",
+   "thinking_level": "medium",
+   "out_expected": 3500,
+   "out_max": 8192,
+   "inr_worst_each": 3.01
+  },
+  "rows": {
+   "no_cap": {
+    "cap": null,
+    "n_build_expected": 19,
+    "n_build_worst": 25,
+    "n_build_uncached": 19,
+    "find_inr_expected": 5.19,
+    "find_inr_worst": 11.19,
+    "build_inr_expected": 27.04,
+    "build_inr_worst": 75.16,
+    "storage_inr": 0.57,
+    "inr_expected": 32.79,
+    "inr_worst": 87.77
+   },
+   "cap": {
+    "cap": 15,
+    "n_build_expected": 15,
+    "n_build_worst": 15,
+    "n_build_uncached": 15,
+    "find_inr_expected": 5.19,
+    "find_inr_worst": 11.19,
+    "build_inr_expected": 21.34,
+    "build_inr_worst": 45.1,
+    "storage_inr": 0.57,
+    "inr_expected": 27.1,
+    "inr_worst": 57.7
+   }
+  },
+  "token_source": "countTokens"
+ }
+}

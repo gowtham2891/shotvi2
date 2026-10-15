@@ -1,0 +1,401 @@
+{
+ "video_id": "qIdAPG8UulE",
+ "dry_run": true,
+ "find_prompt": "ws3_payoffs",
+ "find_cached": true,
+ "projection": {
+  "context_tokens": 26653,
+  "find_task_tokens": 655,
+  "find_cached": true,
+  "build_task_tokens": [
+   2300,
+   2395,
+   2102,
+   2144,
+   2287,
+   2208,
+   2072,
+   2138,
+   2366,
+   2396,
+   2378,
+   2388,
+   2369,
+   2249,
+   2215,
+   2147,
+   2141,
+   2096,
+   2089,
+   2060,
+   1997,
+   2014,
+   2057,
+   2032,
+   2049,
+   2151,
+   2124,
+   2156,
+   2123,
+   2133,
+   2206,
+   2209,
+   2273,
+   2207,
+   2286,
+   2315,
+   2309,
+   2308,
+   2394,
+   2427,
+   2433,
+   2412,
+   2192,
+   2102,
+   2123,
+   2177,
+   2209,
+   2365
+  ],
+  "build_task_tokens_sample": null,
+  "n_moments": null,
+  "storage_inr": 1.2,
+  "write_inr_worst": 1.8,
+  "find": {
+   "model": "gemini-3.8-flash",
+   "thinking_level": "high",
+   "out_expected": 15000,
+   "out_max": 32768,
+   "inr_expected": 5.29,
+   "inr_worst": 11.28
+  },
+  "build": {
+   "model": "gemini-3.8-flash",
+   "thinking_level": "medium",
+   "out_expected": 3500,
+   "out_max": 8192,
+   "inr_worst_each": 3.11
+  },
+  "rows": {
+   "no_cap": {
+    "cap": null,
+    "n_build_expected": 48,
+    "n_build_worst": 48,
+    "n_build_uncached": 48,
+    "find_inr_expected": 0.0,
+    "find_inr_worst": 0.0,
+    "build_inr_expected": 72.51,
+    "build_inr_worst": 148.52,
+    "storage_inr": 1.2,
+    "inr_expected": 73.71,
+    "inr_worst": 151.52
+   },
+   "cap": {
+    "cap": 15,
+    "n_build_expected": 15,
+    "n_build_worst": 15,
+    "n_build_uncached": 15,
+    "find_inr_expected": 0.0,
+    "find_inr_worst": 0.0,
+    "build_inr_expected": 22.71,
+    "build_inr_worst": 46.47,
+    "storage_inr": 1.2,
+    "inr_expected": 23.91,
+    "inr_worst": 49.46
+   }
+  },
+  "token_source": "countTokens"
+ },
+ "n_moments_valid": 48,
+ "n_moments_rejected": 0,
+ "moments": [
+  {
+   "id": "p01",
+   "line": "L0030",
+   "feeling": "laugh",
+   "intensity": 4
+  },
+  {
+   "id": "p02",
+   "line": "L0047",
+   "feeling": "laugh",
+   "intensity": 4
+  },
+  {
+   "id": "p03",
+   "line": "L0070",
+   "feeling": "laugh",
+   "intensity": 5
+  },
+  {
+   "id": "p04",
+   "line": "L0100",
+   "feeling": "laugh",
+   "intensity": 4
+  },
+  {
+   "id": "p05",
+   "line": "L0126",
+   "feeling": "laugh",
+   "intensity": 5
+  },
+  {
+   "id": "p06",
+   "line": "L0148",
+   "feeling": "laugh",
+   "intensity": 4
+  },
+  {
+   "id": "p07",
+   "line": "L0164",
+   "feeling": "laugh",
+   "intensity": 4
+  },
+  {
+   "id": "p08",
+   "line": "L0172",
+   "feeling": "laugh",
+   "intensity": 4
+  },
+  {
+   "id": "p09",
+   "line": "L0180",
+   "feeling": "laugh",
+   "intensity": 3
+  },
+  {
+   "id": "p10",
+   "line": "L0189",
+   "feeling": "laugh",
+   "intensity": 4
+  },
+  {
+   "id": "p11",
+   "line": "L0233",
+   "feeling": "laugh",
+   "intensity": 4
+  },
+  {
+   "id": "p12",
+   "line": "L0268",
+   "feeling": "laugh",
+   "intensity": 4
+  },
+  {
+   "id": "p13",
+   "line": "L0286",
+   "feeling": "laugh",
+   "intensity": 4
+  },
+  {
+   "id": "p14",
+   "line": "L0288",
+   "feeling": "laugh",
+   "intensity": 4
+  },
+  {
+   "id": "p15",
+   "line": "L0315",
+   "feeling": "laugh",
+   "intensity": 4
+  },
+  {
+   "id": "p16",
+   "line": "L0328",
+   "feeling": "shock",
+   "intensity": 5
+  },
+  {
+   "id": "p17",
+   "line": "L0333",
+   "feeling": "laugh",
+   "intensity": 4
+  },
+  {
+   "id": "p18",
+   "line": "L0341",
+   "feeling": "laugh",
+   "intensity": 4
+  },
+  {
+   "id": "p19",
+   "line": "L0368",
+   "feeling": "laugh",
+   "intensity": 4
+  },
+  {
+   "id": "p20",
+   "line": "L0376",
+   "feeling": "laugh",
+   "intensity": 4
+  },
+  {
+   "id": "p21",
+   "line": "L0380",
+   "feeling": "laugh",
+   "intensity": 4
+  },
+  {
+   "id": "p22",
+   "line": "L0384",
+   "feeling": "laugh",
+   "intensity": 4
+  },
+  {
+   "id": "p23",
+   "line": "L0390",
+   "feeling": "laugh",
+   "intensity": 4
+  },
+  {
+   "id": "p24",
+   "line": "L0423",
+   "feeling": "tension",
+   "intensity": 4
+  },
+  {
+   "id": "p25",
+   "line": "L0425",
+   "feeling": "laugh",
+   "intensity": 4
+  },
+  {
+   "id": "p26",
+   "line": "L0452",
+   "feeling": "laugh",
+   "intensity": 4
+  },
+  {
+   "id": "p27",
+   "line": "L0491",
+   "feeling": "shock",
+   "intensity": 5
+  },
+  {
+   "id": "p28",
+   "line": "L0495",
+   "feeling": "laugh",
+   "intensity": 4
+  },
+  {
+   "id": "p29",
+   "line": "L0524",
+   "feeling": "aww",
+   "intensity": 4
+  },
+  {
+   "id": "p30",
+   "line": "L0560",
+   "feeling": "laugh",
+   "intensity": 4
+  },
+  {
+   "id": "p31",
+   "line": "L0573",
+   "feeling": "laugh",
+   "intensity": 4
+  },
+  {
+   "id": "p32",
+   "line": "L0586",
+   "feeling": "laugh",
+   "intensity": 4
+  },
+  {
+   "id": "p33",
+   "line": "L0633",
+   "feeling": "laugh",
+   "intensity": 4
+  },
+  {
+   "id": "p34",
+   "line": "L0665",
+   "feeling": "laugh",
+   "intensity": 4
+  },
+  {
+   "id": "p35",
+   "line": "L0671",
+   "feeling": "laugh",
+   "intensity": 5
+  },
+  {
+   "id": "p36",
+   "line": "L0680",
+   "feeling": "laugh",
+   "intensity": 4
+  },
+  {
+   "id": "p37",
+   "line": "L0686",
+   "feeling": "tension",
+   "intensity": 4
+  },
+  {
+   "id": "p38",
+   "line": "L0693",
+   "feeling": "laugh",
+   "intensity": 4
+  },
+  {
+   "id": "p39",
+   "line": "L0753",
+   "feeling": "laugh",
+   "intensity": 4
+  },
+  {
+   "id": "p40",
+   "line": "L0772",
+   "feeling": "laugh",
+   "intensity": 4
+  },
+  {
+   "id": "p41",
+   "line": "L0776",
+   "feeling": "laugh",
+   "intensity": 4
+  },
+  {
+   "id": "p42",
+   "line": "L0781",
+   "feeling": "laugh",
+   "intensity": 4
+  },
+  {
+   "id": "p43",
+   "line": "L0811",
+   "feeling": "laugh",
+   "intensity": 4
+  },
+  {
+   "id": "p44",
+   "line": "L0835",
+   "feeling": "laugh",
+   "intensity": 4
+  },
+  {
+   "id": "p45",
+   "line": "L0860",
+   "feeling": "laugh",
+   "intensity": 4
+  },
+  {
+   "id": "p46",
+   "line": "L0888",
+   "feeling": "shock",
+   "intensity": 4
+  },
+  {
+   "id": "p47",
+   "line": "L0894",
+   "feeling": "aww",
+   "intensity": 4
+  },
+  {
+   "id": "p48",
+   "line": "L0918",
+   "feeling": "shock",
+   "intensity": 5
+  }
+ ]
+}

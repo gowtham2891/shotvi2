@@ -167,12 +167,35 @@ def clip_meta(c):
             "badge": c.get("badge") or "", "section": c.get("section") or "",
             # emotion select (shotvi.select.emotion_select): retention verdict yes / maybe / no / unchecked + reason
             "retention": c.get("emotion_verdict") or "", "retention_reason": c.get("emotion_reason") or "",
+            # emotion-first selection (shotvi.select.emotion_pick): the feeling and the viewer's path the clip was
+            # built from (stop = first line heard, stay = the question, land = where the feeling hits)
+            "feeling": c.get("feeling") or "", "reason": c.get("reason") or "",
+            "stop": _path_line(c.get("stop"), "plays_at_s"), "stay": c.get("stay") or "",
+            "land": _path_line(c.get("land")),
             "category": " · ".join(x for x in (c.get("content_type", ""), c.get("clip_purpose", ""),
                                                 c.get("category", "")) if x),
             "score": s.get("overall"), "scores": s,
             "duration": round(c["edited_duration"], 1), "n_pieces": len(c["pieces"]),
             "src_start": c["region"]["start"], "src_end": c["region"]["end"],
             "edit_notes": [n.get("note") or n.get("reason") or "" for n in c.get("edit_notes") or []]}
+
+
+def _path_line(x, at=None):
+    """Emotion-first stop / land: "L0123 text (why)" for the page; "" when absent."""
+    if not isinstance(x, dict) or not x.get("line"):
+        return ""
+    out = f"{x['line']} {x.get('text', '')}".strip()
+    if x.get("via") == "cold_open":
+        out += " [cold open]"
+    if at and x.get(at) is not None:
+        out += f" [plays at {x[at]} s]"
+    if x.get("reaction") and x["reaction"] != "hold":
+        out += f" -> reaction {x['reaction']} {x.get('reaction_text', '')}".rstrip()
+    elif x.get("reaction") == "hold":
+        out += " -> hold on the picture"
+    if x.get("why"):
+        out += f" ({x['why']})"
+    return out
 
 
 def _txt(ln):
@@ -193,6 +216,9 @@ def transcript_text(meta, lines, video_name):
         out.append(f"Note: {meta['review_note']}")
     if meta.get("retention"):
         out.append(f"Retention: {meta['retention']}: {meta.get('retention_reason') or '-'}")
+    if meta.get("feeling"):
+        out.append(f"Feeling: {meta['feeling']}")
+        out += [f"{k.capitalize()}: {meta[k]}" for k in ("reason", "stop", "stay", "land") if meta.get(k)]
     out.append(f"Hook: {meta['hook']}")
     if meta.get("payoff"):
         out.append(f"Payoff ({meta.get('payoff_type') or '?'}): {meta['payoff']}")
@@ -336,7 +362,9 @@ def main():
         reuse = reuse_index(args.reuse, vid, words) if args.reuse else {}
         index.append(f"\n## {vid}\n")
         page.append({"video_id": vid, "n_total": len(doc["proposals"]), "clips": [],
-                     **({"verdict": doc["episode_verdict"]} if doc.get("episode_verdict") else {})})
+                     **({"verdict": doc["episode_verdict"]} if doc.get("episode_verdict") else {}),
+                     **({"episode_note": doc["episode_note"]["text"]}
+                        if isinstance(doc.get("episode_note"), dict) and doc["episode_note"].get("text") else {})})
         prev_section = ""
         for c in sorted(doc["proposals"], key=lambda c: c["rank"])[:args.top]:
             out = out_dir / f"{c['rank']:02d}_{c['id']}.mp4"

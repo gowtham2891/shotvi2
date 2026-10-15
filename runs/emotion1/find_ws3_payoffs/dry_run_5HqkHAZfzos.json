@@ -1,0 +1,142 @@
+{
+ "video_id": "5HqkHAZfzos",
+ "dry_run": true,
+ "find_prompt": "ws3_payoffs",
+ "find_cached": true,
+ "projection": {
+  "context_tokens": 12721,
+  "find_task_tokens": 655,
+  "find_cached": true,
+  "build_task_tokens": [
+   2053,
+   2209,
+   2128,
+   2132,
+   2106,
+   2205,
+   2210,
+   2155,
+   2192,
+   2428,
+   2165
+  ],
+  "build_task_tokens_sample": null,
+  "n_moments": null,
+  "storage_inr": 0.57,
+  "write_inr_worst": 0.86,
+  "find": {
+   "model": "gemini-3.8-flash",
+   "thinking_level": "high",
+   "out_expected": 15000,
+   "out_max": 32768,
+   "inr_expected": 5.19,
+   "inr_worst": 11.19
+  },
+  "build": {
+   "model": "gemini-3.8-flash",
+   "thinking_level": "medium",
+   "out_expected": 3500,
+   "out_max": 8192,
+   "inr_worst_each": 3.01
+  },
+  "rows": {
+   "no_cap": {
+    "cap": null,
+    "n_build_expected": 11,
+    "n_build_worst": 11,
+    "n_build_uncached": 11,
+    "find_inr_expected": 0.0,
+    "find_inr_worst": 0.0,
+    "build_inr_expected": 15.56,
+    "build_inr_worst": 32.98,
+    "storage_inr": 0.57,
+    "inr_expected": 16.13,
+    "inr_worst": 34.41
+   },
+   "cap": {
+    "cap": 15,
+    "n_build_expected": 11,
+    "n_build_worst": 11,
+    "n_build_uncached": 11,
+    "find_inr_expected": 0.0,
+    "find_inr_worst": 0.0,
+    "build_inr_expected": 15.56,
+    "build_inr_worst": 32.98,
+    "storage_inr": 0.57,
+    "inr_expected": 16.13,
+    "inr_worst": 34.41
+   }
+  },
+  "token_source": "countTokens"
+ },
+ "n_moments_valid": 11,
+ "n_moments_rejected": 0,
+ "moments": [
+  {
+   "id": "p01",
+   "line": "L0061",
+   "feeling": "laugh",
+   "intensity": 4
+  },
+  {
+   "id": "p02",
+   "line": "L0092",
+   "feeling": "laugh",
+   "intensity": 3
+  },
+  {
+   "id": "p03",
+   "line": "L0140",
+   "feeling": "aww",
+   "intensity": 4
+  },
+  {
+   "id": "p04",
+   "line": "L0153",
+   "feeling": "laugh",
+   "intensity": 3
+  },
+  {
+   "id": "p05",
+   "line": "L0245",
+   "feeling": "laugh",
+   "intensity": 3
+  },
+  {
+   "id": "p06",
+   "line": "L0356",
+   "feeling": "tears",
+   "intensity": 5
+  },
+  {
+   "id": "p07",
+   "line": "L0374",
+   "feeling": "aww",
+   "intensity": 4
+  },
+  {
+   "id": "p08",
+   "line": "L0390",
+   "feeling": "aww",
+   "intensity": 4
+  },
+  {
+   "id": "p09",
+   "line": "L0409",
+   "feeling": "aww",
+   "intensity": 5
+  },
+  {
+   "id": "p10",
+   "line": "L0423",
+   "feeling": "tension",
+   "intensity": 4
+  },
+  {
+   "id": "p11",
+   "line": "L0448",
+   "feeling": "aww",
+   "intensity": 3
+  }
+ ]
+}

@@ -1,0 +1,64 @@
+{
+ "video_id": "qIdAPG8UulE",
+ "dry_run": true,
+ "find_prompt": "ws_emotion_find",
+ "find_cached": false,
+ "projection": {
+  "context_tokens": 26653,
+  "find_task_tokens": 700,
+  "find_cached": false,
+  "build_task_tokens": null,
+  "build_task_tokens_sample": 2192,
+  "n_moments": {
+   "expected": 48,
+   "worst": 48,
+   "basis": "ws3 call 1 listed 48 on this episode (a strict find should list fewer)"
+  },
+  "storage_inr": 1.2,
+  "write_inr_worst": 1.8,
+  "find": {
+   "model": "gemini-3.8-flash",
+   "thinking_level": "high",
+   "out_expected": 15000,
+   "out_max": 32768,
+   "inr_expected": 5.29,
+   "inr_worst": 11.29
+  },
+  "build": {
+   "model": "gemini-3.8-flash",
+   "thinking_level": "medium",
+   "out_expected": 3500,
+   "out_max": 8192,
+   "inr_worst_each": 3.09
+  },
+  "rows": {
+   "no_cap": {
+    "cap": null,
+    "n_build_expected": 48,
+    "n_build_worst": 48,
+    "n_build_uncached": 48,
+    "find_inr_expected": 5.29,
+    "find_inr_worst": 11.29,
+    "build_inr_expected": 72.44,
+    "build_inr_worst": 148.45,
+    "storage_inr": 1.2,
+    "inr_expected": 78.93,
+    "inr_worst": 162.73
+   },
+   "cap": {
+    "cap": 15,
+    "n_build_expected": 15,
+    "n_build_worst": 15,
+    "n_build_uncached": 15,
+    "find_inr_expected": 5.29,
+    "find_inr_worst": 11.29,
+    "build_inr_expected": 22.64,
+    "build_inr_worst": 46.39,
+    "storage_inr": 1.2,
+    "inr_expected": 29.13,
+    "inr_worst": 60.67
+   }
+  },
+  "token_source": "countTokens"
+ }
+}
