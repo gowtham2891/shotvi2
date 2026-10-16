@@ -1,0 +1,1048 @@
+{
+ "schema_version": "1.1",
+ "kind": "proposals",
+ "video_id": "fjGrX8aBVAc",
+ "transcript": {
+  "path": "scribe_dataset/fjGrX8aBVAc/fjGrX8aBVAc_scribe_transcript.json",
+  "sha256": "1f72b36bebd711d1ac575f6e194bbb619c3f6e78ee66fdab64f3e6752bbd0ca7",
+  "n_words": 1365,
+  "audio_duration_secs": 1113.1335
+ },
+ "derived_params": {
+  "skip_s": 30.0
+ },
+ "run_id": "emotion1",
+ "created_at": "2026-10-16T07:46:06Z",
+ "content_type": "web_series",
+ "pipeline": {
+  "version": "emotion_pick/0.1",
+  "git_commit": null,
+  "design": "founder 2026-10-16: emotion-first, two focused calls (find the moments a stranger feels; build stop / stay / land + the cut per moment); no review call",
+  "prompt_versions": {
+   "ws3_context": "1+e606d3c6",
+   "ws_emotion_find": "1+bfe966e3",
+   "ws_emotion_build": "1+e69f991a"
+  },
+  "prompt_files": {
+   "ws3_context": "ws3_context",
+   "ws_emotion_find": "ws_emotion_find",
+   "ws_emotion_build": "ws_emotion_build"
+  },
+  "config": {
+   "find_prompt": "ws_emotion_find",
+   "models": {
+    "find": {
+     "provider": "gemini",
+     "model": "gemini-3.8-flash",
+     "params": {
+      "thinking_level": "high",
+      "max_output_tokens": 32768
+     }
+    },
+    "build": {
+     "provider": "gemini",
+     "model": "gemini-3.8-flash",
+     "params": {
+      "thinking_level": "medium",
+      "max_output_tokens": 8192
+     }
+    }
+   },
+   "prompts": {
+    "ws_emotion_build": "ws_emotion_build"
+   },
+   "ctx": {},
+   "v1": {},
+   "find": {
+    "min_intensity": 3
+   },
+   "build": {
+    "max_moments": 12,
+    "lift_before_s": 150.0,
+    "lift_after_s": 20.0,
+    "land_window_lines": 3,
+    "max_end_after_payoff_lines": 3
+   },
+   "check": {
+    "stop_window_s": 3.0,
+    "land_last_lines": 3
+   },
+   "budget_usd": 3.0,
+   "calibrate_from": {
+    "ws3": "runs/ws3"
+   },
+   "run_id": "emotion1"
+  }
+ },
+ "models": [
+  {
+   "role": "ws_emotion_find",
+   "provider": "gemini",
+   "model": "gemini-3.8-flash",
+   "params": {
+    "thinking_level": "high",
+    "max_output_tokens": 32768
+   }
+  },
+  {
+   "role": "ws_emotion_build",
+   "provider": "gemini",
+   "model": "gemini-3.8-flash",
+   "params": {
+    "thinking_level": "medium",
+    "max_output_tokens": 8192
+   }
+  }
+ ],
+ "cost": {
+  "input_tokens": 117024,
+  "output_tokens": 37550,
+  "usd": 0.16681,
+  "usd_billed": 0.16681,
+  "wall_time_secs": 255.5,
+  "n_llm_calls": 9,
+  "by_role": {
+   "ws3_cache": {
+    "n_llm_calls": 1,
+    "n_cache_hits": 0,
+    "n_failed_attempts": 0,
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "thought_tokens": 0,
+    "cached_input_tokens": 0,
+    "usd": 0.0063,
+    "usd_billed": 0.0063,
+    "models": [
+     "gemini-3.8-flash"
+    ]
+   },
+   "ws_emotion_build": {
+    "n_llm_calls": 7,
+    "n_cache_hits": 0,
+    "n_failed_attempts": 0,
+    "input_tokens": 103717,
+    "output_tokens": 33350,
+    "thought_tokens": 31452,
+    "cached_input_tokens": 88242,
+    "usd": 0.14329,
+    "usd_billed": 0.14329,
+    "models": [
+     "gemini-3.8-flash"
+    ]
+   },
+   "ws_emotion_find": {
+    "n_llm_calls": 1,
+    "n_cache_hits": 0,
+    "n_failed_attempts": 0,
+    "input_tokens": 13307,
+    "output_tokens": 4200,
+    "thought_tokens": 3434,
+    "cached_input_tokens": 12606,
+    "usd": 0.01722,
+    "usd_billed": 0.01722,
+    "models": [
+     "gemini-3.8-flash"
+    ]
+   }
+  },
+  "projection": null,
+  "cache": {
+   "mode": "explicit",
+   "key": "cad97920f261b2b0f75d63b6",
+   "name": "cachedContents/bhluuh43d0g8q6g269aos8wjy1kk8yn9wfsnrhep",
+   "tokens": 12606,
+   "ttl_s": 3600,
+   "storage_usd": 0.006303,
+   "deleted": true,
+   "lived_s": 253.1
+  }
+ },
+ "cutoff": {
+  "show_rule": "emotion_pick: every clip that passes the build checks (stop first, land last, v1 hard rules) and the dedupe; no review, no score",
+  "order": "episode order",
+  "n_candidates": 7,
+  "n_passed_hard_rules": 6,
+  "n_shown": 6,
+  "n_rejected": 1,
+  "warnings": []
+ },
+ "episode_notes": "A Telugu romantic comedy where Abhi conceals his wealthy background and goes by the name 'Vijay' to live near his crush Meera. His friend and family match Harshitha visits and threatens his cover before gracefully deciding not to interfere, just as his father tracks him down. Clipping the identity slips or father's search reveals the core deception central to the plot.",
+ "proposals": [
+  {
+   "id": "e01",
+   "pieces": [
+    {
+     "start_word": 323,
+     "end_word": 360,
+     "start": 235.7,
+     "end": 255.84
+    }
+   ],
+   "region": {
+    "start_word": 323,
+    "end_word": 360,
+    "start": 235.7,
+    "end": 255.84
+   },
+   "edited_duration": 20.14,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "లోపలికి ఎందుకు వచ్చావే? తను పిలిచింది, వచ్చాను. పిలిస్తే వచ్చేస్తావా? సిగ్గు లేదా? నీకు సిగ్గు లేదా? నా calls ఎందుకు answer చేయట్లేదు? ఏంటి best friends ఏదో మాట్లాడుకుంటున్నట్టున్నారు? నీ గురించే. నా గురించా? నా గురించి ఏం మాట్లాడుకుంటున్నారు విజయ్? విజయా? నీ పేరు అభి కదా! ఇరికించేసింది.",
+   "rank": 1,
+   "tier": "emotion_pick",
+   "tier_label": "emotion pick",
+   "scores": {},
+   "title": "Friend వచ్చి Meera ముందు ఇరికించేసింది",
+   "hook_line": {
+    "text": "లోపలికి ఎందుకు వచ్చావే?",
+    "start_word": 323,
+    "end_word": 325
+   },
+   "payoff_line": "నీ పేరు అభి కదా!",
+   "payoff_type": "reveal",
+   "payoff_line_source": "discover",
+   "why_it_works": "Viewer stops because Abhi aggressively confronts Harshitha with \"లోపలికి ఎందుకు వచ్చావే?\", stays to find out if his fake identity will be exposed to Meera, and it ends on Harshitha blurting out his r…",
+   "category": "story",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 235.4,
+     "end": 256.39,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 20.99,
+   "spoiler": false,
+   "characters": [
+    "Abhi",
+    "Harshitha",
+    "Meera"
+   ],
+   "visual_dependency": "medium",
+   "start_line": "L0118",
+   "end_line": "L0131",
+   "end_hold": {
+    "payoff_end": 255.84,
+    "next_speech": 256.44,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "end": 256.39,
+    "hold_s": 0.55,
+    "on_shot_cut": false,
+    "rule": "before_next_line",
+    "note": "next line starts quickly and no shot change before it"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": null,
+    "what_happens": "Will Abhi manage to keep Harshitha from exposing his secret identity to Meera?",
+    "hook": "A stranger stops scrolling hearing Abhi's hushed, aggressive confrontation: \"లోపలికి ఎందుకు వచ్చావే?\"",
+    "payoff": "నీ పేరు అభి కదా!",
+    "opening_strength": null,
+    "payoff_line": "నీ పేరు అభి కదా!",
+    "payoff_type": "reveal"
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "source": "emotion_pick",
+   "feeling": "tension",
+   "intensity": 4,
+   "stop": {
+    "line": "L0118",
+    "text": "లోపలికి ఎందుకు వచ్చావే?",
+    "why": "A stranger stops scrolling hearing Abhi's hushed, aggressive confrontation: \"లోపలికి ఎందుకు వచ్చావే?\"",
+    "cold_open": false,
+    "via": "start_line",
+    "plays_at_s": 0.3
+   },
+   "stay": "Will Abhi manage to keep Harshitha from exposing his secret identity to Meera?",
+   "land": {
+    "line": "L0130",
+    "text": "నీ పేరు అభి కదా!",
+    "reaction": "L0131",
+    "reaction_text": "ఇరికించేసింది.",
+    "plays_at_s": 18.4
+   },
+   "reason": "Viewer stops because Abhi aggressively confronts Harshitha with \"లోపలికి ఎందుకు వచ్చావే?\", stays to find out if his fake identity will be exposed to Meera, and it ends on Harshitha blurting out his real name followed by Abhi's stunned \"ఇరికించేసింది.\" (tension).",
+   "moment": {
+    "id": "p01",
+    "line": "L0130",
+    "text": "నీ పేరు అభి కదా!",
+    "feeling": "tension",
+    "intensity": 4,
+    "why": "Harshitha casually blurts out 'నీ పేరు అభి కదా!' right in front of Meera, instantly putting Abhi's fake identity in immediate jeopardy.",
+    "type": "reveal",
+    "lands_on_screen": true
+   },
+   "build_flags": []
+  },
+  {
+   "id": "e02",
+   "pieces": [
+    {
+     "start_word": 491,
+     "end_word": 534,
+     "start": 349.64,
+     "end": 364.66
+    }
+   ],
+   "region": {
+    "start_word": 491,
+    "end_word": 534,
+    "start": 349.64,
+    "end": 364.66
+   },
+   "edited_duration": 15.02,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "Hello madam. నమస్తే. ఎవరు? ఆ మేము Unpack Your Bags travel company నుంచి call చేస్తున్నాం. చెప్పండి. ఆ మా company తరపు నుంచి Bangkok trip కి మీరు select అయ్యారు. It's a free trip. నేనెందుకు select అయ్యాను? Free trip అంటే ఎందుకండి అడ్డమైన questions అడుగుతారు? bags సర్దుకొని flight ఎక్కేయండి.",
+   "rank": 2,
+   "tier": "emotion_pick",
+   "tier_label": "emotion pick",
+   "scores": {},
+   "title": "Free trip అంటే flight ఎక్కేయాలి",
+   "hook_line": {
+    "text": "Hello madam.",
+    "start_word": 491,
+    "end_word": 492
+   },
+   "payoff_line": "bags సర్దుకొని flight ఎక్కేయండి.",
+   "payoff_type": "punchline",
+   "payoff_line_source": "discover",
+   "why_it_works": "Viewer stops because Abhi hilariously poses as a telecaller with 'Hello madam, నమస్తే', stays to find out how Harshitha reacts to his scam pitch, and it ends on his absurd outburst telling her to pac…",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 349.558,
+     "end": 364.818,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 15.26,
+   "spoiler": false,
+   "characters": [
+    "Abhi",
+    "Harshitha"
+   ],
+   "visual_dependency": "medium",
+   "start_line": "L0176",
+   "end_line": "L0185",
+   "end_hold": {
+    "payoff_end": 364.66,
+    "next_speech": 365.26,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "end": 364.818,
+    "hold_s": 0.16,
+    "on_shot_cut": true,
+    "rule": "shot_change_before_next_line",
+    "note": "next line starts quickly: ends on the shot change"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": null,
+    "what_happens": "How far will Abhi take his fake travel agent act to get Harshitha out of his way?",
+    "hook": "Abhi abruptly adopts a mock telecaller persona, formally greeting with 'Hello madam, నమస్తే'.",
+    "payoff": "bags సర్దుకొని flight ఎక్కేయండి.",
+    "opening_strength": null,
+    "payoff_line": "bags సర్దుకొని flight ఎక్కేయండి.",
+    "payoff_type": "punchline"
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "source": "emotion_pick",
+   "feeling": "laugh",
+   "intensity": 3,
+   "stop": {
+    "line": "L0176",
+    "text": "Hello madam.",
+    "why": "Abhi abruptly adopts a mock telecaller persona, formally greeting with 'Hello madam, నమస్తే'.",
+    "cold_open": false,
+    "via": "start_line",
+    "plays_at_s": 0.08
+   },
+   "stay": "How far will Abhi take his fake travel agent act to get Harshitha out of his way?",
+   "land": {
+    "line": "L0185",
+    "text": "bags సర్దుకొని flight ఎక్కేయండి.",
+    "reaction": "hold",
+    "plays_at_s": 14.02
+   },
+   "reason": "Viewer stops because Abhi hilariously poses as a telecaller with 'Hello madam, నమస్తే', stays to find out how Harshitha reacts to his scam pitch, and it ends on his absurd outburst telling her to pack her bags and board the flight (laugh).",
+   "moment": {
+    "id": "p02",
+    "line": "L0185",
+    "text": "bags సర్దుకొని flight ఎక్కేయండి.",
+    "feeling": "laugh",
+    "intensity": 3,
+    "why": "Abhi hilariously breaks character while pretending to be an aggressive travel agent by snapping 'bags సర్దుకొని flight ఎక్కేయండి' to get rid of Harshitha.",
+    "type": "punchline",
+    "lands_on_screen": false
+   },
+   "build_flags": []
+  },
+  {
+   "id": "e03",
+   "pieces": [
+    {
+     "start_word": 670,
+     "end_word": 722,
+     "start": 432.94,
+     "end": 466.52
+    }
+   ],
+   "region": {
+    "start_word": 670,
+    "end_word": 722,
+    "start": 432.94,
+    "end": 466.52
+   },
+   "edited_duration": 33.58,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "నీ best friend flat ఉండగా నువ్వు PG లో ఉంటావా? Meera. అభి కూడా అదే అంటున్నాడు. నేనేమన్నా? నేనేమన్నా? లే... మళ్ళీ నీకేమన్నా ఇబ్బంది అయితదేమో అని. హా... ఇబ్బంది. నాకే ఇబ్బంది లేదు. ఈ flat నీదనుకో, happy గా ఉండి ఇక్కడ. అమ్మనమ్మ. Thank you Meera. హ్మ్ ఛ. హ్మ్ బాగుందిరా. ఏంది flat ఆ? flat బాగుంది. నువ్వు flat అయిన అమ్మాయి బాగుంది. Thanks.",
+   "rank": 3,
+   "tier": "emotion_pick",
+   "tier_label": "emotion pick",
+   "scores": {},
+   "title": "నువ్వు flat అయిన అమ్మాయి బాగుంది",
+   "hook_line": {
+    "text": "నీ best friend flat ఉండగా నువ్వు PG లో ఉంటావా?",
+    "start_word": 670,
+    "end_word": 678
+   },
+   "payoff_line": "నువ్వు flat అయిన అమ్మాయి బాగుంది.",
+   "payoff_type": "punchline",
+   "payoff_line_source": "discover",
+   "why_it_works": "Viewer stops because Meera unexpectedly invites Abhi's friend to stay at their flat, stays to find out how Abhi handles Harshitha's teasing, and it ends on Harshitha's witty pun about the flat and Me…",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 432.64,
+     "end": 466.628,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 33.99,
+   "spoiler": false,
+   "characters": [
+    "Meera",
+    "Abhi",
+    "Harshitha"
+   ],
+   "visual_dependency": "medium",
+   "start_line": "L0230",
+   "end_line": "L0249",
+   "end_hold": {
+    "payoff_end": 466.52,
+    "next_speech": 466.94,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "end": 466.628,
+    "hold_s": 0.11,
+    "on_shot_cut": true,
+    "rule": "shot_change_before_next_line",
+    "note": "next line starts quickly: ends on the shot change"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": null,
+    "what_happens": "How will Abhi react when Harshitha takes advantage of Meera's offer to tease him?",
+    "hook": "Meera creates instant comedic panic for Abhi by innocently insisting his female friend stay with them (\"నీ best friend flat ఉండగా నువ్వు PG లో ఉంటావా?\").",
+    "payoff": "నువ్వు flat అయిన అమ్మాయి బాగుంది.",
+    "opening_strength": null,
+    "payoff_line": "నువ్వు flat అయిన అమ్మాయి బాగుంది.",
+    "payoff_type": "punchline"
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "source": "emotion_pick",
+   "feeling": "laugh",
+   "intensity": 3,
+   "stop": {
+    "line": "L0230",
+    "text": "నీ best friend flat ఉండగా నువ్వు PG లో ఉంటావా?",
+    "why": "Meera creates instant comedic panic for Abhi by innocently insisting his female friend stay with them (\"నీ best friend flat ఉండగా నువ్వు PG లో ఉంటావా?\").",
+    "cold_open": false,
+    "via": "start_line",
+    "plays_at_s": 0.3
+   },
+   "stay": "How will Abhi react when Harshitha takes advantage of Meera's offer to tease him?",
+   "land": {
+    "line": "L0248",
+    "text": "నువ్వు flat అయిన అమ్మాయి బాగుంది.",
+    "reaction": "L0249",
+    "reaction_text": "Thanks.",
+    "plays_at_s": 31.88
+   },
+   "reason": "Viewer stops because Meera unexpectedly invites Abhi's friend to stay at their flat, stays to find out how Abhi handles Harshitha's teasing, and it ends on Harshitha's witty pun about the flat and Meera (laugh).",
+   "moment": {
+    "id": "p03",
+    "line": "L0248",
+    "text": "నువ్వు flat అయిన అమ్మాయి బాగుంది.",
+    "feeling": "laugh",
+    "intensity": 3,
+    "why": "Harshitha delivers a sharp wordplay pun on the word flat by praising both the apartment and the girl Abhi is infatuated with ('నువ్వు flat అయిన అమ్మాయి బాగుంది').",
+    "type": "punchline",
+    "lands_on_screen": false
+   },
+   "build_flags": []
+  },
+  {
+   "id": "e04",
+   "pieces": [
+    {
+     "start_word": 865,
+     "end_word": 944,
+     "start": 573.74,
+     "end": 622.06
+    }
+   ],
+   "region": {
+    "start_word": 865,
+    "end_word": 944,
+    "start": 573.74,
+    "end": 622.06
+   },
+   "edited_duration": 48.32,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "నాకేదో తేడా కొడుతుందే. Thank you. నువ్వు విజయ్ friend ఆ? అవును. అంటే school friend ఆ? college friend ఆ? లేదా colony friend ఆ? మూడు. ఓహ్ అంటే close friends ఏ అయి ఉంటారుగా. హ్మ్. హ్మ్ నువ్వు ఏ school? ఏంటి? I mean ఏ school లో friends అని అడుగుతున్నా. Delhi public school. ఓహ్ college? St. Mary's. అయితే మీరు చాలా rich అనుకుంటానుగా. అవును. ఉమ్ దొరికేసింది. దీనికి doubt వచ్చినట్టుంది. హ్మ్ విజయ్ కూడా rich అనుకుంటానుగా. Actually మా parents మమ్మల్ని చదివించుకు ముందు చాలా rich ఉండేవాళ్ళం. మమ్మల్ని చదివించాకే poor అయిపోయాం. ఏంటి?",
+   "rank": 4,
+   "tier": "emotion_pick",
+   "tier_label": "emotion pick",
+   "scores": {},
+   "title": "నాకేదో తేడా కొడుతుందే!",
+   "hook_line": {
+    "text": "నాకేదో తేడా కొడుతుందే.",
+    "start_word": 865,
+    "end_word": 867
+   },
+   "payoff_line": "మమ్మల్ని చదివించాకే poor అయిపోయాం.",
+   "payoff_type": "punchline",
+   "payoff_line_source": "discover",
+   "why_it_works": "Viewer stops because Meera senses a lie with \"నాకేదో తేడా కొడుతుందే\", stays to find out how Harshitha deflects questions about their wealthy background, and it ends on Harshitha's absurd excuse about…",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 573.44,
+     "end": 622.63,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 49.19,
+   "spoiler": false,
+   "characters": [
+    "Meera",
+    "Harshitha"
+   ],
+   "visual_dependency": "medium",
+   "start_line": "L0305",
+   "end_line": "L0330",
+   "end_hold": {
+    "payoff_end": 622.06,
+    "next_speech": 622.68,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "end": 622.63,
+    "hold_s": 0.57,
+    "on_shot_cut": false,
+    "rule": "before_next_line",
+    "note": "next line starts quickly and no shot change before it"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": null,
+    "what_happens": "Will Harshitha accidentally blow Vijay's cover when Meera starts interrogating her about their elite schooling?",
+    "hook": "Meera's sharp, suspicious remark \"నాకేదో తేడా కొడుతుందే\" immediately hooks viewers wondering what lie is about to be exposed.",
+    "payoff": "మమ్మల్ని చదివించాకే poor అయిపోయాం.",
+    "opening_strength": null,
+    "payoff_line": "మమ్మల్ని చదివించాకే poor అయిపోయాం.",
+    "payoff_type": "punchline"
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "source": "emotion_pick",
+   "feeling": "laugh",
+   "intensity": 4,
+   "stop": {
+    "line": "L0305",
+    "text": "నాకేదో తేడా కొడుతుందే.",
+    "why": "Meera's sharp, suspicious remark \"నాకేదో తేడా కొడుతుందే\" immediately hooks viewers wondering what lie is about to be exposed.",
+    "cold_open": false,
+    "via": "start_line",
+    "plays_at_s": 0.3
+   },
+   "stay": "Will Harshitha accidentally blow Vijay's cover when Meera starts interrogating her about their elite schooling?",
+   "land": {
+    "line": "L0329",
+    "text": "మమ్మల్ని చదివించాకే poor అయిపోయాం.",
+    "reaction": "L0330",
+    "reaction_text": "ఏంటి?",
+    "plays_at_s": 46.08
+   },
+   "reason": "Viewer stops because Meera senses a lie with \"నాకేదో తేడా కొడుతుందే\", stays to find out how Harshitha deflects questions about their wealthy background, and it ends on Harshitha's absurd excuse about school fees making them poor (laugh).",
+   "moment": {
+    "id": "p04",
+    "line": "L0329",
+    "text": "మమ్మల్ని చదివించాకే poor అయిపోయాం.",
+    "feeling": "laugh",
+    "intensity": 4,
+    "why": "Harshitha covers up for their expensive schooling with an absurd deadpan excuse that their parents became poor by paying for their education ('మమ్మల్ని చదివించాకే poor అయిపోయాం').",
+    "type": "punchline",
+    "lands_on_screen": true
+   },
+   "build_flags": []
+  },
+  {
+   "id": "e05",
+   "pieces": [
+    {
+     "start_word": 1125,
+     "end_word": 1211,
+     "start": 908.47,
+     "end": 956.85
+    }
+   ],
+   "region": {
+    "start_word": 1125,
+    "end_word": 1211,
+    "start": 908.47,
+    "end": 956.85
+   },
+   "edited_duration": 48.38,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "Sorry హరిషిత, నీ feelings ఏమైనా hurt చేసి ఉంటే. రేయ్, నువ్వు అంత feel అయిపోకు. నువ్వంటే ఇష్టమే, as a friend గా. ఏదో మా Daddy, మీ Daddy friends అని ఇద్దరికీ పెళ్లి చేయాలనుకున్నారు, ఏదో వాళ్ళ లాభం కోసం. అంతేగాని rule ఏం లేదు పెళ్లి చేసుకోవాలని. Thanks, అర్థం చేసుకున్నందుకు. ఊమ్. మీరా నీకు చాలా perfect, and ఇంతకంటే మంచి అమ్మాయి మీ Daddy ఎక్కడ వెతికినా దొరకదు. So, you guys are the best couple. But, నిజం తెలుస్తే ఏం చేయాలో ఆలోచించు. And తను నిజం తీసుకోవడానికి ready ఉందో లేదో తెలీదు. ఊమ్. Love లో sincerity ఉండాలి, serious గా ఉంటే సరిపోదు. ఊమ్.",
+   "rank": 5,
+   "tier": "emotion_pick",
+   "tier_label": "emotion pick",
+   "scores": {},
+   "title": "Love లో sincerity ఉండాలి",
+   "hook_line": {
+    "text": "Sorry హరిషిత, నీ feelings ఏమైనా hurt చేసి ఉంటే.",
+    "start_word": 1125,
+    "end_word": 1132
+   },
+   "payoff_line": "Love లో sincerity ఉండాలి, serious గా ఉంటే సరిపోదు.",
+   "payoff_type": "conclusion",
+   "payoff_line_source": "discover",
+   "why_it_works": "Viewer stops because Abhi apologizes for hurting Harshitha's feelings with 'Sorry హరిషిత, నీ feelings ఏమైనా hurt చేసి ఉంటే', stays to see how gracefully she takes the rejection, and it ends on her ma…",
+   "category": "emotional",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 908.17,
+     "end": 957.41,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 49.24,
+   "spoiler": false,
+   "characters": [
+    "Abhi",
+    "Harshitha"
+   ],
+   "visual_dependency": "medium",
+   "start_line": "L0404",
+   "end_line": "L0419",
+   "end_hold": {
+    "payoff_end": 956.85,
+    "next_speech": 958.53,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "end": 957.41,
+    "hold_s": 0.56,
+    "on_shot_cut": true,
+    "rule": "shot_change_before_next_line",
+    "note": "next line starts quickly: ends on the shot change"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": null,
+    "what_happens": "Will Harshitha react with anger and heartbreak over the broken marriage proposal, or support his love for Meera?",
+    "hook": "A stranger stops scrolling hearing an emotionally charged, vulnerable apology: 'Sorry హరిషిత, నీ feelings ఏమైనా hurt చేసి ఉంటే.'",
+    "payoff": "Love లో sincerity ఉండాలి, serious గా ఉంటే సరిపోదు.",
+    "opening_strength": null,
+    "payoff_line": "Love లో sincerity ఉండాలి, serious గా ఉంటే సరిపోదు.",
+    "payoff_type": "conclusion"
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "source": "emotion_pick",
+   "feeling": "aww",
+   "intensity": 3,
+   "stop": {
+    "line": "L0404",
+    "text": "Sorry హరిషిత, నీ feelings ఏమైనా hurt చేసి ఉంటే.",
+    "why": "A stranger stops scrolling hearing an emotionally charged, vulnerable apology: 'Sorry హరిషిత, నీ feelings ఏమైనా hurt చేసి ఉంటే.'",
+    "cold_open": false,
+    "via": "start_line",
+    "plays_at_s": 0.3
+   },
+   "stay": "Will Harshitha react with anger and heartbreak over the broken marriage proposal, or support his love for Meera?",
+   "land": {
+    "line": "L0418",
+    "text": "Love లో sincerity ఉండాలి, serious గా ఉంటే సరిపోదు.",
+    "reaction": "L0419",
+    "reaction_text": "ఊమ్.",
+    "plays_at_s": 45.02
+   },
+   "reason": "Viewer stops because Abhi apologizes for hurting Harshitha's feelings with 'Sorry హరిషిత, నీ feelings ఏమైనా hurt చేసి ఉంటే', stays to see how gracefully she takes the rejection, and it ends on her mature advice about love needing sincerity (aww).",
+   "moment": {
+    "id": "p05",
+    "line": "L0418",
+    "text": "Love లో sincerity ఉండాలి, serious గా ఉంటే సరిపోదు.",
+    "feeling": "aww",
+    "intensity": 3,
+    "why": "Harshitha leaves Abhi with a resonant piece of relationship advice before bowing out gracefully: 'Love లో sincerity ఉండాలి, serious గా ఉంటే సరిపోదు'.",
+    "type": "quotable_line",
+    "lands_on_screen": false
+   },
+   "build_flags": []
+  },
+  {
+   "id": "e06",
+   "pieces": [
+    {
+     "start_word": 1219,
+     "end_word": 1303,
+     "start": 976.05,
+     "end": 1016.39
+    }
+   ],
+   "region": {
+    "start_word": 1219,
+    "end_word": 1303,
+    "start": 976.05,
+    "end": 1016.39
+   },
+   "edited_duration": 40.34,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ఏంట్రా, ఇంటికి పిలిచి మరి beer ఇప్పిస్తున్నావ్. నీకూ మీరాకూ ఏమైనా అయిందా? ఆ, ఆ, ఆ. రేయ్, కాదురా. మీరా flat లో లేదంతే. ఓహ్, flat లో లేదా? తెలుసా, హరిషిత వల్ల దొరికిపోతాం అనుకున్నారా కాళ్లు చేతులు వణికిపోయాయి. కానీ finally గా నన్ను అర్థం చేసుకొని వెళ్ళిపోయింది. అయినా హరిషిత మంచి పిల్లే రా. అది తన మంచితనం కాదురా, నా ప్రేమ గొప్పతనం. అలానే అనుకోవాలి మరి. You know, తను నా love story లో villain అనుకున్నా. కానీ silent గా side అయిపోయింది. ఇంక నన్నూ మీరాని ఎవ్వరూ విడదీయలేరు రా. నువ్వు rich fellow అనే విషయం తప్ప నిన్నూ మీరాని ఏదీ విడదీయలేదు. ఛ్. రేయ్.",
+   "rank": 6,
+   "tier": "emotion_pick",
+   "tier_label": "emotion pick",
+   "scores": {},
+   "title": "నన్ను మీరాని ఎవరూ విడదీయలేరు!",
+   "hook_line": {
+    "text": "ఏంట్రా, ఇంటికి పిలిచి మరి beer ఇప్పిస్తున్నావ్.",
+    "start_word": 1219,
+    "end_word": 1224
+   },
+   "payoff_line": "నువ్వు rich fellow అనే విషయం తప్ప నిన్నూ మీరాని ఏదీ విడదీయలేదు.",
+   "payoff_type": "punchline",
+   "payoff_line_source": "discover",
+   "why_it_works": "Viewer stops because Abhi's friend questions why he is suddenly offering beer, stays to find out how Abhi handled his close call, and it ends on the friend hilariously puncturing Abhi's romantic delu…",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 975.75,
+     "end": 1016.51,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 40.76,
+   "spoiler": false,
+   "characters": [
+    "Abhi",
+    "Abhi's friend"
+   ],
+   "visual_dependency": "medium",
+   "start_line": "L0425",
+   "end_line": "L0442",
+   "end_hold": {
+    "payoff_end": 1016.39,
+    "next_speech": 1017.15,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "end": 1016.51,
+    "hold_s": 0.12,
+    "on_shot_cut": true,
+    "rule": "shot_change_before_next_line",
+    "note": "next line starts quickly: ends on the shot change"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": null,
+    "what_happens": "Will Abhi's friend buy his boasting about his romance or burst his bubble?",
+    "hook": "Abhi's friend opens suspiciously with 'ఏంట్రా, ఇంటికి పిలిచి మరి beer ఇప్పిస్తున్నావ్. నీకూ మీరాకూ ఏమైనా అయిందా?', instantly piquing curiosity about the drama.",
+    "payoff": "నువ్వు rich fellow అనే విషయం తప్ప నిన్నూ మీరాని ఏదీ విడదీయలేదు.",
+    "opening_strength": null,
+    "payoff_line": "నువ్వు rich fellow అనే విషయం తప్ప నిన్నూ మీరాని ఏదీ విడదీయలేదు.",
+    "payoff_type": "punchline"
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "source": "emotion_pick",
+   "feeling": "laugh",
+   "intensity": 4,
+   "stop": {
+    "line": "L0425",
+    "text": "ఏంట్రా, ఇంటికి పిలిచి మరి beer ఇప్పిస్తున్నావ్.",
+    "why": "Abhi's friend opens suspiciously with 'ఏంట్రా, ఇంటికి పిలిచి మరి beer ఇప్పిస్తున్నావ్. నీకూ మీరాకూ ఏమైనా అయిందా?', instantly piquing curiosity about the drama.",
+    "cold_open": false,
+    "via": "start_line",
+    "plays_at_s": 0.3
+   },
+   "stay": "Will Abhi's friend buy his boasting about his romance or burst his bubble?",
+   "land": {
+    "line": "L0439",
+    "text": "నువ్వు rich fellow అనే విషయం తప్ప నిన్నూ మీరాని ఏదీ విడదీయలేదు.",
+    "reaction": "L0442",
+    "reaction_text": "రేయ్.",
+    "plays_at_s": 36.62
+   },
+   "reason": "Viewer stops because Abhi's friend questions why he is suddenly offering beer, stays to find out how Abhi handled his close call, and it ends on the friend hilariously puncturing Abhi's romantic delusion (laugh).",
+   "moment": {
+    "id": "p06",
+    "line": "L0439",
+    "text": "నువ్వు rich fellow అనే విషయం తప్ప నిన్నూ మీరాని ఏదీ విడదీయలేదు.",
+    "feeling": "laugh",
+    "intensity": 4,
+    "why": "Right as Abhi boasts that nobody can come between him and Meera, his friend dryly bursts his bubble by stating that his secret wealth is the obvious obstacle.",
+    "type": "punchline",
+    "lands_on_screen": true
+   },
+   "build_flags": []
+  }
+ ],
+ "rejected": [
+  {
+   "id": "e07",
+   "tier": "rejected",
+   "source": "emotion_pick",
+   "reject_reasons": [
+    "N0: no clip: The moment is part of a 10-second episode tag whose opening line is generic setup that cannot stop a scrolling viewer, and lifting the only punchline-adjacent line as a cold open breaks the direct dialogue setup for the joke."
+   ],
+   "moment": {
+    "id": "p07",
+    "line": "L0457",
+    "text": "Idiot, నా కొడుకు అభి కావాలి.",
+    "feeling": "laugh",
+    "intensity": 3,
+    "why": "Abhi's father angrily clarifies to the confused shopkeeper that he is looking for his son Abhi, not a grocery item ('Idiot, నా కొడుకు అభి కావాలి').",
+    "type": "punchline",
+    "lands_on_screen": true
+   },
+   "answer": {
+    "no_clip": true,
+    "no_clip_why": "The moment is part of a 10-second episode tag whose opening line is generic setup that cannot stop a scrolling viewer, and lifting the only punchline-adjacent line as a cold open breaks the direct dialogue setup for the joke.",
+    "stop": {
+     "line": "",
+     "why": ""
+    },
+    "stay": "",
+    "land": {
+     "line": "",
+     "reaction": ""
+    },
+    "start_line": "",
+    "end_line": "",
+    "drops": [],
+    "purpose": "standalone",
+    "spoiler": false,
+    "characters": [],
+    "title": "",
+    "reason": ""
+   },
+   "pieces": [
+    {
+     "start_word": 1360,
+     "end_word": 1364,
+     "start": 1049.09,
+     "end": 1051.03
+    }
+   ],
+   "region": {
+    "start_word": 1360,
+    "end_word": 1364,
+    "start": 1049.09,
+    "end": 1051.03
+   },
+   "edited_duration": 1.94,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "Idiot, నా కొడుకు అభి కావాలి."
+  }
+ ],
+ "episode_note": {
+  "text": "7 moments a stranger would feel; 7 built by the build call; 1 rejected (N0 1); 0 duplicates dropped; 6 shown, in episode order."
+ },
+ "episode_summary": {
+  "n_moments_listed": 7,
+  "n_moments_valid": 7,
+  "n_moments_rejected": 0,
+  "moments_rejected": [],
+  "moments_by_feeling": {
+   "tension": 1,
+   "laugh": 5,
+   "aww": 1
+  },
+  "moments_by_intensity": {
+   "4": 3,
+   "3": 4
+  },
+  "max_moments": 12,
+  "n_build_calls": 7,
+  "n_not_built_cap": 0,
+  "n_not_built_spend": 0,
+  "n_no_clip": 1,
+  "n_blocked": 0,
+  "n_call_failed": 0,
+  "n_invalid": 0,
+  "n_builder_rejected": 0,
+  "n_hard_rules": 0,
+  "n_stop_check_failed": 0,
+  "n_land_check_failed": 0,
+  "n_built": 6,
+  "n_deduped": 0,
+  "n_shown": 6,
+  "shown_by_feeling": {
+   "tension": 1,
+   "laugh": 4,
+   "aww": 1
+  },
+  "rejected": [
+   {
+    "clip": "e07",
+    "moment": "p07",
+    "line": "L0457",
+    "reason": "N0: no clip: The moment is part of a 10-second episode tag whose opening line is generic setup that cannot stop a scrolling viewer, and lifting the only punchline-adjacent line as a cold open breaks the direct dialogue setup for the joke."
+   }
+  ],
+  "warnings": [],
+  "episode_notes": "A Telugu romantic comedy where Abhi conceals his wealthy background and goes by the name 'Vijay' to live near his crush Meera. His friend and family match Harshitha visits and threatens his cover before gracefully deciding not to interfere, just as his father tracks him down. Clipping the identity slips or father's search reveals the core deception central to the plot."
+ },
+ "moment_table": [
+  {
+   "id": "p01",
+   "line": "L0130",
+   "feeling": "tension",
+   "intensity": 4,
+   "text": "నీ పేరు అభి కదా!",
+   "why": "Harshitha casually blurts out 'నీ పేరు అభి కదా!' right in front of Meera, instantly putting Abhi's fake identity in immediate jeopardy.",
+   "status": "shown",
+   "clip": "e01"
+  },
+  {
+   "id": "p02",
+   "line": "L0185",
+   "feeling": "laugh",
+   "intensity": 3,
+   "text": "bags సర్దుకొని flight ఎక్కేయండి.",
+   "why": "Abhi hilariously breaks character while pretending to be an aggressive travel agent by snapping 'bags సర్దుకొని flight ఎక్కేయండి' to get rid of Harshitha.",
+   "status": "shown",
+   "clip": "e02"
+  },
+  {
+   "id": "p03",
+   "line": "L0248",
+   "feeling": "laugh",
+   "intensity": 3,
+   "text": "నువ్వు flat అయిన అమ్మాయి బాగుంది.",
+   "why": "Harshitha delivers a sharp wordplay pun on the word flat by praising both the apartment and the girl Abhi is infatuated with ('నువ్వు flat అయిన అమ్మాయి బాగుంది').",
+   "status": "shown",
+   "clip": "e03"
+  },
+  {
+   "id": "p04",
+   "line": "L0329",
+   "feeling": "laugh",
+   "intensity": 4,
+   "text": "మమ్మల్ని చదివించాకే poor అయిపోయాం.",
+   "why": "Harshitha covers up for their expensive schooling with an absurd deadpan excuse that their parents became poor by paying for their education ('మమ్మల్ని చదివించాకే poor అయిపోయాం').",
+   "status": "shown",
+   "clip": "e04"
+  },
+  {
+   "id": "p05",
+   "line": "L0418",
+   "feeling": "aww",
+   "intensity": 3,
+   "text": "Love లో sincerity ఉండాలి, serious గా ఉంటే సరిపోదు.",
+   "why": "Harshitha leaves Abhi with a resonant piece of relationship advice before bowing out gracefully: 'Love లో sincerity ఉండాలి, serious గా ఉంటే సరిపోదు'.",
+   "status": "shown",
+   "clip": "e05"
+  },
+  {
+   "id": "p06",
+   "line": "L0439",
+   "feeling": "laugh",
+   "intensity": 4,
+   "text": "నువ్వు rich fellow అనే విషయం తప్ప నిన్నూ మీరాని ఏదీ విడదీయలేదు.",
+   "why": "Right as Abhi boasts that nobody can come between him and Meera, his friend dryly bursts his bubble by stating that his secret wealth is the obvious obstacle.",
+   "status": "shown",
+   "clip": "e06"
+  },
+  {
+   "id": "p07",
+   "line": "L0457",
+   "feeling": "laugh",
+   "intensity": 3,
+   "text": "Idiot, నా కొడుకు అభి కావాలి.",
+   "why": "Abhi's father angrily clarifies to the confused shopkeeper that he is looking for his son Abhi, not a grocery item ('Idiot, నా కొడుకు అభి కావాలి').",
+   "status": "rejected",
+   "reason": "N0: no clip: The moment is part of a 10-second episode tag whose opening line is generic setup that cannot stop a scrolling viewer, and lifting the only punchline-adjacent line as a cold open breaks the direct dialogue setup for the joke."
+  }
+ ]
+}

@@ -1,0 +1,1639 @@
+{
+ "schema_version": "1.1",
+ "kind": "proposals",
+ "video_id": "qIdAPG8UulE",
+ "transcript": {
+  "path": "scribe_dataset/qIdAPG8UulE/qIdAPG8UulE_scribe_transcript.json",
+  "sha256": "2a5c9fe404b84d4b41859ad83abe4bcb0bd25348b718020d0517d4bfca153637",
+  "n_words": 3475,
+  "audio_duration_secs": 2179.3935
+ },
+ "derived_params": {
+  "skip_s": 30.0
+ },
+ "run_id": "emotion1",
+ "created_at": "2026-10-16T07:53:17Z",
+ "content_type": "web_series",
+ "pipeline": {
+  "version": "emotion_pick/0.1",
+  "git_commit": null,
+  "design": "founder 2026-10-16: emotion-first, two focused calls (find the moments a stranger feels; build stop / stay / land + the cut per moment); no review call",
+  "prompt_versions": {
+   "ws3_context": "1+e606d3c6",
+   "ws_emotion_find": "1+bfe966e3",
+   "ws_emotion_build": "1+e69f991a"
+  },
+  "prompt_files": {
+   "ws3_context": "ws3_context",
+   "ws_emotion_find": "ws_emotion_find",
+   "ws_emotion_build": "ws_emotion_build"
+  },
+  "config": {
+   "find_prompt": "ws_emotion_find",
+   "models": {
+    "find": {
+     "provider": "gemini",
+     "model": "gemini-3.8-flash",
+     "params": {
+      "thinking_level": "high",
+      "max_output_tokens": 32768
+     }
+    },
+    "build": {
+     "provider": "gemini",
+     "model": "gemini-3.8-flash",
+     "params": {
+      "thinking_level": "medium",
+      "max_output_tokens": 8192
+     }
+    }
+   },
+   "prompts": {
+    "ws_emotion_build": "ws_emotion_build"
+   },
+   "ctx": {},
+   "v1": {},
+   "find": {
+    "min_intensity": 3
+   },
+   "build": {
+    "max_moments": 12,
+    "lift_before_s": 150.0,
+    "lift_after_s": 20.0,
+    "land_window_lines": 3,
+    "max_end_after_payoff_lines": 3
+   },
+   "check": {
+    "stop_window_s": 3.0,
+    "land_last_lines": 3
+   },
+   "budget_usd": 3.0,
+   "calibrate_from": {
+    "ws3": "runs/ws3"
+   },
+   "run_id": "emotion1"
+  }
+ },
+ "models": [
+  {
+   "role": "ws_emotion_find",
+   "provider": "gemini",
+   "model": "gemini-3.8-flash",
+   "params": {
+    "thinking_level": "high",
+    "max_output_tokens": 32768
+   }
+  },
+  {
+   "role": "ws_emotion_build",
+   "provider": "gemini",
+   "model": "gemini-3.8-flash",
+   "params": {
+    "thinking_level": "medium",
+    "max_output_tokens": 8192
+   }
+  }
+ ],
+ "cost": {
+  "input_tokens": 373723,
+  "output_tokens": 67357,
+  "usd": 0.31233,
+  "usd_billed": 0.31233,
+  "wall_time_secs": 431.3,
+  "n_llm_calls": 14,
+  "by_role": {
+   "ws3_cache": {
+    "n_llm_calls": 1,
+    "n_cache_hits": 0,
+    "n_failed_attempts": 0,
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "thought_tokens": 0,
+    "cached_input_tokens": 0,
+    "usd": 0.01333,
+    "usd_billed": 0.01333,
+    "models": [
+     "gemini-3.8-flash"
+    ]
+   },
+   "ws_emotion_build": {
+    "n_llm_calls": 12,
+    "n_cache_hits": 0,
+    "n_failed_attempts": 0,
+    "input_tokens": 346369,
+    "output_tokens": 59027,
+    "thought_tokens": 55821,
+    "cached_input_tokens": 319836,
+    "usd": 0.26524,
+    "usd_billed": 0.26524,
+    "models": [
+     "gemini-3.8-flash"
+    ]
+   },
+   "ws_emotion_find": {
+    "n_llm_calls": 1,
+    "n_cache_hits": 0,
+    "n_failed_attempts": 0,
+    "input_tokens": 27354,
+    "output_tokens": 8330,
+    "thought_tokens": 6239,
+    "cached_input_tokens": 26653,
+    "usd": 0.03376,
+    "usd_billed": 0.03376,
+    "models": [
+     "gemini-3.8-flash"
+    ]
+   }
+  },
+  "projection": null,
+  "cache": {
+   "mode": "explicit",
+   "key": "5afa7e8db9148d0d096210db",
+   "name": "cachedContents/630b1m364srp6hdhazg8f1evd2drt2vamqni0nfl",
+   "tokens": 26653,
+   "ttl_s": 3600,
+   "storage_usd": 0.0133265,
+   "deleted": true,
+   "lived_s": 428.4
+  }
+ },
+ "cutoff": {
+  "show_rule": "emotion_pick: every clip that passes the build checks (stop first, land last, v1 hard rules) and the dedupe; no review, no score",
+  "order": "episode order",
+  "n_candidates": 23,
+  "n_passed_hard_rules": 11,
+  "n_shown": 7,
+  "n_rejected": 5,
+  "warnings": []
+ },
+ "episode_notes": "A Telugu comedy web series following Prasad, an eccentric, shameless young man navigating awkward romantic encounters with Vaishu (Bhramara), Pooja, Pratheeksha, and Virajitha. After getting rejected repeatedly and finding out his love interests are either married, engaged, or related, he faces a surprise twist at the end. The final revelation in L0888-L0918, where Vaishu cancels her wedding to aggressively claim Prasad, would spoil the ending if clipped out of sequence.",
+ "proposals": [
+  {
+   "id": "e01",
+   "pieces": [
+    {
+     "start_word": 17,
+     "end_word": 111,
+     "start": 19.2,
+     "end": 66.22
+    }
+   ],
+   "region": {
+    "start_word": 17,
+    "end_word": 111,
+    "start": 19.2,
+    "end": 66.22
+   },
+   "edited_duration": 47.02,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "మనిద్దరం కలిసి ఉండటం కంటే breakup చేసుకొని happy గా ఉందాం Sorry వైషు, నీ breakup నేను accept చేయలేను ఏయ్! ఎందుకు? నేను నీ love నా accept చేశా కదా, ఇప్పుడు నువ్వు నా breakup నా accept చెయ్ ఒక్క reason, ఒక్క reason చెప్పు ఎందుకు నీ breakup accept చేయలో ఏంటవి నువ్ ఇచ్చినవే ఆహా There is a ghost in my room ఆ. ఇది girlfriend కి ఇచ్చే gift ఏ నా రా lighter ఏం చేసుకోవాలి రా దీంతో ఉమ్ birthday కి ఎవరైనా gold chain ఓ teddy bear ఓ bouquet ఓ లేదా at least chocolate ఓ gift ఇస్తారు ORS లు ఇచ్చావేంట్రా అంటే ఆ రోజు weak గా ఉన్నావని",
+   "rank": 1,
+   "tier": "emotion_pick",
+   "tier_label": "emotion pick",
+   "scores": {},
+   "title": "Girlfriend కి Birthday Gift గా ORS ఆ?",
+   "hook_line": {
+    "text": "మనిద్దరం కలిసి ఉండటం కంటే breakup చేసుకొని happy గా ఉందాం",
+    "start_word": 17,
+    "end_word": 25
+   },
+   "payoff_line": "ORS లు ఇచ్చావేంట్రా",
+   "payoff_type": "punchline",
+   "payoff_line_source": "discover",
+   "why_it_works": "Viewer stops because Vaishu bluntly demands a breakup, stays to find out what bizarre gifts he gave her, and it ends on his innocent excuse for giving ORS sachets for her birthday (laugh).",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 18.9,
+     "end": 68.22,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 49.32,
+   "spoiler": false,
+   "characters": [
+    "Vaishu",
+    "Boyfriend"
+   ],
+   "visual_dependency": "medium",
+   "start_line": "L0010",
+   "end_line": "L0030",
+   "end_hold": {
+    "payoff_end": 66.22,
+    "end": 68.22,
+    "hold_s": 2.0,
+    "on_shot_cut": false,
+    "next_speech": 69.78,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "note": "hold not on a shot cut",
+    "rule": "hold"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": null,
+    "what_happens": "What hilarious reasons will she reveal when he demands to know why she is dumping him?",
+    "hook": "A blunt breakup proposal delivered with pure exasperation: \"మనిద్దరం కలిసి ఉండటం కంటే breakup చేసుకొని happy గా ఉందాం\".",
+    "payoff": "ORS లు ఇచ్చావేంట్రా",
+    "opening_strength": null,
+    "payoff_line": "ORS లు ఇచ్చావేంట్రా",
+    "payoff_type": "punchline"
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "source": "emotion_pick",
+   "feeling": "laugh",
+   "intensity": 4,
+   "stop": {
+    "line": "L0010",
+    "text": "మనిద్దరం కలిసి ఉండటం కంటే breakup చేసుకొని happy గా ఉందాం",
+    "why": "A blunt breakup proposal delivered with pure exasperation: \"మనిద్దరం కలిసి ఉండటం కంటే breakup చేసుకొని happy గా ఉందాం\".",
+    "cold_open": false,
+    "via": "start_line",
+    "plays_at_s": 0.3
+   },
+   "stay": "What hilarious reasons will she reveal when he demands to know why she is dumping him?",
+   "land": {
+    "line": "L0028",
+    "text": "ORS లు ఇచ్చావేంట్రా",
+    "reaction": "L0030",
+    "reaction_text": "అంటే ఆ రోజు weak గా ఉన్నావని",
+    "plays_at_s": 43.5
+   },
+   "reason": "Viewer stops because Vaishu bluntly demands a breakup, stays to find out what bizarre gifts he gave her, and it ends on his innocent excuse for giving ORS sachets for her birthday (laugh).",
+   "moment": {
+    "id": "p01",
+    "line": "L0028",
+    "text": "ORS లు ఇచ్చావేంట్రా",
+    "feeling": "laugh",
+    "intensity": 4,
+    "why": "Vaishu hysterically confronts her boyfriend for gifting her 'ORS sachets' for her birthday instead of standard romantic gifts.",
+    "type": "punchline",
+    "lands_on_screen": true
+   },
+   "build_flags": []
+  },
+  {
+   "id": "e03",
+   "pieces": [
+    {
+     "start_word": 192,
+     "end_word": 269,
+     "start": 117.18,
+     "end": 158.12
+    }
+   ],
+   "region": {
+    "start_word": 192,
+    "end_word": 269,
+    "start": 117.18,
+    "end": 158.12
+   },
+   "edited_duration": 40.94,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ఇవన్నీ చాలా చిన్న చిన్న కారణాలు కదా వైషు ఏంటి ఇవి చిన్నవా మన పెళ్లి గురించి మా నాన్నతో మాట్లాడడానికి ఇంటికి పిలిస్తే రాజకీయాల గురించి మాట్లాడి party గొడవలు పెట్టుకొని police station వరకు వెళ్ళిపోయావ్ అయినా ఈ పార్టీల పిచ్చేంట్రా నీకు మా నాయకుడి మీద అభిమానం వైషు నా friend కి breakup అయితే ఏం message పెట్టారు sir ఓదార్చాను చాలా బాగా ఓదార్చావ్. నువ్వేం బాధపడకు నీకు నేనున్నాను అని message పెట్టావ్ మరి నా పరిస్థితి ఏంట్రా February 14th కి ఎవరైనా pads gift గా ఇస్తారా రా ఆరోజు నువ్వు date లో ఉన్నావ్ అన్నావ్ కదా",
+   "rank": 2,
+   "tier": "emotion_pick",
+   "tier_label": "emotion pick",
+   "scores": {},
+   "title": "Valentine's Day కి pads gift గా ఇచ్చాడు",
+   "hook_line": {
+    "text": "ఇవన్నీ చాలా చిన్న చిన్న కారణాలు కదా వైషు",
+    "start_word": 192,
+    "end_word": 198
+   },
+   "payoff_line": "ఆరోజు నువ్వు date లో ఉన్నావ్ అన్నావ్ కదా",
+   "payoff_type": "punchline",
+   "payoff_line_source": "discover",
+   "why_it_works": "Viewer stops because the boyfriend dismisses her complaints as trivial reasons, stays to find out how absurd his past actions were, and it ends on his hilarious explanation for gifting sanitary pads …",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 116.88,
+     "end": 161.448,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 44.57,
+   "spoiler": false,
+   "characters": [
+    "Boyfriend",
+    "Vaishu"
+   ],
+   "visual_dependency": "medium",
+   "start_line": "L0052",
+   "end_line": "L0070",
+   "end_hold": {
+    "payoff_end": 158.12,
+    "end": 161.448,
+    "hold_s": 3.33,
+    "on_shot_cut": true,
+    "next_speech": 161.98,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "rule": "hold"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": null,
+    "what_happens": "How will the girlfriend respond to his claim, and what ridiculous justification will he give for his gifts?",
+    "hook": "A stranger stops because the boyfriend dismissively brushes off serious relationship red flags as trivial matters with 'ఇవన్నీ చాలా చిన్న చిన్న కారణాలు కదా వైషు'.",
+    "payoff": "ఆరోజు నువ్వు date లో ఉన్నావ్ అన్నావ్ కదా",
+    "opening_strength": null,
+    "payoff_line": "ఆరోజు నువ్వు date లో ఉన్నావ్ అన్నావ్ కదా",
+    "payoff_type": "punchline"
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "source": "emotion_pick",
+   "feeling": "laugh",
+   "intensity": 5,
+   "stop": {
+    "line": "L0052",
+    "text": "ఇవన్నీ చాలా చిన్న చిన్న కారణాలు కదా వైషు",
+    "why": "A stranger stops because the boyfriend dismissively brushes off serious relationship red flags as trivial matters with 'ఇవన్నీ చాలా చిన్న చిన్న కారణాలు కదా వైషు'.",
+    "cold_open": false,
+    "via": "start_line",
+    "plays_at_s": 0.3
+   },
+   "stay": "How will the girlfriend respond to his claim, and what ridiculous justification will he give for his gifts?",
+   "land": {
+    "line": "L0070",
+    "text": "ఆరోజు నువ్వు date లో ఉన్నావ్ అన్నావ్ కదా",
+    "reaction": "hold",
+    "plays_at_s": 39.82
+   },
+   "reason": "Viewer stops because the boyfriend dismisses her complaints as trivial reasons, stays to find out how absurd his past actions were, and it ends on his hilarious explanation for gifting sanitary pads on Valentine's Day (laugh).",
+   "moment": {
+    "id": "p03",
+    "line": "L0070",
+    "text": "ఆరోజు నువ్వు date లో ఉన్నావ్ అన్నావ్ కదా",
+    "feeling": "laugh",
+    "intensity": 5,
+    "why": "The boyfriend defends gifting sanitary pads for Valentine's Day because she literally told him she was on a period 'date'.",
+    "type": "punchline",
+    "lands_on_screen": true
+   },
+   "build_flags": []
+  },
+  {
+   "id": "e04",
+   "pieces": [
+    {
+     "start_word": 322,
+     "end_word": 367,
+     "start": 187.04,
+     "end": 218.8
+    }
+   ],
+   "region": {
+    "start_word": 322,
+    "end_word": 367,
+    "start": 187.04,
+    "end": 218.8
+   },
+   "edited_duration": 31.76,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ఒక్క chance ఇవ్వేయ్ ఈసారి, నీ expectation కచ్చితంగా reach చేస్తా ఉమ్ okay. నన్ను ఏదైనా romantic place కి తీసుకెళ్ళు Romantic అంటే, ఆ ఉమ్ పదా ఎక్కడికి వెళ్తున్నాం ఆ సికింద్రాబాద్ railway station కి సికింద్రాబాద్ railway sta-- అక్కడికెందుకు అక్కడ చెరువు రసం చాలా బాగుంటుంది నీకు అవకాశం ఇస్తున్న ప్రతిసారి you proved me wrong",
+   "rank": 3,
+   "tier": "emotion_pick",
+   "tier_label": "emotion pick",
+   "scores": {},
+   "title": "Romantic place అంటే ఇదా బ్రో?",
+   "hook_line": {
+    "text": "ఒక్క chance ఇవ్వేయ్ ఈసారి, నీ expectation కచ్చితంగా reach చేస్తా",
+    "start_word": 322,
+    "end_word": 330
+   },
+   "payoff_line": "అక్కడ చెరువు రసం చాలా బాగుంటుంది",
+   "payoff_type": "punchline",
+   "payoff_line_source": "discover",
+   "why_it_works": "Viewer stops because the boyfriend desperately begs for one last chance promising to meet her expectations, stays to find out where he will take her on a romantic date, and it ends on the hilarious l…",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 186.74,
+     "end": 220.05,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 33.31,
+   "spoiler": false,
+   "characters": [
+    "Boyfriend",
+    "Vaishu"
+   ],
+   "visual_dependency": "medium",
+   "start_line": "L0087",
+   "end_line": "L0102",
+   "end_hold": {
+    "payoff_end": 218.8,
+    "next_speech": 220.1,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "end": 220.05,
+    "hold_s": 1.25,
+    "on_shot_cut": false,
+    "rule": "before_next_line",
+    "note": "next line starts quickly and no shot change before it"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": null,
+    "what_happens": "Will he manage to impress her when she asks him to take her somewhere truly romantic?",
+    "hook": "A desperate boyfriend pleads for one final chance with 'ఒక్క chance ఇవ్వేయ్ ఈసారి, నీ expectation కచ్చితంగా reach చేస్తా'.",
+    "payoff": "అక్కడ చెరువు రసం చాలా బాగుంటుంది",
+    "opening_strength": null,
+    "payoff_line": "అక్కడ చెరువు రసం చాలా బాగుంటుంది",
+    "payoff_type": "punchline"
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "source": "emotion_pick",
+   "feeling": "laugh",
+   "intensity": 4,
+   "stop": {
+    "line": "L0087",
+    "text": "ఒక్క chance ఇవ్వేయ్ ఈసారి, నీ expectation కచ్చితంగా reach చేస్తా",
+    "why": "A desperate boyfriend pleads for one final chance with 'ఒక్క chance ఇవ్వేయ్ ఈసారి, నీ expectation కచ్చితంగా reach చేస్తా'.",
+    "cold_open": false,
+    "via": "start_line",
+    "plays_at_s": 0.3
+   },
+   "stay": "Will he manage to impress her when she asks him to take her somewhere truly romantic?",
+   "land": {
+    "line": "L0100",
+    "text": "అక్కడ చెరువు రసం చాలా బాగుంటుంది",
+    "reaction": "L0102",
+    "reaction_text": "నీకు అవకాశం ఇస్తున్న ప్రతిసారి you proved me wrong",
+    "plays_at_s": 24.8
+   },
+   "reason": "Viewer stops because the boyfriend desperately begs for one last chance promising to meet her expectations, stays to find out where he will take her on a romantic date, and it ends on the hilarious letdown when he brings her to a railway station for sugarcane juice (laugh).",
+   "moment": {
+    "id": "p04",
+    "line": "L0100",
+    "text": "అక్కడ చెరువు రసం చాలా బాగుంటుంది",
+    "feeling": "laugh",
+    "intensity": 4,
+    "why": "When asked to take her somewhere romantic, the boyfriend takes her to Secunderabad railway station because the 'cheraku rasam' (sugarcane juice) is good.",
+    "type": "punchline",
+    "lands_on_screen": true
+   },
+   "build_flags": []
+  },
+  {
+   "id": "e05",
+   "pieces": [
+    {
+     "start_word": 376,
+     "end_word": 447,
+     "start": 226.92,
+     "end": 274.72
+    }
+   ],
+   "region": {
+    "start_word": 376,
+    "end_word": 447,
+    "start": 226.92,
+    "end": 274.72
+   },
+   "edited_duration": 47.8,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "మనం first time ఎక్కడ కలిసాం First time ఆ CCD cafe లో french fries కింద పడిపోతే తీసుకొని తినేసావ్ అది కాదు రా, నువ్వు first time నన్ను ఎక్కడ చూసావ్ ఆ city bus లో white color చుడీదార్ లో ఉన్నావ్ అప్పుడే నిన్ను first time చూశాను. అలా చూస్తూ ఉండిపోవాలనిపించింది bus లో చాలా మంది జనం ఉన్నారు. ఆ జనాలందరినీ దాటి conductor ని దగ్గరికి వచ్చి టికెట్ డబ్బులు అడిగే లోపు నీవు దిగిపోయావు ఆరోజు నీ దగ్గర డబ్బులు లేవా అమ్మాయిలకి bus free రా దరిద్రుడా",
+   "rank": 4,
+   "tier": "emotion_pick",
+   "tier_label": "emotion pick",
+   "scores": {},
+   "title": "First time ఎక్కడ చూశావ్ అంటే",
+   "hook_line": {
+    "text": "మనం first time ఎక్కడ కలిసాం",
+    "start_word": 376,
+    "end_word": 380
+   },
+   "payoff_line": "అమ్మాయిలకి bus free రా దరిద్రుడా",
+   "payoff_type": "punchline",
+   "payoff_line_source": "discover",
+   "why_it_works": "Viewer stops because Vaishu puts her boyfriend on the spot asking where they first met, stays to find out if his romantic bus memory redeems him, and it ends on her hilarious reality check that bus t…",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [
+    "song_overlap"
+   ],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 226.62,
+     "end": 275.854,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 49.23,
+   "spoiler": false,
+   "characters": [
+    "Vaishu",
+    "Boyfriend"
+   ],
+   "visual_dependency": "medium",
+   "start_line": "L0105",
+   "end_line": "L0126",
+   "end_hold": {
+    "payoff_end": 274.72,
+    "end": 275.854,
+    "hold_s": 1.13,
+    "on_shot_cut": true,
+    "next_speech": 277.52,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "note": "short hold (next shot cut before the minimum hold)",
+    "rule": "hold"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": null,
+    "what_happens": "Will the boyfriend redeem his unromantic cafeteria answer with a sweet story of the first time he saw her?",
+    "hook": "A girlfriend cornering her boyfriend with the classic test 'మనం first time ఎక్కడ కలిసాం' immediately grabs viewers waiting for his disastrous response.",
+    "payoff": "అమ్మాయిలకి bus free రా దరిద్రుడా",
+    "opening_strength": null,
+    "payoff_line": "అమ్మాయిలకి bus free రా దరిద్రుడా",
+    "payoff_type": "punchline"
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "source": "emotion_pick",
+   "feeling": "laugh",
+   "intensity": 5,
+   "stop": {
+    "line": "L0105",
+    "text": "మనం first time ఎక్కడ కలిసాం",
+    "why": "A girlfriend cornering her boyfriend with the classic test 'మనం first time ఎక్కడ కలిసాం' immediately grabs viewers waiting for his disastrous response.",
+    "cold_open": false,
+    "via": "start_line",
+    "plays_at_s": 0.3
+   },
+   "stay": "Will the boyfriend redeem his unromantic cafeteria answer with a sweet story of the first time he saw her?",
+   "land": {
+    "line": "L0126",
+    "text": "అమ్మాయిలకి bus free రా దరిద్రుడా",
+    "reaction": "hold",
+    "plays_at_s": 46.36
+   },
+   "reason": "Viewer stops because Vaishu puts her boyfriend on the spot asking where they first met, stays to find out if his romantic bus memory redeems him, and it ends on her hilarious reality check that bus travel is free for women (laugh).",
+   "moment": {
+    "id": "p05",
+    "line": "L0126",
+    "text": "అమ్మాయిలకి bus free రా దరిద్రుడా",
+    "feeling": "laugh",
+    "intensity": 5,
+    "why": "Vaishu brutally punctures her boyfriend's romantic bus flashback by pointing out that bus rides are free for women.",
+    "type": "punchline",
+    "lands_on_screen": true
+   },
+   "build_flags": []
+  },
+  {
+   "id": "e06",
+   "pieces": [
+    {
+     "start_word": 465,
+     "end_word": 518,
+     "start": 285.74,
+     "end": 318.78
+    }
+   ],
+   "region": {
+    "start_word": 465,
+    "end_word": 518,
+    "start": 285.74,
+    "end": 318.78
+   },
+   "edited_duration": 33.04,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "వైషు madam మీరు చాలా అందంగా ఉన్నారండి Thank you అన్నా ప్రసాద్ madam Okay ప్రసాద్ అన్నా Only ప్రసాద్ madam చాలా simple ఏ మన్నా madam ప్రసాద్ is okay, అన్న is not okay ఎందుకు six months back ఒక అమ్మాయి ఇలాగే అన్నయ్యా అని పిలిచి అన్నం లేకుండా చచ్చిపోయింది madam ఆ తర్వాత తర్వాత ఆ అమ్మాయి దినానికి మేము వెళ్లి అన్నం తిని వచ్చామండి",
+   "rank": 5,
+   "tier": "emotion_pick",
+   "tier_label": "emotion pick",
+   "scores": {},
+   "title": "అన్నా అని పిలిస్తే అంతే సంగతులు!",
+   "hook_line": {
+    "text": "వైషు madam మీరు చాలా అందంగా ఉన్నారండి",
+    "start_word": 465,
+    "end_word": 470
+   },
+   "payoff_line": "తర్వాత ఆ అమ్మాయి దినానికి మేము వెళ్లి అన్నం తిని వచ్చామండి",
+   "payoff_type": "punchline",
+   "payoff_line_source": "discover",
+   "why_it_works": "Viewer stops because a driver casually flirts with his passenger, stays to find out why he is dead against being called 'brother', and it ends on his dark, absurd reasoning about eating at a girl's f…",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 285.44,
+     "end": 318.813,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 33.37,
+   "spoiler": false,
+   "characters": [
+    "Prasad",
+    "Vaishu"
+   ],
+   "visual_dependency": "medium",
+   "start_line": "L0135",
+   "end_line": "L0148",
+   "end_hold": {
+    "payoff_end": 318.78,
+    "next_speech": 320.52,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "end": 318.813,
+    "hold_s": 0.03,
+    "on_shot_cut": true,
+    "rule": "shot_change_before_next_line",
+    "note": "next line starts quickly: ends on the shot change"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": null,
+    "what_happens": "Why is the driver so adamantly protesting her calling him 'అన్నా'?",
+    "hook": "A stranger stops when the driver opens the conversation with a bold, straight-faced compliment: 'వైషు madam మీరు చాలా అందంగా ఉన్నారండి'.",
+    "payoff": "తర్వాత ఆ అమ్మాయి దినానికి మేము వెళ్లి అన్నం తిని వచ్చామండి",
+    "opening_strength": null,
+    "payoff_line": "తర్వాత ఆ అమ్మాయి దినానికి మేము వెళ్లి అన్నం తిని వచ్చామండి",
+    "payoff_type": "punchline"
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "source": "emotion_pick",
+   "feeling": "laugh",
+   "intensity": 4,
+   "stop": {
+    "line": "L0135",
+    "text": "వైషు madam మీరు చాలా అందంగా ఉన్నారండి",
+    "why": "A stranger stops when the driver opens the conversation with a bold, straight-faced compliment: 'వైషు madam మీరు చాలా అందంగా ఉన్నారండి'.",
+    "cold_open": false,
+    "via": "start_line",
+    "plays_at_s": 0.3
+   },
+   "stay": "Why is the driver so adamantly protesting her calling him 'అన్నా'?",
+   "land": {
+    "line": "L0148",
+    "text": "తర్వాత ఆ అమ్మాయి దినానికి మేము వెళ్లి అన్నం తిని వచ్చామండి",
+    "reaction": "hold",
+    "plays_at_s": 29.86
+   },
+   "reason": "Viewer stops because a driver casually flirts with his passenger, stays to find out why he is dead against being called 'brother', and it ends on his dark, absurd reasoning about eating at a girl's funeral (laugh).",
+   "moment": {
+    "id": "p06",
+    "line": "L0148",
+    "text": "తర్వాత ఆ అమ్మాయి దినానికి మేము వెళ్లి అన్నం తిని వచ్చామండి",
+    "feeling": "laugh",
+    "intensity": 4,
+    "why": "Prasad justifies why women shouldn't call him 'anna' with a darkly absurd tale about eating lunch at the funeral of the last girl who did.",
+    "type": "punchline",
+    "lands_on_screen": true
+   },
+   "build_flags": []
+  },
+  {
+   "id": "e08",
+   "pieces": [
+    {
+     "start_word": 1146,
+     "end_word": 1195,
+     "start": 657.384,
+     "end": 687.384
+    }
+   ],
+   "region": {
+    "start_word": 1146,
+    "end_word": 1195,
+    "start": 657.384,
+    "end": 687.384
+   },
+   "edited_duration": 30.0,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "మరి ఆ మంచి అమ్మాయి దొరికిందా? నువ్వే. బాబోయ్! నన్ను వదిలేయి రా. I am out of your league. ఎవరో set అవకపోతే నా పరిస్థితి ఏంటే. నీ సంగతి నాకెందుకురా? మనం love చేసుకున్నాం కదా. Yo! Yo! గట్టిగా అనకురా బాబు. ఈ విషయాన్ని నువ్వు ఎంత తొందరగా మర్చిపోతే అంత మంచిది. ఏ? Okay, ప్రసాద్ నాకు పెళ్లయింది. అలా ఎలా చేసుకున్నావ్?",
+   "rank": 6,
+   "tier": "emotion_pick",
+   "tier_label": "emotion pick",
+   "scores": {},
+   "title": "నాకు ఆల్రెడీ పెళ్లయింది!",
+   "hook_line": {
+    "text": "మరి ఆ మంచి అమ్మాయి దొరికిందా?",
+    "start_word": 1146,
+    "end_word": 1150
+   },
+   "payoff_line": "Okay, ప్రసాద్ నాకు పెళ్లయింది.",
+   "payoff_type": "reveal",
+   "payoff_line_source": "discover",
+   "why_it_works": "Viewer stops because Pooja asks if he found a good girl and he boldly says 'నువ్వే', stays to find out why Pooja is frantically shushing his romantic advances, and it ends on her blunt confession tha…",
+   "category": "reveal",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 657.084,
+     "end": 687.454,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 30.37,
+   "spoiler": false,
+   "characters": [
+    "Prasad",
+    "Pooja"
+   ],
+   "visual_dependency": "medium",
+   "start_line": "L0314",
+   "end_line": "L0331",
+   "end_hold": {
+    "payoff_end": 687.384,
+    "next_speech": 687.504,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "end": 687.454,
+    "hold_s": 0.07,
+    "on_shot_cut": false,
+    "rule": "before_next_line",
+    "note": "next line starts quickly and no shot change before it"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": null,
+    "what_happens": "Will Prasad succeed in hitting on Pooja as his backup, or what secret is she trying to hide?",
+    "hook": "Pooja asks 'మరి ఆ మంచి అమ్మాయి దొరికిందా?' which instantly hooks the viewer into Prasad's unexpected, cheeky confession.",
+    "payoff": "Okay, ప్రసాద్ నాకు పెళ్లయింది.",
+    "opening_strength": null,
+    "payoff_line": "Okay, ప్రసాద్ నాకు పెళ్లయింది.",
+    "payoff_type": "reveal"
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "source": "emotion_pick",
+   "feeling": "shock",
+   "intensity": 4,
+   "stop": {
+    "line": "L0314",
+    "text": "మరి ఆ మంచి అమ్మాయి దొరికిందా?",
+    "why": "Pooja asks 'మరి ఆ మంచి అమ్మాయి దొరికిందా?' which instantly hooks the viewer into Prasad's unexpected, cheeky confession.",
+    "cold_open": false,
+    "via": "start_line",
+    "plays_at_s": 0.3
+   },
+   "stay": "Will Prasad succeed in hitting on Pooja as his backup, or what secret is she trying to hide?",
+   "land": {
+    "line": "L0328",
+    "text": "Okay, ప్రసాద్ నాకు పెళ్లయింది.",
+    "reaction": "L0331",
+    "reaction_text": "అలా ఎలా చేసుకున్నావ్?",
+    "plays_at_s": 18.82
+   },
+   "reason": "Viewer stops because Pooja asks if he found a good girl and he boldly says 'నువ్వే', stays to find out why Pooja is frantically shushing his romantic advances, and it ends on her blunt confession that she is already married (shock).",
+   "moment": {
+    "id": "p08",
+    "line": "L0328",
+    "text": "Okay, ప్రసాద్ నాకు పెళ్లయింది.",
+    "feeling": "shock",
+    "intensity": 4,
+    "why": "Just as Prasad starts hitting on Pooja as a backup, she drops the shocking truth that she is already married.",
+    "type": "reveal",
+    "lands_on_screen": true
+   },
+   "build_flags": []
+  },
+  {
+   "id": "e11",
+   "pieces": [
+    {
+     "start_word": 1503,
+     "end_word": 1575,
+     "start": 846.064,
+     "end": 890.484
+    }
+   ],
+   "region": {
+    "start_word": 1503,
+    "end_word": 1575,
+    "start": 846.064,
+    "end": 890.484
+   },
+   "edited_duration": 44.42,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "respect లేకుండా మాట్లాడితే అస్సలు బాగోదు చెప్తున్నా. అయినా పోవే. ఇంకొకసారి కనిపించావంటే అప్పుడు చెప్తా. ఆ కళ్ళు పొడుచుకో అయితే. అబ్బో! నీలాంటి వాళ్ళని ఎన్ని తిట్టినా సిగ్గురాదు. ఆ ముందు ఆ అమ్మాయి నచ్చగానే వదిలేయాల్సింది సిగ్గే. అబ్బా! నీకు ఎలా చెప్తే అర్థమవుతుంది. Hug చేసుకొని చెప్పు బ్రహ్మారావు. ఊ... బాబు నీకు ఒక దండం. పతియే ప్రత్యక్ష దైవం. ఎలా హా. బ్రహ్మ, బ్రహ్మ వెళ్ళిపోతావెంటి బ్రహ్మ ఏయ్ philophobia. Philophobia. నీకన్నా నీ రోగానికి ఎక్కువ respect ఇస్తావెంటి self respect లేదా నీకు? మనుషుల్ని దూరం పెట్టడమంటే అది మానసిక రోగం కాదు పిరికితనం.",
+   "rank": 7,
+   "tier": "emotion_pick",
+   "tier_label": "emotion pick",
+   "scores": {},
+   "title": "Philophobia కాదు పిరికితనం",
+   "hook_line": {
+    "text": "respect లేకుండా మాట్లాడితే అస్సలు బాగోదు చెప్తున్నా.",
+    "start_word": 1503,
+    "end_word": 1508
+   },
+   "payoff_line": "మనుషుల్ని దూరం పెట్టడమంటే అది మానసిక రోగం కాదు పిరికితనం.",
+   "payoff_type": "conclusion",
+   "payoff_line_source": "discover",
+   "why_it_works": "Viewer stops because Vaishu fiercely warns Prasad to show some respect, stays to see if she can get rid of him, and it ends on Prasad bluntly telling her that pushing people away is cowardice rather …",
+   "category": "story",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "promo",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 845.764,
+     "end": 895.014,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 49.25,
+   "spoiler": false,
+   "characters": [
+    "Vaishu",
+    "Prasad"
+   ],
+   "visual_dependency": "medium",
+   "start_line": "L0404",
+   "end_line": "L0423",
+   "end_hold": {
+    "payoff_end": 890.484,
+    "end": 895.014,
+    "hold_s": 4.53,
+    "on_shot_cut": true,
+    "next_speech": 897.644,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "rule": "hold"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": null,
+    "what_happens": "Will Prasad take Vaishu's rejection seriously or find another clever way to break through her emotional walls?",
+    "hook": "Vaishu aggressively confronts Prasad with \"respect లేకుండా మాట్లాడితే అస్సలు బాగోదు చెప్తున్నా.\"",
+    "payoff": "మనుషుల్ని దూరం పెట్టడమంటే అది మానసిక రోగం కాదు పిరికితనం.",
+    "opening_strength": null,
+    "payoff_line": "మనుషుల్ని దూరం పెట్టడమంటే అది మానసిక రోగం కాదు పిరికితనం.",
+    "payoff_type": "conclusion"
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "source": "emotion_pick",
+   "feeling": "tension",
+   "intensity": 4,
+   "stop": {
+    "line": "L0404",
+    "text": "respect లేకుండా మాట్లాడితే అస్సలు బాగోదు చెప్తున్నా.",
+    "why": "Vaishu aggressively confronts Prasad with \"respect లేకుండా మాట్లాడితే అస్సలు బాగోదు చెప్తున్నా.\"",
+    "cold_open": false,
+    "via": "start_line",
+    "plays_at_s": 0.3
+   },
+   "stay": "Will Prasad take Vaishu's rejection seriously or find another clever way to break through her emotional walls?",
+   "land": {
+    "line": "L0423",
+    "text": "మనుషుల్ని దూరం పెట్టడమంటే అది మానసిక రోగం కాదు పిరికితనం.",
+    "reaction": "hold",
+    "plays_at_s": 41.86
+   },
+   "reason": "Viewer stops because Vaishu fiercely warns Prasad to show some respect, stays to see if she can get rid of him, and it ends on Prasad bluntly telling her that pushing people away is cowardice rather than illness (tension).",
+   "moment": {
+    "id": "p11",
+    "line": "L0423",
+    "text": "మనుషుల్ని దూరం పెట్టడమంటే అది మానసిక రోగం కాదు పిరికితనం.",
+    "feeling": "tension",
+    "intensity": 4,
+    "why": "Prasad calls out Vaishu's philophobia by stating that pushing people away is pure cowardice rather than a mental illness.",
+    "type": "quotable_line",
+    "lands_on_screen": true
+   },
+   "build_flags": []
+  }
+ ],
+ "rejected": [
+  {
+   "id": "e12",
+   "tier": "rejected",
+   "source": "emotion_pick",
+   "reject_reasons": [
+    "N0: no clip: The exchange begins with flat phone greetings ('Hi ప్రసాద్') with no suitable hook or valid cold open, and cutting just the punchline lacks the necessary setup to work for a first-time viewer."
+   ],
+   "moment": {
+    "id": "p12",
+    "line": "L0452",
+    "text": "ప్రతీక్ష ఎప్పుడో కట్టిన insurance ఇప్పుడు mature అయింది.",
+    "feeling": "laugh",
+    "intensity": 4,
+    "why": "Prasad hilariously compares Pratheeksha finally giving him attention to an old 'insurance policy' that just matured.",
+    "type": "punchline",
+    "lands_on_screen": true
+   },
+   "answer": {
+    "no_clip": true,
+    "no_clip_why": "The exchange begins with flat phone greetings ('Hi ప్రసాద్') with no suitable hook or valid cold open, and cutting just the punchline lacks the necessary setup to work for a first-time viewer.",
+    "stop": {
+     "line": "",
+     "why": ""
+    },
+    "stay": "",
+    "land": {
+     "line": "",
+     "reaction": ""
+    },
+    "start_line": "",
+    "end_line": "",
+    "drops": [],
+    "purpose": "standalone",
+    "spoiler": false,
+    "characters": [],
+    "title": "",
+    "reason": ""
+   },
+   "pieces": [
+    {
+     "start_word": 1677,
+     "end_word": 1683,
+     "start": 996.624,
+     "end": 999.004
+    }
+   ],
+   "region": {
+    "start_word": 1677,
+    "end_word": 1683,
+    "start": 996.624,
+    "end": 999.004
+   },
+   "edited_duration": 2.38,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ప్రతీక్ష ఎప్పుడో కట్టిన insurance ఇప్పుడు mature అయింది."
+  },
+  {
+   "id": "e02",
+   "tier": "rejected",
+   "source": "emotion_pick",
+   "reject_reasons": [
+    "D1: overlaps clip e01 (53% of the shorter; intensity 4 vs 4)"
+   ],
+   "moment": {
+    "id": "p02",
+    "line": "L0047",
+    "text": "తాత happy anniversary అని రాసి bouquet పంపిస్తావా",
+    "feeling": "laugh",
+    "intensity": 4,
+    "why": "Vaishu vents her disbelief that her boyfriend sent a bouquet saying 'thatha happy anniversary' on her grandfather's death memorial.",
+    "type": "punchline",
+    "lands_on_screen": true
+   },
+   "dup_of": "e01",
+   "stop": {
+    "line": "L0010",
+    "text": "మనిద్దరం కలిసి ఉండటం కంటే breakup చేసుకొని happy గా ఉందాం",
+    "why": "A girl bluntly proposes breaking up as a path to happiness with 'మనిద్దరం కలిసి ఉండటం కంటే breakup చేసుకొని happy గా ఉందాం'.",
+    "cold_open": false
+   },
+   "stay": "Will the boyfriend accept her breakup after hearing the ridiculous reasons she lists?",
+   "land": {
+    "line": "L0047",
+    "text": "తాత happy anniversary అని రాసి bouquet పంపిస్తావా",
+    "reaction": "L0049",
+    "reaction_text": "సిగ్గుందారా నీకు"
+   },
+   "reason": "Viewer stops because Vaishu bluntly demands a breakup to be happy ('మనిద్దరం కలిసి ఉండటం కంటే breakup చేసుకొని happy గా ఉందాం'), stays to find out what ridiculous reasons she will list, and it ends on the absurd reveal of her boyfriend sending a 'happy anniversary' bouquet for her grandfather's death memorial (laugh).",
+   "title": "Breakup కి ఇంత దారుణమైన కారణాలా!",
+   "pieces": [
+    {
+     "start_word": 17,
+     "end_word": 58,
+     "start": 19.2,
+     "end": 33.3
+    },
+    {
+     "start_word": 85,
+     "end_word": 190,
+     "start": 56.9,
+     "end": 112.42
+    }
+   ],
+   "region": {
+    "start_word": 17,
+    "end_word": 190,
+    "start": 19.2,
+    "end": 112.42
+   },
+   "edited_duration": 69.62,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "మనిద్దరం కలిసి ఉండటం కంటే breakup చేసుకొని happy గా ఉందాం Sorry వైషు, నీ breakup నేను accept చేయలేను ఏయ్! ఎందుకు? నేను నీ love నా accept చేశా కదా, ఇప్పుడు నువ్వు నా breakup నా accept చెయ్ ఒక్క reason, ఒక్క reason చెప్పు ఎందుకు నీ breakup accept చేయలో birthday కి ఎవరైనా gold chain ఓ teddy bear ఓ bouquet ఓ లేదా at least chocolate ఓ gift ఇస్తారు ORS లు ఇచ్చావేంట్రా అంటే ఆ రోజు weak గా ఉన్నావని ఇంట్లో ఎవ్వరూ లేరు, ఒంటరిగా ఉన్నాను అని call చేస్తే YouTube open చేసి ఆంజనేయ దండకం link పంపించావ్ అది కూడా okay రా. నన్ను drop చేయడానికి వచ్చి మా ఇంటి దగ్గర pan shop లో cigarettes తాగి అరువు పెట్టి డబ్బులు అడిగితే నా పేరు చెప్పావంట ఆ shop వాడు మా నాన్న దగ్గర డబ్బులు తీసుకున్నాడు. మా నాన్న నన్ను అనుమానించారు రా నేను cigarettes తాగుతున్నానేమో అని అది కూడా excuse చేసేశా హా very good మా తాత చనిపోయి one year అయిందని సంవత్సరికం చేస్తుంటే తాత happy anniversary అని రాసి bouquet పంపిస్తావా సిగ్గుందారా నీకు",
+   "time_segments": [
+    {
+     "start": 18.9,
+     "end": 33.55,
+     "kind": "scene"
+    },
+    {
+     "start": 56.65,
+     "end": 115.777,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 73.78,
+   "start_line": "L0010",
+   "end_line": "L0049",
+   "cold_open": false,
+   "build_moment": {
+    "purpose": "standalone",
+    "start_line": "L0010",
+    "end_line": "L0049",
+    "cold_open_lines": [],
+    "drops": [
+     {
+      "first_line": "L0016",
+      "last_line": "L0026",
+      "why": "Cuts the slow prop inspection and dead air to jump straight into her rapid-fire list of breakup reasons."
+     }
+    ]
+   }
+  },
+  {
+   "id": "e07",
+   "tier": "rejected",
+   "source": "emotion_pick",
+   "reject_reasons": [
+    "D1: overlaps clip e06 (100% of the shorter; intensity 4 vs 4)"
+   ],
+   "moment": {
+    "id": "p07",
+    "line": "L0172",
+    "text": "వేరే వాడితో ఉంది",
+    "feeling": "laugh",
+    "intensity": 4,
+    "why": "Asked if he has a girlfriend, Prasad deadpans that he does, but she is currently 'with someone else.'",
+    "type": "punchline",
+    "lands_on_screen": true
+   },
+   "dup_of": "e06",
+   "stop": {
+    "line": "L0135",
+    "text": "వైషు madam మీరు చాలా అందంగా ఉన్నారండి",
+    "why": "A stranger stops scrolling at Prasad's hilarious and unabashedly bold compliment to a passenger: \"వైషు madam మీరు చాలా అందంగా ఉన్నారండి\".",
+    "cold_open": false
+   },
+   "stay": "How will Vaishu react to Prasad's increasingly bizarre life logic and relationship status?",
+   "land": {
+    "line": "L0172",
+    "text": "వేరే వాడితో ఉంది",
+    "reaction": "hold"
+   },
+   "reason": "Viewer stops because Prasad opens the ride with an unexpectedly forward compliment saying \"వైషు madam మీరు చాలా అందంగా ఉన్నారండి\", stays to find out what other bizarre life logic he shares, and it ends on his deadpan punchline that his girlfriend is with someone else (laugh).",
+   "title": "Girlfriend ఉందా అని అడిగితే...",
+   "pieces": [
+    {
+     "start_word": 465,
+     "end_word": 599,
+     "start": 285.74,
+     "end": 364.92
+    }
+   ],
+   "region": {
+    "start_word": 465,
+    "end_word": 599,
+    "start": 285.74,
+    "end": 364.92
+   },
+   "edited_duration": 79.18,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "వైషు madam మీరు చాలా అందంగా ఉన్నారండి Thank you అన్నా ప్రసాద్ madam Okay ప్రసాద్ అన్నా Only ప్రసాద్ madam చాలా simple ఏ మన్నా madam ప్రసాద్ is okay, అన్న is not okay ఎందుకు six months back ఒక అమ్మాయి ఇలాగే అన్నయ్యా అని పిలిచి అన్నం లేకుండా చచ్చిపోయింది madam ఆ తర్వాత తర్వాత ఆ అమ్మాయి దినానికి మేము వెళ్లి అన్నం తిని వచ్చామండి నిన్ను నిజంగానే రాకేష్ పంపించాడా ఆ హా! రాకేష్ is very genuine. కొంచెం work చేసినా ఎక్కువ appreciate చేస్తాడాయన. అమ్మాయిలకి చాలా care తీసుకుంటాడు Yeah nice guy. మీరేం చదువుకున్నారు Ninth pass madam, tenth class summer coaching లో ఆపేశానండి చదువుకొని ఉంటే మీరు మాలాగే మంచి job చేసుకునే వాళ్ళు కదా అంటే మా ఇంటి దగ్గర ఒకడు బాగా చదువుకొని పిచ్చి అయిపోయాడండి. అప్పటి నుంచి నేను చదవడం మానేశాను మీరంత sensitive ఆ అత్తని ఆంటీ అని ఎవరు పిలిచినా కూడా తట్టుకోలేను sensitive అండి మీకు boyfriend ఉన్నాడా ఏయ్! నీకు girlfriend లేదా వేరే వాడితో ఉంది నాకు philophobia",
+   "time_segments": [
+    {
+     "start": 285.44,
+     "end": 365.068,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 79.63,
+   "start_line": "L0135",
+   "end_line": "L0172",
+   "cold_open": false,
+   "build_moment": {
+    "purpose": "standalone",
+    "start_line": "L0135",
+    "end_line": "L0172",
+    "cold_open_lines": [],
+    "drops": []
+   }
+  },
+  {
+   "id": "e09",
+   "tier": "rejected",
+   "source": "emotion_pick",
+   "reject_reasons": [
+    "D1: overlaps clip e08 (100% of the shorter; intensity 4 vs 4)"
+   ],
+   "moment": {
+    "id": "p09",
+    "line": "L0333",
+    "text": "పర్లేదు మీ ఆయన్ని చంపేద్దాం",
+    "feeling": "laugh",
+    "intensity": 4,
+    "why": "Prasad casually suggests 'killing her husband' and finding a lawyer so they won't get caught after learning Pooja is married.",
+    "type": "punchline",
+    "lands_on_screen": true
+   },
+   "dup_of": "e08",
+   "stop": {
+    "line": "L0314",
+    "text": "మరి ఆ మంచి అమ్మాయి దొరికిందా?",
+    "why": "A stranger scrolling stops when Pooja teasingly asks \"మరి ఆ మంచి అమ్మాయి దొరికిందా?\", intrigued to see who Prasad names.",
+    "cold_open": false
+   },
+   "stay": "How will Prasad react when Pooja reveals the shocking truth that she is already married?",
+   "land": {
+    "line": "L0333",
+    "text": "పర్లేదు మీ ఆయన్ని చంపేద్దాం",
+    "reaction": "L0336",
+    "reaction_text": "ఏం మాట్లాడుతున్నావ్ రా?"
+   },
+   "reason": "Viewer stops because Pooja playfully asks who the good girl is, stays to find out how Prasad handles her marriage confession, and it ends on his absurd offer to murder her husband (laugh).",
+   "title": "నాకు పెళ్లయింది అనగానే వీడి ప్లాన్ చూడు",
+   "pieces": [
+    {
+     "start_word": 1146,
+     "end_word": 1204,
+     "start": 657.384,
+     "end": 692.424
+    }
+   ],
+   "region": {
+    "start_word": 1146,
+    "end_word": 1204,
+    "start": 657.384,
+    "end": 692.424
+   },
+   "edited_duration": 35.04,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "మరి ఆ మంచి అమ్మాయి దొరికిందా? నువ్వే. బాబోయ్! నన్ను వదిలేయి రా. I am out of your league. ఎవరో set అవకపోతే నా పరిస్థితి ఏంటే. నీ సంగతి నాకెందుకురా? మనం love చేసుకున్నాం కదా. Yo! Yo! గట్టిగా అనకురా బాబు. ఈ విషయాన్ని నువ్వు ఎంత తొందరగా మర్చిపోతే అంత మంచిది. ఏ? Okay, ప్రసాద్ నాకు పెళ్లయింది. అలా ఎలా చేసుకున్నావ్? Okay, పర్లేదు మీ ఆయన్ని చంపేద్దాం . ఏం మాట్లాడుతున్నావ్ రా?",
+   "time_segments": [
+    {
+     "start": 657.084,
+     "end": 692.974,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 35.89,
+   "start_line": "L0314",
+   "end_line": "L0336",
+   "cold_open": false,
+   "build_moment": {
+    "purpose": "standalone",
+    "start_line": "L0314",
+    "end_line": "L0336",
+    "cold_open_lines": [],
+    "drops": []
+   }
+  },
+  {
+   "id": "e10",
+   "tier": "rejected",
+   "source": "emotion_pick",
+   "reject_reasons": [
+    "D1: overlaps clip e08 (70% of the shorter; intensity 4 vs 4)"
+   ],
+   "moment": {
+    "id": "p10",
+    "line": "L0341",
+    "text": "మంచి love story లో item song లో మీరేంటండీ?",
+    "feeling": "laugh",
+    "intensity": 4,
+    "why": "Prasad roasts Pooja's eccentrically dancing husband by asking why an 'item song' is interrupting their love story.",
+    "type": "punchline",
+    "lands_on_screen": true
+   },
+   "dup_of": "e08",
+   "stop": {
+    "line": "L0321",
+    "text": "మనం love చేసుకున్నాం కదా.",
+    "why": "Prasad bluntly claims \"మనం love చేసుకున్నాం కదా\", startling Pooja and immediately hooking the viewer into their messy relationship history.",
+    "cold_open": false
+   },
+   "stay": "How will Prasad react to Pooja revealing she is married, and who is the bizarre stranger interrupting them?",
+   "land": {
+    "line": "L0341",
+    "text": "మంచి love story లో item song లో మీరేంటండీ?",
+    "reaction": "L0342",
+    "reaction_text": "Item ఆ?"
+   },
+   "reason": "Viewer stops because Prasad unexpectedly brings up their past relationship, stays to see how he reacts to her marriage, and it ends on his hilarious roast calling her dancing husband an item song (laugh).",
+   "title": "Love Story లో Item Song లా మీరేంటండీ?",
+   "pieces": [
+    {
+     "start_word": 1171,
+     "end_word": 1232,
+     "start": 666.424,
+     "end": 706.084
+    }
+   ],
+   "region": {
+    "start_word": 1171,
+    "end_word": 1232,
+    "start": 666.424,
+    "end": 706.084
+   },
+   "edited_duration": 39.66,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "మనం love చేసుకున్నాం కదా. Yo! Yo! గట్టిగా అనకురా బాబు. ఈ విషయాన్ని నువ్వు ఎంత తొందరగా మర్చిపోతే అంత మంచిది. ఏ? Okay, ప్రసాద్ నాకు పెళ్లయింది. అలా ఎలా చేసుకున్నావ్? Okay, పర్లేదు మీ ఆయన్ని చంపేద్దాం . ఏం మాట్లాడుతున్నావ్ రా? case మన మీద రాకుండా మంచి lawyer ని నేను set చేస్తా, okay. నా గురించే మాట్లాడుకుంటున్నారా? పరమజ్యోతి పరమజ్యోతి పరమజ్యోతి పరమజ్యోతి మంచి love story లో item song లో మీరేంటండీ? Item ఆ?",
+   "time_segments": [
+    {
+     "start": 666.207,
+     "end": 708.084,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 41.88,
+   "start_line": "L0321",
+   "end_line": "L0342",
+   "cold_open": false,
+   "build_moment": {
+    "purpose": "standalone",
+    "start_line": "L0321",
+    "end_line": "L0342",
+    "cold_open_lines": [],
+    "drops": []
+   }
+  }
+ ],
+ "episode_note": {
+  "text": "23 moments a stranger would feel; 12 built by the build call (11 over the cap, 0 over the spend limit not built); 1 rejected (N0 1); 4 duplicates dropped; 7 shown, in episode order."
+ },
+ "episode_summary": {
+  "n_moments_listed": 23,
+  "n_moments_valid": 23,
+  "n_moments_rejected": 0,
+  "moments_rejected": [],
+  "moments_by_feeling": {
+   "laugh": 19,
+   "shock": 2,
+   "tension": 2
+  },
+  "moments_by_intensity": {
+   "5": 2,
+   "4": 21
+  },
+  "max_moments": 12,
+  "n_build_calls": 12,
+  "n_not_built_cap": 11,
+  "n_not_built_spend": 0,
+  "n_no_clip": 1,
+  "n_blocked": 0,
+  "n_call_failed": 0,
+  "n_invalid": 0,
+  "n_builder_rejected": 0,
+  "n_hard_rules": 0,
+  "n_stop_check_failed": 0,
+  "n_land_check_failed": 0,
+  "n_built": 11,
+  "n_deduped": 4,
+  "n_shown": 7,
+  "shown_by_feeling": {
+   "laugh": 5,
+   "shock": 1,
+   "tension": 1
+  },
+  "rejected": [
+   {
+    "clip": "e12",
+    "moment": "p12",
+    "line": "L0452",
+    "reason": "N0: no clip: The exchange begins with flat phone greetings ('Hi ప్రసాద్') with no suitable hook or valid cold open, and cutting just the punchline lacks the necessary setup to work for a first-time viewer."
+   },
+   {
+    "clip": "e02",
+    "moment": "p02",
+    "line": "L0047",
+    "reason": "D1: overlaps clip e01 (53% of the shorter; intensity 4 vs 4)"
+   },
+   {
+    "clip": "e07",
+    "moment": "p07",
+    "line": "L0172",
+    "reason": "D1: overlaps clip e06 (100% of the shorter; intensity 4 vs 4)"
+   },
+   {
+    "clip": "e09",
+    "moment": "p09",
+    "line": "L0333",
+    "reason": "D1: overlaps clip e08 (100% of the shorter; intensity 4 vs 4)"
+   },
+   {
+    "clip": "e10",
+    "moment": "p10",
+    "line": "L0341",
+    "reason": "D1: overlaps clip e08 (70% of the shorter; intensity 4 vs 4)"
+   }
+  ],
+  "warnings": [],
+  "episode_notes": "A Telugu comedy web series following Prasad, an eccentric, shameless young man navigating awkward romantic encounters with Vaishu (Bhramara), Pooja, Pratheeksha, and Virajitha. After getting rejected repeatedly and finding out his love interests are either married, engaged, or related, he faces a surprise twist at the end. The final revelation in L0888-L0918, where Vaishu cancels her wedding to aggressively claim Prasad, would spoil the ending if clipped out of sequence."
+ },
+ "moment_table": [
+  {
+   "id": "p01",
+   "line": "L0028",
+   "feeling": "laugh",
+   "intensity": 4,
+   "text": "ORS లు ఇచ్చావేంట్రా",
+   "why": "Vaishu hysterically confronts her boyfriend for gifting her 'ORS sachets' for her birthday instead of standard romantic gifts.",
+   "status": "shown",
+   "clip": "e01"
+  },
+  {
+   "id": "p02",
+   "line": "L0047",
+   "feeling": "laugh",
+   "intensity": 4,
+   "text": "తాత happy anniversary అని రాసి bouquet పంపిస్తావా",
+   "why": "Vaishu vents her disbelief that her boyfriend sent a bouquet saying 'thatha happy anniversary' on her grandfather's death memorial.",
+   "status": "rejected",
+   "reason": "D1: overlaps clip e01 (53% of the shorter; intensity 4 vs 4)"
+  },
+  {
+   "id": "p03",
+   "line": "L0070",
+   "feeling": "laugh",
+   "intensity": 5,
+   "text": "ఆరోజు నువ్వు date లో ఉన్నావ్ అన్నావ్ కదా",
+   "why": "The boyfriend defends gifting sanitary pads for Valentine's Day because she literally told him she was on a period 'date'.",
+   "status": "shown",
+   "clip": "e03"
+  },
+  {
+   "id": "p04",
+   "line": "L0100",
+   "feeling": "laugh",
+   "intensity": 4,
+   "text": "అక్కడ చెరువు రసం చాలా బాగుంటుంది",
+   "why": "When asked to take her somewhere romantic, the boyfriend takes her to Secunderabad railway station because the 'cheraku rasam' (sugarcane juice) is good.",
+   "status": "shown",
+   "clip": "e04"
+  },
+  {
+   "id": "p05",
+   "line": "L0126",
+   "feeling": "laugh",
+   "intensity": 5,
+   "text": "అమ్మాయిలకి bus free రా దరిద్రుడా",
+   "why": "Vaishu brutally punctures her boyfriend's romantic bus flashback by pointing out that bus rides are free for women.",
+   "status": "shown",
+   "clip": "e05"
+  },
+  {
+   "id": "p06",
+   "line": "L0148",
+   "feeling": "laugh",
+   "intensity": 4,
+   "text": "తర్వాత ఆ అమ్మాయి దినానికి మేము వెళ్లి అన్నం తిని వచ్చామండి",
+   "why": "Prasad justifies why women shouldn't call him 'anna' with a darkly absurd tale about eating lunch at the funeral of the last girl who did.",
+   "status": "shown",
+   "clip": "e06"
+  },
+  {
+   "id": "p07",
+   "line": "L0172",
+   "feeling": "laugh",
+   "intensity": 4,
+   "text": "వేరే వాడితో ఉంది",
+   "why": "Asked if he has a girlfriend, Prasad deadpans that he does, but she is currently 'with someone else.'",
+   "status": "rejected",
+   "reason": "D1: overlaps clip e06 (100% of the shorter; intensity 4 vs 4)"
+  },
+  {
+   "id": "p08",
+   "line": "L0328",
+   "feeling": "shock",
+   "intensity": 4,
+   "text": "Okay, ప్రసాద్ నాకు పెళ్లయింది.",
+   "why": "Just as Prasad starts hitting on Pooja as a backup, she drops the shocking truth that she is already married.",
+   "status": "shown",
+   "clip": "e08"
+  },
+  {
+   "id": "p09",
+   "line": "L0333",
+   "feeling": "laugh",
+   "intensity": 4,
+   "text": "పర్లేదు మీ ఆయన్ని చంపేద్దాం",
+   "why": "Prasad casually suggests 'killing her husband' and finding a lawyer so they won't get caught after learning Pooja is married.",
+   "status": "rejected",
+   "reason": "D1: overlaps clip e08 (100% of the shorter; intensity 4 vs 4)"
+  },
+  {
+   "id": "p10",
+   "line": "L0341",
+   "feeling": "laugh",
+   "intensity": 4,
+   "text": "మంచి love story లో item song లో మీరేంటండీ?",
+   "why": "Prasad roasts Pooja's eccentrically dancing husband by asking why an 'item song' is interrupting their love story.",
+   "status": "rejected",
+   "reason": "D1: overlaps clip e08 (70% of the shorter; intensity 4 vs 4)"
+  },
+  {
+   "id": "p11",
+   "line": "L0423",
+   "feeling": "tension",
+   "intensity": 4,
+   "text": "మనుషుల్ని దూరం పెట్టడమంటే అది మానసిక రోగం కాదు పిరికితనం.",
+   "why": "Prasad calls out Vaishu's philophobia by stating that pushing people away is pure cowardice rather than a mental illness.",
+   "status": "shown",
+   "clip": "e11"
+  },
+  {
+   "id": "p12",
+   "line": "L0452",
+   "feeling": "laugh",
+   "intensity": 4,
+   "text": "ప్రతీక్ష ఎప్పుడో కట్టిన insurance ఇప్పుడు mature అయింది.",
+   "why": "Prasad hilariously compares Pratheeksha finally giving him attention to an old 'insurance policy' that just matured.",
+   "status": "rejected",
+   "reason": "N0: no clip: The exchange begins with flat phone greetings ('Hi ప్రసాద్') with no suitable hook or valid cold open, and cutting just the punchline lacks the necessary setup to work for a first-time viewer."
+  },
+  {
+   "id": "p13",
+   "line": "L0491",
+   "feeling": "laugh",
+   "intensity": 4,
+   "text": "So you are like my brother",
+   "why": "Pratheeksha builds up a tender confession only to hilariously bro-zone Prasad by saying 'you are like my brother.'",
+   "status": "not_built",
+   "reason": "beyond --max-moments cap"
+  },
+  {
+   "id": "p14",
+   "line": "L0671",
+   "feeling": "laugh",
+   "intensity": 4,
+   "text": "Ma'am వీడు నన్ను twenty thousand అప్పు అడుగుతున్నాడు ఇవ్వకపోతే propose చేస్తా అని బెదిరిస్తున్నాడు",
+   "why": "A female coworker complains to the boss that Prasad is blackmailing her with a marriage proposal if she doesn't lend him twenty thousand rupees.",
+   "status": "not_built",
+   "reason": "beyond --max-moments cap"
+  },
+  {
+   "id": "p15",
+   "line": "L0680",
+   "feeling": "laugh",
+   "intensity": 4,
+   "text": "పాలలో నీళ్ళు కలిస్తే కల్తీ కదండీ",
+   "why": "When her husband preaches that spouses should blend like milk and water, Vaishu retorts that mixing water in milk is just adulteration.",
+   "status": "not_built",
+   "reason": "beyond --max-moments cap"
+  },
+  {
+   "id": "p16",
+   "line": "L0686",
+   "feeling": "tension",
+   "intensity": 4,
+   "text": "మీరు నా గతాన్ని తవ్వితే నేను మీ గోతులు తవ్వాల్సి వస్తుంది",
+   "why": "Vaishu delivers a sharp threat to her husband, warning him that if he digs into her past, she will dig his grave.",
+   "status": "not_built",
+   "reason": "beyond --max-moments cap"
+  },
+  {
+   "id": "p17",
+   "line": "L0693",
+   "feeling": "laugh",
+   "intensity": 4,
+   "text": "ఒంటి మీద నల్ల coat లేకపోతే బజ్జీల బండి కూడా manage చేయలేరు",
+   "why": "Vaishu mocks her husband's lawyer credentials by telling him that without his black coat, he couldn't even run a bajji stall.",
+   "status": "not_built",
+   "reason": "beyond --max-moments cap"
+  },
+  {
+   "id": "p18",
+   "line": "L0753",
+   "feeling": "laugh",
+   "intensity": 4,
+   "text": "రెండు వందలు ఇవ్వు English లో మాట్లాడతాను",
+   "why": "Told that he speaks cheaply, Prasad cheekily offers to speak in English if she gives him two hundred rupees.",
+   "status": "not_built",
+   "reason": "beyond --max-moments cap"
+  },
+  {
+   "id": "p19",
+   "line": "L0772",
+   "feeling": "laugh",
+   "intensity": 4,
+   "text": "tea తో కలిసి బండి తాగేస్తాడా తాగబోతున్నా కొడుకు",
+   "why": "Told her match is a teetotaler, Prasad ridiculously misinterprets it as a drunkard who mixes brandy into tea.",
+   "status": "not_built",
+   "reason": "beyond --max-moments cap"
+  },
+  {
+   "id": "p20",
+   "line": "L0781",
+   "feeling": "laugh",
+   "intensity": 4,
+   "text": "అప్పుడు సంబంధం పెళ్లి Bro cure చూడమన్నంగాన్నా RKEs department వాళ్ళకి అడగాలి తవకలో తేస్తారు మంచి అమ్మాయిని",
+   "why": "Prasad mocks the cliché of finding a better girl by quipping that he should hire the archaeology department to dig one up.",
+   "status": "not_built",
+   "reason": "beyond --max-moments cap"
+  },
+  {
+   "id": "p21",
+   "line": "L0811",
+   "feeling": "laugh",
+   "intensity": 4,
+   "text": "పోన్లే మీ విడాకుల case మీరే వాదించుకోవచ్చు",
+   "why": "Hearing that Virajitha is marrying a lawyer too, Prasad cynically observes that they can argue their own divorce case.",
+   "status": "not_built",
+   "reason": "beyond --max-moments cap"
+  },
+  {
+   "id": "p22",
+   "line": "L0835",
+   "feeling": "laugh",
+   "intensity": 4,
+   "text": "అలా అని చెప్పి నిన్ను వేరే జంతువుతో పోల్చలేను కదా",
+   "why": "After Virajitha compares him to a pig, Prasad exposes her ignorance of liquor brands and snaps back that he won't compare her to animals.",
+   "status": "not_built",
+   "reason": "beyond --max-moments cap"
+  },
+  {
+   "id": "p23",
+   "line": "L0918",
+   "feeling": "shock",
+   "intensity": 4,
+   "text": "లేదా నిన్నైనా చంపేస్తా",
+   "why": "Vaishu shocks Prasad by declaring her love through a psycho-possessive threat to either kill herself or murder him if he looks at anyone else.",
+   "status": "not_built",
+   "reason": "beyond --max-moments cap"
+  }
+ ]
+}
