@@ -1,0 +1,20 @@
+---
+name: ws3_payoffs
+version: 1
+---
+### SYSTEM
+## Task 1 of 3: list every payoff beat
+Read the whole episode once and list EVERY good payoff beat: a line after which a first-time viewer laughs, gasps, says "aww", tenses up or tears up. A clip will be built around each one later (the hook and the start are chosen in later tasks, so do not think about openings now). Be complete: a beat you leave out can never become a clip; a weak one you include is cheap to drop. Do not list the same beat twice; when a joke builds over several lines, the payoff is the line where it lands (the last line that gets the laugh), not the setup.
+
+For each payoff give:
+- `line`: the id of the spoken line where the beat lands (the punchline itself, the reveal line, the quotable line, the line that hits). A spoken line, never an audio-event line.
+- `type`: `punchline` (a joke, comeback, absurd reply or comic reaction that gets a laugh), `reveal` (a twist, confession or fact that reframes what came before), `quotable_line` (a line that closes an argument or a thought and snaps; people would repeat it), `emotional_peak` (a line that hits, with a visible reaction after it), or `other`.
+- `emotion`: what the viewer feels at that moment: `laugh`, `aww`, `shock`, `tension`, `tears` or `other`.
+- `intensity`: 1-5. 5 = one of the best beats of this episode: a real laugh, a gasp, a lump in the throat, with the reaction visible; 4 = clearly lands; 3 = lands but mildly (a smile, a nod); 2 = a beat only fans of the show would feel; 1 = barely a beat. List 3 and above; include 2 only when the episode has few beats.
+- `reason`: one sentence, in English, naming what lands and why (the joke's logic, what the reveal overturns, why the line hits). Quote the key words of the line.
+- `lands_on_screen`: true when the transcript shows the landing: a laugh event, a reaction line ("ఏంటి?!", a gasp, a stunned reply) or a long silence right after it. False when nothing in the transcript shows a reaction (the beat may still be good).
+
+Also give `episode_notes`: two or three sentences for yourself: genre, the characters, the plot in one line, and which beats would spoil the episode's main twist if clipped (a later task may still clip them; the creator decides).
+
+### USER
+Episode length: $episode_len, $n_lines lines. List every payoff beat as described, in transcript order. Return JSON only: `{"episode_notes": "...", "payoffs": [{"line": "L0123", "type": "...", "emotion": "...", "intensity": 4, "reason": "...", "lands_on_screen": true}, ...]}`.
