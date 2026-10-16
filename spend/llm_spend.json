@@ -1,6 +1,6 @@
 {
- "total_usd": 18.546496,
- "calls": 1887,
+ "total_usd": 18.660465,
+ "calls": 1893,
  "entries": [
   {
    "t": "2026-09-27T00:00:00",
@@ -15239,6 +15239,60 @@
    "usd": 0.033716,
    "source": "emotion1",
    "cached_in": 26653
+  },
+  {
+   "t": "2026-10-16T19:08:07",
+   "model": "gemini-3.8-flash",
+   "in": 12764,
+   "out": 0,
+   "usd": 0.006382,
+   "source": "emotion2",
+   "note": "cache storage 12764 tok x 3600 s"
+  },
+  {
+   "t": "2026-10-16T19:09:26",
+   "model": "gemini-3.8-flash",
+   "in": 13690,
+   "out": 10182,
+   "usd": 0.039834,
+   "source": "emotion2",
+   "cached_in": 12764
+  },
+  {
+   "t": "2026-10-16T19:10:05",
+   "model": "gemini-3.8-flash",
+   "in": 14718,
+   "out": 6301,
+   "usd": 0.026052,
+   "source": "emotion2",
+   "cached_in": 12764
+  },
+  {
+   "t": "2026-10-16T19:10:28",
+   "model": "gemini-3.8-flash",
+   "in": 14629,
+   "out": 3053,
+   "usd": 0.013805,
+   "source": "emotion2",
+   "cached_in": 12764
+  },
+  {
+   "t": "2026-10-16T19:10:47",
+   "model": "gemini-3.8-flash",
+   "in": 14556,
+   "out": 2811,
+   "usd": 0.012843,
+   "source": "emotion2",
+   "cached_in": 12764
+  },
+  {
+   "t": "2026-10-16T19:11:10",
+   "model": "gemini-3.8-flash",
+   "in": 14598,
+   "out": 3392,
+   "usd": 0.015053,
+   "source": "emotion2",
+   "cached_in": 12764
   }
  ]
 }
