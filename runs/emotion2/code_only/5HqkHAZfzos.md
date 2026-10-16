@@ -17,15 +17,14 @@ Cost $0.2075 ($0.0000 billed this run).
 
 ## #2 e04 అమ్మ కోసం మోనా తీసుకున్న నిర్ణయం (aww, intensity 4, standalone)
 
-- plays 30.9 s: 15:28.8-15:32.2 + 14:28.4-14:47.3 + 15:26.8-15:28.6 + 15:32.2-15:38.8
+- plays 31.0 s: 14:28.4-14:47.3 + 15:26.8-15:38.8
 - reason: Viewer stops because of Mona's painful realization about her mother begging for small change, stays to find out whether her mother will accept the money, and it ends on Mona promising to earn and give everything to her (aww).
-- stop (L0355, cold open, B_lift, at 0.12 s): నువ్వు వన్నా, రెండొందలకి నాన్నని అడగడం నాకు నచ్చట్లేదు. | A daughter's blunt emotional objection about her mother having to plead for petty cash ('నువ్వు వందో, రెండొందలకి నాన్నని అడగడం నాకు నచ్చట్లేదు') hooks viewers immediately.
+- stop (L0355, B_refused_play_start, at 21.06 s): నువ్వు వన్నా, రెండొందలకి నాన్నని అడగడం నాకు నచ్చట్లేదు. | A daughter's blunt emotional objection about her mother having to plead for petty cash ('నువ్వు వందో, రెండొందలకి నాన్నని అడగడం నాకు నచ్చట్లేదు') hooks viewers immediately.
 - stay: Will Mona's hesitant mother accept the hard-earned money from her daughter?
 - land (L0356, reaction L0358): నేను బాగా సంపాదించి డబ్బులన్నీ నీకే ఇస్తా.
 - moment: L0356 Mona passionately vows to earn money and give it all to her mother so she never has to beg her husband for petty change ('నేను బాగా సంపాదించి డబ్బులన్నీ నీకే ఇస్తా').
 - end: payoff ends 15:36.1, hold 2.74 s
 - cut 14:47.3-15:26.8 (39.46 s): Cuts the parallel bar conversation between Mona's father and Rao to stay focused on the mother-daughter moment.
-- cut 15:28.6-15:32.2 (3.57 s): cold-open skip 
 
 ## #3 e06 Followers మధ్యలో నా స్థానం ఏంటి? (aww, intensity 5, standalone)
 

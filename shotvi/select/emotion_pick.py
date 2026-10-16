@@ -47,12 +47,15 @@ emotion_pick/0.2 (founder's fix spec, 2026-10-16; the DEFAULTS below). Every cha
            disk-cached under runs/cache/loudness), and a continuation guard: not when the next spoken line opens with a
            dependent connective (``lift_ok.continuations``) or is a 1-2 word acknowledgement (``lift_ok.acks``).
            ``lift_ok.enforce``: a cold open on a line that was not offered is refused (-> the fallback below).
+           ``lift_ok.same_speaker`` / ``cold_open.same_speaker``: a line whose next spoken line has the same Scribe
+           speaker label is never offered / lifted (lifting would split one speaker's turn); structural, no word list.
   cluster  (``cluster.enabled``) between FIND and BUILD, consecutive payoffs (transcript order) join one cluster when
            within ``max_lines`` spoken lines or ``max_s`` seconds of the previous payoff and no scene transition lies
            between them (a music / song event >= ``music_min_s`` with no spoken word during it; optionally a silent gap
            >= ``silence_gap_s``). One build call per cluster: target = the LAST payoff with intensity >= cluster max -
            ``target_within``; the earlier payoffs go into the task as $cluster_context; sort strength = cluster max;
-           ``--max-moments`` caps clusters.
+           ``--max-moments`` caps clusters. A payoff that would make the cluster span more than ``max_span_s`` (90 s,
+           first word of the first payoff line to first word of the last) starts a new cluster.
   land     the land may lie ``build.land_window_lines`` spoken lines before to ``build.land_after_lines`` after the
            found line. ``build.end_rule`` "clamp": end_line is clamped so the land is among the last 3 spoken lines
            (<= 2 spoken lines after land, <= 1 after effective_land = max(land, reaction)), never moved to the land or
@@ -65,7 +68,8 @@ emotion_pick/0.2 (founder's fix spec, 2026-10-16; the DEFAULTS below). Every cha
            rejecting. The case is recorded in ``stop.case``.
   dedupe   ``dedupe.rule`` "scene": duplicates share > ``dedupe.overlap`` (35%) of the shorter clip, OR their
            start..end line spans overlap and both land lines lie in the same scene; keep the higher strength, then
-           the one playing 30-75 s, then the one ending on the later line.
+           (``keep_longer``) the longer clip when it plays <= 120 s and, in one scene, one clip plays the other's land
+           line or the other plays < 30 s over its tail; then the one playing 30-75 s, then the one ending later.
 The internal-cut cap (v1 builder, cut.max_cuts 3) already counts the lift's in-place skip as one cut.
 
 Rejection codes: N0 the build call said no_clip; X1 Gemini safety block (the moment is skipped); C1 call failed /
@@ -143,10 +147,10 @@ DEFAULTS: dict = {
                                   "so", "but", "and", "because"],
                 "acks": ["అవునా", "అవును", "ఊ", "ఊం", "ఉమ్", "సరే", "హ్మ్", "హా", "ఆ", "ఓ", "ఓకే", "అలాగా",
                          "ok", "okay", "hmm", "hm", "yes", "yeah"],
-                "ack_max_words": 2},
+                "ack_max_words": 2, "same_speaker": True},
     # same-scene clustering of the found payoffs before the build calls (0.1: off)
     "cluster": {"enabled": True, "max_lines": 35, "max_s": 50.0, "music_min_s": 4.0, "silence_gap_s": None,
-                "target_within": 1},
+                "target_within": 1, "max_span_s": 90.0},
     # build: max_moments None = a call for every found moment (cluster). The lift-ok list in the task covers lines
     # from lift_before_s before the land line to lift_after_s after it (as merged call C). The land may lie
     # land_window_lines before / land_after_lines after the found line (None = land_window_lines). end_rule "v1":
@@ -155,7 +159,8 @@ DEFAULTS: dict = {
               "land_after_lines": 15, "max_end_after_payoff_lines": 3,
               "end_rule": "clamp", "end_after_land_lines": 2, "end_after_reaction_lines": 1},
     # stop != start_line. rule "v1": always a lift (refused = K1 reject); "fallback": Case A / B (docstring)
-    "cold_open": {"rule": "fallback", "near_lines": 2, "near_s": 3.0, "weak_advance_lines": 4,
+    # same_speaker: a lift is refused when the next spoken line has the same (Scribe) speaker label
+    "cold_open": {"rule": "fallback", "same_speaker": True, "near_lines": 2, "near_s": 3.0, "weak_advance_lines": 4,
                   "weak_max_words": 2, "weak_min_s": 1.0,
                   "greetings": ["hello", "hi", "hey", "హలో", "హాయ్", "నమస్తే", "namaste", "thank", "thanks", "you",
                                 "bye", "good", "morning", "evening", "night"]},
@@ -163,7 +168,10 @@ DEFAULTS: dict = {
     "check": {"stop_window_s": 3.0, "land_last_lines": 3, "stop_late": "flag", "land_late": "trim"},
     # rule "v1": > guardrails.dup_overlap (50%) of the shorter, higher intensity then earlier land wins; "scene": see
     # the docstring
-    "dedupe": {"rule": "scene", "overlap": 0.35, "prefer_play_s": [30.0, 75.0]},
+    # keep_longer: in one scene, when one clip plays the other's land line, or a clip under short_tail_s overlaps
+    # the longer clip's tail, the longer clip (playing <= keep_longer_max_s) wins after strength
+    "dedupe": {"rule": "scene", "overlap": 0.35, "prefer_play_s": [30.0, 75.0], "keep_longer": True,
+               "keep_longer_max_s": 120.0, "short_tail_s": 30.0},
     "budget_usd": 3.0,          # per-episode USD cap of the LLM client; the rupee guard (--max-ledger-inr) is the limit
     "calibrate_from": {"ws3": "runs/ws3"},   # measured find counts (projection of N before FIND has run)
 }
@@ -336,6 +344,21 @@ class Loudness:
             self.dirty = False
 
 
+def next_spoken(ep: ws.Episode, lid: str):
+    """The spoken line after ``lid`` in the episode (None at the end)."""
+    return ws3.next_speech(ep, ep.pos[lid] + 1) if ep.pos[lid] + 1 < len(ep.lines) else None
+
+
+def same_speaker_next(ep: ws.Episode, lid: str) -> str | None:
+    """The next spoken line's id when it carries the same Scribe speaker label as ``lid`` (the lift would split one
+    speaker's turn), else None. Scribe's labels (line["speaker"]), never the corrected names: names can merge
+    different people."""
+    r, n = ep.by_id[lid], next_spoken(ep, lid)
+    if n is None or not r.get("speaker") or r.get("speaker") != n.get("speaker"):
+        return None
+    return n["id"]
+
+
 def strict_liftable_lines(ep: ws.Episode, vcut: dict, lc: dict, loud=None) -> list[str]:
     """0.2 lift-ok: a spoken line is offered only if it would pass every later lift check (see the docstring):
     speech min_speech_s..max_speech_s; v1's build_lift against its episode neighbours (the next two spoken lines kept,
@@ -350,6 +373,8 @@ def strict_liftable_lines(ep: ws.Episode, vcut: dict, lc: dict, loud=None) -> li
     for k in range(1, len(sp) - 1):
         d = ep.w1(sp[k]) - ep.w0(sp[k])
         if d < lo or d > hi:
+            continue
+        if lc.get("same_speaker") and sp[k].get("speaker") and sp[k].get("speaker") == sp[k + 1].get("speaker"):
             continue
         nxt = ws.raw_text(ep, sp[k + 1])
         if opens_with_continuation(nxt, lc["continuations"]) or is_ack(nxt, lc["acks"], int(lc["ack_max_words"])):
@@ -427,6 +452,11 @@ def cluster_moments(ep: ws.Episode, moments: list[dict], cfg: dict) -> list[dict
                 dl = sp_idx[p["line"]] - sp_idx[q["line"]]
                 dt = ep.w0(ep.by_id[p["line"]]) - ep.w0(ep.by_id[q["line"]])
                 br = scene_break(ep, ep.pos[q["line"]], ep.pos[p["line"]], cc)
+                span = ep.w0(ep.by_id[p["line"]]) - ep.w0(ep.by_id[groups[-1][0]["line"]])
+                cap = cc.get("max_span_s")
+                near = dl <= int(cc["max_lines"]) or dt <= float(cc["max_s"])
+                if near and br is None and cap is not None and span > float(cap) + 1e-9:
+                    br = f"span: {span:.0f} s from {groups[-1][0]['line']} (> {float(cap):g} s)"
                 if (dl <= int(cc["max_lines"]) or dt <= float(cc["max_s"])) and br is None:
                     groups[-1].append(p)
                     continue
@@ -603,7 +633,10 @@ def build_v2(ep: ws.Episode, x: dict, vcfg: dict, cfg: dict, lift_ok: set) -> di
         if case != "B_lift":
             return ws.build_clip(ep, {**m0, "cold_open_lines": []}, vcfg["cut"]), m0, case, None
         refuse = None
-        if (cfg.get("lift_ok") or {}).get("enforce") and stop not in lift_ok:
+        same = same_speaker_next(ep, stop) if cc.get("same_speaker") else None
+        if same:
+            refuse = f"same speaker continues in {same} (Scribe label {ep.by_id[stop].get('speaker')})"
+        elif (cfg.get("lift_ok") or {}).get("enforce") and stop not in lift_ok:
             refuse = "not offered as a liftable line"
         else:
             c0 = ws.build_clip(ep, m0, vcfg["cut"])
@@ -689,8 +722,11 @@ def _spans_overlap(ep: ws.Episode, a: dict, b: dict) -> bool:
 def dedupe_scene(ep: ws.Episode, cands: list[dict], cfg: dict, strength: dict) -> tuple[list, list]:
     """0.2 dedupe (``dedupe.rule`` "scene"): two clips are duplicates when they share > ``overlap`` of the shorter
     clip's source time, OR their start..end line spans overlap and both land lines lie in the same scene (no scene
-    transition, ``scene_break``, between them). Greedy, best first: higher strength (cluster max intensity), then a
-    play length inside ``prefer_play_s``, then the clip ending on the later line, then the earlier land line."""
+    transition, ``scene_break``, between them). Pairwise winner: higher strength (cluster max intensity); then
+    (``keep_longer``) the longer clip when it plays <= keep_longer_max_s and, in one scene, one clip plays the other's
+    land line or the shorter plays < short_tail_s over the longer one's tail (starts inside it, ends at or after its
+    end); then a play length inside ``prefer_play_s``, the clip ending on the later line, the earlier land line.
+    Candidates are taken in that tie-break order; a newcomer that beats every kept clip it duplicates replaces them."""
     dc = cfg["dedupe"]
     lo, hi = (float(v) for v in dc["prefer_play_s"])
     ov = float(dc["overlap"])
@@ -701,28 +737,71 @@ def dedupe_scene(ep: ws.Episode, cands: list[dict], cfg: dict, strength: dict) -
         return (-strength[x["payoff"]["id"]], 0 if lo <= d <= hi else 1, -ep.pos[x["clip"]["end_line"]],
                 ep.pos[x["emo"]["land"]["line"]])
 
+    def same_scene(x, y) -> bool:
+        la, lb = ep.pos[x["emo"]["land"]["line"]], ep.pos[y["emo"]["land"]["line"]]
+        return scene_break(ep, min(la, lb), max(la, lb), cc) is None
+
     def dup(x, y):
         f = ws.overlap_frac(x["clip"], y["clip"])
         if f > ov:
             return f"{f:.0%} of the shorter"
-        if _spans_overlap(ep, x["clip"], y["clip"]):
-            la, lb = ep.pos[x["emo"]["land"]["line"]], ep.pos[y["emo"]["land"]["line"]]
-            if scene_break(ep, min(la, lb), max(la, lb), cc) is None:
-                return (f"same scene: spans {x['clip']['start_line']}..{x['clip']['end_line']} and "
-                        f"{y['clip']['start_line']}..{y['clip']['end_line']} overlap; {f:.0%} of the shorter")
+        if _spans_overlap(ep, x["clip"], y["clip"]) and same_scene(x, y):
+            return (f"same scene: spans {x['clip']['start_line']}..{x['clip']['end_line']} and "
+                    f"{y['clip']['start_line']}..{y['clip']['end_line']} overlap; {f:.0%} of the shorter")
         return None
 
+    def plays_land(c, land) -> bool:
+        a_, b_ = ep.by_id[land]["words"]
+        played = M._played(c)
+        return all(i in played for i in range(a_, b_ + 1))
+
+    def longer_rule(x, y):
+        """(the longer of two duplicates, why) when keep_longer applies (see the docstring), else None."""
+        if not dc.get("keep_longer"):
+            return None
+        lg, sh = (x, y) if x["clip"]["video_duration"] >= y["clip"]["video_duration"] else (y, x)
+        if lg["clip"]["video_duration"] > float(dc["keep_longer_max_s"]) + 1e-9 or not same_scene(x, y):
+            return None
+        cl, cs = lg["clip"], sh["clip"]
+        if plays_land(cl, sh["emo"]["land"]["line"]) or plays_land(cs, lg["emo"]["land"]["line"]):
+            return lg, "plays the other's land line"
+        q = ep.pos
+        if cs["video_duration"] < float(dc["short_tail_s"]) and \
+                q[cl["start_line"]] < q[cs["start_line"]] <= q[cl["end_line"]] <= q[cs["end_line"]]:
+            return lg, f"the other plays < {float(dc['short_tail_s']):g} s over its tail"
+        return None
+
+    def better(x, y) -> tuple[bool, str]:
+        sx, sy = strength[x["payoff"]["id"]], strength[y["payoff"]["id"]]
+        if sx != sy:
+            return sx > sy, "higher strength wins"
+        lr = longer_rule(x, y)
+        if lr is not None:
+            return lr[0] is x, f"the longer clip wins: {lr[1]}"
+        return key(x) < key(y), "tie-break: 30-75 s play, then the later end"
+
     out, dropped = [], []
+
+    def drop(x, y, why, how):
+        dropped.append({**x, "reject_reasons": [
+            f"D1: duplicate of clip {y['id']} ({why}; strength {strength[x['payoff']['id']]} vs "
+            f"{strength[y['payoff']['id']]}, plays {x['clip']['video_duration']:.0f} s vs "
+            f"{y['clip']['video_duration']:.0f} s; {how})"], "dup_of": y["id"]})
+
     for x in sorted(cands, key=key):
-        hit = next(((y, why) for y in out for why in [dup(x, y)] if why), None)
-        if hit:
-            y, why = hit
-            dropped.append({**x, "reject_reasons": [
-                f"D1: duplicate of clip {y['id']} ({why}; strength {strength[x['payoff']['id']]} vs "
-                f"{strength[y['payoff']['id']]}, plays {x['clip']['video_duration']:.0f} s vs "
-                f"{y['clip']['video_duration']:.0f} s)"], "dup_of": y["id"]})
+        hits = [(y, why) for y in out for why in [dup(x, y)] if why]
+        if not hits:
+            out.append(x)
             continue
-        out.append(x)
+        verdicts = [(y, why, *better(x, y)) for y, why in hits]
+        if all(v[2] for v in verdicts):
+            for y, why, _, how in verdicts:
+                out.remove(y)
+                drop(y, x, why, how)
+            out.append(x)
+            continue
+        y, why, _, how = next(v for v in verdicts if not v[2])
+        drop(x, y, why, how)
     return out, dropped
 
 

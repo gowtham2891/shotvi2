@@ -1,10 +1,10 @@
-DRY RUN (no generate call; countTokens on): ledger Rs 1669.18, limit Rs 1735.00
+DRY RUN (no generate call; countTokens on): ledger Rs 1669.18, limit Rs 1705.00
 qIdAPG8UulE: dry run: find not cached; estimating with find answer of emotion1 (23 valid moments) as the estimate
-qIdAPG8UulE: 23 moments -> 11 clusters (6 with several payoffs)
-qIdAPG8UulE: find ws_emotion_find NOT cached; 23 moments (find answer of emotion1 (23 valid moments) as the estimate) -> 11 clusters (= build calls)
+qIdAPG8UulE: 23 moments -> 12 clusters (7 with several payoffs)
+qIdAPG8UulE: find ws_emotion_find NOT cached; 23 moments (find answer of emotion1 (23 valid moments) as the estimate) -> 12 clusters (= build calls)
   context 27090 tokens, find task 925 tokens (countTokens); find Rs 5.31 exp / Rs 11.3 worst; build Rs 3.09 worst each; cache storage Rs 1.22
   setting | builds (exp/worst) | find exp | build exp | build worst | total exp | total worst
-  no cap  |    11 / 11        |     5.31 |     16.47 |       33.89 |     22.99 |       48.24
-  cap 15  |    11 / 11        |     5.31 |     16.47 |       33.89 |     22.99 |       48.24
-DRY RUN total (no cap): builds 11 expected / 11 worst; Rs 22.99 expected, Rs 48.24 worst; ledger Rs 1669.18 -> ~Rs 1692.17 (limit Rs 1735.00: fits the worst case)
-DRY RUN total (cap 15): builds 11 expected / 11 worst; Rs 22.99 expected, Rs 48.24 worst; ledger Rs 1669.18 -> ~Rs 1692.17 (limit Rs 1735.00: fits the worst case)
+  no cap  |    12 / 12        |     5.31 |     17.93 |       36.93 |     24.45 |       51.28
+  cap 15  |    12 / 12        |     5.31 |     17.93 |       36.93 |     24.45 |       51.28
+DRY RUN total (no cap): builds 12 expected / 12 worst; Rs 24.45 expected, Rs 51.28 worst; ledger Rs 1669.18 -> ~Rs 1693.63 (limit Rs 1705.00: fits the expected case only)
+DRY RUN total (cap 15): builds 12 expected / 12 worst; Rs 24.45 expected, Rs 51.28 worst; ledger Rs 1669.18 -> ~Rs 1693.63 (limit Rs 1705.00: fits the expected case only)

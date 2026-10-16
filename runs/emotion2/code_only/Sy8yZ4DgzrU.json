@@ -12,7 +12,7 @@
   "skip_s": 30.0
  },
  "run_id": "code_only",
- "created_at": "2026-10-16T11:28:25Z",
+ "created_at": "2026-10-16T13:36:02Z",
  "content_type": "web_series",
  "pipeline": {
   "version": "emotion_pick/0.2-code_only",
@@ -99,7 +99,8 @@
      "yes",
      "yeah"
     ],
-    "ack_max_words": 2
+    "ack_max_words": 2,
+    "same_speaker": true
    },
    "cluster": {
     "enabled": false,
@@ -107,7 +108,8 @@
     "max_s": 50.0,
     "music_min_s": 4.0,
     "silence_gap_s": null,
-    "target_within": 1
+    "target_within": 1,
+    "max_span_s": 90.0
    },
    "build": {
     "max_moments": 12,
@@ -122,6 +124,7 @@
    },
    "cold_open": {
     "rule": "fallback",
+    "same_speaker": true,
     "near_lines": 2,
     "near_s": 3.0,
     "weak_advance_lines": 4,
@@ -157,7 +160,10 @@
     "prefer_play_s": [
      30.0,
      75.0
-    ]
+    ],
+    "keep_longer": true,
+    "keep_longer_max_s": 120.0,
+    "short_tail_s": 30.0
    },
    "budget_usd": 3.0,
    "calibrate_from": {
@@ -360,21 +366,9 @@
    "id": "e02",
    "pieces": [
     {
-     "start_word": 1422,
-     "end_word": 1427,
-     "start": 992.815,
-     "end": 995.055
-    },
-    {
      "start_word": 1389,
-     "end_word": 1421,
-     "start": 976.116,
-     "end": 991.976
-    },
-    {
-     "start_word": 1428,
      "end_word": 1486,
-     "start": 995.875,
+     "start": 976.116,
      "end": 1017.656
     }
    ],
@@ -384,19 +378,19 @@
     "start": 976.116,
     "end": 1017.656
    },
-   "edited_duration": 39.881,
-   "reordered": true,
-   "n_blocks": 2,
-   "text": "ఇప్పటి నుండి మీ ఆయన కూడా సంపాదిస్తాడు. ఏంటి కృష్ణ? ఏమైంది ఇంత happy గా ఉన్నావ్? నిన్ను ఇంత happy గా నేను ఎప్పుడూ చూడలా. నాకు job వచ్చింది. అవునా ఊ.. ఎక్కడ? ఇక్కడే, మాదాపూర్ లో. నాకు హైదరాబాద్ లో job వచ్చింది. చాలా happy గా ఉంది కృష్ణ. నీ అంత కాకపోయినా నాకు నెల నెల జీతం వస్తుంది. ఎంత salary వస్తుంది అన్నది important కాదు, job ఉందా లేదా అనేదే important. అయినా నీకు job ఉండాలని నేను ఎప్పుడూ అనుకోలేదు. నువ్వే life లో ఏదో ఒకటి చేయాలి, job తెచ్చుకోవాలి అనుకున్నావ్, so I am happy for you. నువ్వు నా కోసం job చేయాలని నేను ఎప్పుడూ అనుకోలేదు. నువ్వు ఇంట్లో ఉంటూ నన్ను ప్రేమించే పని చూసుకున్నా కూడా నాకు okay.",
+   "edited_duration": 41.54,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ఏంటి కృష్ణ? ఏమైంది ఇంత happy గా ఉన్నావ్? నిన్ను ఇంత happy గా నేను ఎప్పుడూ చూడలా. నాకు job వచ్చింది. అవునా ఊ.. ఎక్కడ? ఇక్కడే, మాదాపూర్ లో. నాకు హైదరాబాద్ లో job వచ్చింది. చాలా happy గా ఉంది కృష్ణ. ఇప్పటి నుండి మీ ఆయన కూడా సంపాదిస్తాడు. నీ అంత కాకపోయినా నాకు నెల నెల జీతం వస్తుంది. ఎంత salary వస్తుంది అన్నది important కాదు, job ఉందా లేదా అనేదే important. అయినా నీకు job ఉండాలని నేను ఎప్పుడూ అనుకోలేదు. నువ్వే life లో ఏదో ఒకటి చేయాలి, job తెచ్చుకోవాలి అనుకున్నావ్, so I am happy for you. నువ్వు నా కోసం job చేయాలని నేను ఎప్పుడూ అనుకోలేదు. నువ్వు ఇంట్లో ఉంటూ నన్ను ప్రేమించే పని చూసుకున్నా కూడా నాకు okay.",
    "rank": 2,
    "tier": "emotion_pick",
    "tier_label": "emotion pick",
    "scores": {},
    "title": "నువ్వు ఇంట్లో ఉండి నన్ను ప్రేమిస్తే చాలు",
    "hook_line": {
-    "text": "ఇప్పటి నుండి మీ ఆయన కూడా సంపాదిస్తాడు.",
-    "start_word": 1422,
-    "end_word": 1427
+    "text": "ఏంటి కృష్ణ?",
+    "start_word": 1389,
+    "end_word": 1390
    },
    "payoff_line": "నువ్వు ఇంట్లో ఉంటూ నన్ను ప్రేమించే పని చూసుకున్నా కూడా నాకు okay.",
    "payoff_type": "conclusion",
@@ -404,53 +398,21 @@
    "why_it_works": "Viewer stops because Krishna playfully declares that he will start earning money now, stays to find out how his wife reacts, and it ends on Satya tenderly reassuring him that just having his love is …",
    "category": "emotional",
    "standalone_risks": [],
-   "edit_notes": [
-    {
-     "type": "cold_open",
-     "after_piece": 0,
-     "reason": "Lifted L0384 (3.1 s) to the front; skipped in place, not replayed. A proud husband playfully announcing \"ఇప్పటి నుండి మీ ఆయన కూడా సంపాదిస్తాడు\" immediately grabs attention with charming marital bante…"
-    }
-   ],
+   "edit_notes": [],
    "flags": [],
    "content_type": "web_series",
    "clip_purpose": "standalone",
-   "cold_open": true,
-   "cold_open_detail": {
-    "lines": [
-     "L0384"
-    ],
-    "text": "ఇప్పటి నుండి మీ ఆయన కూడా సంపాదిస్తాడు.",
-    "start": 992.695,
-    "end": 995.781,
-    "duration": 3.09,
-    "tail_s": 0.73,
-    "start_on_cut": false,
-    "word_range": [
-     1422,
-     1427
-    ],
-    "tail_db_below_speech": 13.3,
-    "level_vs_scene_db": -2.4
-   },
+   "cold_open": false,
+   "cold_open_detail": null,
    "cold_open_rejected": null,
    "time_segments": [
     {
-     "start": 992.695,
-     "end": 995.781,
-     "kind": "cold_open"
-    },
-    {
      "start": 975.816,
-     "end": 992.111,
-     "kind": "scene"
-    },
-    {
-     "start": 995.786,
      "end": 1018.546,
      "kind": "scene"
     }
    ],
-   "video_duration": 42.14,
+   "video_duration": 42.73,
    "spoiler": false,
    "characters": [
     "Satya",
@@ -470,20 +432,7 @@
     "rule": "before_next_line",
     "note": "next line starts quickly and no shot change before it"
    },
-   "chunk_drops": [
-    {
-     "after_line": "L0383",
-     "before_line": "L0385",
-     "removed_lines": [
-      "L0384"
-     ],
-     "lift_skip": true,
-     "start": 992.111,
-     "end": 995.786,
-     "removed_s": 3.67,
-     "why": ""
-    }
-   ],
+   "chunk_drops": [],
    "discovery": {
     "strength": null,
     "what_happens": "How will Satya respond to Krishna's excitement about finally earning his own salary?",
@@ -504,17 +453,17 @@
     "line": "L0384",
     "text": "ఇప్పటి నుండి మీ ఆయన కూడా సంపాదిస్తాడు.",
     "why": "A proud husband playfully announcing \"ఇప్పటి నుండి మీ ఆయన కూడా సంపాదిస్తాడు\" immediately grabs attention with charming marital banter.",
-    "cold_open": true,
-    "case": "B_lift",
-    "via": "cold_open",
-    "plays_at_s": 0.12
+    "cold_open": false,
+    "case": "B_refused_play_start",
+    "via": "start_line",
+    "plays_at_s": 17.0
    },
    "stay": "How will Satya respond to Krishna's excitement about finally earning his own salary?",
    "land": {
     "line": "L0391",
     "text": "నువ్వు ఇంట్లో ఉంటూ నన్ను ప్రేమించే పని చూసుకున్నా కూడా నాకు okay.",
     "reaction": "hold",
-    "plays_at_s": 38.21
+    "plays_at_s": 38.8
    },
    "reason": "Viewer stops because Krishna playfully declares that he will start earning money now, stays to find out how his wife reacts, and it ends on Satya tenderly reassuring him that just having his love is enough (aww).",
    "moment": {
@@ -527,161 +476,13 @@
     "type": "quotable_line",
     "lands_on_screen": false
    },
-   "build_flags": []
+   "build_flags": [
+    "cold open L0384 refused (same speaker continues in L0385 (Scribe label speaker_1)); played in place, the clip starts on L0372",
+    "stop_not_first: stop line L0384 starts at 17.0 s of playback (> 3 s)"
+   ]
   },
   {
-   "id": "e04",
-   "pieces": [
-    {
-     "start_word": 1970,
-     "end_word": 2050,
-     "start": 1287.712,
-     "end": 1313.332
-    }
-   ],
-   "region": {
-    "start_word": 1970,
-    "end_word": 2050,
-    "start": 1287.712,
-    "end": 1313.332
-   },
-   "edited_duration": 25.62,
-   "reordered": false,
-   "n_blocks": 1,
-   "text": "ఒకసారి నువ్వే నా place లో ఉండి ఆలోచించు. ఇప్పుడు మీ నాన్న దగ్గర డబ్బులు తీసుకొని ఇల్లు కడితే ఆ ఇంటి ముందు నించొని ఇది నా ఇల్లు అని ఎలా అనుకోగలుగుతావ్ చెప్పు? అది నీ self respect కాదు ego. ego ఆ? అవును ego నే. మా నాన్న దగ్గర డబ్బులు తీసుకుంటే నువ్వు ఎక్కడ తక్కువ మనిషి అయిపోతావని నువ్వు అనుకుంటున్నావ్. కానీ అదే మా నాన్న నా కోసం డబ్బులు ఇస్తుంటే ప్రేమతో ఇస్తున్నారని ఎందుకు అనుకోవట్లేదు? ఇప్పుడు మీ నాన్న ప్రేమ కోసం నా ఆత్మ గౌరవాన్ని తగ్గించుకోవాలా? నీ ఆత్మ గౌరవం కోసం మా నాన్న ప్రేమను question చేయాలా? వదిలేయ్ సత్య.",
-   "rank": 3,
-   "tier": "emotion_pick",
-   "tier_label": "emotion pick",
-   "scores": {},
-   "title": "ఆత్మగౌరవమా లేక Ego నా?",
-   "hook_line": {
-    "text": "ఒకసారి నువ్వే నా place లో ఉండి ఆలోచించు.",
-    "start_word": 1970,
-    "end_word": 1976
-   },
-   "payoff_line": "నీ ఆత్మ గౌరవం కోసం మా నాన్న ప్రేమను question చేయాలా?",
-   "payoff_type": "conclusion",
-   "payoff_line_source": "discover",
-   "why_it_works": "Viewer stops because Krishna passionately asks Satya to see things from his perspective about building a home with in-laws' money, stays to find out whether their dispute over pride versus paternal a…",
-   "category": "story",
-   "standalone_risks": [],
-   "edit_notes": [],
-   "flags": [],
-   "content_type": "web_series",
-   "clip_purpose": "standalone",
-   "cold_open": false,
-   "cold_open_detail": null,
-   "cold_open_rejected": null,
-   "time_segments": [
-    {
-     "start": 1287.672,
-     "end": 1313.662,
-     "kind": "scene"
-    }
-   ],
-   "video_duration": 25.99,
-   "spoiler": false,
-   "characters": [
-    "Krishna",
-    "Satya"
-   ],
-   "visual_dependency": "medium",
-   "start_line": "L0517",
-   "end_line": "L0526",
-   "end_hold": {
-    "payoff_end": 1313.332,
-    "next_speech": 1313.712,
-    "long_silence_after": false,
-    "laugh_after": false,
-    "end": 1313.662,
-    "hold_s": 0.33,
-    "on_shot_cut": false,
-    "rule": "before_next_line",
-    "note": "next line starts quickly and no shot change before it"
-   },
-   "chunk_drops": [],
-   "discovery": {
-    "strength": null,
-    "what_happens": "Will Satya accept Krishna's stand on self-respect, or will their argument over her father's money tear them apart?",
-    "hook": "Krishna challenges Satya with 'ఒకసారి నువ్వే నా place లో ఉండి ఆలోచించు' right before questioning her father's money.",
-    "payoff": "నీ ఆత్మ గౌరవం కోసం మా నాన్న ప్రేమను question చేయాలా?",
-    "opening_strength": null,
-    "payoff_line": "నీ ఆత్మ గౌరవం కోసం మా నాన్న ప్రేమను question చేయాలా?",
-    "payoff_type": "conclusion"
-   },
-   "needs_rescore": false,
-   "flaws": [],
-   "shot_flags": [],
-   "build_warnings": [],
-   "source": "emotion_pick",
-   "feeling": "tension",
-   "intensity": 4,
-   "stop": {
-    "line": "L0517",
-    "text": "ఒకసారి నువ్వే నా place లో ఉండి ఆలోచించు.",
-    "why": "Krishna challenges Satya with 'ఒకసారి నువ్వే నా place లో ఉండి ఆలోచించు' right before questioning her father's money.",
-    "cold_open": false,
-    "case": "start_line",
-    "via": "start_line",
-    "plays_at_s": 0.04
-   },
-   "stay": "Will Satya accept Krishna's stand on self-respect, or will their argument over her father's money tear them apart?",
-   "land": {
-    "line": "L0525",
-    "text": "నీ ఆత్మ గౌరవం కోసం మా నాన్న ప్రేమను question చేయాలా?",
-    "reaction": "L0526",
-    "reaction_text": "వదిలేయ్ సత్య.",
-    "plays_at_s": 22.54
-   },
-   "reason": "Viewer stops because Krishna passionately asks Satya to see things from his perspective about building a home with in-laws' money, stays to find out whether their dispute over pride versus paternal affection escalates, and it ends on Satya silencing him with a sharp reality check (tension).",
-   "moment": {
-    "id": "p04",
-    "line": "L0525",
-    "text": "నీ ఆత్మ గౌరవం కోసం మా నాన్న ప్రేమను question చేయాలా?",
-    "feeling": "tension",
-    "intensity": 4,
-    "why": "In response to Krishna asking if he should sacrifice self-respect for her father's love, Satya hits back with the perfect counter-question: 'నీ ఆత్మ గౌరవం కోసం మా నాన్న ప్రేమను question చేయాలా?'",
-    "type": "quotable_line",
-    "lands_on_screen": true
-   },
-   "build_flags": []
-  }
- ],
- "rejected": [
-  {
    "id": "e03",
-   "tier": "rejected",
-   "source": "emotion_pick",
-   "reject_reasons": [
-    "D1: duplicate of clip e04 (43% of the shorter; strength 4 vs 4, plays 117 s vs 26 s)"
-   ],
-   "moment": {
-    "id": "p03",
-    "line": "L0519",
-    "text": "అది నీ self respect కాదు ego.",
-    "feeling": "tension",
-    "intensity": 4,
-    "why": "Satya pierces through Krishna's stubborn refusal of her father's financial assistance by calling it out directly: 'అది నీ self respect కాదు ego.'",
-    "type": "quotable_line",
-    "lands_on_screen": true
-   },
-   "dup_of": "e04",
-   "stop": {
-    "line": "L0470",
-    "text": "అయినా అసలు నువ్ ఇప్పుడు loan తీసుకోవాల్సిన అవసరమే లేదు.",
-    "why": "A stranger stops scrolling when Satya abruptly dismisses Krishna's plan to take a loan by claiming they don't need one: 'అయినా అసలు నువ్ ఇప్పుడు loan తీసుకోవాల్సిన అవసరమే లేదు.'",
-    "cold_open": false,
-    "case": "start_line"
-   },
-   "stay": "Will Krishna accept Satya's father's financial help for their house, or will their conflict boil over?",
-   "land": {
-    "line": "L0519",
-    "text": "అది నీ self respect కాదు ego.",
-    "reaction": "L0520",
-    "reaction_text": "ego ఆ?"
-   },
-   "reason": "Viewer stops because Satya tells Krishna he doesn't need to take a loan to buy a house ('అయినా అసలు నువ్ ఇప్పుడు loan తీసుకోవాల్సిన అవసరమే లేదు.'), stays to find out why her father offering money triggers such an intense fight between them, and it ends on Satya calling his pride mere ego (tension).",
-   "title": "ఇది Self Respect కాదు Ego!",
    "pieces": [
     {
      "start_word": 1726,
@@ -700,6 +501,29 @@
    "reordered": false,
    "n_blocks": 1,
    "text": "అయినా అసలు నువ్ ఇప్పుడు loan తీసుకోవాల్సిన అవసరమే లేదు. ఎందుకు? ఎందుకంటే నువ్వు హైదరాబాద్ లోనే settle అవ్వాలి అని చెప్పిన తర్వాత నేను నాన్నకు చెప్పా. నాన్న కూడా సరే ఎంతకని rent కట్టుకుంటూ ఉంటారు, ఒక ఇల్లు కొనుక్కోండి అన్నారు. ఆయన ఒక రెండు ఎకరాల పొలం అమ్మేసి ఇస్తానన్నారు. ఆ డబ్బులతో ఇల్లు కట్టుకోమన్నారు. ఆయన ఎందుకు డబ్బులు ఇస్తారు? ఎందుకు ఏంటి? నీకు కట్నం ఇవ్వలేదు కదా. కట్నమా? నా ఉద్దేశం అది కాదు. అంటే నీకు పెళ్లి time లో ఏమి ఇవ్వలేదు కదా, ఇప్పుడు ఇల్లుకు డబ్బులిచ్చి help చేస్తా అంటున్నారు. అసలు ఏం మాట్లాడుతున్నావ్ సత్య? దానికెందుకు కృష్ణ ఇంత feel అవుతున్నావ్? నేను నాన్న చెప్పిన మాటలు నీకు చెప్పాను అంతే. ఆ మాటలు నాకు ఆరోజే చెప్పాల్సింది సత్య. ఇప్పుడెందుకు చెప్తున్నావ్? అయినా కట్నం కోసం చేసుకున్నానా నేను నిన్ను? అప్పుడెందుకు చెప్పలేదంటే అప్పుడు మన మధ్య discussion రాలేదు, ఈ topic రాలేదు. ఇప్పుడెందుకు చెప్తున్నానంటే ఇప్పుడు ఇల్లు కొనుక్కునే discussion వచ్చింది. దాంట్లో తప్పేముంది? తప్పుంది సత్య. అయినా మీ నాన్న దగ్గర కట్నం తీసుకొని ఇల్లు కట్టుకునే అవసరం నాకు లేదు. అరే కృష్ణ! నేను కట్నం అంటే ఆ ఉద్దేశంతో అనట్లేదు. అంటే ఒక help లా అంటున్నా. వద్దు సత్య ఆపేయ్ ఇంకా. ఎందుకిలా react అవుతున్నావ్? మా నాన్న నిన్ను తక్కువ చేసి మాట్లాడట్లేదు. నన్ను తక్కువ చేయడం గురించి కాదు సత్య. పెళ్ళికి కట్నం ఇవ్వలేదని ఇప్పుడు ఇల్లు కొనడానికి డబ్బులు ఇవ్వడమంటే దాని meaning ఏంటి? దాన్ని నువ్వసలు ఇలా ఎందుకు చూస్తున్నావ్? మా నాన్నకు కూతురు అంటే ప్రేమ ఉంది. మనకోసం ఏమైనా చేయాలనుకుంటున్నారు. ప్రేమ ఉంటే మన మీద నమ్మకం కూడా ఉండాలి సత్య. నమ్మకం లేకపోతే నన్ను నీకిచ్చి పెళ్లి చేయరు కదా కృష్ణ. సత్య! నా family ని ఎలా చూసుకోవాలో నాకు తెలుసు. చూసుకోలేమని ఎవరన్నారు? మరి ఎందుకు ప్రతిసారి మీ నాన్న డబ్బులు? ప్రతిసారి కాదు. ఈసారి ఇల్లు topic వచ్చింది కాబట్టి. నాకు మీ నాన్న డబ్బులు అవసరం లేదు. అవసరం లేకపోతే తీసుకోకు. దానికి నాతో ఎందుకిలా మాట్లాడుతున్నావ్? సత్య! ఒకసారి నువ్వే నా place లో ఉండి ఆలోచించు. ఇప్పుడు మీ నాన్న దగ్గర డబ్బులు తీసుకొని ఇల్లు కడితే ఆ ఇంటి ముందు నించొని ఇది నా ఇల్లు అని ఎలా అనుకోగలుగుతావ్ చెప్పు? అది నీ self respect కాదు ego. ego ఆ?",
+   "rank": 3,
+   "tier": "emotion_pick",
+   "tier_label": "emotion pick",
+   "scores": {},
+   "title": "ఇది Self Respect కాదు Ego!",
+   "hook_line": {
+    "text": "అయినా అసలు నువ్ ఇప్పుడు loan తీసుకోవాల్సిన అవసరమే లేదు.",
+    "start_word": 1726,
+    "end_word": 1733
+   },
+   "payoff_line": "అది నీ self respect కాదు ego.",
+   "payoff_type": "conclusion",
+   "payoff_line_source": "discover",
+   "why_it_works": "Viewer stops because Satya tells Krishna he doesn't need to take a loan to buy a house ('అయినా అసలు నువ్ ఇప్పుడు loan తీసుకోవాల్సిన అవసరమే లేదు.'), stays to find out why her father offering money tri…",
+   "category": "story",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "promo",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
    "time_segments": [
     {
      "start": 1181.832,
@@ -708,13 +532,141 @@
     }
    ],
    "video_duration": 116.91,
+   "spoiler": false,
+   "characters": [
+    "Satya",
+    "Krishna"
+   ],
+   "visual_dependency": "medium",
    "start_line": "L0470",
    "end_line": "L0520",
+   "end_hold": {
+    "payoff_end": 1298.392,
+    "next_speech": 1298.792,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "end": 1298.742,
+    "hold_s": 0.35,
+    "on_shot_cut": false,
+    "rule": "before_next_line",
+    "note": "next line starts quickly and no shot change before it"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": null,
+    "what_happens": "Will Krishna accept Satya's father's financial help for their house, or will their conflict boil over?",
+    "hook": "A stranger stops scrolling when Satya abruptly dismisses Krishna's plan to take a loan by claiming they don't need one: 'అయినా అసలు నువ్ ఇప్పుడు loan తీసుకోవాల్సిన అవసరమే లేదు.'",
+    "payoff": "అది నీ self respect కాదు ego.",
+    "opening_strength": null,
+    "payoff_line": "అది నీ self respect కాదు ego.",
+    "payoff_type": "conclusion"
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "source": "emotion_pick",
+   "feeling": "tension",
+   "intensity": 4,
+   "stop": {
+    "line": "L0470",
+    "text": "అయినా అసలు నువ్ ఇప్పుడు loan తీసుకోవాల్సిన అవసరమే లేదు.",
+    "why": "A stranger stops scrolling when Satya abruptly dismisses Krishna's plan to take a loan by claiming they don't need one: 'అయినా అసలు నువ్ ఇప్పుడు loan తీసుకోవాల్సిన అవసరమే లేదు.'",
+    "cold_open": false,
+    "case": "start_line",
+    "via": "start_line",
+    "plays_at_s": 0.3
+   },
+   "stay": "Will Krishna accept Satya's father's financial help for their house, or will their conflict boil over?",
+   "land": {
+    "line": "L0519",
+    "text": "అది నీ self respect కాదు ego.",
+    "reaction": "L0520",
+    "reaction_text": "ego ఆ?",
+    "plays_at_s": 113.8
+   },
+   "reason": "Viewer stops because Satya tells Krishna he doesn't need to take a loan to buy a house ('అయినా అసలు నువ్ ఇప్పుడు loan తీసుకోవాల్సిన అవసరమే లేదు.'), stays to find out why her father offering money triggers such an intense fight between them, and it ends on Satya calling his pride mere ego (tension).",
+   "moment": {
+    "id": "p03",
+    "line": "L0519",
+    "text": "అది నీ self respect కాదు ego.",
+    "feeling": "tension",
+    "intensity": 4,
+    "why": "Satya pierces through Krishna's stubborn refusal of her father's financial assistance by calling it out directly: 'అది నీ self respect కాదు ego.'",
+    "type": "quotable_line",
+    "lands_on_screen": true
+   },
+   "build_flags": []
+  }
+ ],
+ "rejected": [
+  {
+   "id": "e04",
+   "tier": "rejected",
+   "source": "emotion_pick",
+   "reject_reasons": [
+    "D1: duplicate of clip e03 (43% of the shorter; strength 4 vs 4, plays 26 s vs 117 s; the longer clip wins: plays the other's land line)"
+   ],
+   "moment": {
+    "id": "p04",
+    "line": "L0525",
+    "text": "నీ ఆత్మ గౌరవం కోసం మా నాన్న ప్రేమను question చేయాలా?",
+    "feeling": "tension",
+    "intensity": 4,
+    "why": "In response to Krishna asking if he should sacrifice self-respect for her father's love, Satya hits back with the perfect counter-question: 'నీ ఆత్మ గౌరవం కోసం మా నాన్న ప్రేమను question చేయాలా?'",
+    "type": "quotable_line",
+    "lands_on_screen": true
+   },
+   "dup_of": "e03",
+   "stop": {
+    "line": "L0517",
+    "text": "ఒకసారి నువ్వే నా place లో ఉండి ఆలోచించు.",
+    "why": "Krishna challenges Satya with 'ఒకసారి నువ్వే నా place లో ఉండి ఆలోచించు' right before questioning her father's money.",
+    "cold_open": false,
+    "case": "start_line"
+   },
+   "stay": "Will Satya accept Krishna's stand on self-respect, or will their argument over her father's money tear them apart?",
+   "land": {
+    "line": "L0525",
+    "text": "నీ ఆత్మ గౌరవం కోసం మా నాన్న ప్రేమను question చేయాలా?",
+    "reaction": "L0526",
+    "reaction_text": "వదిలేయ్ సత్య."
+   },
+   "reason": "Viewer stops because Krishna passionately asks Satya to see things from his perspective about building a home with in-laws' money, stays to find out whether their dispute over pride versus paternal affection escalates, and it ends on Satya silencing him with a sharp reality check (tension).",
+   "title": "ఆత్మగౌరవమా లేక Ego నా?",
+   "pieces": [
+    {
+     "start_word": 1970,
+     "end_word": 2050,
+     "start": 1287.712,
+     "end": 1313.332
+    }
+   ],
+   "region": {
+    "start_word": 1970,
+    "end_word": 2050,
+    "start": 1287.712,
+    "end": 1313.332
+   },
+   "edited_duration": 25.62,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ఒకసారి నువ్వే నా place లో ఉండి ఆలోచించు. ఇప్పుడు మీ నాన్న దగ్గర డబ్బులు తీసుకొని ఇల్లు కడితే ఆ ఇంటి ముందు నించొని ఇది నా ఇల్లు అని ఎలా అనుకోగలుగుతావ్ చెప్పు? అది నీ self respect కాదు ego. ego ఆ? అవును ego నే. మా నాన్న దగ్గర డబ్బులు తీసుకుంటే నువ్వు ఎక్కడ తక్కువ మనిషి అయిపోతావని నువ్వు అనుకుంటున్నావ్. కానీ అదే మా నాన్న నా కోసం డబ్బులు ఇస్తుంటే ప్రేమతో ఇస్తున్నారని ఎందుకు అనుకోవట్లేదు? ఇప్పుడు మీ నాన్న ప్రేమ కోసం నా ఆత్మ గౌరవాన్ని తగ్గించుకోవాలా? నీ ఆత్మ గౌరవం కోసం మా నాన్న ప్రేమను question చేయాలా? వదిలేయ్ సత్య.",
+   "time_segments": [
+    {
+     "start": 1287.672,
+     "end": 1313.662,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 25.99,
+   "start_line": "L0517",
+   "end_line": "L0526",
    "cold_open": false,
    "build_moment": {
-    "purpose": "promo",
-    "start_line": "L0470",
-    "end_line": "L0520",
+    "purpose": "standalone",
+    "start_line": "L0517",
+    "end_line": "L0526",
     "cold_open_lines": [],
     "drops": []
    }
@@ -758,10 +710,10 @@
   },
   "rejected": [
    {
-    "clip": "e03",
-    "moment": "p03",
-    "line": "L0519",
-    "reason": "D1: duplicate of clip e04 (43% of the shorter; strength 4 vs 4, plays 117 s vs 26 s)"
+    "clip": "e04",
+    "moment": "p04",
+    "line": "L0525",
+    "reason": "D1: duplicate of clip e03 (43% of the shorter; strength 4 vs 4, plays 26 s vs 117 s; the longer clip wins: plays the other's land line)"
    }
   ],
   "warnings": [],
@@ -795,8 +747,8 @@
    "intensity": 4,
    "text": "అది నీ self respect కాదు ego.",
    "why": "Satya pierces through Krishna's stubborn refusal of her father's financial assistance by calling it out directly: 'అది నీ self respect కాదు ego.'",
-   "status": "rejected",
-   "reason": "D1: duplicate of clip e04 (43% of the shorter; strength 4 vs 4, plays 117 s vs 26 s)"
+   "status": "shown",
+   "clip": "e03"
   },
   {
    "id": "p04",
@@ -805,8 +757,8 @@
    "intensity": 4,
    "text": "నీ ఆత్మ గౌరవం కోసం మా నాన్న ప్రేమను question చేయాలా?",
    "why": "In response to Krishna asking if he should sacrifice self-respect for her father's love, Satya hits back with the perfect counter-question: 'నీ ఆత్మ గౌరవం కోసం మా నాన్న ప్రేమను question చేయాలా?'",
-   "status": "shown",
-   "clip": "e04"
+   "status": "rejected",
+   "reason": "D1: duplicate of clip e03 (43% of the shorter; strength 4 vs 4, plays 26 s vs 117 s; the longer clip wins: plays the other's land line)"
   }
  ]
 }

@@ -8,17 +8,18 @@
   "find_task_tokens": 925,
   "find_cached": false,
   "build_task_tokens": [
-   2146,
-   2111,
+   2057,
+   2021,
+   1880,
    1866,
    1818,
-   1876,
-   1904,
-   1897,
-   2111,
-   2169,
+   1863,
+   1861,
+   1815,
+   2097,
+   2062,
    1875,
-   1879
+   1842
   ],
   "build_task_tokens_sample": null,
   "n_moments": null,
@@ -42,41 +43,41 @@
   "rows": {
    "no_cap": {
     "cap": null,
-    "n_build_expected": 11,
-    "n_build_worst": 11,
-    "n_build_uncached": 11,
+    "n_build_expected": 12,
+    "n_build_worst": 12,
+    "n_build_uncached": 12,
     "find_inr_expected": 5.31,
     "find_inr_worst": 11.3,
-    "build_inr_expected": 16.47,
-    "build_inr_worst": 33.89,
+    "build_inr_expected": 17.93,
+    "build_inr_worst": 36.93,
     "storage_inr": 1.22,
-    "inr_expected": 22.99,
-    "inr_worst": 48.24
+    "inr_expected": 24.45,
+    "inr_worst": 51.28
    },
    "cap": {
     "cap": 15,
-    "n_build_expected": 11,
-    "n_build_worst": 11,
-    "n_build_uncached": 11,
+    "n_build_expected": 12,
+    "n_build_worst": 12,
+    "n_build_uncached": 12,
     "find_inr_expected": 5.31,
     "find_inr_worst": 11.3,
-    "build_inr_expected": 16.47,
-    "build_inr_worst": 33.89,
+    "build_inr_expected": 17.93,
+    "build_inr_worst": 36.93,
     "storage_inr": 1.22,
-    "inr_expected": 22.99,
-    "inr_worst": 48.24
+    "inr_expected": 24.45,
+    "inr_worst": 51.28
    }
   },
   "token_source": "countTokens"
  },
- "n_lift_ok": 100,
+ "n_lift_ok": 73,
  "moments_basis": "find answer of emotion1 (23 valid moments) as the estimate",
- "n_clusters": 11,
+ "n_clusters": 12,
  "clusters": [
   {
-   "target": "p04",
-   "target_line": "L0100",
-   "strength": 5,
+   "target": "p02",
+   "target_line": "L0047",
+   "strength": 4,
    "members": [
     {
      "id": "p01",
@@ -87,7 +88,20 @@
      "id": "p02",
      "line": "L0047",
      "intensity": 4
-    },
+    }
+   ],
+   "earlier": [
+    "p01"
+   ],
+   "absorbed": [],
+   "break_before": null,
+   "cluster_context": "Earlier beats in this same scene to include as setup/escalation: L0028 (\"ORS లు ఇచ్చావేంట్రా\")"
+  },
+  {
+   "target": "p04",
+   "target_line": "L0100",
+   "strength": 5,
+   "members": [
     {
      "id": "p03",
      "line": "L0070",
@@ -100,13 +114,11 @@
     }
    ],
    "earlier": [
-    "p01",
-    "p02",
     "p03"
    ],
    "absorbed": [],
-   "break_before": null,
-   "cluster_context": "Earlier beats in this same scene to include as setup/escalation: L0028 (\"ORS లు ఇచ్చావేంట్రా\"), L0047 (\"తాత happy anniversary అని రాసి bouquet పంపిస్తావా\"), L0070 (\"ఆరోజు నువ్వు date లో ఉన్నావ్ అన్నావ్ కదా\")"
+   "break_before": "span: 94 s from L0028 (> 90 s)",
+   "cluster_context": "Earlier beats in this same scene to include as setup/escalation: L0070 (\"ఆరోజు నువ్వు date లో ఉన్నావ్ అన్నావ్ కదా\")"
   },
   {
    "target": "p07",

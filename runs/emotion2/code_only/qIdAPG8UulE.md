@@ -46,15 +46,15 @@ Cost $0.2990 ($0.0000 billed this run).
 - moment: L0126 Vaishu brutally punctures her boyfriend's romantic bus flashback by pointing out that bus rides are free for women.
 - end: payoff ends 4:34.7, hold 1.13 s
 
-## #5 e06 అన్నా అని పిలిస్తే అంతే సంగతులు! (laugh, intensity 4, standalone)
+## #5 e07 Girlfriend ఉందా అని అడిగితే... (laugh, intensity 4, standalone)
 
-- plays 33.4 s: 4:45.4-5:18.8
-- reason: Viewer stops because a driver casually flirts with his passenger, stays to find out why he is dead against being called 'brother', and it ends on his dark, absurd reasoning about eating at a girl's funeral (laugh).
-- stop (L0135, start_line, at 0.3 s): వైషు madam మీరు చాలా అందంగా ఉన్నారండి | A stranger stops when the driver opens the conversation with a bold, straight-faced compliment: 'వైషు madam మీరు చాలా అందంగా ఉన్నారండి'.
-- stay: Why is the driver so adamantly protesting her calling him 'అన్నా'?
-- land (L0148, reaction hold): తర్వాత ఆ అమ్మాయి దినానికి మేము వెళ్లి అన్నం తిని వచ్చామండి
-- moment: L0148 Prasad justifies why women shouldn't call him 'anna' with a darkly absurd tale about eating lunch at the funeral of the last girl who did.
-- end: payoff ends 5:18.8, hold 0.03 s
+- plays 79.6 s: 4:45.4-6:05.1
+- reason: Viewer stops because Prasad opens the ride with an unexpectedly forward compliment saying "వైషు madam మీరు చాలా అందంగా ఉన్నారండి", stays to find out what other bizarre life logic he shares, and it ends on his deadpan punchline that his girlfriend is with someone else (laugh).
+- stop (L0135, start_line, at 0.3 s): వైషు madam మీరు చాలా అందంగా ఉన్నారండి | A stranger stops scrolling at Prasad's hilarious and unabashedly bold compliment to a passenger: "వైషు madam మీరు చాలా అందంగా ఉన్నారండి".
+- stay: How will Vaishu react to Prasad's increasingly bizarre life logic and relationship status?
+- land (L0172, reaction hold): వేరే వాడితో ఉంది
+- moment: L0172 Asked if he has a girlfriend, Prasad deadpans that he does, but she is currently 'with someone else.'
+- end: payoff ends 6:02.0, hold 3.03 s
 
 ## #6 e10 Love Story లో Item Song లా మీరేంటండీ? (laugh, intensity 4, standalone)
 
@@ -79,22 +79,22 @@ Cost $0.2990 ($0.0000 billed this run).
 ## Not shown
 
 - e12 (L0452, laugh 4): N0: no clip: The exchange begins with flat phone greetings ('Hi ప్రసాద్') with no suitable hook or valid cold open, and cutting just the punchline lacks the necessary setup to work for a first-time viewer.
-- e09 (L0333, laugh 4): D1: duplicate of clip e10 (75% of the shorter; strength 4 vs 4, plays 36 s vs 42 s)
-- e08 (L0328, shock 4): D1: duplicate of clip e10 (70% of the shorter; strength 4 vs 4, plays 30 s vs 42 s)
-- e01 (L0028, laugh 4): D1: duplicate of clip e02 (53% of the shorter; strength 4 vs 4, plays 49 s vs 74 s)
-- e07 (L0172, laugh 4): D1: duplicate of clip e06 (100% of the shorter; strength 4 vs 4, plays 80 s vs 33 s)
+- e09 (L0333, laugh 4): D1: duplicate of clip e10 (75% of the shorter; strength 4 vs 4, plays 36 s vs 42 s; tie-break: 30-75 s play, then the later end)
+- e08 (L0328, shock 4): D1: duplicate of clip e10 (70% of the shorter; strength 4 vs 4, plays 30 s vs 42 s; tie-break: 30-75 s play, then the later end)
+- e01 (L0028, laugh 4): D1: duplicate of clip e02 (53% of the shorter; strength 4 vs 4, plays 49 s vs 74 s; the longer clip wins: plays the other's land line)
+- e06 (L0148, laugh 4): D1: duplicate of clip e07 (100% of the shorter; strength 4 vs 4, plays 33 s vs 80 s; the longer clip wins: plays the other's land line)
 
 ## Moments
 
-- p01 L0028 (laugh 4): rejected: D1: duplicate of clip e02 (53% of the shorter; strength 4 vs 4, plays 49 s vs 74 s). ORS లు ఇచ్చావేంట్రా
+- p01 L0028 (laugh 4): rejected: D1: duplicate of clip e02 (53% of the shorter; strength 4 vs 4, plays 49 s vs 74 s; the longer clip wins: plays the other's land line). ORS లు ఇచ్చావేంట్రా
 - p02 L0047 (laugh 4): shown e02. తాత happy anniversary అని రాసి bouquet పంపిస్తావా
 - p03 L0070 (laugh 5): shown e03. ఆరోజు నువ్వు date లో ఉన్నావ్ అన్నావ్ కదా
 - p04 L0100 (laugh 4): shown e04. అక్కడ చెరువు రసం చాలా బాగుంటుంది
 - p05 L0126 (laugh 5): shown e05. అమ్మాయిలకి bus free రా దరిద్రుడా
-- p06 L0148 (laugh 4): shown e06. తర్వాత ఆ అమ్మాయి దినానికి మేము వెళ్లి అన్నం తిని వచ్చామండి
-- p07 L0172 (laugh 4): rejected: D1: duplicate of clip e06 (100% of the shorter; strength 4 vs 4, plays 80 s vs 33 s). వేరే వాడితో ఉంది
-- p08 L0328 (shock 4): rejected: D1: duplicate of clip e10 (70% of the shorter; strength 4 vs 4, plays 30 s vs 42 s). Okay, ప్రసాద్ నాకు పెళ్లయింది.
-- p09 L0333 (laugh 4): rejected: D1: duplicate of clip e10 (75% of the shorter; strength 4 vs 4, plays 36 s vs 42 s). పర్లేదు మీ ఆయన్ని చంపేద్దాం
+- p06 L0148 (laugh 4): rejected: D1: duplicate of clip e07 (100% of the shorter; strength 4 vs 4, plays 33 s vs 80 s; the longer clip wins: plays the other's land line). తర్వాత ఆ అమ్మాయి దినానికి మేము వెళ్లి అన్నం తిని వచ్చామండి
+- p07 L0172 (laugh 4): shown e07. వేరే వాడితో ఉంది
+- p08 L0328 (shock 4): rejected: D1: duplicate of clip e10 (70% of the shorter; strength 4 vs 4, plays 30 s vs 42 s; tie-break: 30-75 s play, then the later end). Okay, ప్రసాద్ నాకు పెళ్లయింది.
+- p09 L0333 (laugh 4): rejected: D1: duplicate of clip e10 (75% of the shorter; strength 4 vs 4, plays 36 s vs 42 s; tie-break: 30-75 s play, then the later end). పర్లేదు మీ ఆయన్ని చంపేద్దాం
 - p10 L0341 (laugh 4): shown e10. మంచి love story లో item song లో మీరేంటండీ?
 - p11 L0423 (tension 4): shown e11. మనుషుల్ని దూరం పెట్టడమంటే అది మానసిక రోగం కాదు పిరికితనం.
 - p12 L0452 (laugh 4): rejected: N0: no clip: The exchange begins with flat phone greetings ('Hi ప్రసాద్') with no suitable hook or valid cold open, and cutting just the punchline lacks the necessary setup to work for a first-time viewer.. ప్రతీక్ష ఎప్పుడో కట్టిన insurance ఇప్పుడు mature అయింది.

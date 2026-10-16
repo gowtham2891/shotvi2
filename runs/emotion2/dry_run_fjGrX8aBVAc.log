@@ -1,10 +1,10 @@
-DRY RUN (no generate call; countTokens on): ledger Rs 1669.18, limit Rs 1735.00
+DRY RUN (no generate call; countTokens on): ledger Rs 1669.18, limit Rs 1705.00
 fjGrX8aBVAc: dry run: find not cached; estimating with find answer of emotion1 (7 valid moments) as the estimate
 fjGrX8aBVAc: 7 moments -> 7 clusters (0 with several payoffs)
 fjGrX8aBVAc: find ws_emotion_find NOT cached; 7 moments (find answer of emotion1 (7 valid moments) as the estimate) -> 7 clusters (= build calls)
   context 12764 tokens, find task 925 tokens (countTokens); find Rs 5.21 exp / Rs 11.21 worst; build Rs 2.98 worst each; cache storage Rs 0.57
   setting | builds (exp/worst) | find exp | build exp | build worst | total exp | total worst
-  no cap  |     7 / 7         |     5.21 |      9.77 |       20.86 |     15.56 |       33.50
-  cap 15  |     7 / 7         |     5.21 |      9.77 |       20.86 |     15.56 |       33.50
-DRY RUN total (no cap): builds 7 expected / 7 worst; Rs 15.56 expected, Rs 33.50 worst; ledger Rs 1669.18 -> ~Rs 1684.74 (limit Rs 1735.00: fits the worst case)
-DRY RUN total (cap 15): builds 7 expected / 7 worst; Rs 15.56 expected, Rs 33.50 worst; ledger Rs 1669.18 -> ~Rs 1684.74 (limit Rs 1735.00: fits the worst case)
+  no cap  |     7 / 7         |     5.21 |      9.75 |       20.83 |     15.53 |       33.48
+  cap 15  |     7 / 7         |     5.21 |      9.75 |       20.83 |     15.53 |       33.48
+DRY RUN total (no cap): builds 7 expected / 7 worst; Rs 15.53 expected, Rs 33.48 worst; ledger Rs 1669.18 -> ~Rs 1684.71 (limit Rs 1705.00: fits the worst case)
+DRY RUN total (cap 15): builds 7 expected / 7 worst; Rs 15.53 expected, Rs 33.48 worst; ledger Rs 1669.18 -> ~Rs 1684.71 (limit Rs 1705.00: fits the worst case)

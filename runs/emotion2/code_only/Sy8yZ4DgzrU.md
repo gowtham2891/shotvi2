@@ -17,32 +17,31 @@ Cost $0.1178 ($0.0000 billed this run).
 
 ## #2 e02 నువ్వు ఇంట్లో ఉండి నన్ను ప్రేమిస్తే చాలు (aww, intensity 4, standalone)
 
-- plays 42.1 s: 16:32.7-16:35.8 + 16:15.8-16:32.1 + 16:35.8-16:58.5
+- plays 42.7 s: 16:15.8-16:58.5
 - reason: Viewer stops because Krishna playfully declares that he will start earning money now, stays to find out how his wife reacts, and it ends on Satya tenderly reassuring him that just having his love is enough (aww).
-- stop (L0384, cold open, B_lift, at 0.12 s): ఇప్పటి నుండి మీ ఆయన కూడా సంపాదిస్తాడు. | A proud husband playfully announcing "ఇప్పటి నుండి మీ ఆయన కూడా సంపాదిస్తాడు" immediately grabs attention with charming marital banter.
+- stop (L0384, B_refused_play_start, at 17.0 s): ఇప్పటి నుండి మీ ఆయన కూడా సంపాదిస్తాడు. | A proud husband playfully announcing "ఇప్పటి నుండి మీ ఆయన కూడా సంపాదిస్తాడు" immediately grabs attention with charming marital banter.
 - stay: How will Satya respond to Krishna's excitement about finally earning his own salary?
 - land (L0391, reaction hold): నువ్వు ఇంట్లో ఉంటూ నన్ను ప్రేమించే పని చూసుకున్నా కూడా నాకు okay.
 - moment: L0391 Satya reassures Krishna after he gets a job, saying his financial status never mattered to her: 'నువ్వు ఇంట్లో ఉంటూ నన్ను ప్రేమించే పని చూసుకున్నా కూడా నాకు okay.'
 - end: payoff ends 16:57.7, hold 0.89 s
-- cut 16:32.1-16:35.8 (3.67 s): cold-open skip 
 
-## #3 e04 ఆత్మగౌరవమా లేక Ego నా? (tension, intensity 4, standalone)
+## #3 e03 ఇది Self Respect కాదు Ego! (tension, intensity 4, promo)
 
-- plays 26.0 s: 21:27.7-21:53.7
-- reason: Viewer stops because Krishna passionately asks Satya to see things from his perspective about building a home with in-laws' money, stays to find out whether their dispute over pride versus paternal affection escalates, and it ends on Satya silencing him with a sharp reality check (tension).
-- stop (L0517, start_line, at 0.04 s): ఒకసారి నువ్వే నా place లో ఉండి ఆలోచించు. | Krishna challenges Satya with 'ఒకసారి నువ్వే నా place లో ఉండి ఆలోచించు' right before questioning her father's money.
-- stay: Will Satya accept Krishna's stand on self-respect, or will their argument over her father's money tear them apart?
-- land (L0525, reaction L0526): నీ ఆత్మ గౌరవం కోసం మా నాన్న ప్రేమను question చేయాలా?
-- moment: L0525 In response to Krishna asking if he should sacrifice self-respect for her father's love, Satya hits back with the perfect counter-question: 'నీ ఆత్మ గౌరవం కోసం మా నాన్న ప్రేమను question చేయాలా?'
-- end: payoff ends 21:53.3, hold 0.33 s
+- plays 116.9 s: 19:41.8-21:38.7
+- reason: Viewer stops because Satya tells Krishna he doesn't need to take a loan to buy a house ('అయినా అసలు నువ్ ఇప్పుడు loan తీసుకోవాల్సిన అవసరమే లేదు.'), stays to find out why her father offering money triggers such an intense fight between them, and it ends on Satya calling his pride mere ego (tension).
+- stop (L0470, start_line, at 0.3 s): అయినా అసలు నువ్ ఇప్పుడు loan తీసుకోవాల్సిన అవసరమే లేదు. | A stranger stops scrolling when Satya abruptly dismisses Krishna's plan to take a loan by claiming they don't need one: 'అయినా అసలు నువ్ ఇప్పుడు loan తీసుకోవాల్సిన అవసరమే లేదు.'
+- stay: Will Krishna accept Satya's father's financial help for their house, or will their conflict boil over?
+- land (L0519, reaction L0520): అది నీ self respect కాదు ego.
+- moment: L0519 Satya pierces through Krishna's stubborn refusal of her father's financial assistance by calling it out directly: 'అది నీ self respect కాదు ego.'
+- end: payoff ends 21:38.4, hold 0.35 s
 
 ## Not shown
 
-- e03 (L0519, tension 4): D1: duplicate of clip e04 (43% of the shorter; strength 4 vs 4, plays 117 s vs 26 s)
+- e04 (L0525, tension 4): D1: duplicate of clip e03 (43% of the shorter; strength 4 vs 4, plays 26 s vs 117 s; the longer clip wins: plays the other's land line)
 
 ## Moments
 
 - p01 L0029 (shock 4): shown e01. కావాలనే వెళ్ళా.
 - p02 L0391 (aww 4): shown e02. నువ్వు ఇంట్లో ఉంటూ నన్ను ప్రేమించే పని చూసుకున్నా కూడా నాకు okay.
-- p03 L0519 (tension 4): rejected: D1: duplicate of clip e04 (43% of the shorter; strength 4 vs 4, plays 117 s vs 26 s). అది నీ self respect కాదు ego.
-- p04 L0525 (tension 4): shown e04. నీ ఆత్మ గౌరవం కోసం మా నాన్న ప్రేమను question చేయాలా?
+- p03 L0519 (tension 4): shown e03. అది నీ self respect కాదు ego.
+- p04 L0525 (tension 4): rejected: D1: duplicate of clip e03 (43% of the shorter; strength 4 vs 4, plays 26 s vs 117 s; the longer clip wins: plays the other's land line). నీ ఆత్మ గౌరవం కోసం మా నాన్న ప్రేమను question చేయాలా?

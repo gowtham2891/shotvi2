@@ -12,7 +12,7 @@
   "skip_s": 30.0
  },
  "run_id": "code_only",
- "created_at": "2026-10-16T11:28:26Z",
+ "created_at": "2026-10-16T13:36:03Z",
  "content_type": "web_series",
  "pipeline": {
   "version": "emotion_pick/0.2-code_only",
@@ -99,7 +99,8 @@
      "yes",
      "yeah"
     ],
-    "ack_max_words": 2
+    "ack_max_words": 2,
+    "same_speaker": true
    },
    "cluster": {
     "enabled": false,
@@ -107,7 +108,8 @@
     "max_s": 50.0,
     "music_min_s": 4.0,
     "silence_gap_s": null,
-    "target_within": 1
+    "target_within": 1,
+    "max_span_s": 90.0
    },
    "build": {
     "max_moments": 12,
@@ -122,6 +124,7 @@
    },
    "cold_open": {
     "rule": "fallback",
+    "same_speaker": true,
     "near_lines": 2,
     "near_s": 3.0,
     "weak_advance_lines": 4,
@@ -157,7 +160,10 @@
     "prefer_play_s": [
      30.0,
      75.0
-    ]
+    ],
+    "keep_longer": true,
+    "keep_longer_max_s": 120.0,
+    "short_tail_s": 30.0
    },
    "budget_usd": 3.0,
    "calibrate_from": {
@@ -191,7 +197,7 @@
   "output_tokens": 67357,
   "usd": 0.299,
   "usd_billed": 0.0,
-  "wall_time_secs": 0.4,
+  "wall_time_secs": 0.8,
   "n_llm_calls": 13,
   "by_role": {
    "ws_emotion_build": {
@@ -741,39 +747,39 @@
    "build_flags": []
   },
   {
-   "id": "e06",
+   "id": "e07",
    "pieces": [
     {
      "start_word": 465,
-     "end_word": 518,
+     "end_word": 599,
      "start": 285.74,
-     "end": 318.78
+     "end": 364.92
     }
    ],
    "region": {
     "start_word": 465,
-    "end_word": 518,
+    "end_word": 599,
     "start": 285.74,
-    "end": 318.78
+    "end": 364.92
    },
-   "edited_duration": 33.04,
+   "edited_duration": 79.18,
    "reordered": false,
    "n_blocks": 1,
-   "text": "వైషు madam మీరు చాలా అందంగా ఉన్నారండి Thank you అన్నా ప్రసాద్ madam Okay ప్రసాద్ అన్నా Only ప్రసాద్ madam చాలా simple ఏ మన్నా madam ప్రసాద్ is okay, అన్న is not okay ఎందుకు six months back ఒక అమ్మాయి ఇలాగే అన్నయ్యా అని పిలిచి అన్నం లేకుండా చచ్చిపోయింది madam ఆ తర్వాత తర్వాత ఆ అమ్మాయి దినానికి మేము వెళ్లి అన్నం తిని వచ్చామండి",
+   "text": "వైషు madam మీరు చాలా అందంగా ఉన్నారండి Thank you అన్నా ప్రసాద్ madam Okay ప్రసాద్ అన్నా Only ప్రసాద్ madam చాలా simple ఏ మన్నా madam ప్రసాద్ is okay, అన్న is not okay ఎందుకు six months back ఒక అమ్మాయి ఇలాగే అన్నయ్యా అని పిలిచి అన్నం లేకుండా చచ్చిపోయింది madam ఆ తర్వాత తర్వాత ఆ అమ్మాయి దినానికి మేము వెళ్లి అన్నం తిని వచ్చామండి నిన్ను నిజంగానే రాకేష్ పంపించాడా ఆ హా! రాకేష్ is very genuine. కొంచెం work చేసినా ఎక్కువ appreciate చేస్తాడాయన. అమ్మాయిలకి చాలా care తీసుకుంటాడు Yeah nice guy. మీరేం చదువుకున్నారు Ninth pass madam, tenth class summer coaching లో ఆపేశానండి చదువుకొని ఉంటే మీరు మాలాగే మంచి job చేసుకునే వాళ్ళు కదా అంటే మా ఇంటి దగ్గర ఒకడు బాగా చదువుకొని పిచ్చి అయిపోయాడండి. అప్పటి నుంచి నేను చదవడం మానేశాను మీరంత sensitive ఆ అత్తని ఆంటీ అని ఎవరు పిలిచినా కూడా తట్టుకోలేను sensitive అండి మీకు boyfriend ఉన్నాడా ఏయ్! నీకు girlfriend లేదా వేరే వాడితో ఉంది నాకు philophobia",
    "rank": 5,
    "tier": "emotion_pick",
    "tier_label": "emotion pick",
    "scores": {},
-   "title": "అన్నా అని పిలిస్తే అంతే సంగతులు!",
+   "title": "Girlfriend ఉందా అని అడిగితే...",
    "hook_line": {
     "text": "వైషు madam మీరు చాలా అందంగా ఉన్నారండి",
     "start_word": 465,
     "end_word": 470
    },
-   "payoff_line": "తర్వాత ఆ అమ్మాయి దినానికి మేము వెళ్లి అన్నం తిని వచ్చామండి",
+   "payoff_line": "వేరే వాడితో ఉంది",
    "payoff_type": "punchline",
    "payoff_line_source": "discover",
-   "why_it_works": "Viewer stops because a driver casually flirts with his passenger, stays to find out why he is dead against being called 'brother', and it ends on his dark, absurd reasoning about eating at a girl's f…",
+   "why_it_works": "Viewer stops because Prasad opens the ride with an unexpectedly forward compliment saying \"వైషు madam మీరు చాలా అందంగా ఉన్నారండి\", stays to find out what other bizarre life logic he shares, and it en…",
    "category": "humour",
    "standalone_risks": [],
    "edit_notes": [],
@@ -786,11 +792,11 @@
    "time_segments": [
     {
      "start": 285.44,
-     "end": 318.813,
+     "end": 365.068,
      "kind": "scene"
     }
    ],
-   "video_duration": 33.37,
+   "video_duration": 79.63,
    "spoiler": false,
    "characters": [
     "Prasad",
@@ -798,26 +804,30 @@
    ],
    "visual_dependency": "medium",
    "start_line": "L0135",
-   "end_line": "L0148",
+   "end_line": "L0172",
    "end_hold": {
-    "payoff_end": 318.78,
-    "next_speech": 320.52,
+    "payoff_end": 362.04,
+    "next_speech": 368.404,
     "long_silence_after": false,
     "laugh_after": false,
-    "end": 318.813,
-    "hold_s": 0.03,
+    "end": 365.068,
+    "hold_s": 3.03,
     "on_shot_cut": true,
-    "rule": "shot_change_before_next_line",
-    "note": "next line starts quickly: ends on the shot change"
+    "rule": "reaction",
+    "reaction": {
+     "line": "L0174",
+     "text": "నాకు philophobia",
+     "end": 364.92
+    }
    },
    "chunk_drops": [],
    "discovery": {
     "strength": null,
-    "what_happens": "Why is the driver so adamantly protesting her calling him 'అన్నా'?",
-    "hook": "A stranger stops when the driver opens the conversation with a bold, straight-faced compliment: 'వైషు madam మీరు చాలా అందంగా ఉన్నారండి'.",
-    "payoff": "తర్వాత ఆ అమ్మాయి దినానికి మేము వెళ్లి అన్నం తిని వచ్చామండి",
+    "what_happens": "How will Vaishu react to Prasad's increasingly bizarre life logic and relationship status?",
+    "hook": "A stranger stops scrolling at Prasad's hilarious and unabashedly bold compliment to a passenger: \"వైషు madam మీరు చాలా అందంగా ఉన్నారండి\".",
+    "payoff": "వేరే వాడితో ఉంది",
     "opening_strength": null,
-    "payoff_line": "తర్వాత ఆ అమ్మాయి దినానికి మేము వెళ్లి అన్నం తిని వచ్చామండి",
+    "payoff_line": "వేరే వాడితో ఉంది",
     "payoff_type": "punchline"
    },
    "needs_rescore": false,
@@ -830,27 +840,27 @@
    "stop": {
     "line": "L0135",
     "text": "వైషు madam మీరు చాలా అందంగా ఉన్నారండి",
-    "why": "A stranger stops when the driver opens the conversation with a bold, straight-faced compliment: 'వైషు madam మీరు చాలా అందంగా ఉన్నారండి'.",
+    "why": "A stranger stops scrolling at Prasad's hilarious and unabashedly bold compliment to a passenger: \"వైషు madam మీరు చాలా అందంగా ఉన్నారండి\".",
     "cold_open": false,
     "case": "start_line",
     "via": "start_line",
     "plays_at_s": 0.3
    },
-   "stay": "Why is the driver so adamantly protesting her calling him 'అన్నా'?",
+   "stay": "How will Vaishu react to Prasad's increasingly bizarre life logic and relationship status?",
    "land": {
-    "line": "L0148",
-    "text": "తర్వాత ఆ అమ్మాయి దినానికి మేము వెళ్లి అన్నం తిని వచ్చామండి",
+    "line": "L0172",
+    "text": "వేరే వాడితో ఉంది",
     "reaction": "hold",
-    "plays_at_s": 29.86
+    "plays_at_s": 75.8
    },
-   "reason": "Viewer stops because a driver casually flirts with his passenger, stays to find out why he is dead against being called 'brother', and it ends on his dark, absurd reasoning about eating at a girl's funeral (laugh).",
+   "reason": "Viewer stops because Prasad opens the ride with an unexpectedly forward compliment saying \"వైషు madam మీరు చాలా అందంగా ఉన్నారండి\", stays to find out what other bizarre life logic he shares, and it ends on his deadpan punchline that his girlfriend is with someone else (laugh).",
    "moment": {
-    "id": "p06",
-    "line": "L0148",
-    "text": "తర్వాత ఆ అమ్మాయి దినానికి మేము వెళ్లి అన్నం తిని వచ్చామండి",
+    "id": "p07",
+    "line": "L0172",
+    "text": "వేరే వాడితో ఉంది",
     "feeling": "laugh",
     "intensity": 4,
-    "why": "Prasad justifies why women shouldn't call him 'anna' with a darkly absurd tale about eating lunch at the funeral of the last girl who did.",
+    "why": "Asked if he has a girlfriend, Prasad deadpans that he does, but she is currently 'with someone else.'",
     "type": "punchline",
     "lands_on_screen": true
    },
@@ -1153,7 +1163,7 @@
    "tier": "rejected",
    "source": "emotion_pick",
    "reject_reasons": [
-    "D1: duplicate of clip e10 (75% of the shorter; strength 4 vs 4, plays 36 s vs 42 s)"
+    "D1: duplicate of clip e10 (75% of the shorter; strength 4 vs 4, plays 36 s vs 42 s; tie-break: 30-75 s play, then the later end)"
    ],
    "moment": {
     "id": "p09",
@@ -1224,7 +1234,7 @@
    "tier": "rejected",
    "source": "emotion_pick",
    "reject_reasons": [
-    "D1: duplicate of clip e10 (70% of the shorter; strength 4 vs 4, plays 30 s vs 42 s)"
+    "D1: duplicate of clip e10 (70% of the shorter; strength 4 vs 4, plays 30 s vs 42 s; tie-break: 30-75 s play, then the later end)"
    ],
    "moment": {
     "id": "p08",
@@ -1295,7 +1305,7 @@
    "tier": "rejected",
    "source": "emotion_pick",
    "reject_reasons": [
-    "D1: duplicate of clip e02 (53% of the shorter; strength 4 vs 4, plays 49 s vs 74 s)"
+    "D1: duplicate of clip e02 (53% of the shorter; strength 4 vs 4, plays 49 s vs 74 s; the longer clip wins: plays the other's land line)"
    ],
    "moment": {
     "id": "p01",
@@ -1362,71 +1372,71 @@
    }
   },
   {
-   "id": "e07",
+   "id": "e06",
    "tier": "rejected",
    "source": "emotion_pick",
    "reject_reasons": [
-    "D1: duplicate of clip e06 (100% of the shorter; strength 4 vs 4, plays 80 s vs 33 s)"
+    "D1: duplicate of clip e07 (100% of the shorter; strength 4 vs 4, plays 33 s vs 80 s; the longer clip wins: plays the other's land line)"
    ],
    "moment": {
-    "id": "p07",
-    "line": "L0172",
-    "text": "వేరే వాడితో ఉంది",
+    "id": "p06",
+    "line": "L0148",
+    "text": "తర్వాత ఆ అమ్మాయి దినానికి మేము వెళ్లి అన్నం తిని వచ్చామండి",
     "feeling": "laugh",
     "intensity": 4,
-    "why": "Asked if he has a girlfriend, Prasad deadpans that he does, but she is currently 'with someone else.'",
+    "why": "Prasad justifies why women shouldn't call him 'anna' with a darkly absurd tale about eating lunch at the funeral of the last girl who did.",
     "type": "punchline",
     "lands_on_screen": true
    },
-   "dup_of": "e06",
+   "dup_of": "e07",
    "stop": {
     "line": "L0135",
     "text": "వైషు madam మీరు చాలా అందంగా ఉన్నారండి",
-    "why": "A stranger stops scrolling at Prasad's hilarious and unabashedly bold compliment to a passenger: \"వైషు madam మీరు చాలా అందంగా ఉన్నారండి\".",
+    "why": "A stranger stops when the driver opens the conversation with a bold, straight-faced compliment: 'వైషు madam మీరు చాలా అందంగా ఉన్నారండి'.",
     "cold_open": false,
     "case": "start_line"
    },
-   "stay": "How will Vaishu react to Prasad's increasingly bizarre life logic and relationship status?",
+   "stay": "Why is the driver so adamantly protesting her calling him 'అన్నా'?",
    "land": {
-    "line": "L0172",
-    "text": "వేరే వాడితో ఉంది",
+    "line": "L0148",
+    "text": "తర్వాత ఆ అమ్మాయి దినానికి మేము వెళ్లి అన్నం తిని వచ్చామండి",
     "reaction": "hold"
    },
-   "reason": "Viewer stops because Prasad opens the ride with an unexpectedly forward compliment saying \"వైషు madam మీరు చాలా అందంగా ఉన్నారండి\", stays to find out what other bizarre life logic he shares, and it ends on his deadpan punchline that his girlfriend is with someone else (laugh).",
-   "title": "Girlfriend ఉందా అని అడిగితే...",
+   "reason": "Viewer stops because a driver casually flirts with his passenger, stays to find out why he is dead against being called 'brother', and it ends on his dark, absurd reasoning about eating at a girl's funeral (laugh).",
+   "title": "అన్నా అని పిలిస్తే అంతే సంగతులు!",
    "pieces": [
     {
      "start_word": 465,
-     "end_word": 599,
+     "end_word": 518,
      "start": 285.74,
-     "end": 364.92
+     "end": 318.78
     }
    ],
    "region": {
     "start_word": 465,
-    "end_word": 599,
+    "end_word": 518,
     "start": 285.74,
-    "end": 364.92
+    "end": 318.78
    },
-   "edited_duration": 79.18,
+   "edited_duration": 33.04,
    "reordered": false,
    "n_blocks": 1,
-   "text": "వైషు madam మీరు చాలా అందంగా ఉన్నారండి Thank you అన్నా ప్రసాద్ madam Okay ప్రసాద్ అన్నా Only ప్రసాద్ madam చాలా simple ఏ మన్నా madam ప్రసాద్ is okay, అన్న is not okay ఎందుకు six months back ఒక అమ్మాయి ఇలాగే అన్నయ్యా అని పిలిచి అన్నం లేకుండా చచ్చిపోయింది madam ఆ తర్వాత తర్వాత ఆ అమ్మాయి దినానికి మేము వెళ్లి అన్నం తిని వచ్చామండి నిన్ను నిజంగానే రాకేష్ పంపించాడా ఆ హా! రాకేష్ is very genuine. కొంచెం work చేసినా ఎక్కువ appreciate చేస్తాడాయన. అమ్మాయిలకి చాలా care తీసుకుంటాడు Yeah nice guy. మీరేం చదువుకున్నారు Ninth pass madam, tenth class summer coaching లో ఆపేశానండి చదువుకొని ఉంటే మీరు మాలాగే మంచి job చేసుకునే వాళ్ళు కదా అంటే మా ఇంటి దగ్గర ఒకడు బాగా చదువుకొని పిచ్చి అయిపోయాడండి. అప్పటి నుంచి నేను చదవడం మానేశాను మీరంత sensitive ఆ అత్తని ఆంటీ అని ఎవరు పిలిచినా కూడా తట్టుకోలేను sensitive అండి మీకు boyfriend ఉన్నాడా ఏయ్! నీకు girlfriend లేదా వేరే వాడితో ఉంది నాకు philophobia",
+   "text": "వైషు madam మీరు చాలా అందంగా ఉన్నారండి Thank you అన్నా ప్రసాద్ madam Okay ప్రసాద్ అన్నా Only ప్రసాద్ madam చాలా simple ఏ మన్నా madam ప్రసాద్ is okay, అన్న is not okay ఎందుకు six months back ఒక అమ్మాయి ఇలాగే అన్నయ్యా అని పిలిచి అన్నం లేకుండా చచ్చిపోయింది madam ఆ తర్వాత తర్వాత ఆ అమ్మాయి దినానికి మేము వెళ్లి అన్నం తిని వచ్చామండి",
    "time_segments": [
     {
      "start": 285.44,
-     "end": 365.068,
+     "end": 318.813,
      "kind": "scene"
     }
    ],
-   "video_duration": 79.63,
+   "video_duration": 33.37,
    "start_line": "L0135",
-   "end_line": "L0172",
+   "end_line": "L0148",
    "cold_open": false,
    "build_moment": {
     "purpose": "standalone",
     "start_line": "L0135",
-    "end_line": "L0172",
+    "end_line": "L0148",
     "cold_open_lines": [],
     "drops": []
    }
@@ -1479,25 +1489,25 @@
     "clip": "e09",
     "moment": "p09",
     "line": "L0333",
-    "reason": "D1: duplicate of clip e10 (75% of the shorter; strength 4 vs 4, plays 36 s vs 42 s)"
+    "reason": "D1: duplicate of clip e10 (75% of the shorter; strength 4 vs 4, plays 36 s vs 42 s; tie-break: 30-75 s play, then the later end)"
    },
    {
     "clip": "e08",
     "moment": "p08",
     "line": "L0328",
-    "reason": "D1: duplicate of clip e10 (70% of the shorter; strength 4 vs 4, plays 30 s vs 42 s)"
+    "reason": "D1: duplicate of clip e10 (70% of the shorter; strength 4 vs 4, plays 30 s vs 42 s; tie-break: 30-75 s play, then the later end)"
    },
    {
     "clip": "e01",
     "moment": "p01",
     "line": "L0028",
-    "reason": "D1: duplicate of clip e02 (53% of the shorter; strength 4 vs 4, plays 49 s vs 74 s)"
+    "reason": "D1: duplicate of clip e02 (53% of the shorter; strength 4 vs 4, plays 49 s vs 74 s; the longer clip wins: plays the other's land line)"
    },
    {
-    "clip": "e07",
-    "moment": "p07",
-    "line": "L0172",
-    "reason": "D1: duplicate of clip e06 (100% of the shorter; strength 4 vs 4, plays 80 s vs 33 s)"
+    "clip": "e06",
+    "moment": "p06",
+    "line": "L0148",
+    "reason": "D1: duplicate of clip e07 (100% of the shorter; strength 4 vs 4, plays 33 s vs 80 s; the longer clip wins: plays the other's land line)"
    }
   ],
   "warnings": [],
@@ -1512,7 +1522,7 @@
    "text": "ORS లు ఇచ్చావేంట్రా",
    "why": "Vaishu hysterically confronts her boyfriend for gifting her 'ORS sachets' for her birthday instead of standard romantic gifts.",
    "status": "rejected",
-   "reason": "D1: duplicate of clip e02 (53% of the shorter; strength 4 vs 4, plays 49 s vs 74 s)"
+   "reason": "D1: duplicate of clip e02 (53% of the shorter; strength 4 vs 4, plays 49 s vs 74 s; the longer clip wins: plays the other's land line)"
   },
   {
    "id": "p02",
@@ -1561,8 +1571,8 @@
    "intensity": 4,
    "text": "తర్వాత ఆ అమ్మాయి దినానికి మేము వెళ్లి అన్నం తిని వచ్చామండి",
    "why": "Prasad justifies why women shouldn't call him 'anna' with a darkly absurd tale about eating lunch at the funeral of the last girl who did.",
-   "status": "shown",
-   "clip": "e06"
+   "status": "rejected",
+   "reason": "D1: duplicate of clip e07 (100% of the shorter; strength 4 vs 4, plays 33 s vs 80 s; the longer clip wins: plays the other's land line)"
   },
   {
    "id": "p07",
@@ -1571,8 +1581,8 @@
    "intensity": 4,
    "text": "వేరే వాడితో ఉంది",
    "why": "Asked if he has a girlfriend, Prasad deadpans that he does, but she is currently 'with someone else.'",
-   "status": "rejected",
-   "reason": "D1: duplicate of clip e06 (100% of the shorter; strength 4 vs 4, plays 80 s vs 33 s)"
+   "status": "shown",
+   "clip": "e07"
   },
   {
    "id": "p08",
@@ -1582,7 +1592,7 @@
    "text": "Okay, ప్రసాద్ నాకు పెళ్లయింది.",
    "why": "Just as Prasad starts hitting on Pooja as a backup, she drops the shocking truth that she is already married.",
    "status": "rejected",
-   "reason": "D1: duplicate of clip e10 (70% of the shorter; strength 4 vs 4, plays 30 s vs 42 s)"
+   "reason": "D1: duplicate of clip e10 (70% of the shorter; strength 4 vs 4, plays 30 s vs 42 s; tie-break: 30-75 s play, then the later end)"
   },
   {
    "id": "p09",
@@ -1592,7 +1602,7 @@
    "text": "పర్లేదు మీ ఆయన్ని చంపేద్దాం",
    "why": "Prasad casually suggests 'killing her husband' and finding a lawyer so they won't get caught after learning Pooja is married.",
    "status": "rejected",
-   "reason": "D1: duplicate of clip e10 (75% of the shorter; strength 4 vs 4, plays 36 s vs 42 s)"
+   "reason": "D1: duplicate of clip e10 (75% of the shorter; strength 4 vs 4, plays 36 s vs 42 s; tie-break: 30-75 s play, then the later end)"
   },
   {
    "id": "p10",

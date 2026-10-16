@@ -9,7 +9,10 @@
 6. strict lift-ok: continuation guard, acknowledgement guard, >= 1.0 s of speech, quiet tail;
 7. the lift's in-place skip counts as one of the <= 3 internal cuts;
 8. 0.2 renders Scribe's speaker labels; the v1 config renders 0.1's context byte-identically; v1 prompt files kept;
-9. the find schema takes "cliffhanger" (0.2 only); validate_payoffs accepts it."""
+9. the find schema takes "cliffhanger" (0.2 only); validate_payoffs accepts it;
+10. founder fixes (2026-10-16, round 2): keep the longer same-scene duplicate (<= 120 s), the 90 s cluster span cap,
+    and the same-speaker rule for cold opens (lift-ok filter + build-time refusal, Scribe labels).
+The fake episodes alternate Scribe speaker labels line by line (``alternate``) unless a test sets them."""
 import copy
 import unittest
 
@@ -29,8 +32,23 @@ def cfg2(over=None):
     return ws.deep_merge(V2, over or {})
 
 
+def alternate(ep):
+    """Scribe labels speaker_0 / speaker_1 alternating over the spoken lines (a two-person exchange)."""
+    k = 0
+    for r in ep.lines:
+        if ep.is_speech(r):
+            r["speaker"] = f"speaker_{k % 2}"
+            k += 1
+    return ep
+
+
+def episode2():
+    return alternate(episode())
+
+
 def run2(prov, over=None, **kw):
     r = Run(prov, **kw)
+    r.ep = alternate(r.ep)
     r.cfg = cfg2(over)
     for k in ("find", "build"):
         r.cfg["models"][k]["provider"] = "fake"
@@ -46,7 +64,7 @@ def payoff(k, intensity=4, text=None):
 # ============================================================================ 1-3 validation and build, in isolation
 class Validate(unittest.TestCase):
     def setUp(self):
-        self.ep = episode()
+        self.ep = episode2()
         self.cfg = cfg2()
         self.p = payoff(10)
 
@@ -137,7 +155,7 @@ class Validate(unittest.TestCase):
     def test_weak_start_advances_to_the_stop(self):
         spec = [(10.0, 10.6, "Hello"), (11.0, 13.0, "a b c d"), (13.5, 15.5, "e f g h"), (16.0, 18.0, "i j k l"),
                 (18.5, 20.5, "m n o p"), (21.0, 23.0, "q r s t"), (23.5, 25.5, "u v w x")]
-        ep = make_ep(spec, [9.9, 26.0], duration=60.0)              # no shot change after L0004: the lift fails
+        ep = alternate(make_ep(spec, [9.9, 26.0], duration=60.0))   # no shot change after L0004: the lift fails
         p = {**payoff(6), "line": L(6)}
         x = {"id": "e01", "payoff": p}
         x["moment"], x["emo"], x["flags"] = E.validate_build(ep, p, build(1, 6, stop=4, land=6), self.cfg)
@@ -152,6 +170,35 @@ class Validate(unittest.TestCase):
     def test_strong_start_is_not_advanced(self):
         x, c = self.built(build(4, 10, stop=8))
         self.assertEqual(c["start_line"], L(4))                      # 3 words, 2 s: not weak
+
+    def test_same_speaker_lift_is_refused_and_played_in_place(self):
+        self.ep.by_id[L(8)]["speaker"] = self.ep.by_id[L(7)]["speaker"]   # L0007 and L0008: one speaker's turn
+        self.assertEqual(E.same_speaker_next(self.ep, L(7)), L(8))
+        x, c = self.built(build(4, 10, stop=7))
+        self.assertEqual(x["emo"]["stop"]["case"], "B_refused_play_start")
+        self.assertFalse(c["cold_open"])
+        self.assertEqual(c["start_line"], L(4))
+        self.assertTrue(any("same speaker continues in L0008" in f for f in x["flags"]))
+        played = {i for pc in c["pieces"] for i in range(pc["start_word"], pc["end_word"] + 1)}
+        w0, w1 = self.ep.by_id[L(7)]["words"]
+        self.assertTrue(all(i in played for i in range(w0, w1 + 1)))    # L0007 stays in its place
+        off = cfg2({"cold_open": {"same_speaker": False}})
+        x2 = {"id": "e01", "payoff": self.p}
+        x2["moment"], x2["emo"], x2["flags"] = E.validate_build(self.ep, self.p, build(4, 10, stop=7), off)
+        self.assertTrue(E.build_v2(self.ep, x2, ws.DEFAULTS, off, {L(7)})["cold_open"])   # rule off: lifted
+
+    def test_same_speaker_refusal_still_allows_the_weak_start_advance(self):
+        spec = [(10.0, 10.6, "Hello"), (11.0, 13.0, "a b c d"), (13.5, 15.5, "e f g h"), (16.0, 18.0, "i j k l"),
+                (18.5, 20.5, "m n o p"), (21.0, 23.0, "q r s t"), (23.5, 25.5, "u v w x")]
+        ep = alternate(make_ep(spec, [9.9, 18.25, 26.0], duration=60.0))   # L0004 has a shot change after it
+        ep.by_id[L(5)]["speaker"] = ep.by_id[L(4)]["speaker"]
+        p = {**payoff(6), "line": L(6)}
+        x = {"id": "e01", "payoff": p}
+        x["moment"], x["emo"], x["flags"] = E.validate_build(ep, p, build(1, 6, stop=4, land=6), self.cfg)
+        c = E.build_v2(ep, x, ws.DEFAULTS, self.cfg, {L(4)})
+        self.assertEqual(x["emo"]["stop"]["case"], "B_refused_advance_start")
+        self.assertEqual(c["start_line"], L(4))
+        self.assertTrue(any("same speaker" in f for f in x["flags"]))
 
 
 # ============================================================================ 4 clusters
@@ -200,6 +247,18 @@ class Clusters(unittest.TestCase):
         ps = [{**payoff(2), "line": L(2)}, {**payoff(18), "id": "p18", "line": L(18)}]
         self.assertEqual(len(E.cluster_moments(ep, ps, self.cfg)), 1)
 
+    def test_span_cap_splits_a_chain(self):
+        # payoffs every 30 s in one scene (each within 50 s of the previous): the chain would span 120 s
+        spec = block(10, 60, "a", step=3.0)
+        ep = make_ep(spec, shot_cuts(spec), duration=400.0)
+        ps = [{**payoff(k), "line": L(k)} for k in (2, 12, 22, 32, 42)]   # 13, 43, 73, 103, 133 s
+        ks = E.cluster_moments(ep, ps, self.cfg)
+        self.assertEqual([[q["line"] for q in k["members"]] for k in ks],
+                         [[L(2), L(12), L(22), L(32)], [L(42)]])           # 103 - 13 = 90 s: inside the cap
+        self.assertIn("span", ks[1]["break_before"])
+        ks = E.cluster_moments(ep, ps, cfg2({"cluster": {"max_span_s": None}}))
+        self.assertEqual(len(ks), 1)
+
     def test_short_music_does_not_split(self):
         spec = block(10, 20, "a")
         ep = make_ep(spec, shot_cuts(spec), events=[(26.2, 27.0, "[సంగీతం]")], duration=100.0)
@@ -234,14 +293,17 @@ class ClusterRun(unittest.TestCase):
         prov = FakeProvider()
         r = run2(prov)
         doc = r()
-        # all ten moments of the fake episode sit within 35 lines of each other in one scene: one cluster,
-        # target = the last with intensity >= 4 (L0052), strength 5
-        self.assertEqual(roles(prov), ["find", "build"])
-        task = prov.calls[1]["prompt"]
-        self.assertIn("The moment: line L0052", task)
-        self.assertIn("Earlier beats in this same scene to include as setup/escalation: L0010 (", task)
+        # the ten moments sit within 35 lines of each other in one scene; the 90 s span cap splits the chain:
+        # L0010..L0040 (37-127 s) and L0046..L0058 (145-181 s); targets = the last with intensity >= 5 - 1
+        self.assertEqual(roles(prov), ["find", "build", "build"])
+        tasks = [c["prompt"] for c in prov.calls[1:]]
+        self.assertIn("The moment: line L0040", tasks[0])
+        self.assertIn("Earlier beats in this same scene to include as setup/escalation: L0010 (", tasks[0])
+        self.assertIn("The moment: line L0052", tasks[1])
+        self.assertIn("Earlier beats in this same scene to include as setup/escalation: L0046 (", tasks[1])
         s = doc["episode_summary"]
-        self.assertEqual((s["n_clusters"], s["n_build_calls"]), (1, 1))
+        self.assertEqual((s["n_clusters"], s["n_build_calls"]), (2, 2))
+        self.assertIn("span: 108 s from L0010", s["clusters"][1]["break_before"])
         st = {row["line"]: row["status"] for row in doc["moment_table"]}
         self.assertEqual(st[L(10)], "in_cluster")
         self.assertEqual(st[L(58)], "in_cluster")                    # absorbed (intensity 3 < 5 - 1)
@@ -284,7 +346,7 @@ class FullRun2(unittest.TestCase):
 # ============================================================================ 5 dedupe
 class Dedupe(unittest.TestCase):
     def setUp(self):
-        self.ep = episode()
+        self.ep = episode2()
         self.cfg = cfg2()
 
     def x(self, i, a, b, land, strength=4):
@@ -300,8 +362,32 @@ class Dedupe(unittest.TestCase):
         kept, dropped = E.dedupe_scene(self.ep, [a, b], self.cfg, {"pa": 4, "pb": 4})
         self.assertEqual(len(kept), 1)
         self.assertIn("same scene", dropped[0]["reject_reasons"][0])
-        # equal strength; a plays ~110 s, b ~35 s (inside 30-75 s) -> b kept
+        # equal strength; b plays a's land L0039 and a plays ~110 s (<= 120 s): the longer a is kept
+        self.assertEqual(kept[0]["id"], "a")
+        self.assertIn("the longer clip wins", dropped[0]["reject_reasons"][0])
+        # keep_longer off: b plays 30-75 s -> b kept
+        kept, _ = E.dedupe_scene(self.ep, [a, b], cfg2({"dedupe": {"keep_longer": False}}), {"pa": 4, "pb": 4})
         self.assertEqual(kept[0]["id"], "b")
+
+    def test_short_clip_over_the_tail_of_a_longer_one(self):
+        # like Project Pelli L0470-L0520 (117 s) vs L0517-L0526 (26 s): the short clip starts inside the long one
+        # and ends after it, neither plays the other's land
+        a, b = self.x("a", 4, 40, 36), self.x("b", 39, 45, 44)
+        self.assertLess(b["clip"]["video_duration"], 30.0)
+        self.assertLessEqual(a["clip"]["video_duration"], 120.0)
+        kept, dropped = E.dedupe_scene(self.ep, [b, a], self.cfg, {"pa": 4, "pb": 4})
+        self.assertEqual([k["id"] for k in kept], ["a"])
+        self.assertIn("over its tail", dropped[0]["reject_reasons"][0])
+        kept, _ = E.dedupe_scene(self.ep, [a, b], self.cfg, {"pa": 3, "pb": 4})
+        self.assertEqual([k["id"] for k in kept], ["b"])            # strength still comes first
+        kept, _ = E.dedupe_scene(self.ep, [a, b], cfg2({"dedupe": {"keep_longer": False}}), {"pa": 4, "pb": 4})
+        self.assertEqual([k["id"] for k in kept], ["b"])            # old tie-break: the later end
+
+    def test_longer_over_120_s_falls_back_to_the_tie_breaks(self):
+        a, b = self.x("a", 2, 48, 47), self.x("b", 47, 58, 57)       # a ~140 s, b plays a's land, b ~35 s
+        self.assertGreater(a["clip"]["video_duration"], 120.0)
+        kept, _ = E.dedupe_scene(self.ep, [a, b], self.cfg, {"pa": 4, "pb": 4})
+        self.assertEqual([k["id"] for k in kept], ["b"])
 
     def test_no_overlap_no_duplicate(self):
         a, b = self.x("a", 4, 20, 19), self.x("b", 21, 35, 34)
@@ -313,7 +399,10 @@ class Dedupe(unittest.TestCase):
         kept, _ = E.dedupe_scene(self.ep, [a, b], self.cfg, {"pa": 5, "pb": 4})
         self.assertEqual(kept[0]["id"], "a")                         # higher strength
         kept, _ = E.dedupe_scene(self.ep, [a, b], self.cfg, {"pa": 4, "pb": 4})
-        self.assertEqual(kept[0]["id"], "b")                         # tie, both 30-75 s: the later end
+        self.assertEqual(kept[0]["id"], "a")                         # tie: b plays a's land L0019, a is longer
+        # without keep_longer: both play 30-75 s -> the later end
+        kept, _ = E.dedupe_scene(self.ep, [a, b], cfg2({"dedupe": {"keep_longer": False}}), {"pa": 4, "pb": 4})
+        self.assertEqual(kept[0]["id"], "b")
         c = self.x("c", 8, 12, 11)                                   # ~14 s: outside 30-75
         kept, _ = E.dedupe_scene(self.ep, [a, c], self.cfg, {"pa": 4, "pc": 4})
         self.assertEqual([k["id"] for k in kept], ["a"])
@@ -341,7 +430,7 @@ class LiftOk(unittest.TestCase):
             spec.append((t, t + d, tx))
             t += d + 1.0
         cuts = [round(b + 0.5, 3) for _, b, _ in spec]               # a shot change 0.5 s after every line
-        return make_ep(spec, cuts, duration=t + 10, loud=loud)
+        return alternate(make_ep(spec, cuts, duration=t + 10, loud=loud))
 
     def lc(self):
         return copy.deepcopy(V2["lift_ok"])
@@ -365,6 +454,16 @@ class LiftOk(unittest.TestCase):
         self.assertNotIn(L(2), E.strict_liftable_lines(ep, ws.DEFAULTS["cut"], self.lc()))
         self.assertTrue(E.is_ack("సరే సరే", self.lc()["acks"], 2))
         self.assertFalse(E.is_ack("సరే నేను వస్తా", self.lc()["acks"], 2))
+
+    def test_same_speaker_next_line_is_not_offered(self):
+        ep = self.ep(["a b c", "d e f", "g h i", "j k l", "m n o"])
+        ep.by_id[L(3)]["speaker"] = ep.by_id[L(2)]["speaker"]        # L0002 + L0003: one speaker's turn
+        ep.by_id[L(4)]["speaker"] = "speaker_2"
+        out = E.strict_liftable_lines(ep, ws.DEFAULTS["cut"], self.lc())
+        self.assertNotIn(L(2), out)
+        self.assertIn(L(3), out)
+        lc = {**self.lc(), "same_speaker": False}
+        self.assertIn(L(2), E.strict_liftable_lines(ep, ws.DEFAULTS["cut"], lc))
 
     def test_speech_at_least_one_second(self):
         ep = self.ep(["a b c", "d e", "g h i", "j k l"], durs={1: 0.8})
@@ -421,6 +520,13 @@ class Context(unittest.TestCase):
         self.assertEqual(a1, a0)
         self.assertEqual(ws3.context_prompt(self.ep, a1), ws3.context_prompt(self.ep, a0))
         self.assertIn("Meera", ws3.context_prompt(self.ep, a1)[1])  # 0.1 rendered the corrected names
+
+    def test_new_rules_off_in_the_v1_config(self):
+        v1 = ws.deep_merge(V2, V1)
+        self.assertEqual((v1["cluster"]["enabled"], v1["lift_ok"]["rule"], v1["cold_open"]["rule"],
+                          v1["dedupe"]["rule"]), (False, "v1", "v1", "v1"))
+        ep = episode()                                              # one speaker label throughout
+        self.assertEqual(E.lift_ok_lines(ep, ws.DEFAULTS["cut"], v1), ws.liftable_lines(ep, ws.DEFAULTS["cut"]))
 
     def test_v1_prompt_files_and_find_role(self):
         f1, b1 = load_prompt("ws_emotion_find_v1"), load_prompt("ws_emotion_build_v1")

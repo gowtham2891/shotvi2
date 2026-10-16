@@ -12,7 +12,7 @@
   "skip_s": 30.0
  },
  "run_id": "code_only",
- "created_at": "2026-10-16T11:28:25Z",
+ "created_at": "2026-10-16T13:36:02Z",
  "content_type": "web_series",
  "pipeline": {
   "version": "emotion_pick/0.2-code_only",
@@ -99,7 +99,8 @@
      "yes",
      "yeah"
     ],
-    "ack_max_words": 2
+    "ack_max_words": 2,
+    "same_speaker": true
    },
    "cluster": {
     "enabled": false,
@@ -107,7 +108,8 @@
     "max_s": 50.0,
     "music_min_s": 4.0,
     "silence_gap_s": null,
-    "target_within": 1
+    "target_within": 1,
+    "max_span_s": 90.0
    },
    "build": {
     "max_moments": 12,
@@ -122,6 +124,7 @@
    },
    "cold_open": {
     "rule": "fallback",
+    "same_speaker": true,
     "near_lines": 2,
     "near_s": 3.0,
     "weak_advance_lines": 4,
@@ -157,7 +160,10 @@
     "prefer_play_s": [
      30.0,
      75.0
-    ]
+    ],
+    "keep_longer": true,
+    "keep_longer_max_s": 120.0,
+    "short_tail_s": 30.0
    },
    "budget_usd": 3.0,
    "calibrate_from": {
@@ -191,7 +197,7 @@
   "output_tokens": 37550,
   "usd": 0.16051,
   "usd_billed": 0.0,
-  "wall_time_secs": 0.2,
+  "wall_time_secs": 0.4,
   "n_llm_calls": 8,
   "by_role": {
    "ws_emotion_build": {
