@@ -1,283 +1,6 @@
-# Love Brew (fjGrX8aBVAc): emotion-first clip selection
+# Love Brew (fjGrX8aBVAc)
 
-Run: runs/emotion1 (pipeline emotion_pick/0.1), cost about Rs 15.01.
-Lines are referred to by their id (L0123). No timestamps.
-
-## 1. Summary
-- Moments found by the find call: 7
-- Build calls made: 7 (limit 12 per episode; 0 not built because of the limit)
-- Gemini said no clip: 1
-- Dropped by our code checks: 0 (stop or land check), 0 (too short / too long / basic rules), 0 (repeats)
-- Clips shown: 6
-
-Episode notes written by Gemini in the find call:
-> A Telugu romantic comedy where Abhi conceals his wealthy background and goes by the name 'Vijay' to live near his crush Meera. His friend and family match Harshitha visits and threatens his cover before gracefully deciding not to interfere, just as his father tracks him down. Clipping the identity slips or father's search reveals the core deception central to the plot.
-
-## 2. Clips shown (6)
-
-### e01: Friend వచ్చి Meera ముందు ఇరికించేసింది
-- Feeling: tension (strength 4 of 5)
-- Length: 20 s; cold open: no
-- Reason: Viewer stops because Abhi aggressively confronts Harshitha with "లోపలికి ఎందుకు వచ్చావే?", stays to find out if his fake identity will be exposed to Meera, and it ends on Harshitha blurting out his real name followed by Abhi's stunned "ఇరికించేసింది." (tension).
-- Stop: L0118 "లోపలికి ఎందుకు వచ్చావే?". A stranger stops scrolling hearing Abhi's hushed, aggressive confrontation: "లోపలికి ఎందుకు వచ్చావే?"
-- Stay: Will Abhi manage to keep Harshitha from exposing his secret identity to Meera?
-- Land: L0130 "నీ పేరు అభి కదా!"; reaction: L0131 "ఇరికించేసింది."
-- Clip lines: L0118 to L0131
-
-As played:
-```
-L0118 [speaker_1]: లోపలికి ఎందుకు వచ్చావే?
-L0119 [speaker_0]: తను పిలిచింది, వచ్చాను.
-L0120 [speaker_1]: పిలిస్తే వచ్చేస్తావా?
-L0121 [speaker_1]: సిగ్గు లేదా?
-L0122 [speaker_0]: నీకు సిగ్గు లేదా?
-L0123 [speaker_0]: నా calls ఎందుకు answer చేయట్లేదు?
-L0124 [speaker_0]: ఏంటి best friends ఏదో మాట్లాడుకుంటున్నట్టున్నారు?
-(audio event) [నవ్వు]
-L0126 [speaker_0]: నీ గురించే.
-L0127 [speaker_0]: నా గురించా?
-L0128 [speaker_0]: నా గురించి ఏం మాట్లాడుకుంటున్నారు విజయ్?
-L0129 [speaker_0]: విజయా?
-L0130 [speaker_0]: నీ పేరు అభి కదా!
-L0131 [speaker_1]: ఇరికించేసింది.
-[picture holds on the reaction]
-```
-
-### e02: Free trip అంటే flight ఎక్కేయాలి
-- Feeling: laugh (strength 3 of 5)
-- Length: 15 s; cold open: no
-- Reason: Viewer stops because Abhi hilariously poses as a telecaller with 'Hello madam, నమస్తే', stays to find out how Harshitha reacts to his scam pitch, and it ends on his absurd outburst telling her to pack her bags and board the flight (laugh).
-- Stop: L0176 "Hello madam.". Abhi abruptly adopts a mock telecaller persona, formally greeting with 'Hello madam, నమస్తే'.
-- Stay: How far will Abhi take his fake travel agent act to get Harshitha out of his way?
-- Land: L0185 "bags సర్దుకొని flight ఎక్కేయండి."; reaction: hold
-- Clip lines: L0176 to L0185
-
-As played:
-```
-L0176 [speaker_2]: Hello madam.
-L0177 [speaker_2]: నమస్తే.
-L0178 [speaker_0]: ఎవరు?
-L0179 [speaker_2]: ఆ మేము Unpack Your Bags travel company నుంచి call చేస్తున్నాం.
-L0180 [speaker_0]: చెప్పండి.
-L0181 [speaker_2]: ఆ మా company తరపు నుంచి Bangkok trip కి మీరు select అయ్యారు.
-L0182 [speaker_2]: It's a free trip.
-L0183 [speaker_0]: నేనెందుకు select అయ్యాను?
-L0184 [speaker_3]: Free trip అంటే ఎందుకండి అడ్డమైన questions అడుగుతారు?
-L0185 [speaker_3]: bags సర్దుకొని flight ఎక్కేయండి.
-[picture holds on the reaction]
-```
-
-### e03: నువ్వు flat అయిన అమ్మాయి బాగుంది
-- Feeling: laugh (strength 3 of 5)
-- Length: 34 s; cold open: no
-- Reason: Viewer stops because Meera unexpectedly invites Abhi's friend to stay at their flat, stays to find out how Abhi handles Harshitha's teasing, and it ends on Harshitha's witty pun about the flat and Meera (laugh).
-- Stop: L0230 "నీ best friend flat ఉండగా నువ్వు PG లో ఉంటావా?". Meera creates instant comedic panic for Abhi by innocently insisting his female friend stay with them ("నీ best friend flat ఉండగా నువ్వు PG లో ఉంటావా?").
-- Stay: How will Abhi react when Harshitha takes advantage of Meera's offer to tease him?
-- Land: L0248 "నువ్వు flat అయిన అమ్మాయి బాగుంది."; reaction: L0249 "Thanks."
-- Clip lines: L0230 to L0249
-
-As played:
-```
-L0230 [speaker_0]: నీ best friend flat ఉండగా నువ్వు PG లో ఉంటావా?
-L0231 [speaker_3]: Meera.
-L0232 [speaker_0]: అభి కూడా అదే అంటున్నాడు.
-L0233 [speaker_3]: నేనేమన్నా?
-L0234 [speaker_3]: నేనేమన్నా?
-L0235 [speaker_3]: లే...
-L0236 [speaker_0]: మళ్ళీ నీకేమన్నా ఇబ్బంది అయితదేమో అని.
-L0237 [speaker_3]: హా...
-L0238 [speaker_3]: ఇబ్బంది.
-L0239 [speaker_0]: నాకే ఇబ్బంది లేదు.
-L0240 [speaker_0]: ఈ flat నీదనుకో, happy గా ఉండి ఇక్కడ.
-L0241 [speaker_3]: అమ్మనమ్మ.
-L0242 [speaker_0]: Thank you Meera.
-L0243 [speaker_0]: హ్మ్
-L0244 [speaker_3]: ఛ.
-L0245 [speaker_0]: హ్మ్ బాగుందిరా.
-L0246 [speaker_3]: ఏంది flat ఆ?
-L0247 [speaker_0]: flat బాగుంది.
-L0248 [speaker_0]: నువ్వు flat అయిన అమ్మాయి బాగుంది.
-L0249 [speaker_3]: Thanks.
-[picture holds on the reaction]
-```
-
-### e04: నాకేదో తేడా కొడుతుందే!
-- Feeling: laugh (strength 4 of 5)
-- Length: 48 s; cold open: no
-- Reason: Viewer stops because Meera senses a lie with "నాకేదో తేడా కొడుతుందే", stays to find out how Harshitha deflects questions about their wealthy background, and it ends on Harshitha's absurd excuse about school fees making them poor (laugh).
-- Stop: L0305 "నాకేదో తేడా కొడుతుందే.". Meera's sharp, suspicious remark "నాకేదో తేడా కొడుతుందే" immediately hooks viewers wondering what lie is about to be exposed.
-- Stay: Will Harshitha accidentally blow Vijay's cover when Meera starts interrogating her about their elite schooling?
-- Land: L0329 "మమ్మల్ని చదివించాకే poor అయిపోయాం."; reaction: L0330 "ఏంటి?"
-- Clip lines: L0305 to L0330
-
-As played:
-```
-L0305 [speaker_0]: నాకేదో తేడా కొడుతుందే.
-L0306 [speaker_0]: Thank you.
-L0307 [speaker_0]: నువ్వు విజయ్ friend ఆ?
-L0308 [speaker_0]: అవును.
-L0309 [speaker_0]: అంటే school friend ఆ?
-L0310 [speaker_0]: college friend ఆ?
-L0311 [speaker_0]: లేదా colony friend ఆ?
-L0312 [speaker_0]: మూడు.
-L0313 [speaker_0]: ఓహ్ అంటే close friends ఏ అయి ఉంటారుగా.
-L0314 [speaker_0]: హ్మ్.
-L0315 [speaker_0]: హ్మ్
-L0316 [speaker_0]: నువ్వు ఏ school?
-L0317 [speaker_0]: ఏంటి?
-L0318 [speaker_0]: I mean ఏ school లో friends అని అడుగుతున్నా.
-L0319 [speaker_0]: Delhi public school.
-L0320 [speaker_0]: ఓహ్ college?
-L0321 [speaker_0]: St.
-L0322 [speaker_0]: Mary's.
-L0323 [speaker_0]: అయితే మీరు చాలా rich అనుకుంటానుగా.
-L0324 [speaker_0]: అవును.
-L0325 [speaker_0]: ఉమ్ దొరికేసింది.
-L0326 [speaker_0]: దీనికి doubt వచ్చినట్టుంది.
-L0327 [speaker_0]: హ్మ్ విజయ్ కూడా rich అనుకుంటానుగా.
-L0328 [speaker_0]: Actually మా parents మమ్మల్ని చదివించుకు ముందు చాలా rich ఉండేవాళ్ళం.
-L0329 [speaker_0]: మమ్మల్ని చదివించాకే poor అయిపోయాం.
-L0330 [speaker_0]: ఏంటి?
-[picture holds on the reaction]
-```
-
-### e05: Love లో sincerity ఉండాలి
-- Feeling: aww (strength 3 of 5)
-- Length: 48 s; cold open: no
-- Reason: Viewer stops because Abhi apologizes for hurting Harshitha's feelings with 'Sorry హరిషిత, నీ feelings ఏమైనా hurt చేసి ఉంటే', stays to see how gracefully she takes the rejection, and it ends on her mature advice about love needing sincerity (aww).
-- Stop: L0404 "Sorry హరిషిత, నీ feelings ఏమైనా hurt చేసి ఉంటే.". A stranger stops scrolling hearing an emotionally charged, vulnerable apology: 'Sorry హరిషిత, నీ feelings ఏమైనా hurt చేసి ఉంటే.'
-- Stay: Will Harshitha react with anger and heartbreak over the broken marriage proposal, or support his love for Meera?
-- Land: L0418 "Love లో sincerity ఉండాలి, serious గా ఉంటే సరిపోదు."; reaction: L0419 "ఊమ్."
-- Clip lines: L0404 to L0419
-
-As played:
-```
-L0404 [speaker_1]: Sorry హరిషిత, నీ feelings ఏమైనా hurt చేసి ఉంటే.
-L0405 [speaker_0]: రేయ్, నువ్వు అంత feel అయిపోకు.
-L0406 [speaker_0]: నువ్వంటే ఇష్టమే, as a friend గా.
-L0407 [speaker_0]: ఏదో మా Daddy, మీ Daddy friends అని ఇద్దరికీ పెళ్లి చేయాలనుకున్నారు, ఏదో వాళ్ళ లాభం కోసం.
-L0408 [speaker_0]: అంతేగాని
-L0409 [speaker_0]: rule ఏం లేదు పెళ్లి చేసుకోవాలని.
-L0410 [speaker_1]: Thanks, అర్థం చేసుకున్నందుకు.
-L0411 [speaker_0]: ఊమ్.
-L0412 [speaker_0]: మీరా నీకు చాలా perfect,
-L0413 [speaker_0]: and ఇంతకంటే మంచి అమ్మాయి మీ Daddy ఎక్కడ వెతికినా దొరకదు.
-L0414 [speaker_0]: So, you guys are the best couple.
-L0415 [speaker_0]: But, నిజం తెలుస్తే ఏం చేయాలో ఆలోచించు.
-L0416 [speaker_0]: And తను నిజం తీసుకోవడానికి ready ఉందో లేదో తెలీదు.
-L0417 [speaker_0]: ఊమ్.
-L0418 [speaker_0]: Love లో sincerity ఉండాలి, serious గా ఉంటే సరిపోదు.
-L0419 [speaker_1]: ఊమ్.
-[picture holds on the reaction]
-```
-
-### e06: నన్ను మీరాని ఎవరూ విడదీయలేరు!
-- Feeling: laugh (strength 4 of 5)
-- Length: 40 s; cold open: no
-- Reason: Viewer stops because Abhi's friend questions why he is suddenly offering beer, stays to find out how Abhi handled his close call, and it ends on the friend hilariously puncturing Abhi's romantic delusion (laugh).
-- Stop: L0425 "ఏంట్రా, ఇంటికి పిలిచి మరి beer ఇప్పిస్తున్నావ్.". Abhi's friend opens suspiciously with 'ఏంట్రా, ఇంటికి పిలిచి మరి beer ఇప్పిస్తున్నావ్. నీకూ మీరాకూ ఏమైనా అయిందా?', instantly piquing curiosity about the drama.
-- Stay: Will Abhi's friend buy his boasting about his romance or burst his bubble?
-- Land: L0439 "నువ్వు rich fellow అనే విషయం తప్ప నిన్నూ మీరాని ఏదీ విడదీయలేదు."; reaction: L0442 "రేయ్."
-- Clip lines: L0425 to L0442
-
-As played:
-```
-L0425 [speaker_3]: ఏంట్రా, ఇంటికి పిలిచి మరి beer ఇప్పిస్తున్నావ్.
-L0426 [speaker_3]: నీకూ మీరాకూ ఏమైనా అయిందా?
-L0427 [speaker_3]: ఆ, ఆ, ఆ.
-L0428 [speaker_1]: రేయ్, కాదురా.
-L0429 [speaker_1]: మీరా flat లో లేదంతే.
-L0430 [speaker_3]: ఓహ్, flat లో లేదా?
-L0431 [speaker_1]: తెలుసా, హరిషిత వల్ల దొరికిపోతాం అనుకున్నారా కాళ్లు చేతులు వణికిపోయాయి.
-L0432 [speaker_1]: కానీ finally గా నన్ను అర్థం చేసుకొని వెళ్ళిపోయింది.
-L0433 [speaker_3]: అయినా హరిషిత మంచి పిల్లే రా.
-L0434 [speaker_1]: అది తన మంచితనం కాదురా, నా ప్రేమ గొప్పతనం.
-L0435 [speaker_3]: అలానే అనుకోవాలి మరి.
-L0436 [speaker_1]: You know, తను నా love story లో villain అనుకున్నా.
-L0437 [speaker_1]: కానీ silent గా side అయిపోయింది.
-L0438 [speaker_1]: ఇంక నన్నూ మీరాని ఎవ్వరూ విడదీయలేరు రా.
-L0439 [speaker_3]: నువ్వు rich fellow అనే విషయం తప్ప నిన్నూ మీరాని ఏదీ విడదీయలేదు.
-(audio event) [గాలి వీ స్తుంది]
-L0441 [speaker_1]: ఛ్.
-L0442 [speaker_1]: రేయ్.
-[picture holds on the reaction]
-```
-
-## 3. Every moment the find call listed, and what happened to it
-
-### p01: L0130 (tension, strength 4): shown
-- The line: "నీ పేరు అభి కదా!"
-- Why (find call): Harshitha casually blurts out 'నీ పేరు అభి కదా!' right in front of Meera, instantly putting Abhi's fake identity in immediate jeopardy.
-- Build call answer:
-  Title: Friend వచ్చి Meera ముందు ఇరికించేసింది
-  Stop: L0118 "లోపలికి ఎందుకు వచ్చావే?". A stranger stops scrolling hearing Abhi's hushed, aggressive confrontation: "లోపలికి ఎందుకు వచ్చావే?"
-  Stay: Will Abhi manage to keep Harshitha from exposing his secret identity to Meera?
-  Land: L0130 "నీ పేరు అభి కదా!"; reaction: L0131
-  Clip lines: L0118 to L0131
-  Reason: Viewer stops because Abhi aggressively confronts Harshitha with "లోపలికి ఎందుకు వచ్చావే?", stays to find out if his fake identity will be exposed to Meera, and it ends on Harshitha blurting out his real name followed by Abhi's stunned "ఇరికించేసింది." (tension).
-
-### p02: L0185 (laugh, strength 3): shown
-- The line: "bags సర్దుకొని flight ఎక్కేయండి."
-- Why (find call): Abhi hilariously breaks character while pretending to be an aggressive travel agent by snapping 'bags సర్దుకొని flight ఎక్కేయండి' to get rid of Harshitha.
-- Build call answer:
-  Title: Free trip అంటే flight ఎక్కేయాలి
-  Stop: L0176 "Hello madam.". Abhi abruptly adopts a mock telecaller persona, formally greeting with 'Hello madam, నమస్తే'.
-  Stay: How far will Abhi take his fake travel agent act to get Harshitha out of his way?
-  Land: L0185 "bags సర్దుకొని flight ఎక్కేయండి."; reaction: hold
-  Clip lines: L0176 to L0185
-  Reason: Viewer stops because Abhi hilariously poses as a telecaller with 'Hello madam, నమస్తే', stays to find out how Harshitha reacts to his scam pitch, and it ends on his absurd outburst telling her to pack her bags and board the flight (laugh).
-
-### p03: L0248 (laugh, strength 3): shown
-- The line: "నువ్వు flat అయిన అమ్మాయి బాగుంది."
-- Why (find call): Harshitha delivers a sharp wordplay pun on the word flat by praising both the apartment and the girl Abhi is infatuated with ('నువ్వు flat అయిన అమ్మాయి బాగుంది').
-- Build call answer:
-  Title: నువ్వు flat అయిన అమ్మాయి బాగుంది
-  Stop: L0230 "నీ best friend flat ఉండగా నువ్వు PG లో ఉంటావా?". Meera creates instant comedic panic for Abhi by innocently insisting his female friend stay with them ("నీ best friend flat ఉండగా నువ్వు PG లో ఉంటావా?").
-  Stay: How will Abhi react when Harshitha takes advantage of Meera's offer to tease him?
-  Land: L0248 "నువ్వు flat అయిన అమ్మాయి బాగుంది."; reaction: L0249
-  Clip lines: L0230 to L0249
-  Reason: Viewer stops because Meera unexpectedly invites Abhi's friend to stay at their flat, stays to find out how Abhi handles Harshitha's teasing, and it ends on Harshitha's witty pun about the flat and Meera (laugh).
-
-### p04: L0329 (laugh, strength 4): shown
-- The line: "మమ్మల్ని చదివించాకే poor అయిపోయాం."
-- Why (find call): Harshitha covers up for their expensive schooling with an absurd deadpan excuse that their parents became poor by paying for their education ('మమ్మల్ని చదివించాకే poor అయిపోయాం').
-- Build call answer:
-  Title: నాకేదో తేడా కొడుతుందే!
-  Stop: L0305 "నాకేదో తేడా కొడుతుందే.". Meera's sharp, suspicious remark "నాకేదో తేడా కొడుతుందే" immediately hooks viewers wondering what lie is about to be exposed.
-  Stay: Will Harshitha accidentally blow Vijay's cover when Meera starts interrogating her about their elite schooling?
-  Land: L0329 "మమ్మల్ని చదివించాకే poor అయిపోయాం."; reaction: L0330
-  Clip lines: L0305 to L0330
-  Reason: Viewer stops because Meera senses a lie with "నాకేదో తేడా కొడుతుందే", stays to find out how Harshitha deflects questions about their wealthy background, and it ends on Harshitha's absurd excuse about school fees making them poor (laugh).
-
-### p05: L0418 (aww, strength 3): shown
-- The line: "Love లో sincerity ఉండాలి, serious గా ఉంటే సరిపోదు."
-- Why (find call): Harshitha leaves Abhi with a resonant piece of relationship advice before bowing out gracefully: 'Love లో sincerity ఉండాలి, serious గా ఉంటే సరిపోదు'.
-- Build call answer:
-  Title: Love లో sincerity ఉండాలి
-  Stop: L0404 "Sorry హరిషిత, నీ feelings ఏమైనా hurt చేసి ఉంటే.". A stranger stops scrolling hearing an emotionally charged, vulnerable apology: 'Sorry హరిషిత, నీ feelings ఏమైనా hurt చేసి ఉంటే.'
-  Stay: Will Harshitha react with anger and heartbreak over the broken marriage proposal, or support his love for Meera?
-  Land: L0418 "Love లో sincerity ఉండాలి, serious గా ఉంటే సరిపోదు."; reaction: L0419
-  Clip lines: L0404 to L0419
-  Reason: Viewer stops because Abhi apologizes for hurting Harshitha's feelings with 'Sorry హరిషిత, నీ feelings ఏమైనా hurt చేసి ఉంటే', stays to see how gracefully she takes the rejection, and it ends on her mature advice about love needing sincerity (aww).
-
-### p06: L0439 (laugh, strength 4): shown
-- The line: "నువ్వు rich fellow అనే విషయం తప్ప నిన్నూ మీరాని ఏదీ విడదీయలేదు."
-- Why (find call): Right as Abhi boasts that nobody can come between him and Meera, his friend dryly bursts his bubble by stating that his secret wealth is the obvious obstacle.
-- Build call answer:
-  Title: నన్ను మీరాని ఎవరూ విడదీయలేరు!
-  Stop: L0425 "ఏంట్రా, ఇంటికి పిలిచి మరి beer ఇప్పిస్తున్నావ్.". Abhi's friend opens suspiciously with 'ఏంట్రా, ఇంటికి పిలిచి మరి beer ఇప్పిస్తున్నావ్. నీకూ మీరాకూ ఏమైనా అయిందా?', instantly piquing curiosity about the drama.
-  Stay: Will Abhi's friend buy his boasting about his romance or burst his bubble?
-  Land: L0439 "నువ్వు rich fellow అనే విషయం తప్ప నిన్నూ మీరాని ఏదీ విడదీయలేదు."; reaction: L0442
-  Clip lines: L0425 to L0442
-  Reason: Viewer stops because Abhi's friend questions why he is suddenly offering beer, stays to find out how Abhi handled his close call, and it ends on the friend hilariously puncturing Abhi's romantic delusion (laugh).
-
-### p07: L0457 (laugh, strength 3): rejected
-- The line: "Idiot, నా కొడుకు అభి కావాలి."
-- Why (find call): Abhi's father angrily clarifies to the confused shopkeeper that he is looking for his son Abhi, not a grocery item ('Idiot, నా కొడుకు అభి కావాలి').
-- Build call answer:
-  Gemini: no clip. The moment is part of a 10-second episode tag whose opening line is generic setup that cannot stop a scrolling viewer, and lifting the only punchline-adjacent line as a cold open breaks the direct dialogue setup for the joke.
-
-## 4. Whole transcript
+## Transcript
 
 ```
 L0001 (sound) [వెనకభూమిలో సంగీతం]
@@ -738,4 +461,146 @@ L0455 [speaker_3]: అభి.
 L0456 [speaker_2]: అలాంటి items ఇక్కడేం ఏం దొరకవు sir.
 L0457 [speaker_3]: Idiot, నా కొడుకు అభి కావాలి.
 L0458 (sound) [పాట]
+```
+
+## Clips (6)
+
+### Clip 1: Friend వచ్చి Meera ముందు ఇరికించేసింది
+
+```
+L0118 [speaker_1]: లోపలికి ఎందుకు వచ్చావే?
+L0119 [speaker_0]: తను పిలిచింది, వచ్చాను.
+L0120 [speaker_1]: పిలిస్తే వచ్చేస్తావా?
+L0121 [speaker_1]: సిగ్గు లేదా?
+L0122 [speaker_0]: నీకు సిగ్గు లేదా?
+L0123 [speaker_0]: నా calls ఎందుకు answer చేయట్లేదు?
+L0124 [speaker_0]: ఏంటి best friends ఏదో మాట్లాడుకుంటున్నట్టున్నారు?
+(audio event) [నవ్వు]
+L0126 [speaker_0]: నీ గురించే.
+L0127 [speaker_0]: నా గురించా?
+L0128 [speaker_0]: నా గురించి ఏం మాట్లాడుకుంటున్నారు విజయ్?
+L0129 [speaker_0]: విజయా?
+L0130 [speaker_0]: నీ పేరు అభి కదా!
+L0131 [speaker_1]: ఇరికించేసింది.
+[picture holds on the reaction]
+```
+
+### Clip 2: Free trip అంటే flight ఎక్కేయాలి
+
+```
+L0176 [speaker_2]: Hello madam.
+L0177 [speaker_2]: నమస్తే.
+L0178 [speaker_0]: ఎవరు?
+L0179 [speaker_2]: ఆ మేము Unpack Your Bags travel company నుంచి call చేస్తున్నాం.
+L0180 [speaker_0]: చెప్పండి.
+L0181 [speaker_2]: ఆ మా company తరపు నుంచి Bangkok trip కి మీరు select అయ్యారు.
+L0182 [speaker_2]: It's a free trip.
+L0183 [speaker_0]: నేనెందుకు select అయ్యాను?
+L0184 [speaker_3]: Free trip అంటే ఎందుకండి అడ్డమైన questions అడుగుతారు?
+L0185 [speaker_3]: bags సర్దుకొని flight ఎక్కేయండి.
+[picture holds on the reaction]
+```
+
+### Clip 3: నువ్వు flat అయిన అమ్మాయి బాగుంది
+
+```
+L0230 [speaker_0]: నీ best friend flat ఉండగా నువ్వు PG లో ఉంటావా?
+L0231 [speaker_3]: Meera.
+L0232 [speaker_0]: అభి కూడా అదే అంటున్నాడు.
+L0233 [speaker_3]: నేనేమన్నా?
+L0234 [speaker_3]: నేనేమన్నా?
+L0235 [speaker_3]: లే...
+L0236 [speaker_0]: మళ్ళీ నీకేమన్నా ఇబ్బంది అయితదేమో అని.
+L0237 [speaker_3]: హా...
+L0238 [speaker_3]: ఇబ్బంది.
+L0239 [speaker_0]: నాకే ఇబ్బంది లేదు.
+L0240 [speaker_0]: ఈ flat నీదనుకో, happy గా ఉండి ఇక్కడ.
+L0241 [speaker_3]: అమ్మనమ్మ.
+L0242 [speaker_0]: Thank you Meera.
+L0243 [speaker_0]: హ్మ్
+L0244 [speaker_3]: ఛ.
+L0245 [speaker_0]: హ్మ్ బాగుందిరా.
+L0246 [speaker_3]: ఏంది flat ఆ?
+L0247 [speaker_0]: flat బాగుంది.
+L0248 [speaker_0]: నువ్వు flat అయిన అమ్మాయి బాగుంది.
+L0249 [speaker_3]: Thanks.
+[picture holds on the reaction]
+```
+
+### Clip 4: నాకేదో తేడా కొడుతుందే!
+
+```
+L0305 [speaker_0]: నాకేదో తేడా కొడుతుందే.
+L0306 [speaker_0]: Thank you.
+L0307 [speaker_0]: నువ్వు విజయ్ friend ఆ?
+L0308 [speaker_0]: అవును.
+L0309 [speaker_0]: అంటే school friend ఆ?
+L0310 [speaker_0]: college friend ఆ?
+L0311 [speaker_0]: లేదా colony friend ఆ?
+L0312 [speaker_0]: మూడు.
+L0313 [speaker_0]: ఓహ్ అంటే close friends ఏ అయి ఉంటారుగా.
+L0314 [speaker_0]: హ్మ్.
+L0315 [speaker_0]: హ్మ్
+L0316 [speaker_0]: నువ్వు ఏ school?
+L0317 [speaker_0]: ఏంటి?
+L0318 [speaker_0]: I mean ఏ school లో friends అని అడుగుతున్నా.
+L0319 [speaker_0]: Delhi public school.
+L0320 [speaker_0]: ఓహ్ college?
+L0321 [speaker_0]: St.
+L0322 [speaker_0]: Mary's.
+L0323 [speaker_0]: అయితే మీరు చాలా rich అనుకుంటానుగా.
+L0324 [speaker_0]: అవును.
+L0325 [speaker_0]: ఉమ్ దొరికేసింది.
+L0326 [speaker_0]: దీనికి doubt వచ్చినట్టుంది.
+L0327 [speaker_0]: హ్మ్ విజయ్ కూడా rich అనుకుంటానుగా.
+L0328 [speaker_0]: Actually మా parents మమ్మల్ని చదివించుకు ముందు చాలా rich ఉండేవాళ్ళం.
+L0329 [speaker_0]: మమ్మల్ని చదివించాకే poor అయిపోయాం.
+L0330 [speaker_0]: ఏంటి?
+[picture holds on the reaction]
+```
+
+### Clip 5: Love లో sincerity ఉండాలి
+
+```
+L0404 [speaker_1]: Sorry హరిషిత, నీ feelings ఏమైనా hurt చేసి ఉంటే.
+L0405 [speaker_0]: రేయ్, నువ్వు అంత feel అయిపోకు.
+L0406 [speaker_0]: నువ్వంటే ఇష్టమే, as a friend గా.
+L0407 [speaker_0]: ఏదో మా Daddy, మీ Daddy friends అని ఇద్దరికీ పెళ్లి చేయాలనుకున్నారు, ఏదో వాళ్ళ లాభం కోసం.
+L0408 [speaker_0]: అంతేగాని
+L0409 [speaker_0]: rule ఏం లేదు పెళ్లి చేసుకోవాలని.
+L0410 [speaker_1]: Thanks, అర్థం చేసుకున్నందుకు.
+L0411 [speaker_0]: ఊమ్.
+L0412 [speaker_0]: మీరా నీకు చాలా perfect,
+L0413 [speaker_0]: and ఇంతకంటే మంచి అమ్మాయి మీ Daddy ఎక్కడ వెతికినా దొరకదు.
+L0414 [speaker_0]: So, you guys are the best couple.
+L0415 [speaker_0]: But, నిజం తెలుస్తే ఏం చేయాలో ఆలోచించు.
+L0416 [speaker_0]: And తను నిజం తీసుకోవడానికి ready ఉందో లేదో తెలీదు.
+L0417 [speaker_0]: ఊమ్.
+L0418 [speaker_0]: Love లో sincerity ఉండాలి, serious గా ఉంటే సరిపోదు.
+L0419 [speaker_1]: ఊమ్.
+[picture holds on the reaction]
+```
+
+### Clip 6: నన్ను మీరాని ఎవరూ విడదీయలేరు!
+
+```
+L0425 [speaker_3]: ఏంట్రా, ఇంటికి పిలిచి మరి beer ఇప్పిస్తున్నావ్.
+L0426 [speaker_3]: నీకూ మీరాకూ ఏమైనా అయిందా?
+L0427 [speaker_3]: ఆ, ఆ, ఆ.
+L0428 [speaker_1]: రేయ్, కాదురా.
+L0429 [speaker_1]: మీరా flat లో లేదంతే.
+L0430 [speaker_3]: ఓహ్, flat లో లేదా?
+L0431 [speaker_1]: తెలుసా, హరిషిత వల్ల దొరికిపోతాం అనుకున్నారా కాళ్లు చేతులు వణికిపోయాయి.
+L0432 [speaker_1]: కానీ finally గా నన్ను అర్థం చేసుకొని వెళ్ళిపోయింది.
+L0433 [speaker_3]: అయినా హరిషిత మంచి పిల్లే రా.
+L0434 [speaker_1]: అది తన మంచితనం కాదురా, నా ప్రేమ గొప్పతనం.
+L0435 [speaker_3]: అలానే అనుకోవాలి మరి.
+L0436 [speaker_1]: You know, తను నా love story లో villain అనుకున్నా.
+L0437 [speaker_1]: కానీ silent గా side అయిపోయింది.
+L0438 [speaker_1]: ఇంక నన్నూ మీరాని ఎవ్వరూ విడదీయలేరు రా.
+L0439 [speaker_3]: నువ్వు rich fellow అనే విషయం తప్ప నిన్నూ మీరాని ఏదీ విడదీయలేదు.
+(audio event) [గాలి వీ స్తుంది]
+L0441 [speaker_1]: ఛ్.
+L0442 [speaker_1]: రేయ్.
+[picture holds on the reaction]
 ```

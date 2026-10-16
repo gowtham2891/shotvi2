@@ -63,6 +63,27 @@ def answer_block(ep, a: dict) -> list[str]:
     return out
 
 
+def transcript_rows(ep) -> list[str]:
+    out = []
+    for r in ep.lines:
+        if r["kind"] == "speech":
+            out.append(f"{r['id']} [{speaker_label(r, None)}]: {clean_text(r.get('text', ''))}")
+        else:
+            out.append(f"{r['id']} (sound) {clean_text(r.get('text', ''))}")
+    return out
+
+
+def dump_short(run: Path, vid: str) -> str:
+    """Only the whole transcript and the clips shown (founder, 2026-10-16)."""
+    doc = json.loads((run / f"{vid}.json").read_text(encoding="utf-8"))
+    ep, ix, tr, tp = ws.load_episode(vid, with_loudness=False)
+    L = [f"# {SERIES.get(vid, vid)} ({vid})", "", "## Transcript", "", "```"] + transcript_rows(ep) + ["```", "",
+         f"## Clips ({len(doc['proposals'])})"]
+    for n, c in enumerate(doc["proposals"], 1):
+        L += ["", f"### Clip {n}: {c.get('title', '')}", "", "```"] + as_played(ep, c) + ["```"]
+    return "\n".join(L) + "\n"
+
+
 def dump(run: Path, vid: str) -> str:
     doc = json.loads((run / f"{vid}.json").read_text(encoding="utf-8"))
     dbg = json.loads((run / "debug" / f"{vid}.json").read_text(encoding="utf-8"))
@@ -132,6 +153,8 @@ def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("run")
     ap.add_argument("--out", default="emotion_first_episodes")
+    ap.add_argument("--full", action="store_true",
+                    help="also the summary, every moment found, build answers and rejections")
     a = ap.parse_args(argv)
     run, out = Path(a.run), Path(a.out)
     out.mkdir(parents=True, exist_ok=True)
@@ -141,7 +164,7 @@ def main(argv=None):
         vid = f.stem
         name = re.sub(r"[^A-Za-z0-9]+", "_", SERIES.get(vid, vid)).strip("_")
         p = out / f"{name}_{vid}.md"
-        p.write_text(dump(run, vid), encoding="utf-8")
+        p.write_text((dump if a.full else dump_short)(run, vid), encoding="utf-8")
         print(p)
 
 

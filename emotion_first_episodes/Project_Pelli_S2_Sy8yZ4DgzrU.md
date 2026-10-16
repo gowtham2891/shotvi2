@@ -1,224 +1,6 @@
-# Project Pelli S2 (Sy8yZ4DgzrU): emotion-first clip selection
+# Project Pelli S2 (Sy8yZ4DgzrU)
 
-Run: runs/emotion1 (pipeline emotion_pick/0.1), cost about Rs 11.30.
-Lines are referred to by their id (L0123). No timestamps.
-
-## 1. Summary
-- Moments found by the find call: 4
-- Build calls made: 4 (limit 12 per episode; 0 not built because of the limit)
-- Gemini said no clip: 0
-- Dropped by our code checks: 0 (stop or land check), 0 (too short / too long / basic rules), 0 (repeats)
-- Clips shown: 4
-
-Episode notes written by Gemini in the find call:
-> A marital drama focusing on Krishna, who finally lands a medical representative job with the help of his childhood friend Subbu, and his wife Satya. While jealousy over Krishna comforting Radha is resolved early on, their celebration turns bitter during an ice cream outing when Satya suggests using her father's money to buy a house, sparking an explosive clash between Krishna's pride and Satya's family affection.
-
-## 2. Clips shown (4)
-
-### e01: నిద్రలో వెళ్ళలేదు.. కావాలనే వెళ్ళా!
-- Feeling: shock (strength 4 of 5)
-- Length: 30 s; cold open: no
-- Reason: Viewer stops because Satya confronts Krishna with "ఓ నేను పడుకున్నాను అని చూసి వెళ్ళావా?", stays to find out how Krishna defends sneaking out at night, and it ends on his shocking confession "కావాలనే వెళ్ళా" (shock).
-- Stop: L0014 "ఓ నేను పడుకున్నాను అని చూసి వెళ్ళావా?". Satya's suspicious confrontation immediately grabs attention with "ఓ నేను పడుకున్నాను అని చూసి వెళ్ళావా?".
-- Stay: Will Krishna deny sneaking out behind her back, or will he admit what he was doing?
-- Land: L0029 "కావాలనే వెళ్ళా."; reaction: hold
-- Clip lines: L0014 to L0029
-
-As played:
-```
-L0014 [speaker_0]: ఓ నేను పడుకున్నాను అని చూసి వెళ్ళావా?
-L0015 [speaker_1]: ఏంటి?
-L0016 [speaker_0]: నేను పడుకున్నాను ఇంకా లేవను అని confirm చేసుకుని చేసుకున్నాక వెళ్ళావు అంతే కదా.
-(audio event) [చెయ్యి చప్పరిస్తుంది]
-L0018 [speaker_1]: సత్య అసలు ఏం మాట్లాడుతున్నావ్.
-L0019 [speaker_0]: నీకు సిగ్గు లేదా కృష్ణ.
-L0020 [speaker_0]: ఇంట్లో నేను ఉండగా రాసుకుని పూసుకుని తిరుగుతున్నావ్.
-L0021 [speaker_0]: అసలు నువ్వు ఏం చేస్తున్నావో నీకు అర్థమవుతుందా?
-L0022 [speaker_1]: సత్య, నువ్వు ముందు cool అవ్వు.
-L0023 [speaker_1]: నేను చెప్పేది విను.
-L0024 [speaker_0]: ఏం వినాలి.
-L0025 [speaker_0]: చెప్పు ఏం చెప్తావ్.
-L0026 [speaker_0]: ఇప్పుడు కూడా నేనేం తప్పు చేయలేదు సరదాగా వెళ్లి పడుకున్నాను అని చెప్తావా లేకపోతే నిద్రలో నడుచుకుంటూ వెళ్ళిపోయానని చెప్తావా?
-L0027 [speaker_1]: లేదు.
-L0028 [speaker_1]: నేను నిద్రలో వెళ్ళలేదు.
-L0029 [speaker_1]: కావాలనే వెళ్ళా.
-(audio event) [నాటకీయ సంగీతం]
-[picture holds on the reaction]
-```
-
-### e02: నువ్వు ఇంట్లో ఉండి నన్ను ప్రేమిస్తే చాలు
-- Feeling: aww (strength 4 of 5)
-- Length: 40 s; cold open: yes
-- Reason: Viewer stops because Krishna playfully declares that he will start earning money now, stays to find out how his wife reacts, and it ends on Satya tenderly reassuring him that just having his love is enough (aww).
-- Stop: L0384 "ఇప్పటి నుండి మీ ఆయన కూడా సంపాదిస్తాడు.". A proud husband playfully announcing "ఇప్పటి నుండి మీ ఆయన కూడా సంపాదిస్తాడు" immediately grabs attention with charming marital banter.
-- Stay: How will Satya respond to Krishna's excitement about finally earning his own salary?
-- Land: L0391 "నువ్వు ఇంట్లో ఉంటూ నన్ను ప్రేమించే పని చూసుకున్నా కూడా నాకు okay."; reaction: hold
-- Clip lines: L0372 to L0391
-- Removed: L0384. 
-
-As played:
-```
-L0384 [speaker_1]: ఇప్పటి నుండి మీ ఆయన కూడా సంపాదిస్తాడు.
-[cold open ends; scene starts]
-L0372 [speaker_2]: ఏంటి కృష్ణ?
-L0373 [speaker_2]: ఏమైంది ఇంత happy గా ఉన్నావ్?
-L0374 [speaker_2]: నిన్ను ఇంత happy గా నేను ఎప్పుడూ చూడలా.
-L0375 [speaker_1]: నాకు
-L0376 [speaker_1]: job వచ్చింది.
-L0377 [speaker_2]: అవునా
-L0378 [speaker_1]: ఊ..
-L0379 [speaker_2]: ఎక్కడ?
-L0380 [speaker_1]: ఇక్కడే, మాదాపూర్ లో.
-L0381 [speaker_1]: నాకు
-L0382 [speaker_1]: హైదరాబాద్ లో job వచ్చింది.
-L0383 [speaker_2]: చాలా happy గా ఉంది కృష్ణ.
-[cut: a part is removed here; the cold-open line is skipped here, not replayed]
-L0385 [speaker_1]: నీ అంత కాకపోయినా
-L0386 [speaker_1]: నాకు నెల నెల జీతం వస్తుంది.
-L0387 [speaker_2]: ఎంత salary వస్తుంది అన్నది important కాదు, job ఉందా లేదా అనేదే important.
-L0388 [speaker_2]: అయినా నీకు job ఉండాలని నేను ఎప్పుడూ అనుకోలేదు.
-L0389 [speaker_2]: నువ్వే life లో ఏదో ఒకటి చేయాలి, job తెచ్చుకోవాలి అనుకున్నావ్, so I am happy for you.
-L0390 [speaker_2]: నువ్వు నా కోసం job చేయాలని నేను ఎప్పుడూ అనుకోలేదు.
-L0391 [speaker_2]: నువ్వు ఇంట్లో ఉంటూ నన్ను ప్రేమించే పని చూసుకున్నా కూడా నాకు okay.
-[picture holds on the reaction]
-```
-
-### e03: ఇది Self Respect కాదు Ego!
-- Feeling: tension (strength 4 of 5)
-- Length: 116 s; cold open: no
-- Reason: Viewer stops because Satya tells Krishna he doesn't need to take a loan to buy a house ('అయినా అసలు నువ్ ఇప్పుడు loan తీసుకోవాల్సిన అవసరమే లేదు.'), stays to find out why her father offering money triggers such an intense fight between them, and it ends on Satya calling his pride mere ego (tension).
-- Stop: L0470 "అయినా అసలు నువ్ ఇప్పుడు loan తీసుకోవాల్సిన అవసరమే లేదు.". A stranger stops scrolling when Satya abruptly dismisses Krishna's plan to take a loan by claiming they don't need one: 'అయినా అసలు నువ్ ఇప్పుడు loan తీసుకోవాల్సిన అవసరమే లేదు.'
-- Stay: Will Krishna accept Satya's father's financial help for their house, or will their conflict boil over?
-- Land: L0519 "అది నీ self respect కాదు ego."; reaction: L0520 "ego ఆ?"
-- Clip lines: L0470 to L0520
-
-As played:
-```
-L0470 [speaker_2]: అయినా అసలు నువ్ ఇప్పుడు loan తీసుకోవాల్సిన అవసరమే లేదు.
-L0471 [speaker_1]: ఎందుకు?
-L0472 [speaker_2]: ఎందుకంటే నువ్వు హైదరాబాద్ లోనే settle అవ్వాలి అని చెప్పిన తర్వాత నేను నాన్నకు చెప్పా.
-L0473 [speaker_2]: నాన్న కూడా సరే ఎంతకని rent కట్టుకుంటూ ఉంటారు, ఒక ఇల్లు కొనుక్కోండి అన్నారు.
-L0474 [speaker_2]: ఆయన ఒక రెండు ఎకరాల పొలం అమ్మేసి ఇస్తానన్నారు.
-L0475 [speaker_2]: ఆ డబ్బులతో ఇల్లు కట్టుకోమన్నారు.
-L0476 [speaker_1]: ఆయన ఎందుకు డబ్బులు ఇస్తారు?
-L0477 [speaker_2]: ఎందుకు ఏంటి?
-L0478 [speaker_2]: నీకు కట్నం ఇవ్వలేదు కదా.
-L0479 [speaker_1]: కట్నమా?
-L0480 [speaker_2]: నా ఉద్దేశం అది కాదు.
-L0481 [speaker_2]: అంటే
-L0482 [speaker_2]: నీకు పెళ్లి time లో ఏమి ఇవ్వలేదు కదా, ఇప్పుడు ఇల్లుకు డబ్బులిచ్చి help చేస్తా అంటున్నారు.
-L0483 [speaker_1]: అసలు ఏం మాట్లాడుతున్నావ్ సత్య?
-L0484 [speaker_2]: దానికెందుకు కృష్ణ ఇంత feel అవుతున్నావ్?
-L0485 [speaker_2]: నేను నాన్న చెప్పిన మాటలు నీకు చెప్పాను అంతే.
-L0486 [speaker_1]: ఆ మాటలు నాకు ఆరోజే చెప్పాల్సింది సత్య.
-L0487 [speaker_1]: ఇప్పుడెందుకు చెప్తున్నావ్?
-L0488 [speaker_1]: అయినా కట్నం కోసం చేసుకున్నానా నేను నిన్ను?
-L0489 [speaker_2]: అప్పుడెందుకు చెప్పలేదంటే అప్పుడు మన మధ్య discussion రాలేదు, ఈ topic రాలేదు.
-L0490 [speaker_2]: ఇప్పుడెందుకు చెప్తున్నానంటే ఇప్పుడు ఇల్లు కొనుక్కునే discussion వచ్చింది.
-L0491 [speaker_2]: దాంట్లో తప్పేముంది?
-L0492 [speaker_1]: తప్పుంది సత్య.
-L0493 [speaker_1]: అయినా మీ నాన్న దగ్గర కట్నం తీసుకొని ఇల్లు కట్టుకునే అవసరం నాకు లేదు.
-L0494 [speaker_2]: అరే కృష్ణ!
-L0495 [speaker_2]: నేను కట్నం అంటే ఆ ఉద్దేశంతో అనట్లేదు.
-L0496 [speaker_2]: అంటే ఒక help లా అంటున్నా.
-L0497 [speaker_1]: వద్దు సత్య ఆపేయ్ ఇంకా.
-L0498 [speaker_2]: ఎందుకిలా react అవుతున్నావ్?
-L0499 [speaker_2]: మా నాన్న నిన్ను తక్కువ చేసి మాట్లాడట్లేదు.
-L0500 [speaker_1]: నన్ను తక్కువ చేయడం గురించి కాదు సత్య.
-L0501 [speaker_1]: పెళ్ళికి కట్నం ఇవ్వలేదని ఇప్పుడు ఇల్లు కొనడానికి డబ్బులు ఇవ్వడమంటే దాని meaning ఏంటి?
-L0502 [speaker_2]: దాన్ని నువ్వసలు ఇలా ఎందుకు చూస్తున్నావ్?
-L0503 [speaker_2]: మా నాన్నకు కూతురు అంటే ప్రేమ ఉంది.
-L0504 [speaker_2]: మనకోసం ఏమైనా చేయాలనుకుంటున్నారు.
-L0505 [speaker_1]: ప్రేమ ఉంటే మన మీద నమ్మకం కూడా ఉండాలి సత్య.
-L0506 [speaker_2]: నమ్మకం లేకపోతే నన్ను నీకిచ్చి పెళ్లి చేయరు కదా కృష్ణ.
-L0507 [speaker_1]: సత్య!
-L0508 [speaker_1]: నా family ని ఎలా చూసుకోవాలో నాకు తెలుసు.
-L0509 [speaker_2]: చూసుకోలేమని ఎవరన్నారు?
-L0510 [speaker_1]: మరి ఎందుకు ప్రతిసారి మీ నాన్న డబ్బులు?
-L0511 [speaker_2]: ప్రతిసారి కాదు.
-L0512 [speaker_2]: ఈసారి ఇల్లు topic వచ్చింది కాబట్టి.
-L0513 [speaker_1]: నాకు మీ నాన్న డబ్బులు అవసరం లేదు.
-L0514 [speaker_2]: అవసరం లేకపోతే తీసుకోకు.
-L0515 [speaker_2]: దానికి నాతో ఎందుకిలా మాట్లాడుతున్నావ్?
-L0516 [speaker_1]: సత్య!
-L0517 [speaker_1]: ఒకసారి నువ్వే నా place లో ఉండి ఆలోచించు.
-L0518 [speaker_1]: ఇప్పుడు మీ నాన్న దగ్గర డబ్బులు తీసుకొని ఇల్లు కడితే ఆ ఇంటి ముందు నించొని ఇది నా ఇల్లు అని ఎలా అనుకోగలుగుతావ్ చెప్పు?
-L0519 [speaker_2]: అది నీ self respect కాదు ego.
-L0520 [speaker_1]: ego ఆ?
-[picture holds on the reaction]
-```
-
-### e04: ఆత్మగౌరవమా లేక Ego నా?
-- Feeling: tension (strength 4 of 5)
-- Length: 26 s; cold open: no
-- Reason: Viewer stops because Krishna passionately asks Satya to see things from his perspective about building a home with in-laws' money, stays to find out whether their dispute over pride versus paternal affection escalates, and it ends on Satya silencing him with a sharp reality check (tension).
-- Stop: L0517 "ఒకసారి నువ్వే నా place లో ఉండి ఆలోచించు.". Krishna challenges Satya with 'ఒకసారి నువ్వే నా place లో ఉండి ఆలోచించు' right before questioning her father's money.
-- Stay: Will Satya accept Krishna's stand on self-respect, or will their argument over her father's money tear them apart?
-- Land: L0525 "నీ ఆత్మ గౌరవం కోసం మా నాన్న ప్రేమను question చేయాలా?"; reaction: L0526 "వదిలేయ్ సత్య."
-- Clip lines: L0517 to L0526
-
-As played:
-```
-L0517 [speaker_1]: ఒకసారి నువ్వే నా place లో ఉండి ఆలోచించు.
-L0518 [speaker_1]: ఇప్పుడు మీ నాన్న దగ్గర డబ్బులు తీసుకొని ఇల్లు కడితే ఆ ఇంటి ముందు నించొని ఇది నా ఇల్లు అని ఎలా అనుకోగలుగుతావ్ చెప్పు?
-L0519 [speaker_2]: అది నీ self respect కాదు ego.
-L0520 [speaker_1]: ego ఆ?
-L0521 [speaker_2]: అవును ego నే.
-L0522 [speaker_2]: మా నాన్న దగ్గర డబ్బులు తీసుకుంటే నువ్వు ఎక్కడ తక్కువ మనిషి అయిపోతావని నువ్వు అనుకుంటున్నావ్.
-L0523 [speaker_2]: కానీ అదే మా నాన్న నా కోసం డబ్బులు ఇస్తుంటే ప్రేమతో ఇస్తున్నారని ఎందుకు అనుకోవట్లేదు?
-L0524 [speaker_1]: ఇప్పుడు మీ నాన్న ప్రేమ కోసం నా ఆత్మ గౌరవాన్ని తగ్గించుకోవాలా?
-L0525 [speaker_2]: నీ ఆత్మ గౌరవం కోసం మా నాన్న ప్రేమను question చేయాలా?
-L0526 [speaker_1]: వదిలేయ్ సత్య.
-[picture holds on the reaction]
-```
-
-## 3. Every moment the find call listed, and what happened to it
-
-### p01: L0029 (shock, strength 4): shown
-- The line: "కావాలనే వెళ్ళా."
-- Why (find call): When Satya angrily challenges Krishna asking if he will lie about sleepwalking into Radha's room, he bluntly shuts down her excuses with 'కావాలనే వెళ్ళా', creating instant marital tension.
-- Build call answer:
-  Title: నిద్రలో వెళ్ళలేదు.. కావాలనే వెళ్ళా!
-  Stop: L0014 "ఓ నేను పడుకున్నాను అని చూసి వెళ్ళావా?". Satya's suspicious confrontation immediately grabs attention with "ఓ నేను పడుకున్నాను అని చూసి వెళ్ళావా?".
-  Stay: Will Krishna deny sneaking out behind her back, or will he admit what he was doing?
-  Land: L0029 "కావాలనే వెళ్ళా."; reaction: hold
-  Clip lines: L0014 to L0029
-  Reason: Viewer stops because Satya confronts Krishna with "ఓ నేను పడుకున్నాను అని చూసి వెళ్ళావా?", stays to find out how Krishna defends sneaking out at night, and it ends on his shocking confession "కావాలనే వెళ్ళా" (shock).
-
-### p02: L0391 (aww, strength 4): shown
-- The line: "నువ్వు ఇంట్లో ఉంటూ నన్ను ప్రేమించే పని చూసుకున్నా కూడా నాకు okay."
-- Why (find call): Satya reassures Krishna after he gets a job, saying his financial status never mattered to her: 'నువ్వు ఇంట్లో ఉంటూ నన్ను ప్రేమించే పని చూసుకున్నా కూడా నాకు okay.'
-- Build call answer:
-  Title: నువ్వు ఇంట్లో ఉండి నన్ను ప్రేమిస్తే చాలు
-  Stop: L0384 "ఇప్పటి నుండి మీ ఆయన కూడా సంపాదిస్తాడు.". A proud husband playfully announcing "ఇప్పటి నుండి మీ ఆయన కూడా సంపాదిస్తాడు" immediately grabs attention with charming marital banter.
-  Stay: How will Satya respond to Krishna's excitement about finally earning his own salary?
-  Land: L0391 "నువ్వు ఇంట్లో ఉంటూ నన్ను ప్రేమించే పని చూసుకున్నా కూడా నాకు okay."; reaction: hold
-  Clip lines: L0372 to L0391
-  Reason: Viewer stops because Krishna playfully declares that he will start earning money now, stays to find out how his wife reacts, and it ends on Satya tenderly reassuring him that just having his love is enough (aww).
-
-### p03: L0519 (tension, strength 4): shown
-- The line: "అది నీ self respect కాదు ego."
-- Why (find call): Satya pierces through Krishna's stubborn refusal of her father's financial assistance by calling it out directly: 'అది నీ self respect కాదు ego.'
-- Build call answer:
-  Title: ఇది Self Respect కాదు Ego!
-  Stop: L0470 "అయినా అసలు నువ్ ఇప్పుడు loan తీసుకోవాల్సిన అవసరమే లేదు.". A stranger stops scrolling when Satya abruptly dismisses Krishna's plan to take a loan by claiming they don't need one: 'అయినా అసలు నువ్ ఇప్పుడు loan తీసుకోవాల్సిన అవసరమే లేదు.'
-  Stay: Will Krishna accept Satya's father's financial help for their house, or will their conflict boil over?
-  Land: L0519 "అది నీ self respect కాదు ego."; reaction: L0520
-  Clip lines: L0470 to L0520
-  Reason: Viewer stops because Satya tells Krishna he doesn't need to take a loan to buy a house ('అయినా అసలు నువ్ ఇప్పుడు loan తీసుకోవాల్సిన అవసరమే లేదు.'), stays to find out why her father offering money triggers such an intense fight between them, and it ends on Satya calling his pride mere ego (tension).
-
-### p04: L0525 (tension, strength 4): shown
-- The line: "నీ ఆత్మ గౌరవం కోసం మా నాన్న ప్రేమను question చేయాలా?"
-- Why (find call): In response to Krishna asking if he should sacrifice self-respect for her father's love, Satya hits back with the perfect counter-question: 'నీ ఆత్మ గౌరవం కోసం మా నాన్న ప్రేమను question చేయాలా?'
-- Build call answer:
-  Title: ఆత్మగౌరవమా లేక Ego నా?
-  Stop: L0517 "ఒకసారి నువ్వే నా place లో ఉండి ఆలోచించు.". Krishna challenges Satya with 'ఒకసారి నువ్వే నా place లో ఉండి ఆలోచించు' right before questioning her father's money.
-  Stay: Will Satya accept Krishna's stand on self-respect, or will their argument over her father's money tear them apart?
-  Land: L0525 "నీ ఆత్మ గౌరవం కోసం మా నాన్న ప్రేమను question చేయాలా?"; reaction: L0526
-  Clip lines: L0517 to L0526
-  Reason: Viewer stops because Krishna passionately asks Satya to see things from his perspective about building a home with in-laws' money, stays to find out whether their dispute over pride versus paternal affection escalates, and it ends on Satya silencing him with a sharp reality check (tension).
-
-## 4. Whole transcript
+## Transcript
 
 ```
 L0001 [speaker_0]: కృష్ణ.
@@ -763,4 +545,130 @@ L0539 [speaker_2]: అది మా నాన్న మాటల్లో కూ
 L0540 [speaker_2]: సరే!
 L0541 [speaker_2]: నీకు నాతో మాట్లాడాలని లేకపోతే మాట్లాడకు.
 L0542 (sound) [బ్యాక్ గ్రౌండ్ మ్యూజిక్]
+```
+
+## Clips (4)
+
+### Clip 1: నిద్రలో వెళ్ళలేదు.. కావాలనే వెళ్ళా!
+
+```
+L0014 [speaker_0]: ఓ నేను పడుకున్నాను అని చూసి వెళ్ళావా?
+L0015 [speaker_1]: ఏంటి?
+L0016 [speaker_0]: నేను పడుకున్నాను ఇంకా లేవను అని confirm చేసుకుని చేసుకున్నాక వెళ్ళావు అంతే కదా.
+(audio event) [చెయ్యి చప్పరిస్తుంది]
+L0018 [speaker_1]: సత్య అసలు ఏం మాట్లాడుతున్నావ్.
+L0019 [speaker_0]: నీకు సిగ్గు లేదా కృష్ణ.
+L0020 [speaker_0]: ఇంట్లో నేను ఉండగా రాసుకుని పూసుకుని తిరుగుతున్నావ్.
+L0021 [speaker_0]: అసలు నువ్వు ఏం చేస్తున్నావో నీకు అర్థమవుతుందా?
+L0022 [speaker_1]: సత్య, నువ్వు ముందు cool అవ్వు.
+L0023 [speaker_1]: నేను చెప్పేది విను.
+L0024 [speaker_0]: ఏం వినాలి.
+L0025 [speaker_0]: చెప్పు ఏం చెప్తావ్.
+L0026 [speaker_0]: ఇప్పుడు కూడా నేనేం తప్పు చేయలేదు సరదాగా వెళ్లి పడుకున్నాను అని చెప్తావా లేకపోతే నిద్రలో నడుచుకుంటూ వెళ్ళిపోయానని చెప్తావా?
+L0027 [speaker_1]: లేదు.
+L0028 [speaker_1]: నేను నిద్రలో వెళ్ళలేదు.
+L0029 [speaker_1]: కావాలనే వెళ్ళా.
+(audio event) [నాటకీయ సంగీతం]
+[picture holds on the reaction]
+```
+
+### Clip 2: నువ్వు ఇంట్లో ఉండి నన్ను ప్రేమిస్తే చాలు
+
+```
+L0384 [speaker_1]: ఇప్పటి నుండి మీ ఆయన కూడా సంపాదిస్తాడు.
+[cold open ends; scene starts]
+L0372 [speaker_2]: ఏంటి కృష్ణ?
+L0373 [speaker_2]: ఏమైంది ఇంత happy గా ఉన్నావ్?
+L0374 [speaker_2]: నిన్ను ఇంత happy గా నేను ఎప్పుడూ చూడలా.
+L0375 [speaker_1]: నాకు
+L0376 [speaker_1]: job వచ్చింది.
+L0377 [speaker_2]: అవునా
+L0378 [speaker_1]: ఊ..
+L0379 [speaker_2]: ఎక్కడ?
+L0380 [speaker_1]: ఇక్కడే, మాదాపూర్ లో.
+L0381 [speaker_1]: నాకు
+L0382 [speaker_1]: హైదరాబాద్ లో job వచ్చింది.
+L0383 [speaker_2]: చాలా happy గా ఉంది కృష్ణ.
+[cut: a part is removed here; the cold-open line is skipped here, not replayed]
+L0385 [speaker_1]: నీ అంత కాకపోయినా
+L0386 [speaker_1]: నాకు నెల నెల జీతం వస్తుంది.
+L0387 [speaker_2]: ఎంత salary వస్తుంది అన్నది important కాదు, job ఉందా లేదా అనేదే important.
+L0388 [speaker_2]: అయినా నీకు job ఉండాలని నేను ఎప్పుడూ అనుకోలేదు.
+L0389 [speaker_2]: నువ్వే life లో ఏదో ఒకటి చేయాలి, job తెచ్చుకోవాలి అనుకున్నావ్, so I am happy for you.
+L0390 [speaker_2]: నువ్వు నా కోసం job చేయాలని నేను ఎప్పుడూ అనుకోలేదు.
+L0391 [speaker_2]: నువ్వు ఇంట్లో ఉంటూ నన్ను ప్రేమించే పని చూసుకున్నా కూడా నాకు okay.
+[picture holds on the reaction]
+```
+
+### Clip 3: ఇది Self Respect కాదు Ego!
+
+```
+L0470 [speaker_2]: అయినా అసలు నువ్ ఇప్పుడు loan తీసుకోవాల్సిన అవసరమే లేదు.
+L0471 [speaker_1]: ఎందుకు?
+L0472 [speaker_2]: ఎందుకంటే నువ్వు హైదరాబాద్ లోనే settle అవ్వాలి అని చెప్పిన తర్వాత నేను నాన్నకు చెప్పా.
+L0473 [speaker_2]: నాన్న కూడా సరే ఎంతకని rent కట్టుకుంటూ ఉంటారు, ఒక ఇల్లు కొనుక్కోండి అన్నారు.
+L0474 [speaker_2]: ఆయన ఒక రెండు ఎకరాల పొలం అమ్మేసి ఇస్తానన్నారు.
+L0475 [speaker_2]: ఆ డబ్బులతో ఇల్లు కట్టుకోమన్నారు.
+L0476 [speaker_1]: ఆయన ఎందుకు డబ్బులు ఇస్తారు?
+L0477 [speaker_2]: ఎందుకు ఏంటి?
+L0478 [speaker_2]: నీకు కట్నం ఇవ్వలేదు కదా.
+L0479 [speaker_1]: కట్నమా?
+L0480 [speaker_2]: నా ఉద్దేశం అది కాదు.
+L0481 [speaker_2]: అంటే
+L0482 [speaker_2]: నీకు పెళ్లి time లో ఏమి ఇవ్వలేదు కదా, ఇప్పుడు ఇల్లుకు డబ్బులిచ్చి help చేస్తా అంటున్నారు.
+L0483 [speaker_1]: అసలు ఏం మాట్లాడుతున్నావ్ సత్య?
+L0484 [speaker_2]: దానికెందుకు కృష్ణ ఇంత feel అవుతున్నావ్?
+L0485 [speaker_2]: నేను నాన్న చెప్పిన మాటలు నీకు చెప్పాను అంతే.
+L0486 [speaker_1]: ఆ మాటలు నాకు ఆరోజే చెప్పాల్సింది సత్య.
+L0487 [speaker_1]: ఇప్పుడెందుకు చెప్తున్నావ్?
+L0488 [speaker_1]: అయినా కట్నం కోసం చేసుకున్నానా నేను నిన్ను?
+L0489 [speaker_2]: అప్పుడెందుకు చెప్పలేదంటే అప్పుడు మన మధ్య discussion రాలేదు, ఈ topic రాలేదు.
+L0490 [speaker_2]: ఇప్పుడెందుకు చెప్తున్నానంటే ఇప్పుడు ఇల్లు కొనుక్కునే discussion వచ్చింది.
+L0491 [speaker_2]: దాంట్లో తప్పేముంది?
+L0492 [speaker_1]: తప్పుంది సత్య.
+L0493 [speaker_1]: అయినా మీ నాన్న దగ్గర కట్నం తీసుకొని ఇల్లు కట్టుకునే అవసరం నాకు లేదు.
+L0494 [speaker_2]: అరే కృష్ణ!
+L0495 [speaker_2]: నేను కట్నం అంటే ఆ ఉద్దేశంతో అనట్లేదు.
+L0496 [speaker_2]: అంటే ఒక help లా అంటున్నా.
+L0497 [speaker_1]: వద్దు సత్య ఆపేయ్ ఇంకా.
+L0498 [speaker_2]: ఎందుకిలా react అవుతున్నావ్?
+L0499 [speaker_2]: మా నాన్న నిన్ను తక్కువ చేసి మాట్లాడట్లేదు.
+L0500 [speaker_1]: నన్ను తక్కువ చేయడం గురించి కాదు సత్య.
+L0501 [speaker_1]: పెళ్ళికి కట్నం ఇవ్వలేదని ఇప్పుడు ఇల్లు కొనడానికి డబ్బులు ఇవ్వడమంటే దాని meaning ఏంటి?
+L0502 [speaker_2]: దాన్ని నువ్వసలు ఇలా ఎందుకు చూస్తున్నావ్?
+L0503 [speaker_2]: మా నాన్నకు కూతురు అంటే ప్రేమ ఉంది.
+L0504 [speaker_2]: మనకోసం ఏమైనా చేయాలనుకుంటున్నారు.
+L0505 [speaker_1]: ప్రేమ ఉంటే మన మీద నమ్మకం కూడా ఉండాలి సత్య.
+L0506 [speaker_2]: నమ్మకం లేకపోతే నన్ను నీకిచ్చి పెళ్లి చేయరు కదా కృష్ణ.
+L0507 [speaker_1]: సత్య!
+L0508 [speaker_1]: నా family ని ఎలా చూసుకోవాలో నాకు తెలుసు.
+L0509 [speaker_2]: చూసుకోలేమని ఎవరన్నారు?
+L0510 [speaker_1]: మరి ఎందుకు ప్రతిసారి మీ నాన్న డబ్బులు?
+L0511 [speaker_2]: ప్రతిసారి కాదు.
+L0512 [speaker_2]: ఈసారి ఇల్లు topic వచ్చింది కాబట్టి.
+L0513 [speaker_1]: నాకు మీ నాన్న డబ్బులు అవసరం లేదు.
+L0514 [speaker_2]: అవసరం లేకపోతే తీసుకోకు.
+L0515 [speaker_2]: దానికి నాతో ఎందుకిలా మాట్లాడుతున్నావ్?
+L0516 [speaker_1]: సత్య!
+L0517 [speaker_1]: ఒకసారి నువ్వే నా place లో ఉండి ఆలోచించు.
+L0518 [speaker_1]: ఇప్పుడు మీ నాన్న దగ్గర డబ్బులు తీసుకొని ఇల్లు కడితే ఆ ఇంటి ముందు నించొని ఇది నా ఇల్లు అని ఎలా అనుకోగలుగుతావ్ చెప్పు?
+L0519 [speaker_2]: అది నీ self respect కాదు ego.
+L0520 [speaker_1]: ego ఆ?
+[picture holds on the reaction]
+```
+
+### Clip 4: ఆత్మగౌరవమా లేక Ego నా?
+
+```
+L0517 [speaker_1]: ఒకసారి నువ్వే నా place లో ఉండి ఆలోచించు.
+L0518 [speaker_1]: ఇప్పుడు మీ నాన్న దగ్గర డబ్బులు తీసుకొని ఇల్లు కడితే ఆ ఇంటి ముందు నించొని ఇది నా ఇల్లు అని ఎలా అనుకోగలుగుతావ్ చెప్పు?
+L0519 [speaker_2]: అది నీ self respect కాదు ego.
+L0520 [speaker_1]: ego ఆ?
+L0521 [speaker_2]: అవును ego నే.
+L0522 [speaker_2]: మా నాన్న దగ్గర డబ్బులు తీసుకుంటే నువ్వు ఎక్కడ తక్కువ మనిషి అయిపోతావని నువ్వు అనుకుంటున్నావ్.
+L0523 [speaker_2]: కానీ అదే మా నాన్న నా కోసం డబ్బులు ఇస్తుంటే ప్రేమతో ఇస్తున్నారని ఎందుకు అనుకోవట్లేదు?
+L0524 [speaker_1]: ఇప్పుడు మీ నాన్న ప్రేమ కోసం నా ఆత్మ గౌరవాన్ని తగ్గించుకోవాలా?
+L0525 [speaker_2]: నీ ఆత్మ గౌరవం కోసం మా నాన్న ప్రేమను question చేయాలా?
+L0526 [speaker_1]: వదిలేయ్ సత్య.
+[picture holds on the reaction]
 ```
