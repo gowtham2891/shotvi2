@@ -1,0 +1,231 @@
+{
+ "video_id": "fjGrX8aBVAc",
+ "dry_run": true,
+ "find_prompt": "ws_emotion_find",
+ "find_cached": false,
+ "projection": {
+  "context_tokens": 12764,
+  "find_task_tokens": 925,
+  "find_cached": false,
+  "build_task_tokens": [
+   1834,
+   1924,
+   1967,
+   1847,
+   1873,
+   1902,
+   1985
+  ],
+  "build_task_tokens_sample": null,
+  "n_moments": null,
+  "storage_inr": 0.57,
+  "write_inr_worst": 0.86,
+  "find": {
+   "model": "gemini-3.8-flash",
+   "thinking_level": "high",
+   "out_expected": 15000,
+   "out_max": 32768,
+   "inr_expected": 5.21,
+   "inr_worst": 11.21
+  },
+  "build": {
+   "model": "gemini-3.8-flash",
+   "thinking_level": "medium",
+   "out_expected": 3500,
+   "out_max": 8192,
+   "inr_worst_each": 2.98
+  },
+  "rows": {
+   "no_cap": {
+    "cap": null,
+    "n_build_expected": 7,
+    "n_build_worst": 7,
+    "n_build_uncached": 7,
+    "find_inr_expected": 5.21,
+    "find_inr_worst": 11.21,
+    "build_inr_expected": 9.77,
+    "build_inr_worst": 20.86,
+    "storage_inr": 0.57,
+    "inr_expected": 15.56,
+    "inr_worst": 33.5
+   },
+   "cap": {
+    "cap": 15,
+    "n_build_expected": 7,
+    "n_build_worst": 7,
+    "n_build_uncached": 7,
+    "find_inr_expected": 5.21,
+    "find_inr_worst": 11.21,
+    "build_inr_expected": 9.77,
+    "build_inr_worst": 20.86,
+    "storage_inr": 0.57,
+    "inr_expected": 15.56,
+    "inr_worst": 33.5
+   }
+  },
+  "token_source": "countTokens"
+ },
+ "n_lift_ok": 35,
+ "moments_basis": "find answer of emotion1 (7 valid moments) as the estimate",
+ "n_clusters": 7,
+ "clusters": [
+  {
+   "target": "p01",
+   "target_line": "L0130",
+   "strength": 4,
+   "members": [
+    {
+     "id": "p01",
+     "line": "L0130",
+     "intensity": 4
+    }
+   ],
+   "earlier": [],
+   "absorbed": [],
+   "break_before": null,
+   "cluster_context": ""
+  },
+  {
+   "target": "p02",
+   "target_line": "L0185",
+   "strength": 3,
+   "members": [
+    {
+     "id": "p02",
+     "line": "L0185",
+     "intensity": 3
+    }
+   ],
+   "earlier": [],
+   "absorbed": [],
+   "break_before": "music: L0165 [వెనకభూమిలో సంగీతం] (15.7 s, no speech)",
+   "cluster_context": ""
+  },
+  {
+   "target": "p03",
+   "target_line": "L0248",
+   "strength": 3,
+   "members": [
+    {
+     "id": "p03",
+     "line": "L0248",
+     "intensity": 3
+    }
+   ],
+   "earlier": [],
+   "absorbed": [],
+   "break_before": "62 spoken lines / 101 s after L0185 (> 35 lines and > 50 s)",
+   "cluster_context": ""
+  },
+  {
+   "target": "p04",
+   "target_line": "L0329",
+   "strength": 4,
+   "members": [
+    {
+     "id": "p04",
+     "line": "L0329",
+     "intensity": 4
+    }
+   ],
+   "earlier": [],
+   "absorbed": [],
+   "break_before": "80 spoken lines / 155 s after L0248 (> 35 lines and > 50 s)",
+   "cluster_context": ""
+  },
+  {
+   "target": "p05",
+   "target_line": "L0418",
+   "strength": 3,
+   "members": [
+    {
+     "id": "p05",
+     "line": "L0418",
+     "intensity": 3
+    }
+   ],
+   "earlier": [],
+   "absorbed": [],
+   "break_before": "music: L0333 [పాట] (65.2 s, no speech)",
+   "cluster_context": ""
+  },
+  {
+   "target": "p06",
+   "target_line": "L0439",
+   "strength": 4,
+   "members": [
+    {
+     "id": "p06",
+     "line": "L0439",
+     "intensity": 4
+    }
+   ],
+   "earlier": [],
+   "absorbed": [],
+   "break_before": "music: L0424 [పాట] (15.7 s, no speech)",
+   "cluster_context": ""
+  },
+  {
+   "target": "p07",
+   "target_line": "L0457",
+   "strength": 3,
+   "members": [
+    {
+     "id": "p07",
+     "line": "L0457",
+     "intensity": 3
+    }
+   ],
+   "earlier": [],
+   "absorbed": [],
+   "break_before": "music: L0451 [పాట] (7.5 s, no speech)",
+   "cluster_context": ""
+  }
+ ],
+ "n_moments_valid": 7,
+ "n_moments_rejected": 0,
+ "moments": [
+  {
+   "id": "p01",
+   "line": "L0130",
+   "feeling": "tension",
+   "intensity": 4
+  },
+  {
+   "id": "p02",
+   "line": "L0185",
+   "feeling": "laugh",
+   "intensity": 3
+  },
+  {
+   "id": "p03",
+   "line": "L0248",
+   "feeling": "laugh",
+   "intensity": 3
+  },
+  {
+   "id": "p04",
+   "line": "L0329",
+   "feeling": "laugh",
+   "intensity": 4
+  },
+  {
+   "id": "p05",
+   "line": "L0418",
+   "feeling": "aww",
+   "intensity": 3
+  },
+  {
+   "id": "p06",
+   "line": "L0439",
+   "feeling": "laugh",
+   "intensity": 4
+  },
+  {
+   "id": "p07",
+   "line": "L0457",
+   "feeling": "laugh",
+   "intensity": 3
+  }
+ ]
+}

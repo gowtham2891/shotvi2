@@ -37,9 +37,40 @@ persona, exactly as ws3 and merged do it; each call sends only its small task):
            moment; ``episode_summary`` (moments found, built, rejected with reasons, deduped, shown) and a per-moment
            table.
 
+emotion_pick/0.2 (founder's fix spec, 2026-10-16; the DEFAULTS below). Every change sits behind a config key, so
+``configs/emotion_pick_v1.json`` reproduces 0.1 byte-for-byte from the response cache:
+  prompts  ``ws_emotion_find`` / ``ws_emotion_build`` version 2 (v1 kept as ``*_v1``); the find schema's type enum
+           gains ``cliffhanger`` (``find.extra_types``); the context renders Scribe's speaker labels
+           (``ctx.speaker_names`` False; 0.1 used ws3's default True).
+  lift-ok  (``lift_ok.rule`` "strict") a line is offered only if it passes every later lift check: speech
+           1.0-3.6 s, v1's ``build_lift`` against its episode neighbours WITH the quiet-tail loudness check (mean_db,
+           disk-cached under runs/cache/loudness), and a continuation guard: not when the next spoken line opens with a
+           dependent connective (``lift_ok.continuations``) or is a 1-2 word acknowledgement (``lift_ok.acks``).
+           ``lift_ok.enforce``: a cold open on a line that was not offered is refused (-> the fallback below).
+  cluster  (``cluster.enabled``) between FIND and BUILD, consecutive payoffs (transcript order) join one cluster when
+           within ``max_lines`` spoken lines or ``max_s`` seconds of the previous payoff and no scene transition lies
+           between them (a music / song event >= ``music_min_s`` with no spoken word during it; optionally a silent gap
+           >= ``silence_gap_s``). One build call per cluster: target = the LAST payoff with intensity >= cluster max -
+           ``target_within``; the earlier payoffs go into the task as $cluster_context; sort strength = cluster max;
+           ``--max-moments`` caps clusters.
+  land     the land may lie ``build.land_window_lines`` spoken lines before to ``build.land_after_lines`` after the
+           found line. ``build.end_rule`` "clamp": end_line is clamped so the land is among the last 3 spoken lines
+           (<= 2 spoken lines after land, <= 1 after effective_land = max(land, reaction)), never moved to the land or
+           rejected; ``check.land_late`` "trim": a played clip whose land is still not among the last 3 (the end hold
+           played a reaction line) is trimmed line by line; K2 remains only when the land is not played at the end.
+  stop     ``cold_open.rule`` "fallback": stop != start_line -> Case A (stop is start+1/+2 spoken lines and starts
+           within 3.0 s of start_line: no lift, play from start_line) or Case B (a lift; refused -> play from
+           start_line, or advance start_line to stop when start_line is weak filler and stop is within 4 spoken
+           lines). ``check.stop_late`` "flag": a stop that does not play within 3 s flags ``stop_not_first`` instead of
+           rejecting. The case is recorded in ``stop.case``.
+  dedupe   ``dedupe.rule`` "scene": duplicates share > ``dedupe.overlap`` (35%) of the shorter clip, OR their
+           start..end line spans overlap and both land lines lie in the same scene; keep the higher strength, then
+           the one playing 30-75 s, then the one ending on the later line.
+The internal-cut cap (v1 builder, cut.max_cuts 3) already counts the lift's in-place skip as one cut.
+
 Rejection codes: N0 the build call said no_clip; X1 Gemini safety block (the moment is skipped); C1 call failed /
 invalid answer; V1 answer ids invalid; B1 v1 cut builder; L1/L2/A1/S1/S2 v1 hard rules; K1 stop-first check (incl. a
-failed cold-open lift); K2 land-last check; D1 duplicate.
+failed cold-open lift; 0.2: only an invalid stop id); K2 land-last check; D1 duplicate.
 
 Spend: one paid attempt per call (no retries); the spend guard (``--max-ledger-inr``) is checked up front (cache
 storage + one call, worst case) and before EVERY billed call with that call's worst case (``before_call``); after
@@ -54,10 +85,15 @@ CLI::
     SHOTVI_SPEND_SOURCE=emotion1 python -m shotvi.select.emotion_pick 5HqkHAZfzos --out runs/emotion1 \\
         --max-ledger-inr 1700 --max-moments 15
     python tools/preview_clips.py runs/emotion1 --top 50
+    # 0.1 replayed from the cache (Rs 0):
+    python -m shotvi.select.emotion_pick <ids> --config shotvi/select/configs/emotion_pick_v1.json --cache-only
+    # 0.2 dry run before its find has run: the find count estimated from an earlier run's find answers
+    python -m shotvi.select.emotion_pick <ids> --out runs/emotion2 --dry-run --find-estimate runs/emotion1
 """
 from __future__ import annotations
 
 import argparse
+import bisect
 import copy
 import json
 import math
@@ -73,7 +109,7 @@ from shotvi.select import webseries as ws
 from shotvi.select import ws3
 
 ROOT = ws.ROOT
-PIPELINE_VERSION = "emotion_pick/0.1"
+PIPELINE_VERSION = "emotion_pick/0.2"
 ROLE_FIND = "ws_emotion_find"
 ROLE_BUILD = "ws_emotion_build"
 FEELINGS = ["laugh", "aww", "shock", "tension", "tears"]
@@ -84,21 +120,50 @@ PROJ_CAP = 15                 # the dry run always also shows this cap (founder'
 
 _FLASH = {"provider": "gemini", "model": "gemini-3.8-flash"}
 DEFAULTS: dict = {
-    # "ws_emotion_find" (strict stranger test, this module's prompt) or "ws3_payoffs" (ws3's call 1 unchanged)
+    "pipeline_version": PIPELINE_VERSION,
+    # a prompts/ws_emotion_find*.md file (the strict stranger test: ws_emotion_find = v2, ws_emotion_find_v1 = 0.1's)
+    # or "ws3_payoffs" (ws3's call 1 unchanged)
     "find_prompt": ROLE_FIND,
     "models": {
         "find": {**_FLASH, "params": {"thinking_level": "high", "max_output_tokens": 32768}},     # = ws3_payoffs
         "build": {**_FLASH, "params": {"thinking_level": "medium", "max_output_tokens": 8192}},   # = merged call C
     },
     "prompts": {ROLE_BUILD: "ws_emotion_build"},
-    "ctx": {},       # deep-merged over ws3.DEFAULTS: persona prompt, explicit cache (TTL 1 h), speaker_names
+    # deep-merged over ws3.DEFAULTS: persona prompt, explicit cache (TTL 1 h), speaker_names. 0.2 renders Scribe's
+    # labels (founder, 2026-10-16); 0.1 ran with ws3's default (corrected names): configs/emotion_pick_v1.json
+    "ctx": {"speaker_names": False},
     "v1": {},        # deep-merged over ws.DEFAULTS: the cut builder's settings and the guardrails, unchanged
-    "find": {"min_intensity": 3},
-    # build: max_moments None = a call for every found moment. The lift-ok list in the task covers lines from
-    # lift_before_s before the land line to lift_after_s after it (as merged call C).
+    # extra_types: added to the find schema's type enum (0.1: none)
+    "find": {"min_intensity": 3, "extra_types": ["cliffhanger"]},
+    # lift-ok lines offered to the build call. rule "v1" = webseries.liftable_lines; "strict" = also speech >=
+    # min_speech_s, the quiet-tail loudness check and the continuation guard. enforce: a cold open on a line not
+    # offered is refused (the stop fallback then applies)
+    "lift_ok": {"rule": "strict", "enforce": True, "min_speech_s": 1.0, "max_speech_s": 3.6,
+                "continuations": ["అందుకే", "కానీ", "సో", "మరి", "అలాగే", "అయినా", "అయితే", "ఎందుకంటే",
+                                  "so", "but", "and", "because"],
+                "acks": ["అవునా", "అవును", "ఊ", "ఊం", "ఉమ్", "సరే", "హ్మ్", "హా", "ఆ", "ఓ", "ఓకే", "అలాగా",
+                         "ok", "okay", "hmm", "hm", "yes", "yeah"],
+                "ack_max_words": 2},
+    # same-scene clustering of the found payoffs before the build calls (0.1: off)
+    "cluster": {"enabled": True, "max_lines": 35, "max_s": 50.0, "music_min_s": 4.0, "silence_gap_s": None,
+                "target_within": 1},
+    # build: max_moments None = a call for every found moment (cluster). The lift-ok list in the task covers lines
+    # from lift_before_s before the land line to lift_after_s after it (as merged call C). The land may lie
+    # land_window_lines before / land_after_lines after the found line (None = land_window_lines). end_rule "v1":
+    # an end more than max_end_after_payoff_lines after the land moves to the land; "clamp": see the docstring
     "build": {"max_moments": None, "lift_before_s": 150.0, "lift_after_s": 20.0, "land_window_lines": 3,
-              "max_end_after_payoff_lines": 3},
-    "check": {"stop_window_s": 3.0, "land_last_lines": 3},
+              "land_after_lines": 15, "max_end_after_payoff_lines": 3,
+              "end_rule": "clamp", "end_after_land_lines": 2, "end_after_reaction_lines": 1},
+    # stop != start_line. rule "v1": always a lift (refused = K1 reject); "fallback": Case A / B (docstring)
+    "cold_open": {"rule": "fallback", "near_lines": 2, "near_s": 3.0, "weak_advance_lines": 4,
+                  "weak_max_words": 2, "weak_min_s": 1.0,
+                  "greetings": ["hello", "hi", "hey", "హలో", "హాయ్", "నమస్తే", "namaste", "thank", "thanks", "you",
+                                "bye", "good", "morning", "evening", "night"]},
+    # stop_late / land_late: "reject" (0.1: K1 / K2) or "flag" / "trim" (0.2)
+    "check": {"stop_window_s": 3.0, "land_last_lines": 3, "stop_late": "flag", "land_late": "trim"},
+    # rule "v1": > guardrails.dup_overlap (50%) of the shorter, higher intensity then earlier land wins; "scene": see
+    # the docstring
+    "dedupe": {"rule": "scene", "overlap": 0.35, "prefer_play_s": [30.0, 75.0]},
     "budget_usd": 3.0,          # per-episode USD cap of the LLM client; the rupee guard (--max-ledger-inr) is the limit
     "calibrate_from": {"ws3": "runs/ws3"},   # measured find counts (projection of N before FIND has run)
 }
@@ -153,16 +218,24 @@ class Rejected(Exception):
 
 # ---------------------------------------------------------------------------------------------------- config
 def find_role(cfg: dict) -> str:
-    return cfg["find_prompt"]
+    """The FIND call's role: "ws3_payoffs" for ws3's call 1, else ``ws_emotion_find`` whichever version of the
+    prompt file runs (the role is not part of the response-cache key; the prompt text is)."""
+    return "ws3_payoffs" if cfg["find_prompt"] == "ws3_payoffs" else ROLE_FIND
 
 
 def find_schema(cfg: dict) -> dict:
     """ws3_payoffs: ws3's schema object itself (the response-cache key needs it byte-identical). The new prompt: the
-    same shape, feelings limited to the founder's five (no "other")."""
+    same shape, feelings limited to the founder's five (no "other"); ``find.extra_types`` (0.2: cliffhanger) are added
+    to the type enum before "other" (ws3's own schema is not touched)."""
     if find_role(cfg) == "ws3_payoffs":
         return ws3.PAYOFFS_SCHEMA
     s = copy.deepcopy(ws3.PAYOFFS_SCHEMA)
-    s["properties"]["payoffs"]["items"]["properties"]["emotion"]["enum"] = list(FEELINGS)
+    item = s["properties"]["payoffs"]["items"]["properties"]
+    item["emotion"]["enum"] = list(FEELINGS)
+    extra = [t for t in (cfg.get("find") or {}).get("extra_types") or [] if t not in item["type"]["enum"]]
+    if extra:
+        en = [t for t in item["type"]["enum"] if t != "other"]
+        item["type"]["enum"] = en + extra + (["other"] if "other" in item["type"]["enum"] else [])
     return s
 
 
@@ -188,14 +261,198 @@ def spec_build(cfg: dict):
 
 
 # ---------------------------------------------------------------------------------------------------- call 2 task
-def task_build(cfg: dict, ep: ws.Episode, p: dict, lift_ids: list[str]) -> str:
+def task_build(cfg: dict, ep: ws.Episode, p: dict, lift_ids: list[str], cluster_context: str = "") -> str:
+    """The build task for moment ``p``. ``cluster_context`` fills $cluster_context (v2 prompt; a v1 prompt has no such
+    placeholder and renders exactly as 0.1 did)."""
     from shotvi.select.prompts import load_prompt
     pr = load_prompt(cfg["prompts"][ROLE_BUILD])
     return pr.system.strip() + "\n\n" + pr.render(
         episode_len=ws.fmt(ep.duration), land_line=p["line"], feeling=p["emotion"], intensity=p["intensity"],
         on_screen="the transcript shows the reaction" if p["lands_on_screen"] else "no reaction shown in the transcript",
-        land_text=ws.one_line(p["text"], 400), why=ws.one_line(p["reason"], 400),
+        land_text=ws.one_line(p["text"], 400), why=ws.one_line(p["reason"], 400), cluster_context=cluster_context,
         lift_ok=M.lift_ok_near(ep, lift_ids, p, cfg, window=cfg["build"])).strip()
+
+
+# ---------------------------------------------------------------------------------------------------- 0.2 lift-ok
+def _tok(w: str) -> str:
+    return w.strip(" \t.,!?…-–—\"'“”‘’()[]:;").lower()
+
+
+def _tokens(text: str) -> list[str]:
+    return [t for t in (_tok(w) for w in text.split()) if t]
+
+
+def opens_with_continuation(text: str, conts: list[str]) -> str | None:
+    """The connective ``text`` opens with (a dependent continuation of the line before), or None."""
+    toks = _tokens(text)
+    for c in conts:
+        ct = _tokens(c)
+        if ct and toks[:len(ct)] == ct:
+            return c
+    return None
+
+
+def is_ack(text: str, acks: list[str], max_words: int) -> bool:
+    """A 1-``max_words`` word acknowledgement ("అవునా", "సరే", "ok"): every token an ack word or a filler."""
+    toks = _tokens(text)
+    aset = {_tok(a) for a in acks}
+    return 0 < len(toks) <= max_words and all(t in aset or ws._only_fillers(t) for t in toks)
+
+
+class Loudness:
+    """mean_db (ffmpeg volumedetect, ws.mean_db) of the episode audio with a disk cache
+    (runs/cache/loudness/<vid>.json), so the strict lift-ok filter is computed once per episode. ``fallback``: the
+    episode's own loudness function when the audio file is missing (tests inject one)."""
+
+    def __init__(self, vid: str, fallback=None):
+        self.wav = ws.ROOT / "scribe_dataset" / vid / f"{vid}_audio.wav"
+        self.path = ws.ROOT / "runs" / "cache" / "loudness" / f"{vid}.json"
+        self.fallback = fallback
+        self.data: dict = {}
+        self.dirty = False
+        if self.path.exists():
+            try:
+                self.data = json.loads(self.path.read_text(encoding="utf-8"))
+            except (OSError, json.JSONDecodeError):
+                self.data = {}
+
+    @property
+    def available(self) -> bool:
+        return self.wav.exists() or self.fallback is not None
+
+    def __call__(self, a: float, b: float):
+        if not self.wav.exists():
+            return self.fallback(a, b) if self.fallback else None
+        k = f"{a:.3f}-{b:.3f}"
+        if k not in self.data:
+            self.data[k] = ws.mean_db(self.wav, a, b)
+            self.dirty = True
+        return self.data[k]
+
+    def save(self) -> None:
+        if self.dirty:
+            self.path.parent.mkdir(parents=True, exist_ok=True)
+            self.path.write_text(json.dumps(self.data, sort_keys=True), encoding="utf-8")
+            self.dirty = False
+
+
+def strict_liftable_lines(ep: ws.Episode, vcut: dict, lc: dict, loud=None) -> list[str]:
+    """0.2 lift-ok: a spoken line is offered only if it would pass every later lift check (see the docstring):
+    speech min_speech_s..max_speech_s; v1's build_lift against its episode neighbours (the next two spoken lines kept,
+    the line before kept) WITH the quiet-tail check; the next spoken line neither opens with a continuation nor is a
+    1-2 word acknowledgement."""
+    loud = loud if loud is not None else Loudness(ep.video_id, ep.loudness)
+    ep2 = ws.Episode(ep.video_id, ep.lines, ep.words, ep.cuts, ep.duration,
+                     loud if getattr(loud, "available", True) else None)
+    sp = [r for r in ep.lines if ep.is_speech(r)]
+    lo, hi = float(lc["min_speech_s"]), float(lc["max_speech_s"])
+    out = []
+    for k in range(1, len(sp) - 1):
+        d = ep.w1(sp[k]) - ep.w0(sp[k])
+        if d < lo or d > hi:
+            continue
+        nxt = ws.raw_text(ep, sp[k + 1])
+        if opens_with_continuation(nxt, lc["continuations"]) or is_ack(nxt, lc["acks"], int(lc["ack_max_words"])):
+            continue
+        S = sp[k - 1:k + 3] if k + 2 < len(sp) else sp[k - 1:k + 2] + [sp[k + 1]]
+        try:
+            ws.build_lift(ep2, S, [1], set(range(len(S))) - {1}, vcut, "standalone")
+        except ws.Reject:
+            continue
+        out.append(sp[k]["id"])
+    if hasattr(loud, "save"):
+        loud.save()
+    return out
+
+
+def lift_ok_lines(ep: ws.Episode, vcut: dict, cfg: dict) -> list[str]:
+    lc = cfg.get("lift_ok") or {}
+    if lc.get("rule", "v1") == "strict":
+        return strict_liftable_lines(ep, vcut, lc)
+    return ws.liftable_lines(ep, vcut)
+
+
+# ---------------------------------------------------------------------------------------------------- 0.2 clusters
+def scene_break(ep: ws.Episode, pa: int, pb: int, ccfg: dict) -> str | None:
+    """A scene transition between ep.lines positions pa < pb, or None: a music / song audio event lasting >=
+    music_min_s during which no word is spoken; with silence_gap_s set, also a silent gap that long between two
+    consecutive spoken lines."""
+    if pb < pa:
+        pa, pb = pb, pa
+    mn = float(ccfg.get("music_min_s") or 4.0)
+    starts = getattr(ep, "_ep2_w_starts", None)
+    if starts is None:
+        starts = [w["start"] for w in ep.words]
+        ep._ep2_w_starts = starts
+    for r in ep.lines[pa + 1:pb]:
+        if r["kind"] != "event" or not ws._is_music(r.get("text", "")) or r["end"] - r["start"] < mn - 1e-6:
+            continue
+        k = bisect.bisect_left(starts, r["start"]) - 1
+        spoken = False
+        for i in range(max(0, k), len(ep.words)):
+            w = ep.words[i]
+            if w["start"] >= r["end"]:
+                break
+            if w["end"] > r["start"] and w["start"] < r["end"]:
+                spoken = True
+                break
+        if not spoken:
+            return f"music: {r['id']} {r['text']} ({r['end'] - r['start']:.1f} s, no speech)"
+    gap = ccfg.get("silence_gap_s")
+    if gap:
+        sp = [r for r in ep.lines[pa:pb + 1] if ep.is_speech(r)]
+        for a, b in zip(sp, sp[1:]):
+            if ep.w0(b) - ep.w1(a) >= float(gap):
+                return f"silence: {ep.w0(b) - ep.w1(a):.1f} s before {b['id']}"
+    return None
+
+
+def cluster_moments(ep: ws.Episode, moments: list[dict], cfg: dict) -> list[dict]:
+    """Payoffs -> clusters (transcript order). Disabled: one cluster per payoff (0.1). A payoff joins the previous
+    one's cluster when it is within max_lines spoken lines OR max_s seconds of the previous payoff AND no scene
+    transition lies between them. Per cluster: target = the LAST payoff with intensity >= max - target_within;
+    ``earlier`` = the payoffs before it (they fill $cluster_context); ``absorbed`` = the ones after it;
+    strength = the cluster's max intensity."""
+    cc = cfg.get("cluster") or {}
+    ps = sorted(moments, key=lambda p: ep.pos[p["line"]])
+    if not cc.get("enabled"):
+        groups = [[p] for p in ps]
+        breaks = [None] * len(ps)
+    else:
+        sp_idx = M._spoken_index(ep)
+        groups, breaks = [], []
+        for p in ps:
+            if groups:
+                q = groups[-1][-1]
+                dl = sp_idx[p["line"]] - sp_idx[q["line"]]
+                dt = ep.w0(ep.by_id[p["line"]]) - ep.w0(ep.by_id[q["line"]])
+                br = scene_break(ep, ep.pos[q["line"]], ep.pos[p["line"]], cc)
+                if (dl <= int(cc["max_lines"]) or dt <= float(cc["max_s"])) and br is None:
+                    groups[-1].append(p)
+                    continue
+                breaks.append(br or f"{dl} spoken lines / {dt:.0f} s after {q['line']} (> {cc['max_lines']} lines "
+                                     f"and > {cc['max_s']:g} s)")
+            else:
+                breaks.append(None)
+            groups.append([p])
+    out = []
+    for g, br in zip(groups, breaks):
+        mx = max(p["intensity"] for p in g)
+        within = int(cc.get("target_within", 1)) if cc.get("enabled") else 0
+        t = max((k for k, p in enumerate(g) if p["intensity"] >= mx - within), default=len(g) - 1)
+        earlier, target = g[:t], g[t]
+        ctx = ("Earlier beats in this same scene to include as setup/escalation: "
+               + ", ".join(f'{p["line"]} ("{ws.one_line(p["text"], 80)}")' for p in earlier)) if earlier else ""
+        out.append({"target": target, "members": g, "earlier": earlier, "absorbed": g[t + 1:], "strength": mx,
+                    "context": ctx, "break_before": br})
+    return out
+
+
+def cluster_public(k: dict) -> dict:
+    return {"target": k["target"]["id"], "target_line": k["target"]["line"], "strength": k["strength"],
+            "members": [{"id": p["id"], "line": p["line"], "intensity": p["intensity"]} for p in k["members"]],
+            "earlier": [p["id"] for p in k["earlier"]], "absorbed": [p["id"] for p in k["absorbed"]],
+            "break_before": k["break_before"], "cluster_context": k["context"]}
 
 
 # ---------------------------------------------------------------------------------------------------- validation
@@ -219,7 +476,10 @@ def validate_build(ep: ws.Episode, p: dict, ans: dict, cfg: dict) -> tuple[dict,
         raise Rejected("V1", f"land line {(ans.get('land') or {}).get('line')!r} is not a line of the transcript")
     land = ep.lines[pos]["id"]
     d = sp_idx[land] - sp_idx[p["line"]]
-    win = int(cfg["build"]["land_window_lines"])
+    bc = cfg["build"]
+    win_b = int(bc["land_window_lines"])
+    win_a = int(bc["land_window_lines"] if bc.get("land_after_lines") is None else bc["land_after_lines"])
+    win = win_a if d > 0 else win_b
     if abs(d) > win:
         raise Rejected("V1", f"land {land} is {abs(d)} spoken lines {'after' if d > 0 else 'before'} the found "
                              f"moment {p['line']} (> {win}): a different moment")
@@ -231,12 +491,19 @@ def validate_build(ep: ws.Episode, p: dict, ans: dict, cfg: dict) -> tuple[dict,
         raise Rejected("V1", f"start_line {ans.get('start_line')!r} is not a line of the transcript")
     raw = {"start_line": ep.lines[pos_s]["id"], "end_line": ans.get("end_line"), "cold_open_lines": [],
            "drops": ans.get("drops") or []}
+    clamp = bc.get("end_rule", "v1") == "clamp"
     try:
         m, f2 = M.validate_moment(ep, {"line": land}, raw,
-                                  {"moment": {"max_end_after_payoff_lines": cfg["build"]["max_end_after_payoff_lines"]}})
+                                  {"moment": {"max_end_after_payoff_lines":
+                                              10 ** 6 if clamp else bc["max_end_after_payoff_lines"]}})
     except ValueError as e:
         raise Rejected("V1", str(e)) from e
     flags += f2
+    reaction = str((ans.get("land") or {}).get("reaction") or "").strip()
+    rid = _sid(reaction)
+    if clamp:
+        m["end_line"], f3 = clamp_end(ep, land, rid, m["end_line"], bc)
+        flags += f3
     # stop: start_line itself, or a spoken line inside the clip (the cold-open lift)
     stop = _sid(ans.get("stop"))
     r = ep.by_id.get(stop) if stop else None
@@ -246,15 +513,18 @@ def validate_build(ep: ws.Episode, p: dict, ans: dict, cfg: dict) -> tuple[dict,
     lift = stop != m["start_line"]
     if lift and not ps < pst <= pe:
         raise Rejected("K1", f"stop line {stop} is outside the clip {m['start_line']}..{m['end_line']}")
-    reaction = str((ans.get("land") or {}).get("reaction") or "").strip()
-    rid = _sid(reaction)
+    case = None
+    if (cfg.get("cold_open") or {}).get("rule", "v1") == "fallback":
+        case = stop_case(ep, m["start_line"], stop, cfg["cold_open"])
+        lift = case == "B_lift"
     stop_why = str((ans.get("stop") or {}).get("why") or "")
     m.update(purpose=ans.get("purpose") or "standalone", spoiler=bool(ans.get("spoiler")),
              characters=list(ans.get("characters") or []), cold_open_lines=[stop] if lift else [],
              cold_open_why=stop_why if lift else "", payoff_line=ws3.line_text(ep, land),
              payoff_type=TYPE_TO_V1.get(p["type"]), hook=stop_why, payoff=ws3.line_text(ep, land),
              what_happens=str(ans.get("stay") or ""), category=ws3.EMOTION_CATEGORY.get(p["emotion"], "other"))
-    emo = {"stop": {"line": stop, "text": ws3.line_text(ep, stop), "why": stop_why, "cold_open": lift},
+    emo = {"stop": {"line": stop, "text": ws3.line_text(ep, stop), "why": stop_why, "cold_open": lift,
+                    **({"case": case} if case else {})},
            "stay": str(ans.get("stay") or ""),
            "land": {"line": land, "text": ws3.line_text(ep, land),
                     "reaction": rid if rid else ("hold" if reaction.lower() == "hold" else (reaction or "hold")),
@@ -263,22 +533,142 @@ def validate_build(ep: ws.Episode, p: dict, ans: dict, cfg: dict) -> tuple[dict,
     return m, emo, flags
 
 
+def clamp_end(ep: ws.Episode, land: str, rid: str | None, end: str, bc: dict) -> tuple[str, list[str]]:
+    """0.2 end clamp: the land must be among the last 3 spoken lines, so end_line may lie at most
+    ``end_after_land_lines`` (2) spoken lines after the land and at most ``end_after_reaction_lines`` (1) after the
+    effective land = max(land, reaction) when the reaction is a spoken line after the land inside the answered clip.
+    A later end is moved back (never to the land unless that is the limit), never rejected."""
+    sp_idx = M._spoken_index(ep)
+    pl, pe = ep.pos[land], ep.pos[end]
+    if pe <= pl:
+        return end, []
+    n_after = sum(1 for r in ep.lines[pl + 1:pe + 1] if ep.is_speech(r))
+    eff = 0
+    rr = ep.by_id.get(rid) if rid else None
+    if ep.is_speech(rr) and pl < ep.pos[rid] <= pe:
+        eff = sp_idx[rid] - sp_idx[land]
+    lim = min(int(bc["end_after_land_lines"]), eff + int(bc["end_after_reaction_lines"]))
+    if n_after <= lim:
+        return end, []
+    sp = [r for r in ep.lines if ep.is_speech(r)]
+    new = sp[sp_idx[land] + lim]["id"]
+    return new, [f"end_line {end} is {n_after} spoken lines after the land {land}; clamped to {new} "
+                 f"({lim} after the land{f', reaction {rid}' if eff else ''})"]
+
+
+def _weak_start(ep: ws.Episode, lid: str, cc: dict) -> str | None:
+    """Why spoken line ``lid`` is a weak opener (filler-only, a greeting, <= weak_max_words words or under
+    weak_min_s of speech), or None."""
+    r = ep.by_id[lid]
+    text = ws.raw_text(ep, r)
+    toks = _tokens(text)
+    if ws._only_fillers(text):
+        return "filler-only"
+    if toks and all(t in {_tok(g) for g in cc["greetings"]} for t in toks):
+        return "greeting"
+    if len(toks) <= int(cc["weak_max_words"]):
+        return f"{len(toks)} word(s)"
+    if ep.w1(r) - ep.w0(r) < float(cc["weak_min_s"]):
+        return f"{ep.w1(r) - ep.w0(r):.1f} s of speech"
+    return None
+
+
+def stop_case(ep: ws.Episode, start: str, stop: str, cc: dict) -> str:
+    """0.2: "start_line" (stop == start_line), "A_near_start" (stop is start+1..near_lines spoken lines and starts
+    within near_s of start_line's first word: no lift) or "B_lift" (a cold-open lift)."""
+    if stop == start:
+        return "start_line"
+    sp_idx = M._spoken_index(ep)
+    ds = sp_idx[stop] - sp_idx[start]
+    dt = ep.w0(ep.by_id[stop]) - ep.w0(ep.by_id[start])
+    if 0 < ds <= int(cc["near_lines"]) and dt <= float(cc["near_s"]) + 1e-9:
+        return "A_near_start"
+    return "B_lift"
+
+
+def build_v2(ep: ws.Episode, x: dict, vcfg: dict, cfg: dict, lift_ok: set) -> dict:
+    """0.2 build (cold_open.rule "fallback" / check.land_late "trim"): v1's cut builder with the stop fallback and the
+    land-last trim. Updates x["moment"], x["emo"]["stop"] (case, cold_open) and x["flags"]; raises Rejected (B1)."""
+    m, emo, flags = x["moment"], x["emo"], x["flags"]
+    cc, ck = cfg.get("cold_open") or {}, cfg["check"]
+    stop, land = emo["stop"]["line"], emo["land"]["line"]
+    n = int(ck["land_last_lines"])
+    sp_idx = M._spoken_index(ep)
+    from shotvi.select.emotion_select import render_clip
+
+    def once(m0: dict):
+        case = emo["stop"].get("case")
+        if case is None:            # cold_open.rule "v1": the moment as answered (check_built judges the lift)
+            return ws.build_clip(ep, m0, vcfg["cut"]), m0, None, None
+        if case != "B_lift":
+            return ws.build_clip(ep, {**m0, "cold_open_lines": []}, vcfg["cut"]), m0, case, None
+        refuse = None
+        if (cfg.get("lift_ok") or {}).get("enforce") and stop not in lift_ok:
+            refuse = "not offered as a liftable line"
+        else:
+            c0 = ws.build_clip(ep, m0, vcfg["cut"])
+            if c0["cold_open"]:
+                return c0, m0, case, None
+            refuse = c0.get("lift_rejected") or "lift not built"
+        start = m0["start_line"]
+        weak = _weak_start(ep, start, cc)
+        if weak and 0 < sp_idx[stop] - sp_idx[start] <= int(cc["weak_advance_lines"]) \
+                and ep.pos[stop] <= ep.pos[land]:
+            m1 = {**m0, "start_line": stop, "cold_open_lines": []}
+            note = (f"cold open {stop} refused ({refuse}); start_line {start} is weak ({weak}): the clip starts on "
+                    f"{stop}")
+            return ws.build_clip(ep, m1, vcfg["cut"], no_lift=True), m1, "B_refused_advance_start", note
+        m1 = {**m0, "cold_open_lines": []}
+        note = f"cold open {stop} refused ({refuse}); played in place, the clip starts on {start}"
+        return ws.build_clip(ep, m1, vcfg["cut"], no_lift=True), m1, "B_refused_play_start", note
+
+    cur = m
+    for _ in range(50):
+        try:
+            c, used, case, note = once(cur)
+        except ws.Reject as e:
+            raise Rejected("B1", str(e)) from e
+        if ck.get("land_late", "reject") != "trim":
+            break
+        rd = render_clip(ep, {"time_segments": c["time_segments"], "cold_open": bool(c["cold_open"])}, "C1")
+        if land in rd.last_ids(n) or land not in rd.ids():
+            break
+        end_sp = M._end_spoken(ep, cur["end_line"])
+        if end_sp is None or ep.pos[end_sp["id"]] <= ep.pos[land]:
+            break
+        prev = ws3.prev_speech(ep, ep.pos[end_sp["id"]] - 1)
+        flags.append(f"land {land} not among the last {n} spoken lines as played (last: "
+                     f"{', '.join(rd.last_ids(n))}); end_line {cur['end_line']} trimmed to {prev['id']}")
+        cur = {**cur, "end_line": prev["id"]}
+    if note:
+        flags.append(note)
+    x["moment"] = used
+    if case is not None:
+        emo["stop"]["case"] = case
+        emo["stop"]["cold_open"] = bool(c["cold_open"])
+    return c
+
+
 def check_built(ep: ws.Episode, c: dict, emo: dict, cfg: dict) -> dict:
     """The clip as played: the stop line must open it (a requested lift must have passed v1's lift checks) and start
     within check.stop_window_s; the land line must be among the last check.land_last_lines spoken lines. Raises
     Rejected (K1 / K2); returns the measured positions."""
     from shotvi.select.emotion_select import render_clip
     win, n = float(cfg["check"]["stop_window_s"]), int(cfg["check"]["land_last_lines"])
+    flag_late = cfg["check"].get("stop_late", "reject") == "flag"
     stop, land = emo["stop"]["line"], emo["land"]["line"]
     if emo["stop"]["cold_open"] and not c["cold_open"]:
         raise Rejected("K1", f"stop line {stop} could not be lifted to the front (v1 lift check: "
                              f"{c.get('lift_rejected') or 'lift not built'})")
     rd = render_clip(ep, {"time_segments": c["time_segments"], "cold_open": bool(c["cold_open"])}, "C1")
     t = rd.first_start(stop)
+    late = None
     if t is None:
-        raise Rejected("K1", f"stop line {stop} is not played")
-    if t > win + 1e-6:
-        raise Rejected("K1", f"stop line {stop} starts at {t:.1f} s of playback (> {win:g} s)")
+        late = f"stop line {stop} is not played"
+    elif t > win + 1e-6:
+        late = f"stop line {stop} starts at {t:.1f} s of playback (> {win:g} s)"
+    if late and not flag_late:
+        raise Rejected("K1", late)
     last = rd.last_ids(n)
     if land not in last:
         raise Rejected("K2", f"land line {land} is not among the last {n} spoken lines (last: {', '.join(last)})")
@@ -287,7 +677,53 @@ def check_built(ep: ws.Episode, c: dict, emo: dict, cfg: dict) -> dict:
     if rid and rid != "hold" and rid not in rd.ids():
         note = f"reaction {rid} is not played (the end hold shows the reaction)"
     return {"stop_play_s": t, "land_play_s": rd.last_start(land), "last_lines": last, "plays_s": rd.duration,
-            **({"note": note} if note else {})}
+            **({"note": note} if note else {}), **({"stop_not_first": late} if late else {})}
+
+
+def _spans_overlap(ep: ws.Episode, a: dict, b: dict) -> bool:
+    a0, a1 = ep.pos[a["start_line"]], ep.pos[a["end_line"]]
+    b0, b1 = ep.pos[b["start_line"]], ep.pos[b["end_line"]]
+    return a0 <= b1 and b0 <= a1
+
+
+def dedupe_scene(ep: ws.Episode, cands: list[dict], cfg: dict, strength: dict) -> tuple[list, list]:
+    """0.2 dedupe (``dedupe.rule`` "scene"): two clips are duplicates when they share > ``overlap`` of the shorter
+    clip's source time, OR their start..end line spans overlap and both land lines lie in the same scene (no scene
+    transition, ``scene_break``, between them). Greedy, best first: higher strength (cluster max intensity), then a
+    play length inside ``prefer_play_s``, then the clip ending on the later line, then the earlier land line."""
+    dc = cfg["dedupe"]
+    lo, hi = (float(v) for v in dc["prefer_play_s"])
+    ov = float(dc["overlap"])
+    cc = cfg.get("cluster") or {}
+
+    def key(x):
+        d = x["clip"]["video_duration"]
+        return (-strength[x["payoff"]["id"]], 0 if lo <= d <= hi else 1, -ep.pos[x["clip"]["end_line"]],
+                ep.pos[x["emo"]["land"]["line"]])
+
+    def dup(x, y):
+        f = ws.overlap_frac(x["clip"], y["clip"])
+        if f > ov:
+            return f"{f:.0%} of the shorter"
+        if _spans_overlap(ep, x["clip"], y["clip"]):
+            la, lb = ep.pos[x["emo"]["land"]["line"]], ep.pos[y["emo"]["land"]["line"]]
+            if scene_break(ep, min(la, lb), max(la, lb), cc) is None:
+                return (f"same scene: spans {x['clip']['start_line']}..{x['clip']['end_line']} and "
+                        f"{y['clip']['start_line']}..{y['clip']['end_line']} overlap; {f:.0%} of the shorter")
+        return None
+
+    out, dropped = [], []
+    for x in sorted(cands, key=key):
+        hit = next(((y, why) for y in out for why in [dup(x, y)] if why), None)
+        if hit:
+            y, why = hit
+            dropped.append({**x, "reject_reasons": [
+                f"D1: duplicate of clip {y['id']} ({why}; strength {strength[x['payoff']['id']]} vs "
+                f"{strength[y['payoff']['id']]}, plays {x['clip']['video_duration']:.0f} s vs "
+                f"{y['clip']['video_duration']:.0f} s)"], "dup_of": y["id"]})
+            continue
+        out.append(x)
+    return out, dropped
 
 
 # ---------------------------------------------------------------------------------------------------- tokens + Rs
@@ -419,7 +855,7 @@ def build_worst_inr(spec_b, t_cache: int, t_task: int = 4000) -> float:
 
 # ---------------------------------------------------------------------------------------------------- the episode
 def run_episode(vid: str, cfg: dict, llm, guard: ws.Guard, out_dir: Path, log=print, dry_run: bool = False,
-                offline: bool = False) -> dict:
+                offline: bool = False, find_estimate: str | None = None) -> dict:
     t0 = time.time()
     acfg, vcfg = ctx_cfg(cfg), v1_cfg(cfg)
     ep, ix, _tr, tp = ws.load_episode(vid, with_loudness=not dry_run, speaker_names=bool(acfg.get("speaker_names")),
@@ -455,10 +891,14 @@ def run_episode(vid: str, cfg: dict, llm, guard: ws.Guard, out_dir: Path, log=pr
     if not f_hit and not dry_run:
         guard.check(f"{vid} episode (cache + find + one build, worst case)", storage + f_worst + b_worst)
 
-    lift_ids = ws.liftable_lines(ep, vcfg["cut"])
+    lift_ids = lift_ok_lines(ep, vcfg["cut"], cfg)
+    lift_set = set(lift_ids)
+    v2_build = (cfg.get("cold_open") or {}).get("rule", "v1") == "fallback" or \
+        cfg["check"].get("land_late", "reject") == "trim"
     try:
         # ------------------------------------------------------------------ 1 FIND
         disc, moments, rej_moments = {}, None, []
+        est_basis = None
         if not (dry_run and not f_hit):
             try:
                 disc = M.ask_cached(llm, cache, rf, spec_f, task_f, schema_f, {"video": vid, "emotion_pick": "find"})
@@ -471,8 +911,25 @@ def run_episode(vid: str, cfg: dict, llm, guard: ws.Guard, out_dir: Path, log=pr
             log(f"{vid}: FIND: {len(disc.get('payoffs') or [])} moments listed, {len(moments)} valid (by feeling "
                 f"{dict(Counter(p['emotion'] for p in moments))}; by intensity "
                 f"{dict(sorted(Counter(p['intensity'] for p in moments).items(), reverse=True))})")
-        order = sorted(moments or [], key=lambda p: (-p["intensity"], ep.pos[p["line"]]))
-        tasks = {p["id"]: task_build(cfg, ep, p, lift_ids) for p in order}
+        elif find_estimate:
+            # dry run, find not cached: an earlier run's find answer (debug/<vid>.json find_raw) stands in for the
+            # count and the lines, so the build tasks are rendered and counted exactly for THAT list
+            fp = Path(find_estimate) / "debug" / f"{vid}.json"
+            if fp.exists():
+                raw = json.loads(fp.read_text(encoding="utf-8")).get("find_raw") or {}
+                moments, rej_moments = ws3.validate_payoffs(ep, raw, acfg)
+                est_basis = f"find answer of {fp.parent.parent.name} ({len(moments)} valid moments) as the estimate"
+                log(f"{vid}: dry run: find not cached; estimating with {est_basis}")
+        clusters = cluster_moments(ep, moments or [], cfg)
+        strength = {k["target"]["id"]: k["strength"] for k in clusters}
+        ctx_of = {k["target"]["id"]: k["context"] for k in clusters}
+        order = [k["target"] for k in sorted(clusters, key=lambda k: (-k["strength"], ep.pos[k["target"]["line"]]))]
+        tasks = {p["id"]: task_build(cfg, ep, p, lift_ids, ctx_of[p["id"]]) for p in order}
+        if (cfg.get("cluster") or {}).get("enabled"):
+            debug["clusters"] = [cluster_public(k) for k in clusters]
+            if moments is not None:
+                log(f"{vid}: {len(moments)} moments -> {len(clusters)} clusters "
+                    f"({sum(1 for k in clusters if len(k['members']) > 1)} with several payoffs)")
 
         if dry_run:
             if moments is not None:
@@ -500,7 +957,13 @@ def run_episode(vid: str, cfg: dict, llm, guard: ws.Guard, out_dir: Path, log=pr
                 proj = project(cfg, acfg, spec_f, spec_b, t_cache, t_find, f_hit, None, n_est, t_sample,
                                cap if cap is not None else PROJ_CAP)
             proj["token_source"] = tok.src
-            return dry_doc(vid, out_dir, proj, moments, rej_moments, f_hit, rf, log)
+            extra: dict = {"n_lift_ok": len(lift_ids)}
+            if est_basis:
+                extra["moments_basis"] = est_basis
+            if (cfg.get("cluster") or {}).get("enabled") and moments is not None:
+                extra["n_clusters"] = len(clusters)
+                extra["clusters"] = debug["clusters"]
+            return dry_doc(vid, out_dir, proj, moments, rej_moments, f_hit, rf, log, extra)
 
         # ------------------------------------------------------------------ the build list (cap, spend limit)
         called = order if cap is None else order[:cap]
@@ -551,10 +1014,13 @@ def run_episode(vid: str, cfg: dict, llm, guard: ws.Guard, out_dir: Path, log=pr
             x["answer"] = ans
             try:
                 x["moment"], x["emo"], x["flags"] = validate_build(ep, p, ans, cfg)
-                try:
-                    c = ws.build_clip(ep, x["moment"], vcfg["cut"])
-                except ws.Reject as e:
-                    raise Rejected("B1", str(e)) from e
+                if v2_build:
+                    c = build_v2(ep, x, vcfg, cfg, lift_set)
+                else:
+                    try:
+                        c = ws.build_clip(ep, x["moment"], vcfg["cut"])
+                    except ws.Reject as e:
+                        raise Rejected("B1", str(e)) from e
                 x["clip"] = c
                 rr = ws.hard_rules(ep, c, vcfg)
                 if rr:
@@ -562,18 +1028,24 @@ def run_episode(vid: str, cfg: dict, llm, guard: ws.Guard, out_dir: Path, log=pr
                     log(f"  {x['id']} {p['line']}: rejected: {rr}")
                     continue
                 x["check"] = check_built(ep, c, x["emo"], cfg)
+                if x["check"].get("stop_not_first"):
+                    x["flags"].append(f"stop_not_first: {x['check']['stop_not_first']}")
             except Rejected as e:
                 rejected.append({**x, "reject_reasons": [str(e)]})
                 log(f"  {x['id']} {p['line']}: rejected: {e}")
                 continue
             cands.append(x)
             log(f"  {x['id']} {p['line']}: clip {c['start_line']}..{c['end_line']} plays {c['video_duration']:.1f} s"
-                + (", cold open" if c["cold_open"] else ""))
+                + (", cold open" if c["cold_open"] else "")
+                + (f", stop {x['emo']['stop']['case']}" if x["emo"]["stop"].get("case") else ""))
         debug["calls"] = calls
         n_built = len(cands)
-        kept, dups = M.dedupe_among(cands, vcfg["guardrails"]["dup_overlap"],
-                                    key=lambda x: (-x["payoff"]["intensity"], ep.pos[x["emo"]["land"]["line"]]),
-                                    code="D1", what="clip")
+        if (cfg.get("dedupe") or {}).get("rule", "v1") == "scene":
+            kept, dups = dedupe_scene(ep, cands, cfg, strength)
+        else:
+            kept, dups = M.dedupe_among(cands, vcfg["guardrails"]["dup_overlap"],
+                                        key=lambda x: (-x["payoff"]["intensity"], ep.pos[x["emo"]["land"]["line"]]),
+                                        code="D1", what="clip")
         rejected += dups
         kept.sort(key=lambda x: scene_start(x["clip"]))
     finally:
@@ -583,7 +1055,7 @@ def run_episode(vid: str, cfg: dict, llm, guard: ws.Guard, out_dir: Path, log=pr
     line_of_word = {r["words"][0]: r for r in ep.lines if ep.is_speech(r)}
     props = [proposal_doc(ep, x, k + 1, vcfg, line_of_word) for k, x in enumerate(kept)]
     rej_docs = [rejected_doc(ep, x, vcfg) for x in rejected]
-    table = moment_table(moments, called, beyond, rejected, kept)
+    table = moment_table(moments, called, beyond, rejected, kept, clusters)
     summary = episode_summary(disc, moments, rej_moments, order, called, beyond, n_built, rejected, kept, cap, debug)
     doc = run_document(ep, tp, props, rej_docs, cfg, acfg, vcfg, llm, summary, table, t0, debug)
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -659,8 +1131,11 @@ def rejected_doc(ep: ws.Episode, x: dict, vcfg: dict) -> dict:
     return base
 
 
-def moment_table(moments, called, beyond, rejected, kept) -> list[dict]:
+def moment_table(moments, called, beyond, rejected, kept, clusters=None) -> list[dict]:
     called_ids = {p["id"] for p in called}
+    # 0.2: a payoff merged into another payoff's cluster is built by that cluster's call
+    merged_into = {q["id"]: k["target"]["id"] for k in clusters or [] for q in k["members"]
+                   if q["id"] != k["target"]["id"]}
     rej = {x["payoff"]["id"]: x["reject_reasons"][0] for x in rejected}
     shown = {x["payoff"]["id"]: x["id"] for x in kept}
     out = []
@@ -675,6 +1150,8 @@ def moment_table(moments, called, beyond, rejected, kept) -> list[dict]:
             row.update(status="not_built", reason=beyond[p["id"]])
         elif p["id"] in called_ids:
             row.update(status="called")
+        elif p["id"] in merged_into:
+            row.update(status="in_cluster", cluster_target=merged_into[p["id"]])
         else:
             row.update(status="not_built")
         out.append(row)
@@ -700,7 +1177,8 @@ def episode_summary(disc, moments, rej_moments, order, called, beyond, n_built, 
             "shown_by_feeling": dict(Counter(x["payoff"]["emotion"] for x in kept)),
             "rejected": [{"clip": x["id"], "moment": x["payoff"]["id"], "line": x["payoff"]["line"],
                           "reason": x["reject_reasons"][0]} for x in rejected],
-            "warnings": debug.get("warnings", []), "episode_notes": disc.get("episode_notes", "")}
+            "warnings": debug.get("warnings", []), "episode_notes": disc.get("episode_notes", ""),
+            **({"n_clusters": len(debug["clusters"]), "clusters": debug["clusters"]} if "clusters" in debug else {})}
 
 
 def run_document(ep, tp, props, rej_docs, cfg, acfg, vcfg, llm, summary, table, t0, debug) -> dict:
@@ -713,7 +1191,7 @@ def run_document(ep, tp, props, rej_docs, cfg, acfg, vcfg, llm, summary, table, 
     doc.pop("episode_verdict", None)
     doc.update({
         "run_id": cfg.get("run_id", "emotion_pick"),
-        "pipeline": {"version": PIPELINE_VERSION, "git_commit": None,
+        "pipeline": {"version": cfg.get("pipeline_version") or PIPELINE_VERSION, "git_commit": None,
                      "design": "founder 2026-10-16: emotion-first, two focused calls (find the moments a stranger "
                                "feels; build stop / stay / land + the cut per moment); no review call",
                      "prompt_versions": {ws3.CONTEXT_ROLE: ws3.load_p(acfg, ws3.CONTEXT_ROLE).tag,
@@ -766,7 +1244,8 @@ def clips_md(ep: ws.Episode, doc: dict) -> str:
                    f"{p['clip_purpose']})\n")
         out.append(f"- plays {p['video_duration']:.1f} s: {segs}")
         out.append(f"- reason: {p['reason']}")
-        out.append(f"- stop ({st['line']}{', cold open' if st['cold_open'] else ''}, at {st.get('plays_at_s')} s): "
+        out.append(f"- stop ({st['line']}{', cold open' if st['cold_open'] else ''}"
+                   f"{', ' + st['case'] if st.get('case') else ''}, at {st.get('plays_at_s')} s): "
                    f"{st['text']} | {st['why']}")
         out.append(f"- stay: {p['stay']}")
         out.append(f"- land ({ld['line']}, reaction {ld['reaction']}): {ld['text']}")
@@ -790,8 +1269,9 @@ def clips_md(ep: ws.Episode, doc: dict) -> str:
     return "\n".join(out) + "\n"
 
 
-def dry_doc(vid, out_dir, proj, moments, rej_moments, f_hit, rf, log) -> dict:
-    res = {"video_id": vid, "dry_run": True, "find_prompt": rf, "find_cached": f_hit, "projection": proj}
+def dry_doc(vid, out_dir, proj, moments, rej_moments, f_hit, rf, log, extra: dict | None = None) -> dict:
+    res = {"video_id": vid, "dry_run": True, "find_prompt": rf, "find_cached": f_hit, "projection": proj,
+           **(extra or {})}
     if moments is not None:
         res.update(n_moments_valid=len(moments), n_moments_rejected=len(rej_moments),
                    moments=[{"id": p["id"], "line": p["line"], "feeling": p["emotion"], "intensity": p["intensity"]}
@@ -805,8 +1285,9 @@ def dry_doc(vid, out_dir, proj, moments, rej_moments, f_hit, rf, log) -> dict:
 
 def projection_text(vid: str, res: dict) -> str:
     pr = res["projection"]
-    n = (f"{res['n_moments_valid']} moments (cached {res['find_prompt']} answer)" if res.get("n_moments_valid")
-         is not None else f"moments estimated {pr['n_moments']['expected']} expected / {pr['n_moments']['worst']} "
+    n = (f"{res['n_moments_valid']} moments ({res.get('moments_basis') or 'cached ' + res['find_prompt'] + ' answer'})"
+         + (f" -> {res['n_clusters']} clusters (= build calls)" if res.get("n_clusters") is not None else "")
+         if res.get("n_moments_valid") is not None else f"moments estimated {pr['n_moments']['expected']} expected / {pr['n_moments']['worst']} "
                           f"worst ({pr['n_moments']['basis']})")
     out = [f"{vid}: find {res['find_prompt']} {'cached (Rs 0)' if res['find_cached'] else 'NOT cached'}; {n}",
            f"  context {pr['context_tokens']} tokens, find task {pr['find_task_tokens']} tokens ({pr['token_source']});"
@@ -835,9 +1316,13 @@ def main(argv=None):
                     help="stop before any call whose worst case would push the project ledger past this")
     ap.add_argument("--max-moments", type=int, default=None,
                     help="cap on build calls per episode (highest intensity first); 0 = no cap; default: config")
-    ap.add_argument("--find", choices=(ROLE_FIND, "ws3_payoffs"), default=None,
-                    help="find prompt: ws_emotion_find (default) or ws3_payoffs (ws3's call 1 unchanged)")
+    ap.add_argument("--find", default=None,
+                    help="find prompt: ws_emotion_find (default, v2), ws_emotion_find_v1 or ws3_payoffs (ws3's call 1 "
+                         "unchanged)")
     ap.add_argument("--config", default=None, help="JSON deep-merged over DEFAULTS")
+    ap.add_argument("--find-estimate", default=None, metavar="RUN_DIR",
+                    help="dry run with the find not cached: use RUN_DIR/debug/<id>.json's find answer as the "
+                         "moment list estimate (build tasks rendered and counted exactly for that list)")
     ap.add_argument("--cache-only", action="store_true",
                     help="never call the provider: rebuild from cached responses (free); a miss fails")
     a = ap.parse_args(argv)
@@ -865,7 +1350,8 @@ def main(argv=None):
         llm = LLMClient(Ledger(max_usd=cfg["budget_usd"]), cache_dir="runs/cache", max_retries=0, schema_retries=0)
         llm.cache_only = a.cache_only or a.dry_run
         try:
-            results.append(run_episode(vid, cfg, llm, guard, out, dry_run=a.dry_run, offline=a.offline))
+            results.append(run_episode(vid, cfg, llm, guard, out, dry_run=a.dry_run, offline=a.offline,
+                                       find_estimate=a.find_estimate))
         except (ws.BudgetStop, BudgetExceeded) as e:
             print(f"STOP: {e}")
             return 2

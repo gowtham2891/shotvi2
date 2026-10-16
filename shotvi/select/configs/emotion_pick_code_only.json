@@ -1,0 +1,8 @@
+{"pipeline_version": "emotion_pick/0.2-code_only",
+ "find_prompt": "ws_emotion_find_v1",
+ "prompts": {"ws_emotion_build": "ws_emotion_build_v1"},
+ "ctx": {"speaker_names": true},
+ "find": {"min_intensity": 3, "extra_types": []},
+ "lift_ok": {"rule": "v1", "enforce": false},
+ "cluster": {"enabled": false},
+ "build": {"max_moments": 12, "land_window_lines": 3, "land_after_lines": 15, "end_rule": "clamp"}}

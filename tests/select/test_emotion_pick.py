@@ -6,7 +6,9 @@
 4. rejection reasons (no_clip, safety block, under 15 s never padded, stop / land checks), dedupe (higher intensity,
    then earlier), episode order, --max-moments cap (highest intensity first);
 5. dry run makes no generate call; a rerun replays at Rs 0; ws3_payoffs reuse is ws3's exact call;
-6. merged's refactored helpers keep their behaviour (the rest is covered by test_merged)."""
+6. merged's refactored helpers keep their behaviour (the rest is covered by test_merged).
+These tests run emotion_pick/0.1 (configs/emotion_pick_v1.json over DEFAULTS); 0.2 is tested in
+test_emotion_pick_v2."""
 import copy
 import json
 import re
@@ -27,6 +29,7 @@ from tests.select.test_webseries_scene import block, shot_cuts
 
 # one long scene: 60 spoken lines L0001..L0060, line k (1-based) at 10 + 3 (k - 1) s, 2 s long; a shot change after
 # every odd line (L0001, L0003, ...), so odd lines can be lifted and even lines cannot
+V1 = json.loads((ws.ROOT / "shotvi/select/configs/emotion_pick_v1.json").read_text(encoding="utf-8"))
 SPEC = block(10, 60, "a")
 CUTS = shot_cuts(SPEC)
 
@@ -119,7 +122,7 @@ def roles(prov):
 class Run:
     def __init__(self, prov, cfg=None, dry_run=False, cache_dir=None, ledger_inr=0.0, limit=None):
         self.prov, self.ep = prov, episode()
-        self.cfg = ws.deep_merge(E.DEFAULTS, cfg or {})
+        self.cfg = ws.deep_merge(ws.deep_merge(E.DEFAULTS, V1), cfg or {})
         for r in ("find", "build"):
             self.cfg["models"][r]["provider"] = "fake"
         self.cfg["run_id"] = "t"
@@ -281,7 +284,7 @@ class Cap(unittest.TestCase):
 class Checks(unittest.TestCase):
     def setUp(self):
         self.ep = episode()
-        self.cfg = copy.deepcopy(E.DEFAULTS)
+        self.cfg = ws.deep_merge(E.DEFAULTS, V1)
         self.p = {"id": "p01", "line": L(10), "text": "x", "type": "punchline", "emotion": "laugh", "intensity": 4,
                   "reason": "r", "lands_on_screen": True, "order": 0}
 
@@ -336,7 +339,7 @@ class Checks(unittest.TestCase):
 class DryRun(unittest.TestCase):
     def test_no_generate_call_and_an_estimate_when_find_is_not_cached(self):
         prov = FakeProvider()
-        res = Run(prov, dry_run=True)()
+        res = Run(prov, cfg={"build": {"max_moments": None}}, dry_run=True)()
         self.assertEqual(prov.calls, [])
         self.assertEqual(prov.caches, [])
         self.assertFalse(res["find_cached"])

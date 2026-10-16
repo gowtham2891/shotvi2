@@ -1,0 +1,473 @@
+{
+ "video_id": "qIdAPG8UulE",
+ "dry_run": true,
+ "find_prompt": "ws_emotion_find",
+ "find_cached": false,
+ "projection": {
+  "context_tokens": 27090,
+  "find_task_tokens": 925,
+  "find_cached": false,
+  "build_task_tokens": [
+   2146,
+   2111,
+   1866,
+   1818,
+   1876,
+   1904,
+   1897,
+   2111,
+   2169,
+   1875,
+   1879
+  ],
+  "build_task_tokens_sample": null,
+  "n_moments": null,
+  "storage_inr": 1.22,
+  "write_inr_worst": 1.83,
+  "find": {
+   "model": "gemini-3.8-flash",
+   "thinking_level": "high",
+   "out_expected": 15000,
+   "out_max": 32768,
+   "inr_expected": 5.31,
+   "inr_worst": 11.3
+  },
+  "build": {
+   "model": "gemini-3.8-flash",
+   "thinking_level": "medium",
+   "out_expected": 3500,
+   "out_max": 8192,
+   "inr_worst_each": 3.09
+  },
+  "rows": {
+   "no_cap": {
+    "cap": null,
+    "n_build_expected": 11,
+    "n_build_worst": 11,
+    "n_build_uncached": 11,
+    "find_inr_expected": 5.31,
+    "find_inr_worst": 11.3,
+    "build_inr_expected": 16.47,
+    "build_inr_worst": 33.89,
+    "storage_inr": 1.22,
+    "inr_expected": 22.99,
+    "inr_worst": 48.24
+   },
+   "cap": {
+    "cap": 15,
+    "n_build_expected": 11,
+    "n_build_worst": 11,
+    "n_build_uncached": 11,
+    "find_inr_expected": 5.31,
+    "find_inr_worst": 11.3,
+    "build_inr_expected": 16.47,
+    "build_inr_worst": 33.89,
+    "storage_inr": 1.22,
+    "inr_expected": 22.99,
+    "inr_worst": 48.24
+   }
+  },
+  "token_source": "countTokens"
+ },
+ "n_lift_ok": 100,
+ "moments_basis": "find answer of emotion1 (23 valid moments) as the estimate",
+ "n_clusters": 11,
+ "clusters": [
+  {
+   "target": "p04",
+   "target_line": "L0100",
+   "strength": 5,
+   "members": [
+    {
+     "id": "p01",
+     "line": "L0028",
+     "intensity": 4
+    },
+    {
+     "id": "p02",
+     "line": "L0047",
+     "intensity": 4
+    },
+    {
+     "id": "p03",
+     "line": "L0070",
+     "intensity": 5
+    },
+    {
+     "id": "p04",
+     "line": "L0100",
+     "intensity": 4
+    }
+   ],
+   "earlier": [
+    "p01",
+    "p02",
+    "p03"
+   ],
+   "absorbed": [],
+   "break_before": null,
+   "cluster_context": "Earlier beats in this same scene to include as setup/escalation: L0028 (\"ORS లు ఇచ్చావేంట్రా\"), L0047 (\"తాత happy anniversary అని రాసి bouquet పంపిస్తావా\"), L0070 (\"ఆరోజు నువ్వు date లో ఉన్నావ్ అన్నావ్ కదా\")"
+  },
+  {
+   "target": "p07",
+   "target_line": "L0172",
+   "strength": 5,
+   "members": [
+    {
+     "id": "p05",
+     "line": "L0126",
+     "intensity": 5
+    },
+    {
+     "id": "p06",
+     "line": "L0148",
+     "intensity": 4
+    },
+    {
+     "id": "p07",
+     "line": "L0172",
+     "intensity": 4
+    }
+   ],
+   "earlier": [
+    "p05",
+    "p06"
+   ],
+   "absorbed": [],
+   "break_before": "music: L0104 [పాట] (4.3 s, no speech)",
+   "cluster_context": "Earlier beats in this same scene to include as setup/escalation: L0126 (\"అమ్మాయిలకి bus free రా దరిద్రుడా\"), L0148 (\"తర్వాత ఆ అమ్మాయి దినానికి మేము వెళ్లి అన్నం తిని వచ్చామండి\")"
+  },
+  {
+   "target": "p09",
+   "target_line": "L0333",
+   "strength": 4,
+   "members": [
+    {
+     "id": "p08",
+     "line": "L0328",
+     "intensity": 4
+    },
+    {
+     "id": "p09",
+     "line": "L0333",
+     "intensity": 4
+    }
+   ],
+   "earlier": [
+    "p08"
+   ],
+   "absorbed": [],
+   "break_before": "131 spoken lines / 315 s after L0172 (> 35 lines and > 50 s)",
+   "cluster_context": "Earlier beats in this same scene to include as setup/escalation: L0328 (\"Okay, ప్రసాద్ నాకు పెళ్లయింది.\")"
+  },
+  {
+   "target": "p10",
+   "target_line": "L0341",
+   "strength": 4,
+   "members": [
+    {
+     "id": "p10",
+     "line": "L0341",
+     "intensity": 4
+    }
+   ],
+   "earlier": [],
+   "absorbed": [],
+   "break_before": "music: L0339 [పਿੱనలి సంగీతం] (4.0 s, no speech)",
+   "cluster_context": ""
+  },
+  {
+   "target": "p11",
+   "target_line": "L0423",
+   "strength": 4,
+   "members": [
+    {
+     "id": "p11",
+     "line": "L0423",
+     "intensity": 4
+    }
+   ],
+   "earlier": [],
+   "absorbed": [],
+   "break_before": "75 spoken lines / 184 s after L0341 (> 35 lines and > 50 s)",
+   "cluster_context": ""
+  },
+  {
+   "target": "p12",
+   "target_line": "L0452",
+   "strength": 4,
+   "members": [
+    {
+     "id": "p12",
+     "line": "L0452",
+     "intensity": 4
+    }
+   ],
+   "earlier": [],
+   "absorbed": [],
+   "break_before": "music: L0424 [పాట] (7.1 s, no speech)",
+   "cluster_context": ""
+  },
+  {
+   "target": "p13",
+   "target_line": "L0491",
+   "strength": 4,
+   "members": [
+    {
+     "id": "p13",
+     "line": "L0491",
+     "intensity": 4
+    }
+   ],
+   "earlier": [],
+   "absorbed": [],
+   "break_before": "music: L0478 [పాట] (28.6 s, no speech)",
+   "cluster_context": ""
+  },
+  {
+   "target": "p17",
+   "target_line": "L0693",
+   "strength": 4,
+   "members": [
+    {
+     "id": "p14",
+     "line": "L0671",
+     "intensity": 4
+    },
+    {
+     "id": "p15",
+     "line": "L0680",
+     "intensity": 4
+    },
+    {
+     "id": "p16",
+     "line": "L0686",
+     "intensity": 4
+    },
+    {
+     "id": "p17",
+     "line": "L0693",
+     "intensity": 4
+    }
+   ],
+   "earlier": [
+    "p14",
+    "p15",
+    "p16"
+   ],
+   "absorbed": [],
+   "break_before": "music: L0520 [పాట] (5.9 s, no speech)",
+   "cluster_context": "Earlier beats in this same scene to include as setup/escalation: L0671 (\"Ma'am వీడు నన్ను twenty thousand అప్పు అడుగుతున్నాడు ఇవ్వకపోతే propose చేస్తా అ…\"), L0680 (\"పాలలో నీళ్ళు కలిస్తే కల్తీ కదండీ\"), L0686 (\"మీరు నా గతాన్ని తవ్వితే నేను మీ గోతులు తవ్వాల్సి వస్తుంది\")"
+  },
+  {
+   "target": "p20",
+   "target_line": "L0781",
+   "strength": 4,
+   "members": [
+    {
+     "id": "p18",
+     "line": "L0753",
+     "intensity": 4
+    },
+    {
+     "id": "p19",
+     "line": "L0772",
+     "intensity": 4
+    },
+    {
+     "id": "p20",
+     "line": "L0781",
+     "intensity": 4
+    }
+   ],
+   "earlier": [
+    "p18",
+    "p19"
+   ],
+   "absorbed": [],
+   "break_before": "58 spoken lines / 174 s after L0693 (> 35 lines and > 50 s)",
+   "cluster_context": "Earlier beats in this same scene to include as setup/escalation: L0753 (\"రెండు వందలు ఇవ్వు English లో మాట్లాడతాను\"), L0772 (\"tea తో కలిసి బండి తాగేస్తాడా తాగబోతున్నా కొడుకు\")"
+  },
+  {
+   "target": "p22",
+   "target_line": "L0835",
+   "strength": 4,
+   "members": [
+    {
+     "id": "p21",
+     "line": "L0811",
+     "intensity": 4
+    },
+    {
+     "id": "p22",
+     "line": "L0835",
+     "intensity": 4
+    }
+   ],
+   "earlier": [
+    "p21"
+   ],
+   "absorbed": [],
+   "break_before": "music: L0788 [వెనక మ్యూజిక్] (6.8 s, no speech)",
+   "cluster_context": "Earlier beats in this same scene to include as setup/escalation: L0811 (\"పోన్లే మీ విడాకుల case మీరే వాదించుకోవచ్చు\")"
+  },
+  {
+   "target": "p23",
+   "target_line": "L0918",
+   "strength": 4,
+   "members": [
+    {
+     "id": "p23",
+     "line": "L0918",
+     "intensity": 4
+    }
+   ],
+   "earlier": [],
+   "absorbed": [],
+   "break_before": "music: L0884 [వెనక హాస్య మ్యూజిక్] (4.6 s, no speech)",
+   "cluster_context": ""
+  }
+ ],
+ "n_moments_valid": 23,
+ "n_moments_rejected": 0,
+ "moments": [
+  {
+   "id": "p01",
+   "line": "L0028",
+   "feeling": "laugh",
+   "intensity": 4
+  },
+  {
+   "id": "p02",
+   "line": "L0047",
+   "feeling": "laugh",
+   "intensity": 4
+  },
+  {
+   "id": "p03",
+   "line": "L0070",
+   "feeling": "laugh",
+   "intensity": 5
+  },
+  {
+   "id": "p04",
+   "line": "L0100",
+   "feeling": "laugh",
+   "intensity": 4
+  },
+  {
+   "id": "p05",
+   "line": "L0126",
+   "feeling": "laugh",
+   "intensity": 5
+  },
+  {
+   "id": "p06",
+   "line": "L0148",
+   "feeling": "laugh",
+   "intensity": 4
+  },
+  {
+   "id": "p07",
+   "line": "L0172",
+   "feeling": "laugh",
+   "intensity": 4
+  },
+  {
+   "id": "p08",
+   "line": "L0328",
+   "feeling": "shock",
+   "intensity": 4
+  },
+  {
+   "id": "p09",
+   "line": "L0333",
+   "feeling": "laugh",
+   "intensity": 4
+  },
+  {
+   "id": "p10",
+   "line": "L0341",
+   "feeling": "laugh",
+   "intensity": 4
+  },
+  {
+   "id": "p11",
+   "line": "L0423",
+   "feeling": "tension",
+   "intensity": 4
+  },
+  {
+   "id": "p12",
+   "line": "L0452",
+   "feeling": "laugh",
+   "intensity": 4
+  },
+  {
+   "id": "p13",
+   "line": "L0491",
+   "feeling": "laugh",
+   "intensity": 4
+  },
+  {
+   "id": "p14",
+   "line": "L0671",
+   "feeling": "laugh",
+   "intensity": 4
+  },
+  {
+   "id": "p15",
+   "line": "L0680",
+   "feeling": "laugh",
+   "intensity": 4
+  },
+  {
+   "id": "p16",
+   "line": "L0686",
+   "feeling": "tension",
+   "intensity": 4
+  },
+  {
+   "id": "p17",
+   "line": "L0693",
+   "feeling": "laugh",
+   "intensity": 4
+  },
+  {
+   "id": "p18",
+   "line": "L0753",
+   "feeling": "laugh",
+   "intensity": 4
+  },
+  {
+   "id": "p19",
+   "line": "L0772",
+   "feeling": "laugh",
+   "intensity": 4
+  },
+  {
+   "id": "p20",
+   "line": "L0781",
+   "feeling": "laugh",
+   "intensity": 4
+  },
+  {
+   "id": "p21",
+   "line": "L0811",
+   "feeling": "laugh",
+   "intensity": 4
+  },
+  {
+   "id": "p22",
+   "line": "L0835",
+   "feeling": "laugh",
+   "intensity": 4
+  },
+  {
+   "id": "p23",
+   "line": "L0918",
+   "feeling": "shock",
+   "intensity": 4
+  }
+ ]
+}

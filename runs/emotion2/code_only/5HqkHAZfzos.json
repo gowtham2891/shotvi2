@@ -1,0 +1,1127 @@
+{
+ "schema_version": "1.1",
+ "kind": "proposals",
+ "video_id": "5HqkHAZfzos",
+ "transcript": {
+  "path": "scribe_dataset/5HqkHAZfzos/5HqkHAZfzos_scribe_transcript.json",
+  "sha256": "274907d7e90493dca591f246339c3c98d10b8a04754a36ab522bec07a36b31ec",
+  "n_words": 1566,
+  "audio_duration_secs": 1321.5405
+ },
+ "derived_params": {
+  "skip_s": 30.0
+ },
+ "run_id": "code_only",
+ "created_at": "2026-10-16T11:28:25Z",
+ "content_type": "web_series",
+ "pipeline": {
+  "version": "emotion_pick/0.2-code_only",
+  "git_commit": null,
+  "design": "founder 2026-10-16: emotion-first, two focused calls (find the moments a stranger feels; build stop / stay / land + the cut per moment); no review call",
+  "prompt_versions": {
+   "ws3_context": "1+e606d3c6",
+   "ws_emotion_find": "1+a71c7a10",
+   "ws_emotion_build": "1+6fd439cd"
+  },
+  "prompt_files": {
+   "ws3_context": "ws3_context",
+   "ws_emotion_find": "ws_emotion_find_v1",
+   "ws_emotion_build": "ws_emotion_build_v1"
+  },
+  "config": {
+   "pipeline_version": "emotion_pick/0.2-code_only",
+   "find_prompt": "ws_emotion_find_v1",
+   "models": {
+    "find": {
+     "provider": "gemini",
+     "model": "gemini-3.8-flash",
+     "params": {
+      "thinking_level": "high",
+      "max_output_tokens": 32768
+     }
+    },
+    "build": {
+     "provider": "gemini",
+     "model": "gemini-3.8-flash",
+     "params": {
+      "thinking_level": "medium",
+      "max_output_tokens": 8192
+     }
+    }
+   },
+   "prompts": {
+    "ws_emotion_build": "ws_emotion_build_v1"
+   },
+   "ctx": {
+    "speaker_names": true
+   },
+   "v1": {},
+   "find": {
+    "min_intensity": 3,
+    "extra_types": []
+   },
+   "lift_ok": {
+    "rule": "v1",
+    "enforce": false,
+    "min_speech_s": 1.0,
+    "max_speech_s": 3.6,
+    "continuations": [
+     "అందుకే",
+     "కానీ",
+     "సో",
+     "మరి",
+     "అలాగే",
+     "అయినా",
+     "అయితే",
+     "ఎందుకంటే",
+     "so",
+     "but",
+     "and",
+     "because"
+    ],
+    "acks": [
+     "అవునా",
+     "అవును",
+     "ఊ",
+     "ఊం",
+     "ఉమ్",
+     "సరే",
+     "హ్మ్",
+     "హా",
+     "ఆ",
+     "ఓ",
+     "ఓకే",
+     "అలాగా",
+     "ok",
+     "okay",
+     "hmm",
+     "hm",
+     "yes",
+     "yeah"
+    ],
+    "ack_max_words": 2
+   },
+   "cluster": {
+    "enabled": false,
+    "max_lines": 35,
+    "max_s": 50.0,
+    "music_min_s": 4.0,
+    "silence_gap_s": null,
+    "target_within": 1
+   },
+   "build": {
+    "max_moments": 12,
+    "lift_before_s": 150.0,
+    "lift_after_s": 20.0,
+    "land_window_lines": 3,
+    "land_after_lines": 15,
+    "max_end_after_payoff_lines": 3,
+    "end_rule": "clamp",
+    "end_after_land_lines": 2,
+    "end_after_reaction_lines": 1
+   },
+   "cold_open": {
+    "rule": "fallback",
+    "near_lines": 2,
+    "near_s": 3.0,
+    "weak_advance_lines": 4,
+    "weak_max_words": 2,
+    "weak_min_s": 1.0,
+    "greetings": [
+     "hello",
+     "hi",
+     "hey",
+     "హలో",
+     "హాయ్",
+     "నమస్తే",
+     "namaste",
+     "thank",
+     "thanks",
+     "you",
+     "bye",
+     "good",
+     "morning",
+     "evening",
+     "night"
+    ]
+   },
+   "check": {
+    "stop_window_s": 3.0,
+    "land_last_lines": 3,
+    "stop_late": "flag",
+    "land_late": "trim"
+   },
+   "dedupe": {
+    "rule": "scene",
+    "overlap": 0.35,
+    "prefer_play_s": [
+     30.0,
+     75.0
+    ]
+   },
+   "budget_usd": 3.0,
+   "calibrate_from": {
+    "ws3": "runs/ws3"
+   },
+   "run_id": "code_only"
+  }
+ },
+ "models": [
+  {
+   "role": "ws_emotion_find",
+   "provider": "gemini",
+   "model": "gemini-3.8-flash",
+   "params": {
+    "thinking_level": "high",
+    "max_output_tokens": 32768
+   }
+  },
+  {
+   "role": "ws_emotion_build",
+   "provider": "gemini",
+   "model": "gemini-3.8-flash",
+   "params": {
+    "thinking_level": "medium",
+    "max_output_tokens": 8192
+   }
+  }
+ ],
+ "cost": {
+  "input_tokens": 117930,
+  "output_tokens": 50074,
+  "usd": 0.20753,
+  "usd_billed": 0.0,
+  "wall_time_secs": 0.5,
+  "n_llm_calls": 8,
+  "by_role": {
+   "ws_emotion_build": {
+    "n_llm_calls": 7,
+    "n_cache_hits": 7,
+    "n_failed_attempts": 0,
+    "input_tokens": 104508,
+    "output_tokens": 45089,
+    "thought_tokens": 43295,
+    "cached_input_tokens": 89047,
+    "usd": 0.18736,
+    "usd_billed": 0.0,
+    "models": [
+     "gemini-3.8-flash"
+    ]
+   },
+   "ws_emotion_find": {
+    "n_llm_calls": 1,
+    "n_cache_hits": 1,
+    "n_failed_attempts": 0,
+    "input_tokens": 13422,
+    "output_tokens": 4985,
+    "thought_tokens": 4188,
+    "cached_input_tokens": 12721,
+    "usd": 0.02017,
+    "usd_billed": 0.0,
+    "models": [
+     "gemini-3.8-flash"
+    ]
+   }
+  },
+  "projection": null,
+  "cache": {
+   "mode": "explicit",
+   "key": "2cb1b26e49e1507c3ca7e767"
+  }
+ },
+ "cutoff": {
+  "show_rule": "emotion_pick: every clip that passes the build checks (stop first, land last, v1 hard rules) and the dedupe; no review, no score",
+  "order": "episode order",
+  "n_candidates": 7,
+  "n_passed_hard_rules": 4,
+  "n_shown": 4,
+  "n_rejected": 3,
+  "warnings": []
+ },
+ "episode_notes": "A slice-of-life Telugu family drama and romance web series. Mona navigates rapid social media fame and commercial offers for her Instagram reels while hiding everything from her strictly conservative, abusive father, using her secret earnings to support her mother while sharing sweet moments with Sukku. The father's violent threat against social media activity is the main cliffhanger/tension beat of the episode.",
+ "proposals": [
+  {
+   "id": "e03",
+   "pieces": [
+    {
+     "start_word": 990,
+     "end_word": 1026,
+     "start": 718.23,
+     "end": 743.27
+    }
+   ],
+   "region": {
+    "start_word": 990,
+    "end_word": 1026,
+    "start": 718.23,
+    "end": 743.27
+   },
+   "edited_duration": 25.04,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "నువ్వు last చీర ఎప్పుడు కొనుక్కున్నావమ్మా చీరనా Lakshmi aunty దగ్గర ఎప్పుడో installment లో తీసుకున్నానే. తర్వాత మీ నాన్న నేను పెద్ద గొడవ పడ్డాం కదా ఆ అప్పుడు ఒక్కసారి తీసుకున్నాను. ఇప్పుడెందుకు అడుగుతున్నావ్ అంటే నేను నీకు ఒక చీర కొన్నానమ్మా తీసుకో చాలా బాగుంది నాన్న.",
+   "rank": 1,
+   "tier": "emotion_pick",
+   "tier_label": "emotion pick",
+   "scores": {},
+   "title": "అమ్మకి Mona ఇచ్చిన surprise gift",
+   "hook_line": {
+    "text": "నువ్వు last చీర ఎప్పుడు కొనుక్కున్నావమ్మా",
+    "start_word": 990,
+    "end_word": 994
+   },
+   "payoff_line": "నేను నీకు ఒక చీర కొన్నానమ్మా",
+   "payoff_type": "reveal",
+   "payoff_line_source": "discover",
+   "why_it_works": "Viewer stops because Mona asks when her mother last bought a saree, stays to find out what she is hiding, and it ends on the touching reveal when Mona gifts her a new saree (aww).",
+   "category": "emotional",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 717.93,
+     "end": 744.53,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 26.6,
+   "spoiler": false,
+   "characters": [
+    "Mona",
+    "Mother"
+   ],
+   "visual_dependency": "medium",
+   "start_line": "L0287",
+   "end_line": "L0296",
+   "end_hold": {
+    "payoff_end": 743.27,
+    "end": 744.53,
+    "hold_s": 1.26,
+    "on_shot_cut": true,
+    "next_speech": 745.69,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "note": "short hold (next shot cut before the minimum hold)",
+    "rule": "hold"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": null,
+    "what_happens": "Why is Mona asking her mother about the last saree she bought, and what does she have for her?",
+    "hook": "A stranger stops scrolling hearing a daughter ask an unusually personal and caring question, \"నువ్వు last చీర ఎప్పుడు కొనుక్కున్నావమ్మా\".",
+    "payoff": "నేను నీకు ఒక చీర కొన్నానమ్మా",
+    "opening_strength": null,
+    "payoff_line": "నేను నీకు ఒక చీర కొన్నానమ్మా",
+    "payoff_type": "reveal"
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "source": "emotion_pick",
+   "feeling": "aww",
+   "intensity": 4,
+   "stop": {
+    "line": "L0287",
+    "text": "నువ్వు last చీర ఎప్పుడు కొనుక్కున్నావమ్మా",
+    "why": "A stranger stops scrolling hearing a daughter ask an unusually personal and caring question, \"నువ్వు last చీర ఎప్పుడు కొనుక్కున్నావమ్మా\".",
+    "cold_open": false,
+    "case": "start_line",
+    "via": "start_line",
+    "plays_at_s": 0.3
+   },
+   "stay": "Why is Mona asking her mother about the last saree she bought, and what does she have for her?",
+   "land": {
+    "line": "L0294",
+    "text": "నేను నీకు ఒక చీర కొన్నానమ్మా",
+    "reaction": "L0296",
+    "reaction_text": "చాలా బాగుంది నాన్న.",
+    "plays_at_s": 16.0
+   },
+   "reason": "Viewer stops because Mona asks when her mother last bought a saree, stays to find out what she is hiding, and it ends on the touching reveal when Mona gifts her a new saree (aww).",
+   "moment": {
+    "id": "p03",
+    "line": "L0294",
+    "text": "నేను నీకు ఒక చీర కొన్నానమ్మా",
+    "feeling": "aww",
+    "intensity": 4,
+    "why": "A heartwarming reveal where Mona surprises her deprived mother by gifting her a brand new saree bought with her own earnings ('నేను నీకు ఒక చీర కొన్నానమ్మా').",
+    "type": "reveal",
+    "lands_on_screen": true
+   },
+   "build_flags": []
+  },
+  {
+   "id": "e04",
+   "pieces": [
+    {
+     "start_word": 1206,
+     "end_word": 1212,
+     "start": 928.87,
+     "end": 931.39
+    },
+    {
+     "start_word": 1119,
+     "end_word": 1154,
+     "start": 868.65,
+     "end": 887.09
+    },
+    {
+     "start_word": 1202,
+     "end_word": 1205,
+     "start": 927.05,
+     "end": 928.43
+    },
+    {
+     "start_word": 1213,
+     "end_word": 1219,
+     "start": 932.49,
+     "end": 936.07
+    }
+   ],
+   "region": {
+    "start_word": 1119,
+    "end_word": 1219,
+    "start": 868.65,
+    "end": 936.07
+   },
+   "edited_duration": 25.92,
+   "reordered": true,
+   "n_blocks": 3,
+   "text": "నువ్వు వన్నా, రెండొందలకి నాన్నని అడగడం నాకు నచ్చట్లేదు. చీర కొనగా మిగిలిన డబ్బులు ఇవి తీసుకో. నాకెందుకులే నాన్న నువ్వు ఉంచుకో. అయినా ఎక్కడివి డబ్బులు. చెప్పాను కదా అమ్మ దాచుకో. నీకే డబ్బులు అవసరం వస్తది. నువ్వు నాన్నని కూడా ఏం అడగవు. దాచుకో. నాకు వద్దులే. ఏదన్నా అవసరమైతే మీ నాన్నని నేను అడుగుతాను కదా. నీ దగ్గరే ఉండాలమ్మ డబ్బులు. నేను బాగా సంపాదించి డబ్బులన్నీ నీకే ఇస్తా. తీసుకో.",
+   "rank": 2,
+   "tier": "emotion_pick",
+   "tier_label": "emotion pick",
+   "scores": {},
+   "title": "అమ్మ కోసం మోనా తీసుకున్న నిర్ణయం",
+   "hook_line": {
+    "text": "నువ్వు వన్నా, రెండొందలకి నాన్నని అడగడం నాకు నచ్చట్లేదు.",
+    "start_word": 1206,
+    "end_word": 1212
+   },
+   "payoff_line": "నేను బాగా సంపాదించి డబ్బులన్నీ నీకే ఇస్తా.",
+   "payoff_type": "emotional_peak",
+   "payoff_line_source": "discover",
+   "why_it_works": "Viewer stops because of Mona's painful realization about her mother begging for small change, stays to find out whether her mother will accept the money, and it ends on Mona promising to earn and giv…",
+   "category": "emotional",
+   "standalone_risks": [],
+   "edit_notes": [
+    {
+     "type": "cold_open",
+     "after_piece": 0,
+     "reason": "Lifted L0355 (3.5 s) to the front; skipped in place, not replayed. A daughter's blunt emotional objection about her mother having to plead for petty cash ('నువ్వు వందో, రెండొందలకి నాన్నని అడగడం నాకు …"
+    },
+    {
+     "type": "skip",
+     "after_piece": 1,
+     "reason": "skips 40 s"
+    }
+   ],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": true,
+   "cold_open_detail": {
+    "lines": [
+     "L0355"
+    ],
+    "text": "నువ్వు {fixed: వందో,} రెండొందలకి నాన్నని అడగడం నాకు నచ్చట్లేదు.",
+    "start": 928.75,
+    "end": 932.218,
+    "duration": 3.47,
+    "tail_s": 0.83,
+    "start_on_cut": false,
+    "word_range": [
+     1206,
+     1212
+    ],
+    "tail_db_below_speech": 7.8,
+    "level_vs_scene_db": 2.1
+   },
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 928.75,
+     "end": 932.218,
+     "kind": "cold_open"
+    },
+    {
+     "start": 868.35,
+     "end": 887.34,
+     "kind": "scene"
+    },
+    {
+     "start": 926.8,
+     "end": 928.65,
+     "kind": "scene"
+    },
+    {
+     "start": 932.223,
+     "end": 938.808,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 30.89,
+   "spoiler": false,
+   "characters": [
+    "Mona",
+    "Mother"
+   ],
+   "visual_dependency": "medium",
+   "start_line": "L0330",
+   "end_line": "L0357",
+   "end_hold": {
+    "payoff_end": 936.07,
+    "end": 938.808,
+    "hold_s": 2.74,
+    "on_shot_cut": true,
+    "next_speech": 939.41,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "rule": "hold"
+   },
+   "chunk_drops": [
+    {
+     "after_line": "L0339",
+     "before_line": "L0354",
+     "removed_lines": [
+      "L0340",
+      "L0341",
+      "L0342",
+      "L0343",
+      "L0344",
+      "L0345",
+      "L0346",
+      "L0347",
+      "L0348",
+      "L0349",
+      "L0350",
+      "L0351",
+      "L0352",
+      "L0353"
+     ],
+     "lift_skip": false,
+     "start": 887.34,
+     "end": 926.8,
+     "removed_s": 39.46,
+     "why": "Cuts the parallel bar conversation between Mona's father and Rao to stay focused on the mother-daughter moment."
+    },
+    {
+     "after_line": "L0354",
+     "before_line": "L0356",
+     "removed_lines": [
+      "L0355"
+     ],
+     "lift_skip": true,
+     "start": 928.65,
+     "end": 932.223,
+     "removed_s": 3.57,
+     "why": ""
+    }
+   ],
+   "discovery": {
+    "strength": null,
+    "what_happens": "Will Mona's hesitant mother accept the hard-earned money from her daughter?",
+    "hook": "A daughter's blunt emotional objection about her mother having to plead for petty cash ('నువ్వు వందో, రెండొందలకి నాన్నని అడగడం నాకు నచ్చట్లేదు') hooks viewers immediately.",
+    "payoff": "నేను బాగా సంపాదించి డబ్బులన్నీ నీకే ఇస్తా.",
+    "opening_strength": null,
+    "payoff_line": "నేను బాగా సంపాదించి డబ్బులన్నీ నీకే ఇస్తా.",
+    "payoff_type": "emotional_peak"
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "source": "emotion_pick",
+   "feeling": "aww",
+   "intensity": 4,
+   "stop": {
+    "line": "L0355",
+    "text": "నువ్వు వన్నా, రెండొందలకి నాన్నని అడగడం నాకు నచ్చట్లేదు.",
+    "why": "A daughter's blunt emotional objection about her mother having to plead for petty cash ('నువ్వు వందో, రెండొందలకి నాన్నని అడగడం నాకు నచ్చట్లేదు') hooks viewers immediately.",
+    "cold_open": true,
+    "case": "B_lift",
+    "via": "cold_open",
+    "plays_at_s": 0.12
+   },
+   "stay": "Will Mona's hesitant mother accept the hard-earned money from her daughter?",
+   "land": {
+    "line": "L0356",
+    "text": "నేను బాగా సంపాదించి డబ్బులన్నీ నీకే ఇస్తా.",
+    "reaction": "L0358",
+    "reaction_text": "ఖర్చు పెట్టుకోమ్మ.",
+    "plays_at_s": 24.58
+   },
+   "reason": "Viewer stops because of Mona's painful realization about her mother begging for small change, stays to find out whether her mother will accept the money, and it ends on Mona promising to earn and give everything to her (aww).",
+   "moment": {
+    "id": "p04",
+    "line": "L0356",
+    "text": "నేను బాగా సంపాదించి డబ్బులన్నీ నీకే ఇస్తా.",
+    "feeling": "aww",
+    "intensity": 4,
+    "why": "Mona passionately vows to earn money and give it all to her mother so she never has to beg her husband for petty change ('నేను బాగా సంపాదించి డబ్బులన్నీ నీకే ఇస్తా').",
+    "type": "emotional_peak",
+    "lands_on_screen": true
+   },
+   "build_flags": [
+    "land L0356 not among the last 3 spoken lines as played (last: L0357, L0358, L0359); end_line L0358 trimmed to L0357"
+   ],
+   "check_note": "reaction L0358 is not played (the end hold shows the reaction)"
+  },
+  {
+   "id": "e06",
+   "pieces": [
+    {
+     "start_word": 1260,
+     "end_word": 1371,
+     "start": 992.45,
+     "end": 1091.75
+    }
+   ],
+   "region": {
+    "start_word": 1260,
+    "end_word": 1371,
+    "start": 992.45,
+    "end": 1091.75
+   },
+   "edited_duration": 99.3,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "so నువ్వు కూడా నా followers అనే observe చేస్తున్నావా? నీ followers నిన్ను observe చేస్తారు. నేను నిన్ను notice చేస్తా. so నీకేమనిపిస్తుంది. ఏమైనా change కనిపిస్తుందా? character change అయిందని ఏం కాదు. హ్మ్ మరి మరీ అంటే నీ life చాలా change అయింది మోనా. followers పెరిగారు, opportunities పెరిగాయి, నీ చుట్టూ జనం పెరిగారు. వీళ్ళ మధ్యలో నేను ఎక్కడున్నానేమో అని confusion. హ్మ్ కానీ నువ్వు ఎక్కడున్నావో నాకు తెలుసు. అయితే okay. హ్మ్ follower list లో అయితే కాదులే. okay. అది చాలు. ఒక్క నిమిషం reel upload చేయాలి. మళ్ళా? yes సరే చెయ్. One last question. హ్మ్ ఏంటి నీ reel కి first like ఎవరిది ఉంటే ఇష్టం. నీదే likes కోసం అయితే కాదు కదా ఊహూ నువ్వు like చేస్తే ఏదో follower count లానో, viewership count లానో అనిపీయదు. మరి importance లా అనిపిస్తుంది.",
+   "rank": 3,
+   "tier": "emotion_pick",
+   "tier_label": "emotion pick",
+   "scores": {},
+   "title": "Followers మధ్యలో నా స్థానం ఏంటి?",
+   "hook_line": {
+    "text": "so నువ్వు కూడా నా followers అనే observe చేస్తున్నావా?",
+    "start_word": 1260,
+    "end_word": 1267
+   },
+   "payoff_line": "importance లా అనిపిస్తుంది.",
+   "payoff_type": "emotional_peak",
+   "payoff_line_source": "discover",
+   "why_it_works": "Viewer stops because Mona asks Sukku if he observes her just like her followers, stays to find out what his presence means to her as her fame grows, and it ends on her sweet confession that his like …",
+   "category": "emotional",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 992.15,
+     "end": 1097.258,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 105.11,
+   "spoiler": false,
+   "characters": [
+    "Mona",
+    "Sukku"
+   ],
+   "visual_dependency": "medium",
+   "start_line": "L0372",
+   "end_line": "L0409",
+   "end_hold": {
+    "payoff_end": 1091.75,
+    "end": 1097.258,
+    "hold_s": 5.51,
+    "on_shot_cut": true,
+    "next_speech": 1103.514,
+    "long_silence_after": false,
+    "laugh_after": true,
+    "note": "short hold (next shot cut before the minimum hold)",
+    "rule": "hold"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": null,
+    "what_happens": "Will Sukku confess how he feels about her surging follower count and find out where he truly stands in her life?",
+    "hook": "Mona boldly questions him with \"so నువ్వు కూడా నా followers లానే observe చేస్తున్నావా?\", instantly sparking intrigue around their chemistry amidst social media fame.",
+    "payoff": "importance లా అనిపిస్తుంది.",
+    "opening_strength": null,
+    "payoff_line": "importance లా అనిపిస్తుంది.",
+    "payoff_type": "emotional_peak"
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "source": "emotion_pick",
+   "feeling": "aww",
+   "intensity": 5,
+   "stop": {
+    "line": "L0372",
+    "text": "so నువ్వు కూడా నా followers అనే observe చేస్తున్నావా?",
+    "why": "Mona boldly questions him with \"so నువ్వు కూడా నా followers లానే observe చేస్తున్నావా?\", instantly sparking intrigue around their chemistry amidst social media fame.",
+    "cold_open": false,
+    "case": "start_line",
+    "via": "start_line",
+    "plays_at_s": 0.3
+   },
+   "stay": "Will Sukku confess how he feels about her surging follower count and find out where he truly stands in her life?",
+   "land": {
+    "line": "L0409",
+    "text": "importance లా అనిపిస్తుంది.",
+    "reaction": "hold",
+    "plays_at_s": 98.42
+   },
+   "reason": "Viewer stops because Mona asks Sukku if he observes her just like her followers, stays to find out what his presence means to her as her fame grows, and it ends on her sweet confession that his like feels like true importance (aww).",
+   "moment": {
+    "id": "p06",
+    "line": "L0409",
+    "text": "importance లా అనిపిస్తుంది.",
+    "feeling": "aww",
+    "intensity": 5,
+    "why": "Mona tenderly confesses that Sukku's like on her reels does not feel like a viewer metric, but like a feeling of being valued ('importance లా అనిపిస్తుంది').",
+    "type": "emotional_peak",
+    "lands_on_screen": true
+   },
+   "build_flags": []
+  },
+  {
+   "id": "e07",
+   "pieces": [
+    {
+     "start_word": 1375,
+     "end_word": 1401,
+     "start": 1113.934,
+     "end": 1133.534
+    }
+   ],
+   "region": {
+    "start_word": 1375,
+    "end_word": 1401,
+    "start": 1113.934,
+    "end": 1133.534
+   },
+   "edited_duration": 19.6,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "college కి వెళ్ళామా? చదువుకున్నామా? ఇంటికి వచ్చామా? అన్నట్టుగా ఉండాలి. ఏదో social media, reels, followers, famous అని ఏవైనా పిచ్చి పిచ్చి వేషాలు వేస్తే అమ్మాయిలని కూడా చూడను. ఇంటి మొత్తాన్ని కాల్చి పడేస్తాను.",
+   "rank": 4,
+   "tier": "emotion_pick",
+   "tier_label": "emotion pick",
+   "scores": {},
+   "title": "నాన్న సీరియస్ వార్నింగ్",
+   "hook_line": {
+    "text": "college కి వెళ్ళామా?",
+    "start_word": 1375,
+    "end_word": 1377
+   },
+   "payoff_line": "ఇంటి మొత్తాన్ని కాల్చి పడేస్తాను.",
+   "payoff_type": "emotional_peak",
+   "payoff_line_source": "discover",
+   "why_it_works": "Viewer stops because a strict father aggressively interrogates his daughters with 'college కి వెళ్ళామా? చదువుకున్నామా?', stays to find out how severe his warning against social media will get, and it…",
+   "category": "story",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "promo",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 1113.634,
+     "end": 1139.342,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 25.71,
+   "spoiler": false,
+   "characters": [
+    "Mona's father",
+    "Mona",
+    "Soni"
+   ],
+   "visual_dependency": "medium",
+   "start_line": "L0415",
+   "end_line": "L0423",
+   "end_hold": {
+    "payoff_end": 1133.534,
+    "end": 1139.342,
+    "hold_s": 5.81,
+    "on_shot_cut": true,
+    "next_speech": 1140.654,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "rule": "hold"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": null,
+    "what_happens": "How severe will the father's warning against social media reels become?",
+    "hook": "A strict father aggressively interrogates his daughters with 'college కి వెళ్ళామా? చదువుకున్నామా?'",
+    "payoff": "ఇంటి మొత్తాన్ని కాల్చి పడేస్తాను.",
+    "opening_strength": null,
+    "payoff_line": "ఇంటి మొత్తాన్ని కాల్చి పడేస్తాను.",
+    "payoff_type": "emotional_peak"
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "source": "emotion_pick",
+   "feeling": "tension",
+   "intensity": 5,
+   "stop": {
+    "line": "L0415",
+    "text": "college కి వెళ్ళామా?",
+    "why": "A strict father aggressively interrogates his daughters with 'college కి వెళ్ళామా? చదువుకున్నామా?'",
+    "cold_open": false,
+    "case": "start_line",
+    "via": "start_line",
+    "plays_at_s": 0.3
+   },
+   "stay": "How severe will the father's warning against social media reels become?",
+   "land": {
+    "line": "L0423",
+    "text": "ఇంటి మొత్తాన్ని కాల్చి పడేస్తాను.",
+    "reaction": "hold",
+    "plays_at_s": 17.94
+   },
+   "reason": "Viewer stops because a strict father aggressively interrogates his daughters with 'college కి వెళ్ళామా? చదువుకున్నామా?', stays to find out how severe his warning against social media will get, and it ends on his terrifying threat to burn the house down (tension).",
+   "moment": {
+    "id": "p07",
+    "line": "L0423",
+    "text": "ఇంటి మొత్తాన్ని కాల్చి పడేస్తాను.",
+    "feeling": "tension",
+    "intensity": 5,
+    "why": "The drunk father creates sudden terrifying tension by threatening to burn down the entire house if his daughters bring social media or reel antics home ('ఇంటి మొత్తాన్ని కాల్చి పడేస్తాను').",
+    "type": "emotional_peak",
+    "lands_on_screen": true
+   },
+   "build_flags": []
+  }
+ ],
+ "rejected": [
+  {
+   "id": "e02",
+   "tier": "rejected",
+   "source": "emotion_pick",
+   "reject_reasons": [
+    "N0: no clip: The clip around this moment lacks a viable opening: starting after Deepak leaves is too flat for a scrolling stranger without a valid liftable cold-open line, while starting during Deepak's pitch bloats a short, punchy roast into an overlong scene."
+   ],
+   "moment": {
+    "id": "p02",
+    "line": "L0245",
+    "text": "నాన్న తిడతాడు అంటూ reels చించేస్తావ్.",
+    "feeling": "laugh",
+    "intensity": 4,
+    "why": "Smitha humorously calls out Mona's fake innocence, pointing out how she slays every reel while constantly pretending to be scared of her father ('నాన్న తిడతాడు అంటూ reels చించేస్తావ్').",
+    "type": "punchline",
+    "lands_on_screen": false
+   },
+   "answer": {
+    "no_clip": true,
+    "no_clip_why": "The clip around this moment lacks a viable opening: starting after Deepak leaves is too flat for a scrolling stranger without a valid liftable cold-open line, while starting during Deepak's pitch bloats a short, punchy roast into an overlong scene.",
+    "stop": {
+     "line": "",
+     "why": ""
+    },
+    "stay": "",
+    "land": {
+     "line": "",
+     "reaction": ""
+    },
+    "start_line": "",
+    "end_line": "",
+    "drops": [],
+    "purpose": "standalone",
+    "spoiler": false,
+    "characters": [],
+    "title": "",
+    "reason": ""
+   },
+   "pieces": [
+    {
+     "start_word": 877,
+     "end_word": 881,
+     "start": 611.77,
+     "end": 613.63
+    }
+   ],
+   "region": {
+    "start_word": 877,
+    "end_word": 881,
+    "start": 611.77,
+    "end": 613.63
+   },
+   "edited_duration": 1.86,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "నాన్న తిడతాడు అంటూ reels చించేస్తావ్."
+  },
+  {
+   "id": "e05",
+   "tier": "rejected",
+   "source": "emotion_pick",
+   "reject_reasons": [
+    "L1: plays 10.5 s < min 15 s"
+   ],
+   "moment": {
+    "id": "p05",
+    "line": "L0374",
+    "text": "నేను నిన్ను notice చేస్తా.",
+    "feeling": "aww",
+    "intensity": 4,
+    "why": "Sukku delivers a charming one-liner contrasting shallow social media followers with genuine personal affection ('నీ followers నిన్ను observe చేస్తారు. నేను నిన్ను notice చేస్తా').",
+    "type": "quotable_line",
+    "lands_on_screen": true
+   },
+   "stop": {
+    "line": "L0372",
+    "text": "so నువ్వు కూడా నా followers అనే observe చేస్తున్నావా?",
+    "why": "A stranger scrolling stops for Mona's direct and playful question, \"so నువ్వు కూడా నా followers లానే observe చేస్తున్నావా?\".",
+    "cold_open": false,
+    "case": "start_line"
+   },
+   "stay": "Will Sukku admit he is just another follower, or does he see her differently?",
+   "land": {
+    "line": "L0374",
+    "text": "నేను నిన్ను notice చేస్తా.",
+    "reaction": "hold"
+   },
+   "reason": "Viewer stops because Mona teasingly asks if he just watches her like her social media followers, stays to find out his reply, and it ends on Sukku's charming distinction that he notices her for who she is (aww).",
+   "title": "Followers లా కాదు.. Notice చేస్తా!",
+   "pieces": [
+    {
+     "start_word": 1260,
+     "end_word": 1276,
+     "start": 992.45,
+     "end": 1000.61
+    }
+   ],
+   "region": {
+    "start_word": 1260,
+    "end_word": 1276,
+    "start": 992.45,
+    "end": 1000.61
+   },
+   "edited_duration": 8.16,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "so నువ్వు కూడా నా followers అనే observe చేస్తున్నావా? నీ followers నిన్ను observe చేస్తారు. నేను నిన్ను notice చేస్తా.",
+   "time_segments": [
+    {
+     "start": 992.15,
+     "end": 1002.61,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 10.46,
+   "start_line": "L0372",
+   "end_line": "L0374",
+   "cold_open": false,
+   "build_moment": {
+    "purpose": "standalone",
+    "start_line": "L0372",
+    "end_line": "L0374",
+    "cold_open_lines": [],
+    "drops": []
+   }
+  },
+  {
+   "id": "e01",
+   "tier": "rejected",
+   "source": "emotion_pick",
+   "reject_reasons": [
+    "N0: no clip: The dialogue begins with flat, mid-conversation setup ('ఉమ్ అవును Sony వాళ్ళ friend...') that offers no scroll-stopping hook, and the payoff punchline cannot be cold-opened without ruining the landing."
+   ],
+   "moment": {
+    "id": "p01",
+    "line": "L0061",
+    "text": "నాకు ఇచ్చినా బాగుండు.",
+    "feeling": "laugh",
+    "intensity": 3,
+    "why": "Soni comically laments to God about giving followers to her naive sister instead of her when Mona offers to do a brand promotion for free ('దీనికెందుకు ఇచ్చావు followers. నాకు ఇచ్చినా బాగుండు').",
+    "type": "punchline",
+    "lands_on_screen": false
+   },
+   "answer": {
+    "no_clip": true,
+    "no_clip_why": "The dialogue begins with flat, mid-conversation setup ('ఉమ్ అవును Sony వాళ్ళ friend...') that offers no scroll-stopping hook, and the payoff punchline cannot be cold-opened without ruining the landing.",
+    "stop": {
+     "line": "",
+     "why": ""
+    },
+    "stay": "",
+    "land": {
+     "line": "",
+     "reaction": ""
+    },
+    "start_line": "",
+    "end_line": "",
+    "drops": [],
+    "purpose": "standalone",
+    "spoiler": false,
+    "characters": [],
+    "title": "",
+    "reason": ""
+   },
+   "pieces": [
+    {
+     "start_word": 156,
+     "end_word": 158,
+     "start": 159.42,
+     "end": 160.4
+    }
+   ],
+   "region": {
+    "start_word": 156,
+    "end_word": 158,
+    "start": 159.42,
+    "end": 160.4
+   },
+   "edited_duration": 0.98,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "నాకు ఇచ్చినా బాగుండు."
+  }
+ ],
+ "episode_note": {
+  "text": "7 moments a stranger would feel; 7 built by the build call; 3 rejected (L1 1, N0 2); 0 duplicates dropped; 4 shown, in episode order."
+ },
+ "episode_summary": {
+  "n_moments_listed": 7,
+  "n_moments_valid": 7,
+  "n_moments_rejected": 0,
+  "moments_rejected": [],
+  "moments_by_feeling": {
+   "laugh": 2,
+   "aww": 4,
+   "tension": 1
+  },
+  "moments_by_intensity": {
+   "5": 2,
+   "4": 4,
+   "3": 1
+  },
+  "max_moments": 12,
+  "n_build_calls": 7,
+  "n_not_built_cap": 0,
+  "n_not_built_spend": 0,
+  "n_no_clip": 2,
+  "n_blocked": 0,
+  "n_call_failed": 0,
+  "n_invalid": 0,
+  "n_builder_rejected": 0,
+  "n_hard_rules": 1,
+  "n_stop_check_failed": 0,
+  "n_land_check_failed": 0,
+  "n_built": 4,
+  "n_deduped": 0,
+  "n_shown": 4,
+  "shown_by_feeling": {
+   "aww": 3,
+   "tension": 1
+  },
+  "rejected": [
+   {
+    "clip": "e02",
+    "moment": "p02",
+    "line": "L0245",
+    "reason": "N0: no clip: The clip around this moment lacks a viable opening: starting after Deepak leaves is too flat for a scrolling stranger without a valid liftable cold-open line, while starting during Deepak's pitch bloats a short, punchy roast into an overlong scene."
+   },
+   {
+    "clip": "e05",
+    "moment": "p05",
+    "line": "L0374",
+    "reason": "L1: plays 10.5 s < min 15 s"
+   },
+   {
+    "clip": "e01",
+    "moment": "p01",
+    "line": "L0061",
+    "reason": "N0: no clip: The dialogue begins with flat, mid-conversation setup ('ఉమ్ అవును Sony వాళ్ళ friend...') that offers no scroll-stopping hook, and the payoff punchline cannot be cold-opened without ruining the landing."
+   }
+  ],
+  "warnings": [],
+  "episode_notes": "A slice-of-life Telugu family drama and romance web series. Mona navigates rapid social media fame and commercial offers for her Instagram reels while hiding everything from her strictly conservative, abusive father, using her secret earnings to support her mother while sharing sweet moments with Sukku. The father's violent threat against social media activity is the main cliffhanger/tension beat of the episode."
+ },
+ "moment_table": [
+  {
+   "id": "p01",
+   "line": "L0061",
+   "feeling": "laugh",
+   "intensity": 3,
+   "text": "నాకు ఇచ్చినా బాగుండు.",
+   "why": "Soni comically laments to God about giving followers to her naive sister instead of her when Mona offers to do a brand promotion for free ('దీనికెందుకు ఇచ్చావు followers. నాకు ఇచ్చినా బాగుండు').",
+   "status": "rejected",
+   "reason": "N0: no clip: The dialogue begins with flat, mid-conversation setup ('ఉమ్ అవును Sony వాళ్ళ friend...') that offers no scroll-stopping hook, and the payoff punchline cannot be cold-opened without ruining the landing."
+  },
+  {
+   "id": "p02",
+   "line": "L0245",
+   "feeling": "laugh",
+   "intensity": 4,
+   "text": "నాన్న తిడతాడు అంటూ reels చించేస్తావ్.",
+   "why": "Smitha humorously calls out Mona's fake innocence, pointing out how she slays every reel while constantly pretending to be scared of her father ('నాన్న తిడతాడు అంటూ reels చించేస్తావ్').",
+   "status": "rejected",
+   "reason": "N0: no clip: The clip around this moment lacks a viable opening: starting after Deepak leaves is too flat for a scrolling stranger without a valid liftable cold-open line, while starting during Deepak's pitch bloats a short, punchy roast into an overlong scene."
+  },
+  {
+   "id": "p03",
+   "line": "L0294",
+   "feeling": "aww",
+   "intensity": 4,
+   "text": "నేను నీకు ఒక చీర కొన్నానమ్మా",
+   "why": "A heartwarming reveal where Mona surprises her deprived mother by gifting her a brand new saree bought with her own earnings ('నేను నీకు ఒక చీర కొన్నానమ్మా').",
+   "status": "shown",
+   "clip": "e03"
+  },
+  {
+   "id": "p04",
+   "line": "L0356",
+   "feeling": "aww",
+   "intensity": 4,
+   "text": "నేను బాగా సంపాదించి డబ్బులన్నీ నీకే ఇస్తా.",
+   "why": "Mona passionately vows to earn money and give it all to her mother so she never has to beg her husband for petty change ('నేను బాగా సంపాదించి డబ్బులన్నీ నీకే ఇస్తా').",
+   "status": "shown",
+   "clip": "e04"
+  },
+  {
+   "id": "p05",
+   "line": "L0374",
+   "feeling": "aww",
+   "intensity": 4,
+   "text": "నేను నిన్ను notice చేస్తా.",
+   "why": "Sukku delivers a charming one-liner contrasting shallow social media followers with genuine personal affection ('నీ followers నిన్ను observe చేస్తారు. నేను నిన్ను notice చేస్తా').",
+   "status": "rejected",
+   "reason": "L1: plays 10.5 s < min 15 s"
+  },
+  {
+   "id": "p06",
+   "line": "L0409",
+   "feeling": "aww",
+   "intensity": 5,
+   "text": "importance లా అనిపిస్తుంది.",
+   "why": "Mona tenderly confesses that Sukku's like on her reels does not feel like a viewer metric, but like a feeling of being valued ('importance లా అనిపిస్తుంది').",
+   "status": "shown",
+   "clip": "e06"
+  },
+  {
+   "id": "p07",
+   "line": "L0423",
+   "feeling": "tension",
+   "intensity": 5,
+   "text": "ఇంటి మొత్తాన్ని కాల్చి పడేస్తాను.",
+   "why": "The drunk father creates sudden terrifying tension by threatening to burn down the entire house if his daughters bring social media or reel antics home ('ఇంటి మొత్తాన్ని కాల్చి పడేస్తాను').",
+   "status": "shown",
+   "clip": "e07"
+  }
+ ]
+}

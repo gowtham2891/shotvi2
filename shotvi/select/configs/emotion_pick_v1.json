@@ -1,0 +1,12 @@
+{"pipeline_version": "emotion_pick/0.1",
+ "find_prompt": "ws_emotion_find_v1",
+ "prompts": {"ws_emotion_build": "ws_emotion_build_v1"},
+ "ctx": {"speaker_names": true},
+ "find": {"min_intensity": 3, "extra_types": []},
+ "lift_ok": {"rule": "v1", "enforce": false},
+ "cluster": {"enabled": false},
+ "build": {"max_moments": 12, "land_window_lines": 3, "land_after_lines": null, "end_rule": "v1",
+           "max_end_after_payoff_lines": 3},
+ "cold_open": {"rule": "v1"},
+ "check": {"stop_late": "reject", "land_late": "reject"},
+ "dedupe": {"rule": "v1"}}
