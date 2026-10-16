@@ -31,7 +31,7 @@ def line_text(ep, lid: str) -> str:
 
 
 def as_played(ep, clip: dict) -> list[str]:
-    rd = render_clip(ep, {"time_segments": clip["time_segments"], "cold_open": bool(clip.get("cold_open"))}, "C")
+    rd = render_clip(ep, {"time_segments": clip["time_segments"], "cold_open": bool(clip.get("cold_open"))}, "C", ep.names)
     out = []
     for row in rd.text.splitlines()[1:]:          # drop the "### C | plays N s" header
         row = re.sub(r"^\[\d+:\d+(\.\d+)?\] ", "", row)
@@ -67,7 +67,7 @@ def transcript_rows(ep) -> list[str]:
     out = []
     for r in ep.lines:
         if r["kind"] == "speech":
-            out.append(f"{r['id']} [{speaker_label(r, None)}]: {clean_text(r.get('text', ''))}")
+            out.append(f"{r['id']} [{speaker_label(r, ep.names)}]: {clean_text(r.get('text', ''))}")
         else:
             out.append(f"{r['id']} (sound) {clean_text(r.get('text', ''))}")
     return out
@@ -76,7 +76,7 @@ def transcript_rows(ep) -> list[str]:
 def dump_short(run: Path, vid: str) -> str:
     """Only the whole transcript and the clips shown (founder, 2026-10-16)."""
     doc = json.loads((run / f"{vid}.json").read_text(encoding="utf-8"))
-    ep, ix, tr, tp = ws.load_episode(vid, with_loudness=False)
+    ep, ix, tr, tp = ws.load_episode(vid, with_loudness=False, speaker_names=True, require_names=False)
     L = [f"# {SERIES.get(vid, vid)} ({vid})", "", "## Transcript", "", "```"] + transcript_rows(ep) + ["```", "",
          f"## Clips ({len(doc['proposals'])})"]
     for n, c in enumerate(doc["proposals"], 1):
@@ -87,7 +87,7 @@ def dump_short(run: Path, vid: str) -> str:
 def dump(run: Path, vid: str) -> str:
     doc = json.loads((run / f"{vid}.json").read_text(encoding="utf-8"))
     dbg = json.loads((run / "debug" / f"{vid}.json").read_text(encoding="utf-8"))
-    ep, ix, tr, tp = ws.load_episode(vid, with_loudness=False)
+    ep, ix, tr, tp = ws.load_episode(vid, with_loudness=False, speaker_names=True, require_names=False)
     answers = {c["moment"]: c.get("answer") for c in dbg.get("calls", [])}
     s = doc["episode_summary"]
     usd = (doc.get("cost") or {}).get("usd_billed") or (doc.get("cost") or {}).get("usd") or 0
@@ -142,7 +142,7 @@ def dump(run: Path, vid: str) -> str:
     L += ["", "## 4. Whole transcript", "", "```"]
     for r in ep.lines:
         if r["kind"] == "speech":
-            L.append(f"{r['id']} [{speaker_label(r, None)}]: {clean_text(r.get('text', ''))}")
+            L.append(f"{r['id']} [{speaker_label(r, ep.names)}]: {clean_text(r.get('text', ''))}")
         else:
             L.append(f"{r['id']} (sound) {clean_text(r.get('text', ''))}")
     L.append("```")
