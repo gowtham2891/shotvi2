@@ -1,6 +1,6 @@
 # 5HqkHAZfzos emotion-first clips (code_only)
 
-Moments a stranger would feel: 7 listed, 7 valid (by feeling {'laugh': 2, 'aww': 4, 'tension': 1}). Build calls 7: 2 no clip, 0 blocked, 0 failed, 0 invalid, 0 rejected by the cut builder, 1 by hard rules, 0 failed stop-first, 0 failed land-last; 4 built, 0 duplicates dropped, 4 shown (episode order, no review, no score).
+Moments a stranger would feel: 7 listed, 7 valid (by feeling {'laugh': 2, 'aww': 4, 'tension': 1}). Build calls 7: 2 no clip, 0 blocked, 0 failed, 0 invalid, 0 rejected by the cut builder, 0 by hard rules, 0 failed stop-first, 0 failed land-last; 5 built, 1 duplicates dropped, 4 shown (episode order, no review, no score).
 
 Cost $0.2075 ($0.0000 billed this run).
 
@@ -49,8 +49,8 @@ Cost $0.2075 ($0.0000 billed this run).
 ## Not shown
 
 - e02 (L0245, laugh 4): N0: no clip: The clip around this moment lacks a viable opening: starting after Deepak leaves is too flat for a scrolling stranger without a valid liftable cold-open line, while starting during Deepak's pitch bloats a short, punchy roast into an overlong scene.
-- e05 (L0374, aww 4): L1: plays 10.5 s < min 15 s
 - e01 (L0061, laugh 3): N0: no clip: The dialogue begins with flat, mid-conversation setup ('ఉమ్ అవును Sony వాళ్ళ friend...') that offers no scroll-stopping hook, and the payoff punchline cannot be cold-opened without ruining the landing.
+- e05 (L0374, aww 4): D1: duplicate of clip e06 (100% of the shorter; strength 4 vs 5, plays 10 s vs 105 s; higher strength wins)
 
 ## Moments
 
@@ -58,6 +58,6 @@ Cost $0.2075 ($0.0000 billed this run).
 - p02 L0245 (laugh 4): rejected: N0: no clip: The clip around this moment lacks a viable opening: starting after Deepak leaves is too flat for a scrolling stranger without a valid liftable cold-open line, while starting during Deepak's pitch bloats a short, punchy roast into an overlong scene.. నాన్న తిడతాడు అంటూ reels చించేస్తావ్.
 - p03 L0294 (aww 4): shown e03. నేను నీకు ఒక చీర కొన్నానమ్మా
 - p04 L0356 (aww 4): shown e04. నేను బాగా సంపాదించి డబ్బులన్నీ నీకే ఇస్తా.
-- p05 L0374 (aww 4): rejected: L1: plays 10.5 s < min 15 s. నేను నిన్ను notice చేస్తా.
+- p05 L0374 (aww 4): rejected: D1: duplicate of clip e06 (100% of the shorter; strength 4 vs 5, plays 10 s vs 105 s; higher strength wins). నేను నిన్ను notice చేస్తా.
 - p06 L0409 (aww 5): shown e06. importance లా అనిపిస్తుంది.
 - p07 L0423 (tension 5): shown e07. ఇంటి మొత్తాన్ని కాల్చి పడేస్తాను.

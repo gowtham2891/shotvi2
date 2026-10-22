@@ -48,7 +48,9 @@ emotion_pick/0.2 (founder's fix spec, 2026-10-16; the DEFAULTS below). Every cha
            dependent connective (``lift_ok.continuations``) or is a 1-2 word acknowledgement (``lift_ok.acks``).
            ``lift_ok.enforce``: a cold open on a line that was not offered is refused (-> the fallback below).
            ``lift_ok.same_speaker`` / ``cold_open.same_speaker``: a line whose next spoken line has the same Scribe
-           speaker label is never offered / lifted (lifting would split one speaker's turn); structural, no word list.
+           speaker label is never offered / lifted ALONE (lifting would split one speaker's turn); structural, no word
+           list. ``lift_ok.turn_runs`` (B1, 2026-10-22): such a line is offered with its whole same-speaker run as ONE
+           item ('L0384+L0385 ("..." "...")') when the run's speech is 1.0-3.6 s and the run passes the same checks.
   cluster  (``cluster.enabled``) between FIND and BUILD, consecutive payoffs (transcript order) join one cluster when
            within ``max_lines`` spoken lines or ``max_s`` seconds of the previous payoff and no scene transition lies
            between them (a music / song event >= ``music_min_s`` with no spoken word during it; optionally a silent gap
@@ -66,6 +68,15 @@ emotion_pick/0.2 (founder's fix spec, 2026-10-16; the DEFAULTS below). Every cha
            start_line, or advance start_line to stop when start_line is weak filler and stop is within 4 spoken
            lines). ``check.stop_late`` "flag": a stop that does not play within 3 s flags ``stop_not_first`` instead of
            rejecting. The case is recorded in ``stop.case``.
+           Delayed hook after a refused lift (founder, 2026-10-22; ``stop.hook_fix`` records B1_turn_lift /
+           B2_start_advance / stop_not_first): B1 ``cold_open.turn_lift``: a stop followed by the same speaker's lines
+           lifts the whole run (<= turn_max_s 3.6 s of speech, strictly inside the clip, not holding the land, v1's
+           lift checks on the run; the in-place skip removes the run: one cut, nothing replayed). B2
+           ``cold_open.start_advance``: a lift still refused and the stop playing after 3 s -> start_line moves to the
+           earliest spoken line (<= 4 skipped, not filler / acknowledgement-only, no skipped question whose reply
+           still plays, min length kept) from which the stop plays within 5 s (the stop-first check then uses 5 s).
+  length   ``v1.guardrails.min_s`` 10 s (founder, 2026-10-22: a 10-13 s punchline / cliffhanger is valid on Shorts);
+           webseries.DEFAULTS (v1 web-series, merged) and configs/emotion_pick_v1.json stay at 15 s.
   dedupe   ``dedupe.rule`` "scene": duplicates share > ``dedupe.overlap`` (35%) of the shorter clip, OR their
            start..end line spans overlap and both land lines lie in the same scene; keep the higher strength, then
            (``keep_longer``) the longer clip when it plays <= 120 s and, in one scene, one clip plays the other's land
@@ -136,7 +147,10 @@ DEFAULTS: dict = {
     # deep-merged over ws3.DEFAULTS: persona prompt, explicit cache (TTL 1 h), speaker_names. 0.2 renders Scribe's
     # labels (founder, 2026-10-16); 0.1 ran with ws3's default (corrected names): configs/emotion_pick_v1.json
     "ctx": {"speaker_names": False},
-    "v1": {},        # deep-merged over ws.DEFAULTS: the cut builder's settings and the guardrails, unchanged
+    # deep-merged over ws.DEFAULTS: the cut builder's settings and the guardrails. 0.2 (founder, 2026-10-22): a 10-13 s
+    # punchline / cliffhanger is valid on Shorts, so the minimum played length is 10 s here only (webseries.DEFAULTS,
+    # v1 web-series and merged stay at 15 s; configs/emotion_pick_v1.json pins 15 s)
+    "v1": {"guardrails": {"min_s": 10.0}},
     # extra_types: added to the find schema's type enum (0.1: none)
     "find": {"min_intensity": 3, "extra_types": ["cliffhanger"]},
     # lift-ok lines offered to the build call. rule "v1" = webseries.liftable_lines; "strict" = also speech >=
@@ -147,7 +161,11 @@ DEFAULTS: dict = {
                                   "so", "but", "and", "because"],
                 "acks": ["అవునా", "అవును", "ఊ", "ఊం", "ఉమ్", "సరే", "హ్మ్", "హా", "ఆ", "ఓ", "ఓకే", "అలాగా",
                          "ok", "okay", "hmm", "hm", "yes", "yeah"],
-                "ack_max_words": 2, "same_speaker": True},
+                "ack_max_words": 2, "same_speaker": True,
+                # B1 (founder, 2026-10-22): a line followed by the same speaker's lines is offered as ONE item, the
+                # whole same-speaker run ("L0384+L0385"), when the run's speech fits min..max_speech_s and passes the
+                # other checks (see turn_run_item)
+                "turn_runs": True},
     # same-scene clustering of the found payoffs before the build calls (0.1: off)
     "cluster": {"enabled": True, "max_lines": 35, "max_s": 50.0, "music_min_s": 4.0, "silence_gap_s": None,
                 "target_within": 1, "max_span_s": 90.0},
@@ -159,9 +177,14 @@ DEFAULTS: dict = {
               "land_after_lines": 15, "max_end_after_payoff_lines": 3,
               "end_rule": "clamp", "end_after_land_lines": 2, "end_after_reaction_lines": 1},
     # stop != start_line. rule "v1": always a lift (refused = K1 reject); "fallback": Case A / B (docstring)
-    # same_speaker: a lift is refused when the next spoken line has the same (Scribe) speaker label
+    # same_speaker: a single-line lift is refused when the next spoken line has the same (Scribe) speaker label.
+    # Delayed-hook fixes (founder, 2026-10-22), see build_v2: turn_lift (B1) lifts the whole same-speaker run when its
+    # speech is <= turn_max_s; start_advance (B2) moves start_line forward (<= advance_max_lines spoken lines skipped)
+    # so the stop plays within advance_stop_s, when a lift is refused and the stop would play after stop_window_s
     "cold_open": {"rule": "fallback", "same_speaker": True, "near_lines": 2, "near_s": 3.0, "weak_advance_lines": 4,
                   "weak_max_words": 2, "weak_min_s": 1.0,
+                  "turn_lift": True, "turn_max_s": 3.6,
+                  "start_advance": True, "advance_max_lines": 4, "advance_stop_s": 5.0,
                   "greetings": ["hello", "hi", "hey", "హలో", "హాయ్", "నమస్తే", "namaste", "thank", "thanks", "you",
                                 "bye", "good", "morning", "evening", "night"]},
     # stop_late / land_late: "reject" (0.1: K1 / K2) or "flag" / "trim" (0.2)
@@ -269,16 +292,17 @@ def spec_build(cfg: dict):
 
 
 # ---------------------------------------------------------------------------------------------------- call 2 task
-def task_build(cfg: dict, ep: ws.Episode, p: dict, lift_ids: list[str], cluster_context: str = "") -> str:
+def task_build(cfg: dict, ep: ws.Episode, p: dict, lift_ids: list[str], cluster_context: str = "",
+               runs: dict | None = None) -> str:
     """The build task for moment ``p``. ``cluster_context`` fills $cluster_context (v2 prompt; a v1 prompt has no such
-    placeholder and renders exactly as 0.1 did)."""
+    placeholder and renders exactly as 0.1 did). ``runs``: same-speaker runs offered as one lift-ok item (B1)."""
     from shotvi.select.prompts import load_prompt
     pr = load_prompt(cfg["prompts"][ROLE_BUILD])
     return pr.system.strip() + "\n\n" + pr.render(
         episode_len=ws.fmt(ep.duration), land_line=p["line"], feeling=p["emotion"], intensity=p["intensity"],
         on_screen="the transcript shows the reaction" if p["lands_on_screen"] else "no reaction shown in the transcript",
         land_text=ws.one_line(p["text"], 400), why=ws.one_line(p["reason"], 400), cluster_context=cluster_context,
-        lift_ok=M.lift_ok_near(ep, lift_ids, p, cfg, window=cfg["build"])).strip()
+        lift_ok=lift_ok_near(ep, lift_ids, p, cfg, runs)).strip()
 
 
 # ---------------------------------------------------------------------------------------------------- 0.2 lift-ok
@@ -359,11 +383,28 @@ def same_speaker_next(ep: ws.Episode, lid: str) -> str | None:
     return n["id"]
 
 
-def strict_liftable_lines(ep: ws.Episode, vcut: dict, lc: dict, loud=None) -> list[str]:
+def turn_run(ep: ws.Episode, lid: str) -> list[str]:
+    """The consecutive same-speaker run starting at spoken line ``lid``: lid and the spoken lines after it while their
+    Scribe speaker label stays the same (audio events in between are skipped, as same_speaker_next does). [lid] when
+    the next spoken line is another speaker (or a line has no label)."""
+    out = [lid]
+    while True:
+        n = same_speaker_next(ep, out[-1])
+        if n is None:
+            return out
+        out.append(n)
+
+
+def strict_liftable_lines(ep: ws.Episode, vcut: dict, lc: dict, loud=None, runs_out: dict | None = None) -> list[str]:
     """0.2 lift-ok: a spoken line is offered only if it would pass every later lift check (see the docstring):
     speech min_speech_s..max_speech_s; v1's build_lift against its episode neighbours (the next two spoken lines kept,
     the line before kept) WITH the quiet-tail check; the next spoken line neither opens with a continuation nor is a
-    1-2 word acknowledgement."""
+    1-2 word acknowledgement.
+    B1 (``turn_runs``, with ``same_speaker``): a line whose next spoken line has the same Scribe label is offered as
+    ONE item, the whole same-speaker run starting at it (``turn_run``), when the run's speech (first word of the first
+    line to last word of the last) is min..max_speech_s, the line after the run passes the continuation /
+    acknowledgement guard and build_lift passes for the run (shot change after its LAST line, quiet tail, mid-laugh,
+    comma end, orphaned question). The item's id is the run's first line; ``runs_out`` gets {first id: run ids}."""
     loud = loud if loud is not None else Loudness(ep.video_id, ep.loudness)
     ep2 = ws.Episode(ep.video_id, ep.lines, ep.words, ep.cuts, ep.duration,
                      loud if getattr(loud, "available", True) else None)
@@ -371,30 +412,61 @@ def strict_liftable_lines(ep: ws.Episode, vcut: dict, lc: dict, loud=None) -> li
     lo, hi = float(lc["min_speech_s"]), float(lc["max_speech_s"])
     out = []
     for k in range(1, len(sp) - 1):
-        d = ep.w1(sp[k]) - ep.w0(sp[k])
+        j = k
+        if lc.get("same_speaker") and sp[k].get("speaker") and sp[k].get("speaker") == sp[k + 1].get("speaker"):
+            if not lc.get("turn_runs"):
+                continue
+            while j + 1 < len(sp) and sp[j + 1].get("speaker") == sp[k].get("speaker"):
+                j += 1
+            if j + 1 >= len(sp):        # the run reaches the episode's last line: nothing after it
+                continue
+        d = ep.w1(sp[j]) - ep.w0(sp[k])
         if d < lo or d > hi:
             continue
-        if lc.get("same_speaker") and sp[k].get("speaker") and sp[k].get("speaker") == sp[k + 1].get("speaker"):
-            continue
-        nxt = ws.raw_text(ep, sp[k + 1])
+        nxt = ws.raw_text(ep, sp[j + 1])
         if opens_with_continuation(nxt, lc["continuations"]) or is_ack(nxt, lc["acks"], int(lc["ack_max_words"])):
             continue
-        S = sp[k - 1:k + 3] if k + 2 < len(sp) else sp[k - 1:k + 2] + [sp[k + 1]]
+        after = sp[j + 1:j + 3]
+        if len(after) < 2:
+            after = after + [after[-1]]
+        S = [sp[k - 1]] + sp[k:j + 1] + after
+        ks = list(range(1, j - k + 2))
         try:
-            ws.build_lift(ep2, S, [1], set(range(len(S))) - {1}, vcut, "standalone")
+            ws.build_lift(ep2, S, ks, set(range(len(S))) - set(ks), vcut, "standalone")
         except ws.Reject:
             continue
         out.append(sp[k]["id"])
+        if j > k and runs_out is not None:
+            runs_out[sp[k]["id"]] = [r["id"] for r in sp[k:j + 1]]
     if hasattr(loud, "save"):
         loud.save()
     return out
 
 
-def lift_ok_lines(ep: ws.Episode, vcut: dict, cfg: dict) -> list[str]:
+def lift_ok_lines(ep: ws.Episode, vcut: dict, cfg: dict, runs_out: dict | None = None) -> list[str]:
+    """The lines offered as liftable; with the strict rule and ``lift_ok.turn_runs``, ``runs_out`` gets the
+    same-speaker runs offered as one item ({first id: run ids})."""
     lc = cfg.get("lift_ok") or {}
     if lc.get("rule", "v1") == "strict":
-        return strict_liftable_lines(ep, vcut, lc)
+        return strict_liftable_lines(ep, vcut, lc, runs_out=runs_out)
     return ws.liftable_lines(ep, vcut)
+
+
+def lift_ok_near(ep: ws.Episode, lift_ids: list[str], p: dict, cfg: dict, runs: dict | None = None) -> str:
+    """merged.lift_ok_near (byte-identical when no run is offered) with a same-speaker run shown as ONE item:
+    'L0384+L0385 ("..." "...")'. The model may answer the first id; the build expands it to the run."""
+    if not runs:
+        return M.lift_ok_near(ep, lift_ids, p, cfg, window=cfg["build"])
+    t = ep.w0(ep.by_id[p["line"]])
+    w = cfg["build"]
+    near = [lid for lid in lift_ids if t - w["lift_before_s"] <= ep.w0(ep.by_id[lid]) <= t + w["lift_after_s"]]
+    if not near:
+        return "none"
+
+    def item(lid):
+        ids = runs.get(lid) or [lid]
+        return "+".join(ids) + " (" + " ".join(f'"{ws.one_line(ws3.line_text(ep, x), 80)}"' for x in ids) + ")"
+    return "; ".join(item(lid) for lid in near)
 
 
 # ---------------------------------------------------------------------------------------------------- 0.2 clusters
@@ -490,6 +562,8 @@ def _sid(x) -> str | None:
     if isinstance(x, dict):
         x = x.get("line")
     s = str(x or "").strip()
+    if "+" in s:            # a same-speaker run offered as one lift-ok item ("L0384+L0385"): its first line
+        s = s.split("+")[0].strip()
     return None if s.lower() in ("", "none", "null", "-", "hold") else ws.norm_id(s)
 
 
@@ -616,9 +690,111 @@ def stop_case(ep: ws.Episode, start: str, stop: str, cc: dict) -> str:
     return "B_lift"
 
 
+def turn_lift_refusal(ep: ws.Episode, run: list[str], start: str, end: str, land: str, cc: dict) -> str | None:
+    """B1: why the same-speaker run ``run`` cannot be lifted as one cold open (before v1's lift checks), or None. The
+    run must lie strictly inside the clip (not start_line, not the end line: an audio-event end maps to the spoken
+    line before it), must not hold the land line (the payoff must play at the end) and its speech (first word of the
+    first line to last word of the last) must be <= cold_open.turn_max_s."""
+    ps = ep.pos[start]
+    e = M._end_spoken(ep, end)
+    pe = ep.pos[e["id"]] if e is not None else ep.pos[end]
+    ids = "+".join(run)
+    if ep.pos[run[0]] <= ps:
+        return f"the turn {ids} includes start_line {start}"
+    if ep.pos[run[-1]] >= pe:
+        return f"the turn {ids} reaches the end line {e['id'] if e is not None else end}"
+    if land in run:
+        return f"the turn {ids} includes the land line {land}"
+    d = ep.w1(ep.by_id[run[-1]]) - ep.w0(ep.by_id[run[0]])
+    if d > float(cc["turn_max_s"]) + 1e-9:
+        return f"the turn {ids} is {d:.1f} s of speech (> {float(cc['turn_max_s']):g} s)"
+    return None
+
+
+def _answered_in_clip(ep: ws.Episode, q: dict, new_start: str, end: str) -> str | None:
+    """A skipped line ``q`` ending in "?" whose reply still plays: the reply is the first later spoken line with
+    another Scribe speaker label (no label: the next spoken line); returns its id when it lies at or after
+    ``new_start`` and not after the clip's end, else None."""
+    if not ws._ends_q(ws.raw_text(ep, q)):
+        return None
+    e = M._end_spoken(ep, end)
+    pe = ep.pos[e["id"]] if e is not None else ep.pos[end]
+    k = ep.pos[q["id"]] + 1
+    while k < len(ep.lines) and k <= pe:
+        r = ep.lines[k]
+        if ep.is_speech(r) and (not q.get("speaker") or r.get("speaker") != q.get("speaker")):
+            return r["id"] if k >= ep.pos[new_start] else None
+        k += 1
+    return None
+
+
+def start_advance(ep: ws.Episode, m0: dict, stop: str, land: str, vcfg: dict, cfg: dict):
+    """B2 (founder, 2026-10-22): when a lift is refused and the stop would play after check.stop_window_s, move
+    start_line forward to the EARLIEST spoken line L (after start_line, at or before the stop and the land) such
+    that, building from L: the stop starts within cold_open.advance_stop_s of playback; at most
+    cold_open.advance_max_lines spoken lines are skipped (start_line .. the line before L); L is not a filler /
+    acknowledgement-only line; no skipped line is a question whose reply still plays (``_answered_in_clip``); the
+    clip still plays >= guardrails.min_s. (The stop speaker's turn start is one such L when it qualifies; an earlier
+    qualifying line keeps more setup.) Returns (clip, moment, note) or (None, None, why refused)."""
+    from shotvi.select.emotion_select import render_clip
+    cc = cfg["cold_open"]
+    lc = cfg.get("lift_ok") or DEFAULTS["lift_ok"]
+    sp = [r for r in ep.lines if ep.is_speech(r)]
+    sp_idx = M._spoken_index(ep)
+    start = m0["start_line"]
+    i0 = sp_idx[start]
+    lim_s, min_s = float(cc["advance_stop_s"]), float(vcfg["guardrails"]["min_s"])
+    why = []
+    for n in range(1, int(cc["advance_max_lines"]) + 1):
+        if i0 + n >= len(sp):
+            break
+        r = sp[i0 + n]
+        if ep.pos[r["id"]] > ep.pos[stop] or ep.pos[r["id"]] > ep.pos[land]:
+            break
+        txt = ws.raw_text(ep, r)
+        if ws._only_fillers(txt) or is_ack(txt, lc["acks"], 10 ** 6):
+            why.append(f"{r['id']}: filler / acknowledgement only")
+            continue
+        qa = next(((q_["id"], a) for q_ in sp[i0:i0 + n]
+                   for a in [_answered_in_clip(ep, q_, r["id"], m0["end_line"])] if a), None)
+        if qa is not None:
+            why.append(f"{r['id']}: skipped question {qa[0]} is answered by {qa[1]}, still in the clip")
+            continue
+        m1 = {**m0, "start_line": r["id"], "cold_open_lines": []}
+        try:
+            c = ws.build_clip(ep, m1, vcfg["cut"], no_lift=True)
+        except ws.Reject as e:
+            why.append(f"{r['id']}: {e}")
+            continue
+        t = render_clip(ep, {"time_segments": c["time_segments"], "cold_open": False}, "C1").first_start(stop)
+        if t is None or t > lim_s + 1e-6:
+            why.append(f"{r['id']}: stop plays at {'-' if t is None else f'{t:.1f} s'} (> {lim_s:g} s)")
+            continue
+        if c["video_duration"] < min_s - 1e-9:
+            why.append(f"{r['id']}: plays {c['video_duration']:.1f} s (< min {min_s:g} s)")
+            continue
+        return c, m1, (f"start advanced {start} -> {r['id']} ({n} spoken line(s) skipped): stop {stop} plays at "
+                       f"{t:.1f} s" + (f" (passed over: {'; '.join(why)})" if why else ""))
+    if not why:
+        why.append(f"no spoken line between {start} and the stop")
+    gap = sp_idx[stop] - i0
+    if gap > int(cc["advance_max_lines"]):
+        why.append(f"the stop is {gap} spoken lines after {start}: a start within {int(cc['advance_max_lines'])} "
+                   f"lines leaves it late")
+    return None, None, "; ".join(why)
+
+
 def build_v2(ep: ws.Episode, x: dict, vcfg: dict, cfg: dict, lift_ok: set) -> dict:
     """0.2 build (cold_open.rule "fallback" / check.land_late "trim"): v1's cut builder with the stop fallback and the
-    land-last trim. Updates x["moment"], x["emo"]["stop"] (case, cold_open) and x["flags"]; raises Rejected (B1)."""
+    land-last trim. Updates x["moment"], x["emo"]["stop"] (case, cold_open, hook_fix) and x["flags"]; raises
+    Rejected (B1).
+    Case B (a cold-open lift asked): a single line is lifted when v1's lift checks pass. When the next spoken line has
+    the same Scribe speaker label (``cold_open.same_speaker``) and ``turn_lift`` is on, the whole same-speaker run
+    starting at the stop is lifted as ONE cold open (case "B1_turn_lift": turn_lift_refusal, then v1's lift checks on
+    the run; the in-place skip removes the whole run, one internal cut, nothing replayed). A refused lift: a weak
+    start_line advances to the stop ("B_refused_advance_start", as before); else, when the stop would play after
+    check.stop_window_s, ``start_advance`` ("B2_start_advance"); else the clip plays from start_line
+    ("B_refused_play_start"; hook_fix "stop_not_first" when the stop still plays late)."""
     m, emo, flags = x["moment"], x["emo"], x["flags"]
     cc, ck = cfg.get("cold_open") or {}, cfg["check"]
     stop, land = emo["stop"]["line"], emo["land"]["line"]
@@ -629,19 +805,34 @@ def build_v2(ep: ws.Episode, x: dict, vcfg: dict, cfg: dict, lift_ok: set) -> di
     def once(m0: dict):
         case = emo["stop"].get("case")
         if case is None:            # cold_open.rule "v1": the moment as answered (check_built judges the lift)
-            return ws.build_clip(ep, m0, vcfg["cut"]), m0, None, None
+            return ws.build_clip(ep, m0, vcfg["cut"]), m0, None, None, None
         if case != "B_lift":
-            return ws.build_clip(ep, {**m0, "cold_open_lines": []}, vcfg["cut"]), m0, case, None
+            return ws.build_clip(ep, {**m0, "cold_open_lines": []}, vcfg["cut"]), m0, case, None, None
         refuse = None
         same = same_speaker_next(ep, stop) if cc.get("same_speaker") else None
-        if same:
+        enforce = (cfg.get("lift_ok") or {}).get("enforce")
+        if same and cc.get("turn_lift"):
+            run = turn_run(ep, stop)
+            refuse = turn_lift_refusal(ep, run, m0["start_line"], m0["end_line"], land, cc)
+            if refuse is None and enforce and stop not in lift_ok:
+                refuse = "not offered as a liftable line"
+            if refuse is None:
+                m1 = {**m0, "cold_open_lines": run}
+                c0 = ws.build_clip(ep, m1, vcfg["cut"])
+                if c0["cold_open"]:
+                    return c0, m1, "B1_turn_lift", (f"cold open {stop}: same speaker continues in {same}; the whole "
+                                                    f"turn {'+'.join(run)} is lifted"), "B1_turn_lift"
+                refuse = f"turn {'+'.join(run)}: {c0.get('lift_rejected') or 'lift not built'}"
+            refuse = (f"same speaker continues in {same} (Scribe label {ep.by_id[stop].get('speaker')}); "
+                      f"turn lift refused: {refuse}")
+        elif same:
             refuse = f"same speaker continues in {same} (Scribe label {ep.by_id[stop].get('speaker')})"
-        elif (cfg.get("lift_ok") or {}).get("enforce") and stop not in lift_ok:
+        elif enforce and stop not in lift_ok:
             refuse = "not offered as a liftable line"
         else:
             c0 = ws.build_clip(ep, m0, vcfg["cut"])
             if c0["cold_open"]:
-                return c0, m0, case, None
+                return c0, m0, case, None, None
             refuse = c0.get("lift_rejected") or "lift not built"
         start = m0["start_line"]
         weak = _weak_start(ep, start, cc)
@@ -650,15 +841,23 @@ def build_v2(ep: ws.Episode, x: dict, vcfg: dict, cfg: dict, lift_ok: set) -> di
             m1 = {**m0, "start_line": stop, "cold_open_lines": []}
             note = (f"cold open {stop} refused ({refuse}); start_line {start} is weak ({weak}): the clip starts on "
                     f"{stop}")
-            return ws.build_clip(ep, m1, vcfg["cut"], no_lift=True), m1, "B_refused_advance_start", note
+            return ws.build_clip(ep, m1, vcfg["cut"], no_lift=True), m1, "B_refused_advance_start", note, None
         m1 = {**m0, "cold_open_lines": []}
+        c1 = ws.build_clip(ep, m1, vcfg["cut"], no_lift=True)
         note = f"cold open {stop} refused ({refuse}); played in place, the clip starts on {start}"
-        return ws.build_clip(ep, m1, vcfg["cut"], no_lift=True), m1, "B_refused_play_start", note
+        t = render_clip(ep, {"time_segments": c1["time_segments"], "cold_open": False}, "C1").first_start(stop)
+        late = t is None or t > float(ck["stop_window_s"]) + 1e-6
+        if late and cc.get("start_advance"):
+            c2, m2, why = start_advance(ep, m1, stop, land, vcfg, cfg)
+            if c2 is not None:
+                return c2, m2, "B2_start_advance", f"cold open {stop} refused ({refuse}); {why}", "B2_start_advance"
+            note += f"; start advance refused ({why})"
+        return c1, m1, "B_refused_play_start", note, "stop_not_first" if late else None
 
     cur = m
     for _ in range(50):
         try:
-            c, used, case, note = once(cur)
+            c, used, case, note, hook = once(cur)
         except ws.Reject as e:
             raise Rejected("B1", str(e)) from e
         if ck.get("land_late", "reject") != "trim":
@@ -679,15 +878,23 @@ def build_v2(ep: ws.Episode, x: dict, vcfg: dict, cfg: dict, lift_ok: set) -> di
     if case is not None:
         emo["stop"]["case"] = case
         emo["stop"]["cold_open"] = bool(c["cold_open"])
+        if c["cold_open"] and len(c["cold_open"]["lines"]) > 1:
+            emo["stop"]["lines"] = list(c["cold_open"]["lines"])
+            emo["stop"]["text"] = " ".join(ws3.line_text(ep, i) for i in c["cold_open"]["lines"])
+    if hook:
+        emo["stop"]["hook_fix"] = hook
     return c
 
 
 def check_built(ep: ws.Episode, c: dict, emo: dict, cfg: dict) -> dict:
     """The clip as played: the stop line must open it (a requested lift must have passed v1's lift checks) and start
-    within check.stop_window_s; the land line must be among the last check.land_last_lines spoken lines. Raises
-    Rejected (K1 / K2); returns the measured positions."""
+    within check.stop_window_s (a B2 start advance: within cold_open.advance_stop_s, the window it was built to); the
+    land line must be among the last check.land_last_lines spoken lines. Raises Rejected (K1 / K2); returns the
+    measured positions."""
     from shotvi.select.emotion_select import render_clip
     win, n = float(cfg["check"]["stop_window_s"]), int(cfg["check"]["land_last_lines"])
+    if emo["stop"].get("case") == "B2_start_advance":
+        win = max(win, float(cfg["cold_open"]["advance_stop_s"]))
     flag_late = cfg["check"].get("stop_late", "reject") == "flag"
     stop, land = emo["stop"]["line"], emo["land"]["line"]
     if emo["stop"]["cold_open"] and not c["cold_open"]:
@@ -970,7 +1177,8 @@ def run_episode(vid: str, cfg: dict, llm, guard: ws.Guard, out_dir: Path, log=pr
     if not f_hit and not dry_run:
         guard.check(f"{vid} episode (cache + find + one build, worst case)", storage + f_worst + b_worst)
 
-    lift_ids = lift_ok_lines(ep, vcfg["cut"], cfg)
+    lift_runs: dict = {}
+    lift_ids = lift_ok_lines(ep, vcfg["cut"], cfg, runs_out=lift_runs)
     lift_set = set(lift_ids)
     v2_build = (cfg.get("cold_open") or {}).get("rule", "v1") == "fallback" or \
         cfg["check"].get("land_late", "reject") == "trim"
@@ -1003,7 +1211,7 @@ def run_episode(vid: str, cfg: dict, llm, guard: ws.Guard, out_dir: Path, log=pr
         strength = {k["target"]["id"]: k["strength"] for k in clusters}
         ctx_of = {k["target"]["id"]: k["context"] for k in clusters}
         order = [k["target"] for k in sorted(clusters, key=lambda k: (-k["strength"], ep.pos[k["target"]["line"]]))]
-        tasks = {p["id"]: task_build(cfg, ep, p, lift_ids, ctx_of[p["id"]]) for p in order}
+        tasks = {p["id"]: task_build(cfg, ep, p, lift_ids, ctx_of[p["id"]], lift_runs) for p in order}
         if (cfg.get("cluster") or {}).get("enabled"):
             debug["clusters"] = [cluster_public(k) for k in clusters]
             if moments is not None:
@@ -1032,11 +1240,11 @@ def run_episode(vid: str, cfg: dict, llm, guard: ws.Guard, out_dir: Path, log=pr
                 long_line = max((r for r in ep.lines if ep.is_speech(r)), key=lambda r: len(ws3.line_text(ep, r["id"])))
                 sample = {"line": long_line["id"], "text": ws3.line_text(ep, long_line["id"]), "emotion": "laugh",
                           "intensity": 5, "lands_on_screen": True, "reason": "x" * 300, "type": "punchline"}
-                t_sample = tok.text(task_build(cfg, ep, sample, lift_ids))
+                t_sample = tok.text(task_build(cfg, ep, sample, lift_ids, runs=lift_runs))
                 proj = project(cfg, acfg, spec_f, spec_b, t_cache, t_find, f_hit, None, n_est, t_sample,
                                cap if cap is not None else PROJ_CAP)
             proj["token_source"] = tok.src
-            extra: dict = {"n_lift_ok": len(lift_ids)}
+            extra: dict = {"n_lift_ok": len(lift_ids), **({"n_lift_ok_runs": len(lift_runs)} if lift_runs else {})}
             if est_basis:
                 extra["moments_basis"] = est_basis
             if (cfg.get("cluster") or {}).get("enabled") and moments is not None:

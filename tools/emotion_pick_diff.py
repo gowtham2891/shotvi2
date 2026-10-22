@@ -1,6 +1,6 @@
 """Before / after table of two emotion_pick runs (same episodes, e.g. runs/emotion1 vs runs/emotion2/code_only).
 
-Per episode, every clip id of either run: start_line, end_line, stop.line (+ case), land.line, title, play length
+Per episode, every clip id of either run: start_line, end_line, stop.line (+ case, hook_fix), land.line, title, play length
 and status (shown / rejected with its code), before -> after, marked KEPT NOW (dropped before), DROPPED NOW (shown
 before), CHANGED (boundaries / stop / land / length) or same. Reads only the two run documents.
 
@@ -19,6 +19,7 @@ def rows_of(doc: dict) -> dict:
     for p in doc.get("proposals") or []:
         out[p["id"]] = {"status": "shown", "start": p.get("start_line"), "end": p.get("end_line"),
                         "stop": (p.get("stop") or {}).get("line"), "case": (p.get("stop") or {}).get("case"),
+                        "hook_fix": (p.get("stop") or {}).get("hook_fix"),
                         "cold": bool(p.get("cold_open")), "land": (p.get("land") or {}).get("line"),
                         "title": p.get("title") or "", "plays": p.get("video_duration"),
                         "moment": (p.get("moment") or {}).get("line"), "flags": p.get("build_flags") or []}
@@ -39,7 +40,10 @@ def cell(r: dict | None) -> str:
     if r is None:
         return "-"
     pl = f"{r['plays']:.1f}s" if isinstance(r.get("plays"), (int, float)) else "-"
-    stop = (r.get("stop") or "-") + (" (cold open)" if r.get("cold") else "") + (f" [{r['case']}]" if r.get("case") else "")
+    case = r.get("case") or ""
+    if r.get("hook_fix") and r["hook_fix"] != case:
+        case = f"{case}; {r['hook_fix']}" if case else r["hook_fix"]
+    stop = (r.get("stop") or "-") + (" (cold open)" if r.get("cold") else "") + (f" [{case}]" if case else "")
     return f"{r.get('start') or '-'}..{r.get('end') or '-'} | stop {stop} | land {r.get('land') or '-'} | {pl} | {r['status']}"
 
 

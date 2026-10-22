@@ -4,7 +4,7 @@
  "video_id": "Sy8yZ4DgzrU",
  "transcript": {
   "path": "scribe_dataset/Sy8yZ4DgzrU/Sy8yZ4DgzrU_scribe_transcript.json",
-  "sha256": "e35aae9eef166554ceb325a8f5c6bc88a42416082808989c38f8be234fd9e8d0",
+  "sha256": "3dbb892a887a2b31141ce57f08d61a80df655e7a14613731d3d20888e55cfcae",
   "n_words": 2144,
   "audio_duration_secs": 1435.8535
  },
@@ -12,7 +12,7 @@
   "skip_s": 30.0
  },
  "run_id": "code_only",
- "created_at": "2026-10-16T13:36:02Z",
+ "created_at": "2026-10-22T08:18:34Z",
  "content_type": "web_series",
  "pipeline": {
   "version": "emotion_pick/0.2-code_only",
@@ -55,7 +55,11 @@
    "ctx": {
     "speaker_names": true
    },
-   "v1": {},
+   "v1": {
+    "guardrails": {
+     "min_s": 10.0
+    }
+   },
    "find": {
     "min_intensity": 3,
     "extra_types": []
@@ -100,7 +104,8 @@
      "yeah"
     ],
     "ack_max_words": 2,
-    "same_speaker": true
+    "same_speaker": true,
+    "turn_runs": true
    },
    "cluster": {
     "enabled": false,
@@ -130,6 +135,11 @@
     "weak_advance_lines": 4,
     "weak_max_words": 2,
     "weak_min_s": 1.0,
+    "turn_lift": true,
+    "turn_max_s": 3.6,
+    "start_advance": true,
+    "advance_max_lines": 4,
+    "advance_stop_s": 5.0,
     "greetings": [
      "hello",
      "hi",
@@ -197,7 +207,7 @@
   "output_tokens": 28030,
   "usd": 0.11781,
   "usd_billed": 0.0,
-  "wall_time_secs": 0.5,
+  "wall_time_secs": 0.1,
   "n_llm_calls": 5,
   "by_role": {
    "ws_emotion_build": {
@@ -455,6 +465,7 @@
     "why": "A proud husband playfully announcing \"ఇప్పటి నుండి మీ ఆయన కూడా సంపాదిస్తాడు\" immediately grabs attention with charming marital banter.",
     "cold_open": false,
     "case": "B_refused_play_start",
+    "hook_fix": "stop_not_first",
     "via": "start_line",
     "plays_at_s": 17.0
    },
@@ -477,7 +488,7 @@
     "lands_on_screen": false
    },
    "build_flags": [
-    "cold open L0384 refused (same speaker continues in L0385 (Scribe label speaker_1)); played in place, the clip starts on L0372",
+    "cold open L0384 refused (same speaker continues in L0385 (Scribe label speaker_1); turn lift refused: the turn L0384+L0385+L0386 is 6.3 s of speech (> 3.6 s)); played in place, the clip starts on L0372; start advance refused (L0373: skipped question L0372 is answered by L0375, still in the clip; L0374: skipped question L0372 is answered by L0375, still in the clip; L0375: skipped question L0372 is answered by L0375, still in the clip; L0376: stop plays at 11.7 s (> 5 s); the stop is 12 spoken lines after L0372: a start within 4 lines leaves it late)",
     "stop_not_first: stop line L0384 starts at 17.0 s of playback (> 3 s)"
    ]
   },

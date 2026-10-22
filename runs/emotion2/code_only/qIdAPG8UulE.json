@@ -4,7 +4,7 @@
  "video_id": "qIdAPG8UulE",
  "transcript": {
   "path": "scribe_dataset/qIdAPG8UulE/qIdAPG8UulE_scribe_transcript.json",
-  "sha256": "2a5c9fe404b84d4b41859ad83abe4bcb0bd25348b718020d0517d4bfca153637",
+  "sha256": "58d81fb46c6ab22bc42865d8ebdaea7198c335c5070d071aadad048ad20f93df",
   "n_words": 3475,
   "audio_duration_secs": 2179.3935
  },
@@ -12,7 +12,7 @@
   "skip_s": 30.0
  },
  "run_id": "code_only",
- "created_at": "2026-10-16T13:36:03Z",
+ "created_at": "2026-10-22T08:18:35Z",
  "content_type": "web_series",
  "pipeline": {
   "version": "emotion_pick/0.2-code_only",
@@ -55,7 +55,11 @@
    "ctx": {
     "speaker_names": true
    },
-   "v1": {},
+   "v1": {
+    "guardrails": {
+     "min_s": 10.0
+    }
+   },
    "find": {
     "min_intensity": 3,
     "extra_types": []
@@ -100,7 +104,8 @@
      "yeah"
     ],
     "ack_max_words": 2,
-    "same_speaker": true
+    "same_speaker": true,
+    "turn_runs": true
    },
    "cluster": {
     "enabled": false,
@@ -130,6 +135,11 @@
     "weak_advance_lines": 4,
     "weak_max_words": 2,
     "weak_min_s": 1.0,
+    "turn_lift": true,
+    "turn_max_s": 3.6,
+    "start_advance": true,
+    "advance_max_lines": 4,
+    "advance_stop_s": 5.0,
     "greetings": [
      "hello",
      "hi",
@@ -197,7 +207,7 @@
   "output_tokens": 67357,
   "usd": 0.299,
   "usd_billed": 0.0,
-  "wall_time_secs": 0.8,
+  "wall_time_secs": 0.1,
   "n_llm_calls": 13,
   "by_role": {
    "ws_emotion_build": {

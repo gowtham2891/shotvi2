@@ -1,4 +1,4 @@
-# runs\emotion1 vs runs\emotion2\code_only
+# runs/emotion1 vs runs/emotion2/code_only
 
 
 ## 5HqkHAZfzos: shown 3 -> 4
@@ -8,16 +8,33 @@
 | e01 | L0061 | -..- | stop - | land - | - | rejected N0 | -..- | stop - | land - | - | rejected N0 | same |  |
 | e02 | L0245 | -..- | stop - | land - | - | rejected N0 | -..- | stop - | land - | - | rejected N0 | same |  |
 | e03 | L0294 | L0287..L0296 | stop L0287 | land L0294 | 26.6s | shown | L0287..L0296 | stop L0287 [start_line] | land L0294 | 26.6s | shown | same | అమ్మకి Mona ఇచ్చిన surprise gift |
-| e04 | L0356 | L0330..L0358 | stop L0355 (cold open) | land L0356 | 37.6s | rejected K2 | L0330..L0357 | stop L0355 [B_refused_play_start] | land L0356 | 31.0s | shown | KEPT NOW (dropped before) | అమ్మ కోసం మోనా తీసుకున్న నిర్ణయం |
-| e05 | L0374 | L0372..L0374 | stop L0372 | land L0374 | 10.5s | rejected L1 | L0372..L0374 | stop L0372 [start_line] | land L0374 | 10.5s | rejected L1 | same | Followers లా కాదు.. Notice చేస్తా! |
+| e04 | L0356 | L0330..L0358 | stop L0355 (cold open) | land L0356 | 37.6s | rejected K2 | L0330..L0357 | stop L0355 [B_refused_play_start; stop_not_first] | land L0356 | 31.0s | shown | KEPT NOW (dropped before) | అమ్మ కోసం మోనా తీసుకున్న నిర్ణయం |
+| e05 | L0374 | L0372..L0374 | stop L0372 | land L0374 | 10.5s | rejected L1 | L0372..L0374 | stop L0372 [start_line] | land L0374 | 10.5s | rejected D1 | CHANGED: status | Followers లా కాదు.. Notice చేస్తా! |
 | e06 | L0409 | L0372..L0409 | stop L0372 | land L0409 | 105.1s | shown | L0372..L0409 | stop L0372 [start_line] | land L0409 | 105.1s | shown | same | Followers మధ్యలో నా స్థానం ఏంటి? |
 | e07 | L0423 | L0415..L0423 | stop L0415 | land L0423 | 25.7s | shown | L0415..L0423 | stop L0415 [start_line] | land L0423 | 25.7s | shown | same | నాన్న సీరియస్ వార్నింగ్ |
 
 - e04: land L0356 not among the last 3 spoken lines as played (last: L0357, L0358, L0359); end_line L0358 trimmed to L0357
 
-- e04: cold open L0355 refused (same speaker continues in L0356 (Scribe label speaker_7)); played in place, the clip starts on L0330
+- e04: cold open L0355 refused (same speaker continues in L0356 (Scribe label speaker_7); turn lift refused: the turn L0355+L0356+L0357 reaches the end line L0357); played in place, the clip starts on L0330; start advance refused (L0331: stop plays at 19.1 s (> 5 s); L0332: stop plays at 17.4 s (> 5 s); L0333: stop plays at 15.2 s (> 5 s); L0334: stop plays at 13.5 s (> 5 s); the stop is 24 spoken lines after L0330: a start within 4 lines leaves it late)
 
 - e04: stop_not_first: stop line L0355 starts at 21.1 s of playback (> 3 s)
+
+- e05: D1: duplicate of clip e06 (100% of the shorter; strength 4 vs 5, plays 10 s vs 105 s; higher strength wins)
+
+## Sy8yZ4DgzrU: shown 4 -> 3
+
+| clip | moment | before: start..end, stop, land, plays, status | after | change | title (after) |
+|---|---|---|---|---|---|
+| e01 | L0029 | L0014..L0029 | stop L0014 | land L0029 | 31.8s | shown | L0014..L0029 | stop L0014 [start_line] | land L0029 | 31.8s | shown | same | నిద్రలో వెళ్ళలేదు.. కావాలనే వెళ్ళా! |
+| e02 | L0391 | L0372..L0391 | stop L0384 (cold open) | land L0391 | 42.1s | shown | L0372..L0391 | stop L0384 [B_refused_play_start; stop_not_first] | land L0391 | 42.7s | shown | CHANGED: plays, cold | నువ్వు ఇంట్లో ఉండి నన్ను ప్రేమిస్తే చాలు |
+| e03 | L0519 | L0470..L0520 | stop L0470 | land L0519 | 116.9s | shown | L0470..L0520 | stop L0470 [start_line] | land L0519 | 116.9s | shown | same | ఇది Self Respect కాదు Ego! |
+| e04 | L0525 | L0517..L0526 | stop L0517 | land L0525 | 26.0s | shown | L0517..L0526 | stop L0517 [start_line] | land L0525 | 26.0s | rejected D1 | DROPPED NOW (shown before) | ఆత్మగౌరవమా లేక Ego నా? |
+
+- e02: cold open L0384 refused (same speaker continues in L0385 (Scribe label speaker_1); turn lift refused: the turn L0384+L0385+L0386 is 6.3 s of speech (> 3.6 s)); played in place, the clip starts on L0372; start advance refused (L0373: skipped question L0372 is answered by L0375, still in the clip; L0374: skipped question L0372 is answered by L0375, still in the clip; L0375: skipped question L0372 is answered by L0375, still in the clip; L0376: stop plays at 11.7 s (> 5 s); the stop is 12 spoken lines after L0372: a start within 4 lines leaves it late)
+
+- e02: stop_not_first: stop line L0384 starts at 17.0 s of playback (> 3 s)
+
+- e04: D1: duplicate of clip e03 (43% of the shorter; strength 4 vs 4, plays 26 s vs 117 s; the longer clip wins: plays the other's land line)
 
 ## fjGrX8aBVAc: shown 6 -> 6
 
@@ -53,18 +70,3 @@
 - e06: D1: duplicate of clip e07 (100% of the shorter; strength 4 vs 4, plays 33 s vs 80 s; the longer clip wins: plays the other's land line)
 
 - e08: D1: duplicate of clip e10 (70% of the shorter; strength 4 vs 4, plays 30 s vs 42 s; tie-break: 30-75 s play, then the later end)
-
-## Sy8yZ4DgzrU: shown 4 -> 3
-
-| clip | moment | before: start..end, stop, land, plays, status | after | change | title (after) |
-|---|---|---|---|---|---|
-| e01 | L0029 | L0014..L0029 | stop L0014 | land L0029 | 31.8s | shown | L0014..L0029 | stop L0014 [start_line] | land L0029 | 31.8s | shown | same | నిద్రలో వెళ్ళలేదు.. కావాలనే వెళ్ళా! |
-| e02 | L0391 | L0372..L0391 | stop L0384 (cold open) | land L0391 | 42.1s | shown | L0372..L0391 | stop L0384 [B_refused_play_start] | land L0391 | 42.7s | shown | CHANGED: plays, cold | నువ్వు ఇంట్లో ఉండి నన్ను ప్రేమిస్తే చాలు |
-| e03 | L0519 | L0470..L0520 | stop L0470 | land L0519 | 116.9s | shown | L0470..L0520 | stop L0470 [start_line] | land L0519 | 116.9s | shown | same | ఇది Self Respect కాదు Ego! |
-| e04 | L0525 | L0517..L0526 | stop L0517 | land L0525 | 26.0s | shown | L0517..L0526 | stop L0517 [start_line] | land L0525 | 26.0s | rejected D1 | DROPPED NOW (shown before) | ఆత్మగౌరవమా లేక Ego నా? |
-
-- e02: cold open L0384 refused (same speaker continues in L0385 (Scribe label speaker_1)); played in place, the clip starts on L0372
-
-- e02: stop_not_first: stop line L0384 starts at 17.0 s of playback (> 3 s)
-
-- e04: D1: duplicate of clip e03 (43% of the shorter; strength 4 vs 4, plays 26 s vs 117 s; the longer clip wins: plays the other's land line)

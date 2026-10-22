@@ -4,7 +4,7 @@
  "video_id": "5HqkHAZfzos",
  "transcript": {
   "path": "scribe_dataset/5HqkHAZfzos/5HqkHAZfzos_scribe_transcript.json",
-  "sha256": "274907d7e90493dca591f246339c3c98d10b8a04754a36ab522bec07a36b31ec",
+  "sha256": "b32029f645072df8bc72c35ff24634510abf4573f590d48b23644cb283d5f645",
   "n_words": 1566,
   "audio_duration_secs": 1321.5405
  },
@@ -12,7 +12,7 @@
   "skip_s": 30.0
  },
  "run_id": "code_only",
- "created_at": "2026-10-16T13:36:01Z",
+ "created_at": "2026-10-22T08:18:34Z",
  "content_type": "web_series",
  "pipeline": {
   "version": "emotion_pick/0.2-code_only",
@@ -55,7 +55,11 @@
    "ctx": {
     "speaker_names": true
    },
-   "v1": {},
+   "v1": {
+    "guardrails": {
+     "min_s": 10.0
+    }
+   },
    "find": {
     "min_intensity": 3,
     "extra_types": []
@@ -100,7 +104,8 @@
      "yeah"
     ],
     "ack_max_words": 2,
-    "same_speaker": true
+    "same_speaker": true,
+    "turn_runs": true
    },
    "cluster": {
     "enabled": false,
@@ -130,6 +135,11 @@
     "weak_advance_lines": 4,
     "weak_max_words": 2,
     "weak_min_s": 1.0,
+    "turn_lift": true,
+    "turn_max_s": 3.6,
+    "start_advance": true,
+    "advance_max_lines": 4,
+    "advance_stop_s": 5.0,
     "greetings": [
      "hello",
      "hi",
@@ -197,7 +207,7 @@
   "output_tokens": 50074,
   "usd": 0.20753,
   "usd_billed": 0.0,
-  "wall_time_secs": 0.5,
+  "wall_time_secs": 0.1,
   "n_llm_calls": 8,
   "by_role": {
    "ws_emotion_build": {
@@ -239,7 +249,7 @@
   "show_rule": "emotion_pick: every clip that passes the build checks (stop first, land last, v1 hard rules) and the dedupe; no review, no score",
   "order": "episode order",
   "n_candidates": 7,
-  "n_passed_hard_rules": 4,
+  "n_passed_hard_rules": 5,
   "n_shown": 4,
   "n_rejected": 3,
   "warnings": []
@@ -498,6 +508,7 @@
     "why": "A daughter's blunt emotional objection about her mother having to plead for petty cash ('నువ్వు వందో, రెండొందలకి నాన్నని అడగడం నాకు నచ్చట్లేదు') hooks viewers immediately.",
     "cold_open": false,
     "case": "B_refused_play_start",
+    "hook_fix": "stop_not_first",
     "via": "start_line",
     "plays_at_s": 21.06
    },
@@ -522,7 +533,7 @@
    },
    "build_flags": [
     "land L0356 not among the last 3 spoken lines as played (last: L0357, L0358, L0359); end_line L0358 trimmed to L0357",
-    "cold open L0355 refused (same speaker continues in L0356 (Scribe label speaker_7)); played in place, the clip starts on L0330",
+    "cold open L0355 refused (same speaker continues in L0356 (Scribe label speaker_7); turn lift refused: the turn L0355+L0356+L0357 reaches the end line L0357); played in place, the clip starts on L0330; start advance refused (L0331: stop plays at 19.1 s (> 5 s); L0332: stop plays at 17.4 s (> 5 s); L0333: stop plays at 15.2 s (> 5 s); L0334: stop plays at 13.5 s (> 5 s); the stop is 24 spoken lines after L0330: a start within 4 lines leaves it late)",
     "stop_not_first: stop line L0355 starts at 21.1 s of playback (> 3 s)"
    ],
    "check_note": "reaction L0358 is not played (the end hold shows the reaction)"
@@ -819,75 +830,6 @@
    "text": "నాన్న తిడతాడు అంటూ reels చించేస్తావ్."
   },
   {
-   "id": "e05",
-   "tier": "rejected",
-   "source": "emotion_pick",
-   "reject_reasons": [
-    "L1: plays 10.5 s < min 15 s"
-   ],
-   "moment": {
-    "id": "p05",
-    "line": "L0374",
-    "text": "నేను నిన్ను notice చేస్తా.",
-    "feeling": "aww",
-    "intensity": 4,
-    "why": "Sukku delivers a charming one-liner contrasting shallow social media followers with genuine personal affection ('నీ followers నిన్ను observe చేస్తారు. నేను నిన్ను notice చేస్తా').",
-    "type": "quotable_line",
-    "lands_on_screen": true
-   },
-   "stop": {
-    "line": "L0372",
-    "text": "so నువ్వు కూడా నా followers అనే observe చేస్తున్నావా?",
-    "why": "A stranger scrolling stops for Mona's direct and playful question, \"so నువ్వు కూడా నా followers లానే observe చేస్తున్నావా?\".",
-    "cold_open": false,
-    "case": "start_line"
-   },
-   "stay": "Will Sukku admit he is just another follower, or does he see her differently?",
-   "land": {
-    "line": "L0374",
-    "text": "నేను నిన్ను notice చేస్తా.",
-    "reaction": "hold"
-   },
-   "reason": "Viewer stops because Mona teasingly asks if he just watches her like her social media followers, stays to find out his reply, and it ends on Sukku's charming distinction that he notices her for who she is (aww).",
-   "title": "Followers లా కాదు.. Notice చేస్తా!",
-   "pieces": [
-    {
-     "start_word": 1260,
-     "end_word": 1276,
-     "start": 992.45,
-     "end": 1000.61
-    }
-   ],
-   "region": {
-    "start_word": 1260,
-    "end_word": 1276,
-    "start": 992.45,
-    "end": 1000.61
-   },
-   "edited_duration": 8.16,
-   "reordered": false,
-   "n_blocks": 1,
-   "text": "so నువ్వు కూడా నా followers అనే observe చేస్తున్నావా? నీ followers నిన్ను observe చేస్తారు. నేను నిన్ను notice చేస్తా.",
-   "time_segments": [
-    {
-     "start": 992.15,
-     "end": 1002.61,
-     "kind": "scene"
-    }
-   ],
-   "video_duration": 10.46,
-   "start_line": "L0372",
-   "end_line": "L0374",
-   "cold_open": false,
-   "build_moment": {
-    "purpose": "standalone",
-    "start_line": "L0372",
-    "end_line": "L0374",
-    "cold_open_lines": [],
-    "drops": []
-   }
-  },
-  {
    "id": "e01",
    "tier": "rejected",
    "source": "emotion_pick",
@@ -943,10 +885,80 @@
    "reordered": false,
    "n_blocks": 1,
    "text": "నాకు ఇచ్చినా బాగుండు."
+  },
+  {
+   "id": "e05",
+   "tier": "rejected",
+   "source": "emotion_pick",
+   "reject_reasons": [
+    "D1: duplicate of clip e06 (100% of the shorter; strength 4 vs 5, plays 10 s vs 105 s; higher strength wins)"
+   ],
+   "moment": {
+    "id": "p05",
+    "line": "L0374",
+    "text": "నేను నిన్ను notice చేస్తా.",
+    "feeling": "aww",
+    "intensity": 4,
+    "why": "Sukku delivers a charming one-liner contrasting shallow social media followers with genuine personal affection ('నీ followers నిన్ను observe చేస్తారు. నేను నిన్ను notice చేస్తా').",
+    "type": "quotable_line",
+    "lands_on_screen": true
+   },
+   "dup_of": "e06",
+   "stop": {
+    "line": "L0372",
+    "text": "so నువ్వు కూడా నా followers అనే observe చేస్తున్నావా?",
+    "why": "A stranger scrolling stops for Mona's direct and playful question, \"so నువ్వు కూడా నా followers లానే observe చేస్తున్నావా?\".",
+    "cold_open": false,
+    "case": "start_line"
+   },
+   "stay": "Will Sukku admit he is just another follower, or does he see her differently?",
+   "land": {
+    "line": "L0374",
+    "text": "నేను నిన్ను notice చేస్తా.",
+    "reaction": "hold"
+   },
+   "reason": "Viewer stops because Mona teasingly asks if he just watches her like her social media followers, stays to find out his reply, and it ends on Sukku's charming distinction that he notices her for who she is (aww).",
+   "title": "Followers లా కాదు.. Notice చేస్తా!",
+   "pieces": [
+    {
+     "start_word": 1260,
+     "end_word": 1276,
+     "start": 992.45,
+     "end": 1000.61
+    }
+   ],
+   "region": {
+    "start_word": 1260,
+    "end_word": 1276,
+    "start": 992.45,
+    "end": 1000.61
+   },
+   "edited_duration": 8.16,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "so నువ్వు కూడా నా followers అనే observe చేస్తున్నావా? నీ followers నిన్ను observe చేస్తారు. నేను నిన్ను notice చేస్తా.",
+   "time_segments": [
+    {
+     "start": 992.15,
+     "end": 1002.61,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 10.46,
+   "start_line": "L0372",
+   "end_line": "L0374",
+   "cold_open": false,
+   "build_moment": {
+    "purpose": "standalone",
+    "start_line": "L0372",
+    "end_line": "L0374",
+    "cold_open_lines": [],
+    "drops": []
+   }
   }
  ],
  "episode_note": {
-  "text": "7 moments a stranger would feel; 7 built by the build call; 3 rejected (L1 1, N0 2); 0 duplicates dropped; 4 shown, in episode order."
+  "text": "7 moments a stranger would feel; 7 built by the build call; 2 rejected (N0 2); 1 duplicates dropped; 4 shown, in episode order."
  },
  "episode_summary": {
   "n_moments_listed": 7,
@@ -972,11 +984,11 @@
   "n_call_failed": 0,
   "n_invalid": 0,
   "n_builder_rejected": 0,
-  "n_hard_rules": 1,
+  "n_hard_rules": 0,
   "n_stop_check_failed": 0,
   "n_land_check_failed": 0,
-  "n_built": 4,
-  "n_deduped": 0,
+  "n_built": 5,
+  "n_deduped": 1,
   "n_shown": 4,
   "shown_by_feeling": {
    "aww": 3,
@@ -990,16 +1002,16 @@
     "reason": "N0: no clip: The clip around this moment lacks a viable opening: starting after Deepak leaves is too flat for a scrolling stranger without a valid liftable cold-open line, while starting during Deepak's pitch bloats a short, punchy roast into an overlong scene."
    },
    {
-    "clip": "e05",
-    "moment": "p05",
-    "line": "L0374",
-    "reason": "L1: plays 10.5 s < min 15 s"
-   },
-   {
     "clip": "e01",
     "moment": "p01",
     "line": "L0061",
     "reason": "N0: no clip: The dialogue begins with flat, mid-conversation setup ('ఉమ్ అవును Sony వాళ్ళ friend...') that offers no scroll-stopping hook, and the payoff punchline cannot be cold-opened without ruining the landing."
+   },
+   {
+    "clip": "e05",
+    "moment": "p05",
+    "line": "L0374",
+    "reason": "D1: duplicate of clip e06 (100% of the shorter; strength 4 vs 5, plays 10 s vs 105 s; higher strength wins)"
    }
   ],
   "warnings": [],
@@ -1054,7 +1066,7 @@
    "text": "నేను నిన్ను notice చేస్తా.",
    "why": "Sukku delivers a charming one-liner contrasting shallow social media followers with genuine personal affection ('నీ followers నిన్ను observe చేస్తారు. నేను నిన్ను notice చేస్తా').",
    "status": "rejected",
-   "reason": "L1: plays 10.5 s < min 15 s"
+   "reason": "D1: duplicate of clip e06 (100% of the shorter; strength 4 vs 5, plays 10 s vs 105 s; higher strength wins)"
   },
   {
    "id": "p06",

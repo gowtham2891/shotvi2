@@ -1,0 +1,896 @@
+{
+ "schema_version": "1.1",
+ "kind": "proposals",
+ "video_id": "fjGrX8aBVAc",
+ "transcript": {
+  "path": "scribe_dataset/fjGrX8aBVAc/fjGrX8aBVAc_scribe_transcript.json",
+  "sha256": "d088921a43303dce3fcdf03afa66cedda76f825ce99b7ed481ebb874e38088df",
+  "n_words": 1365,
+  "audio_duration_secs": 1113.1335
+ },
+ "derived_params": {
+  "skip_s": 30.0
+ },
+ "run_id": "replay_fixAB",
+ "created_at": "2026-10-22T08:18:35Z",
+ "content_type": "web_series",
+ "pipeline": {
+  "version": "emotion_pick/0.2",
+  "git_commit": null,
+  "design": "founder 2026-10-16: emotion-first, two focused calls (find the moments a stranger feels; build stop / stay / land + the cut per moment); no review call",
+  "prompt_versions": {
+   "ws3_context": "1+e606d3c6",
+   "ws_emotion_find": "2+d8736a5e",
+   "ws_emotion_build": "2+19568511"
+  },
+  "prompt_files": {
+   "ws3_context": "ws3_context",
+   "ws_emotion_find": "ws_emotion_find",
+   "ws_emotion_build": "ws_emotion_build"
+  },
+  "config": {
+   "pipeline_version": "emotion_pick/0.2",
+   "find_prompt": "ws_emotion_find",
+   "models": {
+    "find": {
+     "provider": "gemini",
+     "model": "gemini-3.8-flash",
+     "params": {
+      "thinking_level": "high",
+      "max_output_tokens": 32768
+     }
+    },
+    "build": {
+     "provider": "gemini",
+     "model": "gemini-3.8-flash",
+     "params": {
+      "thinking_level": "medium",
+      "max_output_tokens": 8192
+     }
+    }
+   },
+   "prompts": {
+    "ws_emotion_build": "ws_emotion_build"
+   },
+   "ctx": {
+    "speaker_names": false
+   },
+   "v1": {
+    "guardrails": {
+     "min_s": 10.0
+    }
+   },
+   "find": {
+    "min_intensity": 3,
+    "extra_types": [
+     "cliffhanger"
+    ]
+   },
+   "lift_ok": {
+    "rule": "strict",
+    "enforce": true,
+    "min_speech_s": 1.0,
+    "max_speech_s": 3.6,
+    "continuations": [
+     "అందుకే",
+     "కానీ",
+     "సో",
+     "మరి",
+     "అలాగే",
+     "అయినా",
+     "అయితే",
+     "ఎందుకంటే",
+     "so",
+     "but",
+     "and",
+     "because"
+    ],
+    "acks": [
+     "అవునా",
+     "అవును",
+     "ఊ",
+     "ఊం",
+     "ఉమ్",
+     "సరే",
+     "హ్మ్",
+     "హా",
+     "ఆ",
+     "ఓ",
+     "ఓకే",
+     "అలాగా",
+     "ok",
+     "okay",
+     "hmm",
+     "hm",
+     "yes",
+     "yeah"
+    ],
+    "ack_max_words": 2,
+    "same_speaker": true,
+    "turn_runs": false
+   },
+   "cluster": {
+    "enabled": true,
+    "max_lines": 35,
+    "max_s": 50.0,
+    "music_min_s": 4.0,
+    "silence_gap_s": null,
+    "target_within": 1,
+    "max_span_s": 90.0
+   },
+   "build": {
+    "max_moments": 15,
+    "lift_before_s": 150.0,
+    "lift_after_s": 20.0,
+    "land_window_lines": 3,
+    "land_after_lines": 15,
+    "max_end_after_payoff_lines": 3,
+    "end_rule": "clamp",
+    "end_after_land_lines": 2,
+    "end_after_reaction_lines": 1
+   },
+   "cold_open": {
+    "rule": "fallback",
+    "same_speaker": true,
+    "near_lines": 2,
+    "near_s": 3.0,
+    "weak_advance_lines": 4,
+    "weak_max_words": 2,
+    "weak_min_s": 1.0,
+    "turn_lift": true,
+    "turn_max_s": 3.6,
+    "start_advance": true,
+    "advance_max_lines": 4,
+    "advance_stop_s": 5.0,
+    "greetings": [
+     "hello",
+     "hi",
+     "hey",
+     "హలో",
+     "హాయ్",
+     "నమస్తే",
+     "namaste",
+     "thank",
+     "thanks",
+     "you",
+     "bye",
+     "good",
+     "morning",
+     "evening",
+     "night"
+    ]
+   },
+   "check": {
+    "stop_window_s": 3.0,
+    "land_last_lines": 3,
+    "stop_late": "flag",
+    "land_late": "trim"
+   },
+   "dedupe": {
+    "rule": "scene",
+    "overlap": 0.35,
+    "prefer_play_s": [
+     30.0,
+     75.0
+    ],
+    "keep_longer": true,
+    "keep_longer_max_s": 120.0,
+    "short_tail_s": 30.0
+   },
+   "budget_usd": 3.0,
+   "calibrate_from": {
+    "ws3": "runs/ws3"
+   },
+   "run_id": "replay_fixAB"
+  }
+ },
+ "models": [
+  {
+   "role": "ws_emotion_find",
+   "provider": "gemini",
+   "model": "gemini-3.8-flash",
+   "params": {
+    "thinking_level": "high",
+    "max_output_tokens": 32768
+   }
+  },
+  {
+   "role": "ws_emotion_build",
+   "provider": "gemini",
+   "model": "gemini-3.8-flash",
+   "params": {
+    "thinking_level": "medium",
+    "max_output_tokens": 8192
+   }
+  }
+ ],
+ "cost": {
+  "input_tokens": 72191,
+  "output_tokens": 25739,
+  "usd": 0.10759,
+  "usd_billed": 0.0,
+  "wall_time_secs": 0.1,
+  "n_llm_calls": 5,
+  "by_role": {
+   "ws_emotion_build": {
+    "n_llm_calls": 4,
+    "n_cache_hits": 4,
+    "n_failed_attempts": 0,
+    "input_tokens": 58501,
+    "output_tokens": 15557,
+    "thought_tokens": 14470,
+    "cached_input_tokens": 51056,
+    "usd": 0.06775,
+    "usd_billed": 0.0,
+    "models": [
+     "gemini-3.8-flash"
+    ]
+   },
+   "ws_emotion_find": {
+    "n_llm_calls": 1,
+    "n_cache_hits": 1,
+    "n_failed_attempts": 0,
+    "input_tokens": 13690,
+    "output_tokens": 10182,
+    "thought_tokens": 9589,
+    "cached_input_tokens": 12764,
+    "usd": 0.03983,
+    "usd_billed": 0.0,
+    "models": [
+     "gemini-3.8-flash"
+    ]
+   }
+  },
+  "projection": null,
+  "cache": {
+   "mode": "explicit",
+   "key": "eb14ef32e4571d9e24016cc6"
+  }
+ },
+ "cutoff": {
+  "show_rule": "emotion_pick: every clip that passes the build checks (stop first, land last, v1 hard rules) and the dedupe; no review, no score",
+  "order": "episode order",
+  "n_candidates": 5,
+  "n_passed_hard_rules": 4,
+  "n_shown": 4,
+  "n_rejected": 0,
+  "warnings": []
+ },
+ "episode_notes": "A romantic comedy web series where rich guy Abhi hides his wealthy background under the alias 'Vijay' to work in a cafe and stay close to his crush Meera. Complications escalate when his childhood friend Harshitha, whom his father wants him to marry, tracks him down and repeatedly endangers his cover story. The climactic cliffhanger of Abhi's father barging into the cafe looking for him would spoil the episode's ending.",
+ "proposals": [
+  {
+   "id": "e02",
+   "pieces": [
+    {
+     "start_word": 341,
+     "end_word": 468,
+     "start": 242.72,
+     "end": 313.44
+    }
+   ],
+   "region": {
+    "start_word": 341,
+    "end_word": 468,
+    "start": 242.72,
+    "end": 313.44
+   },
+   "edited_duration": 70.72,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ఏంటి best friends ఏదో మాట్లాడుకుంటున్నట్టున్నారు? నీ గురించే. నా గురించా? నా గురించి ఏం మాట్లాడుకుంటున్నారు విజయ్? విజయా? నీ పేరు అభి కదా! ఇరికించేసింది. అభియా? అభి ఏంటి? ఆ అంటే నేను college లో shows చేసేటప్పుడు నా పేరు అభిరామ్ అన్నమాట. so వీళ్ళందరూ అభి అని పిలుస్తూ ఉంటారు. తను అలాగే చాలా jokes చేస్తూ ఉంటది. కాకపోతే అస్సలు నవ్వరాదు. ఉమ్. మీరిద్దరూ చాలా close friends అనుకుంటా. ఆ అవ్వాల్సి వచ్చింది. యా same university కదా. ఏ college? University of Melbourne. అబ్బా! ఆస్ట్రేలియాలో? నువ్వు ఆస్ట్రేలియాలో చదువుకున్నావా? మళ్ళీ joke వేస్తుంది. తను కొత్త కదా ఇంకా అలవాటు కాలే. Vizag లో కదా మనం చదివింది. హా. అవునులే ఆస్ట్రేలియాలో చదవాలంటే డబ్బులుండాలి. ఉమ్. నీకు డబ్బులుంటే cafe లో ఎందుకు పనిచేస్తావ్? ఉమ్. నువ్వు cafe లో పనిచేస్తున్నావా? అదేంటి నీకు పెద్ద పెద్ద companies ఉన్నాయి కదా? companies ఏంటి? ఆ అంటే నేను college లో ఉన్నప్పుడు పెద్ద companies పెట్టి వీళ్ళకి jobs ఇస్తా అన్నానన్నమాట. దాని గురించి చెప్తుంది.",
+   "rank": 1,
+   "tier": "emotion_pick",
+   "tier_label": "emotion pick",
+   "scores": {},
+   "title": "నీ పేరు అభి కదా! ఇరికించేసిందిగా",
+   "hook_line": {
+    "text": "ఏంటి best friends ఏదో మాట్లాడుకుంటున్నట్టున్నారు?",
+    "start_word": 341,
+    "end_word": 345
+   },
+   "payoff_line": "ఆ అంటే నేను college లో ఉన్నప్పుడు పెద్ద companies పెట్టి వీళ్ళకి jobs ఇస్తా అన్నానన్నమాట.",
+   "payoff_type": "punchline",
+   "payoff_line_source": "discover",
+   "why_it_works": "Viewer stops because Meera catches them whispering, stays to find out how Abhi survives Harshitha exposing his real identity, and it ends on his absurd lie about owning companies (laugh).",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 242.42,
+     "end": 316.937,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 74.52,
+   "spoiler": false,
+   "characters": [
+    "అభి",
+    "మీరా",
+    "హర్షిత"
+   ],
+   "visual_dependency": "medium",
+   "start_line": "L0124",
+   "end_line": "L0164",
+   "end_hold": {
+    "payoff_end": 313.44,
+    "end": 316.937,
+    "hold_s": 3.5,
+    "on_shot_cut": true,
+    "next_speech": 329.22,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "rule": "hold"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": null,
+    "what_happens": "How will Abhi keep his double life hidden as Harshitha keeps accidentally exposing his real name, college, and wealth?",
+    "hook": "A stranger stops scrolling as Meera catches the two secretly whispering and asks, \"ఏంటి best friends ఏదో మాట్లాడుకుంటున్నట్టున్నారు?\"",
+    "payoff": "ఆ అంటే నేను college లో ఉన్నప్పుడు పెద్ద companies పెట్టి వీళ్ళకి jobs ఇస్తా అన్నానన్నమాట.",
+    "opening_strength": null,
+    "payoff_line": "ఆ అంటే నేను college లో ఉన్నప్పుడు పెద్ద companies పెట్టి వీళ్ళకి jobs ఇస్తా అన్నానన్నమాట.",
+    "payoff_type": "punchline"
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "source": "emotion_pick",
+   "feeling": "laugh",
+   "intensity": 4,
+   "stop": {
+    "line": "L0124",
+    "text": "ఏంటి best friends ఏదో మాట్లాడుకుంటున్నట్టున్నారు?",
+    "why": "A stranger stops scrolling as Meera catches the two secretly whispering and asks, \"ఏంటి best friends ఏదో మాట్లాడుకుంటున్నట్టున్నారు?\"",
+    "cold_open": false,
+    "case": "start_line",
+    "via": "start_line",
+    "plays_at_s": 0.3
+   },
+   "stay": "How will Abhi keep his double life hidden as Harshitha keeps accidentally exposing his real name, college, and wealth?",
+   "land": {
+    "line": "L0163",
+    "text": "ఆ అంటే నేను college లో ఉన్నప్పుడు పెద్ద companies పెట్టి వీళ్ళకి jobs ఇస్తా అన్నానన్నమాట.",
+    "reaction": "L0164",
+    "reaction_text": "దాని గురించి చెప్తుంది.",
+    "plays_at_s": 64.1
+   },
+   "reason": "Viewer stops because Meera catches them whispering, stays to find out how Abhi survives Harshitha exposing his real identity, and it ends on his absurd lie about owning companies (laugh).",
+   "moment": {
+    "id": "p02",
+    "line": "L0163",
+    "text": "ఆ అంటే నేను college లో ఉన్నప్పుడు పెద్ద companies పెట్టి వీళ్ళకి jobs ఇస్తా అన్నానన్నమాట.",
+    "feeling": "laugh",
+    "intensity": 4,
+    "why": "Trapped after Harshitha mentions Melbourne and his big companies, Abhi desperately invents the absurd lie that in college he merely promised to start companies and hire his friends.",
+    "type": "punchline",
+    "lands_on_screen": true
+   },
+   "build_flags": []
+  },
+  {
+   "id": "e03",
+   "pieces": [
+    {
+     "start_word": 870,
+     "end_word": 944,
+     "start": 581.9,
+     "end": 622.06
+    }
+   ],
+   "region": {
+    "start_word": 870,
+    "end_word": 944,
+    "start": 581.9,
+    "end": 622.06
+   },
+   "edited_duration": 40.16,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "నువ్వు విజయ్ friend ఆ? అవును. అంటే school friend ఆ? college friend ఆ? లేదా colony friend ఆ? మూడు. ఓహ్ అంటే close friends ఏ అయి ఉంటారుగా. హ్మ్. హ్మ్ నువ్వు ఏ school? ఏంటి? I mean ఏ school లో friends అని అడుగుతున్నా. Delhi public school. ఓహ్ college? St. Mary's. అయితే మీరు చాలా rich అనుకుంటానుగా. అవును. ఉమ్ దొరికేసింది. దీనికి doubt వచ్చినట్టుంది. హ్మ్ విజయ్ కూడా rich అనుకుంటానుగా. Actually మా parents మమ్మల్ని చదివించుకు ముందు చాలా rich ఉండేవాళ్ళం. మమ్మల్ని చదివించాకే poor అయిపోయాం. ఏంటి?",
+   "rank": 2,
+   "tier": "emotion_pick",
+   "tier_label": "emotion pick",
+   "scores": {},
+   "title": "చదివించాకే poor అయిపోయాం",
+   "hook_line": {
+    "text": "నువ్వు విజయ్ friend ఆ?",
+    "start_word": 870,
+    "end_word": 873
+   },
+   "payoff_line": "మమ్మల్ని చదివించాకే poor అయిపోయాం.",
+   "payoff_type": "punchline",
+   "payoff_line_source": "discover",
+   "why_it_works": "Viewer stops because Sindhu suspiciously interrogates Harshitha about Vijay, stays to find out if Vijay's real background gets exposed, and it ends on Harshitha's hilarious cover-up excuse (laugh).",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 581.6,
+     "end": 622.63,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 41.03,
+   "spoiler": false,
+   "characters": [
+    "హర్షిత",
+    "సింధు"
+   ],
+   "visual_dependency": "medium",
+   "start_line": "L0307",
+   "end_line": "L0330",
+   "end_hold": {
+    "payoff_end": 622.06,
+    "next_speech": 622.68,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "end": 622.63,
+    "hold_s": 0.57,
+    "on_shot_cut": false,
+    "rule": "before_next_line",
+    "note": "next line starts quickly and no shot change before it"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": null,
+    "what_happens": "Will Harshitha accidentally blow Vijay's secret rich identity under Sindhu's relentless questioning?",
+    "hook": "The suspicious opening question 'నువ్వు విజయ్ friend ఆ?' immediately hooks viewers into an intrusive cross-examination.",
+    "payoff": "మమ్మల్ని చదివించాకే poor అయిపోయాం.",
+    "opening_strength": null,
+    "payoff_line": "మమ్మల్ని చదివించాకే poor అయిపోయాం.",
+    "payoff_type": "punchline"
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "source": "emotion_pick",
+   "feeling": "laugh",
+   "intensity": 4,
+   "stop": {
+    "line": "L0307",
+    "text": "నువ్వు విజయ్ friend ఆ?",
+    "why": "The suspicious opening question 'నువ్వు విజయ్ friend ఆ?' immediately hooks viewers into an intrusive cross-examination.",
+    "cold_open": false,
+    "case": "start_line",
+    "via": "start_line",
+    "plays_at_s": 0.3
+   },
+   "stay": "Will Harshitha accidentally blow Vijay's secret rich identity under Sindhu's relentless questioning?",
+   "land": {
+    "line": "L0329",
+    "text": "మమ్మల్ని చదివించాకే poor అయిపోయాం.",
+    "reaction": "L0330",
+    "reaction_text": "ఏంటి?",
+    "plays_at_s": 37.92
+   },
+   "reason": "Viewer stops because Sindhu suspiciously interrogates Harshitha about Vijay, stays to find out if Vijay's real background gets exposed, and it ends on Harshitha's hilarious cover-up excuse (laugh).",
+   "moment": {
+    "id": "p03",
+    "line": "L0329",
+    "text": "మమ్మల్ని చదివించాకే poor అయిపోయాం.",
+    "feeling": "laugh",
+    "intensity": 4,
+    "why": "When Sindhu probes whether Vijay is secretly rich, Harshitha bails him out with the ridiculous excuse that their rich families became poor just by paying school fees.",
+    "type": "punchline",
+    "lands_on_screen": true
+   },
+   "build_flags": []
+  },
+  {
+   "id": "e04",
+   "pieces": [
+    {
+     "start_word": 1038,
+     "end_word": 1080,
+     "start": 795.11,
+     "end": 827.03
+    }
+   ],
+   "region": {
+    "start_word": 1038,
+    "end_word": 1080,
+    "start": 795.11,
+    "end": 827.03
+   },
+   "edited_duration": 31.92,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "నువ్వు విజయ్ తో room share చేసుకుంటున్నావు కదా, నీకెప్పుడు ఇబ్బంది అనిపించలేదా? విజయ్ తోనా? మొదట ఇబ్బందిగానే అనిపించింది. కానీ తర్వాత చాలా మంచోడని అర్థమైంది. ఊమ్. నీకెప్పుడూ doubt కూడా రాలేదా? Doubt దేనికి? విజయ్ నిన్ను love చేస్తున్నాడేమోనని. అలా ఎప్పుడూ అనిపించలేదే. ఎందుకంటే, నువ్వు కూడా love చేస్తున్నావేమో. ఛా, అలా ఏం లేదు.",
+   "rank": 3,
+   "tier": "emotion_pick",
+   "tier_label": "emotion pick",
+   "scores": {},
+   "title": "నువ్వు కూడా లవ్ చేస్తున్నావేమో",
+   "hook_line": {
+    "text": "నువ్వు విజయ్ తో room share చేసుకుంటున్నావు కదా, నీకెప్పుడు ఇబ్బంది అనిపించలేదా?",
+    "start_word": 1038,
+    "end_word": 1047
+   },
+   "payoff_line": "ఎందుకంటే, నువ్వు కూడా love చేస్తున్నావేమో.",
+   "payoff_type": "emotional_peak",
+   "payoff_line_source": "discover",
+   "why_it_works": "Viewer stops because Harshitha directly questions Meera about sharing a flat with Vijay, stays to find out if Vijay's secret love will be exposed, and it ends on the heart-skipping realization that M…",
+   "category": "story",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 794.81,
+     "end": 828.74,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 33.93,
+   "spoiler": false,
+   "characters": [
+    "Harshitha",
+    "Meera"
+   ],
+   "visual_dependency": "medium",
+   "start_line": "L0370",
+   "end_line": "L0384",
+   "end_hold": {
+    "payoff_end": 827.03,
+    "next_speech": 828.79,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "end": 828.74,
+    "hold_s": 1.71,
+    "on_shot_cut": false,
+    "rule": "before_next_line",
+    "note": "next line starts quickly and no shot change before it"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": null,
+    "what_happens": "Will Meera suspect Vijay's hidden feelings, or will she realize her own?",
+    "hook": "Harshitha bluntly questions Meera about living together with a guy, asking 'నువ్వు విజయ్ తో room share చేసుకుంటున్నావు కదా, నీకెప్పుడు ఇబ్బంది అనిపించలేదా?'.",
+    "payoff": "ఎందుకంటే, నువ్వు కూడా love చేస్తున్నావేమో.",
+    "opening_strength": null,
+    "payoff_line": "ఎందుకంటే, నువ్వు కూడా love చేస్తున్నావేమో.",
+    "payoff_type": "emotional_peak"
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "source": "emotion_pick",
+   "feeling": "tension",
+   "intensity": 4,
+   "stop": {
+    "line": "L0370",
+    "text": "నువ్వు విజయ్ తో room share చేసుకుంటున్నావు కదా, నీకెప్పుడు ఇబ్బంది అనిపించలేదా?",
+    "why": "Harshitha bluntly questions Meera about living together with a guy, asking 'నువ్వు విజయ్ తో room share చేసుకుంటున్నావు కదా, నీకెప్పుడు ఇబ్బంది అనిపించలేదా?'.",
+    "cold_open": false,
+    "case": "start_line",
+    "via": "start_line",
+    "plays_at_s": 0.3
+   },
+   "stay": "Will Meera suspect Vijay's hidden feelings, or will she realize her own?",
+   "land": {
+    "line": "L0382",
+    "text": "ఎందుకంటే, నువ్వు కూడా love చేస్తున్నావేమో.",
+    "reaction": "L0384",
+    "reaction_text": "ఛా, అలా ఏం లేదు.",
+    "plays_at_s": 24.22
+   },
+   "reason": "Viewer stops because Harshitha directly questions Meera about sharing a flat with Vijay, stays to find out if Vijay's secret love will be exposed, and it ends on the heart-skipping realization that Meera might love him too (tension).",
+   "moment": {
+    "id": "p04",
+    "line": "L0382",
+    "text": "ఎందుకంటే, నువ్వు కూడా love చేస్తున్నావేమో.",
+    "feeling": "tension",
+    "intensity": 4,
+    "why": "When Meera denies ever noticing Vijay's feelings, Harshitha confronts her with 'ఎందుకంటే, నువ్వు కూడా love చేస్తున్నావేమో', forcing Meera to confront her own feelings.",
+    "type": "emotional_peak",
+    "lands_on_screen": true
+   },
+   "build_flags": []
+  },
+  {
+   "id": "e05",
+   "pieces": [
+    {
+     "start_word": 1344,
+     "end_word": 1364,
+     "start": 1040.79,
+     "end": 1051.03
+    }
+   ],
+   "region": {
+    "start_word": 1344,
+    "end_word": 1364,
+    "start": 1040.79,
+    "end": 1051.03
+   },
+   "edited_duration": 10.24,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ఇక్కడేనా? ఇక్కడే sir, ఇక్కడే చూసినా. ఊ, ఏం కావాలి sir? అభి. అలాంటి items ఇక్కడెక్కడా ఏం దొరకవు sir. Idiot, నా కొడుకు అభి కావాలి.",
+   "rank": 4,
+   "tier": "emotion_pick",
+   "tier_label": "emotion pick",
+   "scores": {},
+   "title": "నా కొడుకు అభి కావాలి",
+   "hook_line": {
+    "text": "ఇక్కడేనా?",
+    "start_word": 1344,
+    "end_word": 1344
+   },
+   "payoff_line": "Idiot, నా కొడుకు అభి కావాలి.",
+   "payoff_type": "unspecified",
+   "payoff_line_source": "discover",
+   "why_it_works": "Viewer stops because of the urgent search opening with 'ఇక్కడేనా?', stays to find out what happens at the counter, and it ends on the hilarious shock when the dad snaps 'Idiot, నా కొడుకు అభి కావాలి' …",
+   "category": "reveal",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "promo",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 1040.49,
+     "end": 1053.03,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 12.54,
+   "spoiler": true,
+   "characters": [
+    "అభి తండ్రి",
+    "సర్వర్"
+   ],
+   "visual_dependency": "medium",
+   "start_line": "L0452",
+   "end_line": "L0457",
+   "end_hold": {
+    "payoff_end": 1051.03,
+    "end": 1053.03,
+    "hold_s": 2.0,
+    "on_shot_cut": false,
+    "next_speech": null,
+    "long_silence_after": true,
+    "laugh_after": false,
+    "note": "hold not on a shot cut",
+    "rule": "hold"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": null,
+    "what_happens": "How will the cafe staff react when asked for Abhi?",
+    "hook": "The urgent inquiry \"ఇక్కడేనా?\" with an assistant tracking someone down instantly hooks the viewer into who is being found.",
+    "payoff": "Idiot, నా కొడుకు అభి కావాలి.",
+    "opening_strength": null,
+    "payoff_line": "Idiot, నా కొడుకు అభి కావాలి."
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "source": "emotion_pick",
+   "feeling": "shock",
+   "intensity": 5,
+   "stop": {
+    "line": "L0452",
+    "text": "ఇక్కడేనా?",
+    "why": "The urgent inquiry \"ఇక్కడేనా?\" with an assistant tracking someone down instantly hooks the viewer into who is being found.",
+    "cold_open": false,
+    "case": "start_line",
+    "via": "start_line",
+    "plays_at_s": 0.3
+   },
+   "stay": "How will the cafe staff react when asked for Abhi?",
+   "land": {
+    "line": "L0457",
+    "text": "Idiot, నా కొడుకు అభి కావాలి.",
+    "reaction": "hold",
+    "plays_at_s": 8.6
+   },
+   "reason": "Viewer stops because of the urgent search opening with 'ఇక్కడేనా?', stays to find out what happens at the counter, and it ends on the hilarious shock when the dad snaps 'Idiot, నా కొడుకు అభి కావాలి' after the server mistakes his son for a food item (shock).",
+   "moment": {
+    "id": "p05",
+    "line": "L0457",
+    "text": "Idiot, నా కొడుకు అభి కావాలి.",
+    "feeling": "shock",
+    "intensity": 5,
+    "why": "Abhi's father storms into the cafe searching for him, and when the server mistakes Abhi for a dish, Dad barks 'Idiot, నా కొడుకు అభి కావాలి' as a major episode-ending cliffhanger.",
+    "type": "cliffhanger",
+    "lands_on_screen": true
+   },
+   "build_flags": []
+  }
+ ],
+ "rejected": [],
+ "episode_note": {
+  "text": "5 moments a stranger would feel; 4 built by the build call; 0 rejected; 0 duplicates dropped; 4 shown, in episode order."
+ },
+ "episode_summary": {
+  "n_moments_listed": 5,
+  "n_moments_valid": 5,
+  "n_moments_rejected": 0,
+  "moments_rejected": [],
+  "moments_by_feeling": {
+   "shock": 2,
+   "laugh": 2,
+   "tension": 1
+  },
+  "moments_by_intensity": {
+   "5": 1,
+   "4": 4
+  },
+  "max_moments": 15,
+  "n_build_calls": 4,
+  "n_not_built_cap": 0,
+  "n_not_built_spend": 0,
+  "n_no_clip": 0,
+  "n_blocked": 0,
+  "n_call_failed": 0,
+  "n_invalid": 0,
+  "n_builder_rejected": 0,
+  "n_hard_rules": 0,
+  "n_stop_check_failed": 0,
+  "n_land_check_failed": 0,
+  "n_built": 4,
+  "n_deduped": 0,
+  "n_shown": 4,
+  "shown_by_feeling": {
+   "laugh": 2,
+   "tension": 1,
+   "shock": 1
+  },
+  "rejected": [],
+  "warnings": [],
+  "episode_notes": "A romantic comedy web series where rich guy Abhi hides his wealthy background under the alias 'Vijay' to work in a cafe and stay close to his crush Meera. Complications escalate when his childhood friend Harshitha, whom his father wants him to marry, tracks him down and repeatedly endangers his cover story. The climactic cliffhanger of Abhi's father barging into the cafe looking for him would spoil the episode's ending.",
+  "n_clusters": 4,
+  "clusters": [
+   {
+    "target": "p02",
+    "target_line": "L0163",
+    "strength": 4,
+    "members": [
+     {
+      "id": "p01",
+      "line": "L0130",
+      "intensity": 4
+     },
+     {
+      "id": "p02",
+      "line": "L0163",
+      "intensity": 4
+     }
+    ],
+    "earlier": [
+     "p01"
+    ],
+    "absorbed": [],
+    "break_before": null,
+    "cluster_context": "Earlier beats in this same scene to include as setup/escalation: L0130 (\"నీ పేరు అభి కదా!\")"
+   },
+   {
+    "target": "p03",
+    "target_line": "L0329",
+    "strength": 4,
+    "members": [
+     {
+      "id": "p03",
+      "line": "L0329",
+      "intensity": 4
+     }
+    ],
+    "earlier": [],
+    "absorbed": [],
+    "break_before": "music: L0165 [వెనకభూమిలో సంగీతం] (15.7 s, no speech)",
+    "cluster_context": ""
+   },
+   {
+    "target": "p04",
+    "target_line": "L0382",
+    "strength": 4,
+    "members": [
+     {
+      "id": "p04",
+      "line": "L0382",
+      "intensity": 4
+     }
+    ],
+    "earlier": [],
+    "absorbed": [],
+    "break_before": "music: L0333 [పాట] (65.2 s, no speech)",
+    "cluster_context": ""
+   },
+   {
+    "target": "p05",
+    "target_line": "L0457",
+    "strength": 5,
+    "members": [
+     {
+      "id": "p05",
+      "line": "L0457",
+      "intensity": 5
+     }
+    ],
+    "earlier": [],
+    "absorbed": [],
+    "break_before": "music: L0383 [పాట] (4.5 s, no speech)",
+    "cluster_context": ""
+   }
+  ]
+ },
+ "moment_table": [
+  {
+   "id": "p01",
+   "line": "L0130",
+   "feeling": "shock",
+   "intensity": 4,
+   "text": "నీ పేరు అభి కదా!",
+   "why": "Harshitha accidentally blows Abhi's cover in front of Meera by blurting out 'నీ పేరు అభి కదా!', causing Abhi to panic instantly.",
+   "status": "in_cluster",
+   "cluster_target": "p02"
+  },
+  {
+   "id": "p02",
+   "line": "L0163",
+   "feeling": "laugh",
+   "intensity": 4,
+   "text": "ఆ అంటే నేను college లో ఉన్నప్పుడు పెద్ద companies పెట్టి వీళ్ళకి jobs ఇస్తా అన్నానన్నమాట.",
+   "why": "Trapped after Harshitha mentions Melbourne and his big companies, Abhi desperately invents the absurd lie that in college he merely promised to start companies and hire his friends.",
+   "status": "shown",
+   "clip": "e02"
+  },
+  {
+   "id": "p03",
+   "line": "L0329",
+   "feeling": "laugh",
+   "intensity": 4,
+   "text": "మమ్మల్ని చదివించాకే poor అయిపోయాం.",
+   "why": "When Sindhu probes whether Vijay is secretly rich, Harshitha bails him out with the ridiculous excuse that their rich families became poor just by paying school fees.",
+   "status": "shown",
+   "clip": "e03"
+  },
+  {
+   "id": "p04",
+   "line": "L0382",
+   "feeling": "tension",
+   "intensity": 4,
+   "text": "ఎందుకంటే, నువ్వు కూడా love చేస్తున్నావేమో.",
+   "why": "When Meera denies ever noticing Vijay's feelings, Harshitha confronts her with 'ఎందుకంటే, నువ్వు కూడా love చేస్తున్నావేమో', forcing Meera to confront her own feelings.",
+   "status": "shown",
+   "clip": "e04"
+  },
+  {
+   "id": "p05",
+   "line": "L0457",
+   "feeling": "shock",
+   "intensity": 5,
+   "text": "Idiot, నా కొడుకు అభి కావాలి.",
+   "why": "Abhi's father storms into the cafe searching for him, and when the server mistakes Abhi for a dish, Dad barks 'Idiot, నా కొడుకు అభి కావాలి' as a major episode-ending cliffhanger.",
+   "status": "shown",
+   "clip": "e05"
+  }
+ ]
+}

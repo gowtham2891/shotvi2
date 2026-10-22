@@ -9,4 +9,5 @@
            "max_end_after_payoff_lines": 3},
  "cold_open": {"rule": "v1"},
  "check": {"stop_late": "reject", "land_late": "reject"},
- "dedupe": {"rule": "v1"}}
+ "dedupe": {"rule": "v1"},
+ "v1": {"guardrails": {"min_s": 15.0}}}

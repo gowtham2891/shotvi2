@@ -174,8 +174,15 @@ class Validate(unittest.TestCase):
     def test_same_speaker_lift_is_refused_and_played_in_place(self):
         self.ep.by_id[L(8)]["speaker"] = self.ep.by_id[L(7)]["speaker"]   # L0007 and L0008: one speaker's turn
         self.assertEqual(E.same_speaker_next(self.ep, L(7)), L(8))
+        # the turn L0007..L0009 (labels alternate, so L0009 is the same speaker) is 8 s of speech (> 3.6 s): no
+        # turn lift. B2 on: the start advances to L0006
+        x, c = self.built(build(4, 10, stop=7))
+        self.assertEqual((x["emo"]["stop"]["case"], c["start_line"]), ("B2_start_advance", L(6)))
+        self.assertTrue(any("turn lift refused: the turn L0007+L0008+L0009 is 8.0 s" in f for f in x["flags"]))
+        self.cfg = cfg2({"cold_open": {"start_advance": False}})          # B2 off: played in place, as before
         x, c = self.built(build(4, 10, stop=7))
         self.assertEqual(x["emo"]["stop"]["case"], "B_refused_play_start")
+        self.assertEqual(x["emo"]["stop"]["hook_fix"], "stop_not_first")
         self.assertFalse(c["cold_open"])
         self.assertEqual(c["start_line"], L(4))
         self.assertTrue(any("same speaker continues in L0008" in f for f in x["flags"]))
@@ -328,9 +335,19 @@ class FullRun2(unittest.TestCase):
         self.assertIn("same scene", self.rej["e09"]["reject_reasons"][0])
         self.assertEqual(sorted(self.props), ["e01", "e02", "e03", "e08"])
 
-    def test_refused_lift_kept_and_flagged(self):
+    def test_refused_lift_start_advanced(self):
+        # e03: stop L0026 cannot be lifted and would play ~6 s in from L0024: B2 starts on L0025 (stop at ~3 s)
         p = self.props["e03"]
-        self.assertEqual(p["stop"]["case"], "B_refused_play_start")
+        self.assertEqual((p["stop"]["case"], p["stop"]["hook_fix"], p["start_line"]),
+                         ("B2_start_advance", "B2_start_advance", L(25)))
+        self.assertFalse(p["cold_open"])
+        self.assertLessEqual(p["stop"]["plays_at_s"], 5.0)
+        self.assertFalse(any(f.startswith("stop_not_first") for f in p["build_flags"]))
+
+    def test_refused_lift_kept_and_flagged_without_advance(self):
+        r = run2(FakeProvider(), ws.deep_merge(NO_CLUSTER, {"cold_open": {"start_advance": False}}))
+        p = {q["id"]: q for q in r()["proposals"]}["e03"]
+        self.assertEqual((p["stop"]["case"], p["stop"]["hook_fix"]), ("B_refused_play_start", "stop_not_first"))
         self.assertFalse(p["cold_open"])
         self.assertTrue(any(f.startswith("stop_not_first") for f in p["build_flags"]))
 
