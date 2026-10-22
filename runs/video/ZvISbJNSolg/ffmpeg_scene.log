@@ -1,0 +1,1323 @@
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '/Users/ganeshgowtham/projects/projects/shotvi/scribe_dataset/ZvISbJNSolg/ZvISbJNSolg.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf63.1.102
+  Duration: 00:16:53.60, start: 0.000000, bitrate: 460 kb/s
+  Stream #0:0[0x1](und): Video: h264 (Main) (avc1 / 0x31637661), yuv420p(tv, bt709, progressive), 1280x720 [SAR 1:1 DAR 16:9], 326 kb/s, 23.98 fps, 23.98 tbr, 24k tbn (default)
+    Metadata:
+      handler_name    : ISO Media file produced by Google Inc.
+  Stream #0:1[0x2](eng): Audio: opus (Opus / 0x7375704F), 48000 Hz, stereo, fltp, 128 kb/s (default)
+    Metadata:
+      handler_name    : SoundHandler
+Stream mapping:
+  Stream #0:0 -> #0:0 (h264 (native) -> wrapped_avframe (native))
+Press [q] to stop, [?] for help
+[Parsed_showinfo_2 @ 0x78ab006100] config in time_base: 1/24000, frame_rate: 24000/1001
+[Parsed_showinfo_2 @ 0x78ab006100] config out time_base: 0/0, frame_rate: 0/0
+[Parsed_showinfo_2 @ 0x78ab006100] n:   0 pts:  68068 pts_time:2.836167 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:E20997D2 plane_checksum:[160CCA80 ABB8724B 35965AF8] mean:[85 139 120] stdev:[47.7 7.0 5.6]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+Output #0, null, to 'pipe:':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf63.1.102
+  Stream #0:0(und): Video: wrapped_avframe, yuv420p(tv, bt709, progressive), 320x180 [SAR 1:1 DAR 16:9], q=2-31, 200 kb/s, 23.98 fps, 23.98 tbn (default)
+    Metadata:
+      encoder         : Lavc63.1.102 wrapped_avframe
+      handler_name    : ISO Media file produced by Google Inc.
+[Parsed_showinfo_2 @ 0x78ab006100] n:   1 pts: 180180 pts_time:7.5075  duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:15585FC1 plane_checksum:[62DFEF6E C5AF4EE3 86402161] mean:[179 129 128] stdev:[81.1 0.5 0.3]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:   2 pts: 635635 pts_time:26.484792 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:96E33508 plane_checksum:[49E2C221 797845EA C20C2CEE] mean:[106 124 128] stdev:[56.8 7.4 5.0]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:   3 pts: 829829 pts_time:34.576208 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:7BD25EFF plane_checksum:[9D511BFA FC49222C 310820D9] mean:[16 128 128] stdev:[1.2 0.2 0.3]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:   4 pts: 947947 pts_time:39.497792 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:0 type:P checksum:A431D914 plane_checksum:[52171131 AC39B704 2FA910DF] mean:[60 122 137] stdev:[38.3 4.5 5.8]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:   5 pts: 948948 pts_time:39.5395 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:0 type:P checksum:192F05EE plane_checksum:[82554727 6058A895 D4C71623] mean:[65 121 137] stdev:[42.0 4.5 5.8]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:   6 pts:1046045 pts_time:43.585208 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:D4DC5F4C plane_checksum:[DEE950E9 9FA83D78 739FD0DC] mean:[85 119 136] stdev:[43.2 5.6 5.2]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:   7 pts:1191190 pts_time:49.632917 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:F05A7047 plane_checksum:[70CC2E0E 70D9D8D4 583B6956] mean:[82 127 129] stdev:[40.1 4.6 3.1]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:   8 pts:1212211 pts_time:50.508792 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:0 type:I checksum:41BA7DA6 plane_checksum:[C1364F51 8BF65AA4 1D38D3A2] mean:[97 120 131] stdev:[49.2 6.8 3.9]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:   9 pts:1258257 pts_time:52.427375 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:02535167 plane_checksum:[3907F617 C6020A67 4D2050DA] mean:[84 128 129] stdev:[41.8 4.5 3.2]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  10 pts:1285284 pts_time:53.5535 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:1B396324 plane_checksum:[08B72A78 BA774375 305AF528] mean:[99 120 132] stdev:[49.1 7.2 4.3]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  11 pts:1383382 pts_time:57.640917 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:5142B007 plane_checksum:[9AE9DF43 8377A6D2 B6D029E3] mean:[123 130 128] stdev:[61.4 7.3 5.4]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  12 pts:1443442 pts_time:60.143417 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:79C6A588 plane_checksum:[B0B49BE8 F7BA570B 0FA2B286] mean:[119 129 126] stdev:[69.0 5.4 6.7]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  13 pts:1459458 pts_time:60.81075 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:0 type:I checksum:6A26C29B plane_checksum:[E1F44FAD BC60663F 8F120CAF] mean:[99 129 128] stdev:[43.6 3.9 3.7]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  14 pts:1506505 pts_time:62.771042 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:3169D17C plane_checksum:[47F7F63D B8B9BC0E 8B2B1F22] mean:[108 126 128] stdev:[66.1 3.8 5.0]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  15 pts:1541540 pts_time:64.230833 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:9F7D360E plane_checksum:[5C81B99B 07F552F4 A7482970] mean:[99 129 128] stdev:[43.2 3.8 3.6]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  16 pts:1623622 pts_time:67.650917 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:2F4F50D9 plane_checksum:[3C20794F 88D3207B A123B700] mean:[78 128 126] stdev:[51.2 4.7 8.1]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  17 pts:1700699 pts_time:70.862458 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:77AA0729 plane_checksum:[224ED92C 23757E93 55FEAF4C] mean:[57 125 131] stdev:[38.0 3.7 3.6]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  18 pts:1739738 pts_time:72.489083 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:FDC0FD61 plane_checksum:[E7409F9F 77005FAB 9561FE08] mean:[102 129 127] stdev:[45.0 4.1 3.9]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  19 pts:1763762 pts_time:73.490083 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:0 type:I checksum:6BAB4F62 plane_checksum:[ECFA05D5 C572BBB3 F8A28DCB] mean:[117 131 125] stdev:[65.8 5.8 6.6]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  20 pts:1810809 pts_time:75.450375 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:CD3A0EBB plane_checksum:[C22EA059 69F35DAB 5BCB10A8] mean:[101 129 128] stdev:[44.5 4.1 3.8]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  21 pts:1828827 pts_time:76.201125 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:F52F282C plane_checksum:[561D0F25 1EB49B71 C5507D87] mean:[105 130 125] stdev:[63.0 5.6 8.2]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  22 pts:1863862 pts_time:77.660917 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:68FFF98F plane_checksum:[7F0686D6 9EF06138 F86D1181] mean:[101 129 128] stdev:[44.3 4.1 3.9]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  23 pts:1923922 pts_time:80.163417 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:00A1128A plane_checksum:[23C3EA48 FE00882D 8DE89FF7] mean:[113 130 126] stdev:[65.4 5.0 6.2]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  24 pts:1950949 pts_time:81.289542 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:C3C2816D plane_checksum:[4ECE10AC 1FC8619D 50340F24] mean:[101 129 128] stdev:[44.5 4.1 3.9]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+frame=   25 fps=0.0 q=-0.0 size=N/A time=00:01:21.33 bitrate=N/A speed= 162x elapsed=0:00:00.50    
+[Parsed_showinfo_2 @ 0x78ab006100] n:  25 pts:2054052 pts_time:85.5855 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:F62BB367 plane_checksum:[2C8370B8 336564DF 86CADDC1] mean:[122 129 127] stdev:[70.0 6.2 7.5]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  26 pts:2256254 pts_time:94.010583 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:91EEDAEA plane_checksum:[26E8777F 67AD62ED C68E007E] mean:[102 129 127] stdev:[45.0 4.1 3.8]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  27 pts:2283281 pts_time:95.136708 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:F0F627EA plane_checksum:[42F2EA3A 438364EF 14B4D8A3] mean:[122 129 127] stdev:[69.4 6.2 7.3]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  28 pts:2421419 pts_time:100.892458 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:E5AEE820 plane_checksum:[CA728067 99C7636D F441044C] mean:[102 129 127] stdev:[45.0 4.1 3.8]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  29 pts:2591589 pts_time:107.982875 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:DEDBED89 plane_checksum:[EF1ADE97 3E2773CB C1F59B18] mean:[94 125 130] stdev:[54.3 4.0 3.9]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  30 pts:2704702 pts_time:112.695917 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:73331162 plane_checksum:[9EBEB4E7 2F634B1A 0AB81152] mean:[86 129 128] stdev:[46.9 7.8 7.5]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  31 pts:2765763 pts_time:115.240125 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:BEA9C8F0 plane_checksum:[4726D856 76F94AD0 7883A5BB] mean:[89 124 130] stdev:[53.8 3.9 4.1]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  32 pts:2795793 pts_time:116.491375 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:88DD08B6 plane_checksum:[743BA6C0 915D9CE5 814DC4F3] mean:[95 130 126] stdev:[54.8 7.4 7.4]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  33 pts:3130127 pts_time:130.421958 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:A655FB5C plane_checksum:[A81D8C8C 23499F63 280ECF5E] mean:[93 130 127] stdev:[59.0 5.6 6.6]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  34 pts:3154151 pts_time:131.422958 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:0 type:I checksum:B40DCAFA plane_checksum:[C72B8095 53639B8F A295AEC7] mean:[97 130 126] stdev:[46.4 5.7 5.5]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  35 pts:3192189 pts_time:133.007875 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:C9FA907F plane_checksum:[69B245CD 6095CEB3 1ECF7BF0] mean:[119 131 125] stdev:[73.3 6.7 7.0]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  36 pts:3218215 pts_time:134.092292 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:77427183 plane_checksum:[C84F62E4 D82C6DAC A41BA0E4] mean:[98 125 130] stdev:[51.7 3.6 3.6]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  37 pts:3476473 pts_time:144.853042 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:431E4AE8 plane_checksum:[DB5F36F1 E73773C2 4F91A026] mean:[99 125 130] stdev:[52.4 3.7 3.7]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  38 pts:3533530 pts_time:147.230417 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:CBE3D455 plane_checksum:[983077F4 83918BC8 6065D08A] mean:[92 130 127] stdev:[58.8 5.7 6.6]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  39 pts:3577574 pts_time:149.065583 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:0 type:I checksum:093B7226 plane_checksum:[D96866DF 9878B6EA ABF8544E] mean:[101 126 129] stdev:[48.1 2.6 2.0]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  40 pts:3717714 pts_time:154.90475 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:67C12376 plane_checksum:[E67EC048 5D909C48 B6A2C6C8] mean:[94 130 126] stdev:[60.8 6.0 6.9]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  41 pts:3745742 pts_time:156.072583 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:3FCEDF37 plane_checksum:[6694A94A 1432A306 38E692D8] mean:[101 126 130] stdev:[47.8 2.3 2.5]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  42 pts:3863860 pts_time:160.994167 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:2E1EBBD1 plane_checksum:[112DCF20 E67A710A 699B7B98] mean:[107 129 125] stdev:[60.3 8.4 6.0]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  43 pts:3948945 pts_time:164.539375 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:FBDEBB31 plane_checksum:[E64F9769 14ED45F3 EA70DDC6] mean:[129 129 127] stdev:[75.2 5.3 5.4]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  44 pts:4048044 pts_time:168.6685 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:1689B8F3 plane_checksum:[4226A94E B17F4A3F B302C557] mean:[132 129 126] stdev:[73.1 7.4 5.8]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  45 pts:4105101 pts_time:171.045875 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:EA6334DD plane_checksum:[FD9CCBEC 8DD43959 5D112F89] mean:[81 128 128] stdev:[40.2 4.3 5.8]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  46 pts:4121117 pts_time:171.713208 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:0 type:I checksum:A103EBC7 plane_checksum:[D392BEBD A9827BCC 00ACB12F] mean:[90 130 126] stdev:[59.7 5.2 7.9]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  47 pts:4143139 pts_time:172.630792 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:EE8E1967 plane_checksum:[DB03D00D F59F23F7 8F482554] mean:[81 128 128] stdev:[41.0 4.5 6.2]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+frame=   48 fps= 48 q=-0.0 size=N/A time=00:02:52.67 bitrate=N/A speed= 172x elapsed=0:00:01.00    
+[Parsed_showinfo_2 @ 0x78ab006100] n:  48 pts:4184180 pts_time:174.340833 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:AA440544 plane_checksum:[EC6B0147 50574ABA 5CAFB934] mean:[122 129 126] stdev:[72.8 5.3 8.6]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  49 pts:4222218 pts_time:175.92575 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:163E0977 plane_checksum:[56EAA39A A7851982 8F754C4C] mean:[84 128 129] stdev:[42.6 3.9 3.7]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  50 pts:4311307 pts_time:179.637792 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:907FF080 plane_checksum:[CDF9E0BD 26A250DE F174BED6] mean:[123 129 126] stdev:[72.8 5.3 8.4]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  51 pts:4457453 pts_time:185.727208 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:1F05F079 plane_checksum:[FD79EAEA 09054309 9F56C277] mean:[131 129 126] stdev:[72.1 8.5 6.0]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  52 pts:4549545 pts_time:189.564375 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:8A9C3162 plane_checksum:[FFCEDAFB 39CE366E 00B81FEA] mean:[81 128 128] stdev:[38.6 4.4 5.7]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  53 pts:4612608 pts_time:192.192 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:ADE852E7 plane_checksum:[76A53980 FDF05533 7084C425] mean:[119 129 126] stdev:[72.1 5.3 8.9]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  54 pts:4714710 pts_time:196.44625 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:2DEE4684 plane_checksum:[CADBF61F 3B272CFC 3E4F235A] mean:[81 128 128] stdev:[38.5 4.5 5.9]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  55 pts:4738734 pts_time:197.44725 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:0 type:I checksum:A308F0D2 plane_checksum:[1DB1D920 47124FAC 8508C7F7] mean:[120 129 126] stdev:[72.4 5.3 8.8]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  56 pts:4847843 pts_time:201.993458 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:765085F9 plane_checksum:[B1313746 B1BD2E17 3E30209C] mean:[80 128 128] stdev:[38.4 4.3 5.8]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  57 pts:4898894 pts_time:204.120583 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:A0DDA4B9 plane_checksum:[9F8C8FDC 4F2D64EA 186EAFE4] mean:[128 129 126] stdev:[73.1 5.3 8.5]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  58 pts:4951947 pts_time:206.331125 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:D441F384 plane_checksum:[352B9AE2 D117118B 7B2F4717] mean:[83 128 129] stdev:[40.0 4.6 5.3]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  59 pts:4978974 pts_time:207.45725 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:70E8F338 plane_checksum:[7CF5DD10 13815C8A 2354B98F] mean:[128 129 126] stdev:[72.7 5.5 8.7]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  60 pts:5008003 pts_time:208.666792 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:58D5E082 plane_checksum:[7BEC7EC4 22711052 1A57516C] mean:[84 128 129] stdev:[41.1 4.2 4.6]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  61 pts:5107102 pts_time:212.795917 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:FF8EF7CE plane_checksum:[934BE168 378262C0 3D09B397] mean:[127 129 126] stdev:[72.7 5.3 8.6]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  62 pts:5138133 pts_time:214.088875 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:FA49014A plane_checksum:[7311A516 69CE10C5 316A4B60] mean:[83 128 129] stdev:[39.4 4.2 5.0]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  63 pts:5177172 pts_time:215.7155 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:1BB4324C plane_checksum:[9343EF7F 536CB5F5 4D498CBA] mean:[111 131 125] stdev:[65.4 5.0 6.2]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  64 pts:5254249 pts_time:218.927042 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:8DDE165E plane_checksum:[1526B899 EE571103 6BE34CB3] mean:[82 128 129] stdev:[38.6 4.5 5.6]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  65 pts:5278273 pts_time:219.928042 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:0 type:I checksum:21DB011F plane_checksum:[022EBCED E9D7B4ED C9E68F27] mean:[110 131 125] stdev:[65.7 4.9 6.0]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  66 pts:5307302 pts_time:221.137583 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:A66CD709 plane_checksum:[C94E841F 64E1C6AE 271B8C2D] mean:[77 126 130] stdev:[33.4 4.3 4.4]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  67 pts:5333328 pts_time:222.222 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:0 type:I checksum:4373A259 plane_checksum:[788F6C22 1B6FA295 A0399393] mean:[103 130 125] stdev:[63.9 5.1 6.5]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  68 pts:5354349 pts_time:223.097875 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:0 type:I checksum:10AE0AB9 plane_checksum:[573FCAC2 CFBD57BE CEFCE81B] mean:[116 129 127] stdev:[64.5 6.1 6.7]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  69 pts:5433428 pts_time:226.392833 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:98087BBE plane_checksum:[40F00C87 23630EF6 CEC16041] mean:[87 128 129] stdev:[41.0 3.8 4.1]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  70 pts:5477472 pts_time:228.228 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:DF612332 plane_checksum:[25B19CFC DEC000D1 22EF8556] mean:[77 127 130] stdev:[48.9 4.9 7.4]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  71 pts:5585580 pts_time:232.7325 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:E0D25213 plane_checksum:[1FE0E9BD 6B9FF8F1 98C76F47] mean:[85 127 129] stdev:[43.1 4.0 4.3]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  72 pts:5627622 pts_time:234.48425 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:95517A62 plane_checksum:[FFBF3D6F 0C6548AB 2A47F439] mean:[116 129 127] stdev:[64.6 6.0 6.6]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  73 pts:5674669 pts_time:236.444542 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:665CF222 plane_checksum:[D23E9698 B80EFE1A B2DC5D61] mean:[87 127 129] stdev:[41.9 3.9 4.2]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  74 pts:5696691 pts_time:237.362125 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:0 type:I checksum:E6EE8DCE plane_checksum:[86A24EB6 F5A23C74 245D02A4] mean:[116 128 127] stdev:[65.2 6.1 6.7]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  75 pts:5762757 pts_time:240.114875 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:5C7BFC98 plane_checksum:[B76AC304 2E74BEA1 DA0C7AE4] mean:[79 126 130] stdev:[42.7 4.2 4.7]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  76 pts:5800795 pts_time:241.699792 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:F594113A plane_checksum:[0BDCD087 858F42EA EAA7FDAB] mean:[115 129 127] stdev:[64.8 6.0 6.6]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  77 pts:5893888 pts_time:245.578667 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:AD0B8DFD plane_checksum:[7B513093 E96FB7CE 0D0BA58D] mean:[112 131 126] stdev:[62.5 6.7 7.7]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  78 pts:5935930 pts_time:247.330417 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:60B558A4 plane_checksum:[6FD7E13A 1BA4B622 BA42C12A] mean:[77 126 131] stdev:[43.0 4.5 5.4]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  79 pts:5954949 pts_time:248.122875 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:0 type:I checksum:2AC66403 plane_checksum:[4D9CCBBE 6E5DA7F9 9067F02E] mean:[111 130 127] stdev:[63.5 5.7 6.6]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  80 pts:6024018 pts_time:251.00075 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:DF5D9CCE plane_checksum:[2558594B 69CE3E79 A9C2050A] mean:[113 129 127] stdev:[64.3 6.1 6.7]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  81 pts:6070064 pts_time:252.919333 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:131E79E9 plane_checksum:[638AE0D3 278A5009 021448FE] mean:[106 129 129] stdev:[62.9 6.3 7.4]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  82 pts:6089083 pts_time:253.711792 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:2649E414 plane_checksum:[961C957B 37C6293C FA4D255D] mean:[113 128 128] stdev:[63.8 6.3 7.0]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  83 pts:6123117 pts_time:255.129875 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:CFD32747 plane_checksum:[BC8CBC66 D8B5C2CD 7FE3A7F6] mean:[74 126 130] stdev:[40.5 4.1 4.9]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  84 pts:6144138 pts_time:256.00575 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:0 type:I checksum:1B15EB89 plane_checksum:[0C5D9C35 CB94395B F6CA15F9] mean:[114 128 128] stdev:[63.8 6.5 7.2]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  85 pts:6174168 pts_time:257.257 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:B5F1682A plane_checksum:[1C6FFF83 A1D39CC3 73F3CBC6] mean:[80 126 131] stdev:[41.3 4.1 4.6]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  86 pts:6218212 pts_time:259.092167 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:91213DFE plane_checksum:[A152BE46 454188D2 1973F6C8] mean:[110 130 127] stdev:[62.1 5.9 6.7]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  87 pts:6310304 pts_time:262.929333 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:A179183A plane_checksum:[CF1AB7A6 8008D34F 50128D27] mean:[75 127 130] stdev:[40.7 3.7 4.2]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  88 pts:6337331 pts_time:264.055458 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:4A2E644C plane_checksum:[1171FE7C E05FA031 7810C581] mean:[116 130 126] stdev:[65.7 8.3 8.5]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  89 pts:6356350 pts_time:264.847917 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:0 type:I checksum:563E6F78 plane_checksum:[8FC613D0 8384BA7F 09B7A11A] mean:[77 126 130] stdev:[39.3 3.6 4.3]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  90 pts:6427421 pts_time:267.809208 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:0 type:I checksum:4FB43D9F plane_checksum:[E6C5D11F 06FFB80D A590B455] mean:[109 131 126] stdev:[62.9 6.3 7.4]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+frame=   91 fps= 60 q=-0.0 size=N/A time=00:04:27.85 bitrate=N/A speed= 177x elapsed=0:00:01.51    
+[Parsed_showinfo_2 @ 0x78ab006100] n:  91 pts:6481475 pts_time:270.061458 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:99EF1F68 plane_checksum:[229EB614 CF76FBA6 B6336D90] mean:[71 127 129] stdev:[47.8 4.4 6.9]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  92 pts:6557551 pts_time:273.231292 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:DEE70A3C plane_checksum:[0427AB79 586CCBD7 CD8092CE] mean:[77 126 130] stdev:[33.4 4.4 4.5]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  93 pts:6573567 pts_time:273.898625 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:0 type:I checksum:4E565B19 plane_checksum:[8E6DF54D 7ADC1F1B 87D746A2] mean:[77 128 129] stdev:[50.1 4.9 7.4]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  94 pts:6615609 pts_time:275.650375 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:1533F14F plane_checksum:[DABE9B0C 92ECC598 B1BF909C] mean:[77 126 130] stdev:[33.4 4.3 4.4]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  95 pts:6735729 pts_time:280.655375 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:0 type:P checksum:85CEC8B9 plane_checksum:[3433A9A6 DBBE681B 5E51B6E9] mean:[63 129 126] stdev:[36.0 5.0 3.5]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  96 pts:7118111 pts_time:296.587958 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:0321D5A4 plane_checksum:[E9E00EF9 312F355C F1D3914F] mean:[101 128 125] stdev:[58.8 4.7 9.0]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  97 pts:7168161 pts_time:298.673375 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:2CC0F7F0 plane_checksum:[97DADC7D 456E96E2 993D8482] mean:[120 130 125] stdev:[71.5 4.5 11.3]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  98 pts:7240233 pts_time:301.676375 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:3E40CC7D plane_checksum:[9892306B 96750143 CD7A9ACF] mean:[100 127 126] stdev:[57.9 5.0 10.9]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n:  99 pts:7338331 pts_time:305.763792 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:8A47F011 plane_checksum:[B09AC958 5D14604D F845C65D] mean:[125 129 126] stdev:[74.2 4.6 11.1]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 100 pts:7390383 pts_time:307.932625 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:AF1B3059 plane_checksum:[EA2326EF 8EC98737 9A658224] mean:[76 125 130] stdev:[37.8 3.5 4.2]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 101 pts:7419412 pts_time:309.142167 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:B27D5DA7 plane_checksum:[8DA17D11 1FB27C4E 16C56439] mean:[106 125 129] stdev:[58.5 4.8 5.3]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 102 pts:7502495 pts_time:312.603958 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:D7AB2E47 plane_checksum:[D0FD1913 73E1E84A D3A12CDB] mean:[101 118 133] stdev:[59.6 15.0 6.9]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 103 pts:7556549 pts_time:314.856208 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:A3617CF0 plane_checksum:[9B3103D2 C6FA2DC5 3ED44B59] mean:[67 119 133] stdev:[30.6 5.4 5.0]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 104 pts:7613606 pts_time:317.233583 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:E9D94B2C plane_checksum:[929B4174 83AADFD6 029B29D3] mean:[103 118 133] stdev:[60.1 15.3 6.6]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 105 pts:7727720 pts_time:321.988333 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:41D211FC plane_checksum:[F6703841 2FE6D65A 0EE30352] mean:[67 122 132] stdev:[35.6 5.0 7.6]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 106 pts:7779772 pts_time:324.157167 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:7FF8FDBA plane_checksum:[E5B733C0 B8351DA4 0210AC56] mean:[112 123 130] stdev:[54.3 5.1 4.4]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 107 pts:7838831 pts_time:326.617958 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:6D731678 plane_checksum:[70F595E8 C7E7E99B 934496D7] mean:[85 118 135] stdev:[44.0 7.1 6.5]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 108 pts:7869862 pts_time:327.910917 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:D51F41B9 plane_checksum:[350E7495 43B0353B FAF397DA] mean:[111 124 130] stdev:[54.9 4.5 3.9]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 109 pts:7906899 pts_time:329.454125 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:EAD09866 plane_checksum:[F7AAD01D CCE21AF5 5D6CAD45] mean:[79 119 135] stdev:[43.5 6.8 6.2]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 110 pts:7937930 pts_time:330.747083 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:8F770FD4 plane_checksum:[4F2E424D E3822851 7FE9A527] mean:[111 124 130] stdev:[54.0 4.9 4.2]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 111 pts:8050042 pts_time:335.418417 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:133B2F57 plane_checksum:[85A5BBC9 CC501FC2 4D5D53BD] mean:[82 119 133] stdev:[41.9 5.9 5.8]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 112 pts:8077069 pts_time:336.544542 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:905D9C05 plane_checksum:[D6A43572 049B4213 35222480] mean:[88 115 133] stdev:[53.5 17.6 5.7]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 113 pts:8102094 pts_time:337.58725 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:70A8158D plane_checksum:[56D8949F 03ABE8F7 1CFC97D9] mean:[85 118 135] stdev:[44.0 7.1 6.5]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 114 pts:8133125 pts_time:338.880208 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:DCD098F6 plane_checksum:[BAC1D926 B5201B17 7B17A4AA] mean:[101 123 130] stdev:[48.3 4.9 4.2]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 115 pts:8172164 pts_time:340.506833 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:91EEBF49 plane_checksum:[FAB2F2B9 8854A653 A0E8262E] mean:[86 112 133] stdev:[58.3 23.1 6.9]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 116 pts:8222214 pts_time:342.59225 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:5BFB2012 plane_checksum:[5EE57B4C A736C8C4 9C03DBE4] mean:[81 122 131] stdev:[45.0 4.8 9.1]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 117 pts:8285277 pts_time:345.219875 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:2D3C25A5 plane_checksum:[6C28773F B9EBC5C9 CF0DE87F] mean:[84 122 132] stdev:[45.6 5.0 9.3]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 118 pts:8315307 pts_time:346.471125 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:A8592FA5 plane_checksum:[B99D8601 31CC5ADE 65D04EB7] mean:[96 124 129] stdev:[57.9 4.9 5.6]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 119 pts:8361353 pts_time:348.389708 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:8F03EF71 plane_checksum:[F90D799A 0C8863F0 752911E7] mean:[82 116 132] stdev:[47.0 17.6 6.1]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 120 pts:8390382 pts_time:349.59925 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:BC66E68C plane_checksum:[6C3CE100 8E813905 60E8CC78] mean:[75 119 131] stdev:[42.1 6.1 6.7]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 121 pts:8419411 pts_time:350.808792 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:A440FB37 plane_checksum:[3E4C8A60 92155E10 D95F12C7] mean:[83 115 132] stdev:[47.4 17.9 6.2]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 122 pts:8448440 pts_time:352.018333 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:EA70E867 plane_checksum:[4FB54FB9 185705EF D0ED92BF] mean:[94 123 130] stdev:[41.0 2.8 1.4]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+frame=  123 fps= 61 q=-0.0 size=N/A time=00:05:52.06 bitrate=N/A speed= 175x elapsed=0:00:02.01    
+[Parsed_showinfo_2 @ 0x78ab006100] n: 123 pts:8621613 pts_time:359.233875 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:EB40F6E2 plane_checksum:[35082A5F 52DC5EAC 096A6DD7] mean:[111 125 129] stdev:[62.1 4.2 5.7]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 124 pts:8661653 pts_time:360.902208 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:BD070216 plane_checksum:[6D5E2713 F3293F64 F74D9B90] mean:[91 124 130] stdev:[42.0 3.8 5.7]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 125 pts:8699691 pts_time:362.487125 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:150DDD83 plane_checksum:[7444110A B02661B8 AB0C6AC1] mean:[112 125 129] stdev:[62.7 4.1 5.5]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 126 pts:8730722 pts_time:363.780083 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:81A99914 plane_checksum:[EE6B9B22 913938B4 4A2DC52F] mean:[101 124 131] stdev:[44.4 3.8 3.1]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 127 pts:8805797 pts_time:366.908208 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:7A1815D2 plane_checksum:[632E41A1 EA2F658C E9A76E96] mean:[109 125 129] stdev:[61.0 4.1 5.6]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 128 pts:8838830 pts_time:368.284583 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:011B6D56 plane_checksum:[480F7169 17C33443 ABF0C79B] mean:[102 124 131] stdev:[44.5 4.4 3.7]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 129 pts:8930922 pts_time:372.12175 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:717A5204 plane_checksum:[01337C7D 84436834 04336D44] mean:[110 125 129] stdev:[60.9 4.2 5.7]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 130 pts:8970962 pts_time:373.790083 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:865CA13E plane_checksum:[DE80A4F3 5FEB3B56 D5AEC0E6] mean:[102 124 131] stdev:[44.8 4.4 3.7]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 131 pts:9037028 pts_time:376.542833 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:C88F8A60 plane_checksum:[B52DBAE2 6D666526 9DCD6A49] mean:[111 125 129] stdev:[60.9 4.2 5.8]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 132 pts:9069060 pts_time:377.8775 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:E7557C08 plane_checksum:[FDAB7A6C C41D3AEC 6B11C6A1] mean:[102 124 131] stdev:[44.6 4.4 3.7]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 133 pts:9126117 pts_time:380.254875 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:4E85AA7F plane_checksum:[D2A1DE27 DEFF630A 8791693F] mean:[110 125 129] stdev:[60.6 4.3 5.7]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 134 pts:9157148 pts_time:381.547833 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:BE91CE5B plane_checksum:[EBB0754C A640008C 7C605883] mean:[106 127 129] stdev:[56.3 3.2 2.9]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 135 pts:9182173 pts_time:382.590542 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:CD874659 plane_checksum:[D6F4A278 F33C34B6 6CC86F1C] mean:[93 124 129] stdev:[47.9 4.6 4.4]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 136 pts:9276267 pts_time:386.511125 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:16C3C16F plane_checksum:[CB1E1D89 FE811D8A E1E0865C] mean:[97 123 130] stdev:[47.2 4.1 4.9]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 137 pts:9389380 pts_time:391.224167 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:F07058FD plane_checksum:[97924794 08CDDFAD 498031AD] mean:[61 127 128] stdev:[31.2 3.5 7.4]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 138 pts:9436427 pts_time:393.184458 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:C3C6A1B8 plane_checksum:[0F1D9EAA 2AD748A1 6F06BA5E] mean:[95 124 131] stdev:[45.6 4.7 5.9]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 139 pts:9452443 pts_time:393.851792 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:0 type:I checksum:7D7639E6 plane_checksum:[D214A732 50B91E65 7DC67440] mean:[102 123 129] stdev:[50.4 4.7 4.6]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 140 pts:9523514 pts_time:396.813083 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:8630E0C1 plane_checksum:[246CD47B 4D701562 7EDDF6D5] mean:[99 123 132] stdev:[48.0 5.1 5.2]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 141 pts:9559550 pts_time:398.314583 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:5EEB7DB1 plane_checksum:[CF63DCB1 3F881936 67BD87BB] mean:[100 123 130] stdev:[50.3 4.4 4.9]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 142 pts:9600591 pts_time:400.024625 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:59A76ED5 plane_checksum:[D50BD056 3B804621 78FA584F] mean:[93 124 129] stdev:[47.3 4.9 5.1]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 143 pts:9633624 pts_time:401.401 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:EAB55C97 plane_checksum:[055DB74A 3B6108F8 50F09C46] mean:[103 123 130] stdev:[51.0 4.8 5.6]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 144 pts:9662653 pts_time:402.610542 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:FAADD9CB plane_checksum:[F5CF1C3A 33321508 5334A889] mean:[107 123 130] stdev:[56.3 4.4 5.5]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 145 pts:9682673 pts_time:403.444708 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:0 type:I checksum:704EA29D plane_checksum:[B3FE8871 0C853564 9AA1E4B9] mean:[95 124 131] stdev:[46.6 4.4 4.9]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 146 pts:9722713 pts_time:405.113042 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:F24E1C6D plane_checksum:[4F245A4A 80FA18D0 4414A944] mean:[107 123 130] stdev:[56.2 4.4 5.5]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 147 pts:9855846 pts_time:410.66025 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:5CBE1F8E plane_checksum:[77120A57 47FB35E0 F455DF48] mean:[96 124 131] stdev:[46.7 4.3 4.8]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 148 pts:10158148 pts_time:423.256167 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:642C7B85 plane_checksum:[7CEC43A9 401EF6E4 5D9340E9] mean:[105 127 129] stdev:[52.7 6.6 5.3]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 149 pts:10199189 pts_time:424.966208 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:E4411AFE plane_checksum:[3F55FCC8 ACC21F0A 38A9FF0E] mean:[68 119 136] stdev:[42.1 8.4 7.5]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 150 pts:10225215 pts_time:426.050625 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:403A714B plane_checksum:[C2B53D9B CD0BF126 C830427B] mean:[105 127 129] stdev:[52.8 6.4 5.2]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 151 pts:10257247 pts_time:427.385292 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:37631BF6 plane_checksum:[E3074365 73131FC7 5FD6B8BB] mean:[88 123 131] stdev:[44.6 5.8 6.2]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 152 pts:10287277 pts_time:428.636542 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:B46F4709 plane_checksum:[56C9F869 40E41909 05A33588] mean:[105 128 128] stdev:[52.6 6.7 5.4]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 153 pts:10335325 pts_time:430.638542 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:95A5ED47 plane_checksum:[05990EF6 25661177 4DB0CCDA] mean:[87 123 131] stdev:[43.4 5.5 6.0]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 154 pts:10376366 pts_time:432.348583 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:0FEFAA84 plane_checksum:[F17A5673 22092385 CA7C308C] mean:[104 128 128] stdev:[52.7 6.8 5.4]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 155 pts:10404394 pts_time:433.516417 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:E063900E plane_checksum:[568EA231 BF7E03AF D482EA1F] mean:[88 123 132] stdev:[43.6 5.6 5.8]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 156 pts:10453443 pts_time:435.560125 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:69336AF0 plane_checksum:[F2D31732 70E62082 F7C3333C] mean:[105 128 128] stdev:[52.8 7.0 5.5]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 157 pts:10479469 pts_time:436.644542 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:8C576030 plane_checksum:[F7186D48 0DE2116A CEDBE16F] mean:[88 123 131] stdev:[43.9 5.6 5.6]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 158 pts:10515505 pts_time:438.146042 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:844FEA03 plane_checksum:[076A9B82 E4731BDD 4AFD32A4] mean:[105 128 128] stdev:[53.0 7.0 5.5]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 159 pts:10533523 pts_time:438.896792 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:0 type:I checksum:D7D929EE plane_checksum:[9BB833E5 709810DC C43EE51E] mean:[88 123 131] stdev:[43.8 5.5 5.5]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 160 pts:10600590 pts_time:441.69125 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:50ABDDFF plane_checksum:[2FDB8BEB CED31AE3 38873731] mean:[105 128 128] stdev:[52.9 6.9 5.5]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 161 pts:10619609 pts_time:442.483708 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:0 type:I checksum:65871008 plane_checksum:[0F4D1E48 8D921531 12E0DC80] mean:[88 123 131] stdev:[43.5 5.5 5.6]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 162 pts:10656646 pts_time:444.026917 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:82BB62E4 plane_checksum:[36471B80 12290BFA EEF43B6A] mean:[106 128 128] stdev:[53.1 6.8 5.3]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 163 pts:10677667 pts_time:444.902792 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:0 type:I checksum:CE6A675C plane_checksum:[37D47892 AA0F1265 BAA2DC56] mean:[88 123 131] stdev:[43.8 5.8 5.8]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+frame=  163 fps= 65 q=-0.0 size=N/A time=00:07:24.06 bitrate=N/A speed= 176x elapsed=0:00:02.51    
+[Parsed_showinfo_2 @ 0x78ab006100] n: 164 pts:10714704 pts_time:446.446 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:850AC0A9 plane_checksum:[6C2B724D C4C312EE 82043B6E] mean:[105 128 128] stdev:[52.7 6.6 5.2]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 165 pts:10731721 pts_time:447.155042 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:9C7A7D17 plane_checksum:[CB4B90DE 0BAF02AB 5FC4E97F] mean:[87 123 132] stdev:[42.9 5.7 5.8]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 166 pts:10830820 pts_time:451.284167 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:F5F3A184 plane_checksum:[EBDF4988 E3DA1921 2A433EDB] mean:[103 128 129] stdev:[51.9 7.2 6.0]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 167 pts:10897887 pts_time:454.078625 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:0 type:I checksum:0A5E30B9 plane_checksum:[B76A8096 5656ECD3 5841C332] mean:[86 123 131] stdev:[43.0 5.6 6.4]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 168 pts:10956946 pts_time:456.539417 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:FB3F4E76 plane_checksum:[B3DB03E7 CDBE1595 17FC34FA] mean:[105 128 128] stdev:[52.6 6.6 5.2]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 169 pts:10977967 pts_time:457.415292 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:0 type:I checksum:9E8A0BFF plane_checksum:[69A458FF 95F5E86C 8B65CA76] mean:[86 122 131] stdev:[42.9 5.6 6.5]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 170 pts:11020009 pts_time:459.167042 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:641B1022 plane_checksum:[D14CC8B5 B27D0B47 AB773C17] mean:[106 128 128] stdev:[52.7 6.6 5.1]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 171 pts:11089078 pts_time:462.044917 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:376A4C91 plane_checksum:[56CF8ED7 F0ABB610 6A5E079B] mean:[108 126 128] stdev:[58.7 4.4 5.7]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 172 pts:11103092 pts_time:462.628833 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:0 type:I checksum:90753364 plane_checksum:[1A08449B F53736D2 461BB7E8] mean:[95 124 131] stdev:[42.1 5.0 4.4]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 173 pts:11311300 pts_time:471.304167 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:5A157F59 plane_checksum:[2F4A9156 5DCF2B1C 4E98C2D8] mean:[93 124 131] stdev:[46.8 5.0 5.2]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 174 pts:11333322 pts_time:472.22175 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:0 type:I checksum:F9C3C4EB plane_checksum:[B64A456F A385C62C D648B941] mean:[106 122 131] stdev:[51.3 4.5 6.0]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 175 pts:11420409 pts_time:475.850375 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:2D582483 plane_checksum:[3582307C 85673980 9723BA78] mean:[97 124 131] stdev:[46.1 4.8 5.1]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 176 pts:11448437 pts_time:477.018208 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:A4D8F60C plane_checksum:[FEBC5F52 0EFFEBE0 97FBAACB] mean:[106 122 130] stdev:[51.9 5.4 5.6]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 177 pts:11478467 pts_time:478.269458 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:F0922F98 plane_checksum:[D52B3B28 307A4470 D339AFF1] mean:[98 124 131] stdev:[46.5 4.9 5.2]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 178 pts:11525514 pts_time:480.22975 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:0 type:I checksum:E476D6F3 plane_checksum:[2AED207D C2402F88 F3D486EE] mean:[108 128 125] stdev:[60.6 13.2 6.9]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 179 pts:11635624 pts_time:484.817667 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:9D88A832 plane_checksum:[FCEED0CF FF3FCC67 05710AED] mean:[60 126 128] stdev:[32.5 3.4 8.2]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 180 pts:11714703 pts_time:488.112625 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:B36D6580 plane_checksum:[F0517359 A7E7ADE4 EFD24434] mean:[89 126 129] stdev:[56.2 12.9 8.5]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 181 pts:11774763 pts_time:490.615125 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:32FCE9D8 plane_checksum:[FD8EE01D 94298014 11CF8998] mean:[77 125 130] stdev:[38.9 3.6 4.3]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 182 pts:11798787 pts_time:491.616125 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:0 type:I checksum:33C14110 plane_checksum:[25321573 610EE217 9F704977] mean:[91 127 129] stdev:[56.9 10.9 8.3]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 183 pts:11837826 pts_time:493.24275 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:9F01CFDD plane_checksum:[8FB36557 F228AA8D 17EEBFEA] mean:[106 130 126] stdev:[58.5 7.2 6.6]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 184 pts:11903892 pts_time:495.9955 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:EA95E1E5 plane_checksum:[EB67D56D 08BC7F5C 75E08D0D] mean:[77 125 130] stdev:[38.0 3.8 4.5]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 185 pts:11936925 pts_time:497.371875 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:369C07CC plane_checksum:[D7CFA54B 7580B147 0FBCB11C] mean:[110 131 126] stdev:[60.3 7.7 7.1]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 186 pts:11960949 pts_time:498.372875 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:0 type:I checksum:97999716 plane_checksum:[8FC72541 A5F79A37 C981D78F] mean:[95 130 127] stdev:[54.4 5.9 5.6]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 187 pts:12003992 pts_time:500.166333 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:EE2674EB plane_checksum:[1C4766B1 471A6B84 F9BAA2A7] mean:[74 125 130] stdev:[37.3 4.3 4.7]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 188 pts:12033021 pts_time:501.375875 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:30163744 plane_checksum:[7118D41F FC538286 0CB9E081] mean:[94 130 127] stdev:[53.8 6.0 5.7]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 189 pts:12081069 pts_time:503.377875 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:013DA03B plane_checksum:[4E734BF8 E232A486 CFB7AFAE] mean:[104 130 126] stdev:[58.9 6.3 5.9]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 190 pts:12113101 pts_time:504.712542 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:A89BF402 plane_checksum:[10FF8AEE 891A862F 5561E2D6] mean:[92 130 127] stdev:[53.2 5.3 5.1]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 191 pts:12129117 pts_time:505.379875 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:401E9DA2 plane_checksum:[BDAD42E2 C5C9A6B7 D734B3FA] mean:[105 130 126] stdev:[58.9 6.5 6.1]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 192 pts:12150138 pts_time:506.25575 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:0 type:I checksum:9FF9DB07 plane_checksum:[61A032D5 F296EB69 87B9BCBA] mean:[100 122 131] stdev:[44.3 7.6 2.5]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 193 pts:12327315 pts_time:513.638125 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:FF2BC209 plane_checksum:[59D9B6B8 AF40484B FC37C2F7] mean:[98 124 135] stdev:[57.2 4.3 11.6]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 194 pts:12355343 pts_time:514.805958 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:BB19D2A1 plane_checksum:[974B2322 C9381680 17BA98FF] mean:[88 123 130] stdev:[43.2 5.5 6.4]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 195 pts:12607595 pts_time:525.316458 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:6875520F plane_checksum:[8C00F08A 50444648 7B7F1B2E] mean:[102 124 137] stdev:[57.4 4.3 13.0]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 196 pts:12623611 pts_time:525.983792 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:0 type:I checksum:7C28F93E plane_checksum:[82AF0E58 C75F4B62 E66B9F84] mean:[99 124 130] stdev:[46.5 4.8 4.1]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 197 pts:12805793 pts_time:533.574708 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:22F6DE1B plane_checksum:[230C09FC 89E007CB 81B5CC54] mean:[85 123 131] stdev:[43.9 5.0 6.4]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 198 pts:12846834 pts_time:535.28475 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:C3CD2F72 plane_checksum:[6A11AF57 8BC70325 A2B97CE7] mean:[103 123 130] stdev:[52.7 4.4 4.1]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 199 pts:12886874 pts_time:536.953083 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:9789AC7B plane_checksum:[D7041BBE 5687E4DC 6A8DABD2] mean:[88 122 130] stdev:[43.4 5.1 5.7]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+frame=  200 fps= 66 q=-0.0 size=N/A time=00:08:56.99 bitrate=N/A speed= 178x elapsed=0:00:03.02    
+[Parsed_showinfo_2 @ 0x78ab006100] n: 200 pts:12930918 pts_time:538.78825 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:64F2939F plane_checksum:[838E3FE2 0987E4FD D7766EB1] mean:[113 122 129] stdev:[56.1 4.0 3.8]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 201 pts:12962950 pts_time:540.122917 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:AAF3E0E0 plane_checksum:[15BA51BA 7DD5DBE7 68D5B330] mean:[88 122 131] stdev:[43.8 5.2 5.6]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 202 pts:13009997 pts_time:542.083208 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:0 type:I checksum:C3785ABD plane_checksum:[76A52BEF 92588C1F 7397A2A0] mean:[114 121 130] stdev:[57.3 11.2 5.9]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 203 pts:13022009 pts_time:542.583708 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:0 type:I checksum:1A14D439 plane_checksum:[2A8EE198 98CF4C3E A063A654] mean:[100 124 130] stdev:[46.4 4.9 4.2]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 204 pts:13082069 pts_time:545.086208 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:35FC5E1E plane_checksum:[4920A907 325D2E48 E1E886C0] mean:[105 124 130] stdev:[57.1 3.7 4.5]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 205 pts:13107094 pts_time:546.128917 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:522730A7 plane_checksum:[004F8C0B E7490603 BD119E8A] mean:[106 123 130] stdev:[56.9 4.3 5.5]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 206 pts:13186173 pts_time:549.423875 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:5D679993 plane_checksum:[471C05D2 11E0E460 0C2BAF52] mean:[86 122 131] stdev:[42.5 5.1 5.3]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 207 pts:13279266 pts_time:553.30275 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:0 type:I checksum:3A06A7F5 plane_checksum:[01F2DE12 8E4B3EE7 F76A8AED] mean:[111 124 130] stdev:[61.2 3.6 4.3]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 208 pts:13324311 pts_time:555.179625 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:B3BBE0F5 plane_checksum:[87326EC4 C9ACA00B EC1BD217] mean:[89 121 131] stdev:[53.9 7.9 7.1]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 209 pts:13392379 pts_time:558.015792 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:DFC18E98 plane_checksum:[A071E1FF F0D2A11E 023E0B6C] mean:[91 117 132] stdev:[54.5 16.5 4.8]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 210 pts:13474461 pts_time:561.435875 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:60335339 plane_checksum:[56D68494 3FC241C0 0CB58CD6] mean:[118 124 130] stdev:[65.3 3.7 4.5]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 211 pts:13494481 pts_time:562.270042 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:0 type:I checksum:4F67B1DF plane_checksum:[06201BEB 295FEE4C 5DBDA799] mean:[90 123 130] stdev:[49.4 5.5 3.8]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 212 pts:13532519 pts_time:563.854958 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:55B86DDF plane_checksum:[E0FAF091 DE67412C E9BA3C13] mean:[81 119 133] stdev:[47.6 7.2 5.9]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 213 pts:13566553 pts_time:565.273042 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:0 type:I checksum:9F6A4F7C plane_checksum:[857B7D64 539340C7 8A479142] mean:[118 124 130] stdev:[65.3 3.7 4.4]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 214 pts:13607594 pts_time:566.983083 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:EA11ED51 plane_checksum:[F9028C6E F5401D88 8378435B] mean:[106 123 129] stdev:[54.2 4.8 5.7]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 215 pts:13645632 pts_time:568.568 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:8A47F47D plane_checksum:[BBFC2745 2AC83EBC 30408E7C] mean:[114 124 130] stdev:[62.5 3.7 4.5]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 216 pts:13691678 pts_time:570.486583 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:7338B526 plane_checksum:[1E784CF7 C7D20E45 2DA659EA] mean:[105 123 129] stdev:[52.9 5.0 6.0]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 217 pts:13954941 pts_time:581.455875 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:3E43E418 plane_checksum:[0DE738C7 125213E6 A90F976B] mean:[101 123 130] stdev:[52.7 4.9 4.5]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 218 pts:13973960 pts_time:582.248333 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:0 type:I checksum:D1A7ECDA plane_checksum:[2B3F6388 163D1EA8 ECD86AAA] mean:[106 123 129] stdev:[53.8 5.4 5.8]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 219 pts:14053039 pts_time:585.543292 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:378D0BED plane_checksum:[0C096554 17B612F1 5B029399] mean:[102 123 130] stdev:[52.8 4.9 4.4]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 220 pts:14115101 pts_time:588.129208 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:DE84CB54 plane_checksum:[B6FD3DFA A3272FDB 12335D7F] mean:[107 124 129] stdev:[56.3 5.0 5.3]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 221 pts:14181167 pts_time:590.881958 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:2E8F7874 plane_checksum:[531CD00C F8FE0F12 5A799947] mean:[98 123 130] stdev:[51.1 4.7 4.3]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 222 pts:14310296 pts_time:596.262333 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:DE4794A4 plane_checksum:[CF99E918 F81232D5 14DE78A8] mean:[67 119 134] stdev:[39.7 8.0 4.8]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 223 pts:14524510 pts_time:605.187917 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:E124C236 plane_checksum:[05C254EF 0050BDC3 194BAF75] mean:[79 117 135] stdev:[45.2 8.0 5.8]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 224 pts:14666652 pts_time:611.1105 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:0 type:I checksum:A7B4992D plane_checksum:[158E9903 DB21FDEE 2406022D] mean:[131 127 127] stdev:[58.3 2.1 1.1]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 225 pts:15042027 pts_time:626.751125 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:F5E0F7CB plane_checksum:[5A4FAE9A 0BE7A152 0B2DA7D0] mean:[107 126 130] stdev:[61.8 4.4 5.0]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+frame=  226 fps= 64 q=-0.0 size=N/A time=00:10:26.79 bitrate=N/A speed= 178x elapsed=0:00:03.52    
+[Parsed_showinfo_2 @ 0x78ab006100] n: 226 pts:15077062 pts_time:628.210917 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:53CA01DC plane_checksum:[DC0B0BFF 71D47FDB A2FC75F3] mean:[92 125 129] stdev:[48.4 4.8 7.2]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 227 pts:15115100 pts_time:629.795833 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:3D933E2B plane_checksum:[1BDBF557 B02DA9B5 2FAF9F01] mean:[106 126 130] stdev:[62.0 4.5 4.9]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 228 pts:15160145 pts_time:631.672708 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:4785EDEB plane_checksum:[EB965E3B F33C5586 425C3A2A] mean:[113 124 128] stdev:[58.7 4.6 5.4]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 229 pts:15267252 pts_time:636.1355 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:3040A78A plane_checksum:[AD0DA507 E4F8A04C 07216228] mean:[91 126 129] stdev:[48.9 4.3 7.1]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 230 pts:15298283 pts_time:637.428458 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:63757F9D plane_checksum:[243AFBBC 29285363 E89E306F] mean:[115 124 128] stdev:[58.9 4.5 5.3]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 231 pts:15374359 pts_time:640.598292 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:1AA06B9F plane_checksum:[62D347AA F4DB3583 FC27EE63] mean:[92 124 132] stdev:[50.8 4.5 6.1]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 232 pts:15463448 pts_time:644.310333 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:B66FB4F0 plane_checksum:[22E27155 B789B881 5DC28B0B] mean:[103 126 130] stdev:[62.3 4.5 4.8]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 233 pts:15501486 pts_time:645.89525 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:CB8A6DB8 plane_checksum:[47B07500 A6F53620 1F08C289] mean:[90 124 131] stdev:[49.6 4.3 6.7]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 234 pts:15580565 pts_time:649.190208 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:0 type:I checksum:444F8DEE plane_checksum:[CA0B424B 9F69BC39 3D6E8F5B] mean:[107 126 130] stdev:[62.9 4.2 4.6]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 235 pts:15606591 pts_time:650.274625 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:C0DAFDE6 plane_checksum:[1C3BBF94 823F1BF2 609A2260] mean:[121 123 128] stdev:[59.0 3.8 4.2]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 236 pts:15676661 pts_time:653.194208 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:4DBE1D37 plane_checksum:[2CD226DB 64C86409 3A659244] mean:[99 125 130] stdev:[54.8 4.4 6.1]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 237 pts:15738723 pts_time:655.780125 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:E5256877 plane_checksum:[3D11497F 092ABACB E846641E] mean:[119 126 129] stdev:[65.5 3.8 4.1]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 238 pts:15820805 pts_time:659.200208 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:0408BB31 plane_checksum:[E132E062 51803F8B DC909B35] mean:[97 124 130] stdev:[50.9 4.1 5.8]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 239 pts:15876861 pts_time:661.535875 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:0 type:I checksum:7E806435 plane_checksum:[76E84E15 807395E8 219A8029] mean:[112 126 130] stdev:[64.0 4.4 4.9]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 240 pts:15917902 pts_time:663.245917 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:46D62BCD plane_checksum:[1C724593 2F752976 6081BCB5] mean:[98 124 131] stdev:[51.6 4.6 6.1]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 241 pts:15943928 pts_time:664.330333 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:8828E7E9 plane_checksum:[E388C131 E866A159 D7AD8550] mean:[108 126 130] stdev:[63.1 4.2 4.6]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 242 pts:16004989 pts_time:666.874542 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:0 type:I checksum:1FFFEF92 plane_checksum:[6018D0D9 3E435FBC 797CBEEE] mean:[133 129 126] stdev:[64.9 2.5 3.1]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 243 pts:16267251 pts_time:677.802125 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:E148E987 plane_checksum:[F175019C 05E3C209 D75B25E2] mean:[97 126 128] stdev:[51.4 4.2 6.3]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 244 pts:16340324 pts_time:680.846833 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:D6807AA7 plane_checksum:[88971E9E F6BD9E2C E9C6BDCE] mean:[123 130 126] stdev:[63.9 2.7 3.3]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 245 pts:16401385 pts_time:683.391042 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:140CE710 plane_checksum:[C7F204B6 1B1AC4BA AFD01DA0] mean:[96 126 128] stdev:[51.4 4.5 6.7]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 246 pts:16444428 pts_time:685.1845 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:A36284ED plane_checksum:[622426F1 ED1276E9 309DE704] mean:[122 130 127] stdev:[65.0 3.0 3.5]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 247 pts:16496480 pts_time:687.353333 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:090D8314 plane_checksum:[44B44885 6811411A 3E78F966] mean:[129 129 127] stdev:[64.7 3.7 4.9]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 248 pts:16715699 pts_time:696.487458 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:A7D1E88A plane_checksum:[D49C825D C5DCBA92 D7A9AB8C] mean:[134 131 126] stdev:[67.9 3.3 3.7]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 249 pts:17014998 pts_time:708.95825 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:BBB3B567 plane_checksum:[2804EE75 76BAB584 F6CB115F] mean:[102 126 128] stdev:[54.8 3.2 7.3]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 250 pts:17046029 pts_time:710.251208 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:A6D5B2BE plane_checksum:[E453FDB5 688E9406 8D2220F4] mean:[116 130 128] stdev:[73.5 3.4 2.6]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 251 pts:17116099 pts_time:713.170792 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:47984248 plane_checksum:[67AE1A36 20E3081D DD261FF5] mean:[120 128 128] stdev:[60.7 3.8 6.2]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+frame=  252 fps= 63 q=-0.0 size=N/A time=00:11:53.21 bitrate=N/A speed= 177x elapsed=0:00:04.02    
+[Parsed_showinfo_2 @ 0x78ab006100] n: 252 pts:17148131 pts_time:714.505458 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:F1E87B7D plane_checksum:[F113D12E 78CA42D9 632F6767] mean:[141 129 129] stdev:[81.5 3.7 4.0]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 253 pts:17308291 pts_time:721.178792 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:0E2E360B plane_checksum:[C8932307 06D819CC 5C35F929] mean:[118 128 127] stdev:[60.3 3.2 6.0]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 254 pts:17355338 pts_time:723.139083 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:BA73991C plane_checksum:[45CBF4AF 601E4334 D52D612A] mean:[140 129 129] stdev:[80.5 3.7 4.0]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 255 pts:17405388 pts_time:725.2245 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:6656E2B2 plane_checksum:[C5A1996F 5B1F4254 3ABC06EF] mean:[116 129 128] stdev:[60.9 4.3 5.7]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 256 pts:17452435 pts_time:727.184792 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:C5CCFE7E plane_checksum:[9BC25AA5 39F352FE B6CD50DB] mean:[140 129 129] stdev:[79.9 3.6 4.0]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 257 pts:17578561 pts_time:732.440042 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:D2AF5E06 plane_checksum:[FB3343FD 16D60B16 97C90EF3] mean:[121 128 128] stdev:[60.0 3.3 6.2]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 258 pts:17593576 pts_time:733.065667 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:0 type:I checksum:1CDD057E plane_checksum:[A5CD6710 32B46B1D 94653342] mean:[144 129 128] stdev:[82.4 3.3 3.2]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 259 pts:17680663 pts_time:736.694292 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:AD612A82 plane_checksum:[E7690318 D53B2166 B8A20604] mean:[121 128 128] stdev:[61.1 3.6 6.0]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 260 pts:17704687 pts_time:737.695292 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:0 type:I checksum:CC2640F5 plane_checksum:[4EBBA172 AE7C5939 2112463B] mean:[143 129 129] stdev:[80.9 3.3 3.4]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 261 pts:17781764 pts_time:740.906833 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:85886A40 plane_checksum:[238E3C1D AA521F90 A0B50E93] mean:[121 128 128] stdev:[61.3 3.4 5.5]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 262 pts:17840823 pts_time:743.367625 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:C001C95D plane_checksum:[F8B92D4C 6C965798 033C4479] mean:[138 129 129] stdev:[79.0 3.2 3.4]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 263 pts:17973956 pts_time:748.914833 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:79CB9776 plane_checksum:[4C39637B B0272F3D 9CF804BE] mean:[122 128 127] stdev:[61.8 3.6 5.8]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 264 pts:17998981 pts_time:749.957542 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:58F6CEFE plane_checksum:[AF4730E8 EAA248B9 F27A555D] mean:[141 129 129] stdev:[80.2 3.4 3.7]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 265 pts:18146128 pts_time:756.088667 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:8B94738E plane_checksum:[8B0F4468 7EB831E6 9CB7FD31] mean:[116 128 127] stdev:[60.9 4.2 6.5]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 266 pts:18288270 pts_time:762.01125 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:5D649BF4 plane_checksum:[B27CFD9A 873144D3 2EF15978] mean:[141 129 129] stdev:[79.4 3.6 4.0]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 267 pts:18319301 pts_time:763.304208 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:2F026CAF plane_checksum:[93DB0CC0 62DB44F3 3C1F1AFC] mean:[121 129 128] stdev:[61.6 4.0 5.0]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 268 pts:18380362 pts_time:765.848417 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:27D4CA2D plane_checksum:[65472B4D ECBD4496 8A1D5A4A] mean:[141 129 129] stdev:[79.7 3.6 3.9]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 269 pts:18536518 pts_time:772.354917 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:AFE65BCC plane_checksum:[F07E28EC 36700ECA B1D62416] mean:[130 128 128] stdev:[62.8 2.7 2.7]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 270 pts:18619601 pts_time:775.816708 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:E043E12D plane_checksum:[848F7767 34F8C905 6006A0B2] mean:[128 131 126] stdev:[69.3 4.1 5.4]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 271 pts:18715697 pts_time:779.820708 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:5D5FE77C plane_checksum:[BE722F04 2F05DD22 665DDB47] mean:[132 131 127] stdev:[69.3 13.5 9.0]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 272 pts:18808790 pts_time:783.699583 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:63CEDABC plane_checksum:[400A7746 BEC94053 FEAD2323] mean:[97 129 128] stdev:[64.4 11.1 7.8]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 273 pts:18863845 pts_time:785.993542 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:0 type:B checksum:ECF0906C plane_checksum:[B0310290 9C9483EB 319A09F1] mean:[137 130 128] stdev:[70.8 10.6 7.2]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 274 pts:18988970 pts_time:791.207083 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:0 type:B checksum:2E3D5727 plane_checksum:[C6C5CB4C 581E1B7A 03D17052] mean:[87 132 125] stdev:[54.6 17.2 13.8]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 275 pts:19038019 pts_time:793.250792 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:7B6E452A plane_checksum:[B950AC16 77FC3E0C 40EA5AF9] mean:[127 133 124] stdev:[67.5 16.7 13.5]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 276 pts:19165146 pts_time:798.54775 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:FCBBAD97 plane_checksum:[BB5A3B95 6621630A 1EE50EF8] mean:[96 129 128] stdev:[64.0 11.5 7.9]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 277 pts:19271252 pts_time:802.968833 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:2CFD2593 plane_checksum:[0FE1C300 14D12447 713B3E3D] mean:[139 128 129] stdev:[69.9 5.3 4.3]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+frame=  278 fps= 61 q=-0.0 size=N/A time=00:13:23.01 bitrate=N/A speed= 177x elapsed=0:00:04.53    
+[Parsed_showinfo_2 @ 0x78ab006100] n: 278 pts:19506487 pts_time:812.770292 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:0F3FD630 plane_checksum:[379E8A9D 73F3573C C499F448] mean:[75 120 136] stdev:[36.6 6.6 7.5]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 279 pts:19835816 pts_time:826.492333 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:C6E2E6B2 plane_checksum:[BF412EDB 09E93383 58B38454] mean:[86 124 130] stdev:[45.5 4.7 5.7]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 280 pts:20016997 pts_time:834.041542 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:FAA0C8CA plane_checksum:[E8021BD6 17E45B82 3A035172] mean:[96 124 129] stdev:[57.1 4.8 5.4]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 281 pts:20038018 pts_time:834.917417 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:5D40DB1A plane_checksum:[CD7E1BB1 555F32C2 73688CA7] mean:[88 124 130] stdev:[47.5 4.7 5.6]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 282 pts:20162142 pts_time:840.08925 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:475E73A3 plane_checksum:[DF37C262 63BC634E C6D14DE4] mean:[98 125 129] stdev:[58.5 4.9 5.4]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 283 pts:20200180 pts_time:841.674167 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:7220E821 plane_checksum:[8EC63EAA 4CB83497 694D74E0] mean:[91 124 129] stdev:[50.8 4.9 6.9]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 284 pts:20282262 pts_time:845.09425 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:8A935809 plane_checksum:[81BCBDE0 C12A10B1 586F8969] mean:[67 123 130] stdev:[31.7 4.2 4.9]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 285 pts:20315295 pts_time:846.470625 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:F5432254 plane_checksum:[C56768D2 BF082F8F AC1C89E4] mean:[89 124 130] stdev:[48.8 4.8 5.9]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 286 pts:20380360 pts_time:849.181667 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:C71CF6A8 plane_checksum:[246F6120 DDD30BC6 4C2289C2] mean:[68 123 130] stdev:[32.3 4.3 4.9]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 287 pts:20418398 pts_time:850.766583 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:FE672424 plane_checksum:[0A1B4E9B 9835BC89 B08418F1] mean:[74 126 128] stdev:[46.2 5.5 6.7]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 288 pts:20471451 pts_time:852.977125 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:B10C1E75 plane_checksum:[937454C6 1D8038F1 1E2F90AF] mean:[88 124 130] stdev:[48.3 4.7 5.7]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 289 pts:20810790 pts_time:867.11625 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:FB7C5C24 plane_checksum:[DFD72385 64906B1E 21BDCD72] mean:[68 125 131] stdev:[29.7 4.2 4.0]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 290 pts:20887867 pts_time:870.327792 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:F05F342E plane_checksum:[E2DD83E8 EB6B6555 0D084AE2] mean:[98 125 129] stdev:[59.1 4.8 5.4]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 291 pts:20917897 pts_time:871.579042 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:C04D55CA plane_checksum:[E0E725C5 2DB26923 5ACAC6D3] mean:[68 125 131] stdev:[29.6 4.1 4.0]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 292 pts:21257236 pts_time:885.718167 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:ABABD374 plane_checksum:[9D2249CA 28DEC7B5 A27FC1E6] mean:[87 122 131] stdev:[58.2 11.3 7.3]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 293 pts:21466445 pts_time:894.435208 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:C979A0C3 plane_checksum:[7C56FD71 CAF98BE1 D5301762] mean:[72 121 132] stdev:[53.0 12.5 4.9]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 294 pts:21516495 pts_time:896.520625 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:395AC907 plane_checksum:[4A459586 56A56709 4D9FCC69] mean:[63 125 131] stdev:[41.2 4.7 5.8]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 295 pts:21556535 pts_time:898.188958 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:0842893B plane_checksum:[95849851 9224FBC9 3375F503] mean:[67 123 132] stdev:[32.2 5.1 5.5]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 296 pts:21627606 pts_time:901.15025 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:9832B10A plane_checksum:[B13078C2 E28783CD 2978B46C] mean:[62 125 131] stdev:[42.3 4.5 5.9]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+frame=  297 fps= 59 q=-0.0 size=N/A time=00:15:01.19 bitrate=N/A speed= 179x elapsed=0:00:05.03    
+[Parsed_showinfo_2 @ 0x78ab006100] n: 297 pts:21693672 pts_time:903.903 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:BFF09AF7 plane_checksum:[528B0B17 9A849E09 6AFDF1C8] mean:[73 121 132] stdev:[51.3 10.1 4.3]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 298 pts:21756735 pts_time:906.530625 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:B891FAF0 plane_checksum:[8E86C33B EF727387 DF2FC41F] mean:[62 125 131] stdev:[41.0 4.8 6.3]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 299 pts:21952931 pts_time:914.705458 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:D97E0E63 plane_checksum:[F86A7FC0 48DF84EE 6C2409A6] mean:[68 121 132] stdev:[48.0 12.4 5.0]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 300 pts:22073051 pts_time:919.710458 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:BACE7F08 plane_checksum:[4DB1DBBD EB1A141B 19A58F21] mean:[76 123 130] stdev:[36.6 5.5 6.8]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 301 pts:22093071 pts_time:920.544625 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:0 type:I checksum:F46A3869 plane_checksum:[BF4845AD 28050D16 7A8EE597] mean:[65 123 131] stdev:[38.3 5.3 2.9]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 302 pts:22214192 pts_time:925.591333 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:0 type:I checksum:DC9D1AFA plane_checksum:[1ED08F2D 96C40255 FB8C8969] mean:[87 123 130] stdev:[42.9 5.0 6.2]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 303 pts:22606584 pts_time:941.941 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:DA720CC1 plane_checksum:[5EB19272 7CCCF473 B5BE85BE] mean:[95 123 130] stdev:[44.8 5.8 6.9]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 304 pts:22682660 pts_time:945.110833 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:6755CE3D plane_checksum:[4F8C22CD B4001E90 DEFE8CE0] mean:[99 123 130] stdev:[57.3 4.0 4.5]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 305 pts:22780758 pts_time:949.19825 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:B702EB0E plane_checksum:[D4F17998 6B46E117 D5379050] mean:[94 122 130] stdev:[45.0 6.0 7.3]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 306 pts:22873851 pts_time:953.077125 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:0 type:I checksum:66B4361D plane_checksum:[C89F856F 6DA51696 B91F9A09] mean:[98 123 130] stdev:[57.2 3.8 4.8]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 307 pts:22949927 pts_time:956.246958 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:0A206302 plane_checksum:[EAEEED25 C5D0301E 451445B0] mean:[89 115 133] stdev:[56.9 19.5 8.6]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 308 pts:22985963 pts_time:957.748458 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:B800909B plane_checksum:[26F5FB07 3E21EB56 9AFAAA20] mean:[76 122 130] stdev:[46.2 8.1 5.2]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 309 pts:23064041 pts_time:961.001708 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:A33D9557 plane_checksum:[01BD8D37 BF1E424E 15B7C5C3] mean:[62 124 131] stdev:[35.3 5.0 3.8]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 310 pts:23102079 pts_time:962.586625 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:814124A8 plane_checksum:[E15917B7 A398B509 E54857D9] mean:[77 112 134] stdev:[50.9 19.7 9.1]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 311 pts:23245222 pts_time:968.550917 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:04BEE14E plane_checksum:[7F0CD011 FEA047E6 7C16C948] mean:[66 124 131] stdev:[37.4 4.6 4.0]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 312 pts:23318295 pts_time:971.595625 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:0 type:I checksum:EF1A6CED plane_checksum:[8DF3C2EB 2AB01BF5 FA5A8DFE] mean:[101 123 130] stdev:[58.5 3.9 4.7]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 313 pts:23394371 pts_time:974.765458 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:48F94072 plane_checksum:[1CBEF016 7E51E1E3 CA786E5B] mean:[78 113 134] stdev:[50.2 19.7 8.8]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 314 pts:23419396 pts_time:975.808167 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:1FD40E27 plane_checksum:[7A92021B A65C3B62 0731D09B] mean:[65 124 131] stdev:[37.9 5.0 4.1]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 315 pts:23450427 pts_time:977.101125 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:AC50B1BF plane_checksum:[21DB4AB7 B7BEF66C 1337708D] mean:[77 114 134] stdev:[49.1 19.3 8.6]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 316 pts:23532509 pts_time:980.521208 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:B3788FF3 plane_checksum:[A59BFC30 DB41DC1D 66E7B788] mean:[76 122 131] stdev:[46.5 8.2 5.4]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 317 pts:23644621 pts_time:985.192542 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:0B17D791 plane_checksum:[A37BBF1E 14EC0662 99FA1211] mean:[65 123 132] stdev:[34.0 5.3 5.4]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+frame=  318 fps= 57 q=-0.0 size=N/A time=00:16:25.23 bitrate=N/A speed= 178x elapsed=0:00:05.54    
+[Parsed_showinfo_2 @ 0x78ab006100] n: 318 pts:23902879 pts_time:995.953292 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:6601704A plane_checksum:[1508112A F78A44B3 BBF51A6D] mean:[80 120 132] stdev:[45.9 9.1 6.9]
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[Parsed_showinfo_2 @ 0x78ab006100] n: 319 pts:23985962 pts_time:999.415083 duration:   1001 duration_time:0.0417083 fmt:yuv420p cl:unspecified sar:1/1 s:320x180 i:P iskey:1 type:I checksum:78AB353E plane_checksum:[531BC056 76B250FA F63623DF] mean:[68 124 128] stdev:[42.9 3.7 2.6]
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=dc45e9bd-e6d9-48b7-962c-d820d923eeef
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=78323634202d20636f726520313535207232393031203764306666323200
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100]   side data - H.26[45] User Data Unregistered SEI message: UUID=a4dcf53f-130a-291c-9bd6-1ac002e6b9a1
+[Parsed_showinfo_2 @ 0x78ab006100] User Data=313531393736323138363831313333313835393100
+[Parsed_showinfo_2 @ 0x78ab006100] 
+[Parsed_showinfo_2 @ 0x78ab006100] color_range:tv color_space:bt709 color_primaries:bt709 color_trc:bt709
+[out#0/null @ 0x78ab0049c0] video:132KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=  320 fps= 56 q=-0.0 Lsize=N/A time=00:16:39.45 bitrate=N/A speed= 175x elapsed=0:00:05.71    
