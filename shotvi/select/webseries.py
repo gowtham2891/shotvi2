@@ -2407,7 +2407,7 @@ def run_document(ep, tp, props, rejected, cfg, llm, n_moments, n_passed, t_start
     summ = llm.ledger.summary()
     return {
         "schema_version": "1.1", "kind": "proposals", "video_id": ep.video_id,
-        "transcript": {"path": Path(tp).resolve().relative_to(ROOT).as_posix(), "sha256": file_sha256(tp),
+        "transcript": {"path": Path(tp).resolve().relative_to(Path(ROOT).resolve()).as_posix(), "sha256": file_sha256(tp),
                        "n_words": len(ep.words), "audio_duration_secs": float(json.loads(
                            Path(tp).read_text(encoding="utf-8")).get("audio_duration_secs") or ep.duration)},
         "derived_params": {"skip_s": cfg["guardrails"]["skip_s"]},
