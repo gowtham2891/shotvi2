@@ -1,0 +1,1260 @@
+{
+ "schema_version": "1.1",
+ "kind": "proposals",
+ "video_id": "0TK5hWAEXBw",
+ "transcript": {
+  "path": "scribe_dataset/0TK5hWAEXBw/0TK5hWAEXBw_scribe_transcript.json",
+  "sha256": "55cad82ee6324f53293bc779bc4245123a9fed6c9dfbc609181525653cf94e98",
+  "n_words": 2165,
+  "audio_duration_secs": 1429.553
+ },
+ "derived_params": {
+  "skip_s": 30.0
+ },
+ "run_id": "blind_v1",
+ "created_at": "2026-10-22T08:51:25Z",
+ "content_type": "web_series",
+ "pipeline": {
+  "version": "ws/0.2",
+  "git_commit": null,
+  "prompt_versions": {
+   "ws_discover": "3+27f4dce4",
+   "ws_review": "1+addbc14b"
+  },
+  "prompt_files": {
+   "ws_discover": "ws_discover_b_payoff",
+   "ws_review": "ws_review"
+  },
+  "config": {
+   "models": {
+    "ws_discover": {
+     "provider": "gemini",
+     "model": "gemini-3.8-flash",
+     "params": {
+      "thinking_level": "high",
+      "max_output_tokens": 32768
+     }
+    },
+    "ws_review": {
+     "provider": "gemini",
+     "model": "gemini-3.8-flash",
+     "params": {
+      "thinking_level": "medium",
+      "max_output_tokens": 16384
+     }
+    },
+    "video_end": {
+     "provider": "gemini",
+     "model": "gemini-3.8-flash",
+     "params": {
+      "thinking_level": "low"
+     }
+    }
+   },
+   "cut": {
+    "start_pad_s": 0.3,
+    "lift_min_s": 1.0,
+    "lift_max_s": 3.6,
+    "lift_cut_eps_s": 0.005,
+    "lift_start_snap_s": 0.4,
+    "lift_start_pad_s": 0.12,
+    "lift_max_tail_s": 2.0,
+    "lift_tail_measure_s": 0.4,
+    "lift_quiet_tail_db": 15.0,
+    "lift_level_warn_db": 10.0,
+    "max_cuts": 3,
+    "max_drop_s": 45.0,
+    "snap_s": 1.5,
+    "join_pad_s": 0.25,
+    "hold_min_s": 2.0,
+    "hold_max_s": 8.0,
+    "hold_short_min_s": 0.5,
+    "hold_default_s": 2.0,
+    "next_speech_margin_s": 0.1,
+    "long_silence_s": 20.0,
+    "long_silence_hold_max_s": 4.0,
+    "react_max_s": 1.5,
+    "react_max_words": 3,
+    "react_clear_s": 1.0,
+    "quick_cut_min_s": 0.02,
+    "quick_end_margin_s": 0.05,
+    "flash_s": 0.3,
+    "shot_tol_s": 0.05,
+    "word_clip_tol_s": 0.02,
+    "exchange_start": false,
+    "exchange_gap_s": 2.0,
+    "exchange_back_max_s": 30.0,
+    "exchange_back_max_lines": 12,
+    "exchange_on_cap": "keep",
+    "exchange_recap_s": 60.0,
+    "exchange_mode": "walk",
+    "qreply_require_speaker_change": false,
+    "qreply_setup_lines": 2,
+    "qreply_max_lines": 3,
+    "qreply_max_s": 12.0,
+    "exchange_max_play_s": 120.0
+   },
+   "review_view": "final",
+   "guardrails": {
+    "min_s": 15.0,
+    "soft_max_s": 120.0,
+    "hard_max_s": 150.0,
+    "skip_s": 30.0,
+    "dup_overlap": 0.5,
+    "blocks_flag_above": 3
+   },
+   "thresholds": {
+    "show_rule": "candidates",
+    "t_hide": 2.5,
+    "show_unchecked": true,
+    "t_show": 3.5,
+    "t_rec": 4.0,
+    "t_rec_payoff": 4.0,
+    "rec_blockers": [
+     "needs_rescore",
+     "shot_flash",
+     "unreviewed_start",
+     "review_repair_failed"
+    ],
+    "verdict_strong_min": 3
+   },
+   "video_end_check": {
+    "enabled": false,
+    "max_shift_s": 8.0
+   },
+   "video_gate": {
+    "enabled": false
+   },
+   "prompts": {
+    "ws_discover": "ws_discover_b_payoff",
+    "ws_review": "ws_review"
+   },
+   "budget_usd": 0.6,
+   "run_id": "blind_v1"
+  }
+ },
+ "models": [
+  {
+   "role": "ws_discover",
+   "provider": "gemini",
+   "model": "gemini-3.8-flash",
+   "params": {
+    "thinking_level": "high",
+    "max_output_tokens": 32768
+   }
+  },
+  {
+   "role": "ws_review",
+   "provider": "gemini",
+   "model": "gemini-3.8-flash",
+   "params": {
+    "thinking_level": "medium",
+    "max_output_tokens": 16384
+   }
+  }
+ ],
+ "cost": {
+  "input_tokens": 24949,
+  "output_tokens": 27708,
+  "usd": 0.12262,
+  "usd_billed": 0.12262,
+  "wall_time_secs": 193.7,
+  "n_llm_calls": 2,
+  "by_role": {
+   "ws_discover": {
+    "n_llm_calls": 1,
+    "n_cache_hits": 0,
+    "n_failed_attempts": 0,
+    "input_tokens": 19490,
+    "output_tokens": 25740,
+    "thought_tokens": 22575,
+    "cached_input_tokens": 0,
+    "usd": 0.11114,
+    "usd_billed": 0.11114,
+    "models": [
+     "gemini-3.8-flash"
+    ]
+   },
+   "ws_review": {
+    "n_llm_calls": 1,
+    "n_cache_hits": 0,
+    "n_failed_attempts": 0,
+    "input_tokens": 5459,
+    "output_tokens": 1968,
+    "thought_tokens": 0,
+    "cached_input_tokens": 0,
+    "usd": 0.01147,
+    "usd_billed": 0.01147,
+    "models": [
+     "gemini-3.8-flash"
+    ]
+   }
+  },
+  "projection": {
+   "ws_discover": {
+    "in": 19490,
+    "in_source": "countTokens",
+    "out_expected": 25000,
+    "out_guard": 32768,
+    "inr_expected": 9.75,
+    "inr": 12.37
+   },
+   "ws_review": {
+    "in_expected": 14700,
+    "out_expected": 15000,
+    "inr_expected": 6.05,
+    "in_guard": 14700,
+    "out_guard": 15000,
+    "inr": 6.05,
+    "assumes_clips": 15,
+    "expected_from": "defaults",
+    "inr_fallback": 12.2
+   },
+   "video_end_check": {
+    "enabled": false,
+    "assumes_clips": 15,
+    "inr": 0.0,
+    "inr_expected": 0.0
+   },
+   "episode": {
+    "inr_expected": 15.8,
+    "inr": 30.62
+   }
+  }
+ },
+ "cutoff": {
+  "show_rule": "candidates",
+  "t_hide": 2.5,
+  "t_show": 3.5,
+  "t_rec": 4.0,
+  "t_rec_payoff": 4.0,
+  "rec_blockers": [
+   "needs_rescore",
+   "shot_flash",
+   "unreviewed_start",
+   "review_repair_failed"
+  ],
+  "n_candidates": 10,
+  "n_passed_hard_rules": 10,
+  "n_shown": 10,
+  "n_recommended": 6,
+  "n_worth_a_look": 4,
+  "n_unchecked": 0,
+  "n_rejected": 0,
+  "warnings": []
+ },
+ "episode_verdict": {
+  "strong_clips": 6,
+  "worth_a_look": 4,
+  "unchecked": 0,
+  "verdict": "strong",
+  "note": "6 strong candidates (plus 4 other candidates)."
+ },
+ "episode_notes": "Payoff beats: L0043 (punchline), L0085 (punchline), L0107 (reveal), L0153 (punchline), L0192 (punchline), L0334 (conclusion), L0380 (punchline), L0424 (punchline), L0507 (emotional_peak), L0614 (reveal). Scene map: L0007-L0024: Hospital doctor setup where Murthy plans emotional drama; L0025-L0121: Hospital corridor confrontation where Murthy fakes grandma's critical condition to force 30-year-old Prithvi into marriage, followed by Prithvi's bed coffee wish coming true instantly as Meghana arrives; L0122-L0228: Matchmaking chat where Meghana exposes the coffee flask trick and shocks Prithvi by revealing she is only 21; L0229-L0258: Post-wedding home prep; L0259-L0347: Prithvi video calls Karthik, who mocks the 9-year generation gap; L0352-L0381: Murthy announces the first night and roasts Prithvi; L0394-L0618: First night bedroom scene exploring milk dislike, Horlicks, generational divide (Orkut vs 7th class), culminating in Meghana dropping her demure persona to reveal her real assertive self.",
+ "proposals": [
+  {
+   "id": "w07",
+   "pieces": [
+    {
+     "start_word": 1287,
+     "end_word": 1340,
+     "start": 745.68,
+     "end": 779.24
+    }
+   ],
+   "region": {
+    "start_word": 1287,
+    "end_word": 1340,
+    "start": 745.68,
+    "end": 779.24
+   },
+   "edited_duration": 33.56,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "విషయం ఏంటి మురతి గారు? అయ్యగారితో మాట్లాడానురా, ఈ రాత్రికే కార్యం జరిపించమన్నారు కార్యమా? ఏం కార్యం? ఊ.. ఘనకార్యం ఆ! ఫస్ట్ నైట్ రా అబ్బా! ఇప్పుడు అవన్నీ అవసరమా నాన్న? అవసరమా అంటాడేంటి నీ కొడుకు? ఒరేయ్ తింగరి సచ్చినోడా, ఏ వయసులో జరగాల్సిన ముచ్చట ఆ వయసులో జరగాలిరా. ఏ... ఇంతకీ ఏం చేయాలో తెలుసా? నాన్న! ముప్పై ఏళ్ళు ఏ... నా బాధ అదేరా! ముప్పై ఏళ్ళు కదా, మర్చిపోయవేమోనని",
+   "rank": 1,
+   "tier": "recommended",
+   "tier_label": "strong candidate",
+   "scores": {
+    "hook": 4.0,
+    "standalone": 4.5,
+    "payoff": 4.5,
+    "value_emotion": 4.5,
+    "overall": 4.4
+   },
+   "title": "30 ఏళ్లు కదా.. మర్చిపోయావేమోనని!",
+   "hook_line": {
+    "text": "విషయం ఏంటి మురతి గారు?",
+    "start_word": 1287,
+    "end_word": 1290
+   },
+   "payoff_line": "మర్చిపోయవేమోనని",
+   "payoff_type": "punchline",
+   "payoff_line_source": "discover",
+   "why_it_works": "Hilarious father-son conversation about first night duties with an unexpected, sharp punchline at the end.",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 745.38,
+     "end": 780.703,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 35.32,
+   "spoiler": false,
+   "characters": [
+    "Prithvi",
+    "Murthy"
+   ],
+   "visual_dependency": "low",
+   "start_line": "L0361",
+   "end_line": "L0380",
+   "end_hold": {
+    "payoff_end": 779.24,
+    "end": 780.703,
+    "hold_s": 1.46,
+    "on_shot_cut": true,
+    "next_speech": 789.92,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "note": "short hold (next shot cut before the minimum hold)",
+    "rule": "hold"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": 5,
+    "what_happens": "Murthy excitedly reveals that the first night ceremony is set for tonight; when Prithvi resists mentioning he is 30 years old, Murthy roasts him, saying he was worried Prithvi forgot how to do it.",
+    "hook": "Murthy announces to Prithvi that the priest has fixed the auspicious time for their first night tonight.",
+    "payoff": "Murthy's hilarious comeback that because Prithvi is thirty, he might have forgotten what to do.",
+    "opening_strength": "strong",
+    "payoff_line": "మర్చిపోయవేమోనని",
+    "payoff_type": "punchline"
+   },
+   "review": {
+    "cold_open_note": "",
+    "cut_note": "",
+    "bad_cuts": [],
+    "changes": []
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": []
+  },
+  {
+   "id": "w01",
+   "pieces": [
+    {
+     "start_word": 171,
+     "end_word": 225,
+     "start": 103.4,
+     "end": 135.82
+    }
+   ],
+   "region": {
+    "start_word": 171,
+    "end_word": 225,
+    "start": 103.4,
+    "end": 135.82
+   },
+   "edited_duration": 32.42,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "Doctor మా అమ్మకి ఎలా ఉంది ఇప్పుడు? మీ అమ్మగారి పరిస్థితి 2000s లో Sachin Tendulkar out అయిన తర్వాత Indian teamలా తయారైంది sir. ఆ! ఎంతవరకు stand అవుతారో తెలియని tension. I am sorry sir. last కోరికలు ఏమైనా ఉంటే తీర్చె- ఆ అయ్యో అమ్మా! నీకెప్పుడే నూరు ఏళ్ళు నిండాయమ్మా! అమ్మా! అమ్మా! Government job ఒక గొప్ప నటుడ్ని industry నుంచి దూరం చేసింది మూర్తి గారు.",
+   "rank": 2,
+   "tier": "recommended",
+   "tier_label": "strong candidate",
+   "scores": {
+    "hook": 4.5,
+    "standalone": 4.0,
+    "payoff": 4.5,
+    "value_emotion": 4.5,
+    "overall": 4.3
+   },
+   "title": "సచిన్ ఔటైన ఇండియన్ టీమ్ లా తయారైంది!",
+   "hook_line": {
+    "text": "Doctor",
+    "start_word": 171,
+    "end_word": 171
+   },
+   "payoff_line": "Government job ఒక గొప్ప నటుడ్ని industry {fixed: కి} దూరం చేసింది మూర్తి గారు.",
+   "payoff_type": "punchline",
+   "payoff_line_source": "discover",
+   "why_it_works": "The Sachin Tendulkar analogy instantly hooks cricket fans, ending with a hilarious punchline about government job acting skills.",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 103.1,
+     "end": 135.87,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 32.77,
+   "spoiler": false,
+   "characters": [
+    "Murthy",
+    "Doctor",
+    "Prithvi"
+   ],
+   "visual_dependency": "low",
+   "start_line": "L0029",
+   "end_line": "L0043",
+   "end_hold": {
+    "payoff_end": 135.82,
+    "next_speech": 136.02,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "end": 135.87,
+    "hold_s": 0.05,
+    "on_shot_cut": true,
+    "rule": "shot_change_before_next_line",
+    "note": "next line starts quickly: ends on the shot change"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": 4,
+    "what_happens": "Murthy stages a dramatic hospital scene where the doctor compares grandma's critical condition to the Indian cricket team collapsing after Sachin's dismissal, but Prithvi sees through his father's overacting immediately.",
+    "hook": "The doctor grimly warns Murthy that his mother's condition is like the Indian team in the 2000s after Sachin Tendulkar got out.",
+    "payoff": "Prithvi sarcastic reply calling out his father's dramatic performance: 'Government job industry ki oka goppa natudni dooram chesindi Murthy garu.'",
+    "opening_strength": "strong",
+    "payoff_line": "Government job ఒక గొప్ప నటుడ్ని industry {fixed: కి} దూరం చేసింది మూర్తి గారు.",
+    "payoff_type": "punchline"
+   },
+   "review": {
+    "cold_open_note": "",
+    "cut_note": "",
+    "bad_cuts": [],
+    "changes": []
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": []
+  },
+  {
+   "id": "w02",
+   "pieces": [
+    {
+     "start_word": 326,
+     "end_word": 372,
+     "start": 185.3,
+     "end": 210.36
+    }
+   ],
+   "region": {
+    "start_word": 326,
+    "end_word": 372,
+    "start": 185.3,
+    "end": 210.36
+   },
+   "edited_duration": 25.06,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "లేకపోతే ఏంటోయ్ ముడ్డి కిందకి ముప్పై ఏళ్ళు వచ్చి మూడు నెలలు అవుతుంది. మరి పెళ్లి ఎప్పుడు చేసుకుంటావ్? అబ్బా! చేసుకుంటాలే నాకు సింహాయి అమ్మాయి దొరకాలిగా. మరి ఎలా కావాలో చెప్పేడిస్తే తెలుస్తుంది. హలో! రేయ్ అసలు నీకు ఎలాంటి అమ్మాయి కావాలిరా? అమ్మాయిని చూడగానే నాకోసమే పుట్టిందేమో అనిపించాలి. అలా చూస్తూ ఉండిపోవాలి అమ్మాయిని. అప్పుడే పుట్టిన పిల్లని ఎవరు ఇవ్వరేమో నాన్నా.",
+   "rank": 3,
+   "tier": "recommended",
+   "tier_label": "strong candidate",
+   "scores": {
+    "hook": 4.0,
+    "standalone": 4.5,
+    "payoff": 4.5,
+    "value_emotion": 4.0,
+    "overall": 4.2
+   },
+   "title": "నాకోసమే పుట్టింది అనుకోవాలి!",
+   "hook_line": {
+    "text": "లేకపోతే ఏంటోయ్ ముడ్డి కిందకి ముప్పై ఏళ్ళు వచ్చి మూడు నెలలు అవుతుంది.",
+    "start_word": 326,
+    "end_word": 335
+   },
+   "payoff_line": "అప్పుడే పుట్టిన పిల్లని ఎవరు ఇవ్వరేమో నాన్నా.",
+   "payoff_type": "punchline",
+   "payoff_line_source": "discover",
+   "why_it_works": "Relatable Telugu banter about marriage pressure, capped by the father's savage sarcastic punchline.",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 185.28,
+     "end": 210.62,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 25.34,
+   "spoiler": false,
+   "characters": [
+    "Murthy",
+    "Prithvi",
+    "Mother"
+   ],
+   "visual_dependency": "low",
+   "start_line": "L0073",
+   "end_line": "L0085",
+   "end_hold": {
+    "payoff_end": 210.36,
+    "next_speech": 212.2,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "end": 210.62,
+    "hold_s": 0.26,
+    "on_shot_cut": true,
+    "rule": "shot_change_before_next_line",
+    "note": "next line starts quickly: ends on the shot change"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": 4,
+    "what_happens": "Murthy scolds 30-year-old Prithvi for delaying marriage, and when Prithvi romantically describes wanting a girl who looks like she was born just for him, his mother shuts him down with a literal comeback.",
+    "hook": "Murthy aggressively questions Prithvi on why he hasn't married yet despite crossing thirty years and three months.",
+    "payoff": "His mother dryly delivers the punchline that nobody will give a newborn baby in marriage.",
+    "opening_strength": "strong",
+    "payoff_line": "అప్పుడే పుట్టిన పిల్లని ఎవరు ఇవ్వరేమో నాన్నా.",
+    "payoff_type": "punchline"
+   },
+   "review": {
+    "cold_open_note": "",
+    "cut_note": "",
+    "bad_cuts": [],
+    "changes": []
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": []
+  },
+  {
+   "id": "w09",
+   "pieces": [
+    {
+     "start_word": 1719,
+     "end_word": 1770,
+     "start": 1105.936,
+     "end": 1130.636
+    }
+   ],
+   "region": {
+    "start_word": 1719,
+    "end_word": 1770,
+    "start": 1105.936,
+    "end": 1130.636
+   },
+   "edited_duration": 24.7,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "నేను college లో ఉన్నప్పుడు Facebook ఏ లేదు. హా? మరి ఇంకేం చేసేవాళ్ళు? Orkut ఉండేది Facebook అప్పుడే వచ్చిందనుకుంటా. Orkut ఆ? engineering ఏ year pass out బాబు? 2007 to 2011 batch 2011 ఆ? ఆ Almost ten years అయిపోయిందిగా అంతేగా! అప్పుడు నువ్వు inter ఏగా? Inter ఆ? tenth కూడా కాదేమో. 2011 అంటే seventh or eighth Seventh ఆ",
+   "rank": 4,
+   "tier": "recommended",
+   "tier_label": "strong candidate",
+   "scores": {
+    "hook": 4.0,
+    "standalone": 4.5,
+    "payoff": 4.0,
+    "value_emotion": 4.0,
+    "overall": 4.1
+   },
+   "title": "నేను Engineering పాస్ అయినప్పుడు నువ్వు 7th ఆ?",
+   "hook_line": {
+    "text": "నేను college లో ఉన్నప్పుడు Facebook ఏ లేదు.",
+    "start_word": 1719,
+    "end_word": 1725
+   },
+   "payoff_line": "Seventh ఆ",
+   "payoff_type": "emotional_peak",
+   "payoff_line_source": "discover",
+   "why_it_works": "Nostalgic Orkut vs Facebook contrast highlighting a massive age gap with humorous reality-check realization.",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 1105.636,
+     "end": 1133.245,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 27.61,
+   "spoiler": false,
+   "characters": [
+    "Prithvi",
+    "Meghana"
+   ],
+   "visual_dependency": "low",
+   "start_line": "L0490",
+   "end_line": "L0507",
+   "end_hold": {
+    "payoff_end": 1130.636,
+    "end": 1133.245,
+    "hold_s": 2.61,
+    "on_shot_cut": true,
+    "next_speech": 1138.276,
+    "long_silence_after": false,
+    "laugh_after": true,
+    "rule": "hold"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": 4,
+    "what_happens": "Prithvi recalls using Orkut because Facebook didn't exist when he was in college; Meghana calculates their timelines and reveals she was only in 7th or 8th class when he finished engineering.",
+    "hook": "Prithvi remarks that Facebook didn't even exist during his college days, only Orkut was around.",
+    "payoff": "Prithvi's stunned speechless reaction upon realizing he graduated college when his bride was in 7th grade.",
+    "opening_strength": "strong",
+    "payoff_line": "Seventh ఆ",
+    "payoff_type": "emotional_peak"
+   },
+   "review": {
+    "cold_open_note": "",
+    "cut_note": "",
+    "bad_cuts": [],
+    "changes": []
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": []
+  },
+  {
+   "id": "w10",
+   "pieces": [
+    {
+     "start_word": 2077,
+     "end_word": 2151,
+     "start": 1331.756,
+     "end": 1363.996
+    }
+   ],
+   "region": {
+    "start_word": 2077,
+    "end_word": 2151,
+    "start": 1331.756,
+    "end": 1363.996
+   },
+   "edited_duration": 32.24,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ఆ నేను వెళ్లి కింద పడుకుంటా. కింద పడుకుంటా ఏంటి? కిందే పడుకోవాలి. హేయ్! sudden గా ఈ character shift ఏంటి? Shift కాదు ఇదే original. అయినా ఏంటోయ్ నువ్వు? ఏదో మొహమాట వస్తదివి, మాట కలుద్దాం, మంచిని తెలుసుకుందాం అంటే, ఏ topic మాట్లాడినా age దగ్గరికే తీసుకువచ్చి ఆపుతున్నావ్. అవును twenty-one ఏ. పెళ్లి చేసుకున్నావ్ కదా. చిన్నపిల్లలా కనిపిస్తున్నానా? రా చేతులేసి ఉయ్యాలూపి బజ్జ వెయ్యు. ఏయ్ వెళ్ళవయ్యా! కింద పడుకోవడానికే పుట్టినట్టున్నావ్. వెళ్ళి వాడ్ని hug చేసుకొని పడుకో. అయినా ఇక్కడ అత్త, అమ్మ, అత్తయ్య ఉన్నారు కాబట్టి ఊరుకుంటున్నా. Hyderabad వెళ్ళాక నీ పని చెప్తా.",
+   "rank": 5,
+   "tier": "recommended",
+   "tier_label": "strong candidate",
+   "scores": {
+    "hook": 4.0,
+    "standalone": 4.5,
+    "payoff": 4.0,
+    "value_emotion": 4.0,
+    "overall": 4.1
+   },
+   "title": "హైదరాబాద్ వెళ్ళాక నీ పని చెప్తా!",
+   "hook_line": {
+    "text": "ఆ నేను వెళ్లి కింద పడుకుంటా.",
+    "start_word": 2077,
+    "end_word": 2081
+   },
+   "payoff_line": "Hyderabad వెళ్ళాక నీ పని చెప్తా.",
+   "payoff_type": "reveal",
+   "payoff_line_source": "discover",
+   "why_it_works": "Sudden character switch from docile bride to fiery boss lady putting her older husband in his place.",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 1331.456,
+     "end": 1365.996,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 34.54,
+   "spoiler": true,
+   "characters": [
+    "Prithvi",
+    "Meghana"
+   ],
+   "visual_dependency": "medium",
+   "start_line": "L0597",
+   "end_line": "L0614",
+   "end_hold": {
+    "payoff_end": 1363.996,
+    "end": 1365.996,
+    "hold_s": 2.0,
+    "on_shot_cut": false,
+    "next_speech": 1368.956,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "note": "hold not on a shot cut",
+    "rule": "hold"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": 5,
+    "what_happens": "When Prithvi hesitates and offers to sleep on the floor due to the awkward age gap, Meghana unexpectedly sheds her quiet demeanor and gives him a fiery warning about who is in charge.",
+    "hook": "Prithvi sheepishly announces he will sleep on the floor, and Meghana aggressively demands that he must sleep on the floor.",
+    "payoff": "Meghana drops her demure facade completely and warns Prithvi she will deal with him once they reach Hyderabad.",
+    "opening_strength": "strong",
+    "payoff_line": "Hyderabad వెళ్ళాక నీ పని చెప్తా.",
+    "payoff_type": "reveal"
+   },
+   "review": {
+    "cold_open_note": "",
+    "cut_note": "",
+    "bad_cuts": [],
+    "changes": []
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": []
+  },
+  {
+   "id": "w06",
+   "pieces": [
+    {
+     "start_word": 1049,
+     "end_word": 1207,
+     "start": 632.388,
+     "end": 695.928
+    }
+   ],
+   "region": {
+    "start_word": 1049,
+    "end_word": 1207,
+    "start": 632.388,
+    "end": 695.928
+   },
+   "edited_duration": 63.54,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ఇరవై ఒకేళ్ళ పిల్లను చేసుకున్నాడా? అంత కక్కుర్తి ఏందిరా? ఏ కక్కుర్తి ఏం కాదు. అందులో ఏముంది. అయినా నాకు కక్కుర్తి ఏముందిరా. వాడు సరే. ఆ పిల్లెందుకు చేసుకుందిరా? అరే confirm రా love failure batch ఏ. ఇంట్లో force చేసి పెళ్లి చేపించిర్రు. రేయ్! అట్లేం లేదు. మరి ఏం పోయే కాలంరా ఇద్దరికీ రేయ్! ఇందులో పోయే కాలం ఏముందిరా? చేసుకోవద్దేంది ఆ thirty twenty one అంటే easy గా రెండు generation gap ఉంటదిరా. అరే బయట రెండు, మూడు సంవత్సరాల gap ఉన్నోళ్లు అర్థం చేసుకోనికి నానా సంకలు నాక్కుతున్నారు. ఇగ twenty one years అంటే life మొత్తం పర్షాన్ పర్షాన్ ఉంటదిరా. అంటే అమ్మాయి బాగుండి, ఆ అమ్మాయికి కూడా మనం నచ్చి ఆ మన ఇంట్లో వాళ్ళకి తను నచ్చి ఉమ్ ఇంట్లో బామ్మకి ఉండటం బాలేదని బెదిరించి ఆ ఇప్పటికే late అయింది ఇంకా late అయితే పెళ్లి ఎప్పటికీ అవ్వదని భయపెట్టి ఆ అందరూ కలిసి చేసుకోవాల్సిందేనని కంగారు పెట్టినా చేసుకోకూడదంటావా? ఇంత specific గా అడుగుతున్నావంటే నీకిటు వస్తున్నాయా ఏమ్రా twenty one సంబంధాలు ఏ ఛీ ఛీ అదేం లేదు just asking మామా అరేయ్! నువ్వు నాకు college నుంచి తెలుసు కాబట్టి చెప్తున్నా. నీకు twenty six plus వాళ్ళు కాకుండా ఎవ్వరు వచ్చినా కళ్ళు మూసుకుని no చెప్పెయ్ అంతే. ఆ",
+   "rank": 6,
+   "tier": "recommended",
+   "tier_label": "strong candidate",
+   "scores": {
+    "hook": 4.0,
+    "standalone": 4.0,
+    "payoff": 4.0,
+    "value_emotion": 4.0,
+    "overall": 4.0
+   },
+   "title": "21 ఏళ్ల పిల్లను చేసుకుంటే అంతే సంగతులు!",
+   "hook_line": {
+    "text": "ఇరవై ఒకేళ్ళ పిల్లను చేసుకున్నాడా?",
+    "start_word": 1049,
+    "end_word": 1052
+   },
+   "payoff_line": "నీకు twenty six plus వాళ్ళు కాకుండా ఎవ్వరు వచ్చినా కళ్ళు మూసుకుని no చెప్పెయ్ అంతే.",
+   "payoff_type": "conclusion",
+   "payoff_line_source": "discover",
+   "why_it_works": "Brutally honest buddy discussion dissecting age gap marriages with rapid, relatable dialogue.",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 632.088,
+     "end": 697.12,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 65.03,
+   "spoiler": false,
+   "characters": [
+    "Karthik",
+    "Prithvi"
+   ],
+   "visual_dependency": "low",
+   "start_line": "L0300",
+   "end_line": "L0334",
+   "end_hold": {
+    "payoff_end": 694.608,
+    "next_speech": 697.248,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "end": 697.12,
+    "hold_s": 2.51,
+    "on_shot_cut": true,
+    "rule": "reaction",
+    "reaction": {
+     "line": "L0335",
+     "text": "ఆ",
+     "end": 695.928
+    }
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": 5,
+    "what_happens": "On a video call, Prithvi poses his marriage situation as a fictional cousin's story; Karthik tears into the 30 vs 21 age gap and gives strict advice to reject anyone under 26, leaving Prithvi panicked.",
+    "hook": "Karthik roasts the fictional groom for greedily marrying a 21-year-old girl right out of college.",
+    "payoff": "Karthik firmly advises Prithvi to blindly reject any alliance where the girl is below 26.",
+    "opening_strength": "strong",
+    "payoff_line": "నీకు twenty six plus వాళ్ళు కాకుండా ఎవ్వరు వచ్చినా కళ్ళు మూసుకుని no చెప్పెయ్ అంతే.",
+    "payoff_type": "conclusion"
+   },
+   "review": {
+    "cold_open_note": "",
+    "cut_note": "",
+    "bad_cuts": [],
+    "changes": []
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": []
+  },
+  {
+   "id": "w04",
+   "pieces": [
+    {
+     "start_word": 484,
+     "end_word": 585,
+     "start": 311.26,
+     "end": 363.608
+    }
+   ],
+   "region": {
+    "start_word": 484,
+    "end_word": 585,
+    "start": 311.26,
+    "end": 363.608
+   },
+   "edited_duration": 52.348,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "Coffee చాలా బాగుందండి. ఆ అచ్చం మా అమ్మ చేసినట్టే ఉంది. మీ అమ్మగారే చేశారు. నేను flask లోది పోసుకుని వచ్చాను అంతే. ఓ I am sorry అండి. ఎందుకు? ఆ నాక్కూడా తెలీదు మా నాన్న ఇలా set చేస్తాడని. నాకు తెలుసు. మా పప్ప చెప్పారు. ఓ పప్పాన. ఉమ్ మీకిది okay నా? హా మీకు కాదా? ఆ actually I don't know. అంటే మీ పేరు కూడా తెలీదు. I am sorry again. మేఘna. ఊ ఆ I'm Prithvi. ఆ Primex solutions లో eight years గా software job చేస్తున్నాను. తెలుసు పప్ప చెప్పారు. ఓ పప్ప. ఆ మా daddy government job and mummy- తెలుసు. ఆ అది మా పప్ప చెప్పారు. పప్పాన? చెప్పే ఉంటారు. మా పప్పనే! నన్ను ఎర్ర పప్పం చేశాడు.",
+   "rank": 7,
+   "tier": "worth_a_look",
+   "tier_label": "candidate",
+   "scores": {
+    "hook": 3.5,
+    "standalone": 4.0,
+    "payoff": 4.0,
+    "value_emotion": 3.5,
+    "overall": 3.8
+   },
+   "title": "నన్ను ఎర్రపప్పని చేశాడు!",
+   "hook_line": {
+    "text": "Coffee చాలా బాగుందండి.",
+    "start_word": 484,
+    "end_word": 486
+   },
+   "payoff_line": "నన్ను ఎర్ర {fixed: పప్పని} చేశాడు.",
+   "payoff_type": "punchline",
+   "payoff_line_source": "discover",
+   "why_it_works": "Awkward first-meeting dynamic building up to the witty 'erra pappu' wordplay punchline.",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 310.96,
+     "end": 364.558,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 53.6,
+   "spoiler": false,
+   "characters": [
+    "Prithvi",
+    "Meghana"
+   ],
+   "visual_dependency": "low",
+   "start_line": "L0122",
+   "end_line": "L0153",
+   "end_hold": {
+    "payoff_end": 363.608,
+    "next_speech": 364.608,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "end": 364.558,
+    "hold_s": 0.95,
+    "on_shot_cut": false,
+    "rule": "before_next_line",
+    "note": "next line starts quickly and no shot change before it"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": 4,
+    "what_happens": "Prithvi compliments the coffee saying it tastes like his mother's, and Meghana clarifies his mother actually made it; as she repeats that her father already briefed her on everything, Prithvi realizes his own father played him.",
+    "hook": "Prithvi praises the coffee saying it tastes just like his mother made it, and Meghana bluntly tells him his mother did make it.",
+    "payoff": "Prithvi's self-deprecating punchline realizing his father made a complete fool of him ('nannu erra pappani chesadu').",
+    "opening_strength": "strong",
+    "payoff_line": "నన్ను ఎర్ర {fixed: పప్పని} చేశాడు.",
+    "payoff_type": "punchline"
+   },
+   "review": {
+    "cold_open_note": "",
+    "cut_note": "",
+    "bad_cuts": [],
+    "changes": []
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": []
+  },
+  {
+   "id": "w05",
+   "pieces": [
+    {
+     "start_word": 623,
+     "end_word": 704,
+     "start": 388.128,
+     "end": 426.368
+    }
+   ],
+   "region": {
+    "start_word": 623,
+    "end_word": 704,
+    "start": 388.128,
+    "end": 426.368
+   },
+   "edited_duration": 38.24,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "మీ age ఎంత? Year wise అయితే twenty one. Month wise అయితే December 21st నా birthday అవుతే twenty one వస్తాయి. Twenty one ఆ? ఆ నాన్న! ఏమైందిరా? నాన్న! twenty one అంట తన age ఆ! ఏదో పదహారు అన్నట్టు అరిచావ్. ఇరవై ఒకటేగా! అదీ legal age marriage కి మందు కొట్టానికి. అమ్మా! twenty one అంటనే మరి నాకు పందొమ్మిదికే పెళ్లి అయింది కదరా అయితే! ఇది మాత్రం ఖచ్చితంగా మీ పప్ప చెప్పండ్రా. నా age ఆ thirty two ఏయ్! మొన్నే three months కింద thirty వచ్చాయి. ఓ! అదే అయితే పప్ప చెప్పారు. చెప్పిన తర్వాత కూడానా.",
+   "rank": 8,
+   "tier": "worth_a_look",
+   "tier_label": "candidate",
+   "scores": {
+    "hook": 4.0,
+    "standalone": 4.0,
+    "payoff": 3.5,
+    "value_emotion": 3.5,
+    "overall": 3.7
+   },
+   "title": "పెళ్లికి మందు కొట్టడానికి అదే legal age!",
+   "hook_line": {
+    "text": "మీ age ఎంత?",
+    "start_word": 623,
+    "end_word": 625
+   },
+   "payoff_line": "చెప్పిన తర్వాత కూడానా.",
+   "payoff_type": "punchline",
+   "payoff_line_source": "discover",
+   "why_it_works": "The shock over a 21-year-old bride with funny father-son contrast on legal age limits.",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 387.828,
+     "end": 427.995,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 40.17,
+   "spoiler": false,
+   "characters": [
+    "Prithvi",
+    "Meghana",
+    "Murthy",
+    "Mother"
+   ],
+   "visual_dependency": "low",
+   "start_line": "L0167",
+   "end_line": "L0192",
+   "end_hold": {
+    "payoff_end": 426.368,
+    "end": 427.995,
+    "hold_s": 1.63,
+    "on_shot_cut": true,
+    "next_speech": 428.988,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "note": "short hold (next shot cut before the minimum hold)",
+    "rule": "hold"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": 5,
+    "what_happens": "Prithvi asks Meghana her age and panics upon learning she is barely 21; his parents dismiss his worries, and when Meghana says she already knew he was in his thirties, Prithvi is left dumbfounded.",
+    "hook": "Prithvi awkwardly asks Meghana her age and she casually reveals she is just twenty-one.",
+    "payoff": "Prithvi's shocked realization that even after being told he is thirty, she still agreed to the match.",
+    "opening_strength": "strong",
+    "payoff_line": "చెప్పిన తర్వాత కూడానా.",
+    "payoff_type": "punchline"
+   },
+   "review": {
+    "cold_open_note": "",
+    "cut_note": "",
+    "bad_cuts": [],
+    "changes": []
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": []
+  },
+  {
+   "id": "w08",
+   "pieces": [
+    {
+     "start_word": 1378,
+     "end_word": 1449,
+     "start": 856.46,
+     "end": 901.5
+    },
+    {
+     "start_word": 1462,
+     "end_word": 1466,
+     "start": 909.66,
+     "end": 914.5
+    }
+   ],
+   "region": {
+    "start_word": 1378,
+    "end_word": 1466,
+    "start": 856.46,
+    "end": 914.5
+   },
+   "edited_duration": 49.88,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ఆ యాక్చువల్లీ నాకు ఒత్తి పాలు అస్సలు నచ్చవు. ఉమ్ ఇన్ఫాక్ట్ స్మెల్ కే వామిటింగ్ వచ్చేస్తది కదా! నాక్కుడా. నేను అప్పటి నుంచి అదే ఆలోచిస్తున్నా. ఉమ్ ఏం చేద్దాం? పర్లే వదిలేద్దాం చ్ వదిలేస్తే అత్తమ్మ ఫీల్ అవుతుంది కదా ఆ కదా! ఉమ్ ఆ కిటికీలోంచి పారొద్దామా? ఉమ్ ఛ్ వద్దు పృథ్వి, ఫుడ్ వేస్ట్ చేయకూడదు. చాలా తప్పు ఆ హా ఐడియా ధిన్ తా తా ఛక్ ధా ధా ధిన్ తా తా ఛక్ ధా ధా హార్లిక్స్ స్టాక్ మైంటైన్ చేస్తావా నువ్వు? హా అంటే అదే ఇవి ఎక్కడివి అని ఉమ్ నేను హార్లిక్స్ తాగను. తింటాను",
+   "rank": 9,
+   "tier": "worth_a_look",
+   "tier_label": "candidate",
+   "scores": {
+    "hook": 3.5,
+    "standalone": 3.5,
+    "payoff": 3.5,
+    "value_emotion": 3.0,
+    "overall": 3.2
+   },
+   "title": "నేను Horlicks తాగను.. తింటాను!",
+   "hook_line": {
+    "text": "ఆ యాక్చువల్లీ నాకు ఒత్తి పాలు అస్సలు నచ్చవు.",
+    "start_word": 1378,
+    "end_word": 1384
+   },
+   "payoff_line": "తింటాను",
+   "payoff_type": "punchline",
+   "payoff_line_source": "discover",
+   "why_it_works": "Quirky bedroom scene where secret milk-avoidance tactics reveal childish habits.",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 856.16,
+     "end": 901.75,
+     "kind": "scene"
+    },
+    {
+     "start": 909.41,
+     "end": 916.5,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 52.68,
+   "spoiler": false,
+   "characters": [
+    "Prithvi",
+    "Meghana"
+   ],
+   "visual_dependency": "medium",
+   "start_line": "L0397",
+   "end_line": "L0424",
+   "end_hold": {
+    "payoff_end": 914.5,
+    "end": 916.5,
+    "hold_s": 2.0,
+    "on_shot_cut": false,
+    "next_speech": 930.44,
+    "long_silence_after": false,
+    "laugh_after": true,
+    "note": "hold not on a shot cut",
+    "rule": "hold"
+   },
+   "chunk_drops": [
+    {
+     "after_line": "L0419",
+     "before_line": "L0422",
+     "removed_lines": [
+      "L0420",
+      "L0421"
+     ],
+     "lift_skip": false,
+     "start": 901.75,
+     "end": 909.41,
+     "removed_s": 7.66,
+     "why": "musical bridge between Prithvi asking where she got it and Meghana answering"
+    }
+   ],
+   "discovery": {
+    "strength": 4,
+    "what_happens": "Inside the bedroom on their first night, Prithvi and Meghana bond over their mutual disgust for plain milk; Meghana solves the problem by pulling out Horlicks packets, admitting she eats the powder raw.",
+    "hook": "Prithvi admits on his first night that he despises plain milk and its smell triggers vomiting, and Meghana instantly agrees.",
+    "payoff": "Meghana reveals her secret stash of Horlicks and innocently confesses she doesn't drink it, she eats it raw.",
+    "opening_strength": "strong",
+    "payoff_line": "తింటాను",
+    "payoff_type": "punchline"
+   },
+   "review": {
+    "cold_open_note": "",
+    "cut_note": "",
+    "bad_cuts": [],
+    "changes": []
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": []
+  },
+  {
+   "id": "w03",
+   "pieces": [
+    {
+     "start_word": 377,
+     "end_word": 458,
+     "start": 218.6,
+     "end": 271.94
+    }
+   ],
+   "region": {
+    "start_word": 377,
+    "end_word": 458,
+    "start": 218.6,
+    "end": 271.94
+   },
+   "edited_duration": 53.34,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "సరే వినండి. ఎనిమిదేళ్లుగా ఒక్కడినే పొద్దున్నే లేచి ముఖం కడుక్కుని, ఇల్లు ఊడ్చుకుని, అంట్లు తోముకుని, మొక్కలకు నీళ్లు పోసుకుని, coffee పెట్టుకుని tiffin, lunch వండుకుని, డబ్బా పెట్టుకుని, bike తుడుచుకుని office కి వెళ్తున్నా. అయితే ఏంట్రా ఇప్పుడు పని అమ్మాయి కావాలా నీకు? అబ్బా! విను నాన్న. అవన్నీ నేను చేసుకోగలనులే గానీ పొద్దున్నే లేపి bright smile తో bed coffee ఇస్తే అబ్బా! ఆ feeling ఏ వేరు. అదొక్కటి చాలు. ఆ బట్టు లేదు, కార్నర్ బిట్టు లేదు. coffee తీసుకుని తాగుతూ మాట్లాడండి. ఊ మూర్తి గారు! నాన్నా ఏంటిది? ఆ ఇప్పుడు నీకు నచ్చినట్టు coffee తెచ్చిన అమ్మాయి మేఘna, కాబోయే నా కోడలు.",
+   "rank": 10,
+   "tier": "worth_a_look",
+   "tier_label": "candidate",
+   "scores": {
+    "hook": 3.0,
+    "standalone": 3.5,
+    "payoff": 3.5,
+    "value_emotion": 3.0,
+    "overall": 3.0
+   },
+   "title": "పని మనిషి కావాలా పెళ్లాం కావాలా?",
+   "hook_line": {
+    "text": "సరే వినండి.",
+    "start_word": 377,
+    "end_word": 378
+   },
+   "payoff_line": "ఆ ఇప్పుడు నీకు నచ్చినట్టు coffee తెచ్చిన అమ్మాయి మేఘna, కాబోయే నా కోడలు.",
+   "payoff_type": "reveal",
+   "payoff_line_source": "discover",
+   "why_it_works": "Bachelors' fantasy routine gets interrupted by a surprise bride-seeing setup.",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 218.3,
+     "end": 271.99,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 53.69,
+   "spoiler": false,
+   "characters": [
+    "Prithvi",
+    "Murthy",
+    "Meghana"
+   ],
+   "visual_dependency": "medium",
+   "start_line": "L0090",
+   "end_line": "L0107",
+   "end_hold": {
+    "payoff_end": 271.94,
+    "next_speech": 272.04,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "end": 271.99,
+    "hold_s": 0.05,
+    "on_shot_cut": false,
+    "rule": "before_next_line",
+    "note": "next line starts quickly and no shot change before it"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": 4,
+    "what_happens": "Prithvi vents about the struggles of living alone for 8 years and says all he wants is a wife who gives him morning bed coffee with a bright smile; Murthy immediately walks Meghana in carrying coffee.",
+    "hook": "Prithvi lists out the exhausting daily chores he has been doing alone every single day for eight years.",
+    "payoff": "Murthy promptly introduces Meghana right as she brings coffee, announcing her as his future daughter-in-law.",
+    "opening_strength": "strong",
+    "payoff_line": "ఆ ఇప్పుడు నీకు నచ్చినట్టు coffee తెచ్చిన అమ్మాయి మేఘna, కాబోయే నా కోడలు.",
+    "payoff_type": "reveal"
+   },
+   "review": {
+    "cold_open_note": "",
+    "cut_note": "",
+    "bad_cuts": [],
+    "changes": []
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": []
+  }
+ ],
+ "rejected": []
+}

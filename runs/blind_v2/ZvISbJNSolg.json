@@ -1,0 +1,1127 @@
+{
+ "schema_version": "1.1",
+ "kind": "proposals",
+ "video_id": "ZvISbJNSolg",
+ "transcript": {
+  "path": "scribe_dataset/ZvISbJNSolg/ZvISbJNSolg_scribe_transcript.json",
+  "sha256": "9f580cea9bdd41a88eea8cdbfb809b2013635b218be24db5132782677c698281",
+  "n_words": 1719,
+  "audio_duration_secs": 1013.573
+ },
+ "derived_params": {
+  "skip_s": 30.0
+ },
+ "run_id": "blind_v2",
+ "created_at": "2026-10-22T08:38:52Z",
+ "content_type": "web_series",
+ "pipeline": {
+  "version": "emotion_pick/0.2",
+  "git_commit": null,
+  "design": "founder 2026-10-16: emotion-first, two focused calls (find the moments a stranger feels; build stop / stay / land + the cut per moment); no review call",
+  "prompt_versions": {
+   "ws3_context": "1+e606d3c6",
+   "ws_emotion_find": "2+d8736a5e",
+   "ws_emotion_build": "2+19568511"
+  },
+  "prompt_files": {
+   "ws3_context": "ws3_context",
+   "ws_emotion_find": "ws_emotion_find",
+   "ws_emotion_build": "ws_emotion_build"
+  },
+  "config": {
+   "pipeline_version": "emotion_pick/0.2",
+   "find_prompt": "ws_emotion_find",
+   "models": {
+    "find": {
+     "provider": "gemini",
+     "model": "gemini-3.8-flash",
+     "params": {
+      "thinking_level": "high",
+      "max_output_tokens": 32768
+     }
+    },
+    "build": {
+     "provider": "gemini",
+     "model": "gemini-3.8-flash",
+     "params": {
+      "thinking_level": "medium",
+      "max_output_tokens": 8192
+     }
+    }
+   },
+   "prompts": {
+    "ws_emotion_build": "ws_emotion_build"
+   },
+   "ctx": {
+    "speaker_names": false
+   },
+   "v1": {
+    "guardrails": {
+     "min_s": 10.0
+    }
+   },
+   "find": {
+    "min_intensity": 3,
+    "extra_types": [
+     "cliffhanger"
+    ]
+   },
+   "lift_ok": {
+    "rule": "strict",
+    "enforce": true,
+    "min_speech_s": 1.0,
+    "max_speech_s": 3.6,
+    "continuations": [
+     "అందుకే",
+     "కానీ",
+     "సో",
+     "మరి",
+     "అలాగే",
+     "అయినా",
+     "అయితే",
+     "ఎందుకంటే",
+     "so",
+     "but",
+     "and",
+     "because"
+    ],
+    "acks": [
+     "అవునా",
+     "అవును",
+     "ఊ",
+     "ఊం",
+     "ఉమ్",
+     "సరే",
+     "హ్మ్",
+     "హా",
+     "ఆ",
+     "ఓ",
+     "ఓకే",
+     "అలాగా",
+     "ok",
+     "okay",
+     "hmm",
+     "hm",
+     "yes",
+     "yeah"
+    ],
+    "ack_max_words": 2,
+    "same_speaker": true,
+    "turn_runs": true
+   },
+   "cluster": {
+    "enabled": true,
+    "max_lines": 35,
+    "max_s": 50.0,
+    "music_min_s": 4.0,
+    "silence_gap_s": null,
+    "target_within": 1,
+    "max_span_s": 90.0
+   },
+   "build": {
+    "max_moments": 10,
+    "lift_before_s": 150.0,
+    "lift_after_s": 20.0,
+    "land_window_lines": 3,
+    "land_after_lines": 15,
+    "max_end_after_payoff_lines": 3,
+    "end_rule": "clamp",
+    "end_after_land_lines": 2,
+    "end_after_reaction_lines": 1
+   },
+   "cold_open": {
+    "rule": "fallback",
+    "same_speaker": true,
+    "near_lines": 2,
+    "near_s": 3.0,
+    "weak_advance_lines": 4,
+    "weak_max_words": 2,
+    "weak_min_s": 1.0,
+    "turn_lift": true,
+    "turn_max_s": 3.6,
+    "start_advance": true,
+    "advance_max_lines": 4,
+    "advance_stop_s": 5.0,
+    "greetings": [
+     "hello",
+     "hi",
+     "hey",
+     "హలో",
+     "హాయ్",
+     "నమస్తే",
+     "namaste",
+     "thank",
+     "thanks",
+     "you",
+     "bye",
+     "good",
+     "morning",
+     "evening",
+     "night"
+    ]
+   },
+   "check": {
+    "stop_window_s": 3.0,
+    "land_last_lines": 3,
+    "stop_late": "flag",
+    "land_late": "trim"
+   },
+   "dedupe": {
+    "rule": "scene",
+    "overlap": 0.35,
+    "prefer_play_s": [
+     30.0,
+     75.0
+    ],
+    "keep_longer": true,
+    "keep_longer_max_s": 120.0,
+    "short_tail_s": 30.0
+   },
+   "budget_usd": 3.0,
+   "calibrate_from": {
+    "ws3": "runs/ws3"
+   },
+   "run_id": "blind_v2"
+  }
+ },
+ "models": [
+  {
+   "role": "ws_emotion_find",
+   "provider": "gemini",
+   "model": "gemini-3.8-flash",
+   "params": {
+    "thinking_level": "high",
+    "max_output_tokens": 32768
+   }
+  },
+  {
+   "role": "ws_emotion_build",
+   "provider": "gemini",
+   "model": "gemini-3.8-flash",
+   "params": {
+    "thinking_level": "medium",
+    "max_output_tokens": 8192
+   }
+  }
+ ],
+ "cost": {
+  "input_tokens": 106502,
+  "output_tokens": 36392,
+  "usd": 0.1594,
+  "usd_billed": 0.1594,
+  "wall_time_secs": 273.4,
+  "n_llm_calls": 8,
+  "by_role": {
+   "ws3_cache": {
+    "n_llm_calls": 1,
+    "n_cache_hits": 0,
+    "n_failed_attempts": 0,
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "thought_tokens": 0,
+    "cached_input_tokens": 0,
+    "usd": 0.00674,
+    "usd_billed": 0.00674,
+    "models": [
+     "gemini-3.8-flash"
+    ]
+   },
+   "ws_emotion_build": {
+    "n_llm_calls": 6,
+    "n_cache_hits": 0,
+    "n_failed_attempts": 1,
+    "input_tokens": 92097,
+    "output_tokens": 29137,
+    "thought_tokens": 27396,
+    "cached_input_tokens": 80874,
+    "usd": 0.12375,
+    "usd_billed": 0.12375,
+    "models": [
+     "gemini-3.8-flash"
+    ]
+   },
+   "ws_emotion_find": {
+    "n_llm_calls": 1,
+    "n_cache_hits": 0,
+    "n_failed_attempts": 0,
+    "input_tokens": 14405,
+    "output_tokens": 7255,
+    "thought_tokens": 6227,
+    "cached_input_tokens": 13479,
+    "usd": 0.02891,
+    "usd_billed": 0.02891,
+    "models": [
+     "gemini-3.8-flash"
+    ]
+   }
+  },
+  "projection": null,
+  "cache": {
+   "mode": "explicit",
+   "key": "31cb267840bb22f8bd75e569",
+   "name": "cachedContents/cvxwb4trl3yv5k78uwrs6ovihc8vsrb2us86jaxz",
+   "tokens": 13479,
+   "ttl_s": 3600,
+   "storage_usd": 0.0067395,
+   "deleted": true,
+   "lived_s": 270.5
+  }
+ },
+ "cutoff": {
+  "show_rule": "emotion_pick: every clip that passes the build checks (stop first, land last, v1 hard rules) and the dedupe; no review, no score",
+  "order": "episode order",
+  "n_candidates": 9,
+  "n_passed_hard_rules": 5,
+  "n_shown": 4,
+  "n_rejected": 2,
+  "warnings": []
+ },
+ "episode_notes": "Genre: Office comedy and romcom web series. Lead characters: Shanmukh Jaswant (Shannu), an ambitious and meticulous software engineer, his superhero-obsessed teammates Marvel Manohar and DC Don, tomboy colleague Harika, chill manager Arvind, and bubbly new recruit Vaishnavi. The episode revolves around Shannu's planned, rigid routine being disrupted when newcomer Vaishnavi joins his team.",
+ "proposals": [
+  {
+   "id": "e01",
+   "pieces": [
+    {
+     "start_word": 193,
+     "end_word": 280,
+     "start": 108.9,
+     "end": 153.54
+    }
+   ],
+   "region": {
+    "start_word": 193,
+    "end_word": 280,
+    "start": 108.9,
+    "end": 153.54
+   },
+   "edited_duration": 44.64,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ఏంటి twenty minutes late గా వచ్చావ్? నేను నమ్మలేని పచ్చి అబద్ధం ఒకటి చెప్పు. మా manager Arvind స్వామి. Chill manager. ఏంటి అబద్ధం చెప్పమంటాడని చూస్తున్నారా? ఎలానో office కి వచ్చే ప్రతి employee అబద్ధమే చెప్తాడు. ఆ చెప్పే అబద్ధం ఏదో నమ్మలేని చెప్తే happy గా feel అవుతాడు. SpaceX rocket start అవ్వట్లేదని Elon Musk call చేశాడు. Start చేసి వచ్చేసరికి late అయింది. Sorry Arvind. అవునా, మరి ఎలా start చేసావ్? ఆ ఇలా వంచి ఇలా లేపాను. start చేశాను start అయిపోయింది. Super Shannu, అబద్ధం అదిరిపోయింది. Thank you. నేను afternoon lunch order చేస్తా, వచ్చేసేయ్. నీ అబద్ధం కూడా అదిరిపోయింది అరవింద్. Humour బాగుంది.",
+   "rank": 1,
+   "tier": "emotion_pick",
+   "tier_label": "emotion pick",
+   "scores": {},
+   "title": "Office కి Late గా వస్తే Manager కి ఈ అబద్ధం చెప్పండి",
+   "hook_line": {
+    "text": "ఏంటి twenty minutes late గా వచ్చావ్?",
+    "start_word": 193,
+    "end_word": 198
+   },
+   "payoff_line": "నీ అబద్ధం కూడా అదిరిపోయింది అరవింద్.",
+   "payoff_type": "punchline",
+   "payoff_line_source": "discover",
+   "why_it_works": "Viewer stops because the manager demands an impossible lie for being late, stays to see what wild excuse Shannu invents, and it ends on Shannu calling out his manager's fake lunch treat as an even bi…",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 108.68,
+     "end": 153.71,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 45.03,
+   "spoiler": false,
+   "characters": [
+    "Shannu",
+    "Arvind"
+   ],
+   "visual_dependency": "medium",
+   "start_line": "L0041",
+   "end_line": "L0059",
+   "end_hold": {
+    "payoff_end": 153.54,
+    "next_speech": 153.76,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "end": 153.71,
+    "hold_s": 0.17,
+    "on_shot_cut": false,
+    "rule": "before_next_line",
+    "note": "next line starts quickly and no shot change before it"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": null,
+    "what_happens": "What absurd excuse will Shannu fabricate to satisfy his manager's bizarre request?",
+    "hook": "A manager confronts his employee coming late and demands an unbelievable excuse with 'ఏంటి twenty minutes late గా వచ్చావ్?'",
+    "payoff": "నీ అబద్ధం కూడా అదిరిపోయింది అరవింద్.",
+    "opening_strength": null,
+    "payoff_line": "నీ అబద్ధం కూడా అదిరిపోయింది అరవింద్.",
+    "payoff_type": "punchline"
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "source": "emotion_pick",
+   "feeling": "laugh",
+   "intensity": 4,
+   "stop": {
+    "line": "L0041",
+    "text": "ఏంటి twenty minutes late గా వచ్చావ్?",
+    "why": "A manager confronts his employee coming late and demands an unbelievable excuse with 'ఏంటి twenty minutes late గా వచ్చావ్?'",
+    "cold_open": false,
+    "case": "start_line",
+    "via": "start_line",
+    "plays_at_s": 0.22
+   },
+   "stay": "What absurd excuse will Shannu fabricate to satisfy his manager's bizarre request?",
+   "land": {
+    "line": "L0058",
+    "text": "నీ అబద్ధం కూడా అదిరిపోయింది అరవింద్.",
+    "reaction": "L0059",
+    "reaction_text": "Humour బాగుంది.",
+    "plays_at_s": 39.1
+   },
+   "reason": "Viewer stops because the manager demands an impossible lie for being late, stays to see what wild excuse Shannu invents, and it ends on Shannu calling out his manager's fake lunch treat as an even bigger lie (laugh).",
+   "moment": {
+    "id": "p01",
+    "line": "L0058",
+    "text": "నీ అబద్ధం కూడా అదిరిపోయింది అరవింద్.",
+    "feeling": "laugh",
+    "intensity": 4,
+    "why": "After manager Arvind praises Shannu's ridiculous excuse about fixing Elon Musk's rocket and offers to buy him lunch, Shannu cheekily calls out the manager's fake treat with 'నీ అబద్ధం కూడా అదిరిపోయింది అరవింద్'.",
+    "type": "punchline",
+    "lands_on_screen": true
+   },
+   "build_flags": []
+  },
+  {
+   "id": "e05",
+   "pieces": [
+    {
+     "start_word": 1165,
+     "end_word": 1255,
+     "start": 715.444,
+     "end": 771.854
+    }
+   ],
+   "region": {
+    "start_word": 1165,
+    "end_word": 1255,
+    "start": 715.444,
+    "end": 771.854
+   },
+   "edited_duration": 56.41,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ఆ మా Wikipedia నీకిచ్చిన KT ఏంటో మాకు తెలుసు. అది పెద్ద important ఏం కాదు. ఉమ్. ఇప్పుడు మేము ఇచ్చే KT ఏ? మేను. ఓ అయితే Shannu ఇచ్చింది చింపేయమంటారా? వద్దు. వద్దు. వాడు మమ్మల్నే చింపుతాడు. ఆ. ఆ. నీకు Marvel ఇష్టం కదా? No. Yes. ఆ మీకు DC ఇష్టం కదా? No. ఆ? Why so serious? హ్మ్ నాకు ఇద్దరు ఇష్టం లేరు ఆహ్ హ్మ్ సరే మరి నీకు నచ్చిన సూపర్ హీరో ఎవరు? Mr Bean. Mr Mr Bean ఆ Why? Again why? ఎందుకంటే చాలా బాగా నవ్విస్తాడు. రిలాక్స్ అయిపోవచ్చు. నన్ను ఎవరైతే నవ్విస్తారో వాళ్లే నాకు సూపర్ హీరో. Bye ఇప్పుడు కేటి మనం ఇచ్చామా? మనం తీసుకున్నామా?",
+   "rank": 2,
+   "tier": "emotion_pick",
+   "tier_label": "emotion pick",
+   "scores": {},
+   "title": "ఇప్పుడు KT ఇచ్చామా? తీసుకున్నామా?",
+   "hook_line": {
+    "text": "ఆ మా Wikipedia నీకిచ్చిన KT ఏంటో మాకు తెలుసు.",
+    "start_word": 1165,
+    "end_word": 1172
+   },
+   "payoff_line": "మనం తీసుకున్నామా?",
+   "payoff_type": "punchline",
+   "payoff_line_source": "discover",
+   "why_it_works": "Viewer stops because two comic geeks boast about giving the real KT to the new recruit, stays to see how she responds to their superhero obsession, and it ends on pure comic defeat as she schools the…",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [
+    "song_overlap"
+   ],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 715.424,
+     "end": 772.35,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 56.93,
+   "spoiler": false,
+   "characters": [
+    "Manohar",
+    "DC Don",
+    "Vaishnavi"
+   ],
+   "visual_dependency": "medium",
+   "start_line": "L0327",
+   "end_line": "L0365",
+   "end_hold": {
+    "payoff_end": 771.854,
+    "end": 772.35,
+    "hold_s": 0.5,
+    "on_shot_cut": true,
+    "next_speech": 775.874,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "note": "short hold (next shot cut before the minimum hold)",
+    "rule": "hold"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": null,
+    "what_happens": "How will the new recruit react when the two comic geeks force her to pick between Marvel and DC?",
+    "hook": "Colleagues hilariously try to downplay their team lead's training to impress the new joiner: 'మా Wikipedia నీకిచ్చిన KT ఏంటో మాకు తెలుసు... ఇప్పుడు మేము ఇచ్చే KT ఏ మేన్.'",
+    "payoff": "మనం తీసుకున్నామా?",
+    "opening_strength": null,
+    "payoff_line": "మనం తీసుకున్నామా?",
+    "payoff_type": "punchline"
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "source": "emotion_pick",
+   "feeling": "laugh",
+   "intensity": 4,
+   "stop": {
+    "line": "L0327",
+    "text": "ఆ మా Wikipedia నీకిచ్చిన KT ఏంటో మాకు తెలుసు.",
+    "why": "Colleagues hilariously try to downplay their team lead's training to impress the new joiner: 'మా Wikipedia నీకిచ్చిన KT ఏంటో మాకు తెలుసు... ఇప్పుడు మేము ఇచ్చే KT ఏ మేన్.'",
+    "cold_open": false,
+    "case": "start_line",
+    "via": "start_line",
+    "plays_at_s": 0.02
+   },
+   "stay": "How will the new recruit react when the two comic geeks force her to pick between Marvel and DC?",
+   "land": {
+    "line": "L0365",
+    "text": "మనం తీసుకున్నామా?",
+    "reaction": "hold",
+    "plays_at_s": 55.75
+   },
+   "reason": "Viewer stops because two comic geeks boast about giving the real KT to the new recruit, stays to see how she responds to their superhero obsession, and it ends on pure comic defeat as she schools them with Mr. Bean (laugh).",
+   "moment": {
+    "id": "p05",
+    "line": "L0365",
+    "text": "మనం తీసుకున్నామా?",
+    "feeling": "laugh",
+    "intensity": 4,
+    "why": "After Vaishnavi dismantles their geeky superhero debate with simple humor, Manohar and Don look utterly defeated asking 'ఇప్పుడు KT మనం ఇచ్చామా? మనం తీసుకున్నామా?'.",
+    "type": "punchline",
+    "lands_on_screen": true
+   },
+   "build_flags": []
+  },
+  {
+   "id": "e07",
+   "pieces": [
+    {
+     "start_word": 1502,
+     "end_word": 1560,
+     "start": 891.874,
+     "end": 917.474
+    }
+   ],
+   "region": {
+    "start_word": 1502,
+    "end_word": 1560,
+    "start": 891.874,
+    "end": 917.474
+   },
+   "edited_duration": 25.6,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ఏంటి ఇంకా ఎవరూ బయలుదేరలేదా? Five minutes లో వెళ్తాం Arvind. Manohar night plan ఏంటి? అంటే IAS prepare అవుతున్నావు కదా Arvind night class లు ఉన్నాయి. పైగా night అంతా చదువుకోవాలి Hardwork అలాగే కొట్టాలి Okay Don మరి నీ plan ఏంటి? Sorry Arvind Manohar ki IAS classes నేనే తీసుకోవాలి. night అంతా చదివించాలి కూడా so I can't make it. సూపర్ రా night ఇంటికి వచ్చేయండి మందేద్దాం.",
+   "rank": 3,
+   "tier": "emotion_pick",
+   "tier_label": "emotion pick",
+   "scores": {},
+   "title": "IAS ప్రిపరేషన్ అబద్ధం.. Manager ఇచ్చిన ట్విస్ట్",
+   "hook_line": {
+    "text": "ఏంటి ఇంకా ఎవరూ బయలుదేరలేదా?",
+    "start_word": 1502,
+    "end_word": 1505
+   },
+   "payoff_line": "సూపర్ రా night ఇంటికి వచ్చేయండి మందేద్దాం.",
+   "payoff_type": "punchline",
+   "payoff_line_source": "discover",
+   "why_it_works": "Viewer stops because Arvind questions the team about staying late, stays to find out whether their ridiculous IAS study excuse works on the manager, and it ends on Arvind casually inviting them over …",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 891.674,
+     "end": 917.964,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 26.29,
+   "spoiler": false,
+   "characters": [
+    "Arvind",
+    "Manohar",
+    "Don"
+   ],
+   "visual_dependency": "medium",
+   "start_line": "L0423",
+   "end_line": "L0433",
+   "end_hold": {
+    "payoff_end": 917.474,
+    "next_speech": 918.014,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "end": 917.964,
+    "hold_s": 0.49,
+    "on_shot_cut": false,
+    "rule": "before_next_line",
+    "note": "next line starts quickly and no shot change before it"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": null,
+    "what_happens": "Will the manager buy Manohar and Don's absurd excuse about all-night IAS preparation, or see right through it?",
+    "hook": "Arvind questions the entire team at pack-up time with 'ఏంటి ఇంకా ఎవరూ బయలుదేరలేదా?', instantly setting up an office confrontation.",
+    "payoff": "సూపర్ రా night ఇంటికి వచ్చేయండి మందేద్దాం.",
+    "opening_strength": null,
+    "payoff_line": "సూపర్ రా night ఇంటికి వచ్చేయండి మందేద్దాం.",
+    "payoff_type": "punchline"
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "source": "emotion_pick",
+   "feeling": "laugh",
+   "intensity": 4,
+   "stop": {
+    "line": "L0423",
+    "text": "ఏంటి ఇంకా ఎవరూ బయలుదేరలేదా?",
+    "why": "Arvind questions the entire team at pack-up time with 'ఏంటి ఇంకా ఎవరూ బయలుదేరలేదా?', instantly setting up an office confrontation.",
+    "cold_open": false,
+    "case": "start_line",
+    "via": "start_line",
+    "plays_at_s": 0.2
+   },
+   "stay": "Will the manager buy Manohar and Don's absurd excuse about all-night IAS preparation, or see right through it?",
+   "land": {
+    "line": "L0433",
+    "text": "సూపర్ రా night ఇంటికి వచ్చేయండి మందేద్దాం.",
+    "reaction": "hold",
+    "plays_at_s": 24.0
+   },
+   "reason": "Viewer stops because Arvind questions the team about staying late, stays to find out whether their ridiculous IAS study excuse works on the manager, and it ends on Arvind casually inviting them over to drink instead (laugh).",
+   "moment": {
+    "id": "p07",
+    "line": "L0433",
+    "text": "సూపర్ రా night ఇంటికి వచ్చేయండి మందేద్దాం.",
+    "feeling": "laugh",
+    "intensity": 4,
+    "why": "After Manohar and Don fabricate an elaborate lie about studying together all night for IAS exams, manager Arvind completely bypasses it and casually counters with 'సూపర్ రా night ఇంటికి వచ్చేయండి మందేద్దాం'.",
+    "type": "punchline",
+    "lands_on_screen": true
+   },
+   "build_flags": []
+  },
+  {
+   "id": "e09",
+   "pieces": [
+    {
+     "start_word": 1572,
+     "end_word": 1718,
+     "start": 928.554,
+     "end": 1009.334
+    }
+   ],
+   "region": {
+    "start_word": 1572,
+    "end_word": 1718,
+    "start": 928.554,
+    "end": 1009.334
+   },
+   "edited_duration": 80.78,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "cabs book అవ్వట్లేదేంటి? Manohar హ్మ్ cabs book అవ్వట్లేదు. నువ్వు నన్ను drop చేస్తావా? ఇప్పుడు మిమ్మల్ని drop చేస్తే నా girlfriend ఇంకొకరిని pick up చేసుకుంటాది. so హ్మ్ Don నువ్వు drop చేస్తావా? ఆ అది మరి నన్ను ఎవడు drop చేస్తాడు? హ్మ్ హ్మ్ ఓకే ఏయ్ Shannu ను అడుగు Shannu Shannu ను అడుగు Shannu Shannu ను అడుగు అడుగు Mr. Shannu Yeah cab two hundred extra చూపిస్తుంది. అంటే twenty Lays packets. నన్ను drop చేస్తారా? ఆ actually on the way లో చిన్న work ఉంది so ఏయ్ drop చెయ్యరా ఏయ్ drop చెయ్య్ నేను కూడా మీ team ఏ కదా team లో ఎవరికీ problem వచ్చినా మీరే చూసుకుంటా అన్నారు కదా ఆ సరే పోదాం హ్మ్ హ్మ్ plan change చేశారా పోరా మీ అమ్మను అడిగి చెప్తా ఎప్పుడో ఒప్పుకో వెళ్దామా Sure Vaishnavi ఇందాక number అడిగావు కదా తీసుకో nine seven పర్లేదులెండి office లోనే ఉంటాం కదా Okay sorry I am just kidding number ఇవ్వు వద్దు పర్లేదు అరె ఇవ్వరా బాయ్ ఆ అదే number ఇవ్వండి Mr. Shannu హ్మ్",
+   "rank": 4,
+   "tier": "emotion_pick",
+   "tier_label": "emotion pick",
+   "scores": {},
+   "title": "Cabs book అవ్వట్లేదని అడిగితే!",
+   "hook_line": {
+    "text": "cabs book అవ్వట్లేదేంటి?",
+    "start_word": 1572,
+    "end_word": 1574
+   },
+   "payoff_line": "Shannu",
+   "payoff_type": "punchline",
+   "payoff_line_source": "discover",
+   "why_it_works": "Viewer stops because Vaishnavi is stranded at office trying to book a cab, stays to find out which colleague ends up dropping her, and it ends on her hilarious slip into mass slang demanding Shannu's…",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 928.254,
+     "end": 1011.334,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 83.08,
+   "spoiler": false,
+   "characters": [
+    "Vaishnavi",
+    "Shannu",
+    "Manohar",
+    "Don"
+   ],
+   "visual_dependency": "medium",
+   "start_line": "L0438",
+   "end_line": "L0482",
+   "end_hold": {
+    "payoff_end": 1009.334,
+    "end": 1011.334,
+    "hold_s": 2.0,
+    "on_shot_cut": false,
+    "next_speech": null,
+    "long_silence_after": true,
+    "laugh_after": false,
+    "note": "hold not on a shot cut",
+    "rule": "hold"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": null,
+    "what_happens": "Will Vaishnavi convince any of her eccentric teammates to give her a ride home, and how will Shannu respond?",
+    "hook": "A stranger scrolling stops for the relatable end-of-workday office struggle: \"cabs book అవ్వట్లేదేంటి?\".",
+    "payoff": "Shannu",
+    "opening_strength": null,
+    "payoff_line": "Shannu",
+    "payoff_type": "punchline"
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "source": "emotion_pick",
+   "feeling": "laugh",
+   "intensity": 4,
+   "stop": {
+    "line": "L0438",
+    "text": "cabs book అవ్వట్లేదేంటి?",
+    "why": "A stranger scrolling stops for the relatable end-of-workday office struggle: \"cabs book అవ్వట్లేదేంటి?\".",
+    "cold_open": false,
+    "case": "start_line",
+    "via": "start_line",
+    "plays_at_s": 0.3
+   },
+   "stay": "Will Vaishnavi convince any of her eccentric teammates to give her a ride home, and how will Shannu respond?",
+   "land": {
+    "line": "L0481",
+    "text": "Shannu",
+    "reaction": "L0482",
+    "reaction_text": "హ్మ్",
+    "plays_at_s": 80.66
+   },
+   "reason": "Viewer stops because Vaishnavi is stranded at office trying to book a cab, stays to find out which colleague ends up dropping her, and it ends on her hilarious slip into mass slang demanding Shannu's number (laugh).",
+   "moment": {
+    "id": "p09",
+    "line": "L0478",
+    "text": "అరె ఇవ్వరా బాయ్",
+    "feeling": "laugh",
+    "intensity": 4,
+    "why": "After teasing Shannu, Vaishnavi's formal demeanor cracks and she blurts out raw casual slang with 'అరె ఇవ్వరా బాయ్' before hurriedly composing herself.",
+    "type": "punchline",
+    "lands_on_screen": true
+   },
+   "build_flags": [
+    "land moved from the found line L0478 to L0481"
+   ]
+  }
+ ],
+ "rejected": [
+  {
+   "id": "e03",
+   "tier": "rejected",
+   "source": "emotion_pick",
+   "reject_reasons": [
+    "C1: ws_emotion_build/gemini-3.8-flash: gave up after 1 attempts: gemini finishReason=MAX_TOKENS"
+   ],
+   "moment": {
+    "id": "p03",
+    "line": "L0209",
+    "text": "రేయ్ ఆ old సినిమాలు చూడటం ఆపురా.",
+    "feeling": "laugh",
+    "intensity": 4,
+    "why": "Seeing Shannu genuinely mourn a girl's non-existent tragic backstory, Don immediately calls out the ridiculous movie cliché with 'రేయ్ ఆ old సినిమాలు చూడటం ఆపురా'.",
+    "type": "punchline",
+    "lands_on_screen": true
+   },
+   "pieces": [
+    {
+     "start_word": 811,
+     "end_word": 816,
+     "start": 469.784,
+     "end": 471.484
+    }
+   ],
+   "region": {
+    "start_word": 811,
+    "end_word": 816,
+    "start": 469.784,
+    "end": 471.484
+   },
+   "edited_duration": 1.7,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "రేయ్ ఆ old సినిమాలు చూడటం ఆపురా."
+  },
+  {
+   "id": "e04",
+   "tier": "rejected",
+   "source": "emotion_pick",
+   "reject_reasons": [
+    "D1: duplicate of clip e05 (100% of the shorter; strength 4 vs 4, plays 57 s vs 57 s; the longer clip wins: plays the other's land line)"
+   ],
+   "moment": {
+    "id": "p04",
+    "line": "L0361",
+    "text": "నన్ను ఎవరైతే నవ్విస్తారో వాళ్లే నాకు సూపర్ హీరో.",
+    "feeling": "aww",
+    "intensity": 4,
+    "why": "When asked by superhero fanboys whether she prefers Marvel or DC, Vaishnavi picks Mr. Bean and shares her charming definition of a hero: 'నన్ను ఎవరైతే నవ్విస్తారో వాళ్లే నాకు సూపర్ హీరో'.",
+    "type": "quotable_line",
+    "lands_on_screen": true
+   },
+   "dup_of": "e05",
+   "stop": {
+    "line": "L0327",
+    "text": "ఆ మా Wikipedia నీకిచ్చిన KT ఏంటో మాకు తెలుసు.",
+    "why": "A stranger scrolling stops at the relatable office banter when they tease their colleague, 'ఆ మా Wikipedia నీకిచ్చిన KT ఏంటో మాకు తెలుసు.'",
+    "cold_open": false,
+    "case": "start_line"
+   },
+   "stay": "Which comic universe will the new joiner pick, and who turns out to be her real superhero?",
+   "land": {
+    "line": "L0364",
+    "text": "ఇప్పుడు కేటి మనం ఇచ్చామా?",
+    "reaction": "L0365",
+    "reaction_text": "మనం తీసుకున్నామా?"
+   },
+   "reason": "Viewer stops because two office fanboys try to indoctrinate the new employee, stays to find out her favourite superhero, and it ends on her sweet Mr. Bean answer leaving them dumbfounded (laugh).",
+   "title": "Marvel vs DC కాదు, నా హీరో Mr. Bean!",
+   "pieces": [
+    {
+     "start_word": 1165,
+     "end_word": 1255,
+     "start": 715.444,
+     "end": 771.854
+    }
+   ],
+   "region": {
+    "start_word": 1165,
+    "end_word": 1255,
+    "start": 715.444,
+    "end": 771.854
+   },
+   "edited_duration": 56.41,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ఆ మా Wikipedia నీకిచ్చిన KT ఏంటో మాకు తెలుసు. అది పెద్ద important ఏం కాదు. ఉమ్. ఇప్పుడు మేము ఇచ్చే KT ఏ? మేను. ఓ అయితే Shannu ఇచ్చింది చింపేయమంటారా? వద్దు. వద్దు. వాడు మమ్మల్నే చింపుతాడు. ఆ. ఆ. నీకు Marvel ఇష్టం కదా? No. Yes. ఆ మీకు DC ఇష్టం కదా? No. ఆ? Why so serious? హ్మ్ నాకు ఇద్దరు ఇష్టం లేరు ఆహ్ హ్మ్ సరే మరి నీకు నచ్చిన సూపర్ హీరో ఎవరు? Mr Bean. Mr Mr Bean ఆ Why? Again why? ఎందుకంటే చాలా బాగా నవ్విస్తాడు. రిలాక్స్ అయిపోవచ్చు. నన్ను ఎవరైతే నవ్విస్తారో వాళ్లే నాకు సూపర్ హీరో. Bye ఇప్పుడు కేటి మనం ఇచ్చామా? మనం తీసుకున్నామా?",
+   "time_segments": [
+    {
+     "start": 715.424,
+     "end": 772.35,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 56.93,
+   "start_line": "L0327",
+   "end_line": "L0365",
+   "cold_open": false,
+   "build_moment": {
+    "purpose": "standalone",
+    "start_line": "L0327",
+    "end_line": "L0365",
+    "cold_open_lines": [],
+    "drops": []
+   }
+  }
+ ],
+ "episode_note": {
+  "text": "9 moments a stranger would feel; 6 built by the build call; 1 rejected (C1 1); 1 duplicates dropped; 4 shown, in episode order."
+ },
+ "episode_summary": {
+  "n_moments_listed": 9,
+  "n_moments_valid": 9,
+  "n_moments_rejected": 0,
+  "moments_rejected": [],
+  "moments_by_feeling": {
+   "laugh": 8,
+   "aww": 1
+  },
+  "moments_by_intensity": {
+   "4": 9
+  },
+  "max_moments": 10,
+  "n_build_calls": 6,
+  "n_not_built_cap": 0,
+  "n_not_built_spend": 0,
+  "n_no_clip": 0,
+  "n_blocked": 0,
+  "n_call_failed": 1,
+  "n_invalid": 0,
+  "n_builder_rejected": 0,
+  "n_hard_rules": 0,
+  "n_stop_check_failed": 0,
+  "n_land_check_failed": 0,
+  "n_built": 5,
+  "n_deduped": 1,
+  "n_shown": 4,
+  "shown_by_feeling": {
+   "laugh": 4
+  },
+  "rejected": [
+   {
+    "clip": "e03",
+    "moment": "p03",
+    "line": "L0209",
+    "reason": "C1: ws_emotion_build/gemini-3.8-flash: gave up after 1 attempts: gemini finishReason=MAX_TOKENS"
+   },
+   {
+    "clip": "e04",
+    "moment": "p04",
+    "line": "L0361",
+    "reason": "D1: duplicate of clip e05 (100% of the shorter; strength 4 vs 4, plays 57 s vs 57 s; the longer clip wins: plays the other's land line)"
+   }
+  ],
+  "warnings": [],
+  "episode_notes": "Genre: Office comedy and romcom web series. Lead characters: Shanmukh Jaswant (Shannu), an ambitious and meticulous software engineer, his superhero-obsessed teammates Marvel Manohar and DC Don, tomboy colleague Harika, chill manager Arvind, and bubbly new recruit Vaishnavi. The episode revolves around Shannu's planned, rigid routine being disrupted when newcomer Vaishnavi joins his team.",
+  "n_clusters": 6,
+  "clusters": [
+   {
+    "target": "p01",
+    "target_line": "L0058",
+    "strength": 4,
+    "members": [
+     {
+      "id": "p01",
+      "line": "L0058",
+      "intensity": 4
+     }
+    ],
+    "earlier": [],
+    "absorbed": [],
+    "break_before": null,
+    "cluster_context": ""
+   },
+   {
+    "target": "p03",
+    "target_line": "L0209",
+    "strength": 4,
+    "members": [
+     {
+      "id": "p02",
+      "line": "L0208",
+      "intensity": 4
+     },
+     {
+      "id": "p03",
+      "line": "L0209",
+      "intensity": 4
+     }
+    ],
+    "earlier": [
+     "p02"
+    ],
+    "absorbed": [],
+    "break_before": "music: L0140 [బాటసరి సంగీతం] (10.8 s, no speech)",
+    "cluster_context": "Earlier beats in this same scene to include as setup/escalation: L0208 (\"ఎన్ని కష్టాలున్నాయో.\")"
+   },
+   {
+    "target": "p04",
+    "target_line": "L0361",
+    "strength": 4,
+    "members": [
+     {
+      "id": "p04",
+      "line": "L0361",
+      "intensity": 4
+     }
+    ],
+    "earlier": [],
+    "absorbed": [],
+    "break_before": "music: L0218 [పాట] (4.7 s, no speech)",
+    "cluster_context": ""
+   },
+   {
+    "target": "p05",
+    "target_line": "L0365",
+    "strength": 4,
+    "members": [
+     {
+      "id": "p05",
+      "line": "L0365",
+      "intensity": 4
+     }
+    ],
+    "earlier": [],
+    "absorbed": [],
+    "break_before": "music: L0363 [పాట] (5.3 s, no speech)",
+    "cluster_context": ""
+   },
+   {
+    "target": "p07",
+    "target_line": "L0433",
+    "strength": 4,
+    "members": [
+     {
+      "id": "p06",
+      "line": "L0405",
+      "intensity": 4
+     },
+     {
+      "id": "p07",
+      "line": "L0433",
+      "intensity": 4
+     }
+    ],
+    "earlier": [
+     "p06"
+    ],
+    "absorbed": [],
+    "break_before": "music: L0404 [పాట] (6.4 s, no speech)",
+    "cluster_context": "Earlier beats in this same scene to include as setup/escalation: L0405 (\"sorry నన్ను అడిగావు అనుకున్నాను.\")"
+   },
+   {
+    "target": "p09",
+    "target_line": "L0478",
+    "strength": 4,
+    "members": [
+     {
+      "id": "p08",
+      "line": "L0474",
+      "intensity": 4
+     },
+     {
+      "id": "p09",
+      "line": "L0478",
+      "intensity": 4
+     }
+    ],
+    "earlier": [
+     "p08"
+    ],
+    "absorbed": [],
+    "break_before": "41 spoken lines / 86 s after L0433 (> 35 lines and > 50 s)",
+    "cluster_context": "Earlier beats in this same scene to include as setup/escalation: L0474 (\"పర్లేదులెండి office లోనే ఉంటాం కదా\")"
+   }
+  ]
+ },
+ "moment_table": [
+  {
+   "id": "p01",
+   "line": "L0058",
+   "feeling": "laugh",
+   "intensity": 4,
+   "text": "నీ అబద్ధం కూడా అదిరిపోయింది అరవింద్.",
+   "why": "After manager Arvind praises Shannu's ridiculous excuse about fixing Elon Musk's rocket and offers to buy him lunch, Shannu cheekily calls out the manager's fake treat with 'నీ అబద్ధం కూడా అదిరిపోయింది అరవింద్'.",
+   "status": "shown",
+   "clip": "e01"
+  },
+  {
+   "id": "p02",
+   "line": "L0208",
+   "feeling": "laugh",
+   "intensity": 4,
+   "text": "ఎన్ని కష్టాలున్నాయో.",
+   "why": "After daydreaming a wildly dramatic Telugu cinema sob story about Vaishnavi's family, Shannu snaps back to reality genuinely grieving her imaginary troubles saying 'పాపంరా ఆ అమ్మాయి. ఎన్ని కష్టాలున్నాయో'.",
+   "status": "in_cluster",
+   "cluster_target": "p03"
+  },
+  {
+   "id": "p03",
+   "line": "L0209",
+   "feeling": "laugh",
+   "intensity": 4,
+   "text": "రేయ్ ఆ old సినిమాలు చూడటం ఆపురా.",
+   "why": "Seeing Shannu genuinely mourn a girl's non-existent tragic backstory, Don immediately calls out the ridiculous movie cliché with 'రేయ్ ఆ old సినిమాలు చూడటం ఆపురా'.",
+   "status": "rejected",
+   "reason": "C1: ws_emotion_build/gemini-3.8-flash: gave up after 1 attempts: gemini finishReason=MAX_TOKENS"
+  },
+  {
+   "id": "p04",
+   "line": "L0361",
+   "feeling": "aww",
+   "intensity": 4,
+   "text": "నన్ను ఎవరైతే నవ్విస్తారో వాళ్లే నాకు సూపర్ హీరో.",
+   "why": "When asked by superhero fanboys whether she prefers Marvel or DC, Vaishnavi picks Mr. Bean and shares her charming definition of a hero: 'నన్ను ఎవరైతే నవ్విస్తారో వాళ్లే నాకు సూపర్ హీరో'.",
+   "status": "rejected",
+   "reason": "D1: duplicate of clip e05 (100% of the shorter; strength 4 vs 4, plays 57 s vs 57 s; the longer clip wins: plays the other's land line)"
+  },
+  {
+   "id": "p05",
+   "line": "L0365",
+   "feeling": "laugh",
+   "intensity": 4,
+   "text": "మనం తీసుకున్నామా?",
+   "why": "After Vaishnavi dismantles their geeky superhero debate with simple humor, Manohar and Don look utterly defeated asking 'ఇప్పుడు KT మనం ఇచ్చామా? మనం తీసుకున్నామా?'.",
+   "status": "shown",
+   "clip": "e05"
+  },
+  {
+   "id": "p06",
+   "line": "L0405",
+   "feeling": "laugh",
+   "intensity": 4,
+   "text": "sorry నన్ను అడిగావు అనుకున్నాను.",
+   "why": "When Vaishnavi asks for a phone number, Shannu excitedly starts dictating his digits, only to realize in utter embarrassment that she was asking Harika: 'sorry నన్ను అడిగావు అనుకున్నాను'.",
+   "status": "in_cluster",
+   "cluster_target": "p07"
+  },
+  {
+   "id": "p07",
+   "line": "L0433",
+   "feeling": "laugh",
+   "intensity": 4,
+   "text": "సూపర్ రా night ఇంటికి వచ్చేయండి మందేద్దాం.",
+   "why": "After Manohar and Don fabricate an elaborate lie about studying together all night for IAS exams, manager Arvind completely bypasses it and casually counters with 'సూపర్ రా night ఇంటికి వచ్చేయండి మందేద్దాం'.",
+   "status": "shown",
+   "clip": "e07"
+  },
+  {
+   "id": "p08",
+   "line": "L0474",
+   "feeling": "laugh",
+   "intensity": 4,
+   "text": "పర్లేదులెండి office లోనే ఉంటాం కదా",
+   "why": "When Shannu finally offers his phone number while giving her a lift, Vaishnavi playfully turns his exact earlier brush-off back on him with 'పర్లేదులెండి office లోనే ఉంటాం కదా'.",
+   "status": "in_cluster",
+   "cluster_target": "p09"
+  },
+  {
+   "id": "p09",
+   "line": "L0478",
+   "feeling": "laugh",
+   "intensity": 4,
+   "text": "అరె ఇవ్వరా బాయ్",
+   "why": "After teasing Shannu, Vaishnavi's formal demeanor cracks and she blurts out raw casual slang with 'అరె ఇవ్వరా బాయ్' before hurriedly composing herself.",
+   "status": "shown",
+   "clip": "e09"
+  }
+ ]
+}

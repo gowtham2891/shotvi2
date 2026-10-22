@@ -1,0 +1,63 @@
+== asr_fix ZvISbJNSolg
+<frozen runpy>:128: RuntimeWarning: 'shotvi.segment.asr_fix' found in sys.modules after import of package 'shotvi.segment', but prior to execution of 'shotvi.segment.asr_fix'; this may result in unpredictable behaviour
+ZvISbJNSolg: 1719 words, 483 lines; flagged words/lines by threshold: p<0.5: 28/26, p<0.6: 58/51, p<0.7: 98/83
+  projected context  : {"calls": 1, "input_tokens": 10815, "output_tokens": 3210, "inr": 1.81}
+  projected relisten : {"calls": 5, "items": 36, "audio_s": 86.0, "audio_tokens": 2750, "input_tokens": 13771, "output_tokens": 5600, "inr": 3.01}
+  projected total: ₹4.82
+[asr_fix] ZvISbJNSolg: context read -> 11 suspects (0 rejected)
+[asr_fix] ZvISbJNSolg: relisten batch 1/4: 8 lines, 4 accepted, 0 low-conf, 2 rejected
+[asr_fix] ZvISbJNSolg: relisten batch 2/4: 8 lines, 3 accepted, 0 low-conf, 0 rejected
+[asr_fix] ZvISbJNSolg: relisten batch 3/4: 8 lines, 0 accepted, 0 low-conf, 1 rejected
+[asr_fix] ZvISbJNSolg: relisten batch 4/4: 2 lines, 2 accepted, 0 low-conf, 1 rejected
+  actual: context ₹1.03 (1 calls, 0 cached), relisten ₹1.09 (4 calls, 0 cached)
+  13 corrections (9 applied), 20 uncertain, 4 rejected -> /Users/ganeshgowtham/projects/projects/shotvi/runs/asr_fix/ZvISbJNSolg/corrections.json
+asr_fix ZvISbJNSolg EXIT 0
+== asr_fix 0TK5hWAEXBw
+<frozen runpy>:128: RuntimeWarning: 'shotvi.segment.asr_fix' found in sys.modules after import of package 'shotvi.segment', but prior to execution of 'shotvi.segment.asr_fix'; this may result in unpredictable behaviour
+0TK5hWAEXBw: 2165 words, 624 lines; flagged words/lines by threshold: p<0.5: 29/29, p<0.6: 71/63, p<0.7: 137/110
+  projected context  : {"calls": 1, "input_tokens": 14856, "output_tokens": 3210, "inr": 2.09}
+  projected relisten : {"calls": 5, "items": 34, "audio_s": 76.4, "audio_tokens": 2445, "input_tokens": 14881, "output_tokens": 5400, "inr": 2.99}
+  projected total: ₹5.08
+[asr_fix] 0TK5hWAEXBw: context read -> 20 suspects (0 rejected)
+[asr_fix] 0TK5hWAEXBw: relisten batch 1/4: 8 lines, 6 accepted, 0 low-conf, 0 rejected
+[asr_fix] 0TK5hWAEXBw: relisten batch 2/4: 8 lines, 5 accepted, 0 low-conf, 0 rejected
+[asr_fix] 0TK5hWAEXBw: relisten batch 3/4: 8 lines, 4 accepted, 0 low-conf, 1 rejected
+[asr_fix] 0TK5hWAEXBw: relisten batch 4/4: 3 lines, 1 accepted, 0 low-conf, 0 rejected
+  actual: context ₹1.46 (1 calls, 0 cached), relisten ₹1.32 (4 calls, 0 cached)
+  21 corrections (16 applied), 16 uncertain, 1 rejected -> /Users/ganeshgowtham/projects/projects/shotvi/runs/asr_fix/0TK5hWAEXBw/corrections.json
+asr_fix 0TK5hWAEXBw EXIT 0
+== emotion_pick
+explicit context cache cachedContents/cvxwb4trl3yv5k78uwrs6ovihc8vsrb2us86jaxz: 13479 tokens, TTL 3600 s, storage $0.0067
+ZvISbJNSolg: FIND: 9 moments listed, 9 valid (by feeling {'laugh': 8, 'aww': 1}; by intensity {4: 9})
+ZvISbJNSolg: 9 moments -> 6 clusters (3 with several payoffs)
+  e01 L0058: clip L0041..L0059 plays 45.0 s, stop start_line
+  e03 L0209: call failed: ws_emotion_build/gemini-3.8-flash: gave up after 1 attempts: gemini finishReason=MAX_TOKENS
+  e04 L0361: clip L0327..L0365 plays 56.9 s, stop start_line
+  e05 L0365: clip L0327..L0365 plays 56.9 s, stop start_line
+  e07 L0433: clip L0423..L0433 plays 26.3 s, stop start_line
+  e09 L0478: clip L0438..L0482 plays 83.1 s, stop start_line
+ZvISbJNSolg: 9 moments -> 6 build calls -> 5 built -> 4 shown; $0.1594 billed -> runs/blind_v2/ZvISbJNSolg.json
+explicit context cache cachedContents/8abti3w9sxsktc9zpzu8b9gsbh8y43xpflgftblr: 17823 tokens, TTL 3600 s, storage $0.0089
+0TK5hWAEXBw: FIND: 12 moments listed, 12 valid (by feeling {'laugh': 12}; by intensity {5: 2, 4: 10})
+0TK5hWAEXBw: 12 moments -> 9 clusters (3 with several payoffs)
+  e07 L0380: clip L0361..L0380 plays 35.3 s, stop start_line
+  e12 L0614: clip L0597..L0614 plays 34.5 s, stop start_line
+  e01 L0043: clip L0029..L0045 plays 35.9 s, stop A_near_start
+  e02 L0085: clip L0073..L0085 plays 25.3 s, stop start_line
+  e03 L0126: call failed: ws_emotion_build/gemini-3.8-flash: gave up after 1 attempts: gemini finishReason=MAX_TOKENS
+  e04 L0227: clip L0167..L0227 plays 96.1 s, stop start_line
+  e06 L0349: clip L0330..L0349 plays 46.6 s, stop start_line
+  e09 L0506: clip L0474..L0507 plays 54.6 s, stop A_near_start
+  e10 L0537: clip L0510..L0544 plays 63.5 s, stop start_line
+0TK5hWAEXBw: 12 moments -> 9 build calls -> 8 built -> 8 shown; $0.2423 billed -> runs/blind_v2/0TK5hWAEXBw.json
+ledger now Rs 1720.49 (this run Rs 36.15)
+emotion_pick EXIT 0
+== v1
+ZvISbJNSolg: projection {"ws_discover": {"in": 15251, "in_source": "countTokens", "out_expected": 25000, "out_guard": 32768, "inr_expected": 9.47, "inr": 12.09}, "ws_review": {"in_expected": 14700, "out_expected": 15000, "inr_expected": 6.05, "in_guard": 14700, "out_guard": 15000, "inr": 6.05, "assumes_clips": 15, "expected_from": "defaults", "inr_fallback": 12.2}, "video_end_check": {"enabled": false, "assumes_clips": 15, "inr": 0.0, "inr_expected": 0.0}, "episode": {"inr_expected": 15.52, "inr": 30.34}}
+ZvISbJNSolg: 9 moments nominated
+ZvISbJNSolg: verdict strong (3 strong candidates, 5 other candidates, 0 unchecked, 1 hidden) -> runs/blind_v1/ZvISbJNSolg.json
+0TK5hWAEXBw: projection {"ws_discover": {"in": 19490, "in_source": "countTokens", "out_expected": 25000, "out_guard": 32768, "inr_expected": 9.75, "inr": 12.37}, "ws_review": {"in_expected": 14700, "out_expected": 15000, "inr_expected": 6.05, "in_guard": 14700, "out_guard": 15000, "inr": 6.05, "assumes_clips": 15, "expected_from": "defaults", "inr_fallback": 12.2}, "video_end_check": {"enabled": false, "assumes_clips": 15, "inr": 0.0, "inr_expected": 0.0}, "episode": {"inr_expected": 15.8, "inr": 30.62}}
+0TK5hWAEXBw: 10 moments nominated
+0TK5hWAEXBw: verdict strong (6 strong candidates, 4 other candidates, 0 unchecked, 0 hidden) -> runs/blind_v1/0TK5hWAEXBw.json
+ledger now ₹1740.82 (this run ₹20.33)
+v1 EXIT 0

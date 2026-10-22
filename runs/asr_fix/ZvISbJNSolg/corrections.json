@@ -1,0 +1,1020 @@
+{
+ "video_id": "ZvISbJNSolg",
+ "schema": "asr_fix/1",
+ "params": {
+  "layers": [
+   "context",
+   "flag",
+   "relisten"
+  ],
+  "threshold": 0.5,
+  "min_conf": 0.8,
+  "model": "gemini-3.8-flash",
+  "pad_s": 0.4,
+  "ctx_lines": 2,
+  "batch_items": 8,
+  "context_prompt": "1",
+  "relisten_prompt": "1",
+  "apply_context": false,
+  "skip_interjections": true
+ },
+ "lines": 483,
+ "n_flagged_words": 28,
+ "n_suspects": 33,
+ "suspects": [
+  {
+   "line": "L0026",
+   "start_word": 131,
+   "end_word": 131,
+   "heard": "fan.",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.425
+  },
+  {
+   "line": "L0030",
+   "start_word": 156,
+   "end_word": 156,
+   "heard": "ki",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.482
+  },
+  {
+   "line": "L0043",
+   "start_word": 207,
+   "end_word": 207,
+   "heard": "Arvind",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.387
+  },
+  {
+   "line": "L0062",
+   "start_word": 288,
+   "end_word": 288,
+   "heard": "Oh",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.498
+  },
+  {
+   "line": "L0064",
+   "start_word": 291,
+   "end_word": 291,
+   "heard": "Alfred",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.326
+  },
+  {
+   "line": "L0076",
+   "start_word": 332,
+   "end_word": 332,
+   "heard": "మ్,",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.477
+  },
+  {
+   "line": "L0099",
+   "start_word": 436,
+   "end_word": 436,
+   "heard": "ఆడదలవదంట",
+   "found_by": [
+    "context"
+   ],
+   "guess": "అలౌ చెయ్యరంట",
+   "why": "talking about winter rules for singles in Ooty",
+   "min_conf": 0.692
+  },
+  {
+   "line": "L0104",
+   "start_word": 451,
+   "end_word": 453,
+   "heard": "ఇంకా some girl",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "సరిగ్గా",
+   "why": "sounds like some girl but means talk properly",
+   "min_conf": 0.372
+  },
+  {
+   "line": "L0118",
+   "start_word": 497,
+   "end_word": 497,
+   "heard": "ఆ",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.442
+  },
+  {
+   "line": "L0122",
+   "start_word": 512,
+   "end_word": 512,
+   "heard": "మ్",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.277
+  },
+  {
+   "line": "L0134",
+   "start_word": 568,
+   "end_word": 568,
+   "heard": "BM",
+   "found_by": [
+    "context"
+   ],
+   "guess": "PM",
+   "why": "contrasting software job with Prime Minister",
+   "min_conf": 0.992
+  },
+  {
+   "line": "L0194",
+   "start_word": 767,
+   "end_word": 767,
+   "heard": "అరె.",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.498
+  },
+  {
+   "line": "L0209",
+   "start_word": 814,
+   "end_word": 814,
+   "heard": "సినిమాలు",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.487
+  },
+  {
+   "line": "L0241",
+   "start_word": 914,
+   "end_word": 914,
+   "heard": "Manohar?",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.448
+  },
+  {
+   "line": "L0285",
+   "start_word": 1035,
+   "end_word": 1035,
+   "heard": "aqua",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.335
+  },
+  {
+   "line": "L0331",
+   "start_word": 1184,
+   "end_word": 1184,
+   "heard": "మేను.",
+   "found_by": [
+    "context"
+   ],
+   "guess": "Main",
+   "why": "English word main paired with Telugu copula",
+   "min_conf": 0.613
+  },
+  {
+   "line": "L0353",
+   "start_word": 1228,
+   "end_word": 1228,
+   "heard": "Bean.",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.49
+  },
+  {
+   "line": "L0364",
+   "start_word": 1251,
+   "end_word": 1251,
+   "heard": "కేటి",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.47
+  },
+  {
+   "line": "L0381",
+   "start_word": 1347,
+   "end_word": 1347,
+   "heard": "stock",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "Stock",
+   "why": "StockEdge membership product name",
+   "min_conf": 0.365
+  },
+  {
+   "line": "L0381",
+   "start_word": 1351,
+   "end_word": 1352,
+   "heard": "e learn",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "Elearnmarkets",
+   "why": "online financial market course portal Elearnmarkets",
+   "min_conf": 0.462
+  },
+  {
+   "line": "L0383",
+   "start_word": 1366,
+   "end_word": 1366,
+   "heard": "download",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.498
+  },
+  {
+   "line": "L0415",
+   "start_word": 1485,
+   "end_word": 1485,
+   "heard": "గానీ,",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.228
+  },
+  {
+   "line": "L0425",
+   "start_word": 1512,
+   "end_word": 1512,
+   "heard": "night",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.365
+  },
+  {
+   "line": "L0426",
+   "start_word": 1516,
+   "end_word": 1517,
+   "heard": "IAS prepare",
+   "found_by": [
+    "context"
+   ],
+   "guess": "IAS కి prepare",
+   "why": "grammar with prepare",
+   "min_conf": 0.997
+  },
+  {
+   "line": "L0429",
+   "start_word": 1530,
+   "end_word": 1530,
+   "heard": "అలాగే",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "ఈసారే",
+   "why": "context of cracking exam",
+   "min_conf": 0.397
+  },
+  {
+   "line": "L0437",
+   "start_word": 1565,
+   "end_word": 1565,
+   "heard": "Software",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.484
+  },
+  {
+   "line": "L0450",
+   "start_word": 1611,
+   "end_word": 1612,
+   "heard": "Shannu ను",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "షన్నూని",
+   "why": "accusative of name Shannu",
+   "min_conf": 0.391
+  },
+  {
+   "line": "L0451",
+   "start_word": 1615,
+   "end_word": 1616,
+   "heard": "Shannu ను",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "షన్నూని",
+   "why": "accusative of name Shannu",
+   "min_conf": 0.475
+  },
+  {
+   "line": "L0458",
+   "start_word": 1632,
+   "end_word": 1632,
+   "heard": "twenty",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.496
+  },
+  {
+   "line": "L0463",
+   "start_word": 1660,
+   "end_word": 1660,
+   "heard": "team",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.455
+  },
+  {
+   "line": "L0467",
+   "start_word": 1674,
+   "end_word": 1674,
+   "heard": "plan",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.282
+  },
+  {
+   "line": "L0467",
+   "start_word": 1676,
+   "end_word": 1676,
+   "heard": "చేశారా",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.363
+  },
+  {
+   "line": "L0469",
+   "start_word": 1678,
+   "end_word": 1679,
+   "heard": "మీ అమ్మను",
+   "found_by": [
+    "context"
+   ],
+   "guess": "మీ అన్నయ్యని",
+   "why": "friendly banter replying to drop offer",
+   "min_conf": 0.871
+  }
+ ],
+ "corrections": [
+  {
+   "start_word": 130,
+   "end_word": 131,
+   "heard": "Marvel fan.",
+   "corrected": "non-Avengers fan.",
+   "reason": "clearly says non-Avengers fan",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "flag"
+   ],
+   "line": "L0026",
+   "start": 74.44,
+   "end": 75.36,
+   "context_guess": null,
+   "relisten": {
+    "heard_line": "Bloody non-Avengers fan",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 435,
+   "end_word": 436,
+   "heard": "ని ఆడదలవదంట",
+   "corrected": "not allowed అంట",
+   "reason": "clearly says not allowed అంట",
+   "source": "relisten",
+   "confidence": 0.98,
+   "applied": true,
+   "found_by": [
+    "context"
+   ],
+   "line": "L0099",
+   "start": 231.52,
+   "end": 232.04,
+   "context_guess": "అలౌ చెయ్యరంట",
+   "relisten": {
+    "heard_line": "winter లో singles not allowed అంట పాపం.",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 451,
+   "end_word": 453,
+   "heard": "ఇంకా some girl",
+   "corrected": "కాస్త అమ్మాయి",
+   "reason": "clearly says కాస్త అమ్మాయి",
+   "source": "relisten",
+   "confidence": 0.98,
+   "applied": true,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0104",
+   "start": 238.44,
+   "end": 238.96,
+   "context_guess": "సరిగ్గా",
+   "relisten": {
+    "heard_line": "కాస్త అమ్మాయితో మాట్లాడురా.",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 568,
+   "end_word": 568,
+   "heard": "BM",
+   "corrected": "PM",
+   "reason": "clearly says PM",
+   "source": "relisten",
+   "confidence": 0.9,
+   "applied": true,
+   "found_by": [
+    "context"
+   ],
+   "line": "L0134",
+   "start": 297.7,
+   "end": 297.92,
+   "context_guess": "PM",
+   "relisten": {
+    "heard_line": "Plan చేయకపోతే PM అయిపోయేదానివేమో.",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 1184,
+   "end_word": 1184,
+   "heard": "మేను.",
+   "corrected": "మేన్.",
+   "reason": "clearly says 'మేన్' (main)",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context"
+   ],
+   "line": "L0331",
+   "start": 720.644,
+   "end": 721.024,
+   "context_guess": "Main",
+   "relisten": {
+    "heard_line": "మేన్",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 1251,
+   "end_word": 1251,
+   "heard": "కేటి",
+   "corrected": "KT",
+   "reason": "pronounced as letters KT",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "flag"
+   ],
+   "line": "L0364",
+   "start": 769.454,
+   "end": 769.794,
+   "context_guess": null,
+   "relisten": {
+    "heard_line": "ఇప్పుడు KT మనం ఇచ్చామా?",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 1351,
+   "end_word": 1353,
+   "heard": "e learn market",
+   "corrected": "Elearnmarkets",
+   "reason": "brand name Elearnmarkets",
+   "source": "relisten",
+   "confidence": 0.9,
+   "applied": true,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0381",
+   "start": 806.154,
+   "end": 806.774,
+   "context_guess": "Elearnmarkets",
+   "relisten": {
+    "heard_line": "Upstox లో account opening free, one month free trading కూడా, అలాగే Upstox లోని 999 worth StockEdge membership and Elearnmarkets courses కూడా free.",
+    "line_ratio": 0.948
+   }
+  },
+  {
+   "start_word": 1516,
+   "end_word": 1517,
+   "heard": "IAS prepare",
+   "corrected": "IAS కి prepare",
+   "reason": "grammar with prepare",
+   "source": "context",
+   "confidence": null,
+   "applied": false,
+   "found_by": [
+    "context"
+   ],
+   "line": "L0426",
+   "start": 897.374,
+   "end": 897.874,
+   "context_guess": "IAS కి prepare",
+   "relisten": {
+    "verdict": "relisten_kept"
+   }
+  },
+  {
+   "start_word": 1530,
+   "end_word": 1530,
+   "heard": "అలాగే",
+   "corrected": "ఈసారే",
+   "reason": "context of cracking exam",
+   "source": "context",
+   "confidence": null,
+   "applied": false,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0429",
+   "start": 903.034,
+   "end": 903.134,
+   "context_guess": "ఈసారే",
+   "relisten": {
+    "verdict": "relisten_kept"
+   }
+  },
+  {
+   "start_word": 1611,
+   "end_word": 1612,
+   "heard": "Shannu ను",
+   "corrected": "షన్నూని",
+   "reason": "accusative of name Shannu",
+   "source": "context",
+   "confidence": null,
+   "applied": false,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0450",
+   "start": 954.194,
+   "end": 954.394,
+   "context_guess": "షన్నూని",
+   "relisten": {
+    "verdict": "relisten_kept"
+   }
+  },
+  {
+   "start_word": 1615,
+   "end_word": 1616,
+   "heard": "Shannu ను",
+   "corrected": "షన్నూని",
+   "reason": "accusative of name Shannu",
+   "source": "context",
+   "confidence": null,
+   "applied": false,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0451",
+   "start": 955.154,
+   "end": 955.434,
+   "context_guess": "షన్నూని",
+   "relisten": {
+    "verdict": "relisten_kept"
+   }
+  },
+  {
+   "start_word": 1676,
+   "end_word": 1676,
+   "heard": "చేశారా",
+   "corrected": "మార్చారా",
+   "reason": "clearly says 'మార్చారా' instead of 'చేశారా'",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "flag"
+   ],
+   "line": "L0467",
+   "start": 992.694,
+   "end": 992.774,
+   "context_guess": null,
+   "relisten": {
+    "heard_line": "అవును plans మార్చారా",
+    "line_ratio": 0.6
+   }
+  },
+  {
+   "start_word": 1678,
+   "end_word": 1679,
+   "heard": "మీ అమ్మను",
+   "corrected": "మీ అమ్మని",
+   "reason": "clearly says 'మీ అమ్మని' with vowel 'i'",
+   "source": "relisten",
+   "confidence": 0.9,
+   "applied": true,
+   "found_by": [
+    "context"
+   ],
+   "line": "L0469",
+   "start": 993.794,
+   "end": 994.214,
+   "context_guess": "మీ అన్నయ్యని",
+   "relisten": {
+    "heard_line": "ఆహ్ మీ అమ్మని అడిగి చెప్తా",
+    "line_ratio": 0.927
+   }
+  }
+ ],
+ "uncertain": [
+  {
+   "start_word": 156,
+   "end_word": 156,
+   "heard": "ki",
+   "source": "flag",
+   "confidence": 0.482,
+   "verdict": "relisten_kept",
+   "line": "L0030",
+   "start": 85.28
+  },
+  {
+   "start_word": 207,
+   "end_word": 207,
+   "heard": "Arvind",
+   "source": "flag",
+   "confidence": 0.387,
+   "verdict": "relisten_kept",
+   "line": "L0043",
+   "start": 115.26
+  },
+  {
+   "start_word": 288,
+   "end_word": 288,
+   "heard": "Oh",
+   "source": "flag",
+   "confidence": 0.498,
+   "verdict": "skipped_interjection",
+   "line": "L0062",
+   "start": 159.4
+  },
+  {
+   "start_word": 291,
+   "end_word": 291,
+   "heard": "Alfred",
+   "source": "flag",
+   "confidence": 0.326,
+   "verdict": "relisten_kept",
+   "line": "L0064",
+   "start": 168.26
+  },
+  {
+   "start_word": 332,
+   "end_word": 332,
+   "heard": "మ్,",
+   "source": "flag",
+   "confidence": 0.477,
+   "verdict": "skipped_interjection",
+   "line": "L0076",
+   "start": 187.38
+  },
+  {
+   "start_word": 497,
+   "end_word": 497,
+   "heard": "ఆ",
+   "source": "flag",
+   "confidence": 0.442,
+   "verdict": "skipped_interjection",
+   "line": "L0118",
+   "start": 257.5
+  },
+  {
+   "start_word": 512,
+   "end_word": 512,
+   "heard": "మ్",
+   "source": "flag",
+   "confidence": 0.277,
+   "verdict": "skipped_interjection",
+   "line": "L0122",
+   "start": 264.24
+  },
+  {
+   "start_word": 767,
+   "end_word": 767,
+   "heard": "అరె.",
+   "source": "flag",
+   "confidence": 0.498,
+   "verdict": "skipped_interjection",
+   "line": "L0194",
+   "start": 446.684
+  },
+  {
+   "start_word": 814,
+   "end_word": 814,
+   "heard": "సినిమాలు",
+   "source": "flag",
+   "confidence": 0.487,
+   "verdict": "relisten_kept",
+   "line": "L0209",
+   "start": 470.604
+  },
+  {
+   "start_word": 914,
+   "end_word": 914,
+   "heard": "Manohar?",
+   "source": "flag",
+   "confidence": 0.448,
+   "verdict": "relisten_kept",
+   "line": "L0241",
+   "start": 534.784
+  },
+  {
+   "start_word": 1035,
+   "end_word": 1035,
+   "heard": "aqua",
+   "source": "flag",
+   "confidence": 0.335,
+   "verdict": "relisten_kept",
+   "line": "L0285",
+   "start": 607.424
+  },
+  {
+   "start_word": 1228,
+   "end_word": 1228,
+   "heard": "Bean.",
+   "source": "flag",
+   "confidence": 0.49,
+   "verdict": "relisten_kept",
+   "line": "L0353",
+   "start": 749.434
+  },
+  {
+   "start_word": 1347,
+   "end_word": 1347,
+   "heard": "stock",
+   "source": "context",
+   "confidence": 0.365,
+   "verdict": "relisten_kept",
+   "line": "L0381",
+   "start": 804.774
+  },
+  {
+   "start_word": 1366,
+   "end_word": 1366,
+   "heard": "download",
+   "source": "flag",
+   "confidence": 0.498,
+   "verdict": "relisten_kept",
+   "line": "L0383",
+   "start": 810.494
+  },
+  {
+   "start_word": 1485,
+   "end_word": 1485,
+   "heard": "గానీ,",
+   "source": "flag",
+   "confidence": 0.228,
+   "verdict": "relisten_kept",
+   "line": "L0415",
+   "start": 874.054
+  },
+  {
+   "start_word": 1512,
+   "end_word": 1512,
+   "heard": "night",
+   "source": "flag",
+   "confidence": 0.365,
+   "verdict": "relisten_kept",
+   "line": "L0425",
+   "start": 895.474
+  },
+  {
+   "start_word": 1565,
+   "end_word": 1565,
+   "heard": "Software",
+   "source": "flag",
+   "confidence": 0.484,
+   "verdict": "relisten_kept",
+   "line": "L0437",
+   "start": 920.794
+  },
+  {
+   "start_word": 1632,
+   "end_word": 1632,
+   "heard": "twenty",
+   "source": "flag",
+   "confidence": 0.496,
+   "verdict": "relisten_kept",
+   "line": "L0458",
+   "start": 966.094
+  },
+  {
+   "start_word": 1660,
+   "end_word": 1660,
+   "heard": "team",
+   "source": "flag",
+   "confidence": 0.455,
+   "verdict": "relisten_kept",
+   "line": "L0463",
+   "start": 977.294
+  },
+  {
+   "start_word": 1674,
+   "end_word": 1674,
+   "heard": "plan",
+   "source": "flag",
+   "confidence": 0.282,
+   "verdict": "relisten_kept",
+   "line": "L0467",
+   "start": 991.814
+  }
+ ],
+ "rejected": [
+  {
+   "layer": "relisten",
+   "line": "L0030",
+   "heard_line": "వీడు DC కి fan, AC, ventilator కూడా.",
+   "corrected": "కి",
+   "confidence": 0.95,
+   "reason": "Telugu postposition కి spoken",
+   "start_word": 156,
+   "end_word": 156,
+   "heard": "ki",
+   "why_rejected": "script change only (transliteration, 1.00)"
+  },
+  {
+   "layer": "relisten",
+   "line": "L0043",
+   "heard_line": "మా manager అరవింద స్వామి.",
+   "corrected": "అరవింద",
+   "confidence": 0.95,
+   "reason": "pronounced అరవింద in Telugu",
+   "start_word": 207,
+   "end_word": 207,
+   "heard": "Arvind",
+   "why_rejected": "script change only (transliteration, 0.86)"
+  },
+  {
+   "layer": "relisten",
+   "line": "L0429",
+   "heard_line": "కొట్టాలి",
+   "corrected": "",
+   "confidence": 0.85,
+   "reason": "word 'అలాగే' is not clearly present in clip",
+   "start_word": 1530,
+   "end_word": 1530,
+   "heard": "అలాగే",
+   "why_rejected": "empty correction"
+  },
+  {
+   "layer": "relisten",
+   "line": "L0467",
+   "heard_line": "అవును plans మార్చారా",
+   "corrected": "plans",
+   "confidence": 0.95,
+   "reason": "plural 'plans' clearly heard",
+   "start_word": 1674,
+   "end_word": 1674,
+   "heard": "plan",
+   "line_ratio": 0.462,
+   "why_rejected": "heard_line does not align with the transcript line (0.46)"
+  }
+ ],
+ "threshold_report": {
+  "n_words": 1719,
+  "has_logprob": true,
+  "by_threshold": {
+   "0.5": {
+    "words": 28,
+    "lines": 26
+   },
+   "0.6": {
+    "words": 58,
+    "lines": 51
+   },
+   "0.7": {
+    "words": 98,
+    "lines": 83
+   }
+  }
+ },
+ "cost": {
+  "projected": {
+   "model": "gemini-3.8-flash",
+   "layers": {
+    "context": {
+     "calls": 1,
+     "input_tokens": 10815,
+     "output_tokens": 3210,
+     "inr": 1.81
+    },
+    "relisten": {
+     "calls": 5,
+     "items": 36,
+     "audio_s": 86.0,
+     "audio_tokens": 2750,
+     "input_tokens": 13771,
+     "output_tokens": 5600,
+     "inr": 3.01
+    }
+   },
+   "inr": 4.82
+  },
+  "actual": {
+   "context": {
+    "calls": 1,
+    "cached": 0,
+    "input_tokens": 12141,
+    "output_tokens": 626,
+    "audio_tokens": 0,
+    "inr": 1.031,
+    "inr_full": 1.031
+   },
+   "relisten": {
+    "calls": 4,
+    "cached": 0,
+    "input_tokens": 7522,
+    "output_tokens": 1367,
+    "audio_tokens": 1766,
+    "inr": 1.089,
+    "inr_full": 1.089
+   }
+  }
+ },
+ "stopped": null,
+ "transcript": "/Users/ganeshgowtham/projects/projects/shotvi/scribe_dataset/ZvISbJNSolg/ZvISbJNSolg_scribe_transcript.json"
+}

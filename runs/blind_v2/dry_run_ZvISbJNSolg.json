@@ -1,0 +1,66 @@
+{
+ "video_id": "ZvISbJNSolg",
+ "dry_run": true,
+ "find_prompt": "ws_emotion_find",
+ "find_cached": false,
+ "projection": {
+  "context_tokens": 13421,
+  "find_task_tokens": 925,
+  "find_cached": false,
+  "build_task_tokens": null,
+  "build_task_tokens_sample": 1892,
+  "n_moments": {
+   "expected": 18,
+   "worst": 23,
+   "basis": "ws3 call 1 measured (5HqkHAZfzos: 11 in 22.0 min; qIdAPG8UulE: 48 in 36.3 min): pooled 1.01/min expected, 1.32/min worst"
+  },
+  "storage_inr": 0.6,
+  "write_inr_worst": 0.91,
+  "find": {
+   "model": "gemini-3.8-flash",
+   "thinking_level": "high",
+   "out_expected": 15000,
+   "out_max": 32768,
+   "inr_expected": 5.22,
+   "inr_worst": 11.21
+  },
+  "build": {
+   "model": "gemini-3.8-flash",
+   "thinking_level": "medium",
+   "out_expected": 3500,
+   "out_max": 8192,
+   "inr_worst_each": 2.98
+  },
+  "rows": {
+   "no_cap": {
+    "cap": null,
+    "n_build_expected": 18,
+    "n_build_worst": 23,
+    "n_build_uncached": 18,
+    "find_inr_expected": 5.22,
+    "find_inr_worst": 11.21,
+    "build_inr_expected": 25.19,
+    "build_inr_worst": 68.61,
+    "storage_inr": 0.6,
+    "inr_expected": 31.01,
+    "inr_worst": 81.33
+   },
+   "cap": {
+    "cap": 15,
+    "n_build_expected": 15,
+    "n_build_worst": 15,
+    "n_build_uncached": 15,
+    "find_inr_expected": 5.22,
+    "find_inr_worst": 11.21,
+    "build_inr_expected": 20.99,
+    "build_inr_worst": 44.75,
+    "storage_inr": 0.6,
+    "inr_expected": 26.81,
+    "inr_worst": 57.47
+   }
+  },
+  "token_source": "countTokens"
+ },
+ "n_lift_ok": 32,
+ "n_lift_ok_runs": 10
+}
