@@ -19,7 +19,8 @@ from shotvi.select.emotion_select import clean_text, render_clip  # noqa: E402
 from shotvi.select.lines import speaker_label  # noqa: E402
 
 SERIES = {"5HqkHAZfzos": "Queen", "Sy8yZ4DgzrU": "Project Pelli S2", "fjGrX8aBVAc": "Love Brew",
-          "qIdAPG8UulE": "Office lo Krishna Leelalu"}
+          "qIdAPG8UulE": "Office lo Krishna Leelalu", "ZvISbJNSolg": "The Software DevLOVEper",
+          "0TK5hWAEXBw": "30 Weds 21", "p3XTZlZ6-xw": "Surya", "LJQOGxrXalI": "Temporary Roommates"}
 REJECT_CODES = {"N0": "Gemini answered no clip", "K1": "stop line does not play first", "K2": "land line not at the end",
                 "L1": "too short", "L2": "too long", "D1": "repeat of another clip", "V1": "invalid line ids",
                 "B1": "cut builder refused", "C1": "call failed", "X1": "blocked by safety check"}
