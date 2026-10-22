@@ -1,0 +1,309 @@
+{
+ "episodes": [
+  {
+   "video_id": "p3XTZlZ6-xw",
+   "characters": [
+    "Surya",
+    "Meghana",
+    "Lakshmi",
+    "Surya's father",
+    "Swamy",
+    "Swamy's father",
+    "Swamy's mother",
+    "Shiva",
+    "Shankaranna",
+    "Anjali",
+    "Arjun",
+    "Customer",
+    "Subbu"
+   ],
+   "systems": {
+    "scribe": {
+     "path": "scribe_dataset/p3XTZlZ6-xw/p3XTZlZ6-xw_scribe_transcript.json",
+     "n_key_lines": 128,
+     "n_unknown_skipped": 1,
+     "n_offscreen": 7,
+     "no_words": 0,
+     "n_labels": 8,
+     "one_to_one": {
+      "all": {
+       "n": 127,
+       "correct": 64,
+       "acc": 0.504
+      },
+      "onscreen": {
+       "n": 120,
+       "correct": 63,
+       "acc": 0.525
+      },
+      "offscreen": {
+       "n": 7,
+       "correct": 1,
+       "acc": 0.143
+      },
+      "conf2plus": {
+       "n": 124,
+       "correct": 62,
+       "acc": 0.5
+      }
+     },
+     "purity": {
+      "all": {
+       "n": 127,
+       "correct": 70,
+       "acc": 0.551
+      },
+      "onscreen": {
+       "n": 120,
+       "correct": 68,
+       "acc": 0.567
+      },
+      "offscreen": {
+       "n": 7,
+       "correct": 2,
+       "acc": 0.286
+      },
+      "conf2plus": {
+       "n": 124,
+       "correct": 68,
+       "acc": 0.548
+      }
+     },
+     "mapping_one_to_one": {
+      "speaker_0": "Meghana",
+      "speaker_1": "Lakshmi",
+      "speaker_2": "Surya's father",
+      "speaker_3": "Surya",
+      "speaker_4": "Customer",
+      "speaker_5": "Swamy",
+      "speaker_6": "Anjali",
+      "speaker_7": "Arjun"
+     },
+     "confusion": {
+      "speaker_0": {
+       "Meghana": 9,
+       "Anjali": 2,
+       "Lakshmi": 1
+      },
+      "speaker_1": {
+       "Lakshmi": 11,
+       "Surya's father": 1
+      },
+      "speaker_2": {
+       "Surya's father": 9,
+       "Arjun": 1,
+       "Surya": 1
+      },
+      "speaker_3": {
+       "Surya": 8
+      },
+      "speaker_4": {
+       "Surya": 7,
+       "Swamy": 5,
+       "Customer": 3,
+       "Subbu": 1
+      },
+      "speaker_5": {
+       "Swamy": 17,
+       "Swamy's father": 8,
+       "Shiva": 7,
+       "Shankaranna": 7,
+       "Surya": 6,
+       "Lakshmi": 4,
+       "Swamy's mother": 3
+      },
+      "speaker_6": {
+       "Anjali": 5
+      },
+      "speaker_7": {
+       "Swamy": 4,
+       "Surya": 4,
+       "Arjun": 2,
+       "Customer": 1
+      }
+     }
+    },
+    "sarvam_v4": {
+     "path": "scribe_dataset/p3XTZlZ6-xw/p3XTZlZ6-xw_sarvam_transcript.json",
+     "n_key_lines": 128,
+     "n_unknown_skipped": 1,
+     "n_offscreen": 7,
+     "no_words": 0,
+     "n_labels": 12,
+     "one_to_one": {
+      "all": {
+       "n": 127,
+       "correct": 123,
+       "acc": 0.969
+      },
+      "onscreen": {
+       "n": 120,
+       "correct": 117,
+       "acc": 0.975
+      },
+      "offscreen": {
+       "n": 7,
+       "correct": 6,
+       "acc": 0.857
+      },
+      "conf2plus": {
+       "n": 124,
+       "correct": 121,
+       "acc": 0.976
+      }
+     },
+     "purity": {
+      "all": {
+       "n": 127,
+       "correct": 123,
+       "acc": 0.969
+      },
+      "onscreen": {
+       "n": 120,
+       "correct": 117,
+       "acc": 0.975
+      },
+      "offscreen": {
+       "n": 7,
+       "correct": 6,
+       "acc": 0.857
+      },
+      "conf2plus": {
+       "n": 124,
+       "correct": 121,
+       "acc": 0.976
+      }
+     },
+     "mapping_one_to_one": {
+      "sarvam_0": "Swamy's mother",
+      "sarvam_1": "Swamy's father",
+      "sarvam_10": "Shiva",
+      "sarvam_11": "Arjun",
+      "sarvam_2": "Surya's father",
+      "sarvam_3": "Anjali",
+      "sarvam_4": "Meghana",
+      "sarvam_5": "Lakshmi",
+      "sarvam_6": "Surya",
+      "sarvam_7": "Customer",
+      "sarvam_8": "Shankaranna",
+      "sarvam_9": "Swamy"
+     },
+     "confusion": {
+      "sarvam_0": {
+       "Swamy's mother": 3
+      },
+      "sarvam_1": {
+       "Swamy's father": 8
+      },
+      "sarvam_10": {
+       "Shiva": 6
+      },
+      "sarvam_11": {
+       "Arjun": 3
+      },
+      "sarvam_2": {
+       "Surya's father": 10
+      },
+      "sarvam_3": {
+       "Anjali": 7
+      },
+      "sarvam_4": {
+       "Meghana": 8
+      },
+      "sarvam_5": {
+       "Lakshmi": 16,
+       "Meghana": 1
+      },
+      "sarvam_6": {
+       "Surya": 26,
+       "Shiva": 1,
+       "Subbu": 1
+      },
+      "sarvam_7": {
+       "Customer": 4
+      },
+      "sarvam_8": {
+       "Shankaranna": 6
+      },
+      "sarvam_9": {
+       "Swamy": 26,
+       "Shankaranna": 1
+      }
+     }
+    }
+   }
+  }
+ ],
+ "overall": {
+  "sarvam_v4": {
+   "one_to_one.all": {
+    "correct": 123,
+    "n": 127,
+    "acc": 0.969
+   },
+   "one_to_one.offscreen": {
+    "correct": 6,
+    "n": 7,
+    "acc": 0.857
+   },
+   "one_to_one.onscreen": {
+    "correct": 117,
+    "n": 120,
+    "acc": 0.975
+   },
+   "purity.all": {
+    "correct": 123,
+    "n": 127,
+    "acc": 0.969
+   },
+   "purity.offscreen": {
+    "correct": 6,
+    "n": 7,
+    "acc": 0.857
+   },
+   "purity.onscreen": {
+    "correct": 117,
+    "n": 120,
+    "acc": 0.975
+   },
+   "episodes": [
+    "p3XTZlZ6-xw"
+   ]
+  },
+  "scribe": {
+   "one_to_one.all": {
+    "correct": 64,
+    "n": 127,
+    "acc": 0.504
+   },
+   "one_to_one.offscreen": {
+    "correct": 1,
+    "n": 7,
+    "acc": 0.143
+   },
+   "one_to_one.onscreen": {
+    "correct": 63,
+    "n": 120,
+    "acc": 0.525
+   },
+   "purity.all": {
+    "correct": 70,
+    "n": 127,
+    "acc": 0.551
+   },
+   "purity.offscreen": {
+    "correct": 2,
+    "n": 7,
+    "acc": 0.286
+   },
+   "purity.onscreen": {
+    "correct": 68,
+    "n": 120,
+    "acc": 0.567
+   },
+   "episodes": [
+    "p3XTZlZ6-xw"
+   ]
+  }
+ }
+}

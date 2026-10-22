@@ -58,9 +58,12 @@ def to_scribe_like(raw: dict, vid: str, model: str) -> dict:
 def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("video_id")
-    ap.add_argument("--model", default="saaras:v3", help="saaras:v3 (22 Indian languages) or saaras:v4")
+    ap.add_argument("--model", default="saaras:v4", help="saaras:v4 = latest, recommended (docs 2026-10-22); saaras:v3")
     ap.add_argument("--language", default="te-IN")
-    ap.add_argument("--mode", default="transcribe")
+    ap.add_argument("--mode", default="codemix",
+                    help="codemix = Telugu in Telugu script, English words in Latin (Tenglish, like Scribe)")
+    ap.add_argument("--upload", choices=["wav", "mp3"], default="wav",
+                    help="wav = the original 16 kHz WAV, no re-encoding (default); mp3 = 64 kbps (smaller)")
     ap.add_argument("--num-speakers", type=int, default=None, help="default: Sarvam detects the count")
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--force", action="store_true")
@@ -76,6 +79,7 @@ def main(argv=None):
         sys.exit(f"{out_p} exists (use --force to redo)")
     mins = duration_s(wav) / 60
     params = {"model": a.model, "language_code": a.language, "mode": a.mode, "with_diarization": True,
+              "with_timestamps": True,
               **({"num_speakers": a.num_speakers} if a.num_speakers else {})}
     print(f"{vid}: {mins:.1f} min audio; job {params}; estimated cost Rs {mins * INR_PER_MIN:.2f} (Sarvam, "
           f"not in the Gemini ledger)")
@@ -92,12 +96,14 @@ def main(argv=None):
     from sarvamai import SarvamAI
     client = SarvamAI(api_subscription_key=key)
     with tempfile.TemporaryDirectory() as tmp:
-        mp3 = Path(tmp) / f"{vid}.mp3"           # ~6x smaller upload than the 16 kHz WAV
-        subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(wav), "-ac", "1", "-ar", "16000", "-b:a", "64k",
-                        str(mp3)], check=True)
+        up = wav
+        if a.upload == "mp3":
+            up = Path(tmp) / f"{vid}.mp3"
+            subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(wav), "-ac", "1", "-ar", "16000", "-b:a", "64k",
+                            str(up)], check=True)
         job = client.speech_to_text_job.create_job(**params)
-        print(f"job created; uploading {mp3.stat().st_size / 1e6:.1f} MB", flush=True)
-        job.upload_files(file_paths=[str(mp3)], timeout=900.0)
+        print(f"job created; uploading {up.name} ({up.stat().st_size / 1e6:.1f} MB)", flush=True)
+        job.upload_files(file_paths=[str(up)], timeout=1800.0)
         job.start()
         print("job started; waiting", flush=True)
         st = job.wait_until_complete(poll_interval=15, timeout=a.timeout_s)
@@ -113,6 +119,7 @@ def main(argv=None):
         raw = json.loads(outs[0].read_text(encoding="utf-8"))
     raw_p.write_text(json.dumps(raw, ensure_ascii=False, indent=1), encoding="utf-8")
     conv = to_scribe_like(raw, vid, a.model)
+    conv["job_parameters"] = {**params, "upload": a.upload}
     out_p.write_text(json.dumps(conv, ensure_ascii=False, indent=1), encoding="utf-8")
     print(f"{len(conv['segments'])} diarized segments, {conv['n_speakers']} speakers -> {out_p}")
 

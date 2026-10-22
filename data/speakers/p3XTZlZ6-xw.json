@@ -1,0 +1,1423 @@
+{
+ "video_id": "p3XTZlZ6-xw",
+ "kind": "speaker_answer_key",
+ "version": 1,
+ "transcript": "scribe_dataset/p3XTZlZ6-xw/p3XTZlZ6-xw_scribe_transcript.json",
+ "transcript_sha256": "a3a13790b47098675e5850ad17b50596b5039e01f40f27390afa0cc47aefe9dd",
+ "method": "Lines sampled across every scene (night birthday, Anjali/Swamy calls, sister, morning at home, Swamy's family grocery shop, bike ride, tree 'office', Shankaranna's kiosk, Anjali's gift and video call, the delivery-man gag, evening at the tree, home waiting, drunk return, ending), with extra density on 6:08-12:45 where Scribe has a single label. Scribe sentences were split by word times where one sentence holds two speakers. For each line 4 frames evenly spaced over the line (runs/gt/p3XTZlZ6-xw/frames_spk/line_*.jpg, one 4-frame strip per line; sheet_*.jpg stack 3 lines; overview_*.jpg = 1 frame / 12 s; dense_*.jpg = 2 fps for 170, 589, 607, 640, 705, 1139, 1166, 1176, 1246, 1374, 1403, 1530 s; crop_610.jpg and crop_1139.jpg = 4 fps face crops) were checked for who is on screen and whose mouth moves, combined with content (names used, who answers whom, costume continuity). Speaker decided from frames and content; Scribe label (majority word speaker, ties by overlap seconds, as eval.speakers.line_label) added afterwards.",
+ "label_conventions": {
+  "speaker": "character name from the list; 'OFFSCREEN:<name>' = the speaker is not visible during the line (other end of a phone call, reaction shot held on a listener, insert shot) but is identified from content/voice context; 'UNKNOWN' = cannot tell. For diarization scoring, strip the OFFSCREEN: prefix.",
+  "confidence": "3 = seen speaking and/or unambiguous from content; 2 = likely (wide shot, back to camera or cut mid-line, content supports); 1 = guess",
+  "times": "seconds in the episode audio; keyed by time, not by Scribe line id"
+ },
+ "characters": [
+  {
+   "name": "Surya",
+   "desc": "lead, unemployed engineer, birthday today (grey T-shirt at night, blue check shirt by day, grey 'American Eagle' hoodie from 13:00); Anjali calls him 'senior'"
+  },
+  {
+   "name": "Meghana",
+   "desc": "Surya's younger sister (mustard top at night, black top by day, red 'C' T-shirt in the evening)"
+  },
+  {
+   "name": "Lakshmi",
+   "desc": "Surya's mother (green/orange saree at night, orange saree by day, yellow-green print saree in the evening); named by the father"
+  },
+  {
+   "name": "Surya's father",
+   "desc": "office-going father, glasses and moustache (pink shirt, white shirt, white vest); never named"
+  },
+  {
+   "name": "Swamy",
+   "desc": "Surya's best friend (orange polo, green printed scarf); works in his father's grocery shop"
+  },
+  {
+   "name": "Swamy's father",
+   "desc": "white-haired grocery-shop owner (white vest/shirt)"
+  },
+  {
+   "name": "Swamy's mother",
+   "desc": "woman in a red-green saree at the grocery shop"
+  },
+  {
+   "name": "Shiva",
+   "desc": "friend at the 'office' under the tree (olive shirt, carries a file; leaves for an interview)"
+  },
+  {
+   "name": "Shankaranna",
+   "desc": "kiosk/pan-shop owner (white shirt, tilak); 'శంకరం shop'"
+  },
+  {
+   "name": "Anjali",
+   "desc": "Surya's girlfriend ('junior'), phone and video calls only (striped white top)"
+  },
+  {
+   "name": "Arjun",
+   "desc": "'V Arjun' / 'Virgin', food-delivery friend (cap, beard, black jacket over red-navy striped shirt); the delivery man at 15:40-18:45 and the bike driver at night"
+  },
+  {
+   "name": "Customer",
+   "desc": "hungry man who ordered food (dark T-shirt with a white diagonal stripe), 15:28-18:45"
+  },
+  {
+   "name": "Subbu",
+   "desc": "friend with glasses and a blue check shirt who failed his aptitude round (20:00)"
+  }
+ ],
+ "hard_cases": [
+  "6:08-12:45 (shop, bike, tree 'office', Shankaranna's kiosk, Anjali's gift) is one Scribe label (speaker_5) for every speaker: Surya's mother, Swamy, Swamy's father and mother, Surya, Shiva, Shankaranna. All these lines were decided from frames (who faces camera, mouth, gestures) and content (who addresses whom: 'ఏందే' to the wife, 'శంకరన్న', 'మీ అమ్మ').",
+  "The delivery man of 15:40-18:45 is Arjun ('V Arjun'/'Virgin') by costume (cap, beard, black jacket over red-navy striped shirt), the same man who rides the bike at night; the customer is a separate unnamed man.",
+  "10:08-10:16 (sentences 240-242): Shiva hugs Surya with his back to camera, then a two-shot of Swamy and Surya. Assigned from a 4 fps face crop: 'అయినా పుట్టినరోజు చేసుకోవాలిరా' Shiva (2), 'అవును ఒక్కరోజైనా ఇంట్లో తిట్లు తప్పే కదా' Surya (2), 'ఆ మరుసటి రోజు అవన్నీ cover చేస్తారు కానీ' Swamy (2); 'మీరు continue ఇప్పుడే వస్తా' left UNKNOWN.",
+  "11:50 'మనది కాని ఒక్క రూపాయి కూడా మనకొద్దు' is read over an insert of the sign; labelled OFFSCREEN:Shankaranna at confidence 1 (he pointed at it), could be Swamy reading it.",
+  "20:50 'సమస్య నీదైనప్పుడు...' is read over the father's phone screen; OFFSCREEN father at confidence 1 (may be the video's own voice).",
+  "19:26-19:42 (bar talk) is a wide three-shot with cut-ins on Arjun; Surya's budget lines are assigned by content (his 1000 + 1500), 'virgin' jokes to Swamy because Arjun answers 'రేయ్ స్వామి నువ్వంటావ్ రా'.",
+  "Several Scribe sentences hold two speakers and were split by word times: 6:17 'సూర్య ఎక్కడికిరా టిఫిన్ చేయకుండా' (mother) / 'స్వామి దగ్గరికి' (Surya); 6:36 'సబ్బులు ఎన్ని ఉన్నాయాడ' (Swamy's father) / 'ఇరవై ఐదు' (Swamy's mother); 10:12 sentence 242 (Swamy / unknown).",
+  "Opening scene (0:14-1:00) is very dark; Meghana / mother / father assigned mainly by content (who wakes whom, 'ఏంటే', 'అండి').",
+  "Final line 'నేను జాబ్ తెచ్చుకుంటా' (25:34): the shot is on the father at the door turning back; read as drunk Surya mumbling (OFFSCREEN, 2). Scribe stretches its last word to 26:13 over music; the key line ends at 1535.6 s."
+ ],
+ "labels": [
+  {
+   "start": 18.6,
+   "end": 19.76,
+   "text": "అమ్మా లేమ్మా",
+   "speaker": "Meghana",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "dark bedroom; Meghana (foreground, hands) shaking her sleeping mother; mother answers 'ఏంటే'"
+  },
+  {
+   "start": 26.1,
+   "end": 27.92,
+   "text": "చే, ఏంటే అర్ధరాత్రి?",
+   "speaker": "Lakshmi",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "mother lying in bed answers the daughter ('ఏంటే అర్ధరాత్రి')"
+  },
+  {
+   "start": 31.7,
+   "end": 32.86,
+   "text": "లే, లే నాన్నని కూడా లేపు.",
+   "speaker": "Meghana",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "Meghana's hands shaking mother; asks her to wake the father"
+  },
+  {
+   "start": 42.78,
+   "end": 44.0,
+   "text": "మేఘన లెమ్మంటుంది.",
+   "speaker": "Lakshmi",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "mother sitting by the sleeping father, waking him"
+  },
+  {
+   "start": 45.68,
+   "end": 47.42,
+   "text": "ఇవాళ సూర్య పుట్టినరోజు కదా.",
+   "speaker": "Surya's father",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "father lying with arm over head, answers the wife"
+  },
+  {
+   "start": 52.78,
+   "end": 54.1,
+   "text": "ఈరోజు సూర్య పుట్టినరోజా?",
+   "speaker": "Lakshmi",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "mother's face lit, asking"
+  },
+  {
+   "start": 98.56,
+   "end": 100.8,
+   "text": "ఎందుకింత హంగామా, పొద్దున్నే చూసుకోవచ్చుగా?",
+   "speaker": "Surya's father",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "father putting on his shirt, grumbling"
+  },
+  {
+   "start": 109.72,
+   "end": 111.1,
+   "text": "ఏంటి మేఘన ఇంత రాత్రిపూట?",
+   "speaker": "Surya",
+   "confidence": 3,
+   "scribe_label": "speaker_3",
+   "scribe_label_share": 1.0,
+   "note": "Surya on bed pretending to wake up"
+  },
+  {
+   "start": 112.76,
+   "end": 113.9,
+   "text": "చాలురా యాక్టింగ్.",
+   "speaker": "Surya's father",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "father gesturing at Surya"
+  },
+  {
+   "start": 120.68,
+   "end": 121.72,
+   "text": "వాడు ఫోన్ ఒకసారి ఇమ్మను.",
+   "speaker": "Surya's father",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "father speaking, hand out (wide shot of family)"
+  },
+  {
+   "start": 164.12,
+   "end": 166.24,
+   "text": "ఉమ్మ్ Engineer అయిపోయి three years అయిందిరా.",
+   "speaker": "Surya's father",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "opens on Surya, cut to father lecturing about the job"
+  },
+  {
+   "start": 169.42,
+   "end": 170.74,
+   "text": "ఈరోజు పుట్టినరోజండి వాడిది.",
+   "speaker": "Lakshmi",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "wide; mother answers the husband ('అండి')"
+  },
+  {
+   "start": 170.82,
+   "end": 171.5,
+   "text": "ఈరోజు కూడానా?",
+   "speaker": "Lakshmi",
+   "confidence": 2,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "wide; mother gesturing, father silent and smiling; read as the mother's continuation 'ఈరోజు కూడానా?'"
+  },
+  {
+   "start": 189.92,
+   "end": 191.16,
+   "text": "ఈ కేక్ కొంచెం fridge లో పెట్టేయమ్మా.",
+   "speaker": "Meghana",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "Meghana holding the cake asks mother to put it in the fridge"
+  },
+  {
+   "start": 194.08,
+   "end": 195.26,
+   "text": "నేను తెచ్చా కదా, అందుకే.",
+   "speaker": "Meghana",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "Meghana walking out with mother (back to camera); content 'నేను తెచ్చా'"
+  },
+  {
+   "start": 204.06,
+   "end": 206.3,
+   "text": "అంటే మేఘన, అమ్మ నాన్న వాళ్ళు కేక్ కట్ చేయించారు.",
+   "speaker": "Surya",
+   "confidence": 3,
+   "scribe_label": "speaker_3",
+   "scribe_label_share": 1.0,
+   "note": "Surya on the phone in his room"
+  },
+  {
+   "start": 208.02,
+   "end": 209.36,
+   "text": "Happy Birthday Senior.",
+   "speaker": "OFFSCREEN:Anjali",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "phone; shot holds on Surya listening; 'Senior' = Anjali"
+  },
+  {
+   "start": 210.64,
+   "end": 211.46,
+   "text": "Thank You Junior.",
+   "speaker": "Surya",
+   "confidence": 3,
+   "scribe_label": "speaker_3",
+   "scribe_label_share": 1.0,
+   "note": "Surya on phone ('Junior')"
+  },
+  {
+   "start": 212.46,
+   "end": 213.16,
+   "text": "ఫోన్ లో అంతే.",
+   "speaker": "OFFSCREEN:Anjali",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "phone; Surya listening and smiling"
+  },
+  {
+   "start": 221.32,
+   "end": 221.94,
+   "text": "Happy Birthday రా",
+   "speaker": "OFFSCREEN:Swamy",
+   "confidence": 2,
+   "scribe_label": "speaker_4",
+   "scribe_label_share": 1.0,
+   "note": "phone; Surya just said 'చెప్పురా స్వామి'; shot on Surya then empty bed"
+  },
+  {
+   "start": 240.2,
+   "end": 240.86,
+   "text": "shirt ఎలా ఉందే?",
+   "speaker": "Surya",
+   "confidence": 3,
+   "scribe_label": "speaker_3",
+   "scribe_label_share": 1.0,
+   "note": "Surya combing hair (back to camera), asks Meghana"
+  },
+  {
+   "start": 242.74,
+   "end": 243.36,
+   "text": "Average రా.",
+   "speaker": "Meghana",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "Meghana at desk answers"
+  },
+  {
+   "start": 248.98,
+   "end": 252.82,
+   "text": "అవునే, మొన్న నేను two hundred అడిగితే లేవన్నావ్, night కేక్ కట్ కి డబ్బులెక్కడివి?",
+   "speaker": "Surya",
+   "confidence": 3,
+   "scribe_label": "speaker_3",
+   "scribe_label_share": 1.0,
+   "note": "Surya in the doorway; Meghana packing her bag"
+  },
+  {
+   "start": 253.5,
+   "end": 257.32,
+   "text": "నాన్న ఖర్చులకు డబ్బులిస్తాడు కదరా, అవి దాచుకొని నిన్న night కేక్ తెచ్చా.",
+   "speaker": "Meghana",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "Meghana speaking while packing"
+  },
+  {
+   "start": 292.7,
+   "end": 295.04,
+   "text": "సరిలే sister, మీ అన్నయ్య value తెలియట్లేదా నీకు?",
+   "speaker": "Surya",
+   "confidence": 3,
+   "scribe_label": "speaker_3",
+   "scribe_label_share": 1.0,
+   "note": "Surya at the door teasing his sister"
+  },
+  {
+   "start": 304.2,
+   "end": 305.04,
+   "text": "అంత హడావిడి ఏంటే?",
+   "speaker": "Lakshmi",
+   "confidence": 2,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "wide shot at the puja shelf; mother to the departing daughter ('ఏంటే')"
+  },
+  {
+   "start": 313.82,
+   "end": 316.92,
+   "text": "బయటికి వెళ్ళిన తర్వాత ఎలాగూ తుడిపేస్తావుగా, అమ్మ కోసమైనా పెట్టుకో.",
+   "speaker": "Surya's father",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "father speaking, hand gesture, about the bottu"
+  },
+  {
+   "start": 322.34,
+   "end": 323.34,
+   "text": "నీకేమైనా డబ్బులు కావాలా?",
+   "speaker": "Surya's father",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "father (back to camera) asks Surya if he needs money"
+  },
+  {
+   "start": 323.44,
+   "end": 324.64,
+   "text": "ఆ పర్లేదు నాన్న వద్దు.",
+   "speaker": "Surya",
+   "confidence": 3,
+   "scribe_label": "speaker_3",
+   "scribe_label_share": 1.0,
+   "note": "Surya answers 'నాన్న'"
+  },
+  {
+   "start": 354.04,
+   "end": 355.44,
+   "text": "ఇందాక మీ నాన్న ఇస్తా అంటే వద్దన్నావ్.",
+   "speaker": "Lakshmi",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "mother holding laundry"
+  },
+  {
+   "start": 356.04,
+   "end": 357.44,
+   "text": "నాన్న డబ్బులు అడిగితే లెక్క చెప్పాలి.",
+   "speaker": "Surya",
+   "confidence": 3,
+   "scribe_label": "speaker_3",
+   "scribe_label_share": 1.0,
+   "note": "Surya by the door"
+  },
+  {
+   "start": 359.3,
+   "end": 360.66,
+   "text": "నేనంటే లెక్కలేదురా నీకు.",
+   "speaker": "Lakshmi",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "mother at the clothes rack"
+  },
+  {
+   "start": 368.68,
+   "end": 371.98,
+   "text": "అయ్యి మీ నాన్న ఇచ్చినవేరా, ఆయన ఇస్తే నువ్వు తీసుకోవని నాకిచ్చేల్లారు.",
+   "speaker": "Lakshmi",
+   "confidence": 3,
+   "scribe_label": "speaker_5",
+   "scribe_label_share": 1.0,
+   "note": "mother (back) then shot of Surya taking money from the puja shelf"
+  },
+  {
+   "start": 373.14,
+   "end": 374.38,
+   "text": "సరేరా టిఫిన్ చేయొద్దు గాని.",
+   "speaker": "Lakshmi",
+   "confidence": 2,
+   "scribe_label": "speaker_5",
+   "scribe_label_share": 1.0,
+   "note": "first frame Surya, then mother from behind"
+  },
+  {
+   "start": 377.5,
+   "end": 379.48,
+   "text": "సూర్య ఆ ఎక్కడికిరా టిఫిన్ చేయకుండా",
+   "speaker": "Lakshmi",
+   "confidence": 3,
+   "scribe_label": "speaker_5",
+   "scribe_label_share": 1.0,
+   "note": "mother facing camera: 'సూర్య ఎక్కడికిరా'"
+  },
+  {
+   "start": 379.98,
+   "end": 380.62,
+   "text": "స్వామి దగ్గరికి",
+   "speaker": "Surya",
+   "confidence": 3,
+   "scribe_label": "speaker_5",
+   "scribe_label_share": 1.0,
+   "note": "Surya at the gate answers 'స్వామి దగ్గరికి' (Scribe sentence holds both)"
+  },
+  {
+   "start": 381.76,
+   "end": 383.64,
+   "text": "సర్లే, వచ్చేటప్పుడు కోకోనట్ ఆయిల్ తీసుకురా.",
+   "speaker": "Lakshmi",
+   "confidence": 3,
+   "scribe_label": "speaker_5",
+   "scribe_label_share": 1.0,
+   "note": "mother in the doorway asks for coconut oil"
+  },
+  {
+   "start": 396.36,
+   "end": 397.38,
+   "text": "ఏయ్ అమామ సబ్బులు ఎన్ని ఉన్నాయాడ",
+   "speaker": "Swamy's father",
+   "confidence": 3,
+   "scribe_label": "speaker_5",
+   "scribe_label_share": 1.0,
+   "note": "shop; white-haired father counting stock, asks the wife"
+  },
+  {
+   "start": 397.84,
+   "end": 398.38,
+   "text": "ఇరవై ఐదు",
+   "speaker": "Swamy's mother",
+   "confidence": 3,
+   "scribe_label": "speaker_5",
+   "scribe_label_share": 1.0,
+   "note": "shop; wife answers 'ఇరవై ఐదు' (Scribe sentence holds both)"
+  },
+  {
+   "start": 403.38,
+   "end": 405.52,
+   "text": "ఏందే కందిపప్పు నిన్నటికి, ఏళ్టికి ఇంత తేడా వచ్చేసింది?",
+   "speaker": "Swamy's father",
+   "confidence": 2,
+   "scribe_label": "speaker_5",
+   "scribe_label_share": 1.0,
+   "note": "insert of dal bins then Swamy and father; father addressing wife ('ఏందే')"
+  },
+  {
+   "start": 405.82,
+   "end": 407.84,
+   "text": "ఆ అమ్ముడైపోతుంటే సామాను తగ్గుతాయి.",
+   "speaker": "Swamy",
+   "confidence": 3,
+   "scribe_label": "speaker_5",
+   "scribe_label_share": 1.0,
+   "note": "Swamy (orange shirt) wisecracking, mouth moving"
+  },
+  {
+   "start": 416.48,
+   "end": 418.64,
+   "text": "రేయ్ ఆ కస్టమర్స్ ఎవరూ లేరు పొట్లాలు ఎందుకు కడుతున్నావ్?",
+   "speaker": "Swamy's father",
+   "confidence": 3,
+   "scribe_label": "speaker_5",
+   "scribe_label_share": 1.0,
+   "note": "father gestures at Swamy packing"
+  },
+  {
+   "start": 420.44,
+   "end": 423.26,
+   "text": "ఇప్పుడు ముందు కట్టేసి ఉంచాం అనుకోండి ఎవరన్నా వస్తే త్వరగా ఇచ్చేస్చ్చు కదా.",
+   "speaker": "Swamy",
+   "confidence": 3,
+   "scribe_label": "speaker_5",
+   "scribe_label_share": 1.0,
+   "note": "Swamy holding a packet, explaining"
+  },
+  {
+   "start": 425.58,
+   "end": 428.42,
+   "text": "అంత ముందు చూపు ఉంటే జాబ్ ఎందుకు కొట్టలేదా మూడేళ్ల నుంచి.",
+   "speaker": "Swamy's father",
+   "confidence": 3,
+   "scribe_label": "speaker_5",
+   "scribe_label_share": 1.0,
+   "note": "father mocks the 'foresight'"
+  },
+  {
+   "start": 428.56,
+   "end": 429.72,
+   "text": "నీకు లేదు కాబట్టి నాకు రాలేదు.",
+   "speaker": "Swamy",
+   "confidence": 3,
+   "scribe_label": "speaker_5",
+   "scribe_label_share": 1.0,
+   "note": "Swamy retort, then cut to mother"
+  },
+  {
+   "start": 434.7,
+   "end": 437.08,
+   "text": "అంటే నేను పెట్టిన పది లక్షలు దండగనే అంటావ్.",
+   "speaker": "Swamy's father",
+   "confidence": 3,
+   "scribe_label": "speaker_5",
+   "scribe_label_share": 1.0,
+   "note": "wide shop shot; 'నేను పెట్టిన పది లక్షలు' = father"
+  },
+  {
+   "start": 442.32,
+   "end": 444.98,
+   "text": "అయినా నేను ఇంజనీరింగ్ చదివింది జాబ్ కోసం కాదు తెలివితేటల కోసం.",
+   "speaker": "Swamy",
+   "confidence": 3,
+   "scribe_label": "speaker_5",
+   "scribe_label_share": 1.0,
+   "note": "wide; Swamy about engineering"
+  },
+  {
+   "start": 446.06,
+   "end": 447.78,
+   "text": "నీ తెలివితేటలు ఏ మాత్రం నాకు తెలుసులే.",
+   "speaker": "Swamy's father",
+   "confidence": 3,
+   "scribe_label": "speaker_5",
+   "scribe_label_share": 1.0,
+   "note": "wide; father's reply"
+  },
+  {
+   "start": 449.22,
+   "end": 453.22,
+   "text": "ఏయ్ ఏందిరా నువ్వు మాట్లాడేది ఏంటి మొగోడు పోయితే నా పదిహేను లక్షలు కట్టి మాట్లాడరా.",
+   "speaker": "Swamy's father",
+   "confidence": 3,
+   "scribe_label": "speaker_5",
+   "scribe_label_share": 1.0,
+   "note": "father shouting, arm raised"
+  },
+  {
+   "start": 457.12,
+   "end": 459.3,
+   "text": "ఆపుతారా, రోజు గోల అయిపోయింది మీతో.",
+   "speaker": "Swamy's mother",
+   "confidence": 3,
+   "scribe_label": "speaker_5",
+   "scribe_label_share": 1.0,
+   "note": "mother at the counter: 'ఆపుతారా'"
+  },
+  {
+   "start": 461.9,
+   "end": 464.62,
+   "text": "రోజు వింటున్నాను కానీ, అవతల గోడౌన్లో లోడ్ వచ్చిందంట.",
+   "speaker": "Swamy's mother",
+   "confidence": 3,
+   "scribe_label": "speaker_5",
+   "scribe_label_share": 1.0,
+   "note": "mother speaking to camera"
+  },
+  {
+   "start": 468.38,
+   "end": 473.06,
+   "text": "ఎప్పుడు కన్నావో గానీ ఈ దరిద్రుల్ని మార్నింగ్ ఫైవ్ ట్వంటీ ఫైవ్ కి నా నెత్తి మీదకి ఎక్కించావే శని దేవుడిని ఎక్కించినట్టు.",
+   "speaker": "Swamy's father",
+   "confidence": 3,
+   "scribe_label": "speaker_5",
+   "scribe_label_share": 1.0,
+   "note": "father putting on his shirt, cursing to the wife"
+  },
+  {
+   "start": 478.94,
+   "end": 481.66,
+   "text": "అన్న, తమ్ముడు ఉంటే ఆడితో గొడవ పడేవన్నీ, లేరు కాబట్టి నాన్నతో",
+   "speaker": "Swamy",
+   "confidence": 3,
+   "scribe_label": "speaker_5",
+   "scribe_label_share": 1.0,
+   "note": "Swamy alone at the counter"
+  },
+  {
+   "start": 522.08,
+   "end": 523.78,
+   "text": "ఆ ఏంట్రా మీ అమ్మ ఇంకొంచెం సేపు కూర్చోమ్మంటుంది.",
+   "speaker": "Surya",
+   "confidence": 3,
+   "scribe_label": "speaker_5",
+   "scribe_label_share": 1.0,
+   "note": "bike; Surya driving, asks about Swamy's mother"
+  },
+  {
+   "start": 525.56,
+   "end": 527.04,
+   "text": "వచ్చేవరకు క్యాష్ కౌంటర్లో కూర్చోమ్మంటుంది.",
+   "speaker": "Swamy",
+   "confidence": 3,
+   "scribe_label": "speaker_5",
+   "scribe_label_share": 1.0,
+   "note": "bike; Swamy pillion"
+  },
+  {
+   "start": 528.26,
+   "end": 531.8,
+   "text": "ఏ Google Pay, PhonePe వచ్చిన తర్వాత క్యాష్ కౌంటర్లో కూర్చోవాలంటే ఇంట్రెస్ట్ ఆడట్లేదు రే.",
+   "speaker": "Swamy",
+   "confidence": 3,
+   "scribe_label": "speaker_5",
+   "scribe_label_share": 1.0,
+   "note": "bike; Swamy talking (Google Pay)"
+  },
+  {
+   "start": 532.94,
+   "end": 533.98,
+   "text": "night cake cut చేసావ్ పిలవలేదే.",
+   "speaker": "Swamy",
+   "confidence": 3,
+   "scribe_label": "speaker_5",
+   "scribe_label_share": 1.0,
+   "note": "bike; Swamy turns to Surya"
+  },
+  {
+   "start": 534.24,
+   "end": 535.34,
+   "text": "night మేఘ్న surprise చేసింది.",
+   "speaker": "Surya",
+   "confidence": 3,
+   "scribe_label": "speaker_5",
+   "scribe_label_share": 1.0,
+   "note": "bike; Surya answers about Meghana"
+  },
+  {
+   "start": 536.98,
+   "end": 538.94,
+   "text": "తను insta లో pics post చేసిందిరా, అక్కడ చూశాను.",
+   "speaker": "Swamy",
+   "confidence": 3,
+   "scribe_label": "speaker_5",
+   "scribe_label_share": 1.0,
+   "note": "bike; Swamy (insta pics)"
+  },
+  {
+   "start": 544.02,
+   "end": 546.66,
+   "text": "రేయ్ loose ఆయిల్ వాడకూడదురా కల్తీ అయి ఉండొచ్చు.",
+   "speaker": "Surya",
+   "confidence": 3,
+   "scribe_label": "speaker_5",
+   "scribe_label_share": 1.0,
+   "note": "bike parked; Surya refuses loose oil"
+  },
+  {
+   "start": 572.22,
+   "end": 573.78,
+   "text": "ఏంటి స్వామి half an hour late.",
+   "speaker": "Shiva",
+   "confidence": 3,
+   "scribe_label": "speaker_5",
+   "scribe_label_share": 1.0,
+   "note": "'office' under the tree; Shiva (olive shirt) scolding Swamy for being late"
+  },
+  {
+   "start": 579.98,
+   "end": 581.88,
+   "text": "సూర్య నువ్వేంటి మొహం మీద బొట్టు పెట్టావ్.",
+   "speaker": "Shiva",
+   "confidence": 2,
+   "scribe_label": "speaker_5",
+   "scribe_label_share": 1.0,
+   "note": "starts on a wide shot, cut to Shiva speaking (Scribe's leading 'చెప్తా' left out: too short to attribute)"
+  },
+  {
+   "start": 582.28,
+   "end": 584.78,
+   "text": "job కోసం HR తో పాటు పంతుల్ని కూడా consult అవుతున్నావా?",
+   "speaker": "Shiva",
+   "confidence": 3,
+   "scribe_label": "speaker_5",
+   "scribe_label_share": 1.0,
+   "note": "Shiva teasing about the bottu"
+  },
+  {
+   "start": 590.44,
+   "end": 592.0,
+   "text": "Happy అదిరా Life లో ఉందా?",
+   "speaker": "Shiva",
+   "confidence": 2,
+   "scribe_label": "speaker_5",
+   "scribe_label_share": 1.0,
+   "note": "cut from Surya/Swamy to Shiva mid-line; Surya answers 'ఊహూ' in close-up"
+  },
+  {
+   "start": 602.3,
+   "end": 606.38,
+   "text": "ఇంజనీరింగ్ అయిపోయిన తర్వాత మనకున్న ఒకే ఒక పెద్ద పండగ మనకు job వచ్చిన రోజు.",
+   "speaker": "Shiva",
+   "confidence": 3,
+   "scribe_label": "speaker_5",
+   "scribe_label_share": 1.0,
+   "note": "Shiva's speech, fist gesture"
+  },
+  {
+   "start": 608.38,
+   "end": 609.7,
+   "text": "అయినా పుట్టినరోజు చేసుకోవాలిరా.",
+   "speaker": "Shiva",
+   "confidence": 2,
+   "scribe_label": "speaker_5",
+   "scribe_label_share": 1.0,
+   "note": "Shiva hugging Surya (back to camera) as the birthday wish"
+  },
+  {
+   "start": 610.02,
+   "end": 611.54,
+   "text": "అవును ఒక్కరోజైనా ఇంట్లో తిట్లు తప్పే కదా.",
+   "speaker": "Surya",
+   "confidence": 2,
+   "scribe_label": "speaker_5",
+   "scribe_label_share": 1.0,
+   "note": "face crop 4 fps: Surya's mouth opens at the start, then smiles; ironic line about home scolding"
+  },
+  {
+   "start": 612.62,
+   "end": 614.16,
+   "text": "ఆ మరుసటి రోజు అవన్నీ cover చేస్తారు కానీ,",
+   "speaker": "Swamy",
+   "confidence": 2,
+   "scribe_label": "speaker_5",
+   "scribe_label_share": 1.0,
+   "note": "face crop 4 fps: Swamy turns to Surya and speaks"
+  },
+  {
+   "start": 614.56,
+   "end": 615.78,
+   "text": "మీరు continue ఇప్పుడే వస్తా.",
+   "speaker": "UNKNOWN",
+   "confidence": 1,
+   "scribe_label": "speaker_5",
+   "scribe_label_share": 1.0,
+   "note": "'మీరు continue ఇప్పుడే వస్తా': speaker not identifiable (Swamy's lips unclear; could be Shiva off frame, who leaves next)"
+  },
+  {
+   "start": 622.58,
+   "end": 623.82,
+   "text": "interview కి రమ్మని call వచ్చిందిరా.",
+   "speaker": "Shiva",
+   "confidence": 3,
+   "scribe_label": "speaker_5",
+   "scribe_label_share": 1.0,
+   "note": "Shiva holding his file: interview call"
+  },
+  {
+   "start": 641.32,
+   "end": 643.18,
+   "text": "ఏరా చదువుకోవచ్చు కదరా, ఇక్కడెందుకు?",
+   "speaker": "Swamy",
+   "confidence": 1,
+   "scribe_label": "speaker_5",
+   "scribe_label_share": 1.0,
+   "note": "wide shot of Swamy walking to the kiosk past youths reading; nobody's mouth visible"
+  },
+  {
+   "start": 643.74,
+   "end": 645.38,
+   "text": "ముప్పై ఐదు సిమెంట్ బస్తాలు నువ్వు పంపింది.",
+   "speaker": "Shankaranna",
+   "confidence": 3,
+   "scribe_label": "speaker_5",
+   "scribe_label_share": 1.0,
+   "note": "kiosk owner on the phone about cement bags"
+  },
+  {
+   "start": 653.68,
+   "end": 656.4,
+   "text": "ఏంటి శంకరన్న ముప్పై ఐదు, ముప్పై ఏడు సిమెంట్ బస్తాలు అంటున్నావ్.",
+   "speaker": "Swamy",
+   "confidence": 3,
+   "scribe_label": "speaker_5",
+   "scribe_label_share": 1.0,
+   "note": "Swamy at the counter: 'శంకరన్న'"
+  },
+  {
+   "start": 657.52,
+   "end": 659.16,
+   "text": "ఆ ఇంటి మీద first floor వేస్తున్నాం.",
+   "speaker": "Shankaranna",
+   "confidence": 3,
+   "scribe_label": "speaker_5",
+   "scribe_label_share": 1.0,
+   "note": "Shankaranna smiling, speaking"
+  },
+  {
+   "start": 663.4,
+   "end": 666.54,
+   "text": "శంకరన్న వచ్చిన కొత్తలో rent ఇంట్లో ఉండేవాడివని చెప్పావ్.",
+   "speaker": "Swamy",
+   "confidence": 3,
+   "scribe_label": "speaker_5",
+   "scribe_label_share": 1.0,
+   "note": "Swamy speaking"
+  },
+  {
+   "start": 679.62,
+   "end": 682.14,
+   "text": "ఆ ఎంతొత్తది అరవై, డెబ్బై వేలు అంతే.",
+   "speaker": "Shankaranna",
+   "confidence": 3,
+   "scribe_label": "speaker_5",
+   "scribe_label_share": 1.0,
+   "note": "Shankaranna close-up"
+  },
+  {
+   "start": 709.86,
+   "end": 711.36,
+   "text": "మనది కానీ ఒక్క రూపాయి కూడా మనకొద్దు.",
+   "speaker": "OFFSCREEN:Shankaranna",
+   "confidence": 1,
+   "scribe_label": "speaker_5",
+   "scribe_label_share": 1.0,
+   "note": "read over an insert of the sign 'మనది కాని ఒక్క రూపాయి కూడా మనకొద్దు'; Shankaranna pointed at it ('ఒకసారి అటు చూడు'), so read as his motto; could be Swamy reading it"
+  },
+  {
+   "start": 711.58,
+   "end": 713.4,
+   "text": "వద్దు, వద్దు.",
+   "speaker": "Shankaranna",
+   "confidence": 2,
+   "scribe_label": "speaker_5",
+   "scribe_label_share": 1.0,
+   "note": "Shankaranna on screen shaking his head, smiling"
+  },
+  {
+   "start": 716.7,
+   "end": 719.5,
+   "text": "ఆయినా ఈరోజు మన సూర్య గాడి birthday discount ఇవ్వచ్చు కదా.",
+   "speaker": "Swamy",
+   "confidence": 3,
+   "scribe_label": "speaker_5",
+   "scribe_label_share": 1.0,
+   "note": "cut to Swamy asking for a birthday discount"
+  },
+  {
+   "start": 720.08,
+   "end": 723.16,
+   "text": "discount ఆ సాయంత్రం shop దగ్గరికి వచ్చి ఒక గంట సేపు ఎక్కువ కూర్చోండి.",
+   "speaker": "Shankaranna",
+   "confidence": 3,
+   "scribe_label": "speaker_5",
+   "scribe_label_share": 1.0,
+   "note": "Shankaranna speaking"
+  },
+  {
+   "start": 740.83,
+   "end": 745.21,
+   "text": "Okay స్వామి ఆ ఈ సార్ వచ్చినప్పుడు ఆ జీడిపప్పు ప్యాకెట్ పట్టరండి",
+   "speaker": "Shankaranna",
+   "confidence": 2,
+   "scribe_label": "speaker_5",
+   "scribe_label_share": 1.0,
+   "note": "Shankaranna gesturing (first frame Swamy)"
+  },
+  {
+   "start": 759.61,
+   "end": 760.41,
+   "text": "అంజలి నీకు పంపింది.",
+   "speaker": "Swamy",
+   "confidence": 3,
+   "scribe_label": "speaker_5",
+   "scribe_label_share": 1.0,
+   "note": "under the tree; Swamy hands over the gift bag"
+  },
+  {
+   "start": 767.67,
+   "end": 770.35,
+   "text": "నీకు birthday రోజు ఇమ్మంది, అందుకే శంకరం shop లో పెట్టా.",
+   "speaker": "Swamy",
+   "confidence": 3,
+   "scribe_label": "speaker_5",
+   "scribe_label_share": 1.0,
+   "note": "Swamy explains; Surya holds the hoodie"
+  },
+  {
+   "start": 776.17,
+   "end": 777.09,
+   "text": "Hoodie నచ్చిందా అండి?",
+   "speaker": "Anjali",
+   "confidence": 3,
+   "scribe_label": "speaker_6",
+   "scribe_label_share": 1.0,
+   "note": "video call; Anjali on her side"
+  },
+  {
+   "start": 784.23,
+   "end": 785.53,
+   "text": "ఏంటి price నాలుగు వేలా?",
+   "speaker": "Surya",
+   "confidence": 3,
+   "scribe_label": "speaker_4",
+   "scribe_label_share": 1.0,
+   "note": "split screen; Surya's mouth open"
+  },
+  {
+   "start": 786.95,
+   "end": 787.73,
+   "text": "పిచ్చా నీకేమైనా?",
+   "speaker": "Surya",
+   "confidence": 3,
+   "scribe_label": "speaker_4",
+   "scribe_label_share": 1.0,
+   "note": "split screen; Surya"
+  },
+  {
+   "start": 789.97,
+   "end": 791.95,
+   "text": "పర్లేదులెండి, మీకు నచ్చింది కదా!",
+   "speaker": "Anjali",
+   "confidence": 3,
+   "scribe_label": "speaker_6",
+   "scribe_label_share": 1.0,
+   "note": "Anjali close-up"
+  },
+  {
+   "start": 798.97,
+   "end": 800.03,
+   "text": "వెళ్లి dress change చేసుకోండి.",
+   "speaker": "Anjali",
+   "confidence": 3,
+   "scribe_label": "speaker_6",
+   "scribe_label_share": 1.0,
+   "note": "split screen; Anjali talking"
+  },
+  {
+   "start": 810.57,
+   "end": 812.87,
+   "text": "రేయ్ అంతలా అడుగుతుంటే మార్చుకో పో.",
+   "speaker": "Swamy",
+   "confidence": 3,
+   "scribe_label": "speaker_5",
+   "scribe_label_share": 1.0,
+   "note": "Swamy gesturing at Surya"
+  },
+  {
+   "start": 824.39,
+   "end": 826.79,
+   "text": "ఆ సూర్య ఏంటి shirt మార్చుకుంటున్నారా?",
+   "speaker": "Anjali",
+   "confidence": 3,
+   "scribe_label": "speaker_6",
+   "scribe_label_share": 1.0,
+   "note": "Anjali on the video call asks Swamy"
+  },
+  {
+   "start": 846.95,
+   "end": 848.19,
+   "text": "రేయ్ ఏం చేస్తున్నావ్ రా?",
+   "speaker": "Surya",
+   "confidence": 2,
+   "scribe_label": "speaker_4",
+   "scribe_label_share": 1.0,
+   "note": "split screen; Surya (small, at the wall in the hoodie) protests at being filmed"
+  },
+  {
+   "start": 873.97,
+   "end": 874.67,
+   "text": "I love you junior",
+   "speaker": "Surya",
+   "confidence": 3,
+   "scribe_label": "speaker_4",
+   "scribe_label_share": 1.0,
+   "note": "Surya close-up on the call"
+  },
+  {
+   "start": 879.15,
+   "end": 883.03,
+   "text": "అంటే ఇంకో ten days లో Hyderabad వస్తున్నాను కదా, అప్పుడు direct గా చెప్తాలే senior",
+   "speaker": "Anjali",
+   "confidence": 3,
+   "scribe_label": "speaker_6",
+   "scribe_label_share": 1.0,
+   "note": "Anjali close-up"
+  },
+  {
+   "start": 907.09,
+   "end": 909.63,
+   "text": "నీ life లో నీకు నచ్చినట్టు ఏమైనా జరుగుతుందంటే అది అంజలి matter ఏ.",
+   "speaker": "Swamy",
+   "confidence": 3,
+   "scribe_label": "speaker_4",
+   "scribe_label_share": 1.0,
+   "note": "Swamy smiling, speaking"
+  },
+  {
+   "start": 914.85,
+   "end": 915.99,
+   "text": "అంజలి పదిహేను వందలు ఇచ్చింది.",
+   "speaker": "Surya",
+   "confidence": 3,
+   "scribe_label": "speaker_5",
+   "scribe_label_share": 1.0,
+   "note": "Surya counting his money"
+  },
+  {
+   "start": 919.35,
+   "end": 922.41,
+   "text": "సరిపోతాయిలే, ఏమైనా ఎక్కువైతే మన దగ్గర జీడిపప్పు packet ఉంది manage.",
+   "speaker": "Swamy",
+   "confidence": 3,
+   "scribe_label": "speaker_4",
+   "scribe_label_share": 1.0,
+   "note": "Swamy (cashew packet)"
+  },
+  {
+   "start": 934.51,
+   "end": 936.53,
+   "text": "security వాడు పంపించాడు కదా, ఇంత సేపేంటి రావడానికి?",
+   "speaker": "Customer",
+   "confidence": 3,
+   "scribe_label": "speaker_4",
+   "scribe_label_share": 1.0,
+   "note": "hungry man (dark T-shirt with white diagonal stripe) alone at home"
+  },
+  {
+   "start": 945.25,
+   "end": 946.11,
+   "text": "order పెట్టి రెండు గంటలు అయింది.",
+   "speaker": "Customer",
+   "confidence": 3,
+   "scribe_label": "speaker_7",
+   "scribe_label_share": 1.0,
+   "note": "customer at the door complains to the delivery man"
+  },
+  {
+   "start": 972.49,
+   "end": 977.81,
+   "text": "అంటే మీ order కోసం one hour line లో నించొని, one hour traffic లో వచ్చి చాలా దాహంగా ఉంది sir.",
+   "speaker": "Arjun",
+   "confidence": 3,
+   "scribe_label": "speaker_7",
+   "scribe_label_share": 1.0,
+   "note": "delivery man (cap, beard, black jacket over striped shirt) = Arjun"
+  },
+  {
+   "start": 1012.41,
+   "end": 1015.49,
+   "text": "అంటే మీ order కోసం తిన్న plate పక్కన పెట్టి మరి వచ్చాను sir.",
+   "speaker": "Arjun",
+   "confidence": 3,
+   "scribe_label": "speaker_7",
+   "scribe_label_share": 1.0,
+   "note": "Arjun at the table"
+  },
+  {
+   "start": 1043.71,
+   "end": 1045.31,
+   "text": "ఒరేయ్ అది కాదురా, నాకు dosa అంటే ఇష్టం రా.",
+   "speaker": "Customer",
+   "confidence": 3,
+   "scribe_label": "speaker_4",
+   "scribe_label_share": 1.0,
+   "note": "customer protesting about the dosa"
+  },
+  {
+   "start": 1120.84,
+   "end": 1122.16,
+   "text": "నువ్వు ఇవ్వాలిరా నాకు five star rating.",
+   "speaker": "Customer",
+   "confidence": 3,
+   "scribe_label": "speaker_4",
+   "scribe_label_share": 1.0,
+   "note": "customer at the door"
+  },
+  {
+   "start": 1139.86,
+   "end": 1143.26,
+   "text": "ఉమ్ రేయ్ ఆరు అయిపోయిందంట్రా.",
+   "speaker": "Surya",
+   "confidence": 2,
+   "scribe_label": "speaker_4",
+   "scribe_label_share": 1.0,
+   "note": "face crop 4 fps: Surya reads the time off his phone, mouth moving; Swamy just waking"
+  },
+  {
+   "start": 1152.9,
+   "end": 1156.24,
+   "text": "అదే మీతో పని పటా లేకుండా ఎంతసేపు కూర్చున్నా అస్సలు బోర్ కొట్టదు.",
+   "speaker": "Swamy",
+   "confidence": 3,
+   "scribe_label": "speaker_4",
+   "scribe_label_share": 1.0,
+   "note": "Swamy speaking, gestures (his father's shop)"
+  },
+  {
+   "start": 1166.82,
+   "end": 1168.66,
+   "text": "ఒరేయ్ virgin ఎన్ని సార్లు కాల్ చేయాలిరా నీకు?",
+   "speaker": "Swamy",
+   "confidence": 2,
+   "scribe_label": "speaker_7",
+   "scribe_label_share": 1.0,
+   "note": "wide shot; Swamy faces Arjun; Arjun answers 'నా పేరు virgin కాదు'"
+  },
+  {
+   "start": 1173.7,
+   "end": 1175.14,
+   "text": "అలా కలపకపోతేనే virgin అయింది.",
+   "speaker": "Swamy",
+   "confidence": 2,
+   "scribe_label": "speaker_7",
+   "scribe_label_share": 1.0,
+   "note": "wide; Swamy facing Arjun, Surya laughing; Arjun next says 'రేయ్ స్వామి నువ్వంటావ్ రా'"
+  },
+  {
+   "start": 1178.24,
+   "end": 1179.9,
+   "text": "రేయ్ నా budget 2500 రా.",
+   "speaker": "Surya",
+   "confidence": 2,
+   "scribe_label": "speaker_7",
+   "scribe_label_share": 1.0,
+   "note": "wide; content: Surya's 2500 budget (Amma 1000 + Anjali 1500)"
+  },
+  {
+   "start": 1182.0,
+   "end": 1183.16,
+   "text": "చెప్పండి ఏ bar కి వెళ్దాం?",
+   "speaker": "Surya",
+   "confidence": 2,
+   "scribe_label": "speaker_7",
+   "scribe_label_share": 1.0,
+   "note": "wide then cut to Arjun close-up (listening); continues Surya's budget line"
+  },
+  {
+   "start": 1192.24,
+   "end": 1194.82,
+   "text": "అటు అయినా పర్లేదురా, ఇటు అయిందనుకో ఇటు నుంచి ఇటే నువ్వు వెళ్ళిపోతావు.",
+   "speaker": "Surya",
+   "confidence": 2,
+   "scribe_label": "speaker_7",
+   "scribe_label_share": 1.0,
+   "note": "Surya standing, gesturing"
+  },
+  {
+   "start": 1206.2,
+   "end": 1208.74,
+   "text": "ఆ లేదు next week interview ఉంది prepare అవ్వాలి.",
+   "speaker": "Subbu",
+   "confidence": 3,
+   "scribe_label": "speaker_4",
+   "scribe_label_share": 1.0,
+   "note": "Subbu (glasses, blue check shirt) by a stone wall"
+  },
+  {
+   "start": 1250.6,
+   "end": 1254.7,
+   "text": "సమస్య నీదైనప్పుడు పరిష్కారం కూడా నీ దగ్గరే ఉంటుంది.",
+   "speaker": "OFFSCREEN:Surya's father",
+   "confidence": 1,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "read over an insert of the father's phone showing the quote; probably the father reading it aloud, could be the clip's own voice"
+  },
+  {
+   "start": 1280.32,
+   "end": 1282.18,
+   "text": "వాడి పుట్టినరోజు అని నాన్న ఐదు వందలు ఇవ్వమన్నాడు.",
+   "speaker": "Lakshmi",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "mother speaking to Meghana"
+  },
+  {
+   "start": 1294.52,
+   "end": 1297.12,
+   "text": "నాకు వంద రూపాయలు ఇవ్వమంటే ఎందుకు ఏంటి అని వంద questions వేస్తావ్.",
+   "speaker": "Meghana",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "Meghana (red 'C' top) speaking"
+  },
+  {
+   "start": 1325.24,
+   "end": 1326.66,
+   "text": "సూర్య వచ్చే వరకు late అయిద్దేమో.",
+   "speaker": "Lakshmi",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "mother to the father at the table"
+  },
+  {
+   "start": 1336.1,
+   "end": 1337.72,
+   "text": "సూర్యుణ్ణి రానివ్వండి అందరం కలిసి భోంచేద్దాం.",
+   "speaker": "Surya's father",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "father in vest, speaking"
+  },
+  {
+   "start": 1376.5,
+   "end": 1377.9,
+   "text": "ఐదో quarter చెప్పురా.",
+   "speaker": "Surya",
+   "confidence": 2,
+   "scribe_label": "speaker_7",
+   "scribe_label_share": 1.0,
+   "note": "bike; drunk Surya (hood, eyes closed) mumbling; Swamy then answers"
+  },
+  {
+   "start": 1390.72,
+   "end": 1391.5,
+   "text": "ఏంట్రా ఇంత తాగావు?",
+   "speaker": "Meghana",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "at the gate; Meghana scolds drunk Surya"
+  },
+  {
+   "start": 1401.68,
+   "end": 1402.86,
+   "text": "ఏంది పాయసం, పులిహోర?",
+   "speaker": "Swamy",
+   "confidence": 3,
+   "scribe_label": "speaker_4",
+   "scribe_label_share": 1.0,
+   "note": "Swamy at the gate asking about the food"
+  },
+  {
+   "start": 1404.06,
+   "end": 1404.94,
+   "text": "మీ అన్నకు పెట్టే first.",
+   "speaker": "Swamy",
+   "confidence": 3,
+   "scribe_label": "speaker_7",
+   "scribe_label_share": 1.0,
+   "note": "Swamy speaking with hand gesture"
+  },
+  {
+   "start": 1405.12,
+   "end": 1406.72,
+   "text": "ఆడు నుంచోడం చూడు Kung fu master లాగా.",
+   "speaker": "OFFSCREEN:Swamy",
+   "confidence": 2,
+   "scribe_label": "speaker_7",
+   "scribe_label_share": 1.0,
+   "note": "shot holds on Surya doing a kung-fu pose; about Surya, continuing Swamy"
+  },
+  {
+   "start": 1419.88,
+   "end": 1421.6,
+   "text": "ఆ పో open చేస్తా ఎవరైనా order చేస్తారు.",
+   "speaker": "Arjun",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "bike; Arjun (delivery joke: someone will order, we eat it)"
+  },
+  {
+   "start": 1439.26,
+   "end": 1442.28,
+   "text": "నీ birthday చూడు top లేచిపోద్ది అంతే.",
+   "speaker": "Surya",
+   "confidence": 3,
+   "scribe_label": "speaker_4",
+   "scribe_label_share": 1.0,
+   "note": "drunk Surya on the bed"
+  },
+  {
+   "start": 1450.8,
+   "end": 1451.98,
+   "text": "అమ్మ దేవత.",
+   "speaker": "Surya",
+   "confidence": 3,
+   "scribe_label": "speaker_4",
+   "scribe_label_share": 1.0,
+   "note": "drunk Surya on the bed"
+  },
+  {
+   "start": 1462.3,
+   "end": 1463.02,
+   "text": "వెయ్యి రూపాయలు ఇచ్చావు.",
+   "speaker": "Meghana",
+   "confidence": 2,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "Meghana and mother by the bed; Meghana's mouth open; teasing the mother"
+  },
+  {
+   "start": 1470.04,
+   "end": 1471.26,
+   "text": "చీపురు కట్ట తిరిగేసి కొడతాను.",
+   "speaker": "Lakshmi",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "mother bending over Surya, threatening"
+  },
+  {
+   "start": 1487.64,
+   "end": 1488.96,
+   "text": "సూర్య వచ్చిండట నాకు చెప్పలేదే.",
+   "speaker": "Surya's father",
+   "confidence": 2,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "wide; father in the doorway; content 'నాకు చెప్పలేదే' to the wife"
+  },
+  {
+   "start": 1506.76,
+   "end": 1507.58,
+   "text": "ఇప్పుడు ఏమనకండి.",
+   "speaker": "Lakshmi",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "mother to the father"
+  },
+  {
+   "start": 1533.9,
+   "end": 1535.6,
+   "text": "నేను జాబ్ తెచ్చుకుంటా.",
+   "speaker": "OFFSCREEN:Surya",
+   "confidence": 2,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "shot on the father at the door turning back; drunk Surya mumbling 'నేను జాబ్ తెచ్చుకుంటా'"
+  }
+ ],
+ "scribe_agreement": {
+  "n_lines": 128,
+  "n_labelled": 127,
+  "one_to_one_agree": 64,
+  "one_to_one_rate": 0.504,
+  "one_to_one_rate_conf2plus": 0.5,
+  "n_conf2plus": 124,
+  "many_to_one_agree": 70,
+  "many_to_one_rate": 0.551,
+  "best_mapping": {
+   "speaker_0": "Meghana",
+   "speaker_1": "Lakshmi",
+   "speaker_2": "Surya's father",
+   "speaker_3": "Surya",
+   "speaker_4": "Customer",
+   "speaker_5": "Swamy",
+   "speaker_6": "Anjali",
+   "speaker_7": "Arjun"
+  },
+  "confusion": {
+   "speaker_0": {
+    "Meghana": 9,
+    "Anjali": 2,
+    "Lakshmi": 1
+   },
+   "speaker_1": {
+    "Lakshmi": 11,
+    "Surya's father": 1
+   },
+   "speaker_2": {
+    "Surya's father": 9,
+    "Arjun": 1,
+    "Surya": 1
+   },
+   "speaker_3": {
+    "Surya": 8
+   },
+   "speaker_4": {
+    "Surya": 7,
+    "Swamy": 5,
+    "Customer": 3,
+    "Subbu": 1
+   },
+   "speaker_5": {
+    "Swamy": 17,
+    "Swamy's father": 8,
+    "Shiva": 7,
+    "Shankaranna": 7,
+    "Surya": 6,
+    "Lakshmi": 4,
+    "Swamy's mother": 3
+   },
+   "speaker_6": {
+    "Anjali": 5
+   },
+   "speaker_7": {
+    "Swamy": 4,
+    "Surya": 4,
+    "Arjun": 2,
+    "Customer": 1
+   }
+  }
+ }
+}
