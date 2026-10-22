@@ -1,0 +1,1055 @@
+{
+ "schema_version": "1.1",
+ "kind": "proposals",
+ "video_id": "LJQOGxrXalI",
+ "transcript": {
+  "path": "scribe_dataset/LJQOGxrXalI/LJQOGxrXalI_scribe_transcript.json",
+  "sha256": "d6c6f7890dfd00d18cd31d8c421d070e8b978d7905f620c21fd5c32e9ff51eb5",
+  "n_words": 2041,
+  "audio_duration_secs": 1550.653
+ },
+ "derived_params": {
+  "skip_s": 30.0
+ },
+ "run_id": "emotion3",
+ "created_at": "2026-10-22T13:07:55Z",
+ "content_type": "web_series",
+ "pipeline": {
+  "version": "emotion_pick/0.3",
+  "git_commit": null,
+  "design": "founder 2026-10-16: emotion-first, two focused calls (find the moments a stranger feels; build stop / stay / land + the cut per moment); no review call",
+  "prompt_versions": {
+   "ws3_context": "1+e606d3c6",
+   "ws_emotion_find": "3+c6395749",
+   "ws_emotion_build": "2+19568511"
+  },
+  "prompt_files": {
+   "ws3_context": "ws3_context",
+   "ws_emotion_find": "ws_emotion_find",
+   "ws_emotion_build": "ws_emotion_build"
+  },
+  "config": {
+   "pipeline_version": "emotion_pick/0.3",
+   "find_prompt": "ws_emotion_find",
+   "models": {
+    "find": {
+     "provider": "gemini",
+     "model": "gemini-3.8-flash",
+     "params": {
+      "thinking_level": "high",
+      "max_output_tokens": 32768
+     }
+    },
+    "build": {
+     "provider": "gemini",
+     "model": "gemini-3.8-flash",
+     "params": {
+      "thinking_level": "medium",
+      "max_output_tokens": 16384
+     }
+    }
+   },
+   "prompts": {
+    "ws_emotion_build": "ws_emotion_build"
+   },
+   "ctx": {
+    "speaker_names": false
+   },
+   "v1": {
+    "guardrails": {
+     "min_s": 10.0
+    }
+   },
+   "find": {
+    "min_intensity": 3,
+    "extra_types": [
+     "cliffhanger"
+    ],
+    "feelings": [
+     "laugh",
+     "aww",
+     "shock",
+     "tension",
+     "tears",
+     "relatable_banter",
+     "awkward_cringe"
+    ]
+   },
+   "lift_ok": {
+    "rule": "strict",
+    "enforce": true,
+    "min_speech_s": 1.0,
+    "max_speech_s": 3.6,
+    "continuations": [
+     "అందుకే",
+     "కానీ",
+     "సో",
+     "మరి",
+     "అలాగే",
+     "అయినా",
+     "అయితే",
+     "ఎందుకంటే",
+     "so",
+     "but",
+     "and",
+     "because"
+    ],
+    "acks": [
+     "అవునా",
+     "అవును",
+     "ఊ",
+     "ఊం",
+     "ఉమ్",
+     "సరే",
+     "హ్మ్",
+     "హా",
+     "ఆ",
+     "ఓ",
+     "ఓకే",
+     "అలాగా",
+     "ok",
+     "okay",
+     "hmm",
+     "hm",
+     "yes",
+     "yeah"
+    ],
+    "ack_max_words": 2,
+    "same_speaker": true,
+    "turn_runs": true
+   },
+   "cluster": {
+    "enabled": true,
+    "max_lines": 35,
+    "max_s": 50.0,
+    "music_min_s": 4.0,
+    "silence_gap_s": null,
+    "target_within": 1,
+    "max_span_s": 90.0
+   },
+   "build": {
+    "max_moments": 10,
+    "lift_before_s": 150.0,
+    "lift_after_s": 20.0,
+    "land_window_lines": 3,
+    "land_after_lines": 15,
+    "max_end_after_payoff_lines": 3,
+    "end_rule": "clamp",
+    "end_after_land_lines": 2,
+    "end_after_reaction_lines": 1,
+    "max_tokens_retry": true
+   },
+   "cold_open": {
+    "rule": "fallback",
+    "same_speaker": true,
+    "near_lines": 2,
+    "near_s": 3.0,
+    "weak_advance_lines": 4,
+    "weak_max_words": 2,
+    "weak_min_s": 1.0,
+    "turn_lift": true,
+    "turn_max_s": 3.6,
+    "start_advance": true,
+    "advance_max_lines": 4,
+    "advance_stop_s": 5.0,
+    "greetings": [
+     "hello",
+     "hi",
+     "hey",
+     "హలో",
+     "హాయ్",
+     "నమస్తే",
+     "namaste",
+     "thank",
+     "thanks",
+     "you",
+     "bye",
+     "good",
+     "morning",
+     "evening",
+     "night"
+    ]
+   },
+   "check": {
+    "stop_window_s": 3.0,
+    "land_last_lines": 3,
+    "stop_late": "flag",
+    "land_late": "trim"
+   },
+   "dedupe": {
+    "rule": "scene",
+    "overlap": 0.35,
+    "prefer_play_s": [
+     30.0,
+     75.0
+    ],
+    "keep_longer": true,
+    "keep_longer_max_s": 120.0,
+    "short_tail_s": 30.0
+   },
+   "budget_usd": 3.0,
+   "calibrate_from": {
+    "ws3": "runs/ws3"
+   },
+   "run_id": "emotion3"
+  }
+ },
+ "models": [
+  {
+   "role": "ws_emotion_find",
+   "provider": "gemini",
+   "model": "gemini-3.8-flash",
+   "params": {
+    "thinking_level": "high",
+    "max_output_tokens": 32768
+   }
+  },
+  {
+   "role": "ws_emotion_build",
+   "provider": "gemini",
+   "model": "gemini-3.8-flash",
+   "params": {
+    "thinking_level": "medium",
+    "max_output_tokens": 16384
+   }
+  }
+ ],
+ "cost": {
+  "input_tokens": 97955,
+  "output_tokens": 45039,
+  "usd": 0.19038,
+  "usd_billed": 0.19038,
+  "wall_time_secs": 342.5,
+  "n_llm_calls": 7,
+  "by_role": {
+   "ws3_cache": {
+    "n_llm_calls": 1,
+    "n_cache_hits": 0,
+    "n_failed_attempts": 0,
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "thought_tokens": 0,
+    "cached_input_tokens": 0,
+    "usd": 0.00732,
+    "usd_billed": 0.00732,
+    "models": [
+     "gemini-3.8-flash"
+    ]
+   },
+   "ws_emotion_build": {
+    "n_llm_calls": 5,
+    "n_cache_hits": 0,
+    "n_failed_attempts": 0,
+    "input_tokens": 82359,
+    "output_tokens": 35823,
+    "thought_tokens": 34412,
+    "cached_input_tokens": 73215,
+    "usd": 0.14669,
+    "usd_billed": 0.14669,
+    "models": [
+     "gemini-3.8-flash"
+    ]
+   },
+   "ws_emotion_find": {
+    "n_llm_calls": 1,
+    "n_cache_hits": 0,
+    "n_failed_attempts": 0,
+    "input_tokens": 15596,
+    "output_tokens": 9216,
+    "thought_tokens": 8386,
+    "cached_input_tokens": 14643,
+    "usd": 0.03637,
+    "usd_billed": 0.03637,
+    "models": [
+     "gemini-3.8-flash"
+    ]
+   }
+  },
+  "projection": null,
+  "cache": {
+   "mode": "explicit",
+   "key": "fad15c17a73d0bfa584e829c",
+   "name": "cachedContents/cwk0p6daqs156bhek2knefm6em721jsd0res61si",
+   "tokens": 14643,
+   "ttl_s": 3600,
+   "storage_usd": 0.0073215,
+   "deleted": true,
+   "lived_s": 340.1
+  }
+ },
+ "cutoff": {
+  "show_rule": "emotion_pick: every clip that passes the build checks (stop first, land last, v1 hard rules) and the dedupe; no review, no score",
+  "order": "episode order",
+  "n_candidates": 7,
+  "n_passed_hard_rules": 5,
+  "n_shown": 4,
+  "n_rejected": 1,
+  "warnings": []
+ },
+ "episode_notes": "A Telugu bachelor comedy following Karthik (an aspiring TV serial actor) and Arjun (a working professional) living in a penthouse flat. Their mutual friend sneaks his runaway girlfriend Deepika into their apartment to hide her for three days, putting them in danger of eviction by their eccentric landlord Bhishma who fanatically hates women and enforces strict anti-women tenancy rules.",
+ "proposals": [
+  {
+   "id": "e01",
+   "pieces": [
+    {
+     "start_word": 174,
+     "end_word": 231,
+     "start": 240.92,
+     "end": 300.08
+    }
+   ],
+   "region": {
+    "start_word": 174,
+    "end_word": 231,
+    "start": 240.92,
+    "end": 300.08
+   },
+   "edited_duration": 59.16,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ఈ ఒంటెలక్కేవి మీరు అనుకున్నట్టు సతి సావిత్రీ ఏం కాదు. అయినా ఇప్పుడు ఈమె భర్త నేను కాదు ఇంకొకడున్నాడు. ఇంకొకడు ఉన్నాడా? ఎవరతను? చెప్పండి ఎవరతను? అతని పేరేంటి? అతని పేరు అతని పేరు... మ్మ్ త్వరగా చెప్పరా. ఆకలేస్తుంది. అతను ఎవరంటే- ఆ చెప్పురా, చెప్పు తొందరగా. అవతల పొయ్యి మీద పోపు మాడిపోతుంది. అతని పేరు- సమర్పిస్తున్నవారు Gold Gate Smile Gate, Start Gate. ఎట్ల ఉంది ఆ? థూ ఇంకెన్ని రోజుల్రా ఇలా సాగతీస్తారు?",
+   "rank": 1,
+   "tier": "emotion_pick",
+   "tier_label": "emotion pick",
+   "scores": {},
+   "title": "సీరియల్ సాగతీత అంటే ఇదేనేమో!",
+   "hook_line": {
+    "text": "ఈ ఒంటెలక్కేవి మీరు అనుకున్నట్టు",
+    "start_word": 174,
+    "end_word": 177
+   },
+   "payoff_line": "థూ ఇంకెన్ని రోజుల్రా ఇలా సాగతీస్తారు?",
+   "payoff_type": "punchline",
+   "payoff_line_source": "discover",
+   "why_it_works": "Viewer stops because of the dramatic serial dialogue questioning Vantalakka's character, stays to see if the husband's name is finally revealed, and it ends on the relatable frustration when it cuts …",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 240.866,
+     "end": 301.27,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 60.4,
+   "spoiler": false,
+   "characters": [
+    "Karthik",
+    "Arjun"
+   ],
+   "visual_dependency": "medium",
+   "start_line": "L0046",
+   "end_line": "L0072",
+   "end_hold": {
+    "payoff_end": 300.08,
+    "next_speech": 301.32,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "end": 301.27,
+    "hold_s": 1.19,
+    "on_shot_cut": false,
+    "rule": "before_next_line",
+    "note": "next line starts quickly and no shot change before it"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": null,
+    "what_happens": "Will the serial finally reveal who her real husband is, or will it stretch the suspense endlessly?",
+    "hook": "A stranger stops scrolling at the absurd serial drama hook: 'ఈ ఒంటెలక్కేవి మీరు అనుకున్నట్టు సతి సావిత్రీ ఏం కాదు'.",
+    "payoff": "థూ ఇంకెన్ని రోజుల్రా ఇలా సాగతీస్తారు?",
+    "opening_strength": null,
+    "payoff_line": "థూ ఇంకెన్ని రోజుల్రా ఇలా సాగతీస్తారు?",
+    "payoff_type": "punchline"
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "source": "emotion_pick",
+   "feeling": "laugh",
+   "intensity": 3,
+   "stop": {
+    "line": "L0046",
+    "text": "ఈ ఒంటెలక్కేవి మీరు అనుకున్నట్టు",
+    "why": "A stranger stops scrolling at the absurd serial drama hook: 'ఈ ఒంటెలక్కేవి మీరు అనుకున్నట్టు సతి సావిత్రీ ఏం కాదు'.",
+    "cold_open": false,
+    "case": "start_line",
+    "via": "start_line",
+    "plays_at_s": 0.05
+   },
+   "stay": "Will the serial finally reveal who her real husband is, or will it stretch the suspense endlessly?",
+   "land": {
+    "line": "L0072",
+    "text": "థూ ఇంకెన్ని రోజుల్రా ఇలా సాగతీస్తారు?",
+    "reaction": "hold",
+    "plays_at_s": 57.73
+   },
+   "reason": "Viewer stops because of the dramatic serial dialogue questioning Vantalakka's character, stays to see if the husband's name is finally revealed, and it ends on the relatable frustration when it cuts to a commercial (laugh).",
+   "moment": {
+    "id": "p01",
+    "line": "L0072",
+    "text": "థూ ఇంకెన్ని రోజుల్రా ఇలా సాగతీస్తారు?",
+    "feeling": "laugh",
+    "intensity": 3,
+    "why": "After a TV daily serial endlessly stretches the tension of a big reveal only to cut straight to a commercial, Karthik vents every viewer's frustration with 'థూ ఇంకెన్ని రోజుల్రా ఇలా సాగతీస్తారు?'.",
+    "type": "punchline",
+    "lands_on_screen": true
+   },
+   "build_flags": []
+  },
+  {
+   "id": "e02",
+   "pieces": [
+    {
+     "start_word": 297,
+     "end_word": 470,
+     "start": 331.2,
+     "end": 398.256
+    }
+   ],
+   "region": {
+    "start_word": 297,
+    "end_word": 470,
+    "start": 331.2,
+    "end": 398.256
+   },
+   "edited_duration": 67.056,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "Bro bro bro కొంచెం slow down. మీరెవరో కూడా నాకు ఇంకా పూర్తిగా తెలీదు. మీరేం చేస్తుంటారో కూడా తెలీదు. ఆ. అంటే తప్పుగా అనుకోకండి. For example నా ఊరు, పేరు etc. ఈ details అన్నీ మీకు తెలుసు. మనం Facebook friends కాబట్టి. కానీ మీ details ఏం నాకు తెలీవు. చూద్దామన్నా మీ profile చాలా ఖాళీగా ఉంది. అంటే ఏంది ఇప్పుడు నాకు Facebook ఎట్లా వాడాలో రాదంటావ్? ఊ. అయ్యో అలా కాదు bro. అంటే నాకు Facebook profile fill చేయడం కూడా రాదంటావ్. అంతే కదా ఆ. అరేయ్ నేను అలా అనలేదు. లే చెప్పెయ్ bro నువ్వేమనుకుంటున్నావో మొత్తం చెప్పు. అంటే ఏంది ఇప్పుడు నేను ఎర్ర బస్ ఎక్కేసి వచ్చి Facebook లో ఎక్కేసిన అంటావ్ అంతే కదా Bro bro you are completely misunderstanding me I'm not saying that ఆ అంటే ఇప్పుడు నువ్వు English లో మాట్లాడితే నువ్వు పెద్ద తోపు అనటా? మేమందరం uneducated కాళ్ళమ్మా బస్తీ batch ఆ Bro bro I'm sorry bro మీ room వద్దేం అవద్దు పడదాం రా ఏంది bro bro bro bro రా bro come అయ్యో bro రా bro కూర్చో కూర్చో కూర్చో నమ్మేసినావా బాగా act చేసిన కదా I'm such a natural actor man అంటే ఇప్పుడు నువ్వు అడిగినావ్ కదా ఏం చేస్తుంటావ్ అని చెప్పడమెందుకని చూపించిన I'm an actor bro",
+   "rank": 2,
+   "tier": "emotion_pick",
+   "tier_label": "emotion pick",
+   "scores": {},
+   "title": "నమ్మేసినావా? నేనొక Actor ని బ్రో",
+   "hook_line": {
+    "text": "Bro bro bro కొంచెం slow down.",
+    "start_word": 297,
+    "end_word": 302
+   },
+   "payoff_line": "I'm such a natural actor man అంటే ఇప్పుడు నువ్వు అడిగినావ్ కదా ఏం చేస్తుంటావ్ అని చెప్పడమెందుకని చూపించిన",
+   "payoff_type": "reveal",
+   "payoff_line_source": "discover",
+   "why_it_works": "Viewer stops because Arjun abruptly interrogates Karthik about his identity, stays to find out if Karthik's escalating anger will ruin their partnership, and it ends on Karthik laughing that the enti…",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 330.9,
+     "end": 398.926,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 68.03,
+   "spoiler": false,
+   "characters": [
+    "Karthik",
+    "Arjun"
+   ],
+   "visual_dependency": "medium",
+   "start_line": "L0092",
+   "end_line": "L0117",
+   "end_hold": {
+    "payoff_end": 398.256,
+    "next_speech": 398.976,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "end": 398.926,
+    "hold_s": 0.67,
+    "on_shot_cut": false,
+    "rule": "before_next_line",
+    "note": "next line starts quickly and no shot change before it"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": null,
+    "what_happens": "Will Karthik take severe offense and cancel the flat deal, or is his fiery outrage something else?",
+    "hook": "Arjun suddenly halts flat-hunting excitement with 'Bro bro bro కొంచెం slow down. మీరెవరో కూడా నాకు ఇంకా పూర్తిగా తెలీదు'.",
+    "payoff": "I'm such a natural actor man అంటే ఇప్పుడు నువ్వు అడిగినావ్ కదా ఏం చేస్తుంటావ్ అని చెప్పడమెందుకని చూపించిన",
+    "opening_strength": null,
+    "payoff_line": "I'm such a natural actor man అంటే ఇప్పుడు నువ్వు అడిగినావ్ కదా ఏం చేస్తుంటావ్ అని చెప్పడమెందుకని చూపించిన",
+    "payoff_type": "reveal"
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "source": "emotion_pick",
+   "feeling": "laugh",
+   "intensity": 4,
+   "stop": {
+    "line": "L0092",
+    "text": "Bro bro bro కొంచెం slow down.",
+    "why": "Arjun suddenly halts flat-hunting excitement with 'Bro bro bro కొంచెం slow down. మీరెవరో కూడా నాకు ఇంకా పూర్తిగా తెలీదు'.",
+    "cold_open": false,
+    "case": "start_line",
+    "via": "start_line",
+    "plays_at_s": 0.3
+   },
+   "stay": "Will Karthik take severe offense and cancel the flat deal, or is his fiery outrage something else?",
+   "land": {
+    "line": "L0116",
+    "text": "I'm such a natural actor man అంటే ఇప్పుడు నువ్వు అడిగినావ్ కదా ఏం చేస్తుంటావ్ అని చెప్పడమెందుకని చూపించిన",
+    "reaction": "L0117",
+    "reaction_text": "I'm an actor bro",
+    "plays_at_s": 58.8
+   },
+   "reason": "Viewer stops because Arjun abruptly interrogates Karthik about his identity, stays to find out if Karthik's escalating anger will ruin their partnership, and it ends on Karthik laughing that the entire outrage was just an audition to prove he is an actor (laugh).",
+   "moment": {
+    "id": "p02",
+    "line": "L0115",
+    "text": "నమ్మేసినావా బాగా act చేసిన కదా",
+    "feeling": "laugh",
+    "intensity": 4,
+    "why": "After figning deep offense at Arjun's background questions and guilt-tripping him into a panic, Karthik breaks character laughing with 'నమ్మేసినావా బాగా act చేసిన కదా' to prove his acting chops.",
+    "type": "reveal",
+    "lands_on_screen": true
+   },
+   "build_flags": [
+    "land moved from the found line L0115 to L0116"
+   ]
+  },
+  {
+   "id": "e03",
+   "pieces": [
+    {
+     "start_word": 1288,
+     "end_word": 1377,
+     "start": 1044.006,
+     "end": 1089.826
+    }
+   ],
+   "region": {
+    "start_word": 1288,
+    "end_word": 1377,
+    "start": 1044.006,
+    "end": 1089.826
+   },
+   "edited_duration": 45.82,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "రేయ్! నువ్వు matter ఏందో ఒక్క నిమిషంలో clear గా చెప్పకపోతే నిన్ను చంపేసి నీ body ని ఈ fridge లో దాచిపెడతారా రేయ్. చెప్పరా So తను ఇంటి నుంచి కోపంగా బయటకు వచ్చేసి train ఎక్కేసి Hyderabad లో దిగిందన్నమాట. దిగిన వెంటనే తన కాళ్ళ మీద తను నిలబడడానికి తన కాళ్ళు ఇంకా ready గా లేవని గ్రహించిందన్నమాట. So అప్పుడు నేను కొద్ది రోజుల వరకు నా కాళ్ళు ఇద్దాం, ఇచ్చేద్దాం, ఇస్తున్నానని అనుకున్నారా కానీ ఇవ్వడం కష్టం ఇవ్వలేను అని తర్వాత నేను గ్రహించానన్నమాట. So ఏయ్ ఏంట్రీ ఇది కొత్త watch ఆ బాగుందిరా. ఇది చేతులకి కాదు కాళ్ళనుకోరా. ఒక three days ఆ పిల్లని మీ flat లో ఉంచుకోండ్రా. Please రా. What?",
+   "rank": 3,
+   "tier": "emotion_pick",
+   "tier_label": "emotion pick",
+   "scores": {},
+   "title": "తన కాళ్ళ మీద నిలబడటం అంటే ఇదేనా!",
+   "hook_line": {
+    "text": "రేయ్!",
+    "start_word": 1288,
+    "end_word": 1288
+   },
+   "payoff_line": "Please రా.",
+   "payoff_type": "punchline",
+   "payoff_line_source": "discover",
+   "why_it_works": "Viewer stops because of the funny threat to hide his body in the fridge, stays to find out why the girl ran away, and it ends on the friend begging them to keep her in their flat with a shocked 'What…",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 1043.706,
+     "end": 1091.826,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 48.12,
+   "spoiler": false,
+   "characters": [
+    "Karthik",
+    "Arjun"
+   ],
+   "visual_dependency": "medium",
+   "start_line": "L0285",
+   "end_line": "L0299",
+   "end_hold": {
+    "payoff_end": 1089.826,
+    "end": 1091.826,
+    "hold_s": 2.0,
+    "on_shot_cut": false,
+    "next_speech": 1092.394,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "note": "hold not on a shot cut",
+    "rule": "hold"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": null,
+    "what_happens": "What is the secret matter behind the girl running away to Hyderabad, and what ridiculous favor is he about to ask?",
+    "hook": "The scroller is startled by the absurdly aggressive threat: 'నువ్వు matter ఏందో ఒక్క నిమిషంలో clear గా చెప్పకపోతే నిన్ను చంపేసి నీ body ని ఈ fridge లో దాచిపెడతారా'.",
+    "payoff": "Please రా.",
+    "opening_strength": null,
+    "payoff_line": "Please రా.",
+    "payoff_type": "punchline"
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "source": "emotion_pick",
+   "feeling": "laugh",
+   "intensity": 4,
+   "stop": {
+    "line": "L0286",
+    "text": "నువ్వు matter ఏందో ఒక్క నిమిషంలో clear గా చెప్పకపోతే నిన్ను చంపేసి నీ body ని ఈ fridge లో దాచిపెడతారా రేయ్.",
+    "why": "The scroller is startled by the absurdly aggressive threat: 'నువ్వు matter ఏందో ఒక్క నిమిషంలో clear గా చెప్పకపోతే నిన్ను చంపేసి నీ body ని ఈ fridge లో దాచిపెడతారా'.",
+    "cold_open": false,
+    "case": "A_near_start",
+    "via": "start_line",
+    "plays_at_s": 1.0
+   },
+   "stay": "What is the secret matter behind the girl running away to Hyderabad, and what ridiculous favor is he about to ask?",
+   "land": {
+    "line": "L0298",
+    "text": "Please రా.",
+    "reaction": "L0299",
+    "reaction_text": "What?",
+    "plays_at_s": 44.48
+   },
+   "reason": "Viewer stops because of the funny threat to hide his body in the fridge, stays to find out why the girl ran away, and it ends on the friend begging them to keep her in their flat with a shocked 'What?' (laugh).",
+   "moment": {
+    "id": "p03",
+    "line": "L0290",
+    "text": "దిగిన వెంటనే తన కాళ్ళ మీద తను నిలబడడానికి తన కాళ్ళు ఇంకా ready గా లేవని గ్రహించిందన్నమాట.",
+    "feeling": "laugh",
+    "intensity": 4,
+    "why": "After hyping up Deepika's dramatic walkout to stand on her own feet, the friend hilariously undercuts it by confessing 'తన కాళ్ళ మీద తను నిలబడడానికి తన కాళ్ళు ఇంకా ready గా లేవని గ్రహించిందన్నమాట'.",
+    "type": "punchline",
+    "lands_on_screen": true
+   },
+   "build_flags": [
+    "land moved from the found line L0290 to L0298"
+   ]
+  },
+  {
+   "id": "e06",
+   "pieces": [
+    {
+     "start_word": 1757,
+     "end_word": 1923,
+     "start": 1272.374,
+     "end": 1350.894
+    }
+   ],
+   "region": {
+    "start_word": 1757,
+    "end_word": 1923,
+    "start": 1272.374,
+    "end": 1350.894
+   },
+   "edited_duration": 78.52,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ఆ కింద మీ father name, mobile number అన్ని details fill చేయండి. మా father లేరు. మా mother number రాయొచ్చా? మీ mother ఆడవాళ్ళా? ఆ. obviously. అయితే వద్దు. ఊ. అయిపోయిందా? ఆ. అయిపోయింది sir. ఊ. ఇక్కడ I agree to all the terms and conditions అని చెప్పి సంతకం పెట్టారు. నిజంగానే అన్నీ చదివి పెట్టారా లేకపోతే గుడ్డిగా పెట్టేశారా? ఏముంటాయి sir? ఏముంటాయి sir? గోడకు మేకులు పెట్టొద్దు. ఊ. TV sound ఎక్కువ పెట్టొద్దు. ఊ. రాత్రి ten అయితే lights ఆపేయాలి. పొద్దున ten అయితే water ఆపేయాలి. అంతే. అంతే కదా. వాటన్నిటికంటే important rule ఇంకొకటి ఉంది. ఏంటి sir అది? ఏంటి sir అది? అదే కాకుండా ఇంకా చాలా ఉన్నాయి. room చూపిస్తూ explain చేస్తాను. పదండి. rule number one, నా flats లో ఉండే వాళ్ళెవరికీ lovers ఉండకూడదు. ఉన్నా room కి రాకూడదు. ఆయ్ మనతో ఉన్నారు. Rule number two, నా flats లో ఉండే వాళ్ళెవరికీ girlfriends ఉండకూడదు. అంటే girls friends గా కూడా ఉండకూడదు. Rule number three, నా flats లో ఉండే వాళ్ళకి చెల్లెళ్ళు గాని కూతుళ్ళు గాని ఉండకూడదు. ఆఖరిగా rule number four, ఇప్పటివరకు చెప్పిన prohibited list లో ఎవరైనా already ఉంటే వాళ్ళు నా flats లో ఉండకూడదు. అసలు ఈ apartments దరిదాపుల్లో కూడా రాకూడదు.",
+   "rank": 4,
+   "tier": "emotion_pick",
+   "tier_label": "emotion pick",
+   "scores": {},
+   "title": "ఇలాంటి House Owner ని ఎప్పుడైనా చూసారా?",
+   "hook_line": {
+    "text": "ఆ కింద మీ father name, mobile number",
+    "start_word": 1757,
+    "end_word": 1763
+   },
+   "payoff_line": "అసలు ఈ apartments దరిదాపుల్లో కూడా రాకూడదు.",
+   "payoff_type": "punchline",
+   "payoff_line_source": "discover",
+   "why_it_works": "Viewer stops because the landlord strictly demands father details, stays to find out what bizarre terms he will impose, and it ends on his absurd rule banning anyone associated with women (laugh).",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 1272.188,
+     "end": 1351.024,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 78.84,
+   "spoiler": false,
+   "characters": [
+    "Bhishma",
+    "Karthik",
+    "Arjun"
+   ],
+   "visual_dependency": "medium",
+   "start_line": "L0392",
+   "end_line": "L0432",
+   "end_hold": {
+    "payoff_end": 1350.894,
+    "next_speech": 1351.074,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "end": 1351.024,
+    "hold_s": 0.13,
+    "on_shot_cut": false,
+    "rule": "before_next_line",
+    "note": "next line starts quickly and no shot change before it"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": null,
+    "what_happens": "What bizarre rules will the landlord enforce after refusing to even take a mother's phone number?",
+    "hook": "The eccentric landlord strictly commands family details for the lease: \"ఆ కింద మీ father name, mobile number\".",
+    "payoff": "అసలు ఈ apartments దరిదాపుల్లో కూడా రాకూడదు.",
+    "opening_strength": null,
+    "payoff_line": "అసలు ఈ apartments దరిదాపుల్లో కూడా రాకూడదు.",
+    "payoff_type": "punchline"
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [
+    "flash kept: seg0 (scene) end shows 0.17 s after the shot change at 1350.85 s; moving it would clip 'రాకూడదు.' (0.04 s of the word lies after the cut)"
+   ],
+   "build_warnings": [
+    "flash kept: seg0 (scene) end shows 0.17 s after the shot change at 1350.85 s; moving it would clip 'రాకూడదు.' (0.04 s of the word lies after the cut)"
+   ],
+   "source": "emotion_pick",
+   "feeling": "laugh",
+   "intensity": 4,
+   "stop": {
+    "line": "L0392",
+    "text": "ఆ కింద మీ father name, mobile number",
+    "why": "The eccentric landlord strictly commands family details for the lease: \"ఆ కింద మీ father name, mobile number\".",
+    "cold_open": false,
+    "case": "start_line",
+    "via": "start_line",
+    "plays_at_s": 0.19
+   },
+   "stay": "What bizarre rules will the landlord enforce after refusing to even take a mother's phone number?",
+   "land": {
+    "line": "L0432",
+    "text": "అసలు ఈ apartments దరిదాపుల్లో కూడా రాకూడదు.",
+    "reaction": "hold",
+    "plays_at_s": 76.63
+   },
+   "reason": "Viewer stops because the landlord strictly demands father details, stays to find out what bizarre terms he will impose, and it ends on his absurd rule banning anyone associated with women (laugh).",
+   "moment": {
+    "id": "p06",
+    "line": "L0428",
+    "text": "Rule number three, నా flats లో ఉండే వాళ్ళకి చెల్లెళ్ళు గాని కూతుళ్ళు గాని ఉండకూడదు.",
+    "feeling": "laugh",
+    "intensity": 4,
+    "why": "In a breakdown of bizarre tenant conditions, Bhishma's anti-women rules escalate to the absurd extreme of 'Rule number three, నా flats లో ఉండే వాళ్ళకి చెల్లెళ్ళు గాని కూతుళ్ళు గాని ఉండకూడదు'.",
+    "type": "punchline",
+    "lands_on_screen": true
+   },
+   "build_flags": [
+    "land moved from the found line L0428 to L0432"
+   ]
+  }
+ ],
+ "rejected": [
+  {
+   "id": "e07",
+   "tier": "rejected",
+   "source": "emotion_pick",
+   "reject_reasons": [
+    "D1: duplicate of clip e06 (40% of the shorter; strength 3 vs 5, plays 90 s vs 79 s; higher strength wins)"
+   ],
+   "moment": {
+    "id": "p07",
+    "line": "L0457",
+    "text": "మాకెలాగో girlfriends, sisters, daughters లేరు.",
+    "feeling": "relatable_banter",
+    "intensity": 3,
+    "why": "When asked why they ever agreed to live under such lunatic restrictions, Arjun hits a dry bachelor truth with 'మాకెలాగో girlfriends, sisters, daughters లేరు'.",
+    "type": "punchline",
+    "lands_on_screen": true
+   },
+   "dup_of": "e06",
+   "stop": {
+    "line": "L0423",
+    "text": "rule number one, నా flats లో ఉండే వాళ్ళెవరికీ lovers ఉండకూడదు.",
+    "why": "The owner bluntly dictates his extreme rental policy: 'rule number one, నా flats లో ఉండే వాళ్ళెవరికీ lovers ఉండకూడదు. ఉన్నా room కి రాకూడదు.'",
+    "cold_open": false,
+    "case": "start_line"
+   },
+   "stay": "Why would anyone choose to rent a flat under an owner with such insane anti-women restrictions?",
+   "land": {
+    "line": "L0459",
+    "text": "furnished flat, rent కూడా తక్కువ.",
+    "reaction": "hold"
+   },
+   "reason": "Viewer stops because the owner aggressively bans any female presence in his apartments, stays to find out how the bachelors put up with such terror, and it ends on the ultimate relatable punchline that low rent trumps all ridiculous rules (laugh).",
+   "title": "Bachelor జీవితం అంటే ఇంతేనా! Owner వింత Rules",
+   "pieces": [
+    {
+     "start_word": 1855,
+     "end_word": 2015,
+     "start": 1320.114,
+     "end": 1407.674
+    }
+   ],
+   "region": {
+    "start_word": 1855,
+    "end_word": 2015,
+    "start": 1320.114,
+    "end": 1407.674
+   },
+   "edited_duration": 87.56,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "rule number one, నా flats లో ఉండే వాళ్ళెవరికీ lovers ఉండకూడదు. ఉన్నా room కి రాకూడదు. ఆయ్ మనతో ఉన్నారు. Rule number two, నా flats లో ఉండే వాళ్ళెవరికీ girlfriends ఉండకూడదు. అంటే girls friends గా కూడా ఉండకూడదు. Rule number three, నా flats లో ఉండే వాళ్ళకి చెల్లెళ్ళు గాని కూతుళ్ళు గాని ఉండకూడదు. ఆఖరిగా rule number four, ఇప్పటివరకు చెప్పిన prohibited list లో ఎవరైనా already ఉంటే వాళ్ళు నా flats లో ఉండకూడదు. అసలు ఈ apartments దరిదాపుల్లో కూడా రాకూడదు. ఈ rules అన్నీ గనక follow అవ్వకపోతే- ఏం చేస్తారు? ఈ plumber గడికి- ఏమరి గుర్తొచ్చేసానా? ముందే చెప్తుంటే ready అయి ఉండమంటా కదా. ఎందుకు రాస్తున్నావ్ చెప్పు. పోండి లే. ఏయ్ ఏంటి? వెళ్ళిపో. తొరగా వెళ్ళిపో. Go. పోరా బయటికి. ఆ. చంపేస్తా. ఊ ఊ. వామ్మో. మరి అది. ఇప్పుడు ఒక అమ్మాయి ఇక్కడ ఉందని ఒక్కరికి తెలిసినా next minute మమ్మల్ని బయటికి గెంటేస్తాడు. అది కూడా పెద్ద పైన ఆంటీ వేసి. starting three months advance ఇచ్చినాం కదా. ఆ. అది కూడా తిరిగేయడు. ఆహా! ఇన్ని వింద్రా rules చదివి కూడా ఎక్కడ నిలిగారురా? మాకెలాగో girlfriends, sisters, daughters లేరు. వీడి shooting కి నా workplace కూడా దగ్గరే. furnished flat, rent కూడా తక్కువ.",
+   "time_segments": [
+    {
+     "start": 1319.814,
+     "end": 1410.112,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 90.3,
+   "start_line": "L0423",
+   "end_line": "L0459",
+   "cold_open": false,
+   "build_moment": {
+    "purpose": "standalone",
+    "start_line": "L0423",
+    "end_line": "L0459",
+    "cold_open_lines": [],
+    "drops": []
+   }
+  }
+ ],
+ "episode_note": {
+  "text": "7 moments a stranger would feel; 5 built by the build call; 0 rejected; 1 duplicates dropped; 4 shown, in episode order."
+ },
+ "episode_summary": {
+  "n_moments_listed": 7,
+  "n_moments_valid": 7,
+  "n_moments_rejected": 0,
+  "moments_rejected": [],
+  "moments_by_feeling": {
+   "laugh": 6,
+   "relatable_banter": 1
+  },
+  "moments_by_intensity": {
+   "5": 1,
+   "4": 4,
+   "3": 2
+  },
+  "max_moments": 10,
+  "n_build_calls": 5,
+  "n_not_built_cap": 0,
+  "n_not_built_spend": 0,
+  "n_no_clip": 0,
+  "n_blocked": 0,
+  "n_call_failed": 0,
+  "n_invalid": 0,
+  "n_builder_rejected": 0,
+  "n_hard_rules": 0,
+  "n_stop_check_failed": 0,
+  "n_land_check_failed": 0,
+  "n_built": 5,
+  "n_deduped": 1,
+  "n_shown": 4,
+  "shown_by_feeling": {
+   "laugh": 4
+  },
+  "rejected": [
+   {
+    "clip": "e07",
+    "moment": "p07",
+    "line": "L0457",
+    "reason": "D1: duplicate of clip e06 (40% of the shorter; strength 3 vs 5, plays 90 s vs 79 s; higher strength wins)"
+   }
+  ],
+  "warnings": [],
+  "episode_notes": "A Telugu bachelor comedy following Karthik (an aspiring TV serial actor) and Arjun (a working professional) living in a penthouse flat. Their mutual friend sneaks his runaway girlfriend Deepika into their apartment to hide her for three days, putting them in danger of eviction by their eccentric landlord Bhishma who fanatically hates women and enforces strict anti-women tenancy rules.",
+  "n_clusters": 5,
+  "clusters": [
+   {
+    "target": "p01",
+    "target_line": "L0072",
+    "strength": 3,
+    "members": [
+     {
+      "id": "p01",
+      "line": "L0072",
+      "intensity": 3
+     }
+    ],
+    "earlier": [],
+    "absorbed": [],
+    "break_before": null,
+    "cluster_context": ""
+   },
+   {
+    "target": "p02",
+    "target_line": "L0115",
+    "strength": 4,
+    "members": [
+     {
+      "id": "p02",
+      "line": "L0115",
+      "intensity": 4
+     }
+    ],
+    "earlier": [],
+    "absorbed": [],
+    "break_before": "39 spoken lines / 88 s after L0072 (> 35 lines and > 50 s)",
+    "cluster_context": ""
+   },
+   {
+    "target": "p03",
+    "target_line": "L0290",
+    "strength": 4,
+    "members": [
+     {
+      "id": "p03",
+      "line": "L0290",
+      "intensity": 4
+     }
+    ],
+    "earlier": [],
+    "absorbed": [],
+    "break_before": "music: L0243 [రెడ్దీ కడసోడు పాట] (6.2 s, no speech)",
+    "cluster_context": ""
+   },
+   {
+    "target": "p06",
+    "target_line": "L0428",
+    "strength": 5,
+    "members": [
+     {
+      "id": "p04",
+      "line": "L0380",
+      "intensity": 5
+     },
+     {
+      "id": "p05",
+      "line": "L0399",
+      "intensity": 4
+     },
+     {
+      "id": "p06",
+      "line": "L0428",
+      "intensity": 4
+     }
+    ],
+    "earlier": [
+     "p04",
+     "p05"
+    ],
+    "absorbed": [],
+    "break_before": "89 spoken lines / 189 s after L0290 (> 35 lines and > 50 s)",
+    "cluster_context": "Earlier beats in this same scene to include as setup/escalation: L0380 (\"అందులో Siri అనే అమ్మాయి వస్ వచ్చేసరికి phone నాలుగేసి కొట్టేసి మళ్ళీ Nokia 3310…\"), L0399 (\"అయితే వద్దు.\")"
+   },
+   {
+    "target": "p07",
+    "target_line": "L0457",
+    "strength": 3,
+    "members": [
+     {
+      "id": "p07",
+      "line": "L0457",
+      "intensity": 3
+     }
+    ],
+    "earlier": [],
+    "absorbed": [],
+    "break_before": "span: 152 s from L0380 (> 90 s)",
+    "cluster_context": ""
+   }
+  ]
+ },
+ "moment_table": [
+  {
+   "id": "p01",
+   "line": "L0072",
+   "feeling": "laugh",
+   "intensity": 3,
+   "text": "థూ ఇంకెన్ని రోజుల్రా ఇలా సాగతీస్తారు?",
+   "why": "After a TV daily serial endlessly stretches the tension of a big reveal only to cut straight to a commercial, Karthik vents every viewer's frustration with 'థూ ఇంకెన్ని రోజుల్రా ఇలా సాగతీస్తారు?'.",
+   "status": "shown",
+   "clip": "e01"
+  },
+  {
+   "id": "p02",
+   "line": "L0115",
+   "feeling": "laugh",
+   "intensity": 4,
+   "text": "నమ్మేసినావా బాగా act చేసిన కదా",
+   "why": "After figning deep offense at Arjun's background questions and guilt-tripping him into a panic, Karthik breaks character laughing with 'నమ్మేసినావా బాగా act చేసిన కదా' to prove his acting chops.",
+   "status": "shown",
+   "clip": "e02"
+  },
+  {
+   "id": "p03",
+   "line": "L0290",
+   "feeling": "laugh",
+   "intensity": 4,
+   "text": "దిగిన వెంటనే తన కాళ్ళ మీద తను నిలబడడానికి తన కాళ్ళు ఇంకా ready గా లేవని గ్రహించిందన్నమాట.",
+   "why": "After hyping up Deepika's dramatic walkout to stand on her own feet, the friend hilariously undercuts it by confessing 'తన కాళ్ళ మీద తను నిలబడడానికి తన కాళ్ళు ఇంకా ready గా లేవని గ్రహించిందన్నమాట'.",
+   "status": "shown",
+   "clip": "e03"
+  },
+  {
+   "id": "p04",
+   "line": "L0380",
+   "feeling": "laugh",
+   "intensity": 5,
+   "text": "అందులో Siri అనే అమ్మాయి వస్ వచ్చేసరికి phone నాలుగేసి కొట్టేసి మళ్ళీ Nokia 3310 వాడుతున్నాడు.",
+   "why": "While recounting their landlord Bhishma's bizarre misogyny, Arjun delivers the peak punchline revealing he smashed his new iPhone because 'Siri అనే అమ్మాయి voice వచ్చేసరికి' and went back to Nokia 3310.",
+   "status": "in_cluster",
+   "cluster_target": "p06"
+  },
+  {
+   "id": "p05",
+   "line": "L0399",
+   "feeling": "laugh",
+   "intensity": 4,
+   "text": "అయితే వద్దు.",
+   "why": "When the boys ask if they can provide their mother's phone number on the lease since their father passed away, landlord Bhishma asks if she is a woman and deadpans 'అయితే వద్దు'.",
+   "status": "in_cluster",
+   "cluster_target": "p06"
+  },
+  {
+   "id": "p06",
+   "line": "L0428",
+   "feeling": "laugh",
+   "intensity": 4,
+   "text": "Rule number three, నా flats లో ఉండే వాళ్ళకి చెల్లెళ్ళు గాని కూతుళ్ళు గాని ఉండకూడదు.",
+   "why": "In a breakdown of bizarre tenant conditions, Bhishma's anti-women rules escalate to the absurd extreme of 'Rule number three, నా flats లో ఉండే వాళ్ళకి చెల్లెళ్ళు గాని కూతుళ్ళు గాని ఉండకూడదు'.",
+   "status": "shown",
+   "clip": "e06"
+  },
+  {
+   "id": "p07",
+   "line": "L0457",
+   "feeling": "relatable_banter",
+   "intensity": 3,
+   "text": "మాకెలాగో girlfriends, sisters, daughters లేరు.",
+   "why": "When asked why they ever agreed to live under such lunatic restrictions, Arjun hits a dry bachelor truth with 'మాకెలాగో girlfriends, sisters, daughters లేరు'.",
+   "status": "rejected",
+   "reason": "D1: duplicate of clip e06 (40% of the shorter; strength 3 vs 5, plays 90 s vs 79 s; higher strength wins)"
+  }
+ ]
+}

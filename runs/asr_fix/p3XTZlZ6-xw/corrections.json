@@ -1,0 +1,1212 @@
+{
+ "video_id": "p3XTZlZ6-xw",
+ "schema": "asr_fix/1",
+ "params": {
+  "layers": [
+   "context",
+   "flag",
+   "relisten"
+  ],
+  "threshold": 0.5,
+  "min_conf": 0.8,
+  "model": "gemini-3.8-flash",
+  "pad_s": 0.4,
+  "ctx_lines": 2,
+  "batch_items": 8,
+  "context_prompt": "1",
+  "relisten_prompt": "1",
+  "apply_context": false,
+  "skip_interjections": true
+ },
+ "lines": 699,
+ "n_flagged_words": 42,
+ "n_suspects": 39,
+ "suspects": [
+  {
+   "line": "L0010",
+   "start_word": 12,
+   "end_word": 12,
+   "heard": "చే,",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.357
+  },
+  {
+   "line": "L0028",
+   "start_word": 55,
+   "end_word": 56,
+   "heard": "కాలు తొడిగి",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "కాలు తొడగడం",
+   "why": "sounds like sandals/slippers wearing phrase or wake up movement",
+   "min_conf": 0.334
+  },
+  {
+   "line": "L0096",
+   "start_word": 217,
+   "end_word": 217,
+   "heard": "Senior.",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.437
+  },
+  {
+   "line": "L0108",
+   "start_word": 242,
+   "end_word": 242,
+   "heard": "ఉండు",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.456
+  },
+  {
+   "line": "L0121",
+   "start_word": 290,
+   "end_word": 290,
+   "heard": "అయిగా",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "లాగా",
+   "why": "context of celebrating birthday like this",
+   "min_conf": 0.446
+  },
+  {
+   "line": "L0125",
+   "start_word": 307,
+   "end_word": 308,
+   "heard": "ఊ హుమ్",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.251
+  },
+  {
+   "line": "L0163",
+   "start_word": 418,
+   "end_word": 418,
+   "heard": "ఛా",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.474
+  },
+  {
+   "line": "L0164",
+   "start_word": 423,
+   "end_word": 423,
+   "heard": "పట్టుాలనుకున్నవి",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "పటాల వెనకున్నవి",
+   "why": "money hidden behind god pictures",
+   "min_conf": 0.397
+  },
+  {
+   "line": "L0185",
+   "start_word": 522,
+   "end_word": 522,
+   "heard": "ఇచ్చేస్చ్చు",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "ఇచ్చేయొచ్చు",
+   "why": "colloquial verb form error",
+   "min_conf": 0.378
+  },
+  {
+   "line": "L0187",
+   "start_word": 529,
+   "end_word": 529,
+   "heard": "చూపు",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.488
+  },
+  {
+   "line": "L0196",
+   "start_word": 583,
+   "end_word": 583,
+   "heard": "మాత్రం",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.463
+  },
+  {
+   "line": "L0239",
+   "start_word": 795,
+   "end_word": 795,
+   "heard": "ఏ",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "కి",
+   "why": "preposition for office",
+   "min_conf": 0.313
+  },
+  {
+   "line": "L0247",
+   "start_word": 830,
+   "end_word": 830,
+   "heard": "job",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.382
+  },
+  {
+   "line": "L0250",
+   "start_word": 847,
+   "end_word": 847,
+   "heard": "your",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "you happy",
+   "why": "common birthday greeting wish you happy birthday",
+   "min_conf": 0.346
+  },
+  {
+   "line": "L0251",
+   "start_word": 852,
+   "end_word": 852,
+   "heard": "అదిరా",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "అనేది",
+   "why": "asking whether 'happy' even exists in life",
+   "min_conf": 0.38
+  },
+  {
+   "line": "L0297",
+   "start_word": 1043,
+   "end_word": 1043,
+   "heard": "salary",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.454
+  },
+  {
+   "line": "L0319",
+   "start_word": 1138,
+   "end_word": 1139,
+   "heard": "ముంగ 达",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "మూంగ్ దాల్",
+   "why": "moong dal snack packet",
+   "min_conf": 0.185
+  },
+  {
+   "line": "L0331",
+   "start_word": 1188,
+   "end_word": 1188,
+   "heard": "shop",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "షాప్",
+   "why": "spelling/confidence mark in ordinary context",
+   "min_conf": 0.495
+  },
+  {
+   "line": "L0356",
+   "start_word": 1257,
+   "end_word": 1257,
+   "heard": "వెళ్ళటం",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "కుదరటం",
+   "why": "saying cannot change dress outside",
+   "min_conf": 0.491
+  },
+  {
+   "line": "L0387",
+   "start_word": 1335,
+   "end_word": 1335,
+   "heard": "చెప్పు",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.394
+  },
+  {
+   "line": "L0396",
+   "start_word": 1361,
+   "end_word": 1361,
+   "heard": "ఊ",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.275
+  },
+  {
+   "line": "L0399",
+   "start_word": 1381,
+   "end_word": 1381,
+   "heard": "లో",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.451
+  },
+  {
+   "line": "L0419",
+   "start_word": 1454,
+   "end_word": 1454,
+   "heard": "సరే,",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.453
+  },
+  {
+   "line": "L0454",
+   "start_word": 1549,
+   "end_word": 1549,
+   "heard": "నాకు",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.455
+  },
+  {
+   "line": "L0499",
+   "start_word": 1714,
+   "end_word": 1714,
+   "heard": "shop",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.49
+  },
+  {
+   "line": "L0501",
+   "start_word": 1725,
+   "end_word": 1725,
+   "heard": "పటా",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.391
+  },
+  {
+   "line": "L0521",
+   "start_word": 1797,
+   "end_word": 1797,
+   "heard": "ఏ",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.48
+  },
+  {
+   "line": "L0525",
+   "start_word": 1811,
+   "end_word": 1811,
+   "heard": "అలా",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.485
+  },
+  {
+   "line": "L0529",
+   "start_word": 1823,
+   "end_word": 1823,
+   "heard": "అయినా",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.371
+  },
+  {
+   "line": "L0594",
+   "start_word": 2069,
+   "end_word": 2069,
+   "heard": "రోజులైందో.",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.442
+  },
+  {
+   "line": "L0605",
+   "start_word": 2095,
+   "end_word": 2095,
+   "heard": "మీరు",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "వీడు",
+   "why": "referring to friend Surya who is drunk",
+   "min_conf": 0.446
+  },
+  {
+   "line": "L0620",
+   "start_word": 2135,
+   "end_word": 2135,
+   "heard": "key.",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "తీయి",
+   "why": "asking Meghana to take him inside",
+   "min_conf": 0.424
+  },
+  {
+   "line": "L0627",
+   "start_word": 2159,
+   "end_word": 2159,
+   "heard": "fu",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.483
+  },
+  {
+   "line": "L0628",
+   "start_word": 2162,
+   "end_word": 2162,
+   "heard": "Hey",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.277
+  },
+  {
+   "line": "L0633",
+   "start_word": 2177,
+   "end_word": 2177,
+   "heard": "bye",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.433
+  },
+  {
+   "line": "L0635",
+   "start_word": 2182,
+   "end_word": 2182,
+   "heard": "చారా",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "పదరా",
+   "why": "calling to leave",
+   "min_conf": 0.369
+  },
+  {
+   "line": "L0637",
+   "start_word": 2189,
+   "end_word": 2190,
+   "heard": "పో open",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "app open",
+   "why": "food delivery boy talking about opening the app",
+   "min_conf": 0.046
+  },
+  {
+   "line": "L0643",
+   "start_word": 2212,
+   "end_word": 2212,
+   "heard": "daddy",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.496
+  },
+  {
+   "line": "L0681",
+   "start_word": 2307,
+   "end_word": 2307,
+   "heard": "వచ్చిండట",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "వచ్చినట్టు",
+   "why": "context: didn't tell me that Surya came",
+   "min_conf": 0.37
+  }
+ ],
+ "corrections": [
+  {
+   "start_word": 55,
+   "end_word": 56,
+   "heard": "కాలు తొడిగి",
+   "corrected": "కాలు తొడిగితే",
+   "reason": "clearly says తొడిగితే instead of తొడిగి ఇటు",
+   "source": "relisten",
+   "confidence": 0.9,
+   "applied": true,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0028",
+   "start": 55.0,
+   "end": 55.34,
+   "context_guess": "కాలు తొడగడం",
+   "relisten": {
+    "heard_line": "ఆ కాలు తొడిగితే ఎందుకో?",
+    "line_ratio": 0.927
+   }
+  },
+  {
+   "start_word": 242,
+   "end_word": 242,
+   "heard": "ఉండు",
+   "corrected": "ఉండు రా",
+   "reason": "clearly hears ఉండ్రా / ఉండు రా",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "flag"
+   ],
+   "line": "L0108",
+   "start": 223.78,
+   "end": 223.96,
+   "context_guess": null,
+   "relisten": {
+    "heard_line": "ఉండు రా అర్జున్ గాడు call చేస్తున్నాడు.",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 290,
+   "end_word": 290,
+   "heard": "అయిగా",
+   "corrected": "boy గా",
+   "reason": "clearly says birthday boy గా",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0121",
+   "start": 268.64,
+   "end": 268.78,
+   "context_guess": "లాగా",
+   "relisten": {
+    "heard_line": "నువ్వు కూడా birthday boy గా night celebrate చేయాలి.",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 423,
+   "end_word": 423,
+   "heard": "పట్టుాలనుకున్నవి",
+   "corrected": "పట్టాల నుకునేవి",
+   "reason": "clearly says దేవుడి పటాల వెనక ఉన్నవి / పట్టాల నుకునేవి",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0164",
+   "start": 362.86,
+   "end": 363.42,
+   "context_guess": "పటాల వెనకున్నవి",
+   "relisten": {
+    "heard_line": "ఆ దేవుడి పట్టాల నుకునేవి తీసుకో.",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 522,
+   "end_word": 522,
+   "heard": "ఇచ్చేస్చ్చు",
+   "corrected": "ఇచ్చేయొచ్చు",
+   "reason": "clearly says ఇచ్చేయొచ్చు / ఇచ్చేచ్చు",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0185",
+   "start": 422.756,
+   "end": 422.996,
+   "context_guess": "ఇచ్చేయొచ్చు",
+   "relisten": {
+    "heard_line": "ఆ ఇప్పుడు ముందు కట్టేసి ఉంచామనుకోండి ఎవరన్నా వస్తే త్వరగా ఇచ్చేయొచ్చు కదా.",
+    "line_ratio": 0.969
+   }
+  },
+  {
+   "start_word": 795,
+   "end_word": 796,
+   "heard": "ఏ పోదాం.",
+   "corrected": "పద.",
+   "reason": "clearly says పద",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0239",
+   "start": 555.796,
+   "end": 556.096,
+   "context_guess": "కి",
+   "relisten": {
+    "heard_line": "సర్లే మన ఆఫీసు పద",
+    "line_ratio": 0.929
+   }
+  },
+  {
+   "start_word": 847,
+   "end_word": 847,
+   "heard": "your",
+   "corrected": "you a",
+   "reason": "says wish you a",
+   "source": "relisten",
+   "confidence": 0.85,
+   "applied": true,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0250",
+   "start": 588.636,
+   "end": 588.696,
+   "context_guess": "you happy",
+   "relisten": {
+    "heard_line": "wish you a birthday రా సూర్య",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 852,
+   "end_word": 852,
+   "heard": "అదిరా",
+   "corrected": "అనేది",
+   "reason": "asking whether 'happy' even exists in life",
+   "source": "context",
+   "confidence": null,
+   "applied": false,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0251",
+   "start": 590.736,
+   "end": 590.996,
+   "context_guess": "అనేది",
+   "relisten": {
+    "verdict": "relisten_kept"
+   }
+  },
+  {
+   "start_word": 1138,
+   "end_word": 1140,
+   "heard": "ముంగ 达 లు",
+   "corrected": "మూంగ్ దాల్",
+   "reason": "clearly says moong dal",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0319",
+   "start": 729.596,
+   "end": 729.856,
+   "context_guess": "మూంగ్ దాల్",
+   "relisten": {
+    "heard_line": "ఐదు రూపాయలకి ఉమ్ ఈ మూంగ్ దాల్ పాకెట్లు పెట్టుకోండి",
+    "line_ratio": 0.86
+   }
+  },
+  {
+   "start_word": 1188,
+   "end_word": 1188,
+   "heard": "shop",
+   "corrected": "షాప్",
+   "reason": "spelling/confidence mark in ordinary context",
+   "source": "context",
+   "confidence": null,
+   "applied": false,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0331",
+   "start": 769.706,
+   "end": 769.846,
+   "context_guess": "షాప్",
+   "relisten": {
+    "verdict": "relisten_kept"
+   }
+  },
+  {
+   "start_word": 1257,
+   "end_word": 1258,
+   "heard": "వెళ్ళటం లేదు",
+   "corrected": "వీల్లేదు",
+   "reason": "clearly says వీల్లేదు",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0356",
+   "start": 806.606,
+   "end": 806.866,
+   "context_guess": "కుదరటం",
+   "relisten": {
+    "heard_line": "వీల్లేదు",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 1454,
+   "end_word": 1454,
+   "heard": "సరే,",
+   "corrected": "సరేలే,",
+   "reason": "clearly says సరేలే",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "flag"
+   ],
+   "line": "L0419",
+   "start": 923.166,
+   "end": 923.286,
+   "context_guess": null,
+   "relisten": {
+    "heard_line": "సరేలే వాడికి కూడా call చెయ్ లేకపోతే feel అవుతాడు.",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 1725,
+   "end_word": 1725,
+   "heard": "పటా",
+   "corrected": "పాట",
+   "reason": "clearly says పాట",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "flag"
+   ],
+   "line": "L0501",
+   "start": 1153.536,
+   "end": 1153.696,
+   "context_guess": null,
+   "relisten": {
+    "heard_line": "అదే మీతో పని పాట లేకుండా ఎంతసేపు కూర్చున్నా అస్సలు బోర్ కొట్టదు.",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 2095,
+   "end_word": 2095,
+   "heard": "మీరు",
+   "corrected": "Mail",
+   "reason": "clearly says Mail",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0605",
+   "start": 1375.196,
+   "end": 1375.336,
+   "context_guess": "వీడు",
+   "relisten": {
+    "heard_line": "mail వచ్చింది",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 2135,
+   "end_word": 2135,
+   "heard": "key.",
+   "corrected": "తీయి.",
+   "reason": "asking Meghana to take him inside",
+   "source": "context",
+   "confidence": null,
+   "applied": false,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0620",
+   "start": 1396.936,
+   "end": 1397.056,
+   "context_guess": "తీయి",
+   "relisten": {
+    "verdict": "relisten_kept"
+   }
+  },
+  {
+   "start_word": 2182,
+   "end_word": 2182,
+   "heard": "చారా",
+   "corrected": "అరే Virgin-u",
+   "reason": "clearly says అరే Virgin-u",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0635",
+   "start": 1417.716,
+   "end": 1417.776,
+   "context_guess": "పదరా",
+   "relisten": {
+    "heard_line": "అరే Virgin-u",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 2189,
+   "end_word": 2190,
+   "heard": "పో open",
+   "corrected": "app open",
+   "reason": "food delivery boy talking about opening the app",
+   "source": "context",
+   "confidence": null,
+   "applied": false,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0637",
+   "start": 1420.036,
+   "end": 1420.336,
+   "context_guess": "app open",
+   "relisten": {
+    "verdict": "relisten_kept"
+   }
+  },
+  {
+   "start_word": 2307,
+   "end_word": 2307,
+   "heard": "వచ్చిండట",
+   "corrected": "వచ్చినట్టు",
+   "reason": "context: didn't tell me that Surya came",
+   "source": "context",
+   "confidence": null,
+   "applied": false,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0681",
+   "start": 1487.956,
+   "end": 1488.276,
+   "context_guess": "వచ్చినట్టు",
+   "relisten": {
+    "verdict": "relisten_kept"
+   }
+  }
+ ],
+ "uncertain": [
+  {
+   "start_word": 12,
+   "end_word": 12,
+   "heard": "చే,",
+   "source": "flag",
+   "confidence": 0.357,
+   "verdict": "relisten_kept",
+   "line": "L0010",
+   "start": 26.1
+  },
+  {
+   "start_word": 217,
+   "end_word": 217,
+   "heard": "Senior.",
+   "source": "flag",
+   "confidence": 0.437,
+   "verdict": "relisten_kept",
+   "line": "L0096",
+   "start": 209.02
+  },
+  {
+   "start_word": 307,
+   "end_word": 308,
+   "heard": "ఊ హుమ్",
+   "source": "flag",
+   "confidence": 0.251,
+   "verdict": "skipped_interjection",
+   "line": "L0125",
+   "start": 275.48
+  },
+  {
+   "start_word": 418,
+   "end_word": 418,
+   "heard": "ఛా",
+   "source": "flag",
+   "confidence": 0.474,
+   "verdict": "relisten_kept",
+   "line": "L0163",
+   "start": 361.74
+  },
+  {
+   "start_word": 529,
+   "end_word": 529,
+   "heard": "చూపు",
+   "source": "flag",
+   "confidence": 0.488,
+   "verdict": "relisten_kept",
+   "line": "L0187",
+   "start": 426.256
+  },
+  {
+   "start_word": 583,
+   "end_word": 583,
+   "heard": "మాత్రం",
+   "source": "flag",
+   "confidence": 0.463,
+   "verdict": "relisten_kept",
+   "line": "L0196",
+   "start": 446.936
+  },
+  {
+   "start_word": 830,
+   "end_word": 830,
+   "heard": "job",
+   "source": "flag",
+   "confidence": 0.382,
+   "verdict": "relisten_kept",
+   "line": "L0247",
+   "start": 582.276
+  },
+  {
+   "start_word": 1043,
+   "end_word": 1043,
+   "heard": "salary",
+   "source": "flag",
+   "confidence": 0.454,
+   "verdict": "relisten_kept",
+   "line": "L0297",
+   "start": 685.136
+  },
+  {
+   "start_word": 1335,
+   "end_word": 1335,
+   "heard": "చెప్పు",
+   "source": "flag",
+   "confidence": 0.394,
+   "verdict": "relisten_kept",
+   "line": "L0387",
+   "start": 861.946
+  },
+  {
+   "start_word": 1361,
+   "end_word": 1361,
+   "heard": "ఊ",
+   "source": "flag",
+   "confidence": 0.275,
+   "verdict": "skipped_interjection",
+   "line": "L0396",
+   "start": 877.466
+  },
+  {
+   "start_word": 1381,
+   "end_word": 1381,
+   "heard": "లో",
+   "source": "flag",
+   "confidence": 0.451,
+   "verdict": "relisten_kept",
+   "line": "L0399",
+   "start": 884.286
+  },
+  {
+   "start_word": 1549,
+   "end_word": 1549,
+   "heard": "నాకు",
+   "source": "flag",
+   "confidence": 0.455,
+   "verdict": "relisten_kept",
+   "line": "L0454",
+   "start": 1003.886
+  },
+  {
+   "start_word": 1714,
+   "end_word": 1714,
+   "heard": "shop",
+   "source": "flag",
+   "confidence": 0.49,
+   "verdict": "relisten_kept",
+   "line": "L0499",
+   "start": 1149.556
+  },
+  {
+   "start_word": 1797,
+   "end_word": 1797,
+   "heard": "ఏ",
+   "source": "flag",
+   "confidence": 0.48,
+   "verdict": "skipped_interjection",
+   "line": "L0521",
+   "start": 1182.676
+  },
+  {
+   "start_word": 1811,
+   "end_word": 1811,
+   "heard": "అలా",
+   "source": "flag",
+   "confidence": 0.485,
+   "verdict": "relisten_kept",
+   "line": "L0525",
+   "start": 1186.436
+  },
+  {
+   "start_word": 1823,
+   "end_word": 1823,
+   "heard": "అయినా",
+   "source": "flag",
+   "confidence": 0.371,
+   "verdict": "relisten_kept",
+   "line": "L0529",
+   "start": 1190.616
+  },
+  {
+   "start_word": 2069,
+   "end_word": 2069,
+   "heard": "రోజులైందో.",
+   "source": "flag",
+   "confidence": 0.442,
+   "verdict": "relisten_kept",
+   "line": "L0594",
+   "start": 1339.516
+  },
+  {
+   "start_word": 2159,
+   "end_word": 2159,
+   "heard": "fu",
+   "source": "flag",
+   "confidence": 0.483,
+   "verdict": "relisten_kept",
+   "line": "L0627",
+   "start": 1406.016
+  },
+  {
+   "start_word": 2162,
+   "end_word": 2162,
+   "heard": "Hey",
+   "source": "flag",
+   "confidence": 0.277,
+   "verdict": "relisten_kept",
+   "line": "L0628",
+   "start": 1406.776
+  },
+  {
+   "start_word": 2177,
+   "end_word": 2177,
+   "heard": "bye",
+   "source": "flag",
+   "confidence": 0.433,
+   "verdict": "relisten_kept",
+   "line": "L0633",
+   "start": 1414.876
+  },
+  {
+   "start_word": 2212,
+   "end_word": 2212,
+   "heard": "daddy",
+   "source": "flag",
+   "confidence": 0.496,
+   "verdict": "relisten_kept",
+   "line": "L0643",
+   "start": 1427.876
+  }
+ ],
+ "rejected": [
+  {
+   "layer": "relisten",
+   "line": "L0010",
+   "heard_line": "ఏంటే అర్ధరాత్రి?",
+   "corrected": "",
+   "confidence": 0.95,
+   "reason": "word 'చే' was not spoken",
+   "start_word": 12,
+   "end_word": 12,
+   "heard": "చే,",
+   "why_rejected": "empty correction"
+  },
+  {
+   "layer": "relisten",
+   "line": "L0163",
+   "heard_line": "సరేలే పో.",
+   "corrected": "",
+   "confidence": 0.95,
+   "reason": "just a breath/scoff, no 'ఛా' spoken",
+   "start_word": 418,
+   "end_word": 418,
+   "heard": "ఛా",
+   "why_rejected": "empty correction"
+  },
+  {
+   "layer": "relisten",
+   "line": "L0525",
+   "heard_line": "అయ్ పడుకో పడుకో",
+   "corrected": "పడుకో",
+   "confidence": 0.95,
+   "reason": "clearly says పడుకో without అలా",
+   "start_word": 1811,
+   "end_word": 1811,
+   "heard": "అలా",
+   "why_rejected": "corrected text is the neighbouring word (audio bleed)"
+  }
+ ],
+ "threshold_report": {
+  "n_words": 2339,
+  "has_logprob": true,
+  "by_threshold": {
+   "0.5": {
+    "words": 42,
+    "lines": 39
+   },
+   "0.6": {
+    "words": 83,
+    "lines": 73
+   },
+   "0.7": {
+    "words": 165,
+    "lines": 139
+   }
+  }
+ },
+ "cost": {
+  "projected": {
+   "model": "gemini-3.8-flash",
+   "layers": {
+    "context": {
+     "calls": 1,
+     "input_tokens": 16971,
+     "output_tokens": 3840,
+     "inr": 2.44
+    },
+    "relisten": {
+     "calls": 7,
+     "items": 50,
+     "audio_s": 111.6,
+     "audio_tokens": 3569,
+     "input_tokens": 18595,
+     "output_tokens": 7800,
+     "inr": 4.13
+    }
+   },
+   "inr": 6.57
+  },
+  "actual": {
+   "context": {
+    "calls": 1,
+    "cached": 0,
+    "input_tokens": 18182,
+    "output_tokens": 879,
+    "audio_tokens": 0,
+    "inr": 1.524,
+    "inr_full": 1.524
+   },
+   "relisten": {
+    "calls": 5,
+    "cached": 0,
+    "input_tokens": 9765,
+    "output_tokens": 1925,
+    "audio_tokens": 2105,
+    "inr": 1.451,
+    "inr_full": 1.451
+   }
+  }
+ },
+ "stopped": null,
+ "transcript": "/Users/ganeshgowtham/projects/projects/shotvi/scribe_dataset/p3XTZlZ6-xw/p3XTZlZ6-xw_scribe_transcript.json"
+}

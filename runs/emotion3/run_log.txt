@@ -1,0 +1,53 @@
+== asr_fix p3XTZlZ6-xw
+<frozen runpy>:128: RuntimeWarning: 'shotvi.segment.asr_fix' found in sys.modules after import of package 'shotvi.segment', but prior to execution of 'shotvi.segment.asr_fix'; this may result in unpredictable behaviour
+p3XTZlZ6-xw: 2339 words, 699 lines; flagged words/lines by threshold: p<0.5: 42/39, p<0.6: 83/73, p<0.7: 165/139
+  projected context  : {"calls": 1, "input_tokens": 16971, "output_tokens": 3840, "inr": 2.44}
+  projected relisten : {"calls": 7, "items": 50, "audio_s": 111.6, "audio_tokens": 3569, "input_tokens": 18595, "output_tokens": 7800, "inr": 4.13}
+  projected total: ₹6.57
+[asr_fix] p3XTZlZ6-xw: context read -> 15 suspects (0 rejected)
+[asr_fix] p3XTZlZ6-xw: relisten batch 1/5: 8 lines, 5 accepted, 0 low-conf, 2 rejected
+[asr_fix] p3XTZlZ6-xw: relisten batch 2/5: 8 lines, 3 accepted, 0 low-conf, 0 rejected
+[asr_fix] p3XTZlZ6-xw: relisten batch 3/5: 8 lines, 3 accepted, 0 low-conf, 0 rejected
+[asr_fix] p3XTZlZ6-xw: relisten batch 4/5: 8 lines, 1 accepted, 0 low-conf, 1 rejected
+[asr_fix] p3XTZlZ6-xw: relisten batch 5/5: 4 lines, 1 accepted, 0 low-conf, 0 rejected
+  actual: context ₹1.52 (1 calls, 0 cached), relisten ₹1.45 (5 calls, 0 cached)
+  18 corrections (13 applied), 21 uncertain, 3 rejected -> /Users/ganeshgowtham/projects/projects/shotvi/runs/asr_fix/p3XTZlZ6-xw/corrections.json
+asr_fix p3XTZlZ6-xw EXIT 0
+== asr_fix LJQOGxrXalI
+<frozen runpy>:128: RuntimeWarning: 'shotvi.segment.asr_fix' found in sys.modules after import of package 'shotvi.segment', but prior to execution of 'shotvi.segment.asr_fix'; this may result in unpredictable behaviour
+LJQOGxrXalI: 2041 words, 484 lines; flagged words/lines by threshold: p<0.5: 49/42, p<0.6: 101/79, p<0.7: 187/135
+  projected context  : {"calls": 1, "input_tokens": 13348, "output_tokens": 4110, "inr": 2.29}
+  projected relisten : {"calls": 7, "items": 51, "audio_s": 166.4, "audio_tokens": 5324, "input_tokens": 19487, "output_tokens": 7900, "inr": 4.34}
+  projected total: ₹6.63
+[asr_fix] LJQOGxrXalI: context read -> 11 suspects (0 rejected)
+[asr_fix] LJQOGxrXalI: relisten batch 1/6: 8 lines, 4 accepted, 0 low-conf, 0 rejected
+[asr_fix] LJQOGxrXalI: relisten batch 2/6: 8 lines, 2 accepted, 0 low-conf, 2 rejected
+[asr_fix] LJQOGxrXalI: relisten batch 3/6: 8 lines, 6 accepted, 0 low-conf, 0 rejected
+[asr_fix] LJQOGxrXalI: relisten batch 4/6: 8 lines, 4 accepted, 0 low-conf, 2 rejected
+[asr_fix] LJQOGxrXalI: relisten batch 5/6: 8 lines, 2 accepted, 0 low-conf, 1 rejected
+[asr_fix] LJQOGxrXalI: relisten batch 6/6: 1 lines, 0 accepted, 0 low-conf, 0 rejected
+  actual: context ₹1.09 (1 calls, 0 cached), relisten ₹2.15 (6 calls, 0 cached)
+  19 corrections (18 applied), 32 uncertain, 5 rejected -> /Users/ganeshgowtham/projects/projects/shotvi/runs/asr_fix/LJQOGxrXalI/corrections.json
+asr_fix LJQOGxrXalI EXIT 0
+== emotion_pick 0.3
+explicit context cache cachedContents/2zg9urj80bxzw8qtgb2xbb8im3w8ui6qzk4pvu64: 20135 tokens, TTL 3600 s, storage $0.0101
+p3XTZlZ6-xw: FIND: 6 moments listed, 6 valid (by feeling {'relatable_banter': 1, 'aww': 1, 'laugh': 3, 'tears': 1}; by intensity {5: 1, 4: 3, 3: 2})
+p3XTZlZ6-xw: 6 moments -> 6 clusters (0 with several payoffs)
+  e04 L0485: clip L0461..L0485 plays 60.8 s, stop start_line
+  e02 L0166: clip L0147..L0166 plays 30.6 s, stop start_line
+  e05 L0504: clip L0490..L0505 plays 34.0 s, stop start_line
+  e06 L0698: clip L0661..L0698 plays 118.0 s, stop start_line
+  e01 L0074: clip L0049..L0075 plays 30.0 s, stop A_near_start
+  e03 L0259: clip L0246..L0259 plays 33.4 s, stop start_line
+p3XTZlZ6-xw: 6 moments -> 6 build calls -> 6 built -> 6 shown; $0.1803 billed -> runs/emotion3/p3XTZlZ6-xw.json
+explicit context cache cachedContents/cwk0p6daqs156bhek2knefm6em721jsd0res61si: 14643 tokens, TTL 3600 s, storage $0.0073
+LJQOGxrXalI: FIND: 7 moments listed, 7 valid (by feeling {'laugh': 6, 'relatable_banter': 1}; by intensity {5: 1, 4: 4, 3: 2})
+LJQOGxrXalI: 7 moments -> 5 clusters (1 with several payoffs)
+  e06 L0428: clip L0392..L0432 plays 78.8 s, stop start_line
+  e02 L0115: clip L0092..L0117 plays 68.0 s, stop start_line
+  e03 L0290: clip L0285..L0299 plays 48.1 s, stop A_near_start
+  e01 L0072: clip L0046..L0072 plays 60.4 s, stop start_line
+  e07 L0457: clip L0423..L0459 plays 90.3 s, stop start_line
+LJQOGxrXalI: 7 moments -> 5 build calls -> 5 built -> 4 shown; $0.1904 billed -> runs/emotion3/LJQOGxrXalI.json
+ledger now Rs 1780.40 (this run Rs 33.36)
+emotion_pick EXIT 0

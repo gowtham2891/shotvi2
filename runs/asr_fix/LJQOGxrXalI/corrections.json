@@ -1,0 +1,1496 @@
+{
+ "video_id": "LJQOGxrXalI",
+ "schema": "asr_fix/1",
+ "params": {
+  "layers": [
+   "context",
+   "flag",
+   "relisten"
+  ],
+  "threshold": 0.5,
+  "min_conf": 0.8,
+  "model": "gemini-3.8-flash",
+  "pad_s": 0.4,
+  "ctx_lines": 2,
+  "batch_items": 8,
+  "context_prompt": "1",
+  "relisten_prompt": "1",
+  "apply_context": false,
+  "skip_interjections": true
+ },
+ "lines": 484,
+ "n_flagged_words": 49,
+ "n_suspects": 51,
+ "suspects": [
+  {
+   "line": "L0014",
+   "start_word": 75,
+   "end_word": 75,
+   "heard": "చేయను.",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "చేయి",
+   "why": "imperative request context",
+   "min_conf": 0.277
+  },
+  {
+   "line": "L0026",
+   "start_word": 82,
+   "end_word": 82,
+   "heard": "Babu",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.465
+  },
+  {
+   "line": "L0040",
+   "start_word": 149,
+   "end_word": 149,
+   "heard": "Sound",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "sound",
+   "why": "sound context",
+   "min_conf": 0.43
+  },
+  {
+   "line": "L0068",
+   "start_word": 221,
+   "end_word": 223,
+   "heard": "Gate, Start Gate.",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "Colgate Super",
+   "why": "toothpaste parody ad",
+   "min_conf": 0.395
+  },
+  {
+   "line": "L0070",
+   "start_word": 225,
+   "end_word": 225,
+   "heard": "ఉంది",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.369
+  },
+  {
+   "line": "L0077",
+   "start_word": 242,
+   "end_word": 242,
+   "heard": "అని",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.212
+  },
+  {
+   "line": "L0083",
+   "start_word": 262,
+   "end_word": 262,
+   "heard": "మ్.",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.457
+  },
+  {
+   "line": "L0111",
+   "start_word": 418,
+   "end_word": 418,
+   "heard": "batch",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.491
+  },
+  {
+   "line": "L0111",
+   "start_word": 429,
+   "end_word": 430,
+   "heard": "పడదాం రా",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.217
+  },
+  {
+   "line": "L0111",
+   "start_word": 432,
+   "end_word": 432,
+   "heard": "bro",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.459
+  },
+  {
+   "line": "L0120",
+   "start_word": 501,
+   "end_word": 501,
+   "heard": "ఓహ్",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.442
+  },
+  {
+   "line": "L0124",
+   "start_word": 535,
+   "end_word": 535,
+   "heard": "తెలియక",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.43
+  },
+  {
+   "line": "L0140",
+   "start_word": 610,
+   "end_word": 610,
+   "heard": "Corona",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "Corona",
+   "why": "COVID news context",
+   "min_conf": 0.382
+  },
+  {
+   "line": "L0140",
+   "start_word": 623,
+   "end_word": 623,
+   "heard": "చేయడం",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.218
+  },
+  {
+   "line": "L0141",
+   "start_word": 645,
+   "end_word": 645,
+   "heard": "మా",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.487
+  },
+  {
+   "line": "L0142",
+   "start_word": 678,
+   "end_word": 678,
+   "heard": "ఇలాగ",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.443
+  },
+  {
+   "line": "L0143",
+   "start_word": 692,
+   "end_word": 692,
+   "heard": "ఉంటా",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.446
+  },
+  {
+   "line": "L0143",
+   "start_word": 695,
+   "end_word": 695,
+   "heard": "ని",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.139
+  },
+  {
+   "line": "L0144",
+   "start_word": 700,
+   "end_word": 700,
+   "heard": "ఒకటే",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.463
+  },
+  {
+   "line": "L0145",
+   "start_word": 702,
+   "end_word": 702,
+   "heard": "హ్మ్",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.43
+  },
+  {
+   "line": "L0146",
+   "start_word": 705,
+   "end_word": 705,
+   "heard": "యాడ్",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "feel",
+   "why": "colloquial expression",
+   "min_conf": 0.461
+  },
+  {
+   "line": "L0148",
+   "start_word": 740,
+   "end_word": 740,
+   "heard": "ఆ",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.445
+  },
+  {
+   "line": "L0158",
+   "start_word": 823,
+   "end_word": 823,
+   "heard": "మా",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.319
+  },
+  {
+   "line": "L0174",
+   "start_word": 911,
+   "end_word": 911,
+   "heard": "అది",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.301
+  },
+  {
+   "line": "L0207",
+   "start_word": 989,
+   "end_word": 989,
+   "heard": "అమ్మ?",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.486
+  },
+  {
+   "line": "L0208",
+   "start_word": 991,
+   "end_word": 991,
+   "heard": "విరాకులు",
+   "found_by": [
+    "context"
+   ],
+   "guess": "విడాకులు",
+   "why": "meaning divorce",
+   "min_conf": 0.64
+  },
+  {
+   "line": "L0233",
+   "start_word": 1052,
+   "end_word": 1052,
+   "heard": "down",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.219
+  },
+  {
+   "line": "L0235",
+   "start_word": 1064,
+   "end_word": 1064,
+   "heard": "సరిలేరా",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.417
+  },
+  {
+   "line": "L0239",
+   "start_word": 1076,
+   "end_word": 1076,
+   "heard": "గెట్టుకుదర్",
+   "found_by": [
+    "context"
+   ],
+   "guess": "get-together",
+   "why": "school reunion",
+   "min_conf": 0.511
+  },
+  {
+   "line": "L0248",
+   "start_word": 1105,
+   "end_word": 1105,
+   "heard": "చల్",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.452
+  },
+  {
+   "line": "L0250",
+   "start_word": 1113,
+   "end_word": 1113,
+   "heard": "ఇంటనుంచి",
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "guess": "ఇంటినుంచి",
+   "why": "meaning from home",
+   "min_conf": 0.389
+  },
+  {
+   "line": "L0268",
+   "start_word": 1202,
+   "end_word": 1202,
+   "heard": "బాపురి",
+   "found_by": [
+    "context"
+   ],
+   "guess": "ద్వాపర",
+   "why": "mythological era",
+   "min_conf": 0.64
+  },
+  {
+   "line": "L0272",
+   "start_word": 1232,
+   "end_word": 1232,
+   "heard": "challenge",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.468
+  },
+  {
+   "line": "L0293",
+   "start_word": 1346,
+   "end_word": 1346,
+   "heard": "కానీ",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.395
+  },
+  {
+   "line": "L0320",
+   "start_word": 1473,
+   "end_word": 1473,
+   "heard": "తెచ్చి",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.37
+  },
+  {
+   "line": "L0362",
+   "start_word": 1641,
+   "end_word": 1641,
+   "heard": "పాక?",
+   "found_by": [
+    "context"
+   ],
+   "guess": "పగ?",
+   "why": "meaning grudge against women",
+   "min_conf": 0.67
+  },
+  {
+   "line": "L0367",
+   "start_word": 1667,
+   "end_word": 1667,
+   "heard": "hospital",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.405
+  },
+  {
+   "line": "L0368",
+   "start_word": 1670,
+   "end_word": 1670,
+   "heard": "ఆ.",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.491
+  },
+  {
+   "line": "L0369",
+   "start_word": 1671,
+   "end_word": 1671,
+   "heard": "రాక్",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.484
+  },
+  {
+   "line": "L0378",
+   "start_word": 1704,
+   "end_word": 1704,
+   "heard": "వచ్చింది",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.474
+  },
+  {
+   "line": "L0380",
+   "start_word": 1711,
+   "end_word": 1711,
+   "heard": "వస్",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.324
+  },
+  {
+   "line": "L0388",
+   "start_word": 1746,
+   "end_word": 1746,
+   "heard": "ఊ.",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.404
+  },
+  {
+   "line": "L0413",
+   "start_word": 1822,
+   "end_word": 1822,
+   "heard": "ten",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.296
+  },
+  {
+   "line": "L0425",
+   "start_word": 1870,
+   "end_word": 1870,
+   "heard": "మనతో",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.495
+  },
+  {
+   "line": "L0438",
+   "start_word": 1945,
+   "end_word": 1945,
+   "heard": "చెప్పు.",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.251
+  },
+  {
+   "line": "L0439",
+   "start_word": 1946,
+   "end_word": 1946,
+   "heard": "పోండి",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.301
+  },
+  {
+   "line": "L0451",
+   "start_word": 1978,
+   "end_word": 1979,
+   "heard": "పైన ఆంటీ",
+   "found_by": [
+    "context"
+   ],
+   "guess": "fine",
+   "why": "referring to heavy penalty",
+   "min_conf": 0.638
+  },
+  {
+   "line": "L0456",
+   "start_word": 1993,
+   "end_word": 1994,
+   "heard": "వింద్రా rules",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.348
+  },
+  {
+   "line": "L0459",
+   "start_word": 2011,
+   "end_word": 2011,
+   "heard": "furnished",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.345
+  },
+  {
+   "line": "L0469",
+   "start_word": 2025,
+   "end_word": 2025,
+   "heard": "Door",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.487
+  },
+  {
+   "line": "L0482",
+   "start_word": 2039,
+   "end_word": 2039,
+   "heard": "Sudha.",
+   "found_by": [
+    "flag"
+   ],
+   "guess": "",
+   "why": "",
+   "min_conf": 0.205
+  }
+ ],
+ "corrections": [
+  {
+   "start_word": 75,
+   "end_word": 75,
+   "heard": "చేయను.",
+   "corrected": "చేద్దామా?",
+   "reason": "clearly says చేద్దామా",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0014",
+   "start": 27.48,
+   "end": 27.7,
+   "context_guess": "చేయి",
+   "relisten": {
+    "heard_line": "అరే Arjun please రా, episode start చేద్దామా?",
+    "line_ratio": 0.838
+   }
+  },
+  {
+   "start_word": 221,
+   "end_word": 223,
+   "heard": "Gate, Start Gate.",
+   "corrected": "చేయి రీస్టార్ట్ చేయి.",
+   "reason": "clearly says చేయి రీస్టార్ట్ చేయి",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0068",
+   "start": 289.06,
+   "end": 289.74,
+   "context_guess": "Colgate Super",
+   "relisten": {
+    "heard_line": "సమర్పిస్తున్నవారు Colgate smile చేయి రీస్టార్ట్ చేయి",
+    "line_ratio": 0.968
+   }
+  },
+  {
+   "start_word": 242,
+   "end_word": 242,
+   "heard": "అని",
+   "corrected": "ఏమనుకొని",
+   "reason": "clearly says ఏమనుకొని",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "flag"
+   ],
+   "line": "L0077",
+   "start": 306.74,
+   "end": 306.8,
+   "context_guess": null,
+   "relisten": {
+    "heard_line": "ఏయ్ నువ్వు ఏమనుకొని హైదరాబాద్ వచ్చావురా చెప్పు?",
+    "line_ratio": 0.952
+   }
+  },
+  {
+   "start_word": 429,
+   "end_word": 430,
+   "heard": "పడదాం రా",
+   "corrected": "పదండి",
+   "reason": "clearly says పదండి",
+   "source": "relisten",
+   "confidence": 0.9,
+   "applied": true,
+   "found_by": [
+    "flag"
+   ],
+   "line": "L0111",
+   "start": 373.736,
+   "end": 374.416,
+   "context_guess": null,
+   "relisten": {
+    "heard_line": "మేమందరం uneducated గాళ్ళమా బస్తీ batch ఆ? Bro bro I'm sorry bro. మీ room వద్దేమొద్దు పదండి. ఏంది bro? Bro bro bro bro",
+    "line_ratio": 0.935
+   }
+  },
+  {
+   "start_word": 623,
+   "end_word": 623,
+   "heard": "చేయడం",
+   "corrected": "చూడు",
+   "reason": "clearly says చూడు",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "flag"
+   ],
+   "line": "L0140",
+   "start": 504.056,
+   "end": 504.296,
+   "context_guess": null,
+   "relisten": {
+    "heard_line": "ఓరి బాబోయ్ వాడికి ఇంకో వారం రోజుల వరకు ఆ పేరు చెప్పడం కానీ తీరదు news channel పెట్టు అదేదో Corona అంట దాని related news లు చూద్దాం ఒక fifteen minutes ఆగి అయిపోతది చూడు",
+    "line_ratio": 0.939
+   }
+  },
+  {
+   "start_word": 700,
+   "end_word": 700,
+   "heard": "ఒకటే",
+   "corrected": "ఒకటి",
+   "reason": "clearly says ఒకటి",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "flag"
+   ],
+   "line": "L0144",
+   "start": 529.816,
+   "end": 530.136,
+   "context_guess": null,
+   "relisten": {
+    "heard_line": "ఛీ నట్ట ఒకటి",
+    "line_ratio": 0.889
+   }
+  },
+  {
+   "start_word": 705,
+   "end_word": 705,
+   "heard": "యాడ్",
+   "corrected": "feel",
+   "reason": "colloquial expression",
+   "source": "context",
+   "confidence": null,
+   "applied": false,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0146",
+   "start": 534.596,
+   "end": 534.716,
+   "context_guess": "feel",
+   "relisten": {
+    "verdict": "relisten_kept"
+   }
+  },
+  {
+   "start_word": 989,
+   "end_word": 989,
+   "heard": "అమ్మ?",
+   "corrected": "అమ్మా?",
+   "reason": "clearly says అమ్మ with elongated vowel",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "flag"
+   ],
+   "line": "L0207",
+   "start": 829.326,
+   "end": 829.566,
+   "context_guess": null,
+   "relisten": {
+    "heard_line": "ఎందుకు ఏడుస్తున్నావ్ అమ్మా?",
+    "line_ratio": 0.917
+   }
+  },
+  {
+   "start_word": 991,
+   "end_word": 991,
+   "heard": "విరాకులు",
+   "corrected": "విడాకులు",
+   "reason": "clearly says vidakulu (divorce)",
+   "source": "relisten",
+   "confidence": 0.99,
+   "applied": true,
+   "found_by": [
+    "context"
+   ],
+   "line": "L0208",
+   "start": 830.566,
+   "end": 831.026,
+   "context_guess": "విడాకులు",
+   "relisten": {
+    "heard_line": "నాన్న విడాకులు ఇస్తానన్నారా?",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 1076,
+   "end_word": 1076,
+   "heard": "గెట్టుకుదర్",
+   "corrected": "get together",
+   "reason": "clear English words get together",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context"
+   ],
+   "line": "L0239",
+   "start": 921.866,
+   "end": 922.246,
+   "context_guess": "get-together",
+   "relisten": {
+    "heard_line": "అది అది అంటే కొంపతీసి ఏమన్నా school get together లాంటివి ఏమైనా plan చేస్తున్నారా?",
+    "line_ratio": 0.95
+   }
+  },
+  {
+   "start_word": 1105,
+   "end_word": 1106,
+   "heard": "చల్ నా",
+   "corrected": "ఛల్ ఆ",
+   "reason": "clearly says chal aa",
+   "source": "relisten",
+   "confidence": 0.9,
+   "applied": true,
+   "found_by": [
+    "flag"
+   ],
+   "line": "L0248",
+   "start": 943.526,
+   "end": 943.766,
+   "context_guess": null,
+   "relisten": {
+    "heard_line": "ఛల్ ఆ చెప్పు",
+    "line_ratio": 0.87
+   }
+  },
+  {
+   "start_word": 1113,
+   "end_word": 1113,
+   "heard": "ఇంటనుంచి",
+   "corrected": "ఇంటినుంచి",
+   "reason": "clearly says intinunchi",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context",
+    "flag"
+   ],
+   "line": "L0250",
+   "start": 949.046,
+   "end": 949.386,
+   "context_guess": "ఇంటినుంచి",
+   "relisten": {
+    "heard_line": "చెప్తా చెప్పు అంటే తను ఇంటినుంచి గొడవపడి బయటకు వచ్చిందిరా",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 1202,
+   "end_word": 1202,
+   "heard": "బాపురి",
+   "corrected": "ద్వాపర",
+   "reason": "clearly says Dwapara yugama",
+   "source": "relisten",
+   "confidence": 0.98,
+   "applied": true,
+   "found_by": [
+    "context"
+   ],
+   "line": "L0268",
+   "start": 993.426,
+   "end": 993.646,
+   "context_guess": "ద్వాపర",
+   "relisten": {
+    "heard_line": "ఇది 21st century ఆ లేక ద్వాపర యుగమా?",
+    "line_ratio": 0.949
+   }
+  },
+  {
+   "start_word": 1232,
+   "end_word": 1233,
+   "heard": "challenge చేసి.",
+   "corrected": "సూపర్ అండి.",
+   "reason": "clearly says సూపర్ అండి",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "flag"
+   ],
+   "line": "L0272",
+   "start": 1008.666,
+   "end": 1008.666,
+   "context_guess": null,
+   "relisten": {
+    "heard_line": "సూపర్ అండి సూపర్.",
+    "line_ratio": 0.783
+   }
+  },
+  {
+   "start_word": 1641,
+   "end_word": 1641,
+   "heard": "పాక?",
+   "corrected": "పగ?",
+   "reason": "clearly says పగ",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "context"
+   ],
+   "line": "L0362",
+   "start": 1223.754,
+   "end": 1224.074,
+   "context_guess": "పగ?",
+   "relisten": {
+    "heard_line": "ఆడోళ్ళ మీద ఎందుకురా అంత పగ?",
+    "line_ratio": 0.933
+   }
+  },
+  {
+   "start_word": 1671,
+   "end_word": 1671,
+   "heard": "రాక్",
+   "corrected": "హాస్పిటల్స్",
+   "reason": "speaker says hospitals instead of రాక్ hospital",
+   "source": "relisten",
+   "confidence": 0.85,
+   "applied": true,
+   "found_by": [
+    "flag"
+   ],
+   "line": "L0369",
+   "start": 1236.734,
+   "end": 1236.974,
+   "context_guess": null,
+   "relisten": {
+    "heard_line": "హాస్పిటల్స్ కి తీసుకెళ్ళాడు",
+    "line_ratio": 0.862
+   }
+  },
+  {
+   "start_word": 1711,
+   "end_word": 1711,
+   "heard": "వస్",
+   "corrected": "voice",
+   "reason": "clearly says voice",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "flag"
+   ],
+   "line": "L0380",
+   "start": 1249.894,
+   "end": 1249.974,
+   "context_guess": null,
+   "relisten": {
+    "heard_line": "అందులో Siri అనే అమ్మాయి voice వచ్చేసరికి phone నేలకేసి కొట్టేసి మళ్ళీ Nokia 1100 వాడుతున్నాడు",
+    "line_ratio": 0.945
+   }
+  },
+  {
+   "start_word": 1978,
+   "end_word": 1979,
+   "heard": "పైన ఆంటీ",
+   "corrected": "penalty",
+   "reason": "clearly says penalty",
+   "source": "relisten",
+   "confidence": 0.98,
+   "applied": true,
+   "found_by": [
+    "context"
+   ],
+   "line": "L0451",
+   "start": 1395.134,
+   "end": 1395.514,
+   "context_guess": "fine",
+   "relisten": {
+    "heard_line": "అది కూడా పెద్ద penalty వేసి.",
+    "line_ratio": 1.0
+   }
+  },
+  {
+   "start_word": 1993,
+   "end_word": 1994,
+   "heard": "వింద్రా rules",
+   "corrected": "వింత వింత rules",
+   "reason": "clearly says వింత వింత rules",
+   "source": "relisten",
+   "confidence": 0.95,
+   "applied": true,
+   "found_by": [
+    "flag"
+   ],
+   "line": "L0456",
+   "start": 1399.534,
+   "end": 1400.054,
+   "context_guess": null,
+   "relisten": {
+    "heard_line": "ఇన్ని వింత వింత rules చదివి కూడా ఎక్కడ ఎందుకు దిగారురా?",
+    "line_ratio": 0.886
+   }
+  }
+ ],
+ "uncertain": [
+  {
+   "start_word": 82,
+   "end_word": 82,
+   "heard": "Babu",
+   "source": "flag",
+   "confidence": 0.465,
+   "verdict": "relisten_kept",
+   "line": "L0026",
+   "start": 195.76
+  },
+  {
+   "start_word": 149,
+   "end_word": 149,
+   "heard": "Sound",
+   "source": "context",
+   "confidence": 0.43,
+   "verdict": "relisten_kept",
+   "line": "L0040",
+   "start": 228.2
+  },
+  {
+   "start_word": 225,
+   "end_word": 225,
+   "heard": "ఉంది",
+   "source": "flag",
+   "confidence": 0.369,
+   "verdict": "relisten_kept",
+   "line": "L0070",
+   "start": 292.96
+  },
+  {
+   "start_word": 262,
+   "end_word": 262,
+   "heard": "మ్.",
+   "source": "flag",
+   "confidence": 0.457,
+   "verdict": "skipped_interjection",
+   "line": "L0083",
+   "start": 318.56
+  },
+  {
+   "start_word": 418,
+   "end_word": 418,
+   "heard": "batch",
+   "source": "flag",
+   "confidence": 0.491,
+   "verdict": "relisten_kept",
+   "line": "L0111",
+   "start": 371.396
+  },
+  {
+   "start_word": 432,
+   "end_word": 432,
+   "heard": "bro",
+   "source": "flag",
+   "confidence": 0.459,
+   "verdict": "relisten_kept",
+   "line": "L0111",
+   "start": 374.616
+  },
+  {
+   "start_word": 501,
+   "end_word": 501,
+   "heard": "ఓహ్",
+   "source": "flag",
+   "confidence": 0.442,
+   "verdict": "skipped_interjection",
+   "line": "L0120",
+   "start": 411.416
+  },
+  {
+   "start_word": 535,
+   "end_word": 535,
+   "heard": "తెలియక",
+   "source": "flag",
+   "confidence": 0.43,
+   "verdict": "relisten_kept",
+   "line": "L0124",
+   "start": 429.276
+  },
+  {
+   "start_word": 610,
+   "end_word": 610,
+   "heard": "Corona",
+   "source": "context",
+   "confidence": 0.382,
+   "verdict": "relisten_kept",
+   "line": "L0140",
+   "start": 500.276
+  },
+  {
+   "start_word": 645,
+   "end_word": 645,
+   "heard": "మా",
+   "source": "flag",
+   "confidence": 0.487,
+   "verdict": "relisten_kept",
+   "line": "L0141",
+   "start": 510.956
+  },
+  {
+   "start_word": 678,
+   "end_word": 678,
+   "heard": "ఇలాగ",
+   "source": "flag",
+   "confidence": 0.443,
+   "verdict": "relisten_kept",
+   "line": "L0142",
+   "start": 518.436
+  },
+  {
+   "start_word": 692,
+   "end_word": 692,
+   "heard": "ఉంటా",
+   "source": "flag",
+   "confidence": 0.446,
+   "verdict": "relisten_kept",
+   "line": "L0143",
+   "start": 524.696
+  },
+  {
+   "start_word": 695,
+   "end_word": 695,
+   "heard": "ని",
+   "source": "flag",
+   "confidence": 0.139,
+   "verdict": "relisten_kept",
+   "line": "L0143",
+   "start": 525.436
+  },
+  {
+   "start_word": 702,
+   "end_word": 702,
+   "heard": "హ్మ్",
+   "source": "flag",
+   "confidence": 0.43,
+   "verdict": "skipped_interjection",
+   "line": "L0145",
+   "start": 532.256
+  },
+  {
+   "start_word": 740,
+   "end_word": 740,
+   "heard": "ఆ",
+   "source": "flag",
+   "confidence": 0.445,
+   "verdict": "skipped_interjection",
+   "line": "L0148",
+   "start": 551.156
+  },
+  {
+   "start_word": 823,
+   "end_word": 823,
+   "heard": "మా",
+   "source": "flag",
+   "confidence": 0.319,
+   "verdict": "relisten_kept",
+   "line": "L0158",
+   "start": 596.836
+  },
+  {
+   "start_word": 911,
+   "end_word": 911,
+   "heard": "అది",
+   "source": "flag",
+   "confidence": 0.301,
+   "verdict": "relisten_kept",
+   "line": "L0174",
+   "start": 734.806
+  },
+  {
+   "start_word": 1052,
+   "end_word": 1052,
+   "heard": "down",
+   "source": "flag",
+   "confidence": 0.219,
+   "verdict": "relisten_kept",
+   "line": "L0233",
+   "start": 906.546
+  },
+  {
+   "start_word": 1064,
+   "end_word": 1064,
+   "heard": "సరిలేరా",
+   "source": "flag",
+   "confidence": 0.417,
+   "verdict": "relisten_kept",
+   "line": "L0235",
+   "start": 912.186
+  },
+  {
+   "start_word": 1346,
+   "end_word": 1346,
+   "heard": "కానీ",
+   "source": "flag",
+   "confidence": 0.395,
+   "verdict": "relisten_kept",
+   "line": "L0293",
+   "start": 1071.386
+  },
+  {
+   "start_word": 1473,
+   "end_word": 1473,
+   "heard": "తెచ్చి",
+   "source": "flag",
+   "confidence": 0.37,
+   "verdict": "relisten_kept",
+   "line": "L0320",
+   "start": 1122.014
+  },
+  {
+   "start_word": 1667,
+   "end_word": 1667,
+   "heard": "hospital",
+   "source": "flag",
+   "confidence": 0.405,
+   "verdict": "relisten_kept",
+   "line": "L0367",
+   "start": 1235.494
+  },
+  {
+   "start_word": 1670,
+   "end_word": 1670,
+   "heard": "ఆ.",
+   "source": "flag",
+   "confidence": 0.491,
+   "verdict": "skipped_interjection",
+   "line": "L0368",
+   "start": 1236.414
+  },
+  {
+   "start_word": 1704,
+   "end_word": 1704,
+   "heard": "వచ్చింది",
+   "source": "flag",
+   "confidence": 0.474,
+   "verdict": "relisten_kept",
+   "line": "L0378",
+   "start": 1248.094
+  },
+  {
+   "start_word": 1746,
+   "end_word": 1746,
+   "heard": "ఊ.",
+   "source": "flag",
+   "confidence": 0.404,
+   "verdict": "skipped_interjection",
+   "line": "L0388",
+   "start": 1267.354
+  },
+  {
+   "start_word": 1822,
+   "end_word": 1822,
+   "heard": "ten",
+   "source": "flag",
+   "confidence": 0.296,
+   "verdict": "relisten_kept",
+   "line": "L0413",
+   "start": 1306.874
+  },
+  {
+   "start_word": 1870,
+   "end_word": 1870,
+   "heard": "మనతో",
+   "source": "flag",
+   "confidence": 0.495,
+   "verdict": "relisten_kept",
+   "line": "L0425",
+   "start": 1326.674
+  },
+  {
+   "start_word": 1945,
+   "end_word": 1945,
+   "heard": "చెప్పు.",
+   "source": "flag",
+   "confidence": 0.251,
+   "verdict": "relisten_kept",
+   "line": "L0438",
+   "start": 1364.294
+  },
+  {
+   "start_word": 1946,
+   "end_word": 1946,
+   "heard": "పోండి",
+   "source": "flag",
+   "confidence": 0.301,
+   "verdict": "relisten_kept",
+   "line": "L0439",
+   "start": 1364.894
+  },
+  {
+   "start_word": 2011,
+   "end_word": 2011,
+   "heard": "furnished",
+   "source": "flag",
+   "confidence": 0.345,
+   "verdict": "relisten_kept",
+   "line": "L0459",
+   "start": 1405.834
+  },
+  {
+   "start_word": 2025,
+   "end_word": 2025,
+   "heard": "Door",
+   "source": "flag",
+   "confidence": 0.487,
+   "verdict": "relisten_kept",
+   "line": "L0469",
+   "start": 1435.374
+  },
+  {
+   "start_word": 2039,
+   "end_word": 2039,
+   "heard": "Sudha.",
+   "source": "flag",
+   "confidence": 0.205,
+   "verdict": "relisten_kept",
+   "line": "L0482",
+   "start": 1550.314
+  }
+ ],
+ "rejected": [
+  {
+   "layer": "relisten",
+   "line": "L0143",
+   "heard_line": "KGF ది ఏదో వీళ్ళే compose చేసినట్టు తగవాడు తొక్కుతున్నారు ఉంటాం serial లన్నీ నాకే చూపిస్తాడు రోజు",
+   "corrected": "ఉంటాం serial లన్నీ",
+   "confidence": 0.85,
+   "reason": "says ఉంటాం serial లన్నీ",
+   "start_word": 692,
+   "end_word": 695,
+   "heard": "ఉంటా వాని serial ని",
+   "why_rejected": "not on a suspect span"
+  },
+  {
+   "layer": "relisten",
+   "line": "L0146",
+   "heard_line": "సర్లే రా add అవ్వక చూద్దాం ఏ లేదురా చూసుకో news channel పెట్టుకో నీకు నాకంటే ఆ virus ఏదో ఎక్కువ కదా",
+   "corrected": "add",
+   "confidence": 0.9,
+   "reason": "English word add",
+   "start_word": 705,
+   "end_word": 705,
+   "heard": "యాడ్",
+   "why_rejected": "script change only (transliteration, 0.80)"
+  },
+  {
+   "layer": "relisten",
+   "line": "L0320",
+   "heard_line": "మా బుజ్జి కదా మా బంగారం కదా మా మనవరం కదా కాస్త adjust చేసుకోండ్రా please",
+   "corrected": "కాస్త adjust చేసుకోండిరా",
+   "confidence": 0.95,
+   "reason": "clearly says కాస్త adjust చేసుకోండిరా",
+   "start_word": 1472,
+   "end_word": 1474,
+   "heard": "కాస్ తెచ్చి ఇచ్చేసుకోండ్రా",
+   "why_rejected": "corrected words not in the model's heard_line"
+  },
+  {
+   "layer": "relisten",
+   "line": "L0378",
+   "heard_line": "మొన్న sale ఉంటే iPhone తక్కువ price కి వస్తే నేను తీసుకున్నాడు",
+   "corrected": "వస్తే నని",
+   "confidence": 0.85,
+   "reason": "clearly heard వస్తేనని",
+   "start_word": 1704,
+   "end_word": 1704,
+   "heard": "వచ్చింది",
+   "why_rejected": "corrected words not in the model's heard_line"
+  },
+  {
+   "layer": "relisten",
+   "line": "L0469",
+   "heard_line": "ఇంకా చూస్తావేంటి?",
+   "corrected": "ఇంకా",
+   "confidence": 0.95,
+   "reason": "clearly says ఇంకా",
+   "start_word": 2025,
+   "end_word": 2025,
+   "heard": "Door",
+   "line_ratio": 0.452,
+   "why_rejected": "heard_line does not align with the transcript line (0.45)"
+  }
+ ],
+ "threshold_report": {
+  "n_words": 2041,
+  "has_logprob": true,
+  "by_threshold": {
+   "0.5": {
+    "words": 49,
+    "lines": 42
+   },
+   "0.6": {
+    "words": 101,
+    "lines": 79
+   },
+   "0.7": {
+    "words": 187,
+    "lines": 135
+   }
+  }
+ },
+ "cost": {
+  "projected": {
+   "model": "gemini-3.8-flash",
+   "layers": {
+    "context": {
+     "calls": 1,
+     "input_tokens": 13348,
+     "output_tokens": 4110,
+     "inr": 2.29
+    },
+    "relisten": {
+     "calls": 7,
+     "items": 51,
+     "audio_s": 166.4,
+     "audio_tokens": 5324,
+     "input_tokens": 19487,
+     "output_tokens": 7900,
+     "inr": 4.34
+    }
+   },
+   "inr": 6.63
+  },
+  "actual": {
+   "context": {
+    "calls": 1,
+    "cached": 0,
+    "input_tokens": 13289,
+    "output_tokens": 580,
+    "audio_tokens": 0,
+    "inr": 1.093,
+    "inr_full": 1.093
+   },
+   "relisten": {
+    "calls": 6,
+    "cached": 0,
+    "input_tokens": 13949,
+    "output_tokens": 2844,
+    "audio_tokens": 3710,
+    "inr": 2.152,
+    "inr_full": 2.152
+   }
+  }
+ },
+ "stopped": null,
+ "transcript": "/Users/ganeshgowtham/projects/projects/shotvi/scribe_dataset/LJQOGxrXalI/LJQOGxrXalI_scribe_transcript.json"
+}

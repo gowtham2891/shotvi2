@@ -1,0 +1,1288 @@
+{
+ "schema_version": "1.1",
+ "kind": "proposals",
+ "video_id": "p3XTZlZ6-xw",
+ "transcript": {
+  "path": "scribe_dataset/p3XTZlZ6-xw/p3XTZlZ6-xw_scribe_transcript.json",
+  "sha256": "a3a13790b47098675e5850ad17b50596b5039e01f40f27390afa0cc47aefe9dd",
+  "n_words": 2339,
+  "audio_duration_secs": 1588.233
+ },
+ "derived_params": {
+  "skip_s": 30.0
+ },
+ "run_id": "emotion3",
+ "created_at": "2026-10-22T13:02:12Z",
+ "content_type": "web_series",
+ "pipeline": {
+  "version": "emotion_pick/0.3",
+  "git_commit": null,
+  "design": "founder 2026-10-16: emotion-first, two focused calls (find the moments a stranger feels; build stop / stay / land + the cut per moment); no review call",
+  "prompt_versions": {
+   "ws3_context": "1+e606d3c6",
+   "ws_emotion_find": "3+c6395749",
+   "ws_emotion_build": "2+19568511"
+  },
+  "prompt_files": {
+   "ws3_context": "ws3_context",
+   "ws_emotion_find": "ws_emotion_find",
+   "ws_emotion_build": "ws_emotion_build"
+  },
+  "config": {
+   "pipeline_version": "emotion_pick/0.3",
+   "find_prompt": "ws_emotion_find",
+   "models": {
+    "find": {
+     "provider": "gemini",
+     "model": "gemini-3.8-flash",
+     "params": {
+      "thinking_level": "high",
+      "max_output_tokens": 32768
+     }
+    },
+    "build": {
+     "provider": "gemini",
+     "model": "gemini-3.8-flash",
+     "params": {
+      "thinking_level": "medium",
+      "max_output_tokens": 16384
+     }
+    }
+   },
+   "prompts": {
+    "ws_emotion_build": "ws_emotion_build"
+   },
+   "ctx": {
+    "speaker_names": false
+   },
+   "v1": {
+    "guardrails": {
+     "min_s": 10.0
+    }
+   },
+   "find": {
+    "min_intensity": 3,
+    "extra_types": [
+     "cliffhanger"
+    ],
+    "feelings": [
+     "laugh",
+     "aww",
+     "shock",
+     "tension",
+     "tears",
+     "relatable_banter",
+     "awkward_cringe"
+    ]
+   },
+   "lift_ok": {
+    "rule": "strict",
+    "enforce": true,
+    "min_speech_s": 1.0,
+    "max_speech_s": 3.6,
+    "continuations": [
+     "అందుకే",
+     "కానీ",
+     "సో",
+     "మరి",
+     "అలాగే",
+     "అయినా",
+     "అయితే",
+     "ఎందుకంటే",
+     "so",
+     "but",
+     "and",
+     "because"
+    ],
+    "acks": [
+     "అవునా",
+     "అవును",
+     "ఊ",
+     "ఊం",
+     "ఉమ్",
+     "సరే",
+     "హ్మ్",
+     "హా",
+     "ఆ",
+     "ఓ",
+     "ఓకే",
+     "అలాగా",
+     "ok",
+     "okay",
+     "hmm",
+     "hm",
+     "yes",
+     "yeah"
+    ],
+    "ack_max_words": 2,
+    "same_speaker": true,
+    "turn_runs": true
+   },
+   "cluster": {
+    "enabled": true,
+    "max_lines": 35,
+    "max_s": 50.0,
+    "music_min_s": 4.0,
+    "silence_gap_s": null,
+    "target_within": 1,
+    "max_span_s": 90.0
+   },
+   "build": {
+    "max_moments": 10,
+    "lift_before_s": 150.0,
+    "lift_after_s": 20.0,
+    "land_window_lines": 3,
+    "land_after_lines": 15,
+    "max_end_after_payoff_lines": 3,
+    "end_rule": "clamp",
+    "end_after_land_lines": 2,
+    "end_after_reaction_lines": 1,
+    "max_tokens_retry": true
+   },
+   "cold_open": {
+    "rule": "fallback",
+    "same_speaker": true,
+    "near_lines": 2,
+    "near_s": 3.0,
+    "weak_advance_lines": 4,
+    "weak_max_words": 2,
+    "weak_min_s": 1.0,
+    "turn_lift": true,
+    "turn_max_s": 3.6,
+    "start_advance": true,
+    "advance_max_lines": 4,
+    "advance_stop_s": 5.0,
+    "greetings": [
+     "hello",
+     "hi",
+     "hey",
+     "హలో",
+     "హాయ్",
+     "నమస్తే",
+     "namaste",
+     "thank",
+     "thanks",
+     "you",
+     "bye",
+     "good",
+     "morning",
+     "evening",
+     "night"
+    ]
+   },
+   "check": {
+    "stop_window_s": 3.0,
+    "land_last_lines": 3,
+    "stop_late": "flag",
+    "land_late": "trim"
+   },
+   "dedupe": {
+    "rule": "scene",
+    "overlap": 0.35,
+    "prefer_play_s": [
+     30.0,
+     75.0
+    ],
+    "keep_longer": true,
+    "keep_longer_max_s": 120.0,
+    "short_tail_s": 30.0
+   },
+   "budget_usd": 3.0,
+   "calibrate_from": {
+    "ws3": "runs/ws3"
+   },
+   "run_id": "emotion3"
+  }
+ },
+ "models": [
+  {
+   "role": "ws_emotion_find",
+   "provider": "gemini",
+   "model": "gemini-3.8-flash",
+   "params": {
+    "thinking_level": "high",
+    "max_output_tokens": 32768
+   }
+  },
+  {
+   "role": "ws_emotion_build",
+   "provider": "gemini",
+   "model": "gemini-3.8-flash",
+   "params": {
+    "thinking_level": "medium",
+    "max_output_tokens": 16384
+   }
+  }
+ ],
+ "cost": {
+  "input_tokens": 152929,
+  "output_tokens": 40184,
+  "usd": 0.18032,
+  "usd_billed": 0.18032,
+  "wall_time_secs": 288.9,
+  "n_llm_calls": 8,
+  "by_role": {
+   "ws3_cache": {
+    "n_llm_calls": 1,
+    "n_cache_hits": 0,
+    "n_failed_attempts": 0,
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "thought_tokens": 0,
+    "cached_input_tokens": 0,
+    "usd": 0.01007,
+    "usd_billed": 0.01007,
+    "models": [
+     "gemini-3.8-flash"
+    ]
+   },
+   "ws_emotion_build": {
+    "n_llm_calls": 6,
+    "n_cache_hits": 0,
+    "n_failed_attempts": 0,
+    "input_tokens": 131841,
+    "output_tokens": 33549,
+    "thought_tokens": 31671,
+    "cached_input_tokens": 120810,
+    "usd": 0.14314,
+    "usd_billed": 0.14314,
+    "models": [
+     "gemini-3.8-flash"
+    ]
+   },
+   "ws_emotion_find": {
+    "n_llm_calls": 1,
+    "n_cache_hits": 0,
+    "n_failed_attempts": 0,
+    "input_tokens": 21088,
+    "output_tokens": 6635,
+    "thought_tokens": 5935,
+    "cached_input_tokens": 20135,
+    "usd": 0.02711,
+    "usd_billed": 0.02711,
+    "models": [
+     "gemini-3.8-flash"
+    ]
+   }
+  },
+  "projection": null,
+  "cache": {
+   "mode": "explicit",
+   "key": "229589e25ac2c22c7322de15",
+   "name": "cachedContents/2zg9urj80bxzw8qtgb2xbb8im3w8ui6qzk4pvu64",
+   "tokens": 20135,
+   "ttl_s": 3600,
+   "storage_usd": 0.0100675,
+   "deleted": true,
+   "lived_s": 286.1
+  }
+ },
+ "cutoff": {
+  "show_rule": "emotion_pick: every clip that passes the build checks (stop first, land last, v1 hard rules) and the dedupe; no review, no score",
+  "order": "episode order",
+  "n_candidates": 6,
+  "n_passed_hard_rules": 6,
+  "n_shown": 6,
+  "n_rejected": 0,
+  "warnings": []
+ },
+ "episode_notes": "A slice-of-life comedy drama following Surya, an unemployed engineering graduate on his birthday. Dealing with the frustration of joblessness, banter with his sister and friends, and his girlfriend Anjali getting placed, the episode mixes relatable youth comedy with poignant family emotions culminating in his father's quiet heartbreak when Surya returns home drunk.",
+ "proposals": [
+  {
+   "id": "e01",
+   "pieces": [
+    {
+     "start_word": 92,
+     "end_word": 132,
+     "start": 111.36,
+     "end": 128.6
+    },
+    {
+     "start_word": 141,
+     "end_word": 160,
+     "start": 161.9,
+     "end": 172.36
+    }
+   ],
+   "region": {
+    "start_word": 92,
+    "end_word": 160,
+    "start": 111.36,
+    "end": 172.36
+   },
+   "edited_duration": 27.7,
+   "reordered": false,
+   "n_blocks": 2,
+   "text": "రేయ్, రేయ్! చాలురా యాక్టింగ్. నువ్వు పడుకోలేదని నాకు తెలుసు. అబ్బా! ఊరుకోండి మీరు. పడుకున్న పిల్లాన్ని పట్టుకొని అలా మాట్లాడుతున్నారు. ఆ ఉమ్మ్ వాడు ఫోన్ ఒకసారి ఇమ్మను. వాడు ఎప్పుడు పడుకున్నాడో నేను చెప్తా. ఫోన్ మీద మాట్లాడనండి. అబ్బా! మీరు ఆపండమ్మా. రేయ్! నువ్వు కేక్ కట్ చెయ్. కట్ చెయ్ నాన్న. దీవించండి వాన్నీ. ఉమ్మ్ Engineer అయిపోయి three years అయిందిరా. ఈ సంవత్సరం అయినా జాబ్ తెచ్చుకోరా. అబ్బా! ఈరోజు పుట్టినరోజండి వాడిది. ఈరోజు కూడానా? ఉమ్మ్",
+   "rank": 1,
+   "tier": "emotion_pick",
+   "tier_label": "emotion pick",
+   "scores": {},
+   "title": "పుట్టినరోజున కూడా జాబ్ గోలేనా!",
+   "hook_line": {
+    "text": "రేయ్, రేయ్!",
+    "start_word": 92,
+    "end_word": 93
+   },
+   "payoff_line": "ఈరోజు కూడానా?",
+   "payoff_type": "punchline",
+   "payoff_line_source": "discover",
+   "why_it_works": "Viewer stops because the grumpy father calls out his son's fake sleeping drama, stays to see if the birthday goes smoothly, and laughs at the father using his birthday blessing to nag about getting a…",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [
+    {
+     "type": "skip",
+     "after_piece": 0,
+     "reason": "skips 33 s"
+    }
+   ],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 111.12,
+     "end": 128.85,
+     "kind": "scene"
+    },
+    {
+     "start": 161.0,
+     "end": 173.25,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 29.98,
+   "spoiler": false,
+   "characters": [
+    "సూర్య",
+    "నాన్న",
+    "అమ్మ",
+    "మేఘన"
+   ],
+   "visual_dependency": "medium",
+   "start_line": "L0049",
+   "end_line": "L0075",
+   "end_hold": {
+    "payoff_end": 172.36,
+    "next_speech": 173.3,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "end": 173.25,
+    "hold_s": 0.89,
+    "on_shot_cut": false,
+    "rule": "before_next_line",
+    "note": "next line starts quickly and no shot change before it"
+   },
+   "chunk_drops": [
+    {
+     "after_line": "L0064",
+     "before_line": "L0069",
+     "removed_lines": [
+      "L0065",
+      "L0066",
+      "L0067",
+      "L0068"
+     ],
+     "lift_skip": false,
+     "start": 128.85,
+     "end": 161.0,
+     "removed_s": 32.15,
+     "why": "cuts the prolonged cake cutting song and dead air to transition straight from cake cutting to the blessing"
+    }
+   ],
+   "discovery": {
+    "strength": null,
+    "what_happens": "Will Surya get through his midnight cake cutting peacefully, or will his dad ruin the moment with a lecture?",
+    "hook": "Dad hilariously shuts down his son's midnight surprise drama right away with \"చాలురా యాక్టింగ్. నువ్వు పడుకోలేదని నాకు తెలుసు.\"",
+    "payoff": "ఈరోజు కూడానా?",
+    "opening_strength": null,
+    "payoff_line": "ఈరోజు కూడానా?",
+    "payoff_type": "punchline"
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [
+    "flash kept: seg0 (scene) start shows 0.30 s before the shot change at 111.42 s; moving it would clip 'రేయ్,' (0.06 s of the word lies before the cut)"
+   ],
+   "build_warnings": [
+    "flash kept: seg0 (scene) start shows 0.30 s before the shot change at 111.42 s; moving it would clip 'రేయ్,' (0.06 s of the word lies before the cut)"
+   ],
+   "source": "emotion_pick",
+   "feeling": "relatable_banter",
+   "intensity": 3,
+   "stop": {
+    "line": "L0050",
+    "text": "చాలురా యాక్టింగ్.",
+    "why": "Dad hilariously shuts down his son's midnight surprise drama right away with \"చాలురా యాక్టింగ్. నువ్వు పడుకోలేదని నాకు తెలుసు.\"",
+    "cold_open": false,
+    "case": "A_near_start",
+    "via": "start_line",
+    "plays_at_s": 1.64
+   },
+   "stay": "Will Surya get through his midnight cake cutting peacefully, or will his dad ruin the moment with a lecture?",
+   "land": {
+    "line": "L0074",
+    "text": "ఈరోజు కూడానా?",
+    "reaction": "L0075",
+    "reaction_text": "ఉమ్మ్",
+    "plays_at_s": 27.55
+   },
+   "reason": "Viewer stops because the grumpy father calls out his son's fake sleeping drama, stays to see if the birthday goes smoothly, and laughs at the father using his birthday blessing to nag about getting a job (relatable_banter).",
+   "moment": {
+    "id": "p01",
+    "line": "L0074",
+    "text": "ఈరోజు కూడానా?",
+    "feeling": "relatable_banter",
+    "intensity": 3,
+    "why": "Right after Surya cuts his birthday cake, his father blesses him by demanding he get a job after three wasted years, prompting the mother's hilarious exasperation with 'ఈరోజు కూడానా?'.",
+    "type": "punchline",
+    "lands_on_screen": true
+   },
+   "build_flags": []
+  },
+  {
+   "id": "e02",
+   "pieces": [
+    {
+     "start_word": 383,
+     "end_word": 397,
+     "start": 321.6,
+     "end": 327.8
+    },
+    {
+     "start_word": 398,
+     "end_word": 437,
+     "start": 348.9,
+     "end": 371.976
+    }
+   ],
+   "region": {
+    "start_word": 383,
+    "end_word": 437,
+    "start": 321.6,
+    "end": 371.976
+   },
+   "edited_duration": 29.276,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "సూర్య! నీకేమైనా డబ్బులు కావాలా? ఆ పర్లేదు నాన్న వద్దు. సరే. సాయంత్రం త్వరగా ఇంటికి రా. ఉమ్ ఉమ్ ఆహ్ అమ్మయ్య. అమ్మా! డబ్బులియ్య. ఇందాక మీ నాన్న ఇస్తా అంటే వద్దన్నావ్. నాన్న డబ్బులు అడిగితే లెక్క చెప్పాలి. నీకైతే చెప్పక్కర్లేదుగా. నేనంటే లెక్కలేదురా నీకు. ఛా సరేలే పో. ఆ దేవుడి పట్టుాలనుకున్నవి తీసుకో. ఆ Love you అమ్మా. అయ్యి మీ నాన్న ఇచ్చినవేరా, ఆయన ఇస్తే నువ్వు తీసుకోవని నాకిచ్చేల్లారు.",
+   "rank": 2,
+   "tier": "emotion_pick",
+   "tier_label": "emotion pick",
+   "scores": {},
+   "title": "నాన్న ప్రేమ అలాంటిది! | Father Love",
+   "hook_line": {
+    "text": "సూర్య!",
+    "start_word": 383,
+    "end_word": 383
+   },
+   "payoff_line": "అయ్యి మీ నాన్న ఇచ్చినవేరా, ఆయన ఇస్తే నువ్వు తీసుకోవని నాకిచ్చేల్లారు.",
+   "payoff_type": "reveal",
+   "payoff_line_source": "discover",
+   "why_it_works": "Viewer stops because a father gently asks his son if he needs money, stays to see why the son rejects it and begs his mother instead, and it ends on the heartwarming reveal that the father had alread…",
+   "category": "emotional",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 321.5,
+     "end": 328.05,
+     "kind": "scene"
+    },
+    {
+     "start": 347.917,
+     "end": 371.986,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 30.62,
+   "spoiler": false,
+   "characters": [
+    "Surya",
+    "Father",
+    "Mother"
+   ],
+   "visual_dependency": "medium",
+   "start_line": "L0147",
+   "end_line": "L0166",
+   "end_hold": {
+    "payoff_end": 371.976,
+    "next_speech": 371.996,
+    "long_silence_after": false,
+    "laugh_after": false,
+    "end": 371.986,
+    "hold_s": 0.01,
+    "on_shot_cut": false,
+    "rule": "before_next_line",
+    "note": "next line starts quickly and no shot change before it"
+   },
+   "chunk_drops": [
+    {
+     "after_line": "L0153",
+     "before_line": "L0156",
+     "removed_lines": [
+      "L0154"
+     ],
+     "lift_skip": false,
+     "start": 328.05,
+     "end": 347.917,
+     "removed_s": 19.87,
+     "why": "Remove long silent pause and vehicle horn as the father leaves the house."
+    }
+   ],
+   "discovery": {
+    "strength": null,
+    "what_happens": "Why does Surya decline his father's money only to immediately turn around and beg his mother for cash?",
+    "hook": "A father gently stops his son to ask if he needs money: 'సూర్య! నీకేమైనా డబ్బులు కావాలా?'.",
+    "payoff": "అయ్యి మీ నాన్న ఇచ్చినవేరా, ఆయన ఇస్తే నువ్వు తీసుకోవని నాకిచ్చేల్లారు.",
+    "opening_strength": null,
+    "payoff_line": "అయ్యి మీ నాన్న ఇచ్చినవేరా, ఆయన ఇస్తే నువ్వు తీసుకోవని నాకిచ్చేల్లారు.",
+    "payoff_type": "reveal"
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "source": "emotion_pick",
+   "feeling": "aww",
+   "intensity": 4,
+   "stop": {
+    "line": "L0147",
+    "text": "సూర్య!",
+    "why": "A father gently stops his son to ask if he needs money: 'సూర్య! నీకేమైనా డబ్బులు కావాలా?'.",
+    "cold_open": false,
+    "case": "start_line",
+    "via": "start_line",
+    "plays_at_s": 0.1
+   },
+   "stay": "Why does Surya decline his father's money only to immediately turn around and beg his mother for cash?",
+   "land": {
+    "line": "L0166",
+    "text": "అయ్యి మీ నాన్న ఇచ్చినవేరా, ఆయన ఇస్తే నువ్వు తీసుకోవని నాకిచ్చేల్లారు.",
+    "reaction": "hold",
+    "plays_at_s": 27.31
+   },
+   "reason": "Viewer stops because a father gently asks his son if he needs money, stays to see why the son rejects it and begs his mother instead, and it ends on the heartwarming reveal that the father had already left the money with mom (aww).",
+   "moment": {
+    "id": "p02",
+    "line": "L0166",
+    "text": "అయ్యి మీ నాన్న ఇచ్చినవేరా, ఆయన ఇస్తే నువ్వు తీసుకోవని నాకిచ్చేల్లారు.",
+    "feeling": "aww",
+    "intensity": 4,
+    "why": "Surya refuses money from his strict father to avoid accountability and asks his mother instead, only for her to reveal 'అయ్యి మీ నాన్న ఇచ్చినవేరా' because his father knew he wouldn't take it directly.",
+    "type": "reveal",
+    "lands_on_screen": true
+   },
+   "build_flags": []
+  },
+  {
+   "id": "e03",
+   "pieces": [
+    {
+     "start_word": 823,
+     "end_word": 897,
+     "start": 579.436,
+     "end": 611.536
+    }
+   ],
+   "region": {
+    "start_word": 823,
+    "end_word": 897,
+    "start": 579.436,
+    "end": 611.536
+   },
+   "edited_duration": 32.1,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "చెప్తా సూర్య నువ్వేంటి మొహం మీద బొట్టు పెట్టావ్. job కోసం HR తో పాటు పంతుల్ని కూడా consult అవుతున్నావా? ఏయ్ ఈరోజు మన సూర్య birthday రా. ఓ wish your birthday రా సూర్య Happy అదిరా Life లో ఉందా? ఊహూ మరి ఎందుకు రా మనకు birthday లు, పండగలు. అదే ఇంజనీరింగ్ చదివేటప్పుడు అనుకో ప్రతి ఒక్కరికి ఒక పండగ ఉంటది. పొంగలు, రంజాన్, క్రిస్మస్. ఇంజనీరింగ్ అయిపోయిన తర్వాత మనకున్న ఒకే ఒక పెద్ద పండగ మనకు job వచ్చిన రోజు. గుర్తుపెట్టుకో. అయినా పుట్టినరోజు చేసుకోవాలిరా. అవును ఒక్కరోజైనా ఇంట్లో తిట్లు తప్పే కదా.",
+   "rank": 3,
+   "tier": "emotion_pick",
+   "tier_label": "emotion pick",
+   "scores": {},
+   "title": "ఇంజనీరింగ్ అయ్యాక మనకున్న ఒకే పండగ Job రావడమే",
+   "hook_line": {
+    "text": "చెప్తా సూర్య నువ్వేంటి మొహం మీద బొట్టు పెట్టావ్.",
+    "start_word": 823,
+    "end_word": 829
+   },
+   "payoff_line": "అవును ఒక్కరోజైనా ఇంట్లో తిట్లు తప్పే కదా.",
+   "payoff_type": "punchline",
+   "payoff_line_source": "discover",
+   "why_it_works": "Viewer stops because of the funny jibe about consulting priests along with HRs for jobs, stays to find out what festivals mean for unemployed engineering graduates, and it ends on the hilarious relat…",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 579.136,
+     "end": 612.566,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 33.43,
+   "spoiler": false,
+   "characters": [
+    "Surya",
+    "Swami"
+   ],
+   "visual_dependency": "medium",
+   "start_line": "L0246",
+   "end_line": "L0259",
+   "end_hold": {
+    "payoff_end": 611.536,
+    "next_speech": 612.616,
+    "long_silence_after": false,
+    "laugh_after": true,
+    "end": 612.566,
+    "hold_s": 1.03,
+    "on_shot_cut": false,
+    "rule": "before_next_line",
+    "note": "next line starts quickly and no shot change before it"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": null,
+    "what_happens": "Why is Surya so bitter about celebrating his birthday and what is his friend's relatable justification for why unemployed graduates still need birthdays?",
+    "hook": "A stranger stops scrolling at the sharp comic roast: 'నువ్వేంటి మొహం మీద బొట్టు పెట్టావ్, job కోసం HR తో పాటు పంతుల్ని కూడా consult అవుతున్నావా?'",
+    "payoff": "అవును ఒక్కరోజైనా ఇంట్లో తిట్లు తప్పే కదా.",
+    "opening_strength": null,
+    "payoff_line": "అవును ఒక్కరోజైనా ఇంట్లో తిట్లు తప్పే కదా.",
+    "payoff_type": "punchline"
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "source": "emotion_pick",
+   "feeling": "laugh",
+   "intensity": 3,
+   "stop": {
+    "line": "L0246",
+    "text": "చెప్తా సూర్య నువ్వేంటి మొహం మీద బొట్టు పెట్టావ్.",
+    "why": "A stranger stops scrolling at the sharp comic roast: 'నువ్వేంటి మొహం మీద బొట్టు పెట్టావ్, job కోసం HR తో పాటు పంతుల్ని కూడా consult అవుతున్నావా?'",
+    "cold_open": false,
+    "case": "start_line",
+    "via": "start_line",
+    "plays_at_s": 0.3
+   },
+   "stay": "Why is Surya so bitter about celebrating his birthday and what is his friend's relatable justification for why unemployed graduates still need birthdays?",
+   "land": {
+    "line": "L0259",
+    "text": "అవును ఒక్కరోజైనా ఇంట్లో తిట్లు తప్పే కదా.",
+    "reaction": "hold",
+    "plays_at_s": 30.88
+   },
+   "reason": "Viewer stops because of the funny jibe about consulting priests along with HRs for jobs, stays to find out what festivals mean for unemployed engineering graduates, and it ends on the hilarious relatable punchline that birthdays at least save them from daily scoldings at home (laugh).",
+   "moment": {
+    "id": "p03",
+    "line": "L0259",
+    "text": "అవును ఒక్కరోజైనా ఇంట్లో తిట్లు తప్పే కదా.",
+    "feeling": "laugh",
+    "intensity": 3,
+    "why": "When debating what festivals mean for unemployed engineering graduates, the friend quips that birthdays are at least useful because 'ఒక్కరోజైనా ఇంట్లో తిట్లు తప్పే కదా'.",
+    "type": "punchline",
+    "lands_on_screen": true
+   },
+   "build_flags": []
+  },
+  {
+   "id": "e04",
+   "pieces": [
+    {
+     "start_word": 1570,
+     "end_word": 1632,
+     "start": 1040.186,
+     "end": 1070.146
+    },
+    {
+     "start_word": 1633,
+     "end_word": 1682,
+     "start": 1093.926,
+     "end": 1122.156
+    }
+   ],
+   "region": {
+    "start_word": 1570,
+    "end_word": 1682,
+    "start": 1040.186,
+    "end": 1122.156
+   },
+   "edited_duration": 58.19,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "Sir idli మీద తిన్న masala dosa నాకు ఇవ్వండి sir. ఒరేయ్ అది కాదురా, నాకు dosa అంటే ఇష్టం రా. అందుకే ఇంత సేపు masala dosa కోసం wait చేశాను. Sir అంటే idli తింటే నాకు motions అవుతాయి sir. Masala dosa నేను తింటాను. ఒరేయ్ అది కాదు, నువ్వు idli... మీకు idli నచ్చకపోతే రెండు masala dosa పెట్టుకోండి sir. వచ్చే దారిలో ఒకటే వాసన. దానికి తోడా ఆ hotel లో masala dosa చాలా famous. next time మీరు order పెట్టేటప్పుడు నాకు ఒక call చేయండి. నాకు ఏం కావాలో చెప్తా. Sir ఒక cigarette ఉందా? అంటే నాకు cigarette అలవాటు ఉంది. సరే పదా. ఊ బాల్కనీ మాత్రం అదిరిపోయింది సార్. ఓకే సార్. నేను వెళ్ళొస్తా. Have a nice day. ఉమ్ Five star rating కొంచెం ఇవ్వండి. రేయ్! నువ్వు ఇవ్వాలిరా నాకు five star rating.",
+   "rank": 4,
+   "tier": "emotion_pick",
+   "tier_label": "emotion pick",
+   "scores": {},
+   "title": "Delivery Boy అరాచకం 😂 | Five Star Rating",
+   "hook_line": {
+    "text": "Sir idli మీద తిన్న masala dosa నాకు ఇవ్వండి sir.",
+    "start_word": 1570,
+    "end_word": 1578
+   },
+   "payoff_line": "నువ్వు ఇవ్వాలిరా నాకు five star rating.",
+   "payoff_type": "punchline",
+   "payoff_line_source": "discover",
+   "why_it_works": "Viewer stops because of the delivery boy's absurd demand to take the customer's masala dosa, stays to find out how much more entitlement the customer will tolerate, and it ends on the customer furiou…",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 1039.886,
+     "end": 1070.245,
+     "kind": "scene"
+    },
+    {
+     "start": 1093.708,
+     "end": 1124.186,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 60.84,
+   "spoiler": false,
+   "characters": [
+    "Customer",
+    "Delivery Boy"
+   ],
+   "visual_dependency": "medium",
+   "start_line": "L0461",
+   "end_line": "L0485",
+   "end_hold": {
+    "payoff_end": 1122.156,
+    "next_speech": 1124.236,
+    "long_silence_after": false,
+    "laugh_after": true,
+    "end": 1124.186,
+    "hold_s": 2.03,
+    "on_shot_cut": false,
+    "rule": "before_next_line",
+    "note": "next line starts quickly and no shot change before it"
+   },
+   "chunk_drops": [
+    {
+     "after_line": "L0470",
+     "before_line": "L0472",
+     "removed_lines": [
+      "L0471"
+     ],
+     "lift_skip": false,
+     "start": 1070.245,
+     "end": 1093.708,
+     "removed_s": 23.46,
+     "why": "Remove the 24-second song montage to maintain fast-paced comedic rhythm."
+    }
+   ],
+   "discovery": {
+    "strength": null,
+    "what_happens": "Will the starving customer finally kick out the overly comfortable delivery boy or keep succumbing to his hilarious demands?",
+    "hook": "The delivery boy makes an absurdly bold demand to take the customer's food: 'Sir idli మీద తిన్న masala dosa నాకు ఇవ్వండి sir.'",
+    "payoff": "నువ్వు ఇవ్వాలిరా నాకు five star rating.",
+    "opening_strength": null,
+    "payoff_line": "నువ్వు ఇవ్వాలిరా నాకు five star rating.",
+    "payoff_type": "punchline"
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "source": "emotion_pick",
+   "feeling": "laugh",
+   "intensity": 5,
+   "stop": {
+    "line": "L0461",
+    "text": "Sir idli మీద తిన్న masala dosa నాకు ఇవ్వండి sir.",
+    "why": "The delivery boy makes an absurdly bold demand to take the customer's food: 'Sir idli మీద తిన్న masala dosa నాకు ఇవ్వండి sir.'",
+    "cold_open": false,
+    "case": "start_line",
+    "via": "start_line",
+    "plays_at_s": 0.3
+   },
+   "stay": "Will the starving customer finally kick out the overly comfortable delivery boy or keep succumbing to his hilarious demands?",
+   "land": {
+    "line": "L0485",
+    "text": "నువ్వు ఇవ్వాలిరా నాకు five star rating.",
+    "reaction": "hold",
+    "plays_at_s": 57.49
+   },
+   "reason": "Viewer stops because of the delivery boy's absurd demand to take the customer's masala dosa, stays to find out how much more entitlement the customer will tolerate, and it ends on the customer furiously declaring that the delivery boy should be rating him instead (laugh).",
+   "moment": {
+    "id": "p04",
+    "line": "L0485",
+    "text": "నువ్వు ఇవ్వాలిరా నాకు five star rating.",
+    "feeling": "laugh",
+    "intensity": 5,
+    "why": "After arriving late, drinking his host's water, eating his masala dosa, and smoking his cigarette, the delivery boy asks for five stars, making the furious customer snap 'నువ్వు ఇవ్వాలిరా నాకు five star rating'.",
+    "type": "punchline",
+    "lands_on_screen": true
+   },
+   "build_flags": []
+  },
+  {
+   "id": "e05",
+   "pieces": [
+    {
+     "start_word": 1688,
+     "end_word": 1745,
+     "start": 1131.056,
+     "end": 1162.236
+    }
+   ],
+   "region": {
+    "start_word": 1688,
+    "end_word": 1745,
+    "start": 1131.056,
+    "end": 1162.236
+   },
+   "edited_duration": 31.18,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ఉమ్ రేయ్ sleeper cell తీయ్ కాళ్ళు తీయ్ లే. ఛ్ ఆహ్ ఏంట్రా స్వామి గోల? ఆహ్ ఉమ్ రేయ్ ఆరు అయిపోయిందంట్రా. హా! ఒరేయ్ సూర్య time అలా గడిచిపోతుందిరా. మా నాన్న shop లో గంట కూర్చోమంటే ఒక్క నిమిషం కూడా ఉండలేను. అదే మీతో పని పటా లేకుండా ఎంతసేపు కూర్చున్నా అస్సలు బోర్ కొట్టదు. ఎందుకంట? అదేరా friendship అంటే. ఆహ్ అందుకే మా నాన్న మీతో friendship చేయొద్దనేది. Same feeling రా.",
+   "rank": 5,
+   "tier": "emotion_pick",
+   "tier_label": "emotion pick",
+   "scores": {},
+   "title": "అందుకే మీతో friendship చేయొద్దు అన్నారు",
+   "hook_line": {
+    "text": "ఉమ్ రేయ్ sleeper cell తీయ్ కాళ్ళు తీయ్ లే.",
+    "start_word": 1688,
+    "end_word": 1695
+   },
+   "payoff_line": "ఆహ్ అందుకే మా నాన్న మీతో friendship చేయొద్దనేది.",
+   "payoff_type": "punchline",
+   "payoff_line_source": "discover",
+   "why_it_works": "Viewer stops because a friend bluntly kicks his sleeping buddy awake calling him 'sleeper cell', stays to find out why they never get bored doing nothing, and it ends on the hilarious comeback 'అందుక…",
+   "category": "humour",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 1130.756,
+     "end": 1164.787,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 34.03,
+   "spoiler": false,
+   "characters": [
+    "సూర్య",
+    "స్వామి"
+   ],
+   "visual_dependency": "medium",
+   "start_line": "L0490",
+   "end_line": "L0505",
+   "end_hold": {
+    "payoff_end": 1162.236,
+    "end": 1164.787,
+    "hold_s": 2.55,
+    "on_shot_cut": true,
+    "next_speech": 1165.536,
+    "long_silence_after": false,
+    "laugh_after": true,
+    "note": "short hold (next shot cut before the minimum hold)",
+    "rule": "hold"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": null,
+    "what_happens": "Why does time fly so fast when these jobless friends sit around doing nothing together?",
+    "hook": "A friend aggressively waking up his sleeping buddy with 'రేయ్ sleeper cell తీయ్ కాళ్ళు తీయ్ లే' hooks scrolling viewers immediately.",
+    "payoff": "ఆహ్ అందుకే మా నాన్న మీతో friendship చేయొద్దనేది.",
+    "opening_strength": null,
+    "payoff_line": "ఆహ్ అందుకే మా నాన్న మీతో friendship చేయొద్దనేది.",
+    "payoff_type": "punchline"
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "source": "emotion_pick",
+   "feeling": "laugh",
+   "intensity": 4,
+   "stop": {
+    "line": "L0490",
+    "text": "ఉమ్ రేయ్ sleeper cell తీయ్ కాళ్ళు తీయ్ లే.",
+    "why": "A friend aggressively waking up his sleeping buddy with 'రేయ్ sleeper cell తీయ్ కాళ్ళు తీయ్ లే' hooks scrolling viewers immediately.",
+    "cold_open": false,
+    "case": "start_line",
+    "via": "start_line",
+    "plays_at_s": 0.3
+   },
+   "stay": "Why does time fly so fast when these jobless friends sit around doing nothing together?",
+   "land": {
+    "line": "L0504",
+    "text": "ఆహ్ అందుకే మా నాన్న మీతో friendship చేయొద్దనేది.",
+    "reaction": "L0505",
+    "reaction_text": "Same feeling రా.",
+    "plays_at_s": 27.92
+   },
+   "reason": "Viewer stops because a friend bluntly kicks his sleeping buddy awake calling him 'sleeper cell', stays to find out why they never get bored doing nothing, and it ends on the hilarious comeback 'అందుకే మా నాన్న మీతో friendship చేయొద్దనేది' (laugh).",
+   "moment": {
+    "id": "p05",
+    "line": "L0504",
+    "text": "ఆహ్ అందుకే మా నాన్న మీతో friendship చేయొద్దనేది.",
+    "feeling": "laugh",
+    "intensity": 4,
+    "why": "After Surya poetically reflects that wasting time with friends never feels boring and his buddy proudly calls it true friendship, he instantly retorts 'ఆహ్ అందుకే మా నాన్న మీతో friendship చేయొద్దనేది'.",
+    "type": "punchline",
+    "lands_on_screen": true
+   },
+   "build_flags": []
+  },
+  {
+   "id": "e06",
+   "pieces": [
+    {
+     "start_word": 2253,
+     "end_word": 2338,
+     "start": 1457.096,
+     "end": 1572.996
+    }
+   ],
+   "region": {
+    "start_word": 2253,
+    "end_word": 2338,
+    "start": 1457.096,
+    "end": 1572.996
+   },
+   "edited_duration": 115.9,
+   "reordered": false,
+   "n_blocks": 1,
+   "text": "ఏంట్రా ఇలా ఉన్నావ్? ఈ వాసన ఏంటి? వెయ్యి రూపాయలు ఇచ్చావు. ఇంకో వెయ్యి రూపాయలు ఇవ్వాల్సింది. రేపు వచ్చేవాడు. Yes నేనే చెడగొడుతున్నానే వీనికి డబ్బులిచ్చి. ఇంకోసారి నన్ను డబ్బులు అడుగురా. చీపురు కట్ట తిరిగేసి కొడతాను. I still love you mummy. నువ్వు నా దేవత. అమ్మ నువ్వు నోరు అమ్మ ఏంటి ఇక్కడ? అందరూ ఏం చేస్తున్నారు? I love you mummy. I love you daddy. సూర్య వచ్చిండట నాకు చెప్పలేదే. I love my family. సూర్య తాగి వచ్చాడా? ఇప్పుడు ఏమనకండి. పుట్టినరోజు కదా! ఏదైనా ఉంటే రేపు మాట్లాడుకుందాం. పడుకోనివ్వండి. ఉమ్ సరే పదా. మనం తిందాం. ఉమ్ మీరు పదండి. నువ్వు పదా. నేను జాబ్ తెచ్చుకుంటా.",
+   "rank": 6,
+   "tier": "emotion_pick",
+   "tier_label": "emotion pick",
+   "scores": {},
+   "title": "పుట్టినరోజు నాడు తాగి వస్తే | Family Emotion",
+   "hook_line": {
+    "text": "ఏంట్రా ఇలా ఉన్నావ్?",
+    "start_word": 2253,
+    "end_word": 2255
+   },
+   "payoff_line": "తెచ్చుకుంటా.",
+   "payoff_type": "emotional_peak",
+   "payoff_line_source": "discover",
+   "why_it_works": "Viewer stops because the mother immediately confronts her swaying son with 'ఏంట్రా ఇలా ఉన్నావ్?', stays to see the father's crushing reaction, and it ends on Surya's heartbreaking unconscious promise…",
+   "category": "emotional",
+   "standalone_risks": [],
+   "edit_notes": [],
+   "flags": [
+    "song_overlap"
+   ],
+   "content_type": "web_series",
+   "clip_purpose": "standalone",
+   "cold_open": false,
+   "cold_open_detail": null,
+   "cold_open_rejected": null,
+   "time_segments": [
+    {
+     "start": 1456.976,
+     "end": 1574.996,
+     "kind": "scene"
+    }
+   ],
+   "video_duration": 118.02,
+   "spoiler": true,
+   "characters": [
+    "సూర్య",
+    "మేఘన",
+    "అమ్మ",
+    "నాన్న"
+   ],
+   "visual_dependency": "medium",
+   "start_line": "L0661",
+   "end_line": "L0698",
+   "end_hold": {
+    "payoff_end": 1572.996,
+    "end": 1574.996,
+    "hold_s": 2.0,
+    "on_shot_cut": false,
+    "next_speech": null,
+    "long_silence_after": true,
+    "laugh_after": false,
+    "note": "hold not on a shot cut",
+    "rule": "hold"
+   },
+   "chunk_drops": [],
+   "discovery": {
+    "strength": null,
+    "what_happens": "How will the father react when he realizes his unemployed son came home drunk instead of joining the family dinner?",
+    "hook": "A mother's shocked confrontation as her son stumbles home drunk on his birthday: \"ఏంట్రా ఇలా ఉన్నావ్?\".",
+    "payoff": "తెచ్చుకుంటా.",
+    "opening_strength": null,
+    "payoff_line": "తెచ్చుకుంటా.",
+    "payoff_type": "emotional_peak"
+   },
+   "needs_rescore": false,
+   "flaws": [],
+   "shot_flags": [],
+   "build_warnings": [],
+   "source": "emotion_pick",
+   "feeling": "tears",
+   "intensity": 4,
+   "stop": {
+    "line": "L0661",
+    "text": "ఏంట్రా ఇలా ఉన్నావ్?",
+    "why": "A mother's shocked confrontation as her son stumbles home drunk on his birthday: \"ఏంట్రా ఇలా ఉన్నావ్?\".",
+    "cold_open": false,
+    "case": "start_line",
+    "via": "start_line",
+    "plays_at_s": 0.12
+   },
+   "stay": "How will the father react when he realizes his unemployed son came home drunk instead of joining the family dinner?",
+   "land": {
+    "line": "L0698",
+    "text": "తెచ్చుకుంటా.",
+    "reaction": "hold",
+    "plays_at_s": 77.82
+   },
+   "reason": "Viewer stops because the mother immediately confronts her swaying son with 'ఏంట్రా ఇలా ఉన్నావ్?', stays to see the father's crushing reaction, and it ends on Surya's heartbreaking unconscious promise that he will get a job (tears).",
+   "moment": {
+    "id": "p06",
+    "line": "L0698",
+    "text": "తెచ్చుకుంటా.",
+    "feeling": "tears",
+    "intensity": 4,
+    "why": "After ruining the family birthday dinner his father eagerly waited to share, the drunk and unconscious Surya mutters 'నేను జాబ్ తెచ్చుకుంటా', revealing the immense guilt he bears beneath his carefree exterior.",
+    "type": "emotional_peak",
+    "lands_on_screen": true
+   },
+   "build_flags": []
+  }
+ ],
+ "rejected": [],
+ "episode_note": {
+  "text": "6 moments a stranger would feel; 6 built by the build call; 0 rejected; 0 duplicates dropped; 6 shown, in episode order."
+ },
+ "episode_summary": {
+  "n_moments_listed": 6,
+  "n_moments_valid": 6,
+  "n_moments_rejected": 0,
+  "moments_rejected": [],
+  "moments_by_feeling": {
+   "relatable_banter": 1,
+   "aww": 1,
+   "laugh": 3,
+   "tears": 1
+  },
+  "moments_by_intensity": {
+   "5": 1,
+   "4": 3,
+   "3": 2
+  },
+  "max_moments": 10,
+  "n_build_calls": 6,
+  "n_not_built_cap": 0,
+  "n_not_built_spend": 0,
+  "n_no_clip": 0,
+  "n_blocked": 0,
+  "n_call_failed": 0,
+  "n_invalid": 0,
+  "n_builder_rejected": 0,
+  "n_hard_rules": 0,
+  "n_stop_check_failed": 0,
+  "n_land_check_failed": 0,
+  "n_built": 6,
+  "n_deduped": 0,
+  "n_shown": 6,
+  "shown_by_feeling": {
+   "relatable_banter": 1,
+   "aww": 1,
+   "laugh": 3,
+   "tears": 1
+  },
+  "rejected": [],
+  "warnings": [],
+  "episode_notes": "A slice-of-life comedy drama following Surya, an unemployed engineering graduate on his birthday. Dealing with the frustration of joblessness, banter with his sister and friends, and his girlfriend Anjali getting placed, the episode mixes relatable youth comedy with poignant family emotions culminating in his father's quiet heartbreak when Surya returns home drunk.",
+  "n_clusters": 6,
+  "clusters": [
+   {
+    "target": "p01",
+    "target_line": "L0074",
+    "strength": 3,
+    "members": [
+     {
+      "id": "p01",
+      "line": "L0074",
+      "intensity": 3
+     }
+    ],
+    "earlier": [],
+    "absorbed": [],
+    "break_before": null,
+    "cluster_context": ""
+   },
+   {
+    "target": "p02",
+    "target_line": "L0166",
+    "strength": 4,
+    "members": [
+     {
+      "id": "p02",
+      "line": "L0166",
+      "intensity": 4
+     }
+    ],
+    "earlier": [],
+    "absorbed": [],
+    "break_before": "music: L0109 [పాట] (14.1 s, no speech)",
+    "cluster_context": ""
+   },
+   {
+    "target": "p03",
+    "target_line": "L0259",
+    "strength": 3,
+    "members": [
+     {
+      "id": "p03",
+      "line": "L0259",
+      "intensity": 3
+     }
+    ],
+    "earlier": [],
+    "absorbed": [],
+    "break_before": "music: L0221 [పాట] (16.9 s, no speech)",
+    "cluster_context": ""
+   },
+   {
+    "target": "p04",
+    "target_line": "L0485",
+    "strength": 5,
+    "members": [
+     {
+      "id": "p04",
+      "line": "L0485",
+      "intensity": 5
+     }
+    ],
+    "earlier": [],
+    "absorbed": [],
+    "break_before": "music: L0273 [పాట] (4.4 s, no speech)",
+    "cluster_context": ""
+   },
+   {
+    "target": "p05",
+    "target_line": "L0504",
+    "strength": 4,
+    "members": [
+     {
+      "id": "p05",
+      "line": "L0504",
+      "intensity": 4
+     }
+    ],
+    "earlier": [],
+    "absorbed": [],
+    "break_before": "music: L0489 [పాట] (5.7 s, no speech)",
+    "cluster_context": ""
+   },
+   {
+    "target": "p06",
+    "target_line": "L0698",
+    "strength": 4,
+    "members": [
+     {
+      "id": "p06",
+      "line": "L0698",
+      "intensity": 4
+     }
+    ],
+    "earlier": [],
+    "absorbed": [],
+    "break_before": "music: L0550 [పాట] (25.5 s, no speech)",
+    "cluster_context": ""
+   }
+  ]
+ },
+ "moment_table": [
+  {
+   "id": "p01",
+   "line": "L0074",
+   "feeling": "relatable_banter",
+   "intensity": 3,
+   "text": "ఈరోజు కూడానా?",
+   "why": "Right after Surya cuts his birthday cake, his father blesses him by demanding he get a job after three wasted years, prompting the mother's hilarious exasperation with 'ఈరోజు కూడానా?'.",
+   "status": "shown",
+   "clip": "e01"
+  },
+  {
+   "id": "p02",
+   "line": "L0166",
+   "feeling": "aww",
+   "intensity": 4,
+   "text": "అయ్యి మీ నాన్న ఇచ్చినవేరా, ఆయన ఇస్తే నువ్వు తీసుకోవని నాకిచ్చేల్లారు.",
+   "why": "Surya refuses money from his strict father to avoid accountability and asks his mother instead, only for her to reveal 'అయ్యి మీ నాన్న ఇచ్చినవేరా' because his father knew he wouldn't take it directly.",
+   "status": "shown",
+   "clip": "e02"
+  },
+  {
+   "id": "p03",
+   "line": "L0259",
+   "feeling": "laugh",
+   "intensity": 3,
+   "text": "అవును ఒక్కరోజైనా ఇంట్లో తిట్లు తప్పే కదా.",
+   "why": "When debating what festivals mean for unemployed engineering graduates, the friend quips that birthdays are at least useful because 'ఒక్కరోజైనా ఇంట్లో తిట్లు తప్పే కదా'.",
+   "status": "shown",
+   "clip": "e03"
+  },
+  {
+   "id": "p04",
+   "line": "L0485",
+   "feeling": "laugh",
+   "intensity": 5,
+   "text": "నువ్వు ఇవ్వాలిరా నాకు five star rating.",
+   "why": "After arriving late, drinking his host's water, eating his masala dosa, and smoking his cigarette, the delivery boy asks for five stars, making the furious customer snap 'నువ్వు ఇవ్వాలిరా నాకు five star rating'.",
+   "status": "shown",
+   "clip": "e04"
+  },
+  {
+   "id": "p05",
+   "line": "L0504",
+   "feeling": "laugh",
+   "intensity": 4,
+   "text": "ఆహ్ అందుకే మా నాన్న మీతో friendship చేయొద్దనేది.",
+   "why": "After Surya poetically reflects that wasting time with friends never feels boring and his buddy proudly calls it true friendship, he instantly retorts 'ఆహ్ అందుకే మా నాన్న మీతో friendship చేయొద్దనేది'.",
+   "status": "shown",
+   "clip": "e05"
+  },
+  {
+   "id": "p06",
+   "line": "L0698",
+   "feeling": "tears",
+   "intensity": 4,
+   "text": "తెచ్చుకుంటా.",
+   "why": "After ruining the family birthday dinner his father eagerly waited to share, the drunk and unconscious Surya mutters 'నేను జాబ్ తెచ్చుకుంటా', revealing the immense guilt he bears beneath his carefree exterior.",
+   "status": "shown",
+   "clip": "e06"
+  }
+ ]
+}
