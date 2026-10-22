@@ -11,8 +11,10 @@ hook and clip into separate calls and cut fragments, so stop / stay / land are d
 Per episode (the whole transcript sits in ONE Gemini explicit context cache: ws3.ContextCache with the ws3_context
 persona, exactly as ws3 and merged do it; each call sends only its small task):
   1 FIND   (``ws_emotion_find``, thinking HIGH, once): the moments a stranger with zero context would FEEL. Per moment:
-           land line id, feeling (laugh / aww / shock / tension / tears), intensity, one-sentence why (plus ws3's
-           type and lands_on_screen). Nothing about starts, cuts or hooks. Strict, no quota. Validated by
+           land line id, feeling (one of ``find.feelings``: laugh / aww / shock / tension / tears /
+           relatable_banter / awkward_cringe; 0.1-0.2: the first five), intensity, one-sentence why (plus ws3's
+           type and lands_on_screen). A moment whose feeling is not in ``find.feelings`` is rejected. Nothing about
+           starts, cuts or hooks. Strict, no quota. Validated by
            ``ws3.validate_payoffs`` (ids checked, an audio-event id mapped to the spoken line before it, duplicates
            merged, intensity >= find.min_intensity) with NO list cap. ``find_prompt: "ws3_payoffs"`` (CLI
            ``--find ws3_payoffs``) runs ws3's call 1 unchanged instead (its cached answers replay at Rs 0).
@@ -87,9 +89,20 @@ Rejection codes: N0 the build call said no_clip; X1 Gemini safety block (the mom
 invalid answer; V1 answer ids invalid; B1 v1 cut builder; L1/L2/A1/S1/S2 v1 hard rules; K1 stop-first check (incl. a
 failed cold-open lift; 0.2: only an invalid stop id); K2 land-last check; D1 duplicate.
 
-Spend: one paid attempt per call (no retries); the spend guard (``--max-ledger-inr``) is checked up front (cache
-storage + one call, worst case) and before EVERY billed call with that call's worst case (``before_call``); after
-FIND the build list is cut to what the limit still allows (lowest intensity first). The project ledger records with
+emotion_pick/0.3 (founder, 2026-10-22; the DEFAULTS; ``configs/emotion_pick_v2.json`` pins 0.2 as run in runs/blind_v2):
+  feelings ``find.feelings`` (the find schema's emotion enum and the validation) gains ``relatable_banter`` and
+           ``awkward_cringe`` (both map to the humour category); ``ws_emotion_find`` version 3 names them (v2 kept as
+           ``ws_emotion_find_v2``, ``ws_emotion_build`` pinned as ``ws_emotion_build_v2``, same text).
+  build    max_output_tokens 16384 (0.2: 8192, which lost moments to finishReason=MAX_TOKENS).
+           ``build.max_tokens_retry``: a build call that still ends on MAX_TOKENS is retried ONCE with 2x the limit
+           (never more), when the spend guard allows the retry's worst case plus the worst case of every build call
+           still planned; recorded in the call record (debug) and the clip's build_flags. The give-up is remembered in the response cache
+           (LLMClient.remember_max_tokens), so a replay reaches the same retry for free.
+
+Spend: one paid attempt per call (0.3: plus at most one MAX_TOKENS retry per build call); the spend guard
+(``--max-ledger-inr``) is checked up front (cache storage + one call, worst case) and before EVERY billed call with
+that call's worst case (``before_call``; the retry: at its 2x limit plus the calls still planned); after FIND the build
+list is cut to what the limit still allows (lowest intensity first). The project ledger records with
 SHOTVI_SPEND_SOURCE. Cached answers replay at Rs 0. ``--dry-run`` makes no generate call: it replays a cached FIND,
 counts input tokens with Gemini countTokens (free; ``--offline`` = estimate) and prints Rs expected / worst per
 episode, with and without the moment cap.
@@ -100,8 +113,10 @@ CLI::
     SHOTVI_SPEND_SOURCE=emotion1 python -m shotvi.select.emotion_pick 5HqkHAZfzos --out runs/emotion1 \\
         --max-ledger-inr 1700 --max-moments 15
     python tools/preview_clips.py runs/emotion1 --top 50
-    # 0.1 replayed from the cache (Rs 0):
+    # 0.1 / 0.2 replayed from the cache (Rs 0):
     python -m shotvi.select.emotion_pick <ids> --config shotvi/select/configs/emotion_pick_v1.json --cache-only
+    python -m shotvi.select.emotion_pick <ids> --config shotvi/select/configs/emotion_pick_v2.json --cache-only \\
+        --max-moments 10
     # 0.2 dry run before its find has run: the find count estimated from an earlier run's find answers
     python -m shotvi.select.emotion_pick <ids> --out runs/emotion2 --dry-run --find-estimate runs/emotion1
 """
@@ -124,10 +139,15 @@ from shotvi.select import webseries as ws
 from shotvi.select import ws3
 
 ROOT = ws.ROOT
-PIPELINE_VERSION = "emotion_pick/0.2"
+PIPELINE_VERSION = "emotion_pick/0.3"
 ROLE_FIND = "ws_emotion_find"
 ROLE_BUILD = "ws_emotion_build"
-FEELINGS = ["laugh", "aww", "shock", "tension", "tears"]
+# find.feelings: the find schema's emotion enum and the validation. 0.1 / 0.2 (configs/emotion_pick_v1.json, _v2.json)
+# pin FEELINGS_V2; 0.3 adds the founder's two (2026-10-22)
+FEELINGS_V2 = ["laugh", "aww", "shock", "tension", "tears"]
+FEELINGS = FEELINGS_V2 + ["relatable_banter", "awkward_cringe"]
+# feeling -> v1 category (review.category / moment category): ws3's map plus the 0.3 feelings, both humour
+EMOTION_CATEGORY = {**ws3.EMOTION_CATEGORY, "relatable_banter": "humour", "awkward_cringe": "humour"}
 TIER = "emotion_pick"
 TIER_LABEL = "emotion pick"
 EXIT_SAFETY_BLOCKED = 4
@@ -136,12 +156,14 @@ PROJ_CAP = 15                 # the dry run always also shows this cap (founder'
 _FLASH = {"provider": "gemini", "model": "gemini-3.8-flash"}
 DEFAULTS: dict = {
     "pipeline_version": PIPELINE_VERSION,
-    # a prompts/ws_emotion_find*.md file (the strict stranger test: ws_emotion_find = v2, ws_emotion_find_v1 = 0.1's)
+    # a prompts/ws_emotion_find*.md file (the strict stranger test: ws_emotion_find = v3 (0.3), ws_emotion_find_v2 =
+    # 0.2's, ws_emotion_find_v1 = 0.1's)
     # or "ws3_payoffs" (ws3's call 1 unchanged)
     "find_prompt": ROLE_FIND,
     "models": {
         "find": {**_FLASH, "params": {"thinking_level": "high", "max_output_tokens": 32768}},     # = ws3_payoffs
-        "build": {**_FLASH, "params": {"thinking_level": "medium", "max_output_tokens": 8192}},   # = merged call C
+        # 0.3: 16384 (0.2's 8192 = merged call C lost moments to MAX_TOKENS); build.max_tokens_retry doubles it once
+        "build": {**_FLASH, "params": {"thinking_level": "medium", "max_output_tokens": 16384}},
     },
     "prompts": {ROLE_BUILD: "ws_emotion_build"},
     # deep-merged over ws3.DEFAULTS: persona prompt, explicit cache (TTL 1 h), speaker_names. 0.2 renders Scribe's
@@ -151,8 +173,9 @@ DEFAULTS: dict = {
     # punchline / cliffhanger is valid on Shorts, so the minimum played length is 10 s here only (webseries.DEFAULTS,
     # v1 web-series and merged stay at 15 s; configs/emotion_pick_v1.json pins 15 s)
     "v1": {"guardrails": {"min_s": 10.0}},
-    # extra_types: added to the find schema's type enum (0.1: none)
-    "find": {"min_intensity": 3, "extra_types": ["cliffhanger"]},
+    # extra_types: added to the find schema's type enum (0.1: none). feelings: the find schema's emotion enum; a found
+    # moment with another feeling is rejected (0.1 / 0.2: FEELINGS_V2)
+    "find": {"min_intensity": 3, "extra_types": ["cliffhanger"], "feelings": list(FEELINGS)},
     # lift-ok lines offered to the build call. rule "v1" = webseries.liftable_lines; "strict" = also speech >=
     # min_speech_s, the quiet-tail loudness check and the continuation guard. enforce: a cold open on a line not
     # offered is refused (the stop fallback then applies)
@@ -172,10 +195,12 @@ DEFAULTS: dict = {
     # build: max_moments None = a call for every found moment (cluster). The lift-ok list in the task covers lines
     # from lift_before_s before the land line to lift_after_s after it (as merged call C). The land may lie
     # land_window_lines before / land_after_lines after the found line (None = land_window_lines). end_rule "v1":
-    # an end more than max_end_after_payoff_lines after the land moves to the land; "clamp": see the docstring
+    # an end more than max_end_after_payoff_lines after the land moves to the land; "clamp": see the docstring.
+    # max_tokens_retry (0.3): a build call ending on MAX_TOKENS is retried once at 2x max_output_tokens (guard-checked)
     "build": {"max_moments": None, "lift_before_s": 150.0, "lift_after_s": 20.0, "land_window_lines": 3,
               "land_after_lines": 15, "max_end_after_payoff_lines": 3,
-              "end_rule": "clamp", "end_after_land_lines": 2, "end_after_reaction_lines": 1},
+              "end_rule": "clamp", "end_after_land_lines": 2, "end_after_reaction_lines": 1,
+              "max_tokens_retry": True},
     # stop != start_line. rule "v1": always a lift (refused = K1 reject); "fallback": Case A / B (docstring)
     # same_speaker: a single-line lift is refused when the next spoken line has the same (Scribe) speaker label.
     # Delayed-hook fixes (founder, 2026-10-22), see build_v2: turn_lift (B1) lifts the whole same-speaker run when its
@@ -256,18 +281,37 @@ def find_role(cfg: dict) -> str:
 
 def find_schema(cfg: dict) -> dict:
     """ws3_payoffs: ws3's schema object itself (the response-cache key needs it byte-identical). The new prompt: the
-    same shape, feelings limited to the founder's five (no "other"); ``find.extra_types`` (0.2: cliffhanger) are added
-    to the type enum before "other" (ws3's own schema is not touched)."""
+    same shape, feelings limited to ``find.feelings`` (no "other"; 0.1 / 0.2: the founder's five, 0.3: seven);
+    ``find.extra_types`` (0.2: cliffhanger) are added to the type enum before "other" (ws3's own schema is not
+    touched)."""
     if find_role(cfg) == "ws3_payoffs":
         return ws3.PAYOFFS_SCHEMA
     s = copy.deepcopy(ws3.PAYOFFS_SCHEMA)
     item = s["properties"]["payoffs"]["items"]["properties"]
-    item["emotion"]["enum"] = list(FEELINGS)
+    item["emotion"]["enum"] = feelings_of(cfg)
     extra = [t for t in (cfg.get("find") or {}).get("extra_types") or [] if t not in item["type"]["enum"]]
     if extra:
         en = [t for t in item["type"]["enum"] if t != "other"]
         item["type"]["enum"] = en + extra + (["other"] if "other" in item["type"]["enum"] else [])
     return s
+
+
+def feelings_of(cfg: dict) -> list[str]:
+    """``find.feelings`` (the find schema's emotion enum); a config without the key: FEELINGS_V2 (0.1 / 0.2)."""
+    f = (cfg.get("find") or {}).get("feelings")
+    return list(f) if f else list(FEELINGS_V2)
+
+
+def validate_feelings(moments: list[dict] | None, cfg: dict) -> tuple[list[dict] | None, list[dict]]:
+    """Found moments -> (kept, rejected): a moment whose feeling is not in ``find.feelings`` is rejected (the
+    schema's enum should already prevent it). ws3_payoffs answers keep ws3's own emotions ("other" included)."""
+    if moments is None or find_role(cfg) == "ws3_payoffs":
+        return moments, []
+    ok = set(feelings_of(cfg))
+    kept = [p for p in moments if p["emotion"] in ok]
+    rej = [{"payoff": p, "reason": f"feeling {p['emotion']!r} is not in find.feelings"} for p in moments
+           if p["emotion"] not in ok]
+    return kept, rej
 
 
 def ctx_cfg(cfg: dict) -> dict:
@@ -626,7 +670,7 @@ def validate_build(ep: ws.Episode, p: dict, ans: dict, cfg: dict) -> tuple[dict,
              characters=list(ans.get("characters") or []), cold_open_lines=[stop] if lift else [],
              cold_open_why=stop_why if lift else "", payoff_line=ws3.line_text(ep, land),
              payoff_type=TYPE_TO_V1.get(p["type"]), hook=stop_why, payoff=ws3.line_text(ep, land),
-             what_happens=str(ans.get("stay") or ""), category=ws3.EMOTION_CATEGORY.get(p["emotion"], "other"))
+             what_happens=str(ans.get("stay") or ""), category=EMOTION_CATEGORY.get(p["emotion"], "other"))
     emo = {"stop": {"line": stop, "text": ws3.line_text(ep, stop), "why": stop_why, "cold_open": lift,
                     **({"case": case} if case else {})},
            "stay": str(ans.get("stay") or ""),
@@ -1079,7 +1123,9 @@ def project(cfg: dict, acfg: dict, spec_f, spec_b, t_cache: int, t_find: int, f_
             build_tasks: list[tuple[int, bool]] | None, n_est: dict | None, t_build_sample: int | None,
             cap: int | None) -> dict:
     """Rupees of one episode. build_tasks = [(input tokens, cached)] in call order (FIND cached: exact), else
-    n_est = {"expected": n, "worst": n} moments with t_build_sample tokens each. Rows: no cap and the cap."""
+    n_est = {"expected": n, "worst": n} moments with t_build_sample tokens each. Rows: no cap and the cap. Worst =
+    every uncached build call at the configured max_output_tokens (0.3: 16384); ``build.retry`` gives the extra cost
+    of one MAX_TOKENS retry at 2x (only for a call that hits the limit; the guard checks it before it runs)."""
     from shotvi.llm.pricing import cache_storage_usd, cost_usd
     explicit = acfg["cache"].get("mode", "explicit") == "explicit"
     ttl_h = float(acfg["cache"]["ttl_s"]) / 3600.0
@@ -1090,6 +1136,8 @@ def project(cfg: dict, acfg: dict, spec_f, spec_b, t_cache: int, t_find: int, f_
 
     def call(spec, t_in, out):
         return ws.inr(cost_usd(spec.model, t_in + t_cache, out, cached_tokens=t_cache if explicit else 0) or 0.0)
+
+    t_max = max([t for t, _ in build_tasks] or [0]) if build_tasks is not None else t_build_sample
 
     f_exp = 0.0 if f_hit else call(spec_f, t_find, min(FIND_OUT_EXPECTED, max_f))
     f_worst = 0.0 if f_hit else call(spec_f, t_find, max_f)
@@ -1128,8 +1176,9 @@ def project(cfg: dict, acfg: dict, spec_f, spec_b, t_cache: int, t_find: int, f_
                      "inr_worst": round(call(spec_f, t_find, max_f), 2)},
             "build": {"model": spec_b.model, "thinking_level": spec_b.params.get("thinking_level"),
                       "out_expected": BUILD_OUT_EXPECTED, "out_max": max_b,
-                      "inr_worst_each": round(call(spec_b, max([t for t, _ in build_tasks] or [0])
-                                                   if build_tasks is not None else t_build_sample, max_b), 2)},
+                      "inr_worst_each": round(call(spec_b, t_max, max_b), 2),
+                      **({"retry": {"out_max": 2 * max_b, "inr_worst_each": round(call(spec_b, t_max, 2 * max_b), 2)}}
+                         if cfg["build"].get("max_tokens_retry") else {})},
             "rows": {"no_cap": row(None), "cap": row(cap) if cap is not None else None}}
 
 
@@ -1137,6 +1186,59 @@ def build_worst_inr(spec_b, t_cache: int, t_task: int = 4000) -> float:
     from shotvi.llm.pricing import cost_usd
     return ws.inr(cost_usd(spec_b.model, t_task + t_cache, int(spec_b.params.get("max_output_tokens", 8192)),
                            cached_tokens=t_cache) or 0.0)
+
+
+def retry_spec(spec_b):
+    """The build model with 2x max_output_tokens: the one MAX_TOKENS retry (a different response-cache key)."""
+    from shotvi.llm.base import ModelSpec
+    params = dict(spec_b.params)
+    params["max_output_tokens"] = 2 * int(spec_b.params.get("max_output_tokens", 8192))
+    return ModelSpec(spec_b.provider, spec_b.model, params)
+
+
+def is_max_tokens(err: BaseException) -> bool:
+    """The call gave up because the answer hit the output-token limit (Gemini finishReason=MAX_TOKENS)."""
+    return "finishReason=MAX_TOKENS" in str(err)
+
+
+def ask_build(llm, cache, spec_b, task: str, meta: dict, cfg: dict, guard, what: str, t_cache: int,
+              reserve_inr: float, rec: dict) -> tuple[dict, str | None]:
+    """One build call -> (answer, build flag or None). ``build.max_tokens_retry``: a call that gives up on
+    finishReason=MAX_TOKENS (live, or remembered in the response cache) is retried ONCE with 2x max_output_tokens
+    (``retry_spec``), never more. An uncached retry is first checked by the spend guard with its worst case plus
+    ``reserve_inr`` (the worst case of the build calls still planned after this one), so a retry never takes the room
+    of a planned call; refused -> LLMError. ``rec["max_tokens_retry"]`` records it. SafetyBlocked passes through."""
+    try:
+        return M.ask_cached(llm, cache, ROLE_BUILD, spec_b, task, BUILD_SCHEMA, meta), None
+    except SafetyBlocked:
+        raise
+    except LLMError as e:
+        if not (cfg["build"].get("max_tokens_retry") and is_max_tokens(e)):
+            raise
+        first = e
+    spec2 = retry_spec(spec_b)
+    n1, n2 = int(spec_b.params.get("max_output_tokens", 8192)), int(spec2.params["max_output_tokens"])
+    r = {"first": str(first), "max_output_tokens": n2}
+    rec["max_tokens_retry"] = r
+    if not llm.cache_only and not cache.is_hit(llm, spec2, task, BUILD_SCHEMA):
+        worst = max(build_worst_inr(spec2, t_cache), build_worst_inr(spec2, t_cache, ws3.est_tokens(task)))
+        r.update(worst_inr=round(worst, 2), reserved_inr=round(reserve_inr, 2))
+        try:
+            guard.check(f"{what} MAX_TOKENS retry at {n2} output tokens (+ Rs {reserve_inr:.2f} for the build calls "
+                        f"still planned)", worst + reserve_inr)
+        except ws.BudgetStop as e2:
+            r["refused"] = str(e2)
+            raise LLMError(f"{first}; the one retry at {n2} output tokens was refused by the spend guard ({e2})") \
+                from e2
+    try:
+        ans = M.ask_cached(llm, cache, ROLE_BUILD, spec2, task, BUILD_SCHEMA, {**meta, "max_tokens_retry": n2})
+    except SafetyBlocked:
+        raise
+    except LLMError as e2:
+        r["error"] = str(e2)
+        raise LLMError(f"{first}; the one retry at {n2} output tokens failed: {e2}") from e2
+    r["ok"] = True
+    return ans, f"build call: finishReason=MAX_TOKENS at {n1} output tokens; answered by the one retry at {n2}"
 
 
 # ---------------------------------------------------------------------------------------------------- the episode
@@ -1173,7 +1275,13 @@ def run_episode(vid: str, cfg: dict, llm, guard: ws.Guard, out_dir: Path, log=pr
     storage = ws.inr((cache_storage_usd(spec_f.model, t_cache, float(acfg["cache"]["ttl_s"]) / 3600) or 0.0)
                      + (cost_usd(spec_f.model, t_cache, 0) or 0.0))
     call_proj = {rf: f_worst, ROLE_BUILD: b_worst}
-    llm.before_call = lambda role, _spec: guard.check(f"{vid} {role}", call_proj.get(role, max(call_proj.values())))
+    # a build call's worst case follows its own limit (the MAX_TOKENS retry runs at 2x)
+    llm.before_call = lambda role, spec: guard.check(
+        f"{vid} {role}", build_worst_inr(spec, t_cache) if role == ROLE_BUILD and spec is not None
+        else call_proj.get(role, max(call_proj.values())))
+    # a MAX_TOKENS give-up of a build call is remembered (free replay of the failure, then of the retry)
+    if hasattr(llm, "remember_max_tokens"):
+        llm.remember_max_tokens.add(ROLE_BUILD)
     if not f_hit and not dry_run:
         guard.check(f"{vid} episode (cache + find + one build, worst case)", storage + f_worst + b_worst)
 
@@ -1194,6 +1302,8 @@ def run_episode(vid: str, cfg: dict, llm, guard: ws.Guard, out_dir: Path, log=pr
             except LLMError as e:
                 raise EpisodeStop(f"{vid}: {rf} failed ({e}); one attempt per call") from e
             moments, rej_moments = ws3.validate_payoffs(ep, disc, acfg)
+            moments, rej_f = validate_feelings(moments, cfg)
+            rej_moments += rej_f
             debug["find_raw"] = disc
             log(f"{vid}: FIND: {len(disc.get('payoffs') or [])} moments listed, {len(moments)} valid (by feeling "
                 f"{dict(Counter(p['emotion'] for p in moments))}; by intensity "
@@ -1205,6 +1315,8 @@ def run_episode(vid: str, cfg: dict, llm, guard: ws.Guard, out_dir: Path, log=pr
             if fp.exists():
                 raw = json.loads(fp.read_text(encoding="utf-8")).get("find_raw") or {}
                 moments, rej_moments = ws3.validate_payoffs(ep, raw, acfg)
+                moments, rej_f = validate_feelings(moments, cfg)
+                rej_moments += rej_f
                 est_basis = f"find answer of {fp.parent.parent.name} ({len(moments)} valid moments) as the estimate"
                 log(f"{vid}: dry run: find not cached; estimating with {est_basis}")
         clusters = cluster_moments(ep, moments or [], cfg)
@@ -1279,13 +1391,16 @@ def run_episode(vid: str, cfg: dict, llm, guard: ws.Guard, out_dir: Path, log=pr
 
         # ------------------------------------------------------------------ 2 BUILD, one call per moment
         cands, rejected, calls = [], [], []
-        for p in called:
+        planned = [0.0 if hits[p["id"]] else build_worst_inr(spec_b, t_cache, ws3.est_tokens(tasks[p["id"]]))
+                   for p in called]
+        for i, p in enumerate(called):
             x = {"id": "e" + p["id"][1:], "payoff": p}
             rec = {"moment": p["id"], "line": p["line"]}
             calls.append(rec)
             try:
-                ans = M.ask_cached(llm, cache, ROLE_BUILD, spec_b, tasks[p["id"]], BUILD_SCHEMA,
-                                   {"video": vid, "moment": p["line"], "emotion_pick": "build"})
+                ans, retry_flag = ask_build(llm, cache, spec_b, tasks[p["id"]],
+                                            {"video": vid, "moment": p["line"], "emotion_pick": "build"}, cfg, guard,
+                                            f"{vid} {p['line']}", t_cache, sum(planned[i + 1:]), rec)
             except SafetyBlocked as e:
                 rec["error"] = str(e)
                 rejected.append({**x, "reject_reasons": [f"X1: Gemini's safety check blocked this moment's build "
@@ -1301,6 +1416,8 @@ def run_episode(vid: str, cfg: dict, llm, guard: ws.Guard, out_dir: Path, log=pr
             x["answer"] = ans
             try:
                 x["moment"], x["emo"], x["flags"] = validate_build(ep, p, ans, cfg)
+                if retry_flag:
+                    x["flags"].insert(0, retry_flag)
                 if v2_build:
                     c = build_v2(ep, x, vcfg, cfg, lift_set)
                 else:
@@ -1375,7 +1492,7 @@ def proposal_doc(ep: ws.Episode, x: dict, rank: int, vcfg: dict, line_of_word: d
     p, emo = x["payoff"], x["emo"]
     title = emo["title"] or ws.one_line(emo["land"]["text"], 60)
     review = {"title": title, "why_it_works": emo["reason"] or p["reason"],
-              "category": ws3.EMOTION_CATEGORY.get(p["emotion"], "other")}
+              "category": EMOTION_CATEGORY.get(p["emotion"], "other")}
     d = ws.proposal_doc(ep, {**x, "review": review, "scores": {}, "flaws": [], "tier": TIER}, rank, vcfg,
                         line_of_word)
     ck = x.get("check") or {}
@@ -1579,7 +1696,10 @@ def projection_text(vid: str, res: dict) -> str:
     out = [f"{vid}: find {res['find_prompt']} {'cached (Rs 0)' if res['find_cached'] else 'NOT cached'}; {n}",
            f"  context {pr['context_tokens']} tokens, find task {pr['find_task_tokens']} tokens ({pr['token_source']});"
            f" find Rs {pr['find']['inr_expected']} exp / Rs {pr['find']['inr_worst']} worst; build Rs "
-           f"{pr['build']['inr_worst_each']} worst each; cache storage Rs {pr['storage_inr']}",
+           f"{pr['build']['inr_worst_each']} worst each (max_output_tokens {pr['build']['out_max']})"
+           + (f", one MAX_TOKENS retry at {pr['build']['retry']['out_max']} adds Rs "
+              f"{pr['build']['retry']['inr_worst_each']} worst" if pr["build"].get("retry") else "")
+           + f"; cache storage Rs {pr['storage_inr']}",
            "  setting | builds (exp/worst) | find exp | build exp | build worst | total exp | total worst"]
     for r in pr["rows"].values():
         if r is None:
@@ -1604,8 +1724,8 @@ def main(argv=None):
     ap.add_argument("--max-moments", type=int, default=None,
                     help="cap on build calls per episode (highest intensity first); 0 = no cap; default: config")
     ap.add_argument("--find", default=None,
-                    help="find prompt: ws_emotion_find (default, v2), ws_emotion_find_v1 or ws3_payoffs (ws3's call 1 "
-                         "unchanged)")
+                    help="find prompt: ws_emotion_find (default, v3), ws_emotion_find_v2, ws_emotion_find_v1 or "
+                         "ws3_payoffs (ws3's call 1 unchanged)")
     ap.add_argument("--config", default=None, help="JSON deep-merged over DEFAULTS")
     ap.add_argument("--find-estimate", default=None, metavar="RUN_DIR",
                     help="dry run with the find not cached: use RUN_DIR/debug/<id>.json's find answer as the "

@@ -10,7 +10,10 @@ Usage::
 Cache key = sha256 of (provider, model, params, system, prompt, schema). Only responses that parse and validate are
 cached, so an eval rerun with unchanged prompts costs nothing. A prompt the provider refuses on safety grounds
 (``SafetyBlocked``: never retried) is remembered too, as a ``{"blocked": reason}`` entry: a rerun raises the same
-SafetyBlocked without a call. The ledger records every call with its *full* cost
+SafetyBlocked without a call. Opt-in per role (``LLMClient.remember_max_tokens``): a call that gave up on
+``finishReason=MAX_TOKENS`` is remembered as a ``{"failed": message}`` entry, so a rerun / cache-only replay raises the
+same LLMError (same message) for free; the caller decides whether to retry with a larger limit (a different key).
+Roles not opted in ignore such entries (treated as a miss). The ledger records every call with its *full* cost
 (what an uncached production run pays) and the billed cost (0 on a cache hit).
 """
 from __future__ import annotations
@@ -139,6 +142,9 @@ class LLMClient:
         # called as before_call(role, spec) right before EVERY billed provider attempt (retries and schema
         # retries included, cache hits never): a spend guard raises here to stop before money is spent
         self.before_call = None
+        # roles whose MAX_TOKENS give-up is remembered in the response cache (see the module docstring); empty =
+        # every role behaves as before
+        self.remember_max_tokens: set[str] = set()
 
     # ------------------------------------------------------------------ cache
     @staticmethod
@@ -190,6 +196,34 @@ class LLMClient:
                                   ensure_ascii=False), encoding="utf-8")
         tmp.replace(p)
 
+    def _cache_put_failed(self, spec, key, message: str, meta: dict):
+        """Remember that this exact prompt (attempt 0 key) gave up on MAX_TOKENS (``remember_max_tokens`` roles)."""
+        if not self.use_cache:
+            return
+        p = self._cache_path(spec, key)
+        p.parent.mkdir(parents=True, exist_ok=True)
+        tmp = p.with_suffix(".tmp")
+        tmp.write_text(json.dumps({"failed": message, "meta": meta,
+                                   "created": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())},
+                                  ensure_ascii=False), encoding="utf-8")
+        tmp.replace(p)
+
+    @staticmethod
+    def is_max_tokens(err: BaseException) -> bool:
+        """The call gave up because the answer hit the output-token limit (Gemini finishReason=MAX_TOKENS)."""
+        return "finishReason=MAX_TOKENS" in str(err)
+
+    def remember_failure(self, role: str, spec: ModelSpec, system: str, prompt: str, schema: dict | None,
+                         message: str, meta: dict | None = None, cached_content: dict | None = None) -> str:
+        """Write the ``{"failed": message}`` entry for this call's attempt-0 key (same key as generate_json) and return
+        the key. Used to backfill a MAX_TOKENS give-up of a run made before failures were remembered (its message is
+        in that run's debug file), so the run replays byte-for-byte. Never overwrites a cached answer."""
+        ckey = f"\n<cached_content {cached_content['key']}>" if cached_content else ""
+        key = self.cache_key(spec, system, prompt + ckey, schema)
+        if self._cache_get(spec, key) is None:
+            self._cache_put_failed(spec, key, message, {"role": role, **(meta or {})})
+        return key
+
     # --------------------------------------------------------------- generate
     def _parse(self, text: str, schema: dict | None, text_ok: bool = False):
         if text_ok and schema is None:  # free-text answer requested (e.g. a grounded research call)
@@ -237,6 +271,12 @@ class LLMClient:
                                    latency=0.0, ok=False)
                 raise SafetyBlocked(f"{role}/{spec.model}: prompt blocked by the provider's safety check "
                                     f"(blockReason {hit['blocked']}; cached block)", reason=str(hit["blocked"]))
+            if hit is not None and hit.get("failed") is not None:
+                if role in self.remember_max_tokens and attempt == 0:
+                    # a remembered MAX_TOKENS give-up of this prompt: the same error, no call
+                    self.ledger.record(role, spec, RawResponse("", 0, 0), cached=True, latency=0.0, ok=False)
+                    raise LLMError(str(hit["failed"]))
+                hit = None  # not opted in: a miss, as before
             if hit is not None and spec.params.get("google_search") and not hit.get("grounding"):
                 hit = None  # a grounded answer without its grounding metadata cannot be verified: call again
             if hit is not None:
@@ -263,6 +303,10 @@ class LLMClient:
                                           {"role": role, **(meta or {})})
                 raise SafetyBlocked(f"{role}/{spec.model}: prompt blocked by the provider's safety check "
                                     f"(blockReason {e.reason})", reason=e.reason, response=e.response) from e
+            except LLMError as e:
+                if attempt == 0 and role in self.remember_max_tokens and self.is_max_tokens(e):
+                    self._cache_put_failed(spec, key, str(e), {"role": role, **(meta or {})})
+                raise
             try:
                 obj = self._parse(raw.text, schema, text_ok)
             except RetryableError as e:

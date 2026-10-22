@@ -12,8 +12,11 @@
 9. the find schema takes "cliffhanger" (0.2 only); validate_payoffs accepts it;
 10. founder fixes (2026-10-16, round 2): keep the longer same-scene duplicate (<= 120 s), the 90 s cluster span cap,
     and the same-speaker rule for cold opens (lift-ok filter + build-time refusal, Scribe labels).
-The fake episodes alternate Scribe speaker labels line by line (``alternate``) unless a test sets them."""
+The fake episodes alternate Scribe speaker labels line by line (``alternate``) unless a test sets them.
+0.2 runs as pinned in configs/emotion_pick_v2.json (deep-merged over DEFAULTS, as the CLI does); 0.3's changes
+(feelings, build limit, MAX_TOKENS retry) are tested in test_emotion_pick_v3."""
 import copy
+import json
 import unittest
 
 from shotvi.select import emotion_pick as E
@@ -24,7 +27,8 @@ from tests.select.test_emotion_pick import V1, FakeProvider, L, Run, build, epis
 from tests.select.test_webseries_cut import make_ep
 from tests.select.test_webseries_scene import block, shot_cuts
 
-V2 = E.DEFAULTS
+V2 = ws.deep_merge(E.DEFAULTS, json.loads((ws.ROOT / "shotvi/select/configs/emotion_pick_v2.json")
+                                        .read_text(encoding="utf-8")))
 NO_CLUSTER = {"cluster": {"enabled": False}}
 
 
@@ -549,9 +553,11 @@ class Context(unittest.TestCase):
         f1, b1 = load_prompt("ws_emotion_find_v1"), load_prompt("ws_emotion_build_v1")
         self.assertEqual((f1.name, f1.version, b1.name, b1.version), ("ws_emotion_find_v1", "1", "ws_emotion_build_v1",
                                                                       "1"))
-        self.assertEqual((load_prompt("ws_emotion_find").version, load_prompt("ws_emotion_build").version), ("2", "2"))
+        f2, b2 = load_prompt(V2["find_prompt"]), load_prompt(V2["prompts"][E.ROLE_BUILD])
+        self.assertEqual((f2.name, f2.version, b2.name, b2.version), ("ws_emotion_find_v2", "2", "ws_emotion_build_v2",
+                                                                      "2"))
         self.assertNotIn("$cluster_context", b1.user)
-        self.assertIn("$cluster_context", load_prompt("ws_emotion_build").user)
+        self.assertIn("$cluster_context", b2.user)
         cfg = ws.deep_merge(V2, V1)
         self.assertEqual(E.find_role(cfg), E.ROLE_FIND)
         self.assertEqual(E.ctx_cfg(cfg)["prompts"][E.ROLE_FIND], "ws_emotion_find_v1")

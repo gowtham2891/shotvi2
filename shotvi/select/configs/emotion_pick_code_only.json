@@ -2,7 +2,9 @@
  "find_prompt": "ws_emotion_find_v1",
  "prompts": {"ws_emotion_build": "ws_emotion_build_v1"},
  "ctx": {"speaker_names": true},
- "find": {"min_intensity": 3, "extra_types": []},
+ "models": {"build": {"params": {"max_output_tokens": 8192}}},
+ "find": {"min_intensity": 3, "extra_types": [], "feelings": ["laugh", "aww", "shock", "tension", "tears"]},
  "lift_ok": {"rule": "v1", "enforce": false},
  "cluster": {"enabled": false},
- "build": {"max_moments": 12, "land_window_lines": 3, "land_after_lines": 15, "end_rule": "clamp"}}
+ "build": {"max_moments": 12, "land_window_lines": 3, "land_after_lines": 15, "end_rule": "clamp",
+           "max_tokens_retry": false}}

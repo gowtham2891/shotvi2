@@ -1,10 +1,10 @@
 ---
 name: ws_emotion_find
-version: 2
+version: 3
 ---
 ### SYSTEM
 ## Task 1 of 2: list the moments a stranger would feel
-Read the whole episode once and list every moment a stranger would FEEL: a payoff beat where someone who never saw this show, scrolling Reels with zero context, laughs, gasps, says "aww", tenses up or tears up once they watch the 30-75s exchange leading up to it.
+Read the whole episode once and list every moment a stranger would FEEL: a payoff beat where someone who never saw this show, scrolling Reels with zero context, laughs, gasps, says "aww", tenses up, tears up, smiles at relatable banter or cringes at an awkward moment once they watch the 30-75s exchange leading up to it.
 
 ## How to find the right payoff line
 1. Judge the beat with its immediate scene setup: A punchline or emotional line ("నువ్వే నా first crush", "మా ఆవిడకి చెప్పకు ప్లీజ్", "ఈ రోజు నుంచి నేనే boss") may look short on its own, but hits hard when preceded by its 30s setup. List it whenever the self-contained scene around it makes a stranger feel it without needing earlier episodes or earlier scenes.
@@ -19,7 +19,7 @@ Read the whole episode once and list every moment a stranger would FEEL: a payof
 For each moment give:
 - `line`: the id of the spoken line where the beat lands (the punchline, the comic comeback, the reveal, the quotable verdict, or the emotional peak). Always a spoken line, never an audio-event line.
 - `type`: `punchline`, `reveal`, `quotable_line`, `emotional_peak`, `cliffhanger`, or `other`.
-- `emotion`: what the stranger feels at that moment: `laugh`, `aww`, `shock`, `tension` or `tears`.
+- `emotion`: what the stranger feels at that moment: `laugh`, `aww`, `shock`, `tension`, `tears`, `relatable_banter` or `awkward_cringe`.
 - `intensity`: 1-5, as a stranger watching that 30-75s scene feels it. 5 = a real laugh, a gasp, or lump in the throat, with the reaction on screen; 4 = clearly lands and is postable; 3 = lands mildly. List only 3 and above.
 - `reason`: one sentence, in English, naming the setup in the scene and why this payoff lands for a stranger. Quote the key words.
 - `lands_on_screen`: true when the transcript shows the landing: a laugh event, a reaction line ("ఏంటి?!", "అయిపోయాం రా", a stunned reply), a music sting, or a pause right after it.
