@@ -10,6 +10,8 @@ ratings.csv to fill in.
 When an ASR correction layer exists (runs/asr_fix/<video_id>/corrections.json), transcripts show the corrected
 words, marked (page: hover / tap shows what Scribe heard and why; .txt: [✎ ...] plus a list under the transcript),
 and low-confidence words with no correction get "(?)". Scribe's transcript is never changed. --no-asr-fix: off.
+When the run used a speaker source other than Scribe (emotion_pick ``speaker_source``: sarvam / llm_fix), the
+transcripts show that layer's anonymous labels (runs/speaker_layer/<id>_<source>.json) instead of Scribe's.
 
 usage: python tools/preview_clips.py runs/<run_id> [--top 5] [--video <id>] [--skip-existing] [--no-asr-fix]
                                      [--reuse runs/<earlier_run> ...]
@@ -30,6 +32,7 @@ from preview_page import build_page
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from shotvi.segment import asr_fix  # noqa: E402
+from shotvi.segment import speaker_layer  # noqa: E402
 
 TXT_FIXED = "[✎ %s]"   # .txt form of a corrected span
 
@@ -353,6 +356,11 @@ def main():
         vdir = Path("scribe_dataset") / vid
         words = json.loads((vdir / f"{vid}_scribe_transcript.json").read_text(encoding="utf-8"))["word_timestamps"]
         labels = speaker_labels(vid)
+        layer = speaker_layer.for_run(doc, vid)
+        if layer is not None:     # the run's speaker source (shotvi.segment.speaker_layer): its anonymous labels
+            speaker_layer.apply([], words, layer)
+            labels = {}
+            print(f"{vid}: speaker labels from the run's {layer['source']} layer ({layer['n_speakers']} speakers)")
         marks = asr_marks(vid, words, not args.no_asr_fix)
         if marks is not None:
             print(f"{vid}: ASR layer: {len({id(m) for m in marks.values() if m['kind'] == 'fixed'})} fixes, "

@@ -99,6 +99,15 @@ emotion_pick/0.3 (founder, 2026-10-22; the DEFAULTS; ``configs/emotion_pick_v2.j
            still planned; recorded in the call record (debug) and the clip's build_flags. The give-up is remembered in the response cache
            (LLMClient.remember_max_tokens), so a replay reaches the same retry for free.
 
+Speaker source (founder's experiment, 2026-10-23; config ``speaker_source``, read with cfg.get, default "scribe" =
+unchanged): "sarvam" / "llm_fix" relabel the episode's lines and words with ``shotvi.segment.speaker_layer``
+(runs/speaker_layer/<id>_<source>.json; anonymous ``speaker_<n>`` labels in order of first appearance, never names)
+right after loading, so the cached context, build tasks, lift-ok list, every speaker rule (same-speaker cold open, turn
+runs, B2's question/reply check) and the rendered clip text use the source's labels; line ids are Scribe's. The run
+document records ``speaker_layer`` (source, mapping table, split lines). configs/emotion_pick_v2_sarvam.json and
+emotion_pick_v2_llmfix.json = emotion_pick_v2.json + speaker_source. A dry run with the source file missing uses a
+placeholder layer (Scribe labels anonymised) and counts every call as uncached.
+
 Spend: one paid attempt per call (0.3: plus at most one MAX_TOKENS retry per build call); the spend guard
 (``--max-ledger-inr``) is checked up front (cache storage + one call, worst case) and before EVERY billed call with
 that call's worst case (``before_call``; the retry: at its 2x limit plus the calls still planned); after FIND the build
@@ -270,6 +279,52 @@ class Rejected(Exception):
     def __init__(self, code: str, msg: str):
         self.code = code
         super().__init__(f"{code}: {msg}")
+
+
+# ---------------------------------------------------------------------------------------------------- speakers
+def speaker_source(cfg: dict) -> str:
+    """``speaker_source`` (founder's speaker-source experiment, 2026-10-23): "scribe" (default; read with cfg.get so
+    every existing config and replay stays byte-identical), "sarvam" or "llm_fix" (see shotvi.segment.speaker_layer).
+    """
+    src = cfg.get("speaker_source", "scribe") or "scribe"
+    from shotvi.segment.speaker_layer import SOURCES
+    if src not in SOURCES:
+        raise ValueError(f"speaker_source {src!r}: expected one of {SOURCES}")
+    return src
+
+
+def label_kind(ep) -> str:
+    """How build notes name a speaker label: "Scribe label" (default, as before) or "<source> label"."""
+    src = getattr(ep, "speaker_source", "scribe")
+    return "Scribe label" if src == "scribe" else f"{src} label"
+
+
+def apply_speaker_source(ep: ws.Episode, cfg: dict, acfg: dict, dry_run: bool, log=print) -> dict | None:
+    """Relabel the episode's speech lines and words (loaded copies; the Scribe file is never touched) with the
+    speaker layer of ``speaker_source``, BEFORE the context is rendered, so the cached transcript Gemini reads, the
+    build tasks, the lift-ok list, every same-speaker / turn-run / B2 rule and the rendered clip text all use it.
+    "scribe": nothing changes (returns None). A missing source file: a dry run uses ``speaker_layer.placeholder``
+    (Scribe's labels anonymised; every prompt then counts as uncached); a real run raises."""
+    src = speaker_source(cfg)
+    if src == "scribe":
+        return None
+    if acfg.get("speaker_names"):
+        raise ValueError("speaker_source and ctx.speaker_names both change the rendered speaker; use one")
+    from shotvi.segment import speaker_layer as SL
+    try:
+        layer = SL.load(ep.video_id, src, log=log)
+    except SL.LayerMissing as e:
+        if not dry_run:
+            raise
+        log(f"{ep.video_id}: dry run: {e}; PLACEHOLDER layer (Scribe labels, anonymised) for the projection: "
+            f"every call counts as uncached")
+        layer = SL.placeholder(ep.video_id, src)
+    n = SL.apply(ep.lines, ep.words, layer)
+    ep.speaker_source = src
+    log(f"{ep.video_id}: speaker labels from {src} ({n} speech lines, {layer['n_speakers']} speakers, "
+        f"{layer['stats']['n_split_lines']} lines with 2+ speakers)" + (" [placeholder]" if layer.get("placeholder")
+                                                                       else ""))
+    return layer
 
 
 # ---------------------------------------------------------------------------------------------------- config
@@ -867,10 +922,10 @@ def build_v2(ep: ws.Episode, x: dict, vcfg: dict, cfg: dict, lift_ok: set) -> di
                     return c0, m1, "B1_turn_lift", (f"cold open {stop}: same speaker continues in {same}; the whole "
                                                     f"turn {'+'.join(run)} is lifted"), "B1_turn_lift"
                 refuse = f"turn {'+'.join(run)}: {c0.get('lift_rejected') or 'lift not built'}"
-            refuse = (f"same speaker continues in {same} (Scribe label {ep.by_id[stop].get('speaker')}); "
+            refuse = (f"same speaker continues in {same} ({label_kind(ep)} {ep.by_id[stop].get('speaker')}); "
                       f"turn lift refused: {refuse}")
         elif same:
-            refuse = f"same speaker continues in {same} (Scribe label {ep.by_id[stop].get('speaker')})"
+            refuse = f"same speaker continues in {same} ({label_kind(ep)} {ep.by_id[stop].get('speaker')})"
         elif enforce and stop not in lift_ok:
             refuse = "not offered as a liftable line"
         else:
@@ -1248,15 +1303,21 @@ def run_episode(vid: str, cfg: dict, llm, guard: ws.Guard, out_dir: Path, log=pr
     acfg, vcfg = ctx_cfg(cfg), v1_cfg(cfg)
     ep, ix, _tr, tp = ws.load_episode(vid, with_loudness=not dry_run, speaker_names=bool(acfg.get("speaker_names")),
                                       require_names=False)
+    layer = apply_speaker_source(ep, cfg, acfg, dry_run, log)
+    # a placeholder layer (dry run, source file missing) is not the real prompt: never count a cache hit
+    force_miss = bool(layer and layer.get("placeholder"))
     system, prefix = ws3.context_prompt(ep, acfg)
     rf = find_role(cfg)
     spec_f, spec_b = ws3.spec_of(acfg, rf), spec_build(cfg)
     schema_f = find_schema(cfg)
     cache = ws3.ContextCache(system, prefix, spec_f, acfg, log)
     task_f = ws3.task_text(acfg, rf, episode_len=ws.fmt(ep.duration), n_lines=len(ep.lines))
-    f_hit = cache.is_hit(llm, spec_f, task_f, schema_f)
+    f_hit = cache.is_hit(llm, spec_f, task_f, schema_f) and not force_miss
     cap = cfg["build"].get("max_moments")
     debug: dict = {"video_id": vid, "warnings": []}
+    if layer is not None:
+        from shotvi.segment.speaker_layer import public as layer_public
+        debug["speaker_layer"] = layer_public(layer)
     if dry_run:
         llm.cache_only = True
         tok = Tokens(spec_f, offline, log)
@@ -1332,8 +1393,8 @@ def run_episode(vid: str, cfg: dict, llm, guard: ws.Guard, out_dir: Path, log=pr
 
         if dry_run:
             if moments is not None:
-                bt = [(tok.text(tasks[p["id"]]), cache.is_hit(llm, spec_b, tasks[p["id"]], BUILD_SCHEMA))
-                      for p in order]
+                bt = [(tok.text(tasks[p["id"]]),
+                       cache.is_hit(llm, spec_b, tasks[p["id"]], BUILD_SCHEMA) and not force_miss) for p in order]
                 proj = project(cfg, acfg, spec_f, spec_b, t_cache, t_find, f_hit, bt, None, None,
                                cap if cap is not None else PROJ_CAP)
                 tdir = out_dir / "tasks" / vid
@@ -1359,6 +1420,8 @@ def run_episode(vid: str, cfg: dict, llm, guard: ws.Guard, out_dir: Path, log=pr
             extra: dict = {"n_lift_ok": len(lift_ids), **({"n_lift_ok_runs": len(lift_runs)} if lift_runs else {})}
             if est_basis:
                 extra["moments_basis"] = est_basis
+            if layer is not None:
+                extra["speaker_layer"] = debug["speaker_layer"]
             if (cfg.get("cluster") or {}).get("enabled") and moments is not None:
                 extra["n_clusters"] = len(clusters)
                 extra["clusters"] = debug["clusters"]
@@ -1615,6 +1678,8 @@ def run_document(ep, tp, props, rej_docs, cfg, acfg, vcfg, llm, summary, table, 
         "episode_summary": summary, "moment_table": table,
     })
     doc["cost"]["cache"] = debug.get("cache")
+    if debug.get("speaker_layer"):      # only with a non-default speaker_source (scribe runs stay byte-identical)
+        doc["speaker_layer"] = debug["speaker_layer"]
     return doc
 
 
@@ -1641,6 +1706,10 @@ def clips_md(ep: ws.Episode, doc: dict) -> str:
              f"{s['n_built']} built, {s['n_deduped']} duplicates dropped, {s['n_shown']} shown (episode order, no "
              f"review, no score).\n",
            f"Cost ${doc['cost']['usd']:.4f} (${doc['cost']['usd_billed']:.4f} billed this run).\n"]
+    if doc.get("speaker_layer"):
+        sl = doc["speaker_layer"]
+        out.append(f"Speaker labels: {sl['source']} ({sl['n_speakers']} speakers; "
+                   + "; ".join(f"{m['label']} = {m['source_id']}" for m in sl["mapping"]) + ").\n")
     for p in doc["proposals"]:
         segs = " + ".join(f"{ws.fmt(x['start'])}-{ws.fmt(x['end'])}" for x in p["time_segments"])
         st, ld = p["stop"], p["land"]

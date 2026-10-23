@@ -1,13 +1,18 @@
 """One command for a new Telugu web-series episode, from a YouTube link to the review page.
 
     python -m shotvi.run_episode <youtube_url_or_video_id> [--out runs/ep_<id>] [--max-ledger-inr N]
-                                 [--skip-asr-fix] [--speaker-fix] [--dry-run]
+                                 [--skip-asr-fix] [--speaker-fix] [--sarvam] [--dry-run]
 
 Steps (each one is skipped when its output already exists, so the command can be re-run after a failure):
 
   1. download    download_youtube.py  -> scribe_dataset/<id>/<id>.mp4, <id>_audio.wav, youtube_meta.json  (free)
   2. transcribe  transcribe_scribe.py -> scribe_dataset/<id>/<id>_scribe_transcript.json   (ElevenLabs credits,
                  ~66.7 per minute of audio; the script picks the key with enough credits)
+  2b. sarvam    (opt-in, --sarvam; off by default, and then not listed at all)
+                 tools/transcribe_sarvam.py <id> -> scribe_dataset/<id>/<id>_sarvam_raw.json (Sarvam saaras:v4
+                 codemix diarization, Rs 0.59 per minute of audio; skipped when the raw file exists). The script
+                 records the job in the project spend ledger (source "sarvam") and refuses to start over the limit;
+                 the speaker layer (shotvi.segment.speaker_layer, source "sarvam") is built from it for free
   3. shots       ffmpeg select=gt(scene,0.25) on 320px frames -> runs/video/<id>/shots.json (+ ffmpeg_scene.log)
   4. segments    python -m shotvi.segment <transcript> --out runs/segment_r3/<id>/segments.json --intro rules
   5. asr_fix     python -m shotvi.segment.asr_fix <id>      (Gemini, ~₹2; --skip-asr-fix skips it)
@@ -47,6 +52,7 @@ ASR_FIX_INR_FALLBACK = 2.0        # used only when the transcript is missing, so
 SELECT_INR_FALLBACK = 15.0        # idem for the clip pipeline (measured ₹13-16 per 20-min episode)
 SPEAKER_FIX_INR_FALLBACK = 15.0   # idem for speaker_fix (its own worst case is ~₹3.3 per ~110-line chunk)
 SPEAKERS_CONFIG = "shotvi/select/configs/ws_v1_speakers.json"   # select config when --speaker-fix is on
+SARVAM_INR_PER_MIN = 0.59         # tools/transcribe_sarvam.INR_PER_MIN (batch STT 0.49 + diarization 0.10)
 EXIT_BUDGET_STOP = 2              # a sub-step stopped on its own ledger guard
 EXIT_GUARD_REFUSED = 3            # this runner refused to start a paid step
 VIDEO_ID_RE = re.compile(r"^[A-Za-z0-9_-]{11}$")
@@ -204,6 +210,10 @@ class Paths:
         return ROOT / "runs" / "speaker_fix" / f"{self.vid}.json"
 
     @property
+    def sarvam_raw(self) -> Path:
+        return self.src / f"{self.vid}_sarvam_raw.json"
+
+    @property
     def clips(self) -> Path:
         return self.out / f"{self.vid}.json"
 
@@ -221,6 +231,7 @@ class Ctx:
     skip_asr_fix: bool
     ledger0: float
     speaker_fix: bool = False           # opt-in step 5b; select then uses SPEAKERS_CONFIG
+    sarvam: bool = False                # opt-in step 2b (Sarvam diarization)
     credits_used: float = 0.0
     inr_projected: float = 0.0          # dry run: rupees the paid steps would bill
     credits_projected: float = 0.0
@@ -289,6 +300,29 @@ class Transcribe(Step):
         print(f"    credit estimate: {mins:.1f} min x {CREDITS_PER_MIN} = ~{mins * CREDITS_PER_MIN:,.0f} credits")
         run_cmd([PY, "transcribe_scribe.py", rel(ctx.p.wav), rel(ctx.p.transcript)])
         ctx.credits_used += mins * CREDITS_PER_MIN
+
+
+class Sarvam(Step):
+    """Opt-in (--sarvam): Sarvam diarization (scribe_dataset/<id>/<id>_sarvam_raw.json) for the speaker layer.
+    Rupees: minutes x Rs 0.59, guarded here and in the script; the script records the job in the project ledger."""
+    name = "sarvam"
+    paid = True
+
+    def outputs(self, p):
+        return [p.sarvam_raw]
+
+    def project(self, ctx):
+        if not ctx.p.wav.exists():
+            return None, "Sarvam: unknown until the audio is downloaded (Rs 0.59/min)"
+        mins = media_duration_s(ctx.p.wav) / 60.0
+        inr = round(mins * SARVAM_INR_PER_MIN, 2)
+        return inr, f"Sarvam: {mins:.1f} min x Rs {SARVAM_INR_PER_MIN} = Rs {inr:.2f} (recorded in the ledger)"
+
+    def run(self, ctx):
+        args = [PY, "tools/transcribe_sarvam.py", ctx.p.vid, "--force"]
+        if ctx.limit_inr is not None:
+            args += ["--max-ledger-inr", f"{ctx.limit_inr:g}"]
+        run_cmd(args)
 
 
 class Shots(Step):
@@ -423,12 +457,17 @@ class Preview(Step):
 STEPS: list[Step] = [Download(), Transcribe(), Shots(), Segments(), AsrFix(), Select(), Preview()]
 
 
-def steps_for(speaker_fix: bool) -> list[Step]:
-    """The default steps; --speaker-fix inserts the speaker_fix step between asr_fix and select."""
-    if not speaker_fix:
-        return list(STEPS)
-    k = next(i for i, s in enumerate(STEPS) if s.name == "asr_fix") + 1
-    return STEPS[:k] + [SpeakerFix()] + STEPS[k:]
+def steps_for(speaker_fix: bool, sarvam: bool = False) -> list[Step]:
+    """The default steps; --speaker-fix inserts the speaker_fix step between asr_fix and select; --sarvam inserts
+    the Sarvam diarization step right after transcribe."""
+    steps = list(STEPS)
+    if speaker_fix:
+        k = next(i for i, s in enumerate(steps) if s.name == "asr_fix") + 1
+        steps = steps[:k] + [SpeakerFix()] + steps[k:]
+    if sarvam:
+        k = next(i for i, s in enumerate(steps) if s.name == "transcribe") + 1
+        steps = steps[:k] + [Sarvam()] + steps[k:]
+    return steps
 
 
 # ----------------------------------------------------------------------------------------------- driver
@@ -527,6 +566,9 @@ def main(argv=None) -> int:
     ap.add_argument("--speaker-fix", action="store_true",
                     help="opt-in: run the LLM speaker-name layer (shotvi.segment.speaker_fix) after asr_fix and "
                          f"select with {SPEAKERS_CONFIG} (speaker names in the prompts)")
+    ap.add_argument("--sarvam", action="store_true",
+                    help="opt-in: Sarvam diarization after transcribe (tools/transcribe_sarvam.py, Rs 0.59/min, "
+                         "recorded in the project ledger; skipped when the raw file exists)")
     ap.add_argument("--dry-run", action="store_true",
                     help="check the free steps and print the paid steps' projections; no provider call")
     a = ap.parse_args(argv)
@@ -538,8 +580,9 @@ def main(argv=None) -> int:
     if not out.is_absolute():
         out = ROOT / out
     limit = a.max_ledger_inr if a.max_ledger_inr is not None else spend_cap_inr()
-    ctx = Ctx(Paths(vid, out), url, a.dry_run, limit, a.skip_asr_fix, ledger_inr(), speaker_fix=a.speaker_fix)
-    steps = steps_for(a.speaker_fix)
+    ctx = Ctx(Paths(vid, out), url, a.dry_run, limit, a.skip_asr_fix, ledger_inr(), speaker_fix=a.speaker_fix,
+              sarvam=a.sarvam)
+    steps = steps_for(a.speaker_fix, a.sarvam)
     print(f"{'DRY RUN: ' if a.dry_run else ''}{vid} -> {rel(out)}   ledger ₹{ctx.ledger0:.2f}, limit ₹{limit:.2f}")
     code = 0
     try:
@@ -550,7 +593,7 @@ def main(argv=None) -> int:
         code = EXIT_GUARD_REFUSED
     except subprocess.CalledProcessError as e:
         name = next((s.name for s in steps if s.name not in ctx.ran and s.name not in ctx.skipped), "?")
-        if e.returncode == 2 and name in ("asr_fix", "speaker_fix", "select"):
+        if e.returncode == 2 and name in ("asr_fix", "speaker_fix", "sarvam", "select"):
             print(f"STOP: {name} stopped on its ledger guard (exit 2); nothing after it ran")
             code = EXIT_BUDGET_STOP
         else:

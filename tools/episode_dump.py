@@ -1,5 +1,7 @@
 """One readable file per episode for an emotion_pick run: what the pipeline found, built, rejected and showed, plus
 the whole transcript. No timestamps (founder, 2026-10-16): lines are referred to by their line id only.
+Speaker labels: a run made with a speaker source other than Scribe (emotion_pick ``speaker_source``) shows that layer's
+anonymous labels (shotvi.segment.speaker_layer); other runs show corrected names where runs/speaker_fix exists, as before.
 
     python tools/episode_dump.py runs/emotion1 --out emotion_first_episodes
 """
@@ -17,6 +19,7 @@ sys.path.insert(0, str(ROOT))
 from shotvi.select import webseries as ws  # noqa: E402
 from shotvi.select.emotion_select import clean_text, render_clip  # noqa: E402
 from shotvi.select.lines import speaker_label  # noqa: E402
+from shotvi.segment import speaker_layer  # noqa: E402
 
 SERIES = {"5HqkHAZfzos": "Queen", "Sy8yZ4DgzrU": "Project Pelli S2", "fjGrX8aBVAc": "Love Brew",
           "qIdAPG8UulE": "Office lo Krishna Leelalu", "ZvISbJNSolg": "The Software DevLOVEper",
@@ -24,6 +27,17 @@ SERIES = {"5HqkHAZfzos": "Queen", "Sy8yZ4DgzrU": "Project Pelli S2", "fjGrX8aBVA
 REJECT_CODES = {"N0": "Gemini answered no clip", "K1": "stop line does not play first", "K2": "land line not at the end",
                 "L1": "too short", "L2": "too long", "D1": "repeat of another clip", "V1": "invalid line ids",
                 "B1": "cut builder refused", "C1": "call failed", "X1": "blocked by safety check"}
+
+
+def load_ep(doc: dict, vid: str):
+    """The episode as the run saw its speakers: the run's speaker layer (anonymous labels, no names) when it used one,
+    else corrected names where runs/speaker_fix exists (as before)."""
+    layer = speaker_layer.for_run(doc, vid)
+    if layer is None:
+        return ws.load_episode(vid, with_loudness=False, speaker_names=True, require_names=False)[0]
+    ep = ws.load_episode(vid, with_loudness=False, speaker_names=False)[0]
+    speaker_layer.apply(ep.lines, ep.words, layer)
+    return ep
 
 
 def line_text(ep, lid: str) -> str:
@@ -77,7 +91,7 @@ def transcript_rows(ep) -> list[str]:
 def dump_short(run: Path, vid: str) -> str:
     """Only the whole transcript and the clips shown (founder, 2026-10-16)."""
     doc = json.loads((run / f"{vid}.json").read_text(encoding="utf-8"))
-    ep, ix, tr, tp = ws.load_episode(vid, with_loudness=False, speaker_names=True, require_names=False)
+    ep = load_ep(doc, vid)
     L = [f"# {SERIES.get(vid, vid)} ({vid})", "", "## Transcript", "", "```"] + transcript_rows(ep) + ["```", "",
          f"## Clips ({len(doc['proposals'])})"]
     for n, c in enumerate(doc["proposals"], 1):
@@ -88,7 +102,7 @@ def dump_short(run: Path, vid: str) -> str:
 def dump(run: Path, vid: str) -> str:
     doc = json.loads((run / f"{vid}.json").read_text(encoding="utf-8"))
     dbg = json.loads((run / "debug" / f"{vid}.json").read_text(encoding="utf-8"))
-    ep, ix, tr, tp = ws.load_episode(vid, with_loudness=False, speaker_names=True, require_names=False)
+    ep = load_ep(doc, vid)
     answers = {c["moment"]: c.get("answer") for c in dbg.get("calls", [])}
     s = doc["episode_summary"]
     usd = (doc.get("cost") or {}).get("usd_billed") or (doc.get("cost") or {}).get("usd") or 0

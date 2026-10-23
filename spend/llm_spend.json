@@ -1,23 +1,7 @@
 {
- "total_usd": 20.0252,
- "calls": 2029,
+ "total_usd": 20.372312,
+ "calls": 2031,
  "entries": [
-  {
-   "t": "2026-09-29T17:31:22",
-   "model": "gemini-3.8-flash",
-   "in": 6198,
-   "out": 1661,
-   "usd": 0.010877,
-   "source": "r4-dev5-FS1"
-  },
-  {
-   "t": "2026-09-29T17:31:22",
-   "model": "gemini-3.8-flash",
-   "in": 6300,
-   "out": 1648,
-   "usd": 0.010905,
-   "source": "r4-dev5-FS1"
-  },
   {
    "t": "2026-09-29T17:31:22",
    "model": "gemini-3.8-flash",
@@ -16159,6 +16143,24 @@
    "out": 0,
    "usd": 0.000349,
    "source": "word_judge-audio-surcharge"
+  },
+  {
+   "t": "2026-10-23T17:02:33",
+   "model": "sarvam/saaras:v3",
+   "in": 0,
+   "out": 0,
+   "usd": 0.173556,
+   "source": "sarvam",
+   "note": "p3XTZlZ6-xw saaras:v3 transcribe: 26.47 min x Rs 0.59 = Rs 15.62; past job (2026-10-22), recorded after the fact"
+  },
+  {
+   "t": "2026-10-23T17:02:33",
+   "model": "sarvam/saaras:v4",
+   "in": 0,
+   "out": 0,
+   "usd": 0.173556,
+   "source": "sarvam",
+   "note": "p3XTZlZ6-xw saaras:v4 codemix: 26.47 min x Rs 0.59 = Rs 15.62; past job (2026-10-22), recorded after the fact"
   }
  ]
 }
