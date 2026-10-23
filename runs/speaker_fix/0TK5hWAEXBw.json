@@ -1,0 +1,8897 @@
+{
+ "video_id": "0TK5hWAEXBw",
+ "schema": "speaker_fix/2",
+ "model": "gemini-3.8-flash",
+ "params": {
+  "thinking_level": "low"
+ },
+ "prompt": "2+38f3542f",
+ "chunks": [
+  {
+   "part": 1,
+   "core": [
+    0,
+    110
+   ],
+   "shown": [
+    0,
+    120
+   ],
+   "projected_inr": 1.51,
+   "ok": true,
+   "inr": 0.52,
+   "input_tokens": 3617,
+   "output_tokens": 818,
+   "thought_tokens": 0,
+   "missing_in_chunk": 0
+  },
+  {
+   "part": 2,
+   "core": [
+    111,
+    213
+   ],
+   "shown": [
+    101,
+    223
+   ],
+   "projected_inr": 1.47,
+   "ok": true,
+   "inr": 0.512,
+   "input_tokens": 3496,
+   "output_tokens": 817,
+   "thought_tokens": 0,
+   "missing_in_chunk": 0
+  },
+  {
+   "part": 3,
+   "core": [
+    214,
+    333
+   ],
+   "shown": [
+    204,
+    343
+   ],
+   "projected_inr": 1.61,
+   "ok": true,
+   "inr": 0.65,
+   "input_tokens": 4093,
+   "output_tokens": 1106,
+   "thought_tokens": 0,
+   "missing_in_chunk": 0
+  },
+  {
+   "part": 4,
+   "core": [
+    334,
+    436
+   ],
+   "shown": [
+    324,
+    446
+   ],
+   "projected_inr": 1.52,
+   "ok": true,
+   "inr": 0.593,
+   "input_tokens": 4160,
+   "output_tokens": 926,
+   "thought_tokens": 0,
+   "missing_in_chunk": 0
+  },
+  {
+   "part": 5,
+   "core": [
+    437,
+    572
+   ],
+   "shown": [
+    427,
+    572
+   ],
+   "projected_inr": 1.65,
+   "ok": true,
+   "inr": 0.605,
+   "input_tokens": 4533,
+   "output_tokens": 886,
+   "thought_tokens": 0,
+   "missing_in_chunk": 0
+  }
+ ],
+ "cast": [
+  {
+   "key": "A",
+   "name": "Host 1",
+   "desc": "Promo host / speaker",
+   "aka": [],
+   "n_lines": 3,
+   "n_words": 36
+  },
+  {
+   "key": "B",
+   "name": "Host 2",
+   "desc": "Promo co-host",
+   "aka": [],
+   "n_lines": 3,
+   "n_words": 30
+  },
+  {
+   "key": "C",
+   "name": "Doctor",
+   "desc": "Doctor treating Murthy's mother",
+   "aka": [],
+   "n_lines": 26,
+   "n_words": 143
+  },
+  {
+   "key": "D",
+   "name": "Murthy",
+   "desc": "Prithvi's father",
+   "aka": [],
+   "n_lines": 87,
+   "n_words": 312
+  },
+  {
+   "key": "E",
+   "name": "Prithvi",
+   "desc": "Murthy's son pressured to get married",
+   "aka": [
+    "Murthy's Son"
+   ],
+   "n_lines": 255,
+   "n_words": 909
+  },
+  {
+   "key": "F",
+   "name": "Mother",
+   "desc": "Murthy's wife, Prithvi's mother",
+   "aka": [],
+   "n_lines": 11,
+   "n_words": 39
+  },
+  {
+   "key": "G",
+   "name": "Meghana",
+   "desc": "Prithvi's 21-year-old newly-wed bride",
+   "aka": [],
+   "n_lines": 115,
+   "n_words": 404
+  },
+  {
+   "key": "H",
+   "name": "Somavaram",
+   "desc": "Doctor/compounder mentioned in conversation",
+   "aka": [],
+   "n_lines": 0,
+   "n_words": 0
+  },
+  {
+   "key": "I",
+   "name": "Friend",
+   "desc": "Prithvi's friend talking on video/voice call",
+   "aka": [],
+   "n_lines": 51,
+   "n_words": 192
+  },
+  {
+   "key": "J",
+   "name": "Friend's wife",
+   "desc": "Friend's wife calling him to go to D-Mart",
+   "aka": [],
+   "n_lines": 2,
+   "n_words": 3
+  },
+  {
+   "key": "K",
+   "name": "Singer / BGM",
+   "desc": "Background singer / commentary voice",
+   "aka": [],
+   "n_lines": 20,
+   "n_words": 97
+  }
+ ],
+ "lines": [
+  {
+   "id": 0,
+   "start": 0.38,
+   "end": 0.78,
+   "words": [
+    0,
+    1
+   ],
+   "scribe": "speaker_0",
+   "key": "A",
+   "name": "Host 1",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 1,
+   "start": 1.08,
+   "end": 3.12,
+   "words": [
+    2,
+    11
+   ],
+   "scribe": "speaker_0",
+   "key": "A",
+   "name": "Host 1",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 2,
+   "start": 3.8,
+   "end": 9.68,
+   "words": [
+    12,
+    28
+   ],
+   "scribe": "speaker_1",
+   "key": "B",
+   "name": "Host 2",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 3,
+   "start": 10.46,
+   "end": 18.28,
+   "words": [
+    29,
+    52
+   ],
+   "scribe": "speaker_0",
+   "key": "A",
+   "name": "Host 1",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 4,
+   "start": 18.86,
+   "end": 19.96,
+   "words": [
+    53,
+    57
+   ],
+   "scribe": "speaker_1",
+   "key": "B",
+   "name": "Host 2",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 5,
+   "start": 20.02,
+   "end": 22.02,
+   "words": [
+    58,
+    65
+   ],
+   "scribe": "speaker_1",
+   "key": "B",
+   "name": "Host 2",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 6,
+   "start": 34.56,
+   "end": 38.5,
+   "words": [
+    66,
+    72
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Doctor",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 7,
+   "start": 38.62,
+   "end": 39.38,
+   "words": [
+    73,
+    75
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Doctor",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 8,
+   "start": 39.8,
+   "end": 42.0,
+   "words": [
+    76,
+    82
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Doctor",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 9,
+   "start": 42.26,
+   "end": 43.54,
+   "words": [
+    83,
+    86
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Doctor",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 10,
+   "start": 45.36,
+   "end": 45.74,
+   "words": [
+    87,
+    87
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 11,
+   "start": 46.62,
+   "end": 47.44,
+   "words": [
+    88,
+    91
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 12,
+   "start": 48.02,
+   "end": 49.72,
+   "words": [
+    92,
+    97
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Doctor",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 13,
+   "start": 50.0,
+   "end": 51.22,
+   "words": [
+    98,
+    102
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Doctor",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 14,
+   "start": 51.7,
+   "end": 53.28,
+   "words": [
+    103,
+    108
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Doctor",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 15,
+   "start": 53.7,
+   "end": 57.72,
+   "words": [
+    109,
+    118
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 16,
+   "start": 57.96,
+   "end": 59.26,
+   "words": [
+    119,
+    123
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Doctor",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 17,
+   "start": 59.52,
+   "end": 59.68,
+   "words": [
+    124,
+    124
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 18,
+   "start": 60.54,
+   "end": 65.12,
+   "words": [
+    125,
+    136
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 19,
+   "start": 65.2,
+   "end": 68.48,
+   "words": [
+    137,
+    146
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Doctor",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 20,
+   "start": 68.74,
+   "end": 69.8,
+   "words": [
+    147,
+    149
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Doctor",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 21,
+   "start": 70.2,
+   "end": 71.58,
+   "words": [
+    150,
+    152
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 22,
+   "start": 72.22,
+   "end": 72.96,
+   "words": [
+    153,
+    154
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 23,
+   "start": 94.02,
+   "end": 94.96,
+   "words": [
+    155,
+    157
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Doctor",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 24,
+   "start": 96.28,
+   "end": 97.12,
+   "words": [
+    158,
+    167
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Doctor",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 25,
+   "start": 98.04,
+   "end": 98.74,
+   "words": [
+    168,
+    169
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Doctor",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 26,
+   "start": 99.24,
+   "end": 99.64,
+   "words": [
+    170,
+    170
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 27,
+   "start": 103.4,
+   "end": 103.82,
+   "words": [
+    171,
+    171
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 28,
+   "start": 104.52,
+   "end": 105.52,
+   "words": [
+    172,
+    176
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 29,
+   "start": 105.98,
+   "end": 106.94,
+   "words": [
+    177,
+    179
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Doctor",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 30,
+   "start": 107.82,
+   "end": 110.84,
+   "words": [
+    180,
+    190
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Doctor",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 31,
+   "start": 110.92,
+   "end": 110.98,
+   "words": [
+    191,
+    191
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 32,
+   "start": 111.88,
+   "end": 113.6,
+   "words": [
+    192,
+    196
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Doctor",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 33,
+   "start": 115.84,
+   "end": 116.56,
+   "words": [
+    197,
+    200
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Doctor",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 34,
+   "start": 117.62,
+   "end": 119.42,
+   "words": [
+    201,
+    205
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Doctor",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 35,
+   "start": 119.52,
+   "end": 119.6,
+   "words": [
+    206,
+    206
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 36,
+   "start": 120.52,
+   "end": 121.3,
+   "words": [
+    207,
+    208
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 37,
+   "start": 122.16,
+   "end": 124.12,
+   "words": [
+    209,
+    212
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 38,
+   "start": 125.28,
+   "end": 125.66,
+   "words": [
+    213,
+    213
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 39,
+   "start": 127.5,
+   "end": 128.22,
+   "words": [
+    214,
+    214
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 40,
+   "start": 132.98,
+   "end": 135.82,
+   "words": [
+    215,
+    225
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Doctor",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 41,
+   "start": 136.02,
+   "end": 136.24,
+   "words": [
+    226,
+    226
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 42,
+   "start": 136.64,
+   "end": 138.9,
+   "words": [
+    227,
+    232
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 43,
+   "start": 139.1,
+   "end": 139.42,
+   "words": [
+    233,
+    233
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 44,
+   "start": 139.98,
+   "end": 141.42,
+   "words": [
+    234,
+    239
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 45,
+   "start": 141.8,
+   "end": 144.26,
+   "words": [
+    240,
+    246
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 46,
+   "start": 144.94,
+   "end": 145.64,
+   "words": [
+    247,
+    249
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 47,
+   "start": 145.68,
+   "end": 146.58,
+   "words": [
+    250,
+    251
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Doctor",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 48,
+   "start": 147.0,
+   "end": 148.5,
+   "words": [
+    252,
+    255
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Doctor",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 49,
+   "start": 148.76,
+   "end": 151.1,
+   "words": [
+    256,
+    261
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Doctor",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 50,
+   "start": 151.48,
+   "end": 152.04,
+   "words": [
+    262,
+    262
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Doctor",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 51,
+   "start": 153.46,
+   "end": 155.42,
+   "words": [
+    263,
+    266
+   ],
+   "scribe": "speaker_2",
+   "key": "F",
+   "name": "Mother",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 52,
+   "start": 157.24,
+   "end": 158.88,
+   "words": [
+    267,
+    272
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 53,
+   "start": 159.88,
+   "end": 160.7,
+   "words": [
+    273,
+    276
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 54,
+   "start": 161.02,
+   "end": 162.4,
+   "words": [
+    277,
+    280
+   ],
+   "scribe": "speaker_2",
+   "key": "F",
+   "name": "Mother",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 55,
+   "start": 162.74,
+   "end": 163.58,
+   "words": [
+    281,
+    283
+   ],
+   "scribe": "speaker_2",
+   "key": "F",
+   "name": "Mother",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 56,
+   "start": 163.64,
+   "end": 165.44,
+   "words": [
+    284,
+    286
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 57,
+   "start": 166.16,
+   "end": 167.76,
+   "words": [
+    287,
+    291
+   ],
+   "scribe": "speaker_2",
+   "key": "F",
+   "name": "Mother",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 58,
+   "start": 168.06,
+   "end": 168.76,
+   "words": [
+    292,
+    293
+   ],
+   "scribe": "speaker_2",
+   "key": "F",
+   "name": "Mother",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 59,
+   "start": 168.8,
+   "end": 169.36,
+   "words": [
+    294,
+    294
+   ],
+   "scribe": "speaker_2",
+   "key": "F",
+   "name": "Mother",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 60,
+   "start": 169.64,
+   "end": 169.72,
+   "words": [
+    295,
+    295
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 61,
+   "start": 170.58,
+   "end": 170.8,
+   "words": [
+    296,
+    296
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 62,
+   "start": 171.06,
+   "end": 171.98,
+   "words": [
+    297,
+    299
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 63,
+   "start": 172.28,
+   "end": 172.86,
+   "words": [
+    300,
+    301
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 64,
+   "start": 172.88,
+   "end": 176.18,
+   "words": [
+    302,
+    310
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Doctor",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 65,
+   "start": 176.3,
+   "end": 177.52,
+   "words": [
+    311,
+    312
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 66,
+   "start": 178.9,
+   "end": 179.68,
+   "words": [
+    313,
+    314
+   ],
+   "scribe": "speaker_0",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 67,
+   "start": 180.68,
+   "end": 182.34,
+   "words": [
+    315,
+    320
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Doctor",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 68,
+   "start": 183.42,
+   "end": 185.26,
+   "words": [
+    321,
+    325
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Doctor",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 69,
+   "start": 185.3,
+   "end": 188.12,
+   "words": [
+    326,
+    335
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 70,
+   "start": 188.28,
+   "end": 189.06,
+   "words": [
+    336,
+    339
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 71,
+   "start": 189.34,
+   "end": 189.52,
+   "words": [
+    340,
+    340
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 72,
+   "start": 190.06,
+   "end": 192.12,
+   "words": [
+    341,
+    345
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 73,
+   "start": 192.46,
+   "end": 194.34,
+   "words": [
+    346,
+    350
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 74,
+   "start": 194.38,
+   "end": 194.5,
+   "words": [
+    351,
+    351
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 75,
+   "start": 195.68,
+   "end": 195.88,
+   "words": [
+    352,
+    352
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 76,
+   "start": 196.58,
+   "end": 197.86,
+   "words": [
+    353,
+    357
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 77,
+   "start": 200.96,
+   "end": 201.78,
+   "words": [
+    358,
+    359
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 78,
+   "start": 203.32,
+   "end": 204.78,
+   "words": [
+    360,
+    362
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 79,
+   "start": 205.7,
+   "end": 207.1,
+   "words": [
+    363,
+    366
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 80,
+   "start": 208.02,
+   "end": 210.36,
+   "words": [
+    367,
+    372
+   ],
+   "scribe": "speaker_2",
+   "key": "F",
+   "name": "Mother",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 81,
+   "start": 212.2,
+   "end": 212.44,
+   "words": [
+    373,
+    373
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 82,
+   "start": 213.26,
+   "end": 213.62,
+   "words": [
+    374,
+    375
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 83,
+   "start": 214.64,
+   "end": 214.86,
+   "words": [
+    376,
+    376
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 84,
+   "start": 218.6,
+   "end": 219.6,
+   "words": [
+    377,
+    378
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 85,
+   "start": 223.6,
+   "end": 233.84,
+   "words": [
+    379,
+    403
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 86,
+   "start": 234.16,
+   "end": 235.7,
+   "words": [
+    404,
+    410
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 87,
+   "start": 235.84,
+   "end": 236.02,
+   "words": [
+    411,
+    411
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 88,
+   "start": 236.56,
+   "end": 236.98,
+   "words": [
+    412,
+    413
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 89,
+   "start": 237.54,
+   "end": 238.7,
+   "words": [
+    414,
+    417
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 90,
+   "start": 242.9,
+   "end": 246.32,
+   "words": [
+    418,
+    425
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 91,
+   "start": 247.44,
+   "end": 249.02,
+   "words": [
+    426,
+    426
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 92,
+   "start": 249.08,
+   "end": 249.86,
+   "words": [
+    427,
+    430
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 93,
+   "start": 250.42,
+   "end": 251.12,
+   "words": [
+    431,
+    432
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 94,
+   "start": 259.8,
+   "end": 261.2,
+   "words": [
+    433,
+    438
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 95,
+   "start": 261.959,
+   "end": 263.42,
+   "words": [
+    439,
+    442
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 96,
+   "start": 264.24,
+   "end": 265.06,
+   "words": [
+    443,
+    445
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 97,
+   "start": 265.86,
+   "end": 266.8,
+   "words": [
+    446,
+    447
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 98,
+   "start": 267.4,
+   "end": 271.94,
+   "words": [
+    448,
+    458
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 99,
+   "start": 272.04,
+   "end": 272.08,
+   "words": [
+    459,
+    459
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 100,
+   "start": 272.38,
+   "end": 273.16,
+   "words": [
+    460,
+    461
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 101,
+   "start": 273.2,
+   "end": 273.46,
+   "words": [
+    462,
+    462
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 102,
+   "start": 274.28,
+   "end": 276.02,
+   "words": [
+    463,
+    465
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 103,
+   "start": 276.12,
+   "end": 276.14,
+   "words": [
+    466,
+    466
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 104,
+   "start": 279.96,
+   "end": 280.02,
+   "words": [
+    467,
+    467
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 105,
+   "start": 280.02,
+   "end": 280.36,
+   "words": [
+    468,
+    468
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 106,
+   "start": 280.58,
+   "end": 281.46,
+   "words": [
+    469,
+    472
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 107,
+   "start": 281.76,
+   "end": 283.26,
+   "words": [
+    473,
+    476
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 108,
+   "start": 283.76,
+   "end": 284.82,
+   "words": [
+    477,
+    479
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 109,
+   "start": 285.14,
+   "end": 286.56,
+   "words": [
+    480,
+    482
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 110,
+   "start": 287.32,
+   "end": 287.66,
+   "words": [
+    483,
+    483
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 111,
+   "start": 311.26,
+   "end": 312.2,
+   "words": [
+    484,
+    486
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 112,
+   "start": 312.62,
+   "end": 312.66,
+   "words": [
+    487,
+    487
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 113,
+   "start": 313.86,
+   "end": 314.9,
+   "words": [
+    488,
+    492
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 114,
+   "start": 316.24,
+   "end": 317.26,
+   "words": [
+    493,
+    495
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 115,
+   "start": 317.84,
+   "end": 319.54,
+   "words": [
+    496,
+    501
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 116,
+   "start": 322.9,
+   "end": 324.48,
+   "words": [
+    502,
+    506
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 117,
+   "start": 324.54,
+   "end": 324.84,
+   "words": [
+    507,
+    507
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 118,
+   "start": 325.4,
+   "end": 327.5,
+   "words": [
+    508,
+    515
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 119,
+   "start": 328.82,
+   "end": 329.44,
+   "words": [
+    516,
+    517
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 120,
+   "start": 329.76,
+   "end": 330.5,
+   "words": [
+    518,
+    520
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 121,
+   "start": 330.84,
+   "end": 331.94,
+   "words": [
+    521,
+    522
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 122,
+   "start": 333.06,
+   "end": 334.5,
+   "words": [
+    523,
+    526
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 123,
+   "start": 335.88,
+   "end": 336.12,
+   "words": [
+    527,
+    527
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 124,
+   "start": 336.86,
+   "end": 337.38,
+   "words": [
+    528,
+    529
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 125,
+   "start": 337.76,
+   "end": 340.18,
+   "words": [
+    530,
+    534
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 126,
+   "start": 341.02,
+   "end": 343.18,
+   "words": [
+    535,
+    539
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 127,
+   "start": 343.46,
+   "end": 344.7,
+   "words": [
+    540,
+    543
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 128,
+   "start": 345.38,
+   "end": 345.84,
+   "words": [
+    544,
+    544
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 129,
+   "start": 345.94,
+   "end": 345.94,
+   "words": [
+    545,
+    545
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 130,
+   "start": 346.9,
+   "end": 347.8,
+   "words": [
+    546,
+    548
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 131,
+   "start": 348.26,
+   "end": 351.32,
+   "words": [
+    549,
+    558
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 132,
+   "start": 351.36,
+   "end": 352.62,
+   "words": [
+    559,
+    561
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 133,
+   "start": 353.26,
+   "end": 354.04,
+   "words": [
+    562,
+    563
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 134,
+   "start": 354.8,
+   "end": 356.88,
+   "words": [
+    564,
+    570
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 135,
+   "start": 357.0,
+   "end": 357.48,
+   "words": [
+    571,
+    571
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 136,
+   "start": 357.8,
+   "end": 357.94,
+   "words": [
+    572,
+    572
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 137,
+   "start": 357.94,
+   "end": 358.82,
+   "words": [
+    573,
+    576
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 138,
+   "start": 359.4,
+   "end": 359.76,
+   "words": [
+    577,
+    577
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 139,
+   "start": 360.888,
+   "end": 361.428,
+   "words": [
+    578,
+    579
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 140,
+   "start": 361.908,
+   "end": 362.428,
+   "words": [
+    580,
+    581
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 141,
+   "start": 362.688,
+   "end": 363.608,
+   "words": [
+    582,
+    585
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 142,
+   "start": 364.608,
+   "end": 365.028,
+   "words": [
+    586,
+    586
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 143,
+   "start": 365.528,
+   "end": 365.548,
+   "words": [
+    587,
+    587
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 144,
+   "start": 366.368,
+   "end": 369.188,
+   "words": [
+    588,
+    593
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 145,
+   "start": 369.808,
+   "end": 372.068,
+   "words": [
+    594,
+    600
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 146,
+   "start": 372.408,
+   "end": 374.548,
+   "words": [
+    601,
+    607
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 147,
+   "start": 375.188,
+   "end": 375.188,
+   "words": [
+    608,
+    608
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 148,
+   "start": 375.848,
+   "end": 376.048,
+   "words": [
+    609,
+    609
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 149,
+   "start": 376.368,
+   "end": 376.788,
+   "words": [
+    610,
+    610
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 150,
+   "start": 377.588,
+   "end": 378.388,
+   "words": [
+    611,
+    613
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 151,
+   "start": 380.968,
+   "end": 381.388,
+   "words": [
+    614,
+    616
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 152,
+   "start": 384.488,
+   "end": 384.508,
+   "words": [
+    617,
+    617
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 153,
+   "start": 384.908,
+   "end": 385.008,
+   "words": [
+    618,
+    618
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 154,
+   "start": 385.928,
+   "end": 387.068,
+   "words": [
+    619,
+    622
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 155,
+   "start": 388.128,
+   "end": 388.668,
+   "words": [
+    623,
+    625
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 156,
+   "start": 390.008,
+   "end": 391.048,
+   "words": [
+    626,
+    630
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 157,
+   "start": 391.608,
+   "end": 394.648,
+   "words": [
+    631,
+    641
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 158,
+   "start": 395.348,
+   "end": 395.908,
+   "words": [
+    642,
+    644
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 159,
+   "start": 396.548,
+   "end": 396.568,
+   "words": [
+    645,
+    645
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 160,
+   "start": 397.468,
+   "end": 397.888,
+   "words": [
+    646,
+    646
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 161,
+   "start": 401.328,
+   "end": 401.848,
+   "words": [
+    647,
+    647
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 162,
+   "start": 402.548,
+   "end": 402.868,
+   "words": [
+    648,
+    648
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 163,
+   "start": 403.468,
+   "end": 404.348,
+   "words": [
+    649,
+    653
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 164,
+   "start": 405.008,
+   "end": 405.108,
+   "words": [
+    654,
+    654
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 165,
+   "start": 405.548,
+   "end": 406.628,
+   "words": [
+    655,
+    658
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 166,
+   "start": 407.068,
+   "end": 407.768,
+   "words": [
+    659,
+    660
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 167,
+   "start": 408.308,
+   "end": 411.048,
+   "words": [
+    661,
+    667
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 168,
+   "start": 411.248,
+   "end": 411.508,
+   "words": [
+    668,
+    668
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 169,
+   "start": 411.728,
+   "end": 412.568,
+   "words": [
+    669,
+    671
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 170,
+   "start": 412.768,
+   "end": 414.528,
+   "words": [
+    672,
+    677
+   ],
+   "scribe": "speaker_2",
+   "key": "F",
+   "name": "Mother",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 171,
+   "start": 414.628,
+   "end": 414.948,
+   "words": [
+    678,
+    678
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 172,
+   "start": 417.328,
+   "end": 418.728,
+   "words": [
+    679,
+    684
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 173,
+   "start": 419.388,
+   "end": 419.788,
+   "words": [
+    685,
+    686
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 174,
+   "start": 420.268,
+   "end": 421.068,
+   "words": [
+    687,
+    689
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 175,
+   "start": 421.488,
+   "end": 421.748,
+   "words": [
+    690,
+    690
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 176,
+   "start": 422.168,
+   "end": 423.608,
+   "words": [
+    691,
+    696
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 177,
+   "start": 423.928,
+   "end": 424.068,
+   "words": [
+    697,
+    697
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 178,
+   "start": 424.408,
+   "end": 425.408,
+   "words": [
+    698,
+    701
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 179,
+   "start": 425.528,
+   "end": 426.368,
+   "words": [
+    702,
+    704
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 180,
+   "start": 428.988,
+   "end": 429.248,
+   "words": [
+    705,
+    705
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 181,
+   "start": 430.108,
+   "end": 431.548,
+   "words": [
+    706,
+    712
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 182,
+   "start": 431.988,
+   "end": 433.188,
+   "words": [
+    713,
+    717
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 183,
+   "start": 433.488,
+   "end": 434.808,
+   "words": [
+    718,
+    722
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 184,
+   "start": 435.168,
+   "end": 436.328,
+   "words": [
+    723,
+    728
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 185,
+   "start": 437.108,
+   "end": 437.828,
+   "words": [
+    729,
+    734
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 186,
+   "start": 438.928,
+   "end": 439.808,
+   "words": [
+    735,
+    740
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 187,
+   "start": 441.608,
+   "end": 442.708,
+   "words": [
+    741,
+    743
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 188,
+   "start": 442.788,
+   "end": 442.848,
+   "words": [
+    744,
+    744
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 189,
+   "start": 443.548,
+   "end": 445.368,
+   "words": [
+    745,
+    749
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 190,
+   "start": 446.028,
+   "end": 447.048,
+   "words": [
+    750,
+    752
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 191,
+   "start": 447.268,
+   "end": 448.148,
+   "words": [
+    753,
+    755
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 192,
+   "start": 448.288,
+   "end": 448.708,
+   "words": [
+    756,
+    756
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 193,
+   "start": 449.008,
+   "end": 449.488,
+   "words": [
+    757,
+    757
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 194,
+   "start": 450.008,
+   "end": 450.628,
+   "words": [
+    758,
+    759
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 195,
+   "start": 451.148,
+   "end": 454.388,
+   "words": [
+    760,
+    768
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 196,
+   "start": 454.708,
+   "end": 456.068,
+   "words": [
+    769,
+    771
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 197,
+   "start": 456.268,
+   "end": 456.648,
+   "words": [
+    772,
+    773
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 198,
+   "start": 457.248,
+   "end": 457.908,
+   "words": [
+    774,
+    774
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 199,
+   "start": 458.488,
+   "end": 459.148,
+   "words": [
+    775,
+    776
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 200,
+   "start": 459.468,
+   "end": 462.168,
+   "words": [
+    777,
+    783
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 201,
+   "start": 462.428,
+   "end": 464.908,
+   "words": [
+    784,
+    791
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 202,
+   "start": 465.368,
+   "end": 466.248,
+   "words": [
+    792,
+    794
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 203,
+   "start": 466.288,
+   "end": 467.088,
+   "words": [
+    795,
+    797
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 204,
+   "start": 467.428,
+   "end": 467.728,
+   "words": [
+    798,
+    798
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 205,
+   "start": 469.028,
+   "end": 469.308,
+   "words": [
+    799,
+    799
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 206,
+   "start": 469.928,
+   "end": 470.248,
+   "words": [
+    800,
+    800
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 207,
+   "start": 470.388,
+   "end": 470.628,
+   "words": [
+    801,
+    801
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 208,
+   "start": 471.028,
+   "end": 472.628,
+   "words": [
+    802,
+    806
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 209,
+   "start": 472.868,
+   "end": 474.428,
+   "words": [
+    807,
+    812
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 210,
+   "start": 475.268,
+   "end": 477.308,
+   "words": [
+    813,
+    816
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 211,
+   "start": 477.568,
+   "end": 477.748,
+   "words": [
+    817,
+    817
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 212,
+   "start": 478.888,
+   "end": 479.588,
+   "words": [
+    818,
+    819
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 213,
+   "start": 480.868,
+   "end": 481.888,
+   "words": [
+    820,
+    822
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 214,
+   "start": 512.328,
+   "end": 514.348,
+   "words": [
+    823,
+    829
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 215,
+   "start": 516.948,
+   "end": 518.968,
+   "words": [
+    830,
+    834
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 216,
+   "start": 519.148,
+   "end": 519.288,
+   "words": [
+    835,
+    835
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 217,
+   "start": 520.308,
+   "end": 521.988,
+   "words": [
+    836,
+    842
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 218,
+   "start": 522.588,
+   "end": 523.528,
+   "words": [
+    843,
+    846
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 219,
+   "start": 524.068,
+   "end": 524.448,
+   "words": [
+    847,
+    847
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 220,
+   "start": 530.428,
+   "end": 531.288,
+   "words": [
+    848,
+    849
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 221,
+   "start": 532.068,
+   "end": 532.088,
+   "words": [
+    850,
+    850
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 222,
+   "start": 532.108,
+   "end": 533.748,
+   "words": [
+    851,
+    857
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 223,
+   "start": 534.368,
+   "end": 534.568,
+   "words": [
+    858,
+    858
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 224,
+   "start": 535.468,
+   "end": 535.988,
+   "words": [
+    859,
+    860
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 225,
+   "start": 539.908,
+   "end": 540.888,
+   "words": [
+    861,
+    863
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 226,
+   "start": 541.868,
+   "end": 542.248,
+   "words": [
+    864,
+    864
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 227,
+   "start": 544.248,
+   "end": 544.688,
+   "words": [
+    865,
+    865
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 228,
+   "start": 547.468,
+   "end": 547.508,
+   "words": [
+    866,
+    866
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 229,
+   "start": 547.528,
+   "end": 549.048,
+   "words": [
+    867,
+    872
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 230,
+   "start": 549.548,
+   "end": 550.508,
+   "words": [
+    873,
+    876
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 231,
+   "start": 551.288,
+   "end": 552.528,
+   "words": [
+    877,
+    881
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 232,
+   "start": 553.448,
+   "end": 555.508,
+   "words": [
+    882,
+    890
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 233,
+   "start": 556.348,
+   "end": 557.228,
+   "words": [
+    891,
+    894
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 234,
+   "start": 557.968,
+   "end": 559.748,
+   "words": [
+    895,
+    900
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 235,
+   "start": 560.588,
+   "end": 561.968,
+   "words": [
+    901,
+    906
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 236,
+   "start": 563.508,
+   "end": 565.908,
+   "words": [
+    907,
+    914
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 237,
+   "start": 566.208,
+   "end": 566.548,
+   "words": [
+    915,
+    915
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 238,
+   "start": 567.028,
+   "end": 568.748,
+   "words": [
+    916,
+    922
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 239,
+   "start": 569.808,
+   "end": 570.888,
+   "words": [
+    923,
+    925
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 240,
+   "start": 571.208,
+   "end": 571.688,
+   "words": [
+    926,
+    926
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 241,
+   "start": 572.188,
+   "end": 573.548,
+   "words": [
+    927,
+    930
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 242,
+   "start": 574.448,
+   "end": 577.808,
+   "words": [
+    931,
+    942
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 243,
+   "start": 581.408,
+   "end": 581.488,
+   "words": [
+    943,
+    943
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 244,
+   "start": 583.328,
+   "end": 583.588,
+   "words": [
+    944,
+    944
+   ],
+   "scribe": "speaker_3",
+   "key": "I",
+   "name": "Friend",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 245,
+   "start": 584.068,
+   "end": 585.228,
+   "words": [
+    945,
+    949
+   ],
+   "scribe": "speaker_3",
+   "key": "I",
+   "name": "Friend",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 246,
+   "start": 585.808,
+   "end": 586.368,
+   "words": [
+    950,
+    951
+   ],
+   "scribe": "speaker_3",
+   "key": "I",
+   "name": "Friend",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 247,
+   "start": 586.488,
+   "end": 587.348,
+   "words": [
+    952,
+    953
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 248,
+   "start": 587.808,
+   "end": 588.648,
+   "words": [
+    954,
+    957
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 249,
+   "start": 588.988,
+   "end": 589.868,
+   "words": [
+    958,
+    960
+   ],
+   "scribe": "speaker_3",
+   "key": "I",
+   "name": "Friend",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 250,
+   "start": 590.648,
+   "end": 592.048,
+   "words": [
+    961,
+    966
+   ],
+   "scribe": "speaker_3",
+   "key": "I",
+   "name": "Friend",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 251,
+   "start": 592.528,
+   "end": 593.468,
+   "words": [
+    967,
+    972
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 252,
+   "start": 594.088,
+   "end": 594.508,
+   "words": [
+    973,
+    974
+   ],
+   "scribe": "speaker_3",
+   "key": "I",
+   "name": "Friend",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 253,
+   "start": 595.088,
+   "end": 596.128,
+   "words": [
+    975,
+    978
+   ],
+   "scribe": "speaker_3",
+   "key": "I",
+   "name": "Friend",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 254,
+   "start": 596.648,
+   "end": 597.068,
+   "words": [
+    979,
+    979
+   ],
+   "scribe": "speaker_3",
+   "key": "I",
+   "name": "Friend",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 255,
+   "start": 597.708,
+   "end": 597.968,
+   "words": [
+    980,
+    980
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 256,
+   "start": 600.628,
+   "end": 601.368,
+   "words": [
+    981,
+    982
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 257,
+   "start": 601.368,
+   "end": 601.808,
+   "words": [
+    983,
+    984
+   ],
+   "scribe": "speaker_3",
+   "key": "I",
+   "name": "Friend",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 258,
+   "start": 602.468,
+   "end": 603.608,
+   "words": [
+    985,
+    988
+   ],
+   "scribe": "speaker_3",
+   "key": "I",
+   "name": "Friend",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 259,
+   "start": 604.088,
+   "end": 604.288,
+   "words": [
+    989,
+    989
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 260,
+   "start": 604.848,
+   "end": 605.708,
+   "words": [
+    990,
+    992
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 261,
+   "start": 605.788,
+   "end": 606.648,
+   "words": [
+    993,
+    995
+   ],
+   "scribe": "speaker_3",
+   "key": "I",
+   "name": "Friend",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 262,
+   "start": 607.088,
+   "end": 607.648,
+   "words": [
+    996,
+    997
+   ],
+   "scribe": "speaker_3",
+   "key": "I",
+   "name": "Friend",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 263,
+   "start": 608.788,
+   "end": 609.048,
+   "words": [
+    998,
+    999
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 264,
+   "start": 609.168,
+   "end": 609.248,
+   "words": [
+    1000,
+    1000
+   ],
+   "scribe": "speaker_3",
+   "key": "I",
+   "name": "Friend",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 265,
+   "start": 609.648,
+   "end": 610.468,
+   "words": [
+    1001,
+    1002
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 266,
+   "start": 611.068,
+   "end": 611.068,
+   "words": [
+    1003,
+    1003
+   ],
+   "scribe": "speaker_3",
+   "key": "I",
+   "name": "Friend",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 267,
+   "start": 611.108,
+   "end": 611.888,
+   "words": [
+    1004,
+    1006
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 268,
+   "start": 612.348,
+   "end": 612.568,
+   "words": [
+    1007,
+    1007
+   ],
+   "scribe": "speaker_3",
+   "key": "I",
+   "name": "Friend",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 269,
+   "start": 612.888,
+   "end": 613.568,
+   "words": [
+    1008,
+    1010
+   ],
+   "scribe": "speaker_3",
+   "key": "I",
+   "name": "Friend",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 270,
+   "start": 614.628,
+   "end": 615.888,
+   "words": [
+    1011,
+    1014
+   ],
+   "scribe": "speaker_3",
+   "key": "I",
+   "name": "Friend",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 271,
+   "start": 616.368,
+   "end": 617.147,
+   "words": [
+    1015,
+    1017
+   ],
+   "scribe": "speaker_3",
+   "key": "I",
+   "name": "Friend",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 272,
+   "start": 617.767,
+   "end": 618.647,
+   "words": [
+    1018,
+    1019
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 273,
+   "start": 619.008,
+   "end": 619.428,
+   "words": [
+    1020,
+    1020
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 274,
+   "start": 620.228,
+   "end": 620.608,
+   "words": [
+    1021,
+    1022
+   ],
+   "scribe": "speaker_3",
+   "key": "I",
+   "name": "Friend",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 275,
+   "start": 621.348,
+   "end": 622.288,
+   "words": [
+    1023,
+    1024
+   ],
+   "scribe": "speaker_3",
+   "key": "I",
+   "name": "Friend",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 276,
+   "start": 622.348,
+   "end": 623.068,
+   "words": [
+    1025,
+    1027
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 277,
+   "start": 623.268,
+   "end": 623.768,
+   "words": [
+    1028,
+    1030
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 278,
+   "start": 624.208,
+   "end": 625.348,
+   "words": [
+    1031,
+    1033
+   ],
+   "scribe": "speaker_3",
+   "key": "I",
+   "name": "Friend",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 279,
+   "start": 625.528,
+   "end": 625.788,
+   "words": [
+    1034,
+    1034
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 280,
+   "start": 626.368,
+   "end": 627.628,
+   "words": [
+    1035,
+    1039
+   ],
+   "scribe": "speaker_3",
+   "key": "I",
+   "name": "Friend",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 281,
+   "start": 627.948,
+   "end": 628.308,
+   "words": [
+    1040,
+    1041
+   ],
+   "scribe": "speaker_3",
+   "key": "I",
+   "name": "Friend",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 282,
+   "start": 629.408,
+   "end": 629.428,
+   "words": [
+    1042,
+    1042
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 283,
+   "start": 630.208,
+   "end": 631.628,
+   "words": [
+    1043,
+    1047
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 284,
+   "start": 631.888,
+   "end": 632.048,
+   "words": [
+    1048,
+    1048
+   ],
+   "scribe": "speaker_3",
+   "key": "I",
+   "name": "Friend",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 285,
+   "start": 632.388,
+   "end": 633.708,
+   "words": [
+    1049,
+    1052
+   ],
+   "scribe": "speaker_3",
+   "key": "I",
+   "name": "Friend",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 286,
+   "start": 634.128,
+   "end": 634.928,
+   "words": [
+    1053,
+    1055
+   ],
+   "scribe": "speaker_3",
+   "key": "I",
+   "name": "Friend",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 287,
+   "start": 635.188,
+   "end": 636.408,
+   "words": [
+    1056,
+    1059
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 288,
+   "start": 636.748,
+   "end": 637.228,
+   "words": [
+    1060,
+    1061
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 289,
+   "start": 638.048,
+   "end": 638.888,
+   "words": [
+    1062,
+    1065
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 290,
+   "start": 639.228,
+   "end": 639.808,
+   "words": [
+    1066,
+    1067
+   ],
+   "scribe": "speaker_3",
+   "key": "I",
+   "name": "Friend",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 291,
+   "start": 639.868,
+   "end": 640.688,
+   "words": [
+    1068,
+    1070
+   ],
+   "scribe": "speaker_3",
+   "key": "I",
+   "name": "Friend",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 292,
+   "start": 641.808,
+   "end": 643.888,
+   "words": [
+    1071,
+    1077
+   ],
+   "scribe": "speaker_3",
+   "key": "I",
+   "name": "Friend",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 293,
+   "start": 644.208,
+   "end": 645.568,
+   "words": [
+    1078,
+    1082
+   ],
+   "scribe": "speaker_3",
+   "key": "I",
+   "name": "Friend",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 294,
+   "start": 645.608,
+   "end": 645.748,
+   "words": [
+    1083,
+    1083
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 295,
+   "start": 645.948,
+   "end": 646.528,
+   "words": [
+    1084,
+    1085
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 296,
+   "start": 646.568,
+   "end": 647.728,
+   "words": [
+    1086,
+    1090
+   ],
+   "scribe": "speaker_3",
+   "key": "I",
+   "name": "Friend",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 297,
+   "start": 647.788,
+   "end": 647.908,
+   "words": [
+    1091,
+    1091
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 298,
+   "start": 648.548,
+   "end": 649.428,
+   "words": [
+    1092,
+    1095
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 299,
+   "start": 649.988,
+   "end": 650.588,
+   "words": [
+    1096,
+    1096
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 300,
+   "start": 651.188,
+   "end": 651.228,
+   "words": [
+    1097,
+    1097
+   ],
+   "scribe": "speaker_3",
+   "key": "I",
+   "name": "Friend",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 301,
+   "start": 651.948,
+   "end": 654.848,
+   "words": [
+    1098,
+    1107
+   ],
+   "scribe": "speaker_3",
+   "key": "I",
+   "name": "Friend",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 302,
+   "start": 655.308,
+   "end": 658.988,
+   "words": [
+    1108,
+    1119
+   ],
+   "scribe": "speaker_3",
+   "key": "I",
+   "name": "Friend",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 303,
+   "start": 659.608,
+   "end": 662.688,
+   "words": [
+    1120,
+    1129
+   ],
+   "scribe": "speaker_3",
+   "key": "I",
+   "name": "Friend",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 304,
+   "start": 663.788,
+   "end": 664.088,
+   "words": [
+    1130,
+    1130
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 305,
+   "start": 664.968,
+   "end": 667.108,
+   "words": [
+    1131,
+    1137
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 306,
+   "start": 667.108,
+   "end": 667.128,
+   "words": [
+    1138,
+    1138
+   ],
+   "scribe": "speaker_3",
+   "key": "I",
+   "name": "Friend",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 307,
+   "start": 667.688,
+   "end": 668.968,
+   "words": [
+    1139,
+    1143
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 308,
+   "start": 669.068,
+   "end": 669.248,
+   "words": [
+    1144,
+    1144
+   ],
+   "scribe": "speaker_3",
+   "key": "I",
+   "name": "Friend",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 309,
+   "start": 669.528,
+   "end": 671.548,
+   "words": [
+    1145,
+    1149
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 310,
+   "start": 671.588,
+   "end": 671.668,
+   "words": [
+    1150,
+    1150
+   ],
+   "scribe": "speaker_3",
+   "key": "I",
+   "name": "Friend",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 311,
+   "start": 672.208,
+   "end": 675.248,
+   "words": [
+    1151,
+    1160
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 312,
+   "start": 675.548,
+   "end": 675.568,
+   "words": [
+    1161,
+    1161
+   ],
+   "scribe": "speaker_3",
+   "key": "I",
+   "name": "Friend",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 313,
+   "start": 675.768,
+   "end": 680.088,
+   "words": [
+    1162,
+    1167
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 314,
+   "start": 681.988,
+   "end": 685.048,
+   "words": [
+    1168,
+    1177
+   ],
+   "scribe": "speaker_3",
+   "key": "I",
+   "name": "Friend",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 315,
+   "start": 685.188,
+   "end": 687.528,
+   "words": [
+    1178,
+    1185
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 316,
+   "start": 687.728,
+   "end": 688.088,
+   "words": [
+    1186,
+    1186
+   ],
+   "scribe": "speaker_3",
+   "key": "I",
+   "name": "Friend",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 317,
+   "start": 688.488,
+   "end": 690.228,
+   "words": [
+    1187,
+    1193
+   ],
+   "scribe": "speaker_3",
+   "key": "I",
+   "name": "Friend",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 318,
+   "start": 690.708,
+   "end": 694.608,
+   "words": [
+    1194,
+    1206
+   ],
+   "scribe": "speaker_3",
+   "key": "I",
+   "name": "Friend",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 319,
+   "start": 695.908,
+   "end": 695.928,
+   "words": [
+    1207,
+    1207
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 320,
+   "start": 697.248,
+   "end": 697.628,
+   "words": [
+    1208,
+    1208
+   ],
+   "scribe": "speaker_1",
+   "key": "J",
+   "name": "Friend's wife",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 321,
+   "start": 697.808,
+   "end": 697.908,
+   "words": [
+    1209,
+    1209
+   ],
+   "scribe": "speaker_3",
+   "key": "I",
+   "name": "Friend",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 322,
+   "start": 698.028,
+   "end": 698.188,
+   "words": [
+    1210,
+    1210
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 323,
+   "start": 698.408,
+   "end": 698.968,
+   "words": [
+    1211,
+    1212
+   ],
+   "scribe": "speaker_1",
+   "key": "J",
+   "name": "Friend's wife",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 324,
+   "start": 699.368,
+   "end": 699.888,
+   "words": [
+    1213,
+    1214
+   ],
+   "scribe": "speaker_3",
+   "key": "I",
+   "name": "Friend",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 325,
+   "start": 702.728,
+   "end": 703.668,
+   "words": [
+    1215,
+    1217
+   ],
+   "scribe": "speaker_3",
+   "key": "I",
+   "name": "Friend",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 326,
+   "start": 704.208,
+   "end": 706.628,
+   "words": [
+    1218,
+    1226
+   ],
+   "scribe": "speaker_3",
+   "key": "I",
+   "name": "Friend",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 327,
+   "start": 707.048,
+   "end": 708.268,
+   "words": [
+    1227,
+    1232
+   ],
+   "scribe": "speaker_3",
+   "key": "I",
+   "name": "Friend",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 328,
+   "start": 708.388,
+   "end": 710.688,
+   "words": [
+    1233,
+    1240
+   ],
+   "scribe": "speaker_3",
+   "key": "I",
+   "name": "Friend",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 329,
+   "start": 711.388,
+   "end": 712.408,
+   "words": [
+    1241,
+    1242
+   ],
+   "scribe": "speaker_3",
+   "key": "I",
+   "name": "Friend",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 330,
+   "start": 713.208,
+   "end": 713.448,
+   "words": [
+    1243,
+    1243
+   ],
+   "scribe": "speaker_3",
+   "key": "I",
+   "name": "Friend",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 331,
+   "start": 715.268,
+   "end": 715.748,
+   "words": [
+    1244,
+    1246
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 332,
+   "start": 719.748,
+   "end": 724.368,
+   "words": [
+    1247,
+    1257
+   ],
+   "scribe": "speaker_3",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 333,
+   "start": 724.988,
+   "end": 726.928,
+   "words": [
+    1258,
+    1263
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 334,
+   "start": 731.66,
+   "end": 731.98,
+   "words": [
+    1264,
+    1264
+   ],
+   "scribe": "speaker_4",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 335,
+   "start": 734.4,
+   "end": 734.72,
+   "words": [
+    1265,
+    1265
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 336,
+   "start": 735.42,
+   "end": 736.64,
+   "words": [
+    1266,
+    1268
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 337,
+   "start": 737.78,
+   "end": 738.2,
+   "words": [
+    1269,
+    1269
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 338,
+   "start": 738.56,
+   "end": 740.26,
+   "words": [
+    1270,
+    1275
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 339,
+   "start": 740.74,
+   "end": 741.18,
+   "words": [
+    1276,
+    1276
+   ],
+   "scribe": "speaker_2",
+   "key": "F",
+   "name": "Mother",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 340,
+   "start": 741.56,
+   "end": 742.6,
+   "words": [
+    1277,
+    1279
+   ],
+   "scribe": "speaker_2",
+   "key": "F",
+   "name": "Mother",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 341,
+   "start": 742.96,
+   "end": 744.26,
+   "words": [
+    1280,
+    1283
+   ],
+   "scribe": "speaker_2",
+   "key": "F",
+   "name": "Mother",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 342,
+   "start": 744.52,
+   "end": 745.28,
+   "words": [
+    1284,
+    1286
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 343,
+   "start": 745.68,
+   "end": 746.58,
+   "words": [
+    1287,
+    1290
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 344,
+   "start": 746.98,
+   "end": 750.24,
+   "words": [
+    1291,
+    1296
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 345,
+   "start": 750.32,
+   "end": 750.76,
+   "words": [
+    1297,
+    1297
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 346,
+   "start": 751.26,
+   "end": 751.76,
+   "words": [
+    1298,
+    1299
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 347,
+   "start": 752.36,
+   "end": 752.36,
+   "words": [
+    1300,
+    1300
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 348,
+   "start": 753.44,
+   "end": 753.94,
+   "words": [
+    1301,
+    1301
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 349,
+   "start": 753.94,
+   "end": 754.0,
+   "words": [
+    1302,
+    1302
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 350,
+   "start": 756.04,
+   "end": 756.62,
+   "words": [
+    1303,
+    1305
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 351,
+   "start": 758.02,
+   "end": 758.38,
+   "words": [
+    1306,
+    1306
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 352,
+   "start": 758.84,
+   "end": 759.84,
+   "words": [
+    1307,
+    1310
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 353,
+   "start": 760.56,
+   "end": 762.24,
+   "words": [
+    1311,
+    1314
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 354,
+   "start": 762.56,
+   "end": 766.1,
+   "words": [
+    1315,
+    1324
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 355,
+   "start": 766.96,
+   "end": 766.98,
+   "words": [
+    1325,
+    1325
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 356,
+   "start": 768.02,
+   "end": 769.62,
+   "words": [
+    1326,
+    1329
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 357,
+   "start": 771.22,
+   "end": 771.46,
+   "words": [
+    1330,
+    1330
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 358,
+   "start": 772.1,
+   "end": 772.6,
+   "words": [
+    1331,
+    1332
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 359,
+   "start": 773.64,
+   "end": 773.66,
+   "words": [
+    1333,
+    1333
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 360,
+   "start": 774.6,
+   "end": 775.66,
+   "words": [
+    1334,
+    1336
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 361,
+   "start": 776.3,
+   "end": 777.16,
+   "words": [
+    1337,
+    1339
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 362,
+   "start": 778.06,
+   "end": 779.24,
+   "words": [
+    1340,
+    1340
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Murthy",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 363,
+   "start": 789.92,
+   "end": 789.96,
+   "words": [
+    1341,
+    1341
+   ],
+   "scribe": "speaker_4",
+   "key": "K",
+   "name": "Singer / BGM",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 364,
+   "start": 790.68,
+   "end": 793.08,
+   "words": [
+    1342,
+    1343
+   ],
+   "scribe": "speaker_4",
+   "key": "K",
+   "name": "Singer / BGM",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 365,
+   "start": 794.1,
+   "end": 795.02,
+   "words": [
+    1344,
+    1344
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 366,
+   "start": 795.1,
+   "end": 795.6,
+   "words": [
+    1345,
+    1346
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 367,
+   "start": 796.26,
+   "end": 797.14,
+   "words": [
+    1347,
+    1348
+   ],
+   "scribe": "speaker_4",
+   "key": "K",
+   "name": "Singer / BGM",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 368,
+   "start": 797.88,
+   "end": 798.9,
+   "words": [
+    1349,
+    1350
+   ],
+   "scribe": "speaker_4",
+   "key": "K",
+   "name": "Singer / BGM",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 369,
+   "start": 804.98,
+   "end": 815.28,
+   "words": [
+    1351,
+    1365
+   ],
+   "scribe": "speaker_4",
+   "key": "K",
+   "name": "Singer / BGM",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 370,
+   "start": 816.66,
+   "end": 819.02,
+   "words": [
+    1366,
+    1369
+   ],
+   "scribe": "speaker_4",
+   "key": "K",
+   "name": "Singer / BGM",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 371,
+   "start": 837.9,
+   "end": 841.02,
+   "words": [
+    1370,
+    1372
+   ],
+   "scribe": "speaker_4",
+   "key": "K",
+   "name": "Singer / BGM",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 372,
+   "start": 847.6,
+   "end": 847.82,
+   "words": [
+    1373,
+    1373
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 373,
+   "start": 850.66,
+   "end": 851.7,
+   "words": [
+    1374,
+    1376
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 374,
+   "start": 853.62,
+   "end": 854.02,
+   "words": [
+    1377,
+    1377
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 375,
+   "start": 856.46,
+   "end": 858.92,
+   "words": [
+    1378,
+    1384
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 376,
+   "start": 859.8,
+   "end": 861.98,
+   "words": [
+    1385,
+    1390
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 377,
+   "start": 863.26,
+   "end": 863.7,
+   "words": [
+    1391,
+    1391
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 378,
+   "start": 864.28,
+   "end": 864.86,
+   "words": [
+    1392,
+    1392
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 379,
+   "start": 865.96,
+   "end": 867.42,
+   "words": [
+    1393,
+    1397
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 380,
+   "start": 868.26,
+   "end": 869.68,
+   "words": [
+    1398,
+    1400
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 381,
+   "start": 870.86,
+   "end": 871.48,
+   "words": [
+    1401,
+    1402
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 382,
+   "start": 872.78,
+   "end": 874.34,
+   "words": [
+    1403,
+    1408
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 383,
+   "start": 874.9,
+   "end": 875.78,
+   "words": [
+    1409,
+    1410
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 384,
+   "start": 876.42,
+   "end": 876.82,
+   "words": [
+    1411,
+    1411
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 385,
+   "start": 877.58,
+   "end": 878.32,
+   "words": [
+    1412,
+    1414
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 386,
+   "start": 878.38,
+   "end": 878.46,
+   "words": [
+    1415,
+    1415
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 387,
+   "start": 879.42,
+   "end": 881.6,
+   "words": [
+    1416,
+    1421
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 388,
+   "start": 881.9,
+   "end": 882.44,
+   "words": [
+    1422,
+    1423
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 389,
+   "start": 882.76,
+   "end": 882.78,
+   "words": [
+    1424,
+    1424
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 390,
+   "start": 885.86,
+   "end": 886.54,
+   "words": [
+    1425,
+    1426
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 391,
+   "start": 887.58,
+   "end": 891.04,
+   "words": [
+    1427,
+    1438
+   ],
+   "scribe": "speaker_4",
+   "key": "K",
+   "name": "Singer / BGM",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 392,
+   "start": 894.34,
+   "end": 894.76,
+   "words": [
+    1439,
+    1439
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 393,
+   "start": 897.34,
+   "end": 898.32,
+   "words": [
+    1440,
+    1443
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 394,
+   "start": 898.86,
+   "end": 898.96,
+   "words": [
+    1444,
+    1444
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 395,
+   "start": 899.88,
+   "end": 901.5,
+   "words": [
+    1445,
+    1449
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 396,
+   "start": 902.08,
+   "end": 905.54,
+   "words": [
+    1450,
+    1461
+   ],
+   "scribe": "speaker_4",
+   "key": "K",
+   "name": "Singer / BGM",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 397,
+   "start": 909.66,
+   "end": 909.76,
+   "words": [
+    1462,
+    1462
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 398,
+   "start": 910.96,
+   "end": 911.92,
+   "words": [
+    1463,
+    1465
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 399,
+   "start": 914.06,
+   "end": 914.5,
+   "words": [
+    1466,
+    1466
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 400,
+   "start": 930.44,
+   "end": 932.16,
+   "words": [
+    1467,
+    1469
+   ],
+   "scribe": "speaker_4",
+   "key": "K",
+   "name": "Singer / BGM",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 401,
+   "start": 933.54,
+   "end": 937.86,
+   "words": [
+    1470,
+    1481
+   ],
+   "scribe": "speaker_4",
+   "key": "K",
+   "name": "Singer / BGM",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 402,
+   "start": 939.18,
+   "end": 940.34,
+   "words": [
+    1482,
+    1489
+   ],
+   "scribe": "speaker_4",
+   "key": "K",
+   "name": "Singer / BGM",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 403,
+   "start": 941.38,
+   "end": 941.38,
+   "words": [
+    1490,
+    1490
+   ],
+   "scribe": "speaker_4",
+   "key": "K",
+   "name": "Singer / BGM",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 404,
+   "start": 973.96,
+   "end": 976.24,
+   "words": [
+    1491,
+    1496
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 405,
+   "start": 977.08,
+   "end": 978.94,
+   "words": [
+    1497,
+    1501
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 406,
+   "start": 979.8,
+   "end": 980.52,
+   "words": [
+    1502,
+    1503
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 407,
+   "start": 981.12,
+   "end": 981.7,
+   "words": [
+    1504,
+    1505
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 408,
+   "start": 983.02,
+   "end": 983.44,
+   "words": [
+    1506,
+    1506
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 409,
+   "start": 984.16,
+   "end": 985.84,
+   "words": [
+    1507,
+    1510
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 410,
+   "start": 986.859,
+   "end": 987.739,
+   "words": [
+    1511,
+    1512
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 411,
+   "start": 988.66,
+   "end": 990.239,
+   "words": [
+    1513,
+    1517
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 412,
+   "start": 990.7,
+   "end": 996.54,
+   "words": [
+    1518,
+    1537
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 413,
+   "start": 1009.06,
+   "end": 1018.78,
+   "words": [
+    1538,
+    1554
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 414,
+   "start": 1018.78,
+   "end": 1018.84,
+   "words": [
+    1555,
+    1555
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 415,
+   "start": 1020.96,
+   "end": 1022.2,
+   "words": [
+    1556,
+    1559
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 416,
+   "start": 1023.56,
+   "end": 1027.04,
+   "words": [
+    1560,
+    1571
+   ],
+   "scribe": "speaker_4",
+   "key": "K",
+   "name": "Singer / BGM",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 417,
+   "start": 1028.16,
+   "end": 1030.18,
+   "words": [
+    1572,
+    1580
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 418,
+   "start": 1030.5,
+   "end": 1032.1,
+   "words": [
+    1581,
+    1585
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 419,
+   "start": 1032.1,
+   "end": 1032.14,
+   "words": [
+    1586,
+    1586
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 420,
+   "start": 1035.44,
+   "end": 1035.66,
+   "words": [
+    1587,
+    1587
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 421,
+   "start": 1037.52,
+   "end": 1037.94,
+   "words": [
+    1588,
+    1589
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 422,
+   "start": 1038.52,
+   "end": 1040.0,
+   "words": [
+    1590,
+    1596
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 423,
+   "start": 1040.96,
+   "end": 1041.06,
+   "words": [
+    1597,
+    1597
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 424,
+   "start": 1041.56,
+   "end": 1042.76,
+   "words": [
+    1598,
+    1603
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 425,
+   "start": 1043.4,
+   "end": 1043.96,
+   "words": [
+    1604,
+    1605
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 426,
+   "start": 1044.26,
+   "end": 1045.24,
+   "words": [
+    1606,
+    1607
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 427,
+   "start": 1047.76,
+   "end": 1048.48,
+   "words": [
+    1608,
+    1610
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 428,
+   "start": 1049.42,
+   "end": 1055.28,
+   "words": [
+    1611,
+    1627
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 429,
+   "start": 1056.2,
+   "end": 1056.6,
+   "words": [
+    1628,
+    1628
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 430,
+   "start": 1057.32,
+   "end": 1058.4,
+   "words": [
+    1629,
+    1631
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 431,
+   "start": 1058.86,
+   "end": 1059.54,
+   "words": [
+    1632,
+    1634
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 432,
+   "start": 1060.36,
+   "end": 1065.3,
+   "words": [
+    1635,
+    1649
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 433,
+   "start": 1065.52,
+   "end": 1066.36,
+   "words": [
+    1650,
+    1653
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 434,
+   "start": 1067.46,
+   "end": 1068.18,
+   "words": [
+    1654,
+    1656
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 435,
+   "start": 1069.78,
+   "end": 1071.24,
+   "words": [
+    1657,
+    1660
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 436,
+   "start": 1071.5,
+   "end": 1072.22,
+   "words": [
+    1661,
+    1664
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 4,
+   "from_margin": false
+  },
+  {
+   "id": 437,
+   "start": 1077.58,
+   "end": 1078.62,
+   "words": [
+    1665,
+    1669
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 438,
+   "start": 1078.96,
+   "end": 1079.64,
+   "words": [
+    1670,
+    1672
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 439,
+   "start": 1080.24,
+   "end": 1082.7,
+   "words": [
+    1673,
+    1680
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 440,
+   "start": 1085.62,
+   "end": 1089.06,
+   "words": [
+    1681,
+    1688
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 441,
+   "start": 1089.2,
+   "end": 1090.66,
+   "words": [
+    1689,
+    1692
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 442,
+   "start": 1091.676,
+   "end": 1091.876,
+   "words": [
+    1693,
+    1693
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 443,
+   "start": 1092.356,
+   "end": 1093.316,
+   "words": [
+    1694,
+    1698
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 444,
+   "start": 1093.616,
+   "end": 1094.456,
+   "words": [
+    1699,
+    1700
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 445,
+   "start": 1094.796,
+   "end": 1095.456,
+   "words": [
+    1701,
+    1702
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 446,
+   "start": 1096.156,
+   "end": 1096.356,
+   "words": [
+    1703,
+    1703
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 447,
+   "start": 1097.296,
+   "end": 1098.216,
+   "words": [
+    1704,
+    1706
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 448,
+   "start": 1098.976,
+   "end": 1099.776,
+   "words": [
+    1707,
+    1707
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 449,
+   "start": 1099.976,
+   "end": 1100.136,
+   "words": [
+    1708,
+    1708
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 450,
+   "start": 1100.536,
+   "end": 1101.276,
+   "words": [
+    1709,
+    1711
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 451,
+   "start": 1101.976,
+   "end": 1102.916,
+   "words": [
+    1712,
+    1714
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 452,
+   "start": 1104.336,
+   "end": 1105.376,
+   "words": [
+    1715,
+    1718
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 453,
+   "start": 1105.936,
+   "end": 1107.436,
+   "words": [
+    1719,
+    1725
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 454,
+   "start": 1108.076,
+   "end": 1108.236,
+   "words": [
+    1726,
+    1726
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 455,
+   "start": 1108.616,
+   "end": 1109.476,
+   "words": [
+    1727,
+    1729
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 456,
+   "start": 1109.636,
+   "end": 1110.176,
+   "words": [
+    1730,
+    1731
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 457,
+   "start": 1110.996,
+   "end": 1112.276,
+   "words": [
+    1732,
+    1734
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 458,
+   "start": 1112.876,
+   "end": 1113.496,
+   "words": [
+    1735,
+    1736
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 459,
+   "start": 1114.276,
+   "end": 1115.696,
+   "words": [
+    1737,
+    1742
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 460,
+   "start": 1116.216,
+   "end": 1117.656,
+   "words": [
+    1743,
+    1746
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 461,
+   "start": 1118.476,
+   "end": 1119.356,
+   "words": [
+    1747,
+    1748
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 462,
+   "start": 1119.836,
+   "end": 1120.076,
+   "words": [
+    1749,
+    1749
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 463,
+   "start": 1120.096,
+   "end": 1121.316,
+   "words": [
+    1750,
+    1753
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 464,
+   "start": 1121.416,
+   "end": 1121.776,
+   "words": [
+    1754,
+    1754
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 465,
+   "start": 1122.176,
+   "end": 1122.776,
+   "words": [
+    1755,
+    1758
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 466,
+   "start": 1123.436,
+   "end": 1123.836,
+   "words": [
+    1759,
+    1760
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 467,
+   "start": 1124.696,
+   "end": 1125.576,
+   "words": [
+    1761,
+    1763
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 468,
+   "start": 1126.316,
+   "end": 1128.956,
+   "words": [
+    1764,
+    1768
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 469,
+   "start": 1130.156,
+   "end": 1130.636,
+   "words": [
+    1769,
+    1770
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 470,
+   "start": 1138.276,
+   "end": 1138.996,
+   "words": [
+    1771,
+    1774
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 471,
+   "start": 1139.596,
+   "end": 1140.016,
+   "words": [
+    1775,
+    1776
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 472,
+   "start": 1141.616,
+   "end": 1142.276,
+   "words": [
+    1777,
+    1778
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 473,
+   "start": 1143.076,
+   "end": 1144.996,
+   "words": [
+    1779,
+    1783
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 474,
+   "start": 1145.576,
+   "end": 1146.516,
+   "words": [
+    1784,
+    1785
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 475,
+   "start": 1147.316,
+   "end": 1148.836,
+   "words": [
+    1786,
+    1789
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 476,
+   "start": 1149.256,
+   "end": 1150.836,
+   "words": [
+    1790,
+    1794
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 477,
+   "start": 1152.256,
+   "end": 1152.936,
+   "words": [
+    1795,
+    1796
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 478,
+   "start": 1153.976,
+   "end": 1156.416,
+   "words": [
+    1797,
+    1803
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 479,
+   "start": 1157.075,
+   "end": 1158.136,
+   "words": [
+    1804,
+    1807
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 480,
+   "start": 1158.576,
+   "end": 1160.796,
+   "words": [
+    1808,
+    1814
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 481,
+   "start": 1161.976,
+   "end": 1162.856,
+   "words": [
+    1815,
+    1818
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 482,
+   "start": 1163.336,
+   "end": 1163.736,
+   "words": [
+    1819,
+    1819
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 483,
+   "start": 1164.256,
+   "end": 1164.596,
+   "words": [
+    1820,
+    1821
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 484,
+   "start": 1165.256,
+   "end": 1168.736,
+   "words": [
+    1822,
+    1834
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 485,
+   "start": 1169.496,
+   "end": 1169.996,
+   "words": [
+    1835,
+    1835
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 486,
+   "start": 1170.516,
+   "end": 1171.056,
+   "words": [
+    1836,
+    1836
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 487,
+   "start": 1171.296,
+   "end": 1172.856,
+   "words": [
+    1837,
+    1842
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 488,
+   "start": 1172.996,
+   "end": 1173.376,
+   "words": [
+    1843,
+    1844
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 489,
+   "start": 1173.996,
+   "end": 1174.376,
+   "words": [
+    1845,
+    1846
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 490,
+   "start": 1175.036,
+   "end": 1176.816,
+   "words": [
+    1847,
+    1852
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 491,
+   "start": 1177.016,
+   "end": 1177.816,
+   "words": [
+    1853,
+    1855
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 492,
+   "start": 1178.036,
+   "end": 1181.876,
+   "words": [
+    1856,
+    1864
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 493,
+   "start": 1182.856,
+   "end": 1183.456,
+   "words": [
+    1865,
+    1868
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 494,
+   "start": 1183.496,
+   "end": 1185.496,
+   "words": [
+    1869,
+    1875
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 495,
+   "start": 1186.076,
+   "end": 1187.856,
+   "words": [
+    1876,
+    1881
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 496,
+   "start": 1188.916,
+   "end": 1192.016,
+   "words": [
+    1882,
+    1891
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 497,
+   "start": 1192.696,
+   "end": 1196.136,
+   "words": [
+    1892,
+    1903
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 498,
+   "start": 1196.276,
+   "end": 1196.356,
+   "words": [
+    1904,
+    1904
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 499,
+   "start": 1198.116,
+   "end": 1198.976,
+   "words": [
+    1905,
+    1909
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 500,
+   "start": 1199.496,
+   "end": 1199.616,
+   "words": [
+    1910,
+    1910
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 501,
+   "start": 1201.696,
+   "end": 1205.156,
+   "words": [
+    1911,
+    1922
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 502,
+   "start": 1205.156,
+   "end": 1205.176,
+   "words": [
+    1923,
+    1923
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 503,
+   "start": 1206.636,
+   "end": 1210.056,
+   "words": [
+    1924,
+    1930
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 504,
+   "start": 1210.596,
+   "end": 1211.596,
+   "words": [
+    1931,
+    1933
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 505,
+   "start": 1211.936,
+   "end": 1213.256,
+   "words": [
+    1934,
+    1938
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 506,
+   "start": 1213.476,
+   "end": 1213.496,
+   "words": [
+    1939,
+    1939
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 507,
+   "start": 1214.236,
+   "end": 1214.616,
+   "words": [
+    1940,
+    1941
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 508,
+   "start": 1215.716,
+   "end": 1216.136,
+   "words": [
+    1942,
+    1942
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 509,
+   "start": 1216.576,
+   "end": 1217.996,
+   "words": [
+    1943,
+    1949
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 510,
+   "start": 1218.536,
+   "end": 1221.836,
+   "words": [
+    1950,
+    1961
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 511,
+   "start": 1222.696,
+   "end": 1223.776,
+   "words": [
+    1962,
+    1965
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 512,
+   "start": 1224.196,
+   "end": 1224.216,
+   "words": [
+    1966,
+    1966
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 513,
+   "start": 1225.556,
+   "end": 1227.036,
+   "words": [
+    1967,
+    1970
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 514,
+   "start": 1227.556,
+   "end": 1228.836,
+   "words": [
+    1971,
+    1976
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 515,
+   "start": 1229.556,
+   "end": 1229.736,
+   "words": [
+    1977,
+    1977
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 516,
+   "start": 1230.616,
+   "end": 1232.216,
+   "words": [
+    1978,
+    1982
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 517,
+   "start": 1232.516,
+   "end": 1233.836,
+   "words": [
+    1983,
+    1987
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 518,
+   "start": 1234.456,
+   "end": 1234.656,
+   "words": [
+    1988,
+    1988
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 519,
+   "start": 1235.376,
+   "end": 1237.216,
+   "words": [
+    1989,
+    1993
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 520,
+   "start": 1237.256,
+   "end": 1238.836,
+   "words": [
+    1994,
+    1999
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 521,
+   "start": 1239.296,
+   "end": 1239.296,
+   "words": [
+    2000,
+    2000
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 522,
+   "start": 1240.636,
+   "end": 1240.896,
+   "words": [
+    2001,
+    2001
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 523,
+   "start": 1241.216,
+   "end": 1241.576,
+   "words": [
+    2002,
+    2002
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 524,
+   "start": 1241.936,
+   "end": 1242.076,
+   "words": [
+    2003,
+    2003
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 525,
+   "start": 1281.436,
+   "end": 1281.936,
+   "words": [
+    2004,
+    2006
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 526,
+   "start": 1282.196,
+   "end": 1283.416,
+   "words": [
+    2007,
+    2009
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 527,
+   "start": 1284.076,
+   "end": 1285.176,
+   "words": [
+    2010,
+    2015
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 528,
+   "start": 1285.496,
+   "end": 1285.516,
+   "words": [
+    2016,
+    2016
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 529,
+   "start": 1285.536,
+   "end": 1286.556,
+   "words": [
+    2017,
+    2021
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 530,
+   "start": 1286.856,
+   "end": 1287.376,
+   "words": [
+    2022,
+    2024
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 531,
+   "start": 1287.736,
+   "end": 1288.176,
+   "words": [
+    2025,
+    2026
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 532,
+   "start": 1289.176,
+   "end": 1289.256,
+   "words": [
+    2027,
+    2027
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 533,
+   "start": 1293.416,
+   "end": 1294.456,
+   "words": [
+    2028,
+    2033
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 534,
+   "start": 1295.576,
+   "end": 1296.196,
+   "words": [
+    2034,
+    2036
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 535,
+   "start": 1296.536,
+   "end": 1296.876,
+   "words": [
+    2037,
+    2039
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 536,
+   "start": 1297.816,
+   "end": 1298.896,
+   "words": [
+    2040,
+    2042
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 537,
+   "start": 1299.116,
+   "end": 1300.856,
+   "words": [
+    2043,
+    2047
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 538,
+   "start": 1301.676,
+   "end": 1302.856,
+   "words": [
+    2048,
+    2051
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 539,
+   "start": 1303.156,
+   "end": 1303.756,
+   "words": [
+    2052,
+    2053
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 540,
+   "start": 1304.936,
+   "end": 1305.156,
+   "words": [
+    2054,
+    2055
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 541,
+   "start": 1306.096,
+   "end": 1306.896,
+   "words": [
+    2056,
+    2060
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 542,
+   "start": 1309.036,
+   "end": 1309.276,
+   "words": [
+    2061,
+    2062
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 543,
+   "start": 1311.076,
+   "end": 1312.436,
+   "words": [
+    2063,
+    2071
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 544,
+   "start": 1313.416,
+   "end": 1313.696,
+   "words": [
+    2072,
+    2072
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 545,
+   "start": 1314.296,
+   "end": 1314.796,
+   "words": [
+    2073,
+    2074
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 546,
+   "start": 1324.216,
+   "end": 1324.476,
+   "words": [
+    2075,
+    2075
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 547,
+   "start": 1325.676,
+   "end": 1326.096,
+   "words": [
+    2076,
+    2076
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 548,
+   "start": 1331.756,
+   "end": 1333.576,
+   "words": [
+    2077,
+    2081
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 549,
+   "start": 1335.056,
+   "end": 1336.056,
+   "words": [
+    2082,
+    2084
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 550,
+   "start": 1336.416,
+   "end": 1337.136,
+   "words": [
+    2085,
+    2086
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 551,
+   "start": 1337.196,
+   "end": 1337.356,
+   "words": [
+    2087,
+    2087
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 552,
+   "start": 1338.156,
+   "end": 1339.196,
+   "words": [
+    2088,
+    2093
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Prithvi",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 553,
+   "start": 1339.416,
+   "end": 1340.776,
+   "words": [
+    2094,
+    2097
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 554,
+   "start": 1341.336,
+   "end": 1342.016,
+   "words": [
+    2098,
+    2100
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 555,
+   "start": 1342.576,
+   "end": 1347.036,
+   "words": [
+    2101,
+    2115
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 556,
+   "start": 1347.476,
+   "end": 1348.376,
+   "words": [
+    2116,
+    2118
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 557,
+   "start": 1348.756,
+   "end": 1349.436,
+   "words": [
+    2119,
+    2121
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 558,
+   "start": 1350.196,
+   "end": 1351.156,
+   "words": [
+    2122,
+    2123
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 559,
+   "start": 1351.356,
+   "end": 1352.936,
+   "words": [
+    2124,
+    2128
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 560,
+   "start": 1353.596,
+   "end": 1354.416,
+   "words": [
+    2129,
+    2130
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 561,
+   "start": 1354.936,
+   "end": 1356.196,
+   "words": [
+    2131,
+    2133
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 562,
+   "start": 1357.216,
+   "end": 1358.236,
+   "words": [
+    2134,
+    2138
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 563,
+   "start": 1360.416,
+   "end": 1362.296,
+   "words": [
+    2139,
+    2146
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 564,
+   "start": 1362.736,
+   "end": 1363.996,
+   "words": [
+    2147,
+    2151
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 565,
+   "start": 1368.956,
+   "end": 1370.096,
+   "words": [
+    2152,
+    2154
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 566,
+   "start": 1371.316,
+   "end": 1371.936,
+   "words": [
+    2155,
+    2156
+   ],
+   "scribe": "speaker_1",
+   "key": "G",
+   "name": "Meghana",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 567,
+   "start": 1382.296,
+   "end": 1383.176,
+   "words": [
+    2157,
+    2157
+   ],
+   "scribe": "speaker_4",
+   "key": "K",
+   "name": "Singer / BGM",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 568,
+   "start": 1384.136,
+   "end": 1385.016,
+   "words": [
+    2158,
+    2158
+   ],
+   "scribe": "speaker_4",
+   "key": "K",
+   "name": "Singer / BGM",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 569,
+   "start": 1385.976,
+   "end": 1388.696,
+   "words": [
+    2159,
+    2159
+   ],
+   "scribe": "speaker_4",
+   "key": "K",
+   "name": "Singer / BGM",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 570,
+   "start": 1389.636,
+   "end": 1390.556,
+   "words": [
+    2160,
+    2160
+   ],
+   "scribe": "speaker_4",
+   "key": "K",
+   "name": "Singer / BGM",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 571,
+   "start": 1393.376,
+   "end": 1394.256,
+   "words": [
+    2161,
+    2161
+   ],
+   "scribe": "speaker_4",
+   "key": "K",
+   "name": "Singer / BGM",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  },
+  {
+   "id": 572,
+   "start": 1418.596,
+   "end": 1419.516,
+   "words": [
+    2162,
+    2164
+   ],
+   "scribe": "speaker_4",
+   "key": "K",
+   "name": "Singer / BGM",
+   "confidence": 0.9,
+   "part": 5,
+   "from_margin": false
+  }
+ ],
+ "coverage": {
+  "n_lines": 573,
+  "assigned": 573,
+  "unknown": 0,
+  "missing": 0,
+  "from_margin": 0,
+  "duplicate_ids": 0,
+  "invalid_items": [],
+  "bad_keys": []
+ },
+ "cost": {
+  "projected": {
+   "chunks": [
+    {
+     "part": 1,
+     "core": [
+      0,
+      110
+     ],
+     "shown": [
+      0,
+      120
+     ],
+     "input_tokens": 4230,
+     "output_tokens": 3635,
+     "max_output_tokens": 8936,
+     "inr": 1.51,
+     "worst_case_inr": 3.3
+    },
+    {
+     "part": 2,
+     "core": [
+      111,
+      213
+     ],
+     "shown": [
+      101,
+      223
+     ],
+     "input_tokens": 3490,
+     "output_tokens": 3665,
+     "max_output_tokens": 9016,
+     "inr": 1.47,
+     "worst_case_inr": 3.28
+    },
+    {
+     "part": 3,
+     "core": [
+      214,
+      333
+     ],
+     "shown": [
+      204,
+      343
+     ],
+     "input_tokens": 4245,
+     "output_tokens": 3920,
+     "max_output_tokens": 9696,
+     "inr": 1.61,
+     "worst_case_inr": 3.56
+    },
+    {
+     "part": 4,
+     "core": [
+      334,
+      436
+     ],
+     "shown": [
+      324,
+      446
+     ],
+     "input_tokens": 4241,
+     "output_tokens": 3665,
+     "max_output_tokens": 9016,
+     "inr": 1.52,
+     "worst_case_inr": 3.33
+    },
+    {
+     "part": 5,
+     "core": [
+      437,
+      572
+     ],
+     "shown": [
+      427,
+      572
+     ],
+     "input_tokens": 4422,
+     "output_tokens": 4010,
+     "max_output_tokens": 9936,
+     "inr": 1.65,
+     "worst_case_inr": 3.65
+    }
+   ],
+   "inr": 7.76,
+   "worst_case_inr": 17.12
+  },
+  "actual": {
+   "inr": 2.88,
+   "chunks_ok": 5,
+   "chunks": 5
+  }
+ },
+ "stopped": null,
+ "failures": [],
+ "transcript": "scribe_dataset/0TK5hWAEXBw/0TK5hWAEXBw_scribe_transcript.json",
+ "asr_fix": true
+}

@@ -1,0 +1,103 @@
+== sarvam ZvISbJNSolg
+ZvISbJNSolg: 16.9 min audio; job {'model': 'saaras:v4', 'language_code': 'te-IN', 'mode': 'codemix', 'with_diarization': True, 'with_timestamps': True}; estimated cost Rs 9.97 (Sarvam; recorded in the project ledger, source sarvam); ledger Rs 1833.51 + Sarvam Rs 9.97 = Rs 1843.48 <= limit Rs 2035.00
+job created; uploading ZvISbJNSolg_audio.wav (32.4 MB)
+job started; waiting
+job state: Completed
+ledger: recorded Rs 9.97 (source sarvam)
+339 diarized segments, 6 speakers -> /Users/ganeshgowtham/projects/projects/shotvi/scribe_dataset/ZvISbJNSolg/ZvISbJNSolg_sarvam_transcript.json
+sarvam ZvISbJNSolg EXIT 0
+== sarvam 0TK5hWAEXBw
+0TK5hWAEXBw: 23.8 min audio; job {'model': 'saaras:v4', 'language_code': 'te-IN', 'mode': 'codemix', 'with_diarization': True, 'with_timestamps': True}; estimated cost Rs 14.06 (Sarvam; recorded in the project ledger, source sarvam); ledger Rs 1843.48 + Sarvam Rs 14.06 = Rs 1857.54 <= limit Rs 2035.00
+job created; uploading 0TK5hWAEXBw_audio.wav (45.7 MB)
+job started; waiting
+job state: Completed
+ledger: recorded Rs 14.06 (source sarvam)
+329 diarized segments, 12 speakers -> /Users/ganeshgowtham/projects/projects/shotvi/scribe_dataset/0TK5hWAEXBw/0TK5hWAEXBw_sarvam_transcript.json
+sarvam 0TK5hWAEXBw EXIT 0
+== speaker_fix ZvISbJNSolg
+ZvISbJNSolg: 458 lines, asr_fix=yes, prompt 2+38f3542f, 5 chunks: projected ₹6.93 (worst case ₹15.31)
+    part 1: core 0-90 shown 0-100  in 3,372 out ~3,335 (max 8,136)  ₹1.35 / worst ₹2.97
+    part 2: core 91-206 shown 81-216  in 4,041 out ~3,860 (max 9,536)  ₹1.58 / worst ₹3.49
+    part 3: core 207-289 shown 197-299  in 3,197 out ~3,365 (max 8,216)  ₹1.35 / worst ₹2.99
+    part 4: core 290-377 shown 280-387  in 3,272 out ~3,440 (max 8,416)  ₹1.38 / worst ₹3.06
+    part 5: core 378-457 shown 368-457  in 2,928 out ~3,170 (max 7,696)  ₹1.27 / worst ₹2.80
+projected total ₹6.93 (worst case ₹15.31); speaker_fix spent before ₹28.51
+ZvISbJNSolg part 1/5 lines 0-100: ₹0.44 (projected ₹1.35; in 2,974, out 715, thinking 0); cast now 7
+ZvISbJNSolg part 2/5 lines 81-216: ₹0.66 (projected ₹1.58; in 3,931, out 1,155, thinking 0); cast now 9
+ZvISbJNSolg part 3/5 lines 197-299: ₹0.50 (projected ₹1.35; in 3,220, out 848, thinking 0); cast now 9
+ZvISbJNSolg part 4/5 lines 280-387: ₹0.55 (projected ₹1.38; in 3,347, out 955, thinking 0); cast now 9
+ZvISbJNSolg part 5/5 lines 368-457: ₹0.49 (projected ₹1.27; in 2,906, out 881, thinking 0); cast now 9
+ZvISbJNSolg: ₹2.64 actual vs ₹6.93 projected; 5/5 chunks ok; cast 9: Shanmugh Jaswant (152), Marvel Manohar (92), DC Don (75), Harika (33), Arvind Swamy (20), Friday (1), Alfred (1), Vaishnavi (76), Female Colleague (8)
+  coverage: 458/458 assigned, 0 X, 0 missing, 0 from margins, 0 dup, 0 invalid, bad keys []
+speaker_fix ZvISbJNSolg EXIT 0
+== speaker_fix 0TK5hWAEXBw
+0TK5hWAEXBw: 573 lines, asr_fix=yes, prompt 2+38f3542f, 5 chunks: projected ₹7.76 (worst case ₹17.12)
+    part 1: core 0-110 shown 0-120  in 4,230 out ~3,635 (max 8,936)  ₹1.51 / worst ₹3.30
+    part 2: core 111-213 shown 101-223  in 3,490 out ~3,665 (max 9,016)  ₹1.47 / worst ₹3.28
+    part 3: core 214-333 shown 204-343  in 4,245 out ~3,920 (max 9,696)  ₹1.61 / worst ₹3.56
+    part 4: core 334-436 shown 324-446  in 4,241 out ~3,665 (max 9,016)  ₹1.52 / worst ₹3.33
+    part 5: core 437-572 shown 427-572  in 4,422 out ~4,010 (max 9,936)  ₹1.65 / worst ₹3.65
+projected total ₹7.76 (worst case ₹17.12); speaker_fix spent before ₹31.15
+0TK5hWAEXBw part 1/5 lines 0-120: ₹0.52 (projected ₹1.51; in 3,617, out 818, thinking 0); cast now 8
+0TK5hWAEXBw part 2/5 lines 101-223: ₹0.51 (projected ₹1.47; in 3,496, out 817, thinking 0); cast now 8
+0TK5hWAEXBw part 3/5 lines 204-343: ₹0.65 (projected ₹1.61; in 4,093, out 1,106, thinking 0); cast now 10
+0TK5hWAEXBw part 4/5 lines 324-446: ₹0.59 (projected ₹1.52; in 4,160, out 926, thinking 0); cast now 11
+0TK5hWAEXBw part 5/5 lines 427-572: ₹0.60 (projected ₹1.65; in 4,533, out 886, thinking 0); cast now 11
+0TK5hWAEXBw: ₹2.88 actual vs ₹7.76 projected; 5/5 chunks ok; cast 11: Host 1 (3), Host 2 (3), Doctor (26), Murthy (87), Prithvi (255), Mother (11), Meghana (115), Somavaram (0), Friend (51), Friend's wife (2), Singer / BGM (20)
+  coverage: 573/573 assigned, 0 X, 0 missing, 0 from margins, 0 dup, 0 invalid, bad keys []
+speaker_fix 0TK5hWAEXBw EXIT 0
+== arm B sarvam
+ZvISbJNSolg: speaker labels from sarvam (458 speech lines, 10 speakers, 29 lines with 2+ speakers)
+explicit context cache cachedContents/orcxhxmv6j5pqvpeedgdihmgaku15kdw3o197cln: 13479 tokens, TTL 3600 s, storage $0.0067
+ZvISbJNSolg: FIND: 12 moments listed, 12 valid (by feeling {'laugh': 11, 'aww': 1}; by intensity {4: 7, 3: 5})
+ZvISbJNSolg: 12 moments -> 7 clusters (2 with several payoffs)
+  e03 L0058: clip L0041..L0059 plays 45.0 s, stop start_line
+  e05 L0205: call failed: ws_emotion_build/gemini-3.8-flash: gave up after 1 attempts: gemini finishReason=MAX_TOKENS
+  e06 L0361: clip L0339..L0362 plays 35.0 s, stop start_line
+  e11 L0474: clip L0441..L0481 plays 74.5 s, stop A_near_start
+  e04 L0106: clip L0095..L0107 plays 22.0 s, stop start_line
+  e07 L0365: clip L0327..L0365 plays 56.9 s, stop start_line
+  e12 L0478: clip L0438..L0482 plays 83.1 s, stop start_line
+ZvISbJNSolg: 12 moments -> 7 build calls -> 6 built -> 4 shown; $0.2091 billed -> runs/speaker_ab/sarvam/ZvISbJNSolg.json
+0TK5hWAEXBw: speaker labels from sarvam (573 speech lines, 14 speakers, 15 lines with 2+ speakers)
+explicit context cache cachedContents/oosrxynz26posyh6larwh3eypj4tg2alzb2ogi49: 17840 tokens, TTL 3600 s, storage $0.0089
+0TK5hWAEXBw: FIND: 10 moments listed, 10 valid (by feeling {'laugh': 10}; by intensity {5: 1, 4: 9})
+0TK5hWAEXBw: 10 moments -> 8 clusters (2 with several payoffs)
+  e10 L0614: clip L0597..L0614 plays 34.5 s, stop start_line
+  e01 L0043: clip L0029..L0045 plays 35.9 s, stop start_line
+  e02 L0085: clip L0044..L0085 plays 74.8 s, stop A_near_start
+  e03 L0126: clip L0122..L0128 plays 13.6 s, stop start_line
+  e04 L0182: clip L0157..L0183 plays 47.2 s, cold open, stop B_lift
+  e06 L0380: clip L0355..L0380 plays 43.2 s, stop A_near_start
+  e08 L0507: clip L0473..L0507 plays 56.0 s, stop start_line
+  e09 L0538: clip L0510..L0544 plays 63.5 s, stop start_line
+0TK5hWAEXBw: 10 moments -> 8 build calls -> 8 built -> 7 shown; $0.2503 billed -> runs/speaker_ab/sarvam/0TK5hWAEXBw.json
+ledger now Rs 1904.40 (this run Rs 41.34)
+armB EXIT 0
+== arm C llm_fix
+ZvISbJNSolg: speaker labels from llm_fix (458 speech lines, 9 speakers, 0 lines with 2+ speakers)
+explicit context cache cachedContents/845h9xrwzg1xsyx0a0amfcv855jhuzbq5cwn1c4l: 13479 tokens, TTL 3600 s, storage $0.0067
+ZvISbJNSolg: FIND: 9 moments listed, 9 valid (by feeling {'laugh': 9}; by intensity {4: 5, 3: 4})
+ZvISbJNSolg: 9 moments -> 6 clusters (2 with several payoffs)
+  e01 L0058: clip L0041..L0059 plays 45.0 s, stop start_line
+  e04 L0205: clip L0159..L0211 plays 72.3 s, stop start_line
+  e05 L0365: clip L0327..L0365 plays 56.9 s, stop start_line
+  e08 L0443: clip L0423..L0448 plays 61.4 s, stop start_line
+  e09 L0478: clip L0457..L0482 plays 47.6 s, stop start_line
+  e03 L0134: clip L0098..L0134 plays 72.5 s, stop A_near_start
+ZvISbJNSolg: 9 moments -> 6 build calls -> 6 built -> 6 shown; $0.1745 billed -> runs/speaker_ab/llm_fix/ZvISbJNSolg.json
+0TK5hWAEXBw: speaker labels from llm_fix (573 speech lines, 10 speakers, 0 lines with 2+ speakers)
+explicit context cache cachedContents/ke3cjgdm7ss3dt6lqanvxmmd5t2v2q3u1f98g91m: 17823 tokens, TTL 3600 s, storage $0.0089
+0TK5hWAEXBw: FIND: 9 moments listed, 9 valid (by feeling {'laugh': 9}; by intensity {5: 1, 4: 6, 3: 2})
+0TK5hWAEXBw: 9 moments -> 8 clusters (1 with several payoffs)
+  e09 L0614: clip L0597..L0614 plays 34.5 s, stop start_line
+  e01 L0085: clip L0073..L0085 plays 25.3 s, stop start_line
+  e02 L0126: call failed: ws_emotion_build/gemini-3.8-flash: gave up after 1 attempts: gemini finishReason=MAX_TOKENS
+  e04 L0334: clip L0300..L0335 plays 65.0 s, stop start_line
+  e05 L0380: clip L0361..L0380 plays 35.3 s, stop A_near_start
+  e07 L0507: clip L0475..L0507 plays 53.3 s, stop start_line
+  e03 L0179: clip L0167..L0183 plays 29.1 s, stop start_line
+  e08 L0537: clip L0510..L0544 plays 63.5 s, stop start_line
+0TK5hWAEXBw: 9 moments -> 8 build calls -> 7 built -> 7 shown; $0.2360 billed -> runs/speaker_ab/llm_fix/0TK5hWAEXBw.json
+ledger now Rs 1941.35 (this run Rs 36.95)
+armC EXIT 0

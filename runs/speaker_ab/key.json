@@ -1,0 +1,290 @@
+{
+ "runs": [
+  "../runs/speaker_ab/sarvam",
+  "../runs/speaker_ab/llm_fix"
+ ],
+ "rated": "../runs/blind_review",
+ "ratings": "../data/human/ratings_blind_ab_r1.csv",
+ "same_threshold": 0.9,
+ "seed": 20261023,
+ "carried_over": [
+  {
+   "video_id": "0TK5hWAEXBw",
+   "run": "../runs/speaker_ab/sarvam",
+   "clip_id": "e08",
+   "title": "First Night నాడు బయటపడ్డ Age Gap గోల",
+   "rated_blind_id": "B04",
+   "would_post": "yes",
+   "overall_1to5": "4",
+   "hook_1to5": "3"
+  },
+  {
+   "video_id": "0TK5hWAEXBw",
+   "run": "../runs/speaker_ab/sarvam",
+   "clip_id": "e09",
+   "title": "మా పప్ప కూడా చిరంజీవి ఫ్యానే",
+   "rated_blind_id": "B03",
+   "would_post": "maybe",
+   "overall_1to5": "3",
+   "hook_1to5": "4"
+  },
+  {
+   "video_id": "0TK5hWAEXBw",
+   "run": "../runs/speaker_ab/sarvam",
+   "clip_id": "e10",
+   "title": "Shift కాదు ఇదే నా Original Avatar! 😂",
+   "rated_blind_id": "B11",
+   "would_post": "maybe",
+   "overall_1to5": "3",
+   "hook_1to5": "3"
+  },
+  {
+   "video_id": "0TK5hWAEXBw",
+   "run": "../runs/speaker_ab/llm_fix",
+   "clip_id": "e01",
+   "title": "నాకోసమే పుట్టిందేమో అనిపించాలి!",
+   "rated_blind_id": "B10",
+   "would_post": "maybe",
+   "overall_1to5": "3",
+   "hook_1to5": "3"
+  },
+  {
+   "video_id": "0TK5hWAEXBw",
+   "run": "../runs/speaker_ab/llm_fix",
+   "clip_id": "e04",
+   "title": "26 లోపు ఎవరినీ చేసుకోవద్దురా",
+   "rated_blind_id": "B13",
+   "would_post": "maybe",
+   "overall_1to5": "3",
+   "hook_1to5": "3"
+  },
+  {
+   "video_id": "0TK5hWAEXBw",
+   "run": "../runs/speaker_ab/llm_fix",
+   "clip_id": "e05",
+   "title": "ఈ రాత్రికే కార్యం జరిపించమన్నారు",
+   "rated_blind_id": "B09",
+   "would_post": "no",
+   "overall_1to5": "2",
+   "hook_1to5": "2"
+  },
+  {
+   "video_id": "0TK5hWAEXBw",
+   "run": "../runs/speaker_ab/llm_fix",
+   "clip_id": "e07",
+   "title": "నువ్వు Pass out అయ్యేసరికి నేను 7th Class",
+   "rated_blind_id": "B04",
+   "would_post": "yes",
+   "overall_1to5": "4",
+   "hook_1to5": "3"
+  },
+  {
+   "video_id": "0TK5hWAEXBw",
+   "run": "../runs/speaker_ab/llm_fix",
+   "clip_id": "e08",
+   "title": "మా పప్ప కూడా చిరంజీవి Fan ఏ!",
+   "rated_blind_id": "B03",
+   "would_post": "maybe",
+   "overall_1to5": "3",
+   "hook_1to5": "4"
+  },
+  {
+   "video_id": "0TK5hWAEXBw",
+   "run": "../runs/speaker_ab/llm_fix",
+   "clip_id": "e09",
+   "title": "First Night రోజే అసలు రూపం చూపించింది!",
+   "rated_blind_id": "B11",
+   "would_post": "maybe",
+   "overall_1to5": "3",
+   "hook_1to5": "3"
+  },
+  {
+   "video_id": "ZvISbJNSolg",
+   "run": "../runs/speaker_ab/sarvam",
+   "clip_id": "e03",
+   "title": "ఆఫీస్ కి Late గా వస్తే చెప్పే అబద్ధాలు",
+   "rated_blind_id": "B08",
+   "would_post": "yes",
+   "overall_1to5": "4",
+   "hook_1to5": "4"
+  },
+  {
+   "video_id": "ZvISbJNSolg",
+   "run": "../runs/speaker_ab/llm_fix",
+   "clip_id": "e01",
+   "title": "Office కి Late వస్తే చెప్పే అబద్ధం",
+   "rated_blind_id": "B08",
+   "would_post": "yes",
+   "overall_1to5": "4",
+   "hook_1to5": "4"
+  },
+  {
+   "video_id": "ZvISbJNSolg",
+   "run": "../runs/speaker_ab/llm_fix",
+   "clip_id": "e05",
+   "title": "Marvel vs DC మధ్యలో Mr Bean ఎంట్రీ!",
+   "rated_blind_id": "B02",
+   "would_post": "yes",
+   "overall_1to5": "4",
+   "hook_1to5": "4"
+  }
+ ],
+ "clips": [
+  {
+   "video_id": "0TK5hWAEXBw",
+   "blind_id": "N01",
+   "rank": 1,
+   "sources": [
+    {
+     "run": "../runs/speaker_ab/sarvam",
+     "clip_id": "e06",
+     "title": "ముప్పై ఏళ్ళు కదా మర్చిపోయావేమో"
+    }
+   ],
+   "shared": false
+  },
+  {
+   "video_id": "0TK5hWAEXBw",
+   "blind_id": "N02",
+   "rank": 2,
+   "sources": [
+    {
+     "run": "../runs/speaker_ab/sarvam",
+     "clip_id": "e03",
+     "title": "అచ్చం మా అమ్మ చేసినట్టే ఉంది!"
+    }
+   ],
+   "shared": false
+  },
+  {
+   "video_id": "0TK5hWAEXBw",
+   "blind_id": "N03",
+   "rank": 3,
+   "sources": [
+    {
+     "run": "../runs/speaker_ab/sarvam",
+     "clip_id": "e02",
+     "title": "నాకోసమే పుట్టిందేమో అనిపించాలి"
+    }
+   ],
+   "shared": false
+  },
+  {
+   "video_id": "0TK5hWAEXBw",
+   "blind_id": "N04",
+   "rank": 4,
+   "sources": [
+    {
+     "run": "../runs/speaker_ab/llm_fix",
+     "clip_id": "e03",
+     "title": "అమ్మాయి age 21 అంట | పెళ్లి చూపులు కామెడీ"
+    }
+   ],
+   "shared": false
+  },
+  {
+   "video_id": "0TK5hWAEXBw",
+   "blind_id": "N05",
+   "rank": 5,
+   "sources": [
+    {
+     "run": "../runs/speaker_ab/sarvam",
+     "clip_id": "e04",
+     "title": "అమ్మాయి వయసు 21 అంట"
+    }
+   ],
+   "shared": false
+  },
+  {
+   "video_id": "ZvISbJNSolg",
+   "blind_id": "N01",
+   "rank": 1,
+   "sources": [
+    {
+     "run": "../runs/speaker_ab/llm_fix",
+     "clip_id": "e08",
+     "title": "Drop అడిగితే ఇదా మీ సమాధానం!"
+    }
+   ],
+   "shared": false
+  },
+  {
+   "video_id": "ZvISbJNSolg",
+   "blind_id": "N02",
+   "rank": 2,
+   "sources": [
+    {
+     "run": "../runs/speaker_ab/llm_fix",
+     "clip_id": "e03",
+     "title": "Love నా Planning లో లేదు! 😂"
+    }
+   ],
+   "shared": false
+  },
+  {
+   "video_id": "ZvISbJNSolg",
+   "blind_id": "N03",
+   "rank": 3,
+   "sources": [
+    {
+     "run": "../runs/speaker_ab/llm_fix",
+     "clip_id": "e09",
+     "title": "అరె ఇవ్వరా బాయ్ | Shannu & Vaishnavi Fun"
+    }
+   ],
+   "shared": false
+  },
+  {
+   "video_id": "ZvISbJNSolg",
+   "blind_id": "N04",
+   "rank": 4,
+   "sources": [
+    {
+     "run": "../runs/speaker_ab/sarvam",
+     "clip_id": "e04",
+     "title": "Ooty Plan లో Singles బాధలు"
+    }
+   ],
+   "shared": false
+  },
+  {
+   "video_id": "ZvISbJNSolg",
+   "blind_id": "N05",
+   "rank": 5,
+   "sources": [
+    {
+     "run": "../runs/speaker_ab/sarvam",
+     "clip_id": "e11",
+     "title": "Drop అడిగితే ఇన్ని తిప్పలా!"
+    }
+   ],
+   "shared": false
+  },
+  {
+   "video_id": "ZvISbJNSolg",
+   "blind_id": "N06",
+   "rank": 6,
+   "sources": [
+    {
+     "run": "../runs/speaker_ab/llm_fix",
+     "clip_id": "e04",
+     "title": "Propose చేస్తే ఇన్ని కష్టాలా?"
+    }
+   ],
+   "shared": false
+  },
+  {
+   "video_id": "ZvISbJNSolg",
+   "blind_id": "N07",
+   "rank": 7,
+   "sources": [
+    {
+     "run": "../runs/speaker_ab/sarvam",
+     "clip_id": "e06",
+     "title": "నాకు నచ్చిన సూపర్ హీరో అతనే!"
+    }
+   ],
+   "shared": false
+  }
+ ]
+}
