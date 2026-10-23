@@ -1,0 +1,378 @@
+{
+ "episodes": [
+  {
+   "video_id": "p3XTZlZ6-xw",
+   "characters": [
+    "Surya",
+    "Meghana",
+    "Lakshmi",
+    "Surya's father",
+    "Swamy",
+    "Swamy's father",
+    "Swamy's mother",
+    "Shiva",
+    "Shankaranna",
+    "Anjali",
+    "Arjun",
+    "Customer",
+    "Subbu"
+   ],
+   "systems": {
+    "scribe": {
+     "path": "/Users/ganeshgowtham/projects/projects/shotvi/scribe_dataset/p3XTZlZ6-xw/p3XTZlZ6-xw_scribe_transcript.json",
+     "n_key_lines": 128,
+     "n_unknown_skipped": 1,
+     "n_offscreen": 7,
+     "no_words": 0,
+     "n_labels": 8,
+     "one_to_one": {
+      "all": {
+       "n": 127,
+       "correct": 64,
+       "acc": 0.504
+      },
+      "onscreen": {
+       "n": 120,
+       "correct": 63,
+       "acc": 0.525
+      },
+      "offscreen": {
+       "n": 7,
+       "correct": 1,
+       "acc": 0.143
+      },
+      "conf2plus": {
+       "n": 124,
+       "correct": 62,
+       "acc": 0.5
+      }
+     },
+     "purity": {
+      "all": {
+       "n": 127,
+       "correct": 70,
+       "acc": 0.551
+      },
+      "onscreen": {
+       "n": 120,
+       "correct": 68,
+       "acc": 0.567
+      },
+      "offscreen": {
+       "n": 7,
+       "correct": 2,
+       "acc": 0.286
+      },
+      "conf2plus": {
+       "n": 124,
+       "correct": 68,
+       "acc": 0.548
+      }
+     },
+     "mapping_one_to_one": {
+      "speaker_0": "Meghana",
+      "speaker_1": "Lakshmi",
+      "speaker_2": "Surya's father",
+      "speaker_3": "Surya",
+      "speaker_4": "Customer",
+      "speaker_5": "Swamy",
+      "speaker_6": "Anjali",
+      "speaker_7": "Arjun"
+     },
+     "confusion": {
+      "speaker_0": {
+       "Meghana": 9,
+       "Anjali": 2,
+       "Lakshmi": 1
+      },
+      "speaker_1": {
+       "Lakshmi": 11,
+       "Surya's father": 1
+      },
+      "speaker_2": {
+       "Surya's father": 9,
+       "Arjun": 1,
+       "Surya": 1
+      },
+      "speaker_3": {
+       "Surya": 8
+      },
+      "speaker_4": {
+       "Surya": 7,
+       "Swamy": 5,
+       "Customer": 3,
+       "Subbu": 1
+      },
+      "speaker_5": {
+       "Swamy": 17,
+       "Swamy's father": 8,
+       "Shiva": 7,
+       "Shankaranna": 7,
+       "Surya": 6,
+       "Lakshmi": 4,
+       "Swamy's mother": 3
+      },
+      "speaker_6": {
+       "Anjali": 5
+      },
+      "speaker_7": {
+       "Swamy": 4,
+       "Surya": 4,
+       "Arjun": 2,
+       "Customer": 1
+      }
+     }
+    },
+    "llm_fix": {
+     "path": "/Users/ganeshgowtham/projects/projects/shotvi/runs/speaker_fix/p3XTZlZ6-xw.json",
+     "n_key_lines": 128,
+     "n_unknown_skipped": 1,
+     "n_offscreen": 7,
+     "no_words": 0,
+     "n_labels": 13,
+     "one_to_one": {
+      "all": {
+       "n": 127,
+       "correct": 105,
+       "acc": 0.827
+      },
+      "onscreen": {
+       "n": 120,
+       "correct": 99,
+       "acc": 0.825
+      },
+      "offscreen": {
+       "n": 7,
+       "correct": 6,
+       "acc": 0.857
+      },
+      "conf2plus": {
+       "n": 124,
+       "correct": 103,
+       "acc": 0.831
+      }
+     },
+     "purity": {
+      "all": {
+       "n": 127,
+       "correct": 107,
+       "acc": 0.843
+      },
+      "onscreen": {
+       "n": 120,
+       "correct": 100,
+       "acc": 0.833
+      },
+      "offscreen": {
+       "n": 7,
+       "correct": 7,
+       "acc": 1.0
+      },
+      "conf2plus": {
+       "n": 124,
+       "correct": 105,
+       "acc": 0.847
+      }
+     },
+     "mapping_one_to_one": {
+      "Delivery Boy": "Arjun",
+      "Father": "Surya's father",
+      "Junior": "Anjali",
+      "Meghana": "Meghana",
+      "Mother": "Lakshmi",
+      "Shankaranna": "Shankaranna",
+      "Siva": "Customer",
+      "Subbu": "Subbu",
+      "Surya": "Surya",
+      "Swami": "Swamy",
+      "Swami's Father": "Swamy's father",
+      "Swami's Mother": "Swamy's mother"
+     },
+     "confusion": {
+      "Delivery Boy": {
+       "Arjun": 2
+      },
+      "Father": {
+       "Surya's father": 10
+      },
+      "Junior": {
+       "Anjali": 7
+      },
+      "Meghana": {
+       "Meghana": 9
+      },
+      "Mother": {
+       "Lakshmi": 16,
+       "Surya": 1
+      },
+      "Shankaranna": {
+       "Shankaranna": 6,
+       "Swamy": 1
+      },
+      "Siva": {
+       "Customer": 4,
+       "Shiva": 3
+      },
+      "Subbu": {
+       "Subbu": 1
+      },
+      "Surya": {
+       "Surya": 22,
+       "Swamy": 5,
+       "Shiva": 2,
+       "Shankaranna": 1
+      },
+      "Swami": {
+       "Swamy": 18,
+       "Surya": 3,
+       "Shiva": 2
+      },
+      "Swami's Father": {
+       "Swamy's father": 8,
+       "Swamy's mother": 1
+      },
+      "Swami's Mother": {
+       "Swamy's mother": 2
+      },
+      "V Arjun": {
+       "Swamy": 2,
+       "Arjun": 1
+      }
+     },
+     "name_acc": {
+      "all": {
+       "n": 127,
+       "correct": 60,
+       "acc": 0.472
+      },
+      "onscreen": {
+       "n": 120,
+       "correct": 57,
+       "acc": 0.475
+      },
+      "offscreen": {
+       "n": 7,
+       "correct": 3,
+       "acc": 0.429
+      },
+      "conf2plus": {
+       "n": 124,
+       "correct": 59,
+       "acc": 0.476
+      }
+     },
+     "name_map": {
+      "Delivery Boy": null,
+      "Father": null,
+      "Junior": null,
+      "Meghana": "Meghana",
+      "Mother": null,
+      "Shankaranna": "Shankaranna",
+      "Siva": "Shiva",
+      "Subbu": "Subbu",
+      "Surya": "Surya",
+      "Swami": "Swamy",
+      "Swami's Father": null,
+      "Swami's Mother": null,
+      "V Arjun": "Arjun"
+     },
+     "unmatched_names": [
+      "Delivery Boy",
+      "Father",
+      "Junior",
+      "Mother",
+      "Swami's Father",
+      "Swami's Mother"
+     ]
+    }
+   }
+  }
+ ],
+ "overall": {
+  "llm_fix": {
+   "name_acc.all": {
+    "correct": 60,
+    "n": 127,
+    "acc": 0.472
+   },
+   "name_acc.offscreen": {
+    "correct": 3,
+    "n": 7,
+    "acc": 0.429
+   },
+   "name_acc.onscreen": {
+    "correct": 57,
+    "n": 120,
+    "acc": 0.475
+   },
+   "one_to_one.all": {
+    "correct": 105,
+    "n": 127,
+    "acc": 0.827
+   },
+   "one_to_one.offscreen": {
+    "correct": 6,
+    "n": 7,
+    "acc": 0.857
+   },
+   "one_to_one.onscreen": {
+    "correct": 99,
+    "n": 120,
+    "acc": 0.825
+   },
+   "purity.all": {
+    "correct": 107,
+    "n": 127,
+    "acc": 0.843
+   },
+   "purity.offscreen": {
+    "correct": 7,
+    "n": 7,
+    "acc": 1.0
+   },
+   "purity.onscreen": {
+    "correct": 100,
+    "n": 120,
+    "acc": 0.833
+   },
+   "episodes": [
+    "p3XTZlZ6-xw"
+   ]
+  },
+  "scribe": {
+   "one_to_one.all": {
+    "correct": 64,
+    "n": 127,
+    "acc": 0.504
+   },
+   "one_to_one.offscreen": {
+    "correct": 1,
+    "n": 7,
+    "acc": 0.143
+   },
+   "one_to_one.onscreen": {
+    "correct": 63,
+    "n": 120,
+    "acc": 0.525
+   },
+   "purity.all": {
+    "correct": 70,
+    "n": 127,
+    "acc": 0.551
+   },
+   "purity.offscreen": {
+    "correct": 2,
+    "n": 7,
+    "acc": 0.286
+   },
+   "purity.onscreen": {
+    "correct": 68,
+    "n": 120,
+    "acc": 0.567
+   },
+   "episodes": [
+    "p3XTZlZ6-xw"
+   ]
+  }
+ }
+}
