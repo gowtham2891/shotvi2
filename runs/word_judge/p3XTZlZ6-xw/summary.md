@@ -1,0 +1,43 @@
+# Word judge: p3XTZlZ6-xw
+
+Pairing: 452 Sarvam segments, 325 differ at segment level; after boundary merges (25) and 21 orphan groups (23 Scribe words outside any Sarvam segment): 318 differing units of 448.
+Judged 318 (clear 315, unclear 3), unchecked 0, not run 0.
+
+| | Scribe | Sarvam |
+|---|---|---|
+| real errors (clear units) | 206 | 175 |
+| own words, whole episode | 2340 | 2293 |
+| errors per 100 words | 8.8 | 7.63 |
+| units where better | 66 | 74 |
+| wrong | 113 | 115 |
+| missing | 86 | 55 |
+| added | 7 | 5 |
+| filler differences (not errors) | 51 | 44 |
+
+Ties: 175 (both 0 errors: 129; filler only: 129). Error-count mismatches (model's integer vs its own list; the list is used): 0.
+Words in unclear / unchecked / not-run units (no errors counted): Scribe 0, Sarvam 3.
+
+Assumption: units where Scribe and Sarvam agree count as 0 errors for both (an error both make is invisible); unclear / unchecked / not-run units add no errors; words = each system's own token count over the whole episode.
+
+ASR-fix layer touched 18 correction(s) inside differing units (13 applied); verdicts there: sarvam_better 9, scribe_better 5, tie 4
+
+- u014: "కాలు తొడిగి" -> "కాలు తొడిగితే" (applied, relisten); verdict tie; judge's Scribe errors: wrong 'తొడిగి'->'తోడి'; wrong 'ఎందుకో'->'అందుకో'
+- u055: "ఉండు" -> "ఉండు రా" (applied, relisten); verdict tie; judge's Scribe errors: wrong 'ఉండు'->'ఉండ్రా'
+- u064: "అయిగా" -> "boy గా" (applied, relisten); verdict sarvam_better; judge's Scribe errors: missing ''->'నా'; wrong 'అయిగా'->'ఇలాగే'
+- u093: "పట్టుాలనుకున్నవి" -> "పట్టాల నుకునేవి" (applied, relisten); verdict sarvam_better; judge's Scribe errors: wrong 'పట్టుాలనుకున్నవి'->'పట్టాలు అనుకున్నవి'
+- u115: "ఇచ్చేస్చ్చు" -> "ఇచ్చేయొచ్చు" (applied, relisten); verdict scribe_better; judge's Scribe errors: wrong 'ఇచ్చేస్చ్చు'->'ఇచ్చేయొచ్చు'
+- u157: "ఏ పోదాం." -> "పద." (applied, relisten); verdict sarvam_better; judge's Scribe errors: wrong 'పోదాం'->'పదా'; wrong 'సరే కొంచెం'->'చిన్న'
+- u163: "your" -> "you a" (applied, relisten); verdict tie; judge's Scribe errors: wrong 'your'->'you'
+- u164: "అదిరా" -> "అనేది" (not applied, context); verdict scribe_better
+- u204: "ముంగ 达 లు" -> "మూంగ్ దాల్" (applied, relisten); verdict sarvam_better; judge's Scribe errors: wrong 'ముంగ 达 లు'->'మూంగ్ దాల్'
+- u217: "shop" -> "షాప్" (not applied, context); verdict scribe_better
+- u232: "వెళ్ళటం లేదు" -> "వీల్లేదు" (applied, relisten); verdict sarvam_better; judge's Scribe errors: added 'వెళ్ళటం'->''; added 'లేదు'->''
+- u272: "సరే," -> "సరేలే," (applied, relisten); verdict sarvam_better; judge's Scribe errors: wrong 'సరిపోతాయిలే'->'సరిపోతాలే'; wrong 'ఏమైనా'->'ఏమన్నా'; missing ''->'చేసేద్దాం'
+- u315: "పటా" -> "పాట" (applied, relisten); verdict tie
+- u375: "మీరు" -> "Mail" (applied, relisten); verdict sarvam_better; judge's Scribe errors: wrong 'చెప్పురా'->'మీ'; wrong 'మీరు'->'ఇల్లు'
+- u390: "key." -> "తీయి." (not applied, context); verdict scribe_better; judge's Scribe errors: missing ''->'ready'; wrong 'key'->'keys ready'
+- u404: "చారా" -> "అరే Virgin-u" (applied, relisten); verdict sarvam_better; judge's Scribe errors: wrong 'చారా'->'జారా'
+- u406: "పో open" -> "app open" (not applied, context); verdict sarvam_better; judge's Scribe errors: wrong 'ఆ'->'app'; wrong 'పో'->'open'; wrong 'చేస్తా'->'చేస్తే'
+- u433: "వచ్చిండట" -> "వచ్చినట్టు" (not applied, context); verdict scribe_better
+
+Cost: 25 calls (25 fresh, 0 cached), ₹18.22 billed (audio surcharge included), 61331 in / 36916 out tokens, 555.2 s wall

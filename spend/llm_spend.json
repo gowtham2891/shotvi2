@@ -1,263 +1,7 @@
 {
- "total_usd": 19.822751,
- "calls": 1979,
+ "total_usd": 20.0252,
+ "calls": 2029,
  "entries": [
-  {
-   "t": "2026-09-27T00:00:00",
-   "model": "history",
-   "in": 0,
-   "out": 0,
-   "usd": 3.92,
-   "source": "round-2 clip-selection dev runs (sel_dev1..4, sel_r2*, sel_r3*): agent-reported total; billed sum of cost.json files is $3.892"
-  },
-  {
-   "t": "2026-09-27T00:00:00",
-   "model": "history",
-   "in": 0,
-   "out": 0,
-   "usd": 2.964362,
-   "source": "round-2 judge calibration (eval/cache/judge_spend.json, 214 calls, gemini-2.5-pro)"
-  },
-  {
-   "t": "2026-09-29T17:25:34",
-   "model": "gemini-3.8-flash",
-   "in": 2045,
-   "out": 260,
-   "usd": 0.002509,
-   "source": "r4-scorer-bakeoff"
-  },
-  {
-   "t": "2026-09-29T17:25:37",
-   "model": "gemini-3.8-flash",
-   "in": 2754,
-   "out": 312,
-   "usd": 0.003236,
-   "source": "r4-scorer-bakeoff"
-  },
-  {
-   "t": "2026-09-29T17:25:41",
-   "model": "gemini-3.8-flash",
-   "in": 2037,
-   "out": 297,
-   "usd": 0.002642,
-   "source": "r4-scorer-bakeoff"
-  },
-  {
-   "t": "2026-09-29T17:25:47",
-   "model": "gemini-3.8-flash",
-   "in": 1972,
-   "out": 268,
-   "usd": 0.002484,
-   "source": "r4-scorer-bakeoff"
-  },
-  {
-   "t": "2026-09-29T17:25:51",
-   "model": "gemini-3.8-flash",
-   "in": 2039,
-   "out": 303,
-   "usd": 0.002665,
-   "source": "r4-scorer-bakeoff"
-  },
-  {
-   "t": "2026-09-29T17:25:54",
-   "model": "gemini-3.8-flash",
-   "in": 1924,
-   "out": 276,
-   "usd": 0.002478,
-   "source": "r4-scorer-bakeoff"
-  },
-  {
-   "t": "2026-09-29T17:25:57",
-   "model": "gemini-3.8-flash",
-   "in": 1912,
-   "out": 273,
-   "usd": 0.002458,
-   "source": "r4-scorer-bakeoff"
-  },
-  {
-   "t": "2026-09-29T17:25:59",
-   "model": "gemini-3.8-flash",
-   "in": 2436,
-   "out": 289,
-   "usd": 0.002911,
-   "source": "r4-scorer-bakeoff"
-  },
-  {
-   "t": "2026-09-29T17:26:16",
-   "model": "gemini-3.8-flash",
-   "in": 2072,
-   "out": 259,
-   "usd": 0.002525,
-   "source": "r4-scorer-bakeoff"
-  },
-  {
-   "t": "2026-09-29T17:26:19",
-   "model": "gemini-3.8-flash",
-   "in": 2006,
-   "out": 265,
-   "usd": 0.002498,
-   "source": "r4-scorer-bakeoff"
-  },
-  {
-   "t": "2026-09-29T17:26:59",
-   "model": "gemini-3.8-flash",
-   "in": 2045,
-   "out": 653,
-   "usd": 0.003982,
-   "source": "r4-scorer-bakeoff"
-  },
-  {
-   "t": "2026-09-29T17:27:09",
-   "model": "gemini-3.8-flash",
-   "in": 2754,
-   "out": 1527,
-   "usd": 0.007792,
-   "source": "r4-scorer-bakeoff"
-  },
-  {
-   "t": "2026-09-29T17:27:30",
-   "model": "gemini-3.1-pro-preview",
-   "in": 2045,
-   "out": 856,
-   "usd": 0.014362,
-   "source": "r4-scorer-bakeoff"
-  },
-  {
-   "t": "2026-09-29T17:27:35",
-   "model": "gemini-3.1-pro-preview",
-   "in": 2754,
-   "out": 358,
-   "usd": 0.009804,
-   "source": "r4-scorer-bakeoff"
-  },
-  {
-   "t": "2026-09-29T17:27:45",
-   "model": "gemini-3.1-pro-preview",
-   "in": 2037,
-   "out": 895,
-   "usd": 0.014814,
-   "source": "r4-scorer-bakeoff"
-  },
-  {
-   "t": "2026-09-29T17:27:56",
-   "model": "gemini-3.1-pro-preview",
-   "in": 1972,
-   "out": 1039,
-   "usd": 0.016412,
-   "source": "r4-scorer-bakeoff"
-  },
-  {
-   "t": "2026-09-29T17:28:10",
-   "model": "gemini-3.1-pro-preview",
-   "in": 2039,
-   "out": 1395,
-   "usd": 0.020818,
-   "source": "r4-scorer-bakeoff"
-  },
-  {
-   "t": "2026-09-29T17:28:21",
-   "model": "gemini-3.1-pro-preview",
-   "in": 1924,
-   "out": 876,
-   "usd": 0.01436,
-   "source": "r4-scorer-bakeoff"
-  },
-  {
-   "t": "2026-09-29T17:28:29",
-   "model": "gemini-3.1-pro-preview",
-   "in": 1912,
-   "out": 608,
-   "usd": 0.01112,
-   "source": "r4-scorer-bakeoff"
-  },
-  {
-   "t": "2026-09-29T17:29:11",
-   "model": "gemini-3.8-flash",
-   "in": 2155,
-   "out": 302,
-   "usd": 0.002749,
-   "source": "r4-scorer-bakeoff"
-  },
-  {
-   "t": "2026-09-29T17:29:17",
-   "model": "gemini-3.8-flash",
-   "in": 2864,
-   "out": 334,
-   "usd": 0.0034,
-   "source": "r4-scorer-bakeoff"
-  },
-  {
-   "t": "2026-09-29T17:29:22",
-   "model": "gemini-3.8-flash",
-   "in": 2147,
-   "out": 321,
-   "usd": 0.002814,
-   "source": "r4-scorer-bakeoff"
-  },
-  {
-   "t": "2026-09-29T17:29:26",
-   "model": "gemini-3.8-flash",
-   "in": 2082,
-   "out": 294,
-   "usd": 0.002664,
-   "source": "r4-scorer-bakeoff"
-  },
-  {
-   "t": "2026-09-29T17:29:32",
-   "model": "gemini-3.8-flash",
-   "in": 2149,
-   "out": 294,
-   "usd": 0.002714,
-   "source": "r4-scorer-bakeoff"
-  },
-  {
-   "t": "2026-09-29T17:29:35",
-   "model": "gemini-3.8-flash",
-   "in": 2034,
-   "out": 301,
-   "usd": 0.002654,
-   "source": "r4-scorer-bakeoff"
-  },
-  {
-   "t": "2026-09-29T17:29:38",
-   "model": "gemini-3.8-flash",
-   "in": 2022,
-   "out": 274,
-   "usd": 0.002544,
-   "source": "r4-scorer-bakeoff"
-  },
-  {
-   "t": "2026-09-29T17:29:42",
-   "model": "gemini-3.8-flash",
-   "in": 2546,
-   "out": 278,
-   "usd": 0.002952,
-   "source": "r4-scorer-bakeoff"
-  },
-  {
-   "t": "2026-09-29T17:29:44",
-   "model": "gemini-3.8-flash",
-   "in": 2182,
-   "out": 263,
-   "usd": 0.002623,
-   "source": "r4-scorer-bakeoff"
-  },
-  {
-   "t": "2026-09-29T17:29:47",
-   "model": "gemini-3.8-flash",
-   "in": 2116,
-   "out": 268,
-   "usd": 0.002592,
-   "source": "r4-scorer-bakeoff"
-  },
-  {
-   "t": "2026-09-29T17:31:20",
-   "model": "gemini-3.8-flash",
-   "in": 6065,
-   "out": 923,
-   "usd": 0.00801,
-   "source": "r4-dev5-FS1"
-  },
   {
    "t": "2026-09-29T17:31:22",
    "model": "gemini-3.8-flash",
@@ -16015,6 +15759,406 @@
    "out": 1138,
    "usd": 0.00761,
    "source": "speaker_fix_surya"
+  },
+  {
+   "t": "2026-10-23T16:17:15",
+   "model": "gemini-3.8-flash",
+   "in": 2757,
+   "out": 1498,
+   "usd": 0.007685,
+   "source": "word_judge"
+  },
+  {
+   "t": "2026-10-23T16:17:15",
+   "model": "gemini-3.8-flash",
+   "in": 1164,
+   "out": 0,
+   "usd": 0.000873,
+   "source": "word_judge-audio-surcharge"
+  },
+  {
+   "t": "2026-10-23T16:17:35",
+   "model": "gemini-3.8-flash",
+   "in": 2142,
+   "out": 1279,
+   "usd": 0.006403,
+   "source": "word_judge"
+  },
+  {
+   "t": "2026-10-23T16:17:35",
+   "model": "gemini-3.8-flash",
+   "in": 724,
+   "out": 0,
+   "usd": 0.000543,
+   "source": "word_judge-audio-surcharge"
+  },
+  {
+   "t": "2026-10-23T16:17:58",
+   "model": "gemini-3.8-flash",
+   "in": 2688,
+   "out": 1663,
+   "usd": 0.008252,
+   "source": "word_judge"
+  },
+  {
+   "t": "2026-10-23T16:17:58",
+   "model": "gemini-3.8-flash",
+   "in": 1115,
+   "out": 0,
+   "usd": 0.000836,
+   "source": "word_judge-audio-surcharge"
+  },
+  {
+   "t": "2026-10-23T16:18:19",
+   "model": "gemini-3.8-flash",
+   "in": 2286,
+   "out": 1436,
+   "usd": 0.007099,
+   "source": "word_judge"
+  },
+  {
+   "t": "2026-10-23T16:18:19",
+   "model": "gemini-3.8-flash",
+   "in": 853,
+   "out": 0,
+   "usd": 0.00064,
+   "source": "word_judge-audio-surcharge"
+  },
+  {
+   "t": "2026-10-23T16:18:39",
+   "model": "gemini-3.8-flash",
+   "in": 2402,
+   "out": 1419,
+   "usd": 0.007123,
+   "source": "word_judge"
+  },
+  {
+   "t": "2026-10-23T16:18:39",
+   "model": "gemini-3.8-flash",
+   "in": 893,
+   "out": 0,
+   "usd": 0.00067,
+   "source": "word_judge-audio-surcharge"
+  },
+  {
+   "t": "2026-10-23T16:19:01",
+   "model": "gemini-3.8-flash",
+   "in": 2916,
+   "out": 1572,
+   "usd": 0.008082,
+   "source": "word_judge"
+  },
+  {
+   "t": "2026-10-23T16:19:01",
+   "model": "gemini-3.8-flash",
+   "in": 1281,
+   "out": 0,
+   "usd": 0.000961,
+   "source": "word_judge-audio-surcharge"
+  },
+  {
+   "t": "2026-10-23T16:19:24",
+   "model": "gemini-3.8-flash",
+   "in": 2328,
+   "out": 1466,
+   "usd": 0.007243,
+   "source": "word_judge"
+  },
+  {
+   "t": "2026-10-23T16:19:24",
+   "model": "gemini-3.8-flash",
+   "in": 875,
+   "out": 0,
+   "usd": 0.000656,
+   "source": "word_judge-audio-surcharge"
+  },
+  {
+   "t": "2026-10-23T16:19:45",
+   "model": "gemini-3.8-flash",
+   "in": 2262,
+   "out": 1508,
+   "usd": 0.007352,
+   "source": "word_judge"
+  },
+  {
+   "t": "2026-10-23T16:19:45",
+   "model": "gemini-3.8-flash",
+   "in": 781,
+   "out": 0,
+   "usd": 0.000586,
+   "source": "word_judge-audio-surcharge"
+  },
+  {
+   "t": "2026-10-23T16:20:08",
+   "model": "gemini-3.8-flash",
+   "in": 2637,
+   "out": 1848,
+   "usd": 0.008908,
+   "source": "word_judge"
+  },
+  {
+   "t": "2026-10-23T16:20:08",
+   "model": "gemini-3.8-flash",
+   "in": 1063,
+   "out": 0,
+   "usd": 0.000797,
+   "source": "word_judge-audio-surcharge"
+  },
+  {
+   "t": "2026-10-23T16:20:30",
+   "model": "gemini-3.8-flash",
+   "in": 2223,
+   "out": 1479,
+   "usd": 0.007214,
+   "source": "word_judge"
+  },
+  {
+   "t": "2026-10-23T16:20:30",
+   "model": "gemini-3.8-flash",
+   "in": 796,
+   "out": 0,
+   "usd": 0.000597,
+   "source": "word_judge-audio-surcharge"
+  },
+  {
+   "t": "2026-10-23T16:20:53",
+   "model": "gemini-3.8-flash",
+   "in": 2600,
+   "out": 1400,
+   "usd": 0.0072,
+   "source": "word_judge"
+  },
+  {
+   "t": "2026-10-23T16:20:53",
+   "model": "gemini-3.8-flash",
+   "in": 1065,
+   "out": 0,
+   "usd": 0.000799,
+   "source": "word_judge-audio-surcharge"
+  },
+  {
+   "t": "2026-10-23T16:21:17",
+   "model": "gemini-3.8-flash",
+   "in": 2885,
+   "out": 1663,
+   "usd": 0.0084,
+   "source": "word_judge"
+  },
+  {
+   "t": "2026-10-23T16:21:17",
+   "model": "gemini-3.8-flash",
+   "in": 1284,
+   "out": 0,
+   "usd": 0.000963,
+   "source": "word_judge-audio-surcharge"
+  },
+  {
+   "t": "2026-10-23T16:21:38",
+   "model": "gemini-3.8-flash",
+   "in": 2715,
+   "out": 1552,
+   "usd": 0.007856,
+   "source": "word_judge"
+  },
+  {
+   "t": "2026-10-23T16:21:38",
+   "model": "gemini-3.8-flash",
+   "in": 1157,
+   "out": 0,
+   "usd": 0.000868,
+   "source": "word_judge-audio-surcharge"
+  },
+  {
+   "t": "2026-10-23T16:22:00",
+   "model": "gemini-3.8-flash",
+   "in": 2247,
+   "out": 1308,
+   "usd": 0.00659,
+   "source": "word_judge"
+  },
+  {
+   "t": "2026-10-23T16:22:00",
+   "model": "gemini-3.8-flash",
+   "in": 780,
+   "out": 0,
+   "usd": 0.000585,
+   "source": "word_judge-audio-surcharge"
+  },
+  {
+   "t": "2026-10-23T16:22:22",
+   "model": "gemini-3.8-flash",
+   "in": 2683,
+   "out": 1364,
+   "usd": 0.007127,
+   "source": "word_judge"
+  },
+  {
+   "t": "2026-10-23T16:22:22",
+   "model": "gemini-3.8-flash",
+   "in": 1182,
+   "out": 0,
+   "usd": 0.000887,
+   "source": "word_judge-audio-surcharge"
+  },
+  {
+   "t": "2026-10-23T16:22:44",
+   "model": "gemini-3.8-flash",
+   "in": 2507,
+   "out": 1593,
+   "usd": 0.007854,
+   "source": "word_judge"
+  },
+  {
+   "t": "2026-10-23T16:22:44",
+   "model": "gemini-3.8-flash",
+   "in": 989,
+   "out": 0,
+   "usd": 0.000742,
+   "source": "word_judge-audio-surcharge"
+  },
+  {
+   "t": "2026-10-23T16:23:09",
+   "model": "gemini-3.8-flash",
+   "in": 2795,
+   "out": 1650,
+   "usd": 0.008284,
+   "source": "word_judge"
+  },
+  {
+   "t": "2026-10-23T16:23:09",
+   "model": "gemini-3.8-flash",
+   "in": 1199,
+   "out": 0,
+   "usd": 0.000899,
+   "source": "word_judge-audio-surcharge"
+  },
+  {
+   "t": "2026-10-23T16:23:34",
+   "model": "gemini-3.8-flash",
+   "in": 2675,
+   "out": 1517,
+   "usd": 0.007695,
+   "source": "word_judge"
+  },
+  {
+   "t": "2026-10-23T16:23:34",
+   "model": "gemini-3.8-flash",
+   "in": 1153,
+   "out": 0,
+   "usd": 0.000865,
+   "source": "word_judge-audio-surcharge"
+  },
+  {
+   "t": "2026-10-23T16:24:02",
+   "model": "gemini-3.8-flash",
+   "in": 2230,
+   "out": 1458,
+   "usd": 0.00714,
+   "source": "word_judge"
+  },
+  {
+   "t": "2026-10-23T16:24:02",
+   "model": "gemini-3.8-flash",
+   "in": 794,
+   "out": 0,
+   "usd": 0.000596,
+   "source": "word_judge-audio-surcharge"
+  },
+  {
+   "t": "2026-10-23T16:24:25",
+   "model": "gemini-3.8-flash",
+   "in": 2388,
+   "out": 1409,
+   "usd": 0.007075,
+   "source": "word_judge"
+  },
+  {
+   "t": "2026-10-23T16:24:25",
+   "model": "gemini-3.8-flash",
+   "in": 953,
+   "out": 0,
+   "usd": 0.000715,
+   "source": "word_judge-audio-surcharge"
+  },
+  {
+   "t": "2026-10-23T16:24:46",
+   "model": "gemini-3.8-flash",
+   "in": 2249,
+   "out": 1338,
+   "usd": 0.006704,
+   "source": "word_judge"
+  },
+  {
+   "t": "2026-10-23T16:24:46",
+   "model": "gemini-3.8-flash",
+   "in": 831,
+   "out": 0,
+   "usd": 0.000623,
+   "source": "word_judge-audio-surcharge"
+  },
+  {
+   "t": "2026-10-23T16:25:08",
+   "model": "gemini-3.8-flash",
+   "in": 2182,
+   "out": 1517,
+   "usd": 0.007325,
+   "source": "word_judge"
+  },
+  {
+   "t": "2026-10-23T16:25:08",
+   "model": "gemini-3.8-flash",
+   "in": 738,
+   "out": 0,
+   "usd": 0.000553,
+   "source": "word_judge-audio-surcharge"
+  },
+  {
+   "t": "2026-10-23T16:25:33",
+   "model": "gemini-3.8-flash",
+   "in": 2399,
+   "out": 1608,
+   "usd": 0.007829,
+   "source": "word_judge"
+  },
+  {
+   "t": "2026-10-23T16:25:33",
+   "model": "gemini-3.8-flash",
+   "in": 890,
+   "out": 0,
+   "usd": 0.000668,
+   "source": "word_judge-audio-surcharge"
+  },
+  {
+   "t": "2026-10-23T16:25:58",
+   "model": "gemini-3.8-flash",
+   "in": 2507,
+   "out": 1742,
+   "usd": 0.008413,
+   "source": "word_judge"
+  },
+  {
+   "t": "2026-10-23T16:25:58",
+   "model": "gemini-3.8-flash",
+   "in": 994,
+   "out": 0,
+   "usd": 0.000745,
+   "source": "word_judge-audio-surcharge"
+  },
+  {
+   "t": "2026-10-23T16:26:10",
+   "model": "gemini-3.8-flash",
+   "in": 1628,
+   "out": 629,
+   "usd": 0.00358,
+   "source": "word_judge"
+  },
+  {
+   "t": "2026-10-23T16:26:10",
+   "model": "gemini-3.8-flash",
+   "in": 465,
+   "out": 0,
+   "usd": 0.000349,
+   "source": "word_judge-audio-surcharge"
   }
  ]
 }
