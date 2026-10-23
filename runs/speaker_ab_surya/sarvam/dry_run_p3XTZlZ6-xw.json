@@ -1,0 +1,312 @@
+{
+ "video_id": "p3XTZlZ6-xw",
+ "dry_run": true,
+ "find_prompt": "ws_emotion_find",
+ "find_cached": false,
+ "projection": {
+  "context_tokens": 20181,
+  "find_task_tokens": 952,
+  "find_cached": false,
+  "build_task_tokens": [
+   1816,
+   1843,
+   1810,
+   1875,
+   1838,
+   1910
+  ],
+  "build_task_tokens_sample": null,
+  "n_moments": null,
+  "storage_inr": 0.91,
+  "write_inr_worst": 1.36,
+  "find": {
+   "model": "gemini-3.8-flash",
+   "thinking_level": "high",
+   "out_expected": 15000,
+   "out_max": 32768,
+   "inr_expected": 5.26,
+   "inr_worst": 11.26
+  },
+  "build": {
+   "model": "gemini-3.8-flash",
+   "thinking_level": "medium",
+   "out_expected": 3500,
+   "out_max": 16384,
+   "inr_worst_each": 5.79,
+   "retry": {
+    "out_max": 32768,
+    "inr_worst_each": 11.32
+   }
+  },
+  "rows": {
+   "no_cap": {
+    "cap": null,
+    "n_build_expected": 6,
+    "n_build_worst": 6,
+    "n_build_uncached": 6,
+    "find_inr_expected": 5.26,
+    "find_inr_worst": 11.26,
+    "build_inr_expected": 8.65,
+    "build_inr_worst": 34.74,
+    "storage_inr": 0.91,
+    "inr_expected": 14.82,
+    "inr_worst": 48.27
+   },
+   "cap": {
+    "cap": 10,
+    "n_build_expected": 6,
+    "n_build_worst": 6,
+    "n_build_uncached": 6,
+    "find_inr_expected": 5.26,
+    "find_inr_worst": 11.26,
+    "build_inr_expected": 8.65,
+    "build_inr_worst": 34.74,
+    "storage_inr": 0.91,
+    "inr_expected": 14.82,
+    "inr_worst": 48.27
+   }
+  },
+  "token_source": "countTokens"
+ },
+ "n_lift_ok": 36,
+ "n_lift_ok_runs": 13,
+ "moments_basis": "find answer of emotion3 (6 valid moments) as the estimate",
+ "speaker_layer": {
+  "source": "sarvam",
+  "file": "runs/speaker_layer/p3XTZlZ6-xw_sarvam.json",
+  "source_file": "scribe_dataset/p3XTZlZ6-xw/p3XTZlZ6-xw_sarvam_raw.json",
+  "source_sha8": "a3f6c8eb",
+  "placeholder": false,
+  "n_speakers": 13,
+  "mapping": [
+   {
+    "label": "speaker_0",
+    "source_id": "sarvam:4",
+    "n_lines": 67,
+    "n_words": 211
+   },
+   {
+    "label": "speaker_1",
+    "source_id": "sarvam:5",
+    "n_lines": 84,
+    "n_words": 243
+   },
+   {
+    "label": "speaker_2",
+    "source_id": "sarvam:2",
+    "n_lines": 48,
+    "n_words": 149
+   },
+   {
+    "label": "speaker_3",
+    "source_id": "sarvam:6",
+    "n_lines": 137,
+    "n_words": 467
+   },
+   {
+    "label": "speaker_4",
+    "source_id": "sarvam:11",
+    "n_lines": 56,
+    "n_words": 249
+   },
+   {
+    "label": "speaker_5",
+    "source_id": "sarvam:3",
+    "n_lines": 33,
+    "n_words": 123
+   },
+   {
+    "label": "speaker_6",
+    "source_id": "sarvam:9",
+    "n_lines": 121,
+    "n_words": 495
+   },
+   {
+    "label": "speaker_7",
+    "source_id": "sarvam:1",
+    "n_lines": 15,
+    "n_words": 98
+   },
+   {
+    "label": "speaker_8",
+    "source_id": "sarvam:0",
+    "n_lines": 6,
+    "n_words": 29
+   },
+   {
+    "label": "speaker_9",
+    "source_id": "sarvam:10",
+    "n_lines": 21,
+    "n_words": 104
+   },
+   {
+    "label": "speaker_10",
+    "source_id": "sarvam:8",
+    "n_lines": 19,
+    "n_words": 87
+   },
+   {
+    "label": "speaker_11",
+    "source_id": "scribe:speaker_4",
+    "n_lines": 4,
+    "n_words": 4
+   },
+   {
+    "label": "speaker_12",
+    "source_id": "sarvam:7",
+    "n_lines": 23,
+    "n_words": 80
+   }
+  ],
+  "word_via": {
+   "overlap": 2316,
+   "nearest": 19,
+   "scribe_fallback": 4
+  },
+  "stats": {
+   "n_lines": 634,
+   "n_split_lines": 43,
+   "n_lines_changed_vs_scribe_partition": 158,
+   "unmatched_lines": 0
+  }
+ },
+ "n_clusters": 6,
+ "clusters": [
+  {
+   "target": "p01",
+   "target_line": "L0074",
+   "strength": 3,
+   "members": [
+    {
+     "id": "p01",
+     "line": "L0074",
+     "intensity": 3
+    }
+   ],
+   "earlier": [],
+   "absorbed": [],
+   "break_before": null,
+   "cluster_context": ""
+  },
+  {
+   "target": "p02",
+   "target_line": "L0166",
+   "strength": 4,
+   "members": [
+    {
+     "id": "p02",
+     "line": "L0166",
+     "intensity": 4
+    }
+   ],
+   "earlier": [],
+   "absorbed": [],
+   "break_before": "music: L0109 [పాట] (14.1 s, no speech)",
+   "cluster_context": ""
+  },
+  {
+   "target": "p03",
+   "target_line": "L0259",
+   "strength": 3,
+   "members": [
+    {
+     "id": "p03",
+     "line": "L0259",
+     "intensity": 3
+    }
+   ],
+   "earlier": [],
+   "absorbed": [],
+   "break_before": "music: L0221 [పాట] (16.9 s, no speech)",
+   "cluster_context": ""
+  },
+  {
+   "target": "p04",
+   "target_line": "L0485",
+   "strength": 5,
+   "members": [
+    {
+     "id": "p04",
+     "line": "L0485",
+     "intensity": 5
+    }
+   ],
+   "earlier": [],
+   "absorbed": [],
+   "break_before": "music: L0273 [పాట] (4.4 s, no speech)",
+   "cluster_context": ""
+  },
+  {
+   "target": "p05",
+   "target_line": "L0504",
+   "strength": 4,
+   "members": [
+    {
+     "id": "p05",
+     "line": "L0504",
+     "intensity": 4
+    }
+   ],
+   "earlier": [],
+   "absorbed": [],
+   "break_before": "music: L0489 [పాట] (5.7 s, no speech)",
+   "cluster_context": ""
+  },
+  {
+   "target": "p06",
+   "target_line": "L0698",
+   "strength": 4,
+   "members": [
+    {
+     "id": "p06",
+     "line": "L0698",
+     "intensity": 4
+    }
+   ],
+   "earlier": [],
+   "absorbed": [],
+   "break_before": "music: L0550 [పాట] (25.5 s, no speech)",
+   "cluster_context": ""
+  }
+ ],
+ "n_moments_valid": 6,
+ "n_moments_rejected": 0,
+ "moments": [
+  {
+   "id": "p01",
+   "line": "L0074",
+   "feeling": "relatable_banter",
+   "intensity": 3
+  },
+  {
+   "id": "p02",
+   "line": "L0166",
+   "feeling": "aww",
+   "intensity": 4
+  },
+  {
+   "id": "p03",
+   "line": "L0259",
+   "feeling": "laugh",
+   "intensity": 3
+  },
+  {
+   "id": "p04",
+   "line": "L0485",
+   "feeling": "laugh",
+   "intensity": 5
+  },
+  {
+   "id": "p05",
+   "line": "L0504",
+   "feeling": "laugh",
+   "intensity": 4
+  },
+  {
+   "id": "p06",
+   "line": "L0698",
+   "feeling": "tears",
+   "intensity": 4
+  }
+ ]
+}
