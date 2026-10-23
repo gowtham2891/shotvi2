@@ -1,0 +1,25 @@
+--- prompts/ws_emotion_build.md	2026-10-22 11:41:00
++++ prompts/ws_emotion_build_v3.md	2026-10-24 00:27:19
+@@ -1,6 +1,6 @@
+ ---
+-name: ws_emotion_build
+-version: 2
++name: ws_emotion_build_v3
++version: 3
+ ---
+ ### SYSTEM
+ ## Task: cut ONE clip around a moment a stranger feels
+@@ -25,9 +25,10 @@
+   When `no_clip` is true, explain why in `no_clip_why` and leave other fields empty.
+ 
+ ## A whole moment, not a fragment
+-A clip is a complete dramatic or comic unit: `setup -> escalation -> payoff -> reaction` (typically 30-75 seconds, up to ~90s for a multi-beat comedy rant or argument).
+-- `start_line`: start on the spoken line that opens the exchange or conflict (the question, accusation, or arrival that triggers the moment)—never mid-argument on a pronoun ("అదే కదా నేను చెప్పింది") that refers to lines before the clip, and never on empty greetings ("Hello", "Thank you"). Must be a spoken line, never an audio event.
+-- `end_line`: must be `land.line` (if `land.reaction` is "hold") or `land.reaction` (if a 1-2 line reaction completes the landing). Never add more than 1 spoken line after `land.line`.
++A clip is a complete dramatic or comic unit: `setup -> escalation -> payoff -> reaction`.
++- Target duration 18-35 seconds (the Reels/Shorts sweet spot). Hard ceiling 50 seconds for comedy/banter and 65 seconds for intense dramatic arguments. Do not go beyond 50 seconds unless every 5 seconds has a distinct laugh or escalation.
++- `start_line`: start on the spoken line that opens the exchange or conflict (the question, accusation, or arrival that triggers the moment)—never mid-argument on a pronoun ("అదే కదా నేను చెప్పింది") that refers to lines before the clip, and never on empty greetings ("Hello", "Thank you"). Must be a spoken line, never an audio event. Cut the slow lead-in: `start_line` must be the line that directly introduces the conflict, absurd premise or hook (e.g. open on "నా పెళ్లి చూపులకి నా బదులు నువ్వు వెళ్ళాలి రా", not on the sleepy greetings before it like "Good morning మావయ్య, టిఫిన్ రెడీనా?" or "ఏంటి రా, ఇంకా లేవలేదా?").
++- `end_line`: must be `land.line` (if `land.reaction` is "hold") or `land.reaction` (if a 1-2 line reaction completes the landing). Never add more than 1 spoken line after `land.line`. Cut on the punchline/landing: `end_line` must be the mic-drop comeback, the final laugh line or the dramatic verdict. Never include trailing transition lines: if characters excuse themselves ("సరే, నాకు office కి లేట్ అవుతోంది, నేను వెళ్తా"), walk away, say goodbyes, leave for work or move to a new room, end on the punchline line BEFORE that transition starts.
+ 
+ ## How the clip is cut (house style)
+ - ONE continuous stretch from `start_line` to `end_line` within one scene.

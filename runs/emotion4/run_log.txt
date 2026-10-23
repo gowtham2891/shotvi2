@@ -1,0 +1,49 @@
+== code-only C (0.3 prompts, cached; llm_fix labels; 0.4 code keys)
+p3XTZlZ6-xw: speaker labels from llm_fix (634 speech lines, 13 speakers, 0 lines with 2+ speakers)
+p3XTZlZ6-xw: 3 stretched word(s) capped at 2 s: 399 'అమ్మయ్య.' 3.1 s; 2076 'చెయ్.' 6.2 s; 2338 'తెచ్చుకుంటా.' 38.2 s
+p3XTZlZ6-xw: FIND: 10 moments listed, 10 valid (by feeling {'laugh': 6, 'aww': 2, 'relatable_banter': 1, 'tears': 1}; by intensity {5: 1, 4: 9})
+p3XTZlZ6-xw: 10 moments -> 10 clusters (0 with several payoffs)
+  e06 L0485: clip L0454..L0465 plays 28.6 s, stop start_line
+  e01 L0071: clip L0048..L0083 plays 44.7 s, stop start_line
+  e02 L0166: clip L0157..L0167 plays 21.2 s, stop A_near_start
+  e03 L0218: clip L0183..L0218 plays 86.9 s, stop start_line
+  e04 L0256: clip L0246..L0261 plays 37.3 s, stop start_line
+  e05 L0465: clip L0454..L0466 plays 32.1 s, stop start_line
+  e07 L0504: clip L0497..L0505 plays 19.4 s, stop start_line
+  e08 L0594: clip L0558..L0594 plays 70.4 s, stop start_line
+  e09 L0667: clip L0647..L0668 plays 31.9 s, stop start_line
+  e10 L0698: clip L0661..L0698 plays 83.5 s, stop start_line
+p3XTZlZ6-xw: 10 moments -> 10 build calls -> 10 built -> 9 shown; $0.0000 billed -> runs/emotion4/surya_codeonly_C/p3XTZlZ6-xw.json
+ledger now Rs 1996.45 (this run Rs 0.00)
+EXIT 0
+== code-only B (0.3 prompts, cached; sarvam labels; 0.4 code keys)
+p3XTZlZ6-xw: speaker labels from sarvam (634 speech lines, 13 speakers, 43 lines with 2+ speakers)
+p3XTZlZ6-xw: 3 stretched word(s) capped at 2 s: 399 'అమ్మయ్య.' 3.1 s; 2076 'చెయ్.' 6.2 s; 2338 'తెచ్చుకుంటా.' 38.2 s
+p3XTZlZ6-xw: FIND: 11 moments listed, 11 valid (by feeling {'relatable_banter': 2, 'aww': 2, 'laugh': 5, 'tension': 1, 'tears': 1}; by intensity {5: 1, 4: 9, 3: 1})
+p3XTZlZ6-xw: 11 moments -> 9 clusters (1 with several payoffs)
+  e05 L0485: clip L0472..L0485 plays 30.5 s, stop start_line
+  e01 L0071: clip L0048..L0071 plays 27.3 s, stop start_line
+  e02 L0166: clip L0147..L0167 plays 30.4 s, stop A_near_start
+  e03 L0218: clip L0183..L0218 plays 86.9 s, stop start_line
+  e04 L0256: clip L0243..L0261 plays 44.5 s, stop start_line
+  e07 L0594: clip L0558..L0594 plays 70.4 s, stop start_line
+  e10 L0684: clip L0640..L0656 plays 30.3 s, stop A_near_start
+  e11 L0698: clip L0677..L0698 plays 61.9 s, stop start_line
+  e06 L0513: clip L0497..L0513 plays 29.9 s, stop start_line
+p3XTZlZ6-xw: 11 moments -> 9 build calls -> 9 built -> 9 shown; $0.0000 billed -> runs/emotion4/surya_codeonly_B/p3XTZlZ6-xw.json
+ledger now Rs 1996.45 (this run Rs 0.00)
+EXIT 0
+== dry run full 0.4, llm_fix labels (find estimated from runs/speaker_ab_surya/llmfix)
+DRY RUN (no generate call; countTokens on): ledger Rs 1996.45
+p3XTZlZ6-xw: speaker labels from llm_fix (634 speech lines, 13 speakers, 0 lines with 2+ speakers)
+p3XTZlZ6-xw: 3 stretched word(s) capped at 2 s: 399 'అమ్మయ్య.' 3.1 s; 2076 'చెయ్.' 6.2 s; 2338 'తెచ్చుకుంటా.' 38.2 s
+p3XTZlZ6-xw: dry run: find not cached; estimating with find answer of llmfix (10 valid moments) as the estimate
+p3XTZlZ6-xw: 10 moments -> 10 clusters (0 with several payoffs)
+p3XTZlZ6-xw: find ws_emotion_find NOT cached; 10 moments (find answer of llmfix (10 valid moments) as the estimate) -> 10 clusters (= build calls)
+  context 20186 tokens, find task 1061 tokens (countTokens); find Rs 5.27 exp / Rs 11.27 worst; build Rs 5.81 worst each (max_output_tokens 16384), one MAX_TOKENS retry at 32768 adds Rs 11.34 worst; cache storage Rs 0.91
+  setting | builds (exp/worst) | find exp | build exp | build worst | total exp | total worst
+  no cap  |    10 / 10        |     5.27 |     14.59 |       58.07 |     20.77 |       71.61
+  cap 15  |    10 / 10        |     5.27 |     14.59 |       58.07 |     20.77 |       71.61
+DRY RUN total (no cap): builds 10 expected / 10 worst; Rs 20.77 expected, Rs 71.61 worst; ledger Rs 1996.45 -> ~Rs 2017.22
+DRY RUN total (cap 15): builds 10 expected / 10 worst; Rs 20.77 expected, Rs 71.61 worst; ledger Rs 1996.45 -> ~Rs 2017.22
+EXIT 0

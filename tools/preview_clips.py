@@ -19,6 +19,12 @@ writes runs/previews/<run_id>/<video_id>/NN_<clip_id>.mp4 and NN_<clip_id>.txt
 
 --reuse RUN_DIR (repeatable): copy an already rendered preview (runs/previews/<RUN_DIR name>/...) instead of
 rendering again when that run has a clip of the same video with exactly the same played segments.
+
+--word-max-s S (opt-in, off by default; emotion_pick 0.4 builds with words.word_max_s 2.0): Scribe sometimes stretches
+one word over a long stretch of music or silence (Surya Ep1: one closing word lasts 38.2 s), so a clip built before
+the fix plays that music after its last line. With this flag every word's end is capped at start + S (transcript
+times and padded pieces), and a time segment whose last word was stretched past the cap ends at most
+WORD_CAP_TAIL_S after the capped end (the v1 default hold). A run built with the cap (0.4) is unchanged by it.
 """
 import argparse
 import csv
@@ -43,6 +49,33 @@ LEAD_S = 2.0      # input seek margin
 JUMP_FADE = 0.12      # s audio fade on both sides of a cold-open jump (a softer join than a plain cut)
 JUMP_MATCH_S = 4.0    # a cold-open segment is levelled to this much of the scene that follows it
 JUMP_MAX_GAIN = 9.0   # dB, cap on that levelling
+WORD_CAP_TAIL_S = 2.0  # --word-max-s: picture kept after a capped word's new end (webseries hold_default_s)
+
+
+def cap_words(words, max_s):
+    """--word-max-s: cap every word's end at start + max_s, in place. Returns {word index: end before}."""
+    out = {}
+    for i, w in enumerate(words):
+        if w["end"] - w["start"] > max_s + 1e-9:
+            out[i] = w["end"]
+            w["end"] = round(w["start"] + max_s, 3)
+    return out
+
+
+def cap_segments(segs, words, capped, tail_s=WORD_CAP_TAIL_S):
+    """--word-max-s: a segment whose last word (the last one starting inside it) was capped ends at most tail_s
+    after that word's capped end; other segments are unchanged. ``words`` already capped (cap_words)."""
+    out = []
+    for a, b in segs:
+        last = None
+        for i in capped:
+            if a - 0.01 <= words[i]["start"] < b and not any(
+                    words[i]["start"] < w["start"] < b for w in words[i + 1:i + 2]):
+                last = i if last is None or words[i]["start"] > words[last]["start"] else last
+        if last is not None:
+            b = max(a, min(b, round(words[last]["end"] + tail_s, 3)))
+        out.append((a, b))
+    return out
 
 
 def padded_segments(pieces, words):
@@ -338,6 +371,9 @@ def main():
                     help="show Scribe's words as is (no ASR corrections, no low-confidence marks)")
     ap.add_argument("--reuse", action="append", default=[], metavar="RUN_DIR",
                     help="copy an earlier run's rendered preview when its clip plays exactly the same segments")
+    ap.add_argument("--word-max-s", type=float, default=None, metavar="S",
+                    help="opt-in: cap every word at S seconds and end a segment whose last word was stretched at "
+                         f"most {WORD_CAP_TAIL_S:g} s after the capped end (emotion_pick 0.4 uses 2.0)")
     args = ap.parse_args()
     run = Path(args.run)
     out_root = Path("runs/previews") / run.name
@@ -356,6 +392,10 @@ def main():
         vdir = Path("scribe_dataset") / vid
         words = json.loads((vdir / f"{vid}_scribe_transcript.json").read_text(encoding="utf-8"))["word_timestamps"]
         labels = speaker_labels(vid)
+        capped = cap_words(words, args.word_max_s) if args.word_max_s else {}
+        if capped:
+            print(f"{vid}: {len(capped)} stretched word(s) capped at {args.word_max_s:g} s: "
+                  + "; ".join(f"{i} {words[i]['word']} {end - words[i]['start']:.1f} s" for i, end in capped.items()))
         layer = speaker_layer.for_run(doc, vid)
         if layer is not None:     # the run's speaker source (shotvi.segment.speaker_layer): its anonymous labels
             speaker_layer.apply([], words, layer)
@@ -378,6 +418,12 @@ def main():
             out = out_dir / f"{c['rank']:02d}_{c['id']}.mp4"
             # web-series GT clips carry time_segments (may include silent visual beats): play those as is
             segs = clip_segments(c, words)
+            if capped:
+                s2 = cap_segments(segs, words, capped)
+                if s2 != segs:
+                    print(f"{vid} #{c['rank']}: stretched word: plays {sum(b - a for a, b in segs):.1f} s -> "
+                          f"{sum(b - a for a, b in s2):.1f} s")
+                    segs = s2
             if not (out.exists() and args.skip_existing):
                 same = reuse.get(seg_key(segs))
                 if same is not None and same.resolve() != out.resolve():

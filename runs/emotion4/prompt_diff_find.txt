@@ -1,0 +1,20 @@
+--- prompts/ws_emotion_find.md	2026-10-22 18:12:54
++++ prompts/ws_emotion_find_v4.md	2026-10-24 00:26:51
+@@ -1,6 +1,6 @@
+ ---
+-name: ws_emotion_find
+-version: 3
++name: ws_emotion_find_v4
++version: 4
+ ---
+ ### SYSTEM
+ ## Task 1 of 2: list the moments a stranger would feel
+@@ -15,6 +15,8 @@
+ - Plot recaps & post-conflict wrap-ups: Never list scenes where characters sit down (over drinks, coffee, or a ride home) to summarize what happened earlier in the episode, thank/apologize to each other after a conflict is already resolved, or discuss a third character's off-screen feelings.
+ - Generic moralizing / preachy advice: Never list flat philosophical statements ("జీవితం అంటే compromise", "friendship లో ego ఉండకూడదు") unless they snap shut an active, heated argument happening right on screen.
+ - Inside references: Leave out beats that only make sense if the viewer watched the first 10 minutes of the episode.
++- No waiting / pacing / anxious buildup: Never list scenes of characters pacing, waiting by a door or gate, or worrying about someone arriving late UNLESS the actual confrontation, entrance or twist happens and fully resolves within that same 30-45s window. 70 seconds of waiting with no resolution is not a Short.
++- Self-contained comedy only: For humour, banter or relatable moments, list only exchanges where the punchline or snappy comeback lands within 20-35 seconds of the setup line.
+ 
+ For each moment give:
+ - `line`: the id of the spoken line where the beat lands (the punchline, the comic comeback, the reveal, the quotable verdict, or the emotional peak). Always a spoken line, never an audio-event line.

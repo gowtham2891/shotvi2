@@ -108,6 +108,26 @@ document records ``speaker_layer`` (source, mapping table, split lines). configs
 emotion_pick_v2_llmfix.json = emotion_pick_v2.json + speaker_source. A dry run with the source file missing uses a
 placeholder layer (Scribe labels anonymised) and counts every call as uncached.
 
+emotion_pick/0.4 "tight cuts" (founder, 2026-10-24; NOT the default yet: ``configs/emotion_pick_v4.json``, with
+llm_fix labels ``emotion_pick_v4_llmfix.json``). Three config keys, absent from DEFAULTS (read with cfg.get), so 0.1-0.3
+configs and their cached replays stay byte-identical:
+  prompts  ``ws_emotion_find_v4`` (v3 + two NEVER-list rules: no waiting / pacing buildup unless it resolves within
+           30-45 s; humour only when the punchline lands within 20-35 s of the setup) and ``ws_emotion_build_v3`` (v2
+           with the 18-35 s target, 50 s comedy / 65 s drama ceilings, end on the punchline before any exit /
+           transition line, start on the line that introduces the conflict or premise).
+  words    ``words.word_max_s`` 2.0: every word's end is capped at start + 2 s right after loading (``cap_words``;
+           Scribe stretched one closing word in Surya Ep1 over 38 s of music), before end holds, segments, durations
+           and the checks; the run document records the capped words (``word_cap``). The cached context renders line
+           start times only, so it is unchanged.
+  length   ``length``: minimum played length 12 s, 10 s when the moment's intensity >= 4 (``min_s_for``; hard rule L1
+           and B2's start advance).
+  cap      ``length_cap``: a humour clip (laugh / relatable_banter / awkward_cringe) playing > 50 s or a drama clip
+           (tension / shock / tears / aww) > 65 s is trimmed to an earlier found landing inside it
+           (``length_cap_trim``), else kept and flagged ``over_soft_cap`` / ``over_ceiling``; the proposal records
+           ``length_cap`` (before / after / candidates tried) and, when trimmed, takes the landing's feeling and
+           intensity (also its dedupe strength). The build call's title / stay / reason still describe the longer cut
+           (noted in ``length_cap.note``).
+
 Spend: one paid attempt per call (0.3: plus at most one MAX_TOKENS retry per build call); the spend guard
 (``--max-ledger-inr``) is checked up front (cache storage + one call, worst case) and before EVERY billed call with
 that call's worst case (``before_call``; the retry: at its 2x limit plus the calls still planned); after FIND the build
@@ -383,6 +403,74 @@ def ctx_cfg(cfg: dict) -> dict:
 
 def v1_cfg(cfg: dict) -> dict:
     return ws.deep_merge(ws.DEFAULTS, cfg.get("v1") or {})
+
+
+# ---------------------------------------------------------------------------------------------------- 0.4 tight cuts
+# All three are read with cfg.get and are absent from DEFAULTS, so 0.1 / 0.2 / 0.3 configs and their cached replays
+# stay byte-identical. configs/emotion_pick_v4.json switches them on.
+HUMOUR_FEELINGS = ["laugh", "relatable_banter", "awkward_cringe"]
+DRAMA_FEELINGS = ["tension", "shock", "tears", "aww"]
+
+
+def word_max_s(cfg: dict) -> float | None:
+    """``words.word_max_s`` (0.4: 2.0): the longest a single word may last; None = off."""
+    v = (cfg.get("words") or {}).get("word_max_s")
+    return float(v) if v else None
+
+
+def cap_words(ep: ws.Episode, max_s: float) -> list[dict]:
+    """Stretched-word fix (founder, 2026-10-24: Scribe stretched one closing word over ~38 s of music, so clips
+    ending on it played that music): every word's end is capped at start + ``max_s``, in place on the loaded copy (the
+    transcript file is never touched). A spoken line whose last word was capped gets the same end, so line and word
+    times agree. Run right after loading, so end holds, segments, durations and the stop / land checks all see the
+    capped times. The cached context only renders line START times, so it is unchanged. Returns the capped words."""
+    out = []
+    for i, w in enumerate(ep.words):
+        if w["end"] - w["start"] > max_s + 1e-9:
+            new = round(w["start"] + max_s, 3)
+            out.append({"i": i, "word": w["word"], "start": w["start"], "end_before": w["end"], "end_after": new})
+            w["end"] = new
+    if out:
+        capped = {x["i"] for x in out}
+        for r in ep.lines:
+            if ep.is_speech(r) and r["words"][1] in capped:
+                r["end"] = min(r["end"], ep.words[r["words"][1]]["end"])
+    return out
+
+
+def min_s_for(cfg: dict, vcfg: dict, intensity: int) -> float:
+    """``length`` (0.4): the minimum played length of one moment's clip: ``min_s`` (12 s), or ``min_s_intense``
+    (10 s) when the moment's intensity >= ``intense_from`` (4). Without the key: v1.guardrails.min_s (0.3: 10 s)."""
+    lc = cfg.get("length")
+    if not lc:
+        return float(vcfg["guardrails"]["min_s"])
+    if lc.get("min_s_intense") is not None and intensity >= int(lc.get("intense_from", 4)):
+        return float(lc["min_s_intense"])
+    return float(lc["min_s"])
+
+
+def vcfg_for(cfg: dict, vcfg: dict, p: dict) -> dict:
+    """The v1 settings for moment ``p``: ``vcfg`` itself without ``length`` (0.1-0.3), else a copy whose
+    guardrails.min_s is ``min_s_for`` (used by the hard rules and B2's start advance)."""
+    if not cfg.get("length"):
+        return vcfg
+    v = copy.deepcopy(vcfg)
+    v["guardrails"]["min_s"] = min_s_for(cfg, vcfg, int(p["intensity"]))
+    return v
+
+
+def cap_of(cfg: dict, feeling: str) -> tuple[str, float, str] | None:
+    """``length_cap`` (0.4): (kind, cap seconds, flag) for a clip's feeling: humour (laugh / relatable_banter /
+    awkward_cringe) -> the 50 s soft cap, flag over_soft_cap; drama (tension / shock / tears / aww) -> the 65 s
+    ceiling, flag over_ceiling. None when off or the feeling is in neither list."""
+    lc = cfg.get("length_cap") or {}
+    if not lc.get("enabled"):
+        return None
+    if feeling in (lc.get("humour") or HUMOUR_FEELINGS):
+        return "humour", float(lc["humour_max_s"]), "over_soft_cap"
+    if feeling in (lc.get("drama") or DRAMA_FEELINGS):
+        return "drama", float(lc["drama_max_s"]), "over_ceiling"
+    return None
 
 
 def spec_build(cfg: dict):
@@ -1019,6 +1107,102 @@ def check_built(ep: ws.Episode, c: dict, emo: dict, cfg: dict) -> dict:
             **({"note": note} if note else {}), **({"stop_not_first": late} if late else {})}
 
 
+def _clip_summary(ep: ws.Episode, c: dict, land: str) -> dict:
+    return {"start_line": c["start_line"], "end_line": c["end_line"], "land": land,
+            "plays_s": c["video_duration"], "cold_open": bool(c["cold_open"])}
+
+
+def length_cap_trim(ep: ws.Episode, x: dict, pre: dict, vcfg: dict, cfg: dict, lift_ok: set, moments: list[dict],
+                    build) -> dict:
+    """0.4 soft cap / ceiling (``length_cap``, founder 2026-10-24). A humour clip playing over ``humour_max_s`` (50 s)
+    or a drama clip over ``drama_max_s`` (65 s) looks for an EARLIER landing inside itself: a payoff line of the find
+    answer (any cluster) with intensity >= the target's intensity - ``intensity_slack`` (1), spoken, fully played,
+    after the start line and the stop line and before the current land line, not part of the cold open. Candidates
+    are tried latest first; the end moves to that line (+ the next spoken line when it is a <= ``reaction_max_words``
+    (3) word reaction played in the clip now), the land becomes that line, and the clip is rebuilt from the answer as
+    validated (``pre``: v1's end hold, the stop fallbacks, the land-last trim), then must pass the hard rules and the
+    stop / land checks and play <= the cap (and <= the cap of the landing's own feeling: a drama clip trimmed to a
+    laugh line must fit 50 s). The first that does replaces the clip; none -> the clip is kept and
+    flagged (over_soft_cap / over_ceiling). ``x["length_cap"]`` records before / after and every candidate tried.
+    Returns the clip shown (``x["clip"]`` is not set here)."""
+    c = x["clip"]
+    kc = cap_of(cfg, x["payoff"]["emotion"])
+    if kc is None or c["video_duration"] <= kc[1] + 1e-9:
+        return c
+    kind, cap, flag = kc
+    lc = cfg["length_cap"]
+    slack, rmax = int(lc.get("intensity_slack", 1)), int(lc.get("reaction_max_words", 3))
+    emo = x["emo"]
+    land, stop = emo["land"]["line"], emo["stop"]["line"]
+    played = M._played(c)
+    lifted = set((c["cold_open"] or {}).get("lines") or [])
+    lo = max(ep.pos[c["start_line"]], ep.pos[stop] if stop in ep.pos else -1)
+    floor_i = int(x["payoff"]["intensity"]) - slack
+    seen, cands = set(), []
+    for q in moments or []:
+        lid = q["line"]
+        r = ep.by_id.get(lid)
+        if lid in seen or not ep.is_speech(r) or int(q["intensity"]) < floor_i or lid in lifted:
+            continue
+        if not lo < ep.pos[lid] < ep.pos[land]:
+            continue
+        a, b = r["words"]
+        if not all(i in played for i in range(a, b + 1)):
+            continue
+        seen.add(lid)
+        cands.append(q)
+    cands.sort(key=lambda q: -ep.pos[q["line"]])
+    rec = {"kind": kind, "cap_s": cap, "before": _clip_summary(ep, c, land), "tried": []}
+    for q in cands:
+        lid = q["line"]
+        nx = next_spoken(ep, lid)
+        rid = None
+        if nx is not None and ep.pos[nx["id"]] <= ep.pos[c["end_line"]] and \
+                all(i in played for i in range(nx["words"][0], nx["words"][1] + 1)) and \
+                0 < len(_tokens(ws.raw_text(ep, nx))) <= rmax:
+            rid = nx["id"]
+        t = {"line": lid, "moment": q.get("id"), "feeling": q["emotion"], "intensity": q["intensity"],
+             "reaction": rid}
+        rec["tried"].append(t)
+        xt = {"id": x["id"], "payoff": x["payoff"], "moment": copy.deepcopy(pre["moment"]),
+              "emo": copy.deepcopy(pre["emo"]), "flags": list(pre["flags"])}
+        xt["moment"].update(end_line=rid or lid, payoff_line=ws3.line_text(ep, lid), payoff=ws3.line_text(ep, lid))
+        xt["emo"]["land"] = {"line": lid, "text": ws3.line_text(ep, lid), "reaction": rid or "hold",
+                             **({"reaction_text": ws3.line_text(ep, rid)} if rid else {})}
+        try:
+            c2 = build(xt)
+            rr = ws.hard_rules(ep, c2, vcfg)
+            if rr:
+                t["refused"] = "; ".join(rr)
+                continue
+            check_built(ep, c2, xt["emo"], cfg)
+        except Rejected as e:
+            t["refused"] = str(e)
+            continue
+        t["plays_s"] = c2["video_duration"]
+        # the trimmed clip lands on q: it must also fit q's own cap (a drama clip trimmed to a laugh: 50 s)
+        kq = cap_of(cfg, q["emotion"])
+        cap_q = min(cap, kq[1]) if kq else cap
+        if c2["video_duration"] > cap_q + 1e-9:
+            t["refused"] = (f"still plays {c2['video_duration']:.1f} s (> {cap_q:g} s"
+                            + (f", the {kq[0]} cap of its {q['emotion']} landing" if cap_q < cap else "") + ")")
+            continue
+        rec.update(result="trimmed", trimmed_to=lid, after=_clip_summary(ep, c2, lid),
+                   land_moment={"id": q.get("id"), "line": lid, "feeling": q["emotion"], "intensity": q["intensity"]},
+                   note=f"title, stay and reason were written for the longer cut (land {land})")
+        xt["flags"].append(f"{flag[5:]} trim ({kind}, {cap:g} s): plays {c['video_duration']:.1f} s -> "
+                           f"{c2['video_duration']:.1f} s; end {c['end_line']} -> {c2['end_line']}, land {land} -> "
+                           f"{lid} (found moment {q.get('id')}, {q['emotion']} {q['intensity']})")
+        x.update(moment=xt["moment"], emo=xt["emo"], flags=xt["flags"], length_cap=rec)
+        return c2
+    rec.update(result="flagged", flag=flag)
+    x["flags"].append(f"{flag}: plays {c['video_duration']:.1f} s > {cap:g} s ({kind}); "
+                      + ("no earlier landing inside the clip" if not cands else
+                         f"no earlier landing fits ({len(cands)} tried)"))
+    x["length_cap"] = rec
+    return c
+
+
 def _spans_overlap(ep: ws.Episode, a: dict, b: dict) -> bool:
     a0, a1 = ep.pos[a["start_line"]], ep.pos[a["end_line"]]
     b0, b1 = ep.pos[b["start_line"]], ep.pos[b["end_line"]]
@@ -1304,6 +1488,11 @@ def run_episode(vid: str, cfg: dict, llm, guard: ws.Guard, out_dir: Path, log=pr
     ep, ix, _tr, tp = ws.load_episode(vid, with_loudness=not dry_run, speaker_names=bool(acfg.get("speaker_names")),
                                       require_names=False)
     layer = apply_speaker_source(ep, cfg, acfg, dry_run, log)
+    wmax = word_max_s(cfg)
+    capped = cap_words(ep, wmax) if wmax else None
+    if capped:
+        log(f"{vid}: {len(capped)} stretched word(s) capped at {wmax:g} s: "
+            + "; ".join(f"{w['i']} {w['word']!r} {w['end_before'] - w['start']:.1f} s" for w in capped))
     # a placeholder layer (dry run, source file missing) is not the real prompt: never count a cache hit
     force_miss = bool(layer and layer.get("placeholder"))
     system, prefix = ws3.context_prompt(ep, acfg)
@@ -1318,6 +1507,8 @@ def run_episode(vid: str, cfg: dict, llm, guard: ws.Guard, out_dir: Path, log=pr
     if layer is not None:
         from shotvi.segment.speaker_layer import public as layer_public
         debug["speaker_layer"] = layer_public(layer)
+    if wmax:                # 0.4 only: 0.1-0.3 documents stay byte-identical
+        debug["word_cap"] = {"word_max_s": wmax, "capped": capped}
     if dry_run:
         llm.cache_only = True
         tok = Tokens(spec_f, offline, log)
@@ -1477,19 +1668,27 @@ def run_episode(vid: str, cfg: dict, llm, guard: ws.Guard, out_dir: Path, log=pr
                 continue
             rec["answer"] = ans
             x["answer"] = ans
+            vx = vcfg_for(cfg, vcfg, p)        # 0.4 ``length``: this moment's minimum length; else vcfg itself
+
+            def build_x(xx, vx=vx):
+                if v2_build:
+                    return build_v2(ep, xx, vx, cfg, lift_set)
+                try:
+                    return ws.build_clip(ep, xx["moment"], vx["cut"])
+                except ws.Reject as e:
+                    raise Rejected("B1", str(e)) from e
             try:
                 x["moment"], x["emo"], x["flags"] = validate_build(ep, p, ans, cfg)
                 if retry_flag:
                     x["flags"].insert(0, retry_flag)
-                if v2_build:
-                    c = build_v2(ep, x, vcfg, cfg, lift_set)
-                else:
-                    try:
-                        c = ws.build_clip(ep, x["moment"], vcfg["cut"])
-                    except ws.Reject as e:
-                        raise Rejected("B1", str(e)) from e
+                pre = copy.deepcopy({"moment": x["moment"], "emo": x["emo"], "flags": x["flags"]}) \
+                    if cap_of(cfg, p["emotion"]) else None
+                c = build_x(x)
                 x["clip"] = c
-                rr = ws.hard_rules(ep, c, vcfg)
+                if pre is not None:            # 0.4 soft cap / ceiling: an earlier landing, else a flag
+                    c = length_cap_trim(ep, x, pre, vx, cfg, lift_set, moments or [], build_x)
+                    x["clip"] = c
+                rr = ws.hard_rules(ep, c, vx)
                 if rr:
                     rejected.append({**x, "reject_reasons": rr})
                     log(f"  {x['id']} {p['line']}: rejected: {rr}")
@@ -1507,6 +1706,10 @@ def run_episode(vid: str, cfg: dict, llm, guard: ws.Guard, out_dir: Path, log=pr
                 + (f", stop {x['emo']['stop']['case']}" if x["emo"]["stop"].get("case") else ""))
         debug["calls"] = calls
         n_built = len(cands)
+        for x in cands:     # 0.4: a clip trimmed to an earlier landing competes with that landing's intensity
+            lc_ = x.get("length_cap") or {}
+            if lc_.get("result") == "trimmed":
+                strength[x["payoff"]["id"]] = int(lc_["land_moment"]["intensity"])
         if (cfg.get("dedupe") or {}).get("rule", "v1") == "scene":
             kept, dups = dedupe_scene(ep, cands, cfg, strength)
         else:
@@ -1566,6 +1769,13 @@ def proposal_doc(ep: ws.Episode, x: dict, rank: int, vcfg: dict, line_of_word: d
              land={**emo["land"], "plays_at_s": ck.get("land_play_s")}, reason=emo["reason"],
              moment=moment_public(p), build_flags=x.get("flags") or [],
              **({"check_note": ck["note"]} if ck.get("note") else {}))
+    if x.get("length_cap"):             # 0.4 only: the soft cap / ceiling trim or flag
+        lc = x["length_cap"]
+        d["length_cap"] = lc
+        if lc.get("flag"):
+            d["length_flag"] = lc["flag"]
+        if lc.get("result") == "trimmed":   # the clip now lands on another found moment: its feeling and intensity
+            d.update(feeling=lc["land_moment"]["feeling"], intensity=lc["land_moment"]["intensity"])
     d.pop("review", None)
     return d
 
@@ -1576,6 +1786,8 @@ def rejected_doc(ep: ws.Episode, x: dict, vcfg: dict) -> dict:
             "moment": moment_public(p)}
     if x.get("dup_of"):
         base["dup_of"] = x["dup_of"]
+    if x.get("length_cap"):             # 0.4 only
+        base["length_cap"] = x["length_cap"]
     if x.get("emo"):
         base.update(stop=x["emo"]["stop"], stay=x["emo"]["stay"], land=x["emo"]["land"], reason=x["emo"]["reason"],
                     title=x["emo"]["title"])
@@ -1680,6 +1892,8 @@ def run_document(ep, tp, props, rej_docs, cfg, acfg, vcfg, llm, summary, table, 
     doc["cost"]["cache"] = debug.get("cache")
     if debug.get("speaker_layer"):      # only with a non-default speaker_source (scribe runs stay byte-identical)
         doc["speaker_layer"] = debug["speaker_layer"]
+    if debug.get("word_cap"):           # 0.4 only
+        doc["word_cap"] = debug["word_cap"]
     return doc
 
 
@@ -1728,6 +1942,13 @@ def clips_md(ep: ws.Episode, doc: dict) -> str:
         for cu in p["chunk_drops"]:
             out.append(f"- cut {ws.fmt(cu['start'])}-{ws.fmt(cu['end'])} ({cu['removed_s']} s): "
                        f"{'cold-open skip ' if cu['lift_skip'] else ''}{cu['why']}")
+        if p.get("length_cap"):         # 0.4 only
+            lc = p["length_cap"]
+            out.append(f"- length cap ({lc['kind']}, {lc['cap_s']:g} s): plays {lc['before']['plays_s']:.1f} s "
+                       f"({lc['before']['start_line']}..{lc['before']['end_line']}) -> "
+                       + (f"trimmed to land {lc['trimmed_to']}, {lc['after']['plays_s']:.1f} s "
+                          f"({lc['after']['start_line']}..{lc['after']['end_line']})" if lc.get("result") == "trimmed"
+                          else f"kept, flagged {lc['flag']}"))
         if p["build_warnings"]:
             out.append(f"- warnings: {'; '.join(p['build_warnings'])}")
     out.append("\n## Not shown\n")
