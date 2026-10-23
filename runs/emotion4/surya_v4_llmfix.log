@@ -1,0 +1,14 @@
+p3XTZlZ6-xw: speaker labels from llm_fix (634 speech lines, 13 speakers, 0 lines with 2+ speakers)
+p3XTZlZ6-xw: 3 stretched word(s) capped at 2 s: 399 'అమ్మయ్య.' 3.1 s; 2076 'చెయ్.' 6.2 s; 2338 'తెచ్చుకుంటా.' 38.2 s
+explicit context cache cachedContents/bq8zipypck3cf9olqc3tb0t43brl778t4rn39oj3: 20186 tokens, TTL 3600 s, storage $0.0101
+p3XTZlZ6-xw: FIND: 11 moments listed, 11 valid (by feeling {'relatable_banter': 2, 'laugh': 5, 'aww': 2, 'tension': 1, 'tears': 1}; by intensity {5: 1, 4: 10})
+p3XTZlZ6-xw: 11 moments -> 9 clusters (2 with several payoffs)
+p3XTZlZ6-xw: spend limit: build calls for 6 of 9 moments
+  e07 L0485: clip L0472..L0485 plays 30.5 s, stop start_line
+  e01 L0071: clip L0069..L0083 plays 24.6 s, stop A_near_start
+  e03 L0166: clip L0147..L0167 plays 31.8 s, stop A_near_start
+  e05 L0218: clip L0186..L0218 plays 39.4 s, stop start_line
+  e06 L0256: clip L0246..L0259 plays 33.4 s, stop start_line
+  e08 L0504: clip L0497..L0505 plays 19.4 s, stop start_line
+p3XTZlZ6-xw: 11 moments -> 6 build calls -> 6 built -> 6 shown; $0.1821 billed -> runs/emotion4/surya_v4_llmfix/p3XTZlZ6-xw.json
+ledger now Rs 2012.83 (this run Rs 16.39)

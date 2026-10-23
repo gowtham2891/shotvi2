@@ -1,71 +1,7 @@
 {
- "total_usd": 22.182756,
- "calls": 2103,
+ "total_usd": 22.364813,
+ "calls": 2111,
  "entries": [
-  {
-   "t": "2026-09-29T17:35:27",
-   "model": "gemini-3.8-flash",
-   "in": 6917,
-   "out": 1638,
-   "usd": 0.01133,
-   "source": "r4-dev6-FS1"
-  },
-  {
-   "t": "2026-09-29T17:35:28",
-   "model": "gemini-3.8-flash",
-   "in": 7293,
-   "out": 2552,
-   "usd": 0.01504,
-   "source": "r4-dev6-FS1"
-  },
-  {
-   "t": "2026-09-29T17:35:29",
-   "model": "gemini-3.8-flash",
-   "in": 6703,
-   "out": 1821,
-   "usd": 0.011856,
-   "source": "r4-dev6-FS1"
-  },
-  {
-   "t": "2026-09-29T17:35:30",
-   "model": "gemini-3.8-flash",
-   "in": 2127,
-   "out": 308,
-   "usd": 0.00275,
-   "source": "r4-dev6-FS1"
-  },
-  {
-   "t": "2026-09-29T17:35:30",
-   "model": "gemini-3.8-flash",
-   "in": 2310,
-   "out": 333,
-   "usd": 0.002981,
-   "source": "r4-dev6-FS1"
-  },
-  {
-   "t": "2026-09-29T17:35:31",
-   "model": "gemini-3.8-flash",
-   "in": 5637,
-   "out": 1567,
-   "usd": 0.010104,
-   "source": "r4-dev6-FS1"
-  },
-  {
-   "t": "2026-09-29T17:35:31",
-   "model": "gemini-3.8-flash",
-   "in": 2152,
-   "out": 310,
-   "usd": 0.002776,
-   "source": "r4-dev6-FS1"
-  },
-  {
-   "t": "2026-09-29T17:35:32",
-   "model": "gemini-3.8-flash",
-   "in": 2275,
-   "out": 70,
-   "usd": 0.001969,
-   "source": "r4-dev6-FS1"
-  },
   {
    "t": "2026-09-29T17:35:33",
    "model": "gemini-3.8-flash",
@@ -16222,6 +16158,78 @@
    "out": 4050,
    "usd": 0.01811,
    "source": "speaker_ab_surya_llmfix",
+   "cached_in": 20186
+  },
+  {
+   "t": "2026-10-24T00:35:40",
+   "model": "gemini-3.8-flash",
+   "in": 20186,
+   "out": 0,
+   "usd": 0.010093,
+   "source": "emotion4",
+   "note": "cache storage 20186 tok x 3600 s"
+  },
+  {
+   "t": "2026-10-24T00:36:41",
+   "model": "gemini-3.8-flash",
+   "in": 21248,
+   "out": 7344,
+   "usd": 0.02985,
+   "source": "emotion4",
+   "cached_in": 20186
+  },
+  {
+   "t": "2026-10-24T00:37:55",
+   "model": "gemini-3.8-flash",
+   "in": 22241,
+   "out": 10402,
+   "usd": 0.042063,
+   "source": "emotion4",
+   "cached_in": 20186
+  },
+  {
+   "t": "2026-10-24T00:38:43",
+   "model": "gemini-3.8-flash",
+   "in": 22235,
+   "out": 6652,
+   "usd": 0.027996,
+   "source": "emotion4",
+   "cached_in": 20186
+  },
+  {
+   "t": "2026-10-24T00:39:04",
+   "model": "gemini-3.8-flash",
+   "in": 22258,
+   "out": 2657,
+   "usd": 0.013032,
+   "source": "emotion4",
+   "cached_in": 20186
+  },
+  {
+   "t": "2026-10-24T00:40:05",
+   "model": "gemini-3.8-flash",
+   "in": 22261,
+   "out": 8091,
+   "usd": 0.033411,
+   "source": "emotion4",
+   "cached_in": 20186
+  },
+  {
+   "t": "2026-10-24T00:40:30",
+   "model": "gemini-3.8-flash",
+   "in": 22268,
+   "out": 3355,
+   "usd": 0.015657,
+   "source": "emotion4",
+   "cached_in": 20186
+  },
+  {
+   "t": "2026-10-24T00:40:47",
+   "model": "gemini-3.8-flash",
+   "in": 22231,
+   "out": 1842,
+   "usd": 0.009955,
+   "source": "emotion4",
    "cached_in": 20186
   }
  ]
