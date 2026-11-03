@@ -119,7 +119,10 @@ DEFAULTS: dict = {
         "lift_min_s": 1.0, "lift_max_s": 3.6,
         "lift_cut_eps_s": 0.005,     # a lift ends this far before the shot cut (no frame of the next shot)
         "lift_start_snap_s": 0.4,    # a shot cut this close before the lift's first word starts the lift
-        "lift_start_pad_s": 0.12,
+        "lift_start_pad_s": 0.12,    # else: lead-in before the first word (never past half the gap to the previous word)
+        # "lift_start_pad_no_cut_s": 0.5 (opt-in, read with .get; configs/emotion_pick_v4_hooks.json): when NO shot
+        # cut lies within lift_start_snap_s, the lead-in may grow to this instead of lift_start_pad_s, so the hook's
+        # audio opens with a breath instead of a hard clip. Not in DEFAULTS: every existing run stays as built.
         "lift_max_tail_s": 2.0,      # picture after the lift's last word, before the cut
         "lift_tail_measure_s": 0.4,  # tails at least this long get a loudness check
         "lift_quiet_tail_db": 15.0,  # tail this much quieter than the lift's speech = quiet tail
@@ -453,7 +456,8 @@ def build_lift(ep: Episode, S: list, ks: list[int], kept: set, cfg, purpose: str
         raise Reject("lift ends mid-sentence (comma/ellipsis)")
     pe = ep.prev_end(i0)
     cs = ep.cuts_in(max(pe + 0.02, w0 - cfg["lift_start_snap_s"]), w0)
-    t0 = cs[-1] if cs else w0 - min(cfg["lift_start_pad_s"], max(0.0, (w0 - pe) / 2))
+    pad = cfg.get("lift_start_pad_no_cut_s") or cfg["lift_start_pad_s"]
+    t0 = cs[-1] if cs else w0 - min(float(pad), max(0.0, (w0 - pe) / 2))
     nx = ep.next_start(i1)
     hi = min(nx if nx is not None else ep.duration, t0 + cfg["lift_max_s"] + cfg["lift_cut_eps_s"],
              wl + cfg["lift_max_tail_s"])
@@ -470,7 +474,7 @@ def build_lift(ep: Episode, S: list, ks: list[int], kept: set, cfg, purpose: str
             raise Reject("lift ends mid-laugh")
     out = {"lines": [S[k]["id"] for k in ks], "text": lift_text, "start": round(t0, 3), "end": round(t1, 3),
            "duration": round(t1 - t0, 2), "tail_s": round(t1 - wl, 2), "start_on_cut": bool(cs),
-           "word_range": [i0, i1]}
+           "lead_in_s": round(w0 - t0, 3), "word_range": [i0, i1]}
     if ep.loudness and t1 - wl >= cfg["lift_tail_measure_s"]:
         db_sp, db_tail = ep.loudness(w0, wl), ep.loudness(wl, t1)
         if db_sp is not None and db_tail is not None:

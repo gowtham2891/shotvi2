@@ -218,6 +218,10 @@ DEFAULTS: dict = {
                 # whole same-speaker run ("L0384+L0385"), when the run's speech fits min..max_speech_s and passes the
                 # other checks (see turn_run_item)
                 "turn_runs": True},
+    # Hook filters (2026-10-24, configs/emotion_pick_v4_hooks.json; absent here so 0.1-0.4 replays stay
+    # byte-identical): "exclude_dangling" drops a lift-ok line with a dangling pronoun (DANGLING_PRONOUNS, or
+    # "dangling_pronouns") unless it names someone ("names" + the speaker-fix cast); "prefer_questions" lists
+    # interrogative lines (INTERROGATIVES, or "interrogatives") first in the build task, tagged [question]
     # same-scene clustering of the found payoffs before the build calls (0.1: off)
     "cluster": {"enabled": True, "max_lines": 35, "max_s": 50.0, "music_min_s": 4.0, "silence_gap_s": None,
                 "target_within": 1, "max_span_s": 90.0},
@@ -493,6 +497,23 @@ def task_build(cfg: dict, ep: ws.Episode, p: dict, lift_ids: list[str], cluster_
 
 
 # ---------------------------------------------------------------------------------------------------- 0.2 lift-ok
+# Dangling demonstratives / pronouns (exact token forms, common inflections included: a prefix match would also
+# catch "అదిరింది"). A cold open opening on one of these points at context the clip does not have.
+DANGLING_PRONOUNS = [
+    "వాడు", "వాడి", "వాడిని", "వాడికి", "వాడే", "వాడా", "వాడ్ని", "వాడేనా",
+    "వీడు", "వీడి", "వీడిని", "వీడికి", "వీడే", "వీడా", "వీడ్ని", "వీడేనా",
+    "అది", "అదే", "అదా", "అదేనా", "దాని", "దాన్ని", "దానికి", "దానితో",
+    "ఇది", "ఇదే", "ఇదా", "ఇదేనా", "దీని", "దీన్ని", "దీనికి", "దీనితో",
+    "అక్కడ", "అక్కడే", "అక్కడా", "అక్కడికి", "అక్కడినుంచి",
+    "ఇక్కడ", "ఇక్కడే", "ఇక్కడా", "ఇక్కడికి", "ఇక్కడినుంచి",
+    "వాళ్ళు", "వాళ్ళ", "వాళ్ళని", "వాళ్ళకి", "వాళ్ళే", "వాళ్ళతో",
+    "వాళ్లు", "వాళ్ల", "వాళ్లని", "వాళ్లకి", "వాళ్లే", "వాళ్లతో",
+]
+# Interrogatives: Telugu stems matched as token prefixes (suffixal inflection: ఎవరు / ఎవరో / ఎవరిని, ఎందుకు /
+# ఎందుకో / ఎందుకని, ఎలా / ఎలాగో / ఎలాంటి, ఏంటి / ఏంటో / ఏంటే / ఏమిటి); English words as whole tokens
+INTERROGATIVES = {"telugu_stems": ["ఎవర", "ఎందుక", "ఎలా", "ఏంట", "ఏమిట"], "english": ["what", "why", "how"]}
+
+
 def _tok(w: str) -> str:
     return w.strip(" \t.,!?…-–—\"'“”‘’()[]:;").lower()
 
@@ -509,6 +530,57 @@ def opens_with_continuation(text: str, conts: list[str]) -> str | None:
         if ct and toks[:len(ct)] == ct:
             return c
     return None
+
+
+def dangling_pronoun(text: str, forms: list[str] | None = None) -> str | None:
+    """The first dangling pronoun / demonstrative token of ``text`` (exact forms, ``DANGLING_PRONOUNS`` by default),
+    or None."""
+    fs = {_tok(f) for f in (forms if forms is not None else DANGLING_PRONOUNS)}
+    return next((t for t in _tokens(text) if t in fs), None)
+
+
+def mentions_name(text: str, names) -> bool:
+    """Does ``text`` contain one of ``names`` (a whole token, or a multi-word name as a token run, case-insensitive)?
+    Names come from ``lift_ok.names`` and the speaker-fix cast; nothing is guessed from capitalisation (Scribe
+    capitalises ordinary English words mid-line)."""
+    toks = _tokens(text)
+    for n in names or []:
+        nt = _tokens(str(n))
+        if nt and any(toks[k:k + len(nt)] == nt for k in range(len(toks) - len(nt) + 1)):
+            return True
+    return False
+
+
+def is_interrogative(text: str, spec: dict | None = None) -> bool:
+    """A line that asks: a Telugu interrogative stem (token prefix), an English question word (whole token), or a
+    trailing '?' (Telugu yes/no questions carry no question word: "వస్తావా?")."""
+    sp = spec if spec is not None else INTERROGATIVES
+    toks = _tokens(text)
+    stems = [_tok(x) for x in sp.get("telugu_stems") or []]
+    eng = {_tok(x) for x in sp.get("english") or []}
+    if any(t.startswith(st) for t in toks for st in stems if st) or any(t in eng for t in toks):
+        return True
+    return ws._ends_q(text)
+
+
+def cast_names(vid: str) -> list[str]:
+    """Names (and aliases) of the speaker-fix cast, runs/speaker_fix/<id>.json, when it exists; else []. Note: the
+    cast is usually written in Latin script while the lines are Telugu script, so list Telugu spellings in
+    ``lift_ok.names`` to catch them."""
+    from shotvi.select.lines import speaker_fix_path
+    p = speaker_fix_path(vid)
+    if not p.exists():
+        return []
+    try:
+        fix = json.loads(p.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return []
+    out = []
+    for c in fix.get("cast") or []:
+        for n in [c.get("name")] + list(c.get("aka") or []):
+            if n and str(n).strip() and n not in out:
+                out.append(str(n).strip())
+    return out
 
 
 def is_ack(text: str, acks: list[str], max_words: int) -> bool:
@@ -582,7 +654,8 @@ def turn_run(ep: ws.Episode, lid: str) -> list[str]:
         out.append(n)
 
 
-def strict_liftable_lines(ep: ws.Episode, vcut: dict, lc: dict, loud=None, runs_out: dict | None = None) -> list[str]:
+def strict_liftable_lines(ep: ws.Episode, vcut: dict, lc: dict, loud=None, runs_out: dict | None = None,
+                          excluded_out: dict | None = None) -> list[str]:
     """0.2 lift-ok: a spoken line is offered only if it would pass every later lift check (see the docstring):
     speech min_speech_s..max_speech_s; v1's build_lift against its episode neighbours (the next two spoken lines kept,
     the line before kept) WITH the quiet-tail check; the next spoken line neither opens with a continuation nor is a
@@ -591,8 +664,14 @@ def strict_liftable_lines(ep: ws.Episode, vcut: dict, lc: dict, loud=None, runs_
     ONE item, the whole same-speaker run starting at it (``turn_run``), when the run's speech (first word of the first
     line to last word of the last) is min..max_speech_s, the line after the run passes the continuation /
     acknowledgement guard and build_lift passes for the run (shot change after its LAST line, quiet tail, mid-laugh,
-    comma end, orphaned question). The item's id is the run's first line; ``runs_out`` gets {first id: run ids}."""
+    comma end, orphaned question). The item's id is the run's first line; ``runs_out`` gets {first id: run ids}.
+    ``exclude_dangling`` (opt-in, read with .get): an item whose text (the whole run) carries a dangling pronoun /
+    demonstrative (``dangling_pronouns``, default DANGLING_PRONOUNS) is not offered unless it also mentions a name
+    (``names`` + the speaker-fix cast); ``excluded_out`` gets {id: reason}."""
     loud = loud if loud is not None else Loudness(ep.video_id, ep.loudness)
+    dangle = bool(lc.get("exclude_dangling"))
+    forms = lc.get("dangling_pronouns")
+    names = list(lc.get("names") or []) + (cast_names(ep.video_id) if dangle else [])
     ep2 = ws.Episode(ep.video_id, ep.lines, ep.words, ep.cuts, ep.duration,
                      loud if getattr(loud, "available", True) else None)
     sp = [r for r in ep.lines if ep.is_speech(r)]
@@ -622,6 +701,14 @@ def strict_liftable_lines(ep: ws.Episode, vcut: dict, lc: dict, loud=None, runs_
             ws.build_lift(ep2, S, ks, set(range(len(S))) - set(ks), vcut, "standalone")
         except ws.Reject:
             continue
+        if dangle:          # last, so excluded_out holds exactly the lines that would otherwise be offered
+            own = " ".join(ws.raw_text(ep, r) for r in sp[k:j + 1])
+            pr = dangling_pronoun(own, forms)
+            if pr and not mentions_name(own, names):
+                if excluded_out is not None:
+                    ids = "+".join(r["id"] for r in sp[k:j + 1])
+                    excluded_out[sp[k]["id"]] = f"dangling {pr!r} in {ids} ({ws.one_line(own, 80)}), no name"
+                continue
         out.append(sp[k]["id"])
         if j > k and runs_out is not None:
             runs_out[sp[k]["id"]] = [r["id"] for r in sp[k:j + 1]]
@@ -630,29 +717,41 @@ def strict_liftable_lines(ep: ws.Episode, vcut: dict, lc: dict, loud=None, runs_
     return out
 
 
-def lift_ok_lines(ep: ws.Episode, vcut: dict, cfg: dict, runs_out: dict | None = None) -> list[str]:
+def lift_ok_lines(ep: ws.Episode, vcut: dict, cfg: dict, runs_out: dict | None = None,
+                  excluded_out: dict | None = None) -> list[str]:
     """The lines offered as liftable; with the strict rule and ``lift_ok.turn_runs``, ``runs_out`` gets the
-    same-speaker runs offered as one item ({first id: run ids})."""
+    same-speaker runs offered as one item ({first id: run ids}); ``excluded_out`` the dangling-pronoun exclusions."""
     lc = cfg.get("lift_ok") or {}
     if lc.get("rule", "v1") == "strict":
-        return strict_liftable_lines(ep, vcut, lc, runs_out=runs_out)
+        return strict_liftable_lines(ep, vcut, lc, runs_out=runs_out, excluded_out=excluded_out)
     return ws.liftable_lines(ep, vcut)
 
 
 def lift_ok_near(ep: ws.Episode, lift_ids: list[str], p: dict, cfg: dict, runs: dict | None = None) -> str:
-    """merged.lift_ok_near (byte-identical when no run is offered) with a same-speaker run shown as ONE item:
-    'L0384+L0385 ("..." "...")'. The model may answer the first id; the build expands it to the run."""
-    if not runs:
+    """merged.lift_ok_near (byte-identical when no run is offered and ``lift_ok.prefer_questions`` is off) with a
+    same-speaker run shown as ONE item: 'L0384+L0385 ("..." "...")'. The model may answer the first id; the build
+    expands it to the run. ``prefer_questions`` (opt-in): interrogative items (``is_interrogative``) are listed
+    first, each tagged ``[question]``, so the build call sees the natural hooks before the rest."""
+    lc = cfg.get("lift_ok") or {}
+    prefer = bool(lc.get("prefer_questions"))
+    if not runs and not prefer:
         return M.lift_ok_near(ep, lift_ids, p, cfg, window=cfg["build"])
+    runs = runs or {}
     t = ep.w0(ep.by_id[p["line"]])
     w = cfg["build"]
     near = [lid for lid in lift_ids if t - w["lift_before_s"] <= ep.w0(ep.by_id[lid]) <= t + w["lift_after_s"]]
     if not near:
         return "none"
 
+    def text_of(lid):
+        return " ".join(ws3.line_text(ep, x) for x in (runs.get(lid) or [lid]))
+
     def item(lid):
         ids = runs.get(lid) or [lid]
-        return "+".join(ids) + " (" + " ".join(f'"{ws.one_line(ws3.line_text(ep, x), 80)}"' for x in ids) + ")"
+        s = "+".join(ids) + " (" + " ".join(f'"{ws.one_line(ws3.line_text(ep, x), 80)}"' for x in ids) + ")"
+        return s + " [question]" if prefer and is_interrogative(text_of(lid), lc.get("interrogatives")) else s
+    if prefer:
+        near = sorted(near, key=lambda lid: 0 if is_interrogative(text_of(lid), lc.get("interrogatives")) else 1)
     return "; ".join(item(lid) for lid in near)
 
 
@@ -1538,8 +1637,13 @@ def run_episode(vid: str, cfg: dict, llm, guard: ws.Guard, out_dir: Path, log=pr
         guard.check(f"{vid} episode (cache + find + one build, worst case)", storage + f_worst + b_worst)
 
     lift_runs: dict = {}
-    lift_ids = lift_ok_lines(ep, vcfg["cut"], cfg, runs_out=lift_runs)
+    lift_excluded: dict = {}
+    lift_ids = lift_ok_lines(ep, vcfg["cut"], cfg, runs_out=lift_runs, excluded_out=lift_excluded)
     lift_set = set(lift_ids)
+    if lift_excluded:               # lift_ok.exclude_dangling only (older configs record nothing here)
+        debug["lift_ok_excluded"] = lift_excluded
+        log(f"{vid}: lift-ok: {len(lift_ids)} lines offered; {len(lift_excluded)} excluded for a dangling pronoun: "
+            + ", ".join(sorted(lift_excluded)[:12]) + (" ..." if len(lift_excluded) > 12 else ""))
     v2_build = (cfg.get("cold_open") or {}).get("rule", "v1") == "fallback" or \
         cfg["check"].get("land_late", "reject") == "trim"
     try:
@@ -1608,7 +1712,8 @@ def run_episode(vid: str, cfg: dict, llm, guard: ws.Guard, out_dir: Path, log=pr
                 proj = project(cfg, acfg, spec_f, spec_b, t_cache, t_find, f_hit, None, n_est, t_sample,
                                cap if cap is not None else PROJ_CAP)
             proj["token_source"] = tok.src
-            extra: dict = {"n_lift_ok": len(lift_ids), **({"n_lift_ok_runs": len(lift_runs)} if lift_runs else {})}
+            extra: dict = {"n_lift_ok": len(lift_ids), **({"n_lift_ok_runs": len(lift_runs)} if lift_runs else {}),
+                           **({"lift_ok_excluded": lift_excluded} if lift_excluded else {})}
             if est_basis:
                 extra["moments_basis"] = est_basis
             if layer is not None:

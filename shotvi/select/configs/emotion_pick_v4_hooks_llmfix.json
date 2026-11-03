@@ -1,0 +1,43 @@
+{
+ "pipeline_version": "emotion_pick/0.4+hooks",
+ "find_prompt": "ws_emotion_find_v4",
+ "prompts": {
+  "ws_emotion_build": "ws_emotion_build_v3"
+ },
+ "words": {
+  "word_max_s": 2.0
+ },
+ "length": {
+  "min_s": 12.0,
+  "min_s_intense": 10.0,
+  "intense_from": 4
+ },
+ "length_cap": {
+  "enabled": true,
+  "humour": [
+   "laugh",
+   "relatable_banter",
+   "awkward_cringe"
+  ],
+  "humour_max_s": 50.0,
+  "drama": [
+   "tension",
+   "shock",
+   "tears",
+   "aww"
+  ],
+  "drama_max_s": 65.0,
+  "intensity_slack": 1,
+  "reaction_max_words": 3
+ },
+ "lift_ok": {
+  "exclude_dangling": true,
+  "prefer_questions": true
+ },
+ "v1": {
+  "cut": {
+   "lift_start_pad_no_cut_s": 0.5
+  }
+ },
+ "speaker_source": "llm_fix"
+}
