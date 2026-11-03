@@ -1,0 +1,20 @@
+# Stage 6 acceptance tests for Surya Ep 1 (founder, 2026-10-29). Read from facts.final (the posting set) and its rejection report.
+episode: p3XTZlZ6-xw
+stage: "6"
+checks:
+  # 1. founder, 2026-10-30: primaries <= 180 s (the platform maximum) only; the length spread is reported, not judged; no confusion FAIL shipped
+  - {kind: final_set_shape, main: 6, bonus_max: 2, primary_max_s: 180, note: "6 main; no confusion FAIL shipped; primaries <= 180 s (length spread reported)"}
+  # 2. the delivery moment is in the main set, any variant (critic_trimmed included; founder, 2026-10-30)
+  - {kind: final_moment, in: main, scene_containing: "16:00", moment_kind: story, payoff_line: L0485, note: "delivery moment in the main set (any variant, critic_trimmed included)"}
+  # 3 (Amma-money moment) dropped by the founder, 2026-10-30: the founder judged that clip weak.
+  # 4-5 (hook present incl. the Virgin hook; Virgin loop + one other loop as bonus posts) dropped by the founder, 2026-10-30:
+  # hook templates are gone and loops are off for scripted series.
+  # 9. founder, 2026-10-30: golden-set recall in the final six >= 4 of 6 (full or partial)
+  - {kind: final_golden_recall, min: 4, note: "golden-set recall in the final six >= 4 of 6 (full or partial)"}
+  # 6. the delivery primary's hook_text names the delivery-boy / customer setup
+  - {kind: final_hook_text_mentions, in: main, scene_containing: "16:00", words: [delivery, customer, order, swiggy, zomato, food boy, parcel],
+     note: "hook_text for the delivery primary names the delivery-boy / customer setup"}
+  # 7. at most 2 main moments per scene (founder, 2026-10-30), no overlaps; >= 2 moments with series_pull >= 7
+  - {kind: final_rules, series_pull_min: 7, count: 2, max_per_scene: 2, note: "<= 2 main moments per scene, no overlaps; >= 2 with series_pull >= 7"}
+  # 8. the rejection report covers the kirana scene and the final arc with the critics' reasons
+  - {kind: final_report_mentions, scenes: ["7:00", "25:00"], words_any: [swipe, best moment], note: "rejection_report.md mentions the kirana and final-arc moments with the critics' reasons"}

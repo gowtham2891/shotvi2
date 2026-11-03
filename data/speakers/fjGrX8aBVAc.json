@@ -8,7 +8,9 @@
  "label_conventions": {
   "speaker": "character name from the list; 'OFFSCREEN:<name>' = the speaker is not visible during the line (phone voice, reaction shot held on a listener) but is identified from content/voice context; 'UNKNOWN' = cannot tell. For diarization scoring, strip the OFFSCREEN: prefix.",
   "confidence": "3 = seen speaking and/or unambiguous from content; 2 = likely (wide shot or cut mid-line, content supports); 1 = guess",
-  "times": "seconds in the episode audio; keyed by time, not by Scribe line id"
+  "times": "seconds in the episode audio; keyed by time, not by Scribe line id",
+  "on_screen": "everyone visible at any moment during the line (union over frames sampled inside the line's start-end; a cut that lands just outside the line does not count); [] = nobody (an insert shot such as a sign or a phone screen); on_screen_partly = only a back of the head / shoulder / hand / blurred edge is visible (over-the-shoulder foregrounds, a sleeve at the frame edge), not identifiable as a face; a whole figure seen from behind counts as on_screen. Background extras who never speak are not listed; known characters are listed even when silent or small in the background. Independent of speaker: the speaker may be off screen while others are shown. on_screen_note = what was seen, when useful.",
+  "voices": "only on lines with more than one voice: a list in time order of {from_text: the first word of that voice's part, copied from the line's text, speakers: [names]}; two people one after another = two entries; several people saying it together (group line, everyone laughing a word) = one entry with several names. Lines without voices were checked and have a single voice (clip-gt-editor 2026-11-02: Scribe word speakers inside the line, content, frames; no line in this key needed it)."
  },
  "characters": [
   {
@@ -61,7 +63,12 @@
    "confidence": 3,
    "scribe_label": "speaker_2",
    "scribe_label_share": 1.0,
-   "note": "phone call; father in office chair speaking"
+   "note": "phone call; father in office chair speaking",
+   "on_screen": [
+    "Dad"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "the cut to Abhi comes just after the line"
   },
   {
    "start": 17.48,
@@ -71,7 +78,11 @@
    "confidence": 3,
    "scribe_label": "speaker_1",
    "scribe_label_share": 1.0,
-   "note": "phone; Abhi in apron"
+   "note": "phone; Abhi in apron",
+   "on_screen": [
+    "Abhi"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)"
   },
   {
    "start": 19.64,
@@ -81,7 +92,11 @@
    "confidence": 3,
    "scribe_label": "speaker_2",
    "scribe_label_share": 1.0,
-   "note": "father on screen speaking"
+   "note": "father on screen speaking",
+   "on_screen": [
+    "Dad"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)"
   },
   {
    "start": 22.04,
@@ -91,7 +106,12 @@
    "confidence": 3,
    "scribe_label": "speaker_1",
    "scribe_label_share": 1.0,
-   "note": "Abhi on screen, startled"
+   "note": "Abhi on screen, startled",
+   "on_screen": [
+    "Abhi"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "Abhi turns away, back to camera"
   },
   {
    "start": 38.9,
@@ -101,7 +121,12 @@
    "confidence": 3,
    "scribe_label": "speaker_2",
    "scribe_label_share": 1.0,
-   "note": "starts on Abhi listening, cut to father speaking"
+   "note": "starts on Abhi listening, cut to father speaking",
+   "on_screen": [
+    "Abhi",
+    "Dad"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)"
   },
   {
    "start": 51.94,
@@ -111,7 +136,11 @@
    "confidence": 3,
    "scribe_label": "speaker_1",
    "scribe_label_share": 1.0,
-   "note": "Abhi on screen"
+   "note": "Abhi on screen",
+   "on_screen": [
+    "Abhi"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)"
   },
   {
    "start": 56.18,
@@ -121,7 +150,11 @@
    "confidence": 3,
    "scribe_label": "speaker_2",
    "scribe_label_share": 1.0,
-   "note": "father on screen"
+   "note": "father on screen",
+   "on_screen": [
+    "Dad"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)"
   },
   {
    "start": 130.98,
@@ -131,7 +164,15 @@
    "confidence": 3,
    "scribe_label": "speaker_1",
    "scribe_label_share": 1.0,
-   "note": "Abhi at the flat door"
+   "note": "Abhi at the flat door",
+   "on_screen": [
+    "Abhi"
+   ],
+   "on_screen_partly": [
+    "Harshita"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "blurred shoulder of Harshita at the right edge"
   },
   {
    "start": 132.96,
@@ -141,7 +182,15 @@
    "confidence": 3,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "Harshita (red striped top) at the door"
+   "note": "Harshita (red striped top) at the door",
+   "on_screen": [
+    "Harshita"
+   ],
+   "on_screen_partly": [
+    "Abhi"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "over Abhi's shoulder (blurred, left)"
   },
   {
    "start": 142.16,
@@ -151,7 +200,15 @@
    "confidence": 3,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "close-up"
+   "note": "close-up",
+   "on_screen": [
+    "Harshita"
+   ],
+   "on_screen_partly": [
+    "Abhi"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "over Abhi's shoulder; the cut to Abhi comes just after the line"
   },
   {
    "start": 147.36,
@@ -161,7 +218,11 @@
    "confidence": 3,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "close-up"
+   "note": "close-up",
+   "on_screen": [
+    "Harshita"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)"
   },
   {
    "start": 149.68,
@@ -171,7 +232,11 @@
    "confidence": 3,
    "scribe_label": "speaker_1",
    "scribe_label_share": 1.0,
-   "note": "close-up"
+   "note": "close-up",
+   "on_screen": [
+    "Abhi"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)"
   },
   {
    "start": 152.28,
@@ -181,7 +246,15 @@
    "confidence": 3,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "close-up"
+   "note": "close-up",
+   "on_screen": [
+    "Harshita"
+   ],
+   "on_screen_partly": [
+    "Abhi"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "over Abhi's shoulder (blurred, left)"
   },
   {
    "start": 157.06,
@@ -191,7 +264,15 @@
    "confidence": 3,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "close-up"
+   "note": "close-up",
+   "on_screen": [
+    "Harshita"
+   ],
+   "on_screen_partly": [
+    "Abhi"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "over Abhi's shoulder (blurred, left)"
   },
   {
    "start": 170.74,
@@ -201,7 +282,15 @@
    "confidence": 3,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "close-up"
+   "note": "close-up",
+   "on_screen": [
+    "Harshita"
+   ],
+   "on_screen_partly": [
+    "Abhi"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "over Abhi's shoulder (blurred, left)"
   },
   {
    "start": 183.72,
@@ -211,7 +300,15 @@
    "confidence": 3,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "close-up"
+   "note": "close-up",
+   "on_screen": [
+    "Harshita"
+   ],
+   "on_screen_partly": [
+    "Abhi"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "over Abhi's shoulder (blurred, left)"
   },
   {
    "start": 188.82,
@@ -221,7 +318,13 @@
    "confidence": 3,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "starts on Abhi, then Harshita speaking"
+   "note": "starts on Abhi, then Harshita speaking",
+   "on_screen": [
+    "Abhi",
+    "Harshita"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "Abhi first (Harshita's blurred hair at the right edge), then Harshita over Abhi's shoulder"
   },
   {
    "start": 196.16,
@@ -231,7 +334,15 @@
    "confidence": 3,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "Meera arrives behind them; shot is on Abhi reacting"
+   "note": "Meera arrives behind them; shot is on Abhi reacting",
+   "on_screen": [
+    "Abhi"
+   ],
+   "on_screen_partly": [
+    "Harshita"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "Harshita's blurred hair at the right edge; Meera not yet in frame"
   },
   {
    "start": 197.68,
@@ -241,7 +352,13 @@
    "confidence": 3,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "shots of Abhi and Harshita; Meera asking about Harshita"
+   "note": "shots of Abhi and Harshita; Meera asking about Harshita",
+   "on_screen": [
+    "Abhi",
+    "Harshita"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "Abhi turns (back to camera) toward Meera off frame; Harshita at the door; Meera not visible"
   },
   {
    "start": 202.96,
@@ -251,7 +368,12 @@
    "confidence": 3,
    "scribe_label": "speaker_1",
    "scribe_label_share": 1.0,
-   "note": "Abhi whispering to Harshita"
+   "note": "Abhi whispering to Harshita",
+   "on_screen": [
+    "Abhi",
+    "Harshita"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)"
   },
   {
    "start": 205.0,
@@ -261,7 +383,15 @@
    "confidence": 3,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "Harshita close-up"
+   "note": "Harshita close-up",
+   "on_screen": [
+    "Harshita"
+   ],
+   "on_screen_partly": [
+    "Abhi"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "Abhi's shoulder/beard edge at the left"
   },
   {
    "start": 208.04,
@@ -271,7 +401,14 @@
    "confidence": 3,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "Meera (checked shirt) speaking, then wide of the pair"
+   "note": "Meera (checked shirt) speaking, then wide of the pair",
+   "on_screen": [
+    "Meera",
+    "Abhi",
+    "Harshita"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "Meera, then the pair at the door"
   },
   {
    "start": 210.16,
@@ -281,7 +418,15 @@
    "confidence": 3,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "Harshita aside, close-up"
+   "note": "Harshita aside, close-up",
+   "on_screen": [
+    "Harshita"
+   ],
+   "on_screen_partly": [
+    "Abhi"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "Abhi's shoulder at the left edge"
   },
   {
    "start": 225.66,
@@ -291,7 +436,11 @@
    "confidence": 3,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "Meera close-up"
+   "note": "Meera close-up",
+   "on_screen": [
+    "Meera"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)"
   },
   {
    "start": 231.44,
@@ -301,7 +450,13 @@
    "confidence": 3,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "Harshita pushes in past Abhi"
+   "note": "Harshita pushes in past Abhi",
+   "on_screen": [
+    "Abhi",
+    "Harshita",
+    "Meera"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)"
   },
   {
    "start": 235.7,
@@ -311,7 +466,15 @@
    "confidence": 3,
    "scribe_label": "speaker_1",
    "scribe_label_share": 1.0,
-   "note": "at the table, Abhi speaking"
+   "note": "at the table, Abhi speaking",
+   "on_screen": [
+    "Abhi"
+   ],
+   "on_screen_partly": [
+    "Harshita"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "Harshita's hair blurred at the left edge; cut to Harshita right after the line"
   },
   {
    "start": 236.82,
@@ -321,7 +484,15 @@
    "confidence": 3,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "Harshita speaking"
+   "note": "Harshita speaking",
+   "on_screen": [
+    "Harshita"
+   ],
+   "on_screen_partly": [
+    "Abhi"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "over Abhi's shoulder"
   },
   {
    "start": 242.72,
@@ -331,7 +502,13 @@
    "confidence": 3,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "Meera walks in (wide shot)"
+   "note": "Meera walks in (wide shot)",
+   "on_screen": [
+    "Abhi",
+    "Meera",
+    "Harshita"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)"
   },
   {
    "start": 252.84,
@@ -341,7 +518,15 @@
    "confidence": 3,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "Harshita close-up"
+   "note": "Harshita close-up",
+   "on_screen": [
+    "Harshita"
+   ],
+   "on_screen_partly": [
+    "Meera"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "Meera's blurred profile at the left edge"
   },
   {
    "start": 255.18,
@@ -351,7 +536,16 @@
    "confidence": 3,
    "scribe_label": "speaker_1",
    "scribe_label_share": 1.0,
-   "note": "Abhi aside, eyes closed; cut to Meera"
+   "note": "Abhi aside, eyes closed; cut to Meera",
+   "on_screen": [
+    "Abhi",
+    "Meera"
+   ],
+   "on_screen_partly": [
+    "Harshita"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "Abhi (Harshita's hair at the left edge), then Meera"
   },
   {
    "start": 271.5,
@@ -361,7 +555,11 @@
    "confidence": 3,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "Meera close-up"
+   "note": "Meera close-up",
+   "on_screen": [
+    "Meera"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)"
   },
   {
    "start": 277.3,
@@ -371,7 +569,11 @@
    "confidence": 3,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "Meera close-up"
+   "note": "Meera close-up",
+   "on_screen": [
+    "Meera"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)"
   },
   {
    "start": 278.66,
@@ -381,7 +583,16 @@
    "confidence": 3,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "Harshita close-up"
+   "note": "Harshita close-up",
+   "on_screen": [
+    "Harshita",
+    "Abhi"
+   ],
+   "on_screen_partly": [
+    "Meera"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "Harshita over Meera's blurred head, then Abhi with Meera's blurred profile at the right edge"
   },
   {
    "start": 282.52,
@@ -391,7 +602,11 @@
    "confidence": 3,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "Meera close-up"
+   "note": "Meera close-up",
+   "on_screen": [
+    "Meera"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)"
   },
   {
    "start": 293.82,
@@ -401,7 +616,16 @@
    "confidence": 3,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "Meera close-up"
+   "note": "Meera close-up",
+   "on_screen": [
+    "Meera",
+    "Abhi"
+   ],
+   "on_screen_partly": [
+    "Harshita"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "Meera, then Abhi (Harshita's hair at the left edge, Meera's profile at the right)"
   },
   {
    "start": 301.14,
@@ -411,7 +635,16 @@
    "confidence": 3,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "Harshita close-up, Abhi cutaway"
+   "note": "Harshita close-up, Abhi cutaway",
+   "on_screen": [
+    "Harshita",
+    "Abhi"
+   ],
+   "on_screen_partly": [
+    "Meera"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "Harshita / Abhi reverse shots, Meera's blurred head and profile at the frame edges"
   },
   {
    "start": 329.22,
@@ -421,7 +654,13 @@
    "confidence": 3,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "wide at the table, Harshita facing Meera"
+   "note": "wide at the table, Harshita facing Meera",
+   "on_screen": [
+    "Abhi",
+    "Meera",
+    "Harshita"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)"
   },
   {
    "start": 330.76,
@@ -431,7 +670,14 @@
    "confidence": 3,
    "scribe_label": "speaker_1",
    "scribe_label_share": 1.0,
-   "note": "Abhi close-up"
+   "note": "Abhi close-up",
+   "on_screen": [
+    "Abhi",
+    "Meera",
+    "Harshita"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "wide, then Abhi with Harshita's blurred hair and Meera's profile at the edges"
   },
   {
    "start": 342.42,
@@ -441,7 +687,13 @@
    "confidence": 2,
    "scribe_label": "speaker_1",
    "scribe_label_share": 1.0,
-   "note": "Abhi on screen mouth moving (accusing Harshita while Meera is on the phone); Harshita cutaway at the end"
+   "note": "Abhi on screen mouth moving (accusing Harshita while Meera is on the phone); Harshita cutaway at the end",
+   "on_screen": [
+    "Abhi",
+    "Harshita"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "Abhi, then a cutaway to Harshita at the end"
   },
   {
    "start": 349.64,
@@ -451,7 +703,12 @@
    "confidence": 3,
    "scribe_label": "speaker_2",
    "scribe_label_share": 1.0,
-   "note": "friend (navy tee) on the phone pretending to be a travel agent"
+   "note": "friend (navy tee) on the phone pretending to be a travel agent",
+   "on_screen": [
+    "Abhi's friend"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "the shot of Meera ends just before the line"
   },
   {
    "start": 359.66,
@@ -461,7 +718,11 @@
    "confidence": 3,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "Meera on the phone"
+   "note": "Meera on the phone",
+   "on_screen": [
+    "Meera"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)"
   },
   {
    "start": 365.26,
@@ -471,7 +732,12 @@
    "confidence": 3,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "Harshita close-up (cross-talk with the phone call)"
+   "note": "Harshita close-up (cross-talk with the phone call)",
+   "on_screen": [
+    "Harshita",
+    "Abhi"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)"
   },
   {
    "start": 373.74,
@@ -481,7 +747,15 @@
    "confidence": 3,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "close-up"
+   "note": "close-up",
+   "on_screen": [
+    "Harshita"
+   ],
+   "on_screen_partly": [
+    "Abhi"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "Abhi's blurred shoulder at the right edge"
   },
   {
    "start": 382.88,
@@ -491,7 +765,11 @@
    "confidence": 3,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "Meera on the phone"
+   "note": "Meera on the phone",
+   "on_screen": [
+    "Meera"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)"
   },
   {
    "start": 386.02,
@@ -501,7 +779,13 @@
    "confidence": 3,
    "scribe_label": "speaker_3",
    "scribe_label_share": 1.0,
-   "note": "friend on screen on the phone"
+   "note": "friend on screen on the phone",
+   "on_screen": [
+    "Abhi's friend",
+    "Meera"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "friend on the phone, cut to Meera listening at the end"
   },
   {
    "start": 392.02,
@@ -511,7 +795,15 @@
    "confidence": 3,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "close-up"
+   "note": "close-up",
+   "on_screen": [
+    "Harshita"
+   ],
+   "on_screen_partly": [
+    "Abhi"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "Abhi's blurred shoulder at the right edge"
   },
   {
    "start": 404.54,
@@ -521,7 +813,11 @@
    "confidence": 2,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "Meera frowning, takes the phone off her ear"
+   "note": "Meera frowning, takes the phone off her ear",
+   "on_screen": [
+    "Meera"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)"
   },
   {
    "start": 413.48,
@@ -531,7 +827,13 @@
    "confidence": 3,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "Meera sits back down (wide)"
+   "note": "Meera sits back down (wide)",
+   "on_screen": [
+    "Abhi",
+    "Meera",
+    "Harshita"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)"
   },
   {
    "start": 420.86,
@@ -541,7 +843,16 @@
    "confidence": 3,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "close-up"
+   "note": "close-up",
+   "on_screen": [
+    "Harshita"
+   ],
+   "on_screen_partly": [
+    "Meera",
+    "Abhi"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "Meera's hair (left) and Abhi's blurred shoulder (right) at the frame edges"
   },
   {
    "start": 432.94,
@@ -551,7 +862,11 @@
    "confidence": 3,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "close-up"
+   "note": "close-up",
+   "on_screen": [
+    "Meera"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)"
   },
   {
    "start": 437.36,
@@ -561,7 +876,16 @@
    "confidence": 3,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "close-up"
+   "note": "close-up",
+   "on_screen": [
+    "Harshita"
+   ],
+   "on_screen_partly": [
+    "Meera",
+    "Abhi"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "Meera's hair (left) and Abhi's blurred shoulder (right) at the frame edges"
   },
   {
    "start": 450.78,
@@ -571,7 +895,16 @@
    "confidence": 3,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "close-up"
+   "note": "close-up",
+   "on_screen": [
+    "Harshita"
+   ],
+   "on_screen_partly": [
+    "Meera",
+    "Abhi"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "Meera's hair (left) and Abhi's blurred shoulder (right) at the frame edges"
   },
   {
    "start": 464.52,
@@ -581,7 +914,12 @@
    "confidence": 3,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "street two-shot"
+   "note": "street two-shot",
+   "on_screen": [
+    "Abhi",
+    "Harshita"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)"
   },
   {
    "start": 466.94,
@@ -591,7 +929,13 @@
    "confidence": 3,
    "scribe_label": "speaker_3",
    "scribe_label_share": 1.0,
-   "note": "two-shot, Abhi talking"
+   "note": "two-shot, Abhi talking",
+   "on_screen": [
+    "Abhi",
+    "Harshita"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "Harshita's blurred profile in the foreground"
   },
   {
    "start": 480.94,
@@ -601,7 +945,12 @@
    "confidence": 3,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "Harshita on the phone"
+   "note": "Harshita on the phone",
+   "on_screen": [
+    "Abhi",
+    "Harshita"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)"
   },
   {
    "start": 484.52,
@@ -611,7 +960,13 @@
    "confidence": 3,
    "scribe_label": "speaker_2",
    "scribe_label_share": 1.0,
-   "note": "father's voice on the phone; Harshita on screen listening"
+   "note": "father's voice on the phone; Harshita on screen listening",
+   "on_screen": [
+    "Harshita",
+    "Abhi"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "Abhi in profile at the left edge while Harshita listens to the phone"
   },
   {
    "start": 495.26,
@@ -621,7 +976,15 @@
    "confidence": 3,
    "scribe_label": "speaker_3",
    "scribe_label_share": 1.0,
-   "note": "Abhi on the phone"
+   "note": "Abhi on the phone",
+   "on_screen": [
+    "Abhi"
+   ],
+   "on_screen_partly": [
+    "Harshita"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "Harshita's hair at the right edge"
   },
   {
    "start": 513.08,
@@ -631,7 +994,14 @@
    "confidence": 3,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "Harshita (black top) on the sofa as the other two sneak out"
+   "note": "Harshita (black top) on the sofa as the other two sneak out",
+   "on_screen": [
+    "Meera",
+    "Abhi",
+    "Harshita"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "Meera and Abhi sneaking to the door (backs, then Abhi turns), Harshita on the sofa"
   },
   {
    "start": 514.82,
@@ -641,7 +1011,13 @@
    "confidence": 2,
    "scribe_label": "speaker_3",
    "scribe_label_share": 1.0,
-   "note": "two-shot; Abhi's lie (Meera then says café)"
+   "note": "two-shot; Abhi's lie (Meera then says café)",
+   "on_screen": [
+    "Meera",
+    "Abhi"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "cut to Harshita right after the line"
   },
   {
    "start": 517.92,
@@ -651,7 +1027,12 @@
    "confidence": 3,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "Meera (yellow top) mouth moving"
+   "note": "Meera (yellow top) mouth moving",
+   "on_screen": [
+    "Meera",
+    "Abhi"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)"
   },
   {
    "start": 527.74,
@@ -661,7 +1042,13 @@
    "confidence": 3,
    "scribe_label": "speaker_3",
    "scribe_label_share": 1.0,
-   "note": "Abhi to Meera"
+   "note": "Abhi to Meera",
+   "on_screen": [
+    "Meera",
+    "Abhi",
+    "Harshita"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)"
   },
   {
    "start": 529.92,
@@ -671,7 +1058,12 @@
    "confidence": 3,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "Meera"
+   "note": "Meera",
+   "on_screen": [
+    "Meera",
+    "Abhi"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)"
   },
   {
    "start": 552.88,
@@ -681,7 +1073,15 @@
    "confidence": 3,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "café, Harshita (red top) teasing Abhi"
+   "note": "café, Harshita (red top) teasing Abhi",
+   "on_screen": [
+    "Abhi",
+    "Harshita",
+    "Coworker (Sindhu)",
+    "Meera"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "Abhi and Harshita in front; the coworker (black tee, apron, back to camera) and Meera (yellow) small in the background"
   },
   {
    "start": 562.84,
@@ -691,7 +1091,12 @@
    "confidence": 2,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "wide; coworker (black tee, apron) asking Meera"
+   "note": "wide; coworker (black tee, apron) asking Meera",
+   "on_screen": [
+    "Coworker (Sindhu)",
+    "Meera"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)"
   },
   {
    "start": 565.52,
@@ -701,7 +1106,12 @@
    "confidence": 2,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "wide; Meera answering"
+   "note": "wide; Meera answering",
+   "on_screen": [
+    "Coworker (Sindhu)",
+    "Meera"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)"
   },
   {
    "start": 573.74,
@@ -711,7 +1121,12 @@
    "confidence": 3,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "coworker on screen"
+   "note": "coworker on screen",
+   "on_screen": [
+    "Coworker (Sindhu)"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "woman in black in the far background, back to camera, not identifiable (likely an extra)"
   },
   {
    "start": 590.56,
@@ -721,7 +1136,15 @@
    "confidence": 3,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "close-up"
+   "note": "close-up",
+   "on_screen": [
+    "Harshita"
+   ],
+   "on_screen_partly": [
+    "Coworker (Sindhu)"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "over the coworker's shoulder (black tee, hair from behind)"
   },
   {
    "start": 612.64,
@@ -731,7 +1154,15 @@
    "confidence": 3,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "inner voice, Harshita smirking with lips closed"
+   "note": "inner voice, Harshita smirking with lips closed",
+   "on_screen": [
+    "Harshita"
+   ],
+   "on_screen_partly": [
+    "Coworker (Sindhu)"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "over the coworker's shoulder"
   },
   {
    "start": 616.56,
@@ -741,7 +1172,13 @@
    "confidence": 3,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "close-up"
+   "note": "close-up",
+   "on_screen": [
+    "Harshita",
+    "Coworker (Sindhu)"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "reverse shots between Harshita and the coworker"
   },
   {
    "start": 622.68,
@@ -751,7 +1188,15 @@
    "confidence": 1,
    "scribe_label": "speaker_3",
    "scribe_label_share": 1.0,
-   "note": "someone off screen calls the coworker (she turns); likely Meera, not seen"
+   "note": "someone off screen calls the coworker (she turns); likely Meera, not seen",
+   "on_screen": [
+    "Coworker (Sindhu)"
+   ],
+   "on_screen_partly": [
+    "Harshita"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "Harshita's blurred arm at the right edge"
   },
   {
    "start": 690.12,
@@ -761,7 +1206,13 @@
    "confidence": 1,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "kitchen wide; neither woman's mouth readable; could be Abhi off screen"
+   "note": "kitchen wide; neither woman's mouth readable; could be Abhi off screen",
+   "on_screen": [
+    "Harshita",
+    "Meera"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "Harshita (magenta, on her phone) and Meera (navy) in the kitchen"
   },
   {
    "start": 701.1,
@@ -771,7 +1222,14 @@
    "confidence": 3,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "Meera (navy top) speaking after the Abhi cutaway"
+   "note": "Meera (navy top) speaking after the Abhi cutaway",
+   "on_screen": [
+    "Abhi",
+    "Harshita",
+    "Meera"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "Abhi cutaway, then Harshita and Meera"
   },
   {
    "start": 715.18,
@@ -781,7 +1239,12 @@
    "confidence": 2,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "two-shot, Meera head down cutting, Harshita listening; by content Meera to Harshita"
+   "note": "two-shot, Meera head down cutting, Harshita listening; by content Meera to Harshita",
+   "on_screen": [
+    "Harshita",
+    "Meera"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)"
   },
   {
    "start": 718.62,
@@ -791,7 +1254,11 @@
    "confidence": 3,
    "scribe_label": "speaker_3",
    "scribe_label_share": 1.0,
-   "note": "Abhi gesturing, mouth moving"
+   "note": "Abhi gesturing, mouth moving",
+   "on_screen": [
+    "Abhi"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)"
   },
   {
    "start": 722.22,
@@ -801,7 +1268,12 @@
    "confidence": 3,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "Harshita (magenta top) speaking"
+   "note": "Harshita (magenta top) speaking",
+   "on_screen": [
+    "Harshita",
+    "Meera"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)"
   },
   {
    "start": 763.45,
@@ -811,7 +1283,15 @@
    "confidence": 3,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "onion juice in her eye; Abhi faces camera, Meera's back"
+   "note": "onion juice in her eye; Abhi faces camera, Meera's back",
+   "on_screen": [
+    "Abhi"
+   ],
+   "on_screen_partly": [
+    "Meera"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "Meera's head from behind and her hand in the foreground"
   },
   {
    "start": 781.71,
@@ -821,7 +1301,15 @@
    "confidence": 3,
    "scribe_label": "speaker_1",
    "scribe_label_share": 1.0,
-   "note": "Meera's face on screen, Abhi's hand"
+   "note": "Meera's face on screen, Abhi's hand",
+   "on_screen": [
+    "Meera"
+   ],
+   "on_screen_partly": [
+    "Abhi"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "Abhi's hand and the edge of his head only"
   },
   {
    "start": 795.11,
@@ -831,7 +1319,12 @@
    "confidence": 3,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "bedroom, Harshita (right, black top) speaking"
+   "note": "bedroom, Harshita (right, black top) speaking",
+   "on_screen": [
+    "Meera",
+    "Harshita"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)"
   },
   {
    "start": 802.51,
@@ -841,7 +1334,12 @@
    "confidence": 3,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "Meera (left, brown top)"
+   "note": "Meera (left, brown top)",
+   "on_screen": [
+    "Meera",
+    "Harshita"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)"
   },
   {
    "start": 819.03,
@@ -851,7 +1349,12 @@
    "confidence": 3,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "Harshita speaking"
+   "note": "Harshita speaking",
+   "on_screen": [
+    "Meera",
+    "Harshita"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)"
   },
   {
    "start": 825.73,
@@ -861,7 +1364,12 @@
    "confidence": 2,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "dark wide shot"
+   "note": "dark wide shot",
+   "on_screen": [
+    "Meera",
+    "Harshita"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)"
   },
   {
    "start": 877.67,
@@ -871,7 +1379,13 @@
    "confidence": 3,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "Harshita (blue top) turns to Abhi"
+   "note": "Harshita (blue top) turns to Abhi",
+   "on_screen": [
+    "Abhi",
+    "Meera",
+    "Harshita"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)"
   },
   {
    "start": 900.31,
@@ -881,7 +1395,15 @@
    "confidence": 3,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "close-up"
+   "note": "close-up",
+   "on_screen": [
+    "Harshita"
+   ],
+   "on_screen_partly": [
+    "Abhi"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "Abhi's dark sleeve at the left edge"
   },
   {
    "start": 908.47,
@@ -891,7 +1413,15 @@
    "confidence": 3,
    "scribe_label": "speaker_1",
    "scribe_label_share": 1.0,
-   "note": "close-up"
+   "note": "close-up",
+   "on_screen": [
+    "Abhi"
+   ],
+   "on_screen_partly": [
+    "Harshita"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "Harshita's blurred head at the right edge"
   },
   {
    "start": 953.19,
@@ -901,7 +1431,15 @@
    "confidence": 3,
    "scribe_label": "speaker_0",
    "scribe_label_share": 1.0,
-   "note": "close-up"
+   "note": "close-up",
+   "on_screen": [
+    "Harshita"
+   ],
+   "on_screen_partly": [
+    "Abhi"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "Abhi's dark sleeve at the left edge"
   },
   {
    "start": 976.05,
@@ -911,7 +1449,12 @@
    "confidence": 3,
    "scribe_label": "speaker_3",
    "scribe_label_share": 1.0,
-   "note": "balcony, friend gesturing"
+   "note": "balcony, friend gesturing",
+   "on_screen": [
+    "Abhi",
+    "Abhi's friend"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)"
   },
   {
    "start": 996.03,
@@ -921,7 +1464,13 @@
    "confidence": 3,
    "scribe_label": "speaker_1",
    "scribe_label_share": 1.0,
-   "note": "Abhi speaking"
+   "note": "Abhi speaking",
+   "on_screen": [
+    "Abhi",
+    "Abhi's friend"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "Abhi over the friend's head, then the friend"
   },
   {
    "start": 1012.37,
@@ -931,7 +1480,12 @@
    "confidence": 3,
    "scribe_label": "speaker_3",
    "scribe_label_share": 1.0,
-   "note": "friend speaking, then Abhi reaction"
+   "note": "friend speaking, then Abhi reaction",
+   "on_screen": [
+    "Abhi's friend",
+    "Abhi"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)"
   },
   {
    "start": 1041.45,
@@ -941,7 +1495,14 @@
    "confidence": 2,
    "scribe_label": "speaker_3",
    "scribe_label_share": 1.0,
-   "note": "café wide; man in blue shirt with the father"
+   "note": "café wide; man in blue shirt with the father",
+   "on_screen": [
+    "Waiter",
+    "Dad's aide",
+    "Dad"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "wide café: waiter at the counter, aide (blue shirt) and the father"
   },
   {
    "start": 1043.25,
@@ -951,7 +1512,16 @@
    "confidence": 3,
    "scribe_label": "speaker_2",
    "scribe_label_share": 1.0,
-   "note": "café worker (glasses, apron)"
+   "note": "café worker (glasses, apron)",
+   "on_screen": [
+    "Waiter"
+   ],
+   "on_screen_partly": [
+    "Dad",
+    "Dad's aide"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "waiter close-up; the father's jacket and the aide's blue shirt blurred at the edges"
   },
   {
    "start": 1049.09,
@@ -961,7 +1531,16 @@
    "confidence": 3,
    "scribe_label": "speaker_3",
    "scribe_label_share": 1.0,
-   "note": "father speaking"
+   "note": "father speaking",
+   "on_screen": [
+    "Dad",
+    "Waiter"
+   ],
+   "on_screen_partly": [
+    "Dad's aide"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "father, cut to the waiter (aide's blue shirt blurred at the edge), back to the father"
   }
  ],
  "scribe_agreement": {
@@ -1000,5 +1579,12 @@
     "Dad's aide": 1
    }
   }
- }
+ },
+ "corrections": [
+  {
+   "date": "2026-11-02",
+   "by": "clip-gt-editor",
+   "what": "on_screen (+ on_screen_partly, on_screen_note) for 91 lines from 4-6 frames sampled evenly inside each line (runs/gt/fjGrX8aBVAc/frames_os/, edge cuts checked at full size); source 'frames (clip-gt-editor 2026-11-02)'; every line checked for more than one voice: none found, so no voices fields; speaker (voice) unchanged on every line"
+  }
+ ]
 }

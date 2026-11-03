@@ -1,0 +1,406 @@
+# selection_v2 configuration. Every model name, rate, threshold and weight lives here, never in code.
+version: "v2/0.1"
+
+models:
+  # ModelSpec dicts (shotvi.llm.base.ModelSpec.from_dict). Gemini 3 must keep the default temperature.
+  default: {provider: gemini, model: gemini-3.8-flash, params: {thinking_level: low}}
+  # Stage 1B, the episode pass: one call, coupled questions (who is who / where are the scenes / which lines are
+  # mislabelled), so it thinks at medium; thinking tokens are billed as output
+  # (founder, 2026-10-25: 1B confirms candidates, so thinking "low"; 32k output so the first call never truncates)
+  # (founder, 2026-10-26, hybrid: 1B is the TEXT pass (fix keys, scenes); the identity_pass below watches the episode and answers per-label identity only)
+  stage1b: {provider: gemini, model: gemini-3.8-flash, params: {thinking_level: low, max_output_tokens: 32768, media_resolution: low}}
+  # Stage 2, scene beat sheets: one call per scene WITH the scene media (low-resolution video for scripted series,
+  # audio for podcasts); media_resolution low = ~100 tokens per second of video (spec 11.2)
+  stage2: {provider: gemini, model: gemini-3.8-flash, params: {thinking_level: low, max_output_tokens: 16384, media_resolution: low}}
+  # Stage 4, scoring and vetoes: one TEXT call per scene scoring all of its candidates together (no media; spec 7.1)
+  stage4: {provider: gemini, model: gemini-3.8-flash, params: {thinking_level: low, max_output_tokens: 32768}}
+  # Stage 5, cold-viewer critic: a fresh call per run with ONLY the clip (no prefix, no episode material). The founder asked
+  # for temperature 0.8; the Gemini client refuses anything but the default 1.0 on Gemini 3 models (Google's guidance),
+  # so the three runs vary at the default temperature (above zero, as the doc requires).
+  stage5: {provider: gemini, model: gemini-3.8-flash, params: {thinking_level: low, max_output_tokens: 4096, media_resolution: low}}
+  # Stage 5 editor's pick (founder, 2026-10-30): one call, full context + every shortlisted version as one low-res reel; thinking medium
+  stage5_editor: {provider: gemini, model: gemini-3.8-flash, params: {thinking_level: medium, max_output_tokens: 32768, media_resolution: low}}
+  # Stage 6, final selection: ONE text call for the chosen moments (cached Stage 2 prefix first): hook text, caption, title, hashtags
+  stage6: {provider: gemini, model: gemini-3.8-flash, params: {thinking_level: low, max_output_tokens: 8192}}
+
+rates:
+  # Gemini 3.8 Flash, spec section 11.2 (verified October 2026; doubles on 2027-01-01).
+  usd_per_1m_input: 0.75
+  usd_per_1m_output: 3.75          # thinking tokens count as output
+  usd_per_1m_cached_input: 0.075
+  tokens_per_s_audio: 32
+  tokens_per_s_video_low: 100
+  tokens_per_s_video_default: 300
+  # One source of truth for the rupee rate: the same env var shotvi.llm.spend reads (.env), default when unset.
+  inr_per_usd_env: SHOTVI_USD_INR
+  inr_per_usd_default: 96
+
+paths:
+  runs_dir: runs/selection_v2            # <runs_dir>/<video_id>/episode_facts.json
+  runs_log: runs/selection_v2/runs.csv
+
+stage1a:
+  word_max_s: 2.0            # a line's end is capped at (last word start + this); Scribe stretches some word ends
+  zero_len_eps_s: 0.001      # end - start below this = zero-duration filler line (kept, skipped by gap math)
+  context_window_s: 30       # speaker sets before / after a gap
+  overlap_tol_s: 0.05        # a line starting earlier than this before the previous line's end = overlap
+  gap_percentiles: [50, 75, 90, 95]   # reported in the summary
+  filler:
+    # A filler line is zero-length, or lasts <= max_s and is only filler tokens. Filler lines stay in the gap table
+    # (they are legal cut points) but are ignored when computing speaker sets for turnover and when choosing the
+    # content line a tag follows (tag_events.after_content_line).
+    tokens: [ఆ, హా, ఉమ్, ఊ, మ్, ఓ, ఉమ్మ్, హ్, అమ్, హ్మ్, ఛ]
+    max_s: 0.3
+    continuation_s: 5.0        # a filler by the speaker who was just talking, within this after the gap, keeps them in
+                               # the after-set ("ఆ" while the other replies); later fillers do not
+  boundary:
+    weights: {gap: 0.35, turnover: 0.30, tag: 0.25, cast_change: 0.20}   # no shot cuts (founder 2026-11-02: unreliable)
+    # cast change: the gap right before a speaker's first content line (entry) / right after their last (exit),
+    # skipping other people's fillers. Entry AND exit at the same gap, or at a neighbouring gap within cast_change_s
+    # (a one-word reply in between), = cast swap (someone leaves, someone new arrives); shown as "+C -B~"
+    cast_change_s: 3.0
+    cast_swap_alone_ok: true     # a cast swap qualifies on its own, like total turnover (someone leaves, someone new arrives)
+    gap_full_percentile: 0.90    # gaps at or above this percentile (within THIS episode) earn the full gap credit
+    gap_soft_percentile: 0.70    # partial credit between soft and full; none below
+    tag_classes: [silence, music, ambient]   # a tag of these classes inside the gap fires the tag evidence
+    hard_cut_max_gap_s: 0.15     # gap <= this with total turnover = "hard_cut" evidence
+    min_score: 0.55
+    min_evidence_types: 2        # a proposal needs two kinds of evidence (gap, turnover, tag) ...
+    turnover_alone_ok: true      # ... unless the turnover is TOTAL (no speaker shared across the gap): sufficient alone
+    top_k: 16                    # cap on proposals by score; total-turnover / cast-swap gaps are exempt
+    min_separation_s: 2.0        # non-max suppression between proposals
+    coverage_max_unbroken_s: 240 # after the cap, any stretch longer than this with a qualifying gap gets its best one
+                                 # (a global top-k otherwise starves quiet stretches when music beats score high elsewhere)
+  summary:
+    long_pause_s: 4.0            # "pauses longer than N s" in the plain-language summary
+    hold_min_s: 4.0              # a hold = a dialogue pause >= this with no music under it (silence / sigh / nothing)
+  cast_names:
+    # speaker_fix cast names made of role words are descriptors, not names ("Boyfriend", "Prasad's Friend"): never
+    # listed as spellings. A fix name is skipped when it contains "'s" or any of these words.
+    role_words: [boyfriend, girlfriend, husband, wife, friend, colleague, mother, father, mom, dad, sister, brother,
+                 son, daughter, uncle, aunt, aunty, grandfather, grandmother, customer, delivery, boy, girl, man, woman,
+                 lady, guy, boss, madam, sir, owner, shopkeeper, teacher, doctor, neighbour, neighbor, stranger, voice,
+                 caller, unknown, unresolved, speaker, narrator, host, guest, female, male, kid, child, baby, student]
+  suspects:
+    low_confidence_max: 0.3      # speaker_fix confidence <= this = suspect
+    low_mark: 0.6                # speaker_fix confidence == this = "low" (separate column)
+    single_line_max: 1           # a speaker with <= this many lines in a provisional segment is a lone speaker
+    min_lines_for_presence: 3    # a speaker "is present" in a segment (for isolation / exclusive-partner / anchoring) only
+                                 # with this many lines there or with a co-speaker; a 2-line solo tail does not count
+    filler_max_words: 2          # a speaker whose every line has <= this many words is filler-only
+    filler_max_s: 0.8
+
+tags:
+  # Free-form Scribe tag text -> fixed class. Case-insensitive substring match on the NFC text without brackets;
+  # the first class (in `order`) with a matching pattern wins; no match = "other" (kept, ignored).
+  order: [censored, laugh, silence, sigh, sfx, ambient, music]
+  classes:
+    laugh:    ["నవ్వు", "నవ్వుతూ", "laugh", "laughter", "chuckle", "giggle"]
+    silence:  ["నిశబ్ద", "silence", "silent", "pause"]
+    music:    ["పాట", "సంగీత", "మ్యూజిక్", "music", "song", "score", "బాజా", "గీతం", "bgm", "jingle", "tune"]
+    sigh:     ["నిట్టూర్పు", "sigh", "నిశ్వాస", "exhale", "breath", "శ్వాస"]
+    sfx:      ["door", "bell", "phone", "ring", "gate", "camera", "knock", "ఫోన్", "తలుపు", "బెల్", "గంట", "కాలింగ్", "పాప్ అప్"]
+    ambient:  ["vehicle", "horn", "scooter", "bike", "traffic", "వాహన", "హారన్", "స్కూటర్", "బైక్", "car", "వెనకశబ్ద"]
+    censored: ["సెన్సార్", "censor", "beep", "bleep"]
+
+sanity:
+  # automatic checks on every Stage 1A run (no reference needed). Red = a code bug, not a judgment call.
+  proposals_per_min: [0.19, 2.3]   # 26 min -> 5..60 scene-edge proposals
+
+stage1b:
+  # STANDING DESIGN (founder, 2026-10-26): the TEXT pass owns line labels and scenes; the VIDEO identity pass (below,
+  # `identity_pass`) owns per-label identity, merges and reference timestamps and has no line-level field at all.
+  prior: fix                       # fix = fix keys with anchor checks (text pass); raw = the one-off raw-label experiment
+  video: false                     # the 1B text pass never sends video (the identity pass does)
+  video_max_height: 480
+  delete_upload_after_call: true   # remove the whole-episode upload from Google's side as soon as the answer is in
+  reference_times_per_character: 3 # Tier 0: timestamps where each character is alone and clearly on screen
+  prefix_gap_min_s: 2.0            # gap-table rows shown in the cached prefix (every row >= this)
+  expected_output_tokens: 10000    # for the cost estimate (answer + thinking); the real number is logged after the run
+  max_retries_per_tier: 1          # a tier re-asked with the validator's errors at most this often (with video each re-ask
+                                   # re-reads the whole episode, ~₹15 on a 25-min episode; trivial slips are repaired in code instead)
+  http_timeout_s: 1200             # a call that carries the episode video may run 5-15 min; never cut it off at 5 min
+  http_retries: 1                  # transport retries inside the client for the 1B call (each attempt may be billed)
+  min_scene_s: 10                  # code post-processing: a scene shorter than this merges into the previous scene
+  anchor_max_share: 0.5            # safety: if withholding prior names would cover more than this share of speech lines
+                                   # (a one-location episode where everyone is "isolated"), only the exclusive-partner
+                                   # segments are anchored, not the plain isolated ones
+  glossary_max_entries: 15
+  glossary_dir: data/series_glossary
+
+stage2:
+  media_max_height: 480            # scene video is cut from the 720p mp4 and downscaled to this (audio kept)
+  media_fps: 1                     # Gemini samples video at this rate (fps in the media part); 1 fps is the default
+  delete_upload_after_call: true   # remove each scene's upload from Google's side right after its call
+  audio_content_types: [podcast, talking_head]   # content types that get audio only (16 kHz mono mp3)
+  expected_output_tokens: 3500     # per scene (answer; thinking is low)
+  max_scene_s: 600                 # a scene longer than this is refused (cost guard); split it in 1B first
+  thin_diarization:
+    reassigned_fraction: 0.33      # thin when raw Scribe labels < map speakers, or > this fraction of lines reassigned,
+    anchored_segments: true        # or (founder, 2026-10-26) a Stage 1A anchored segment (isolated speaker / exclusive
+                                   # partner) overlaps the scene: the structural signal, not the fix grading its own homework
+  retries: 1                       # one retry per scene with the validator's errors
+  reference_frames:
+    per_speaker: 3                 # keyframes per speaker key attached to every scene call (the reference faces); a frame
+                                   # at a line's midpoint may show a listener, so the person common to a key's frames is the key
+    manual_dir: selection_v2/reference/faces   # <video_id>.yaml {key: ["10:23.2", ...]} pins reference times by hand
+    width: 320
+    min_line_s: 1.0                # a reference line must last at least this long (the camera is likely on the speaker)
+    tokens_per_image: 264          # measured with countTokens on 320 px JPEGs at media_resolution low (estimate only)
+  cast_sheet:
+    candidates_per_speaker: 8      # frames cut per speaker key for the one cast-sheet call (spread over their lines)
+    min_line_s: 1.0
+  faces_bank_dir: data/series_faces          # verified faces per series (name to frames + look), used first for later episodes
+  faces_bank_max_per_name: 4
+  media_dir: media                 # under runs/selection_v2/<id>/
+
+identity_pass:
+  # founder, 2026-11-02: ONE Gemini call that WATCHES the whole episode with the text step's answer and says, for EVERY
+  # spoken line, who talks (one, several, or cannot tell; a voice change inside the line) and who is on screen. Code
+  # checks the format only; the naming check decides the final names.
+  model: {provider: gemini, model: gemini-3.8-flash, params: {thinking_level: low, max_output_tokens: 65536, media_resolution: low}}
+  video_max_height: 480
+  http_timeout_s: 1200
+  http_retries: 1
+  retries: 1                       # one re-ask with the validator's errors (re-reads the video)
+  output_tokens_base: 3000         # estimate: people list + thinking
+  output_tokens_per_line: 30       # estimate: one {id, talk, see} entry per spoken line
+  max_missing_share: 0.05          # more spoken lines than this without an entry = re-ask; fewer = a warning
+  delete_upload_after_call: true
+
+naming_check:
+  # founder, 2026-11-01: no code rules decide who is who. After the identity pass, ONE text call reads the whole transcript
+  # with the text step's person and the video step's answer per line, and decides who says every spoken line (founder,
+  # 2026-11-02: A/B Flash vs Sarvam; Sarvam = {provider: sarvam, model: sarvam-105b, params: {reasoning_effort: low,
+  # max_output_tokens: 16384}}, its output limit depends on the Sarvam plan).
+  # founder, 2026-11-02: OFF. The per-line video step's answer is final (test: the check added nothing, Surya -3 +1);
+  # it can still be run alone on a stored video answer (naming_check.run) for comparison.
+  enabled: false
+  model: {provider: gemini, model: gemini-3.8-flash, params: {thinking_level: medium, max_output_tokens: 32768}}
+  http_retries: 1
+  retries: 1
+  expected_output_tokens: 8000     # answer + thinking (estimate only)
+
+stage3:
+  # Candidate generation (doc 6; pure code, no Gemini). Length is an INPUT, never a cut-off: the untrimmed version of
+  # every moment is always generated; the only hard limit is the platform maximum. Target lengths are recorded on each
+  # candidate (target_s, length_vs_target) for Stage 4 to weigh, never enforced here.
+  platform_max_s: 180              # hard limit on final_duration; the untrimmed full arc is still emitted, flagged over_platform_max
+  start:
+    pad_s: 0.3                     # start this long before the first word, inside the pause (founder: <= 0.3 s lead-in)
+    near_gap_s: 0.15               # founder, 2026-10-27: prefer the nearest pause >= this within near_window_s before the beat ...
+    near_window_s: 3.0
+    min_gap_s: 0.3                 # ... only if none, walk back to the nearest pause >= this (extra lines recorded either way)
+  end:
+    min_gap_s: 0.5                 # first pause >= this after the end anchor (reaction, else payoff line)
+    extend_max_s: 6.0              # if none within this many seconds, keep extending (recorded as end_extended_past_max)
+    tail_s: 0.8                    # end this long after the last word (capped by the next line), unless a laugh/hold fills the pause
+    reaction_max_after_s: 30       # the sheet's reaction is the end anchor only if it follows the payoff within this
+    reaction_fills: [laugh, sigh, silence, hold, breath]   # gap-table filled_by classes that count as a reaction tag (included whole)
+    never_into_song: true          # founder, 2026-10-28: the clip end never runs into a [song] event (capped at its start, tail kept)
+    # founder, 2026-10-29 (Surya trace): the end goes past the payoff / reaction to the BUTTON (the spoken reaction or exit line
+    # after it). Sheets with Stage 2's button_line use it; sheets without the key: the first line after the payoff / laugh when it
+    # is by a different speaker, starts within button.within_s and lasts <= button.max_len_s. Then the usual pause / tail rule.
+    button: {within_s: 1.5, max_len_s: 4.0}
+  # founder, 2026-10-29: hook templates and their 45 s start limit are gone. A Stage 2 hook_moment adds an END-VARIANT to its
+  # scene's normal moment: natural start (the moment's opening beat), ending on the open-question line (variant open_question).
+  open_question:
+    tail_s: 0.3                    # the end-variant ends this long after the open-question line (capped by the next line)
+  loop:
+    min_before_s: 2.0              # the loop's opening beat / pause lies between min and max seconds before the punchline
+    max_before_s: 15
+    start_gap_s: 1.0               # a pause >= this inside the window can open the loop (the later of beat / pause wins)
+    end_gap_s: 0.3                 # founder, 2026-10-27: the loop ends at the FIRST pause >= this after the punchline, never a later one ...
+    laugh_within_s: 1.5            # ... or after its laugh tag when the laugh starts within this many seconds of the punchline
+  # founder, 2026-10-29: a variant the critic (Stage 5) failed or bordered on PACE only (swipe stretches) gets a critic_trimmed
+  # sibling: each flagged stretch keeps its first keep_head_s, then one cut lands before the next spoken line. Never anything
+  # from the payoff / end line on (so never a reaction_hold after the payoff). One level only (no trim of a critic_trimmed).
+  critic_trim:
+    keep_head_s: 3.0
+    min_gain_s: 2.0                # a cut that saves less than this is not made
+  # founder, 2026-10-30 (test): every scene as a clip, first line to last line, trimmed (scene_trimmed) + untrimmed twin (scene);
+  # outside the caps, always scored and judged. A second `entry` beat after a payoff / peak splits the scene in two situations.
+  scene_variant: {enabled: true, split_on_entry_after_payoff: true, max_scene_s: 120}   # founder, 2026-10-30: whole scene only when <= 120 s
+  # founder, 2026-10-30 (new episodes): each Stage 2 situation as a clip (untrimmed + trimmed), aiming at about a minute; it may
+  # open on a visual beat in the silent stretch before it
+  situation: {target_s: [45, 75]}
+  # a teaser_open version: 1.5-2.5 s of the strongest visual beat (strength >= min_strength) before the payoff, then the situation
+  teaser: {min_s: 1.5, max_s: 2.5, min_strength: 7}
+  # the episode's own matched channel Shorts as reference candidates (scored and judged, never shipped)
+  channel_short_candidates: {enabled: true}
+  cold_open_min_before_payoff_s: 30   # the cold open starts on the last escalation at least this far before the payoff
+  trims:
+    skippable_max_share: 0.25      # at most this share of a candidate's dialogue lines may be skipped
+    min_shorten_gain_s: 0.25       # a shorten_to that saves less than this is not applied
+    short_twin_min_stretch_s: 4.0  # founder, 2026-10-27: a hook / loop gets a trimmed twin only when it contains a removable stretch >= this ...
+    short_twin_min_skippable: 2    # ... or at least this many skippable lines; otherwise no twin
+    # founder, 2026-10-28 (after the first Stage 5 run): Stage 2's non_dialogue recommendations are applied as CHUNK removal
+    chunk_kinds: [action_beat, transition, scene_setting]   # kinds that may be shortened / removed (reaction_hold is never touched)
+    remove_keep_s: 3.0             # a stretch recommended "remove" keeps this much from its start (then one cut to the next spoken line)
+    segment_tail_s: 0.5            # a kept segment ends this long after its last kept line (never into a song: capped at the [song] start)
+    # founder, 2026-10-29: TRIMMED twins only: a "keep" stretch before the payoff line, longer than build_up_max_s, keeps
+    # build_up_keep_s from its head, then one cut before the next spoken line; stretches after the payoff are never touched.
+    # The founder named reaction_hold and action_beat; transition is added because scene 13's 13 s pre-payoff stretch is a
+    # transition (remove it here to apply the rule exactly as worded).
+    build_up_kinds: [reaction_hold, action_beat, transition]
+    build_up_max_s: 6.0
+    build_up_keep_s: 4.0
+  templates_by_register:           # which clip types a scene register allows (plus the reaction-type rule below)
+    comedy: [comedy, loop]
+    comedy_to_emotional: [comedy, emotional, loop]
+    emotional: [emotional, loop]
+    drama: [emotional, loop]
+    romance: [emotional, loop]
+    romantic: [emotional, loop]
+    default: [comedy, emotional, loop]
+  emotional_reaction_types: [sigh, silence, stare]   # a scene whose reaction is one of these also gets the emotional templates
+  targets_s:                       # preferences recorded on the candidate (doc 6.2), not enforced
+    comedy: [20, 45]
+    comedy_sketch_max: 90
+    emotional: [30, 90]
+    loop: [7, 15]
+  caps:
+    per_scene: 7                   # slots per scene (an untrimmed full arc and its trimmed twin share one slot) (founder, 2026-10-27)   # 2026-10-29: 7 (was 6) so two protected story families fit beside the primary arc and the protected shorts
+    protect_short_per_scene: 0     # founder, 2026-10-30: dropped (was 3; hooks are gone and loops are off for scripted series)
+    protect_shortest_story_per_scene: 2   # founder, 2026-10-29: the shortest comedy / emotional family of a scene survives the caps (peaks have the fewest beats) (2 = the two shortest, founder option B)
+    per_episode: 76                # slots per episode; pruned from the scenes with the most slots, fewest beats first   # 2026-10-29: 68 (was 60) so the protected shortest story families are ADDED, not swapped for judged clips (effective 67 on the dev episode) -> 76 same day (option B)
+
+stage4:
+  calibration:                     # 2026-10-29, least squares on 13 scene calls of the dev episode (video, 2026-10-28/29): max error 1.7 %
+    text_factor: 1.62              # actual input tokens / local estimate for Telugu text (prefix included); 1.0 with countTokens
+    video_tokens_per_s: 96         # scene video at low resolution, audio included
+    fitted_on: "13 Stage 4 scene calls of the dev episode, 2026-10-28/29 (input 658k tokens), max error 1.7 %"
+  # Scoring and vetoes (doc 7). Gemini returns six marks with evidence per candidate, one call per scene (text only:
+  # the cached Stage 2 prefix, the scene's beat sheet, every candidate's transcript as cut). Code applies the vetoes
+  # and the combined score. Thresholds and weights live here, never in code.
+  retries: 1                       # one re-ask per scene with the validator's errors
+  http_timeout_s: 600
+  http_retries: 1
+  expected_output_tokens_per_candidate: 450   # for the estimate (six scored dimensions with evidence + verdicts)
+  media: auto                      # video | none | auto (auto = media_by_content_type; founder 2026-10-27: video for scripted series)
+  media_by_content_type: {scripted_series: video, comedy_show: video, podcast: none, talking_head: none, default: none}
+  media_max_height: 480            # the scene cut Stage 2 made is reused (same file, same Files API upload while it still exists)
+  media_fps: 1
+  delete_upload_after_call: false  # keep the upload (48 h on Google's side) so a compare run / retry reuses it; Stage 2's button deletes all
+  expected_output_tokens_per_candidate_video: 600   # with video the answer also lists removed_needed / kept_dead
+  # founder, 2026-10-29: "Clips this creator/channel has posted or approved from this series": up to max_examples golden-set
+  # moments of the same series (posted Shorts, or human picks the founder would post), each as its cut transcript
+  taste:
+    source: channel_shorts         # founder, 2026-10-30: the series' OTHER episodes' matched channel Shorts (golden_set = the 2026-10-29 source)
+    max_examples: 6
+    max_words: 200
+    exclude_same_episode: true     # the episode being scored never shows its own golden moments (they are the answer key; in
+                                   # production approved clips come from earlier episodes)
+  vetoes:
+    payoff_min: 5                  # payoff < this -> rejected regardless of hook (open_question end-variants: open_question_min)
+    open_question_min: 5           # founder, 2026-10-29: open_question replaces loop_strength (scored on every candidate)
+    standalone_min: 5              # standalone < this -> try the widened sibling (untrimmed / full arc) scoring >= this; else fan_clip only
+    pace_min: 4                    # pace < this -> this variant rejected
+  weights:                         # per type; the combined score is the weighted mean of the dimension scores (1-10)
+    comedy:    {payoff: 0.30, hook: 0.20, standalone: 0.20, pace: 0.10, delivery: 0.10, series_pull: 0.10}
+    emotional: {delivery: 0.25, payoff: 0.25, pace: 0.15, standalone: 0.15, hook: 0.10, series_pull: 0.10}
+    open_question: {open_question: 0.35, hook: 0.25, standalone: 0.25, pace: 0.10, series_pull: 0.05}   # the open_question END-VARIANTS (any type)
+    loop:      {payoff: 0.35, hook: 0.30, standalone: 0.25, pace: 0.10}
+  length_rule:                     # the longer the clip, the more the hook counts (the viewer commits more)
+    above_s: 45                    # for every `per_s` seconds of final_duration above this ...
+    per_s: 30
+    shift: 0.05                    # ... move this much weight from payoff / open_question to hook
+    max_shift: 0.20
+
+stage5:
+  # founder, 2026-10-30: the cold critic is retired as a gate; the EDITOR'S PICK chooses the posts (stage5_editor.py).
+  # mode critic keeps the cold-viewer critic below (doc 8) runnable.
+  mode: editor                     # editor | critic
+  editor:
+    top_moments: 15                # every scene's best moment first, then the top moments overall up to max(top_moments, scenes + scene_extra) ...
+    scene_extra: 5
+    situation_thread_min: 7        # ... plus every moment holding a situation or thread version with combined >= this
+    versions_per_moment: 3         # founder, 2026-10-30: the best-scored, the closest to typical length, the longest (<= platform max)
+    picks: 6
+    alternates: 3
+    max_fan_clips: 2
+    reel_height: 360               # the reel of all versions, back to back (one video part)
+    reel_crf: 32
+    media_fps: 1
+    retries: 1
+    http_timeout_s: 1200
+    expected_output_tokens: 12000  # answer + medium thinking, for the estimate
+    prompt_tokens: 900
+  # Cold-viewer critic (doc 8). Input = the ACTIVE Stage 4 run on the current Stage 3 output.
+  runs_per_clip: 3                 # independent calls; nothing from one run is shown to another
+  per_episode: 36                # founder, 2026-10-28: 36 (was 30); per family the top-scored candidate, the shortest passing variant and the top's twin                  # clips per episode (families' top candidate + its passing twin), in combined-score order
+  floor: {emotional: 2, hook: 2}   # at least this many clips of these types when any passed Stage 4
+  coverage_per_scene: true         # founder, 2026-10-30: every scene's top Stage 4 candidate is judged regardless of rank (in addition to the list)
+  clip_max_height: 480
+  media_fps: 1
+  delete_upload_after_runs: true   # the clip's upload is removed once its runs are done
+  retries: 1                       # one re-ask per run with the validator's errors
+  http_timeout_s: 600
+  http_retries: 1
+  expected_output_tokens: 700      # per run
+  prompt_tokens: 450               # the persona + questions (no prefix)
+  compare:
+    moment_tol_s: 3.0              # the critic's moment must land within this of the expected payoff / peak (clip time)
+    swipe_max_s: 20.0              # founder, 2026-10-30 (was 8): calibrated on 25 posted channel Shorts (24 pass at 20 s); pace only annotates
+    missing_ok: [none, minor]      # Q7 answers that count as "no missing context"
+    hook_punchline_tail_s: 3.0     # a "funny" best moment inside the last N s of a hook reads as a resolving punchline ...
+    hook_tail_check_min_len_s: 15  # ... checked only on hooks longer than this (founder, 2026-10-28: a 7 s hook IS one funny line)
+    moment_tol_frac: 0.04          # founder, 2026-10-28: tolerance = max(moment_tol_s, this x clip length) (the critic's clock drifts ~6 s at 130 s)
+    loop_tail_ok_s: 5.0            # founder, 2026-10-28: a loop's moment anywhere in its last N s counts as located
+    text_match: true               # founder, 2026-10-29: Q3 naming the payoff counts as found regardless of clip time:
+    quote_min_ratio: 0.5           #   quoted: >= max(2, this x n) of the line's distinctive words (not in the setup line), transliterated
+    description_min_shared: 3      #   described: >= this many content words shared with the beat sheet's note for the line (names excluded)
+    caption_context_min_runs: 2    # needs_caption_context when >= this many runs' Q2 framing disagrees with the beat sheet's setup
+    pass_runs: 2                   # >= this many passing runs = PASS; 1 = BORDERLINE; 0 = FAIL
+  # founder, 2026-10-29: every verdict carries a reason class from its failing runs: confusion (Q7 missing context, or the Q3
+  # moment off / cut out; a hook-rule failure counts here too) or pace (swipe stretches only). Thread candidates and
+  # critic_trimmed siblings are always judged (outside per_episode); loop families are not judged when Stage 6 loops are off.
+
+stage6:                            # final selection (doc 9; founder, 2026-10-29). Code picks the set; one text call writes the words.
+  main_slots: 6                    # main posts per episode
+  bonus_loops: 2                   # loops are bonus posts outside the main slots
+  loops_by_content_type: {scripted_series: false, default: true}   # founder, 2026-10-29: loops off by default for scripted series (bonus_loops counts only where on)
+  # per moment (scene + payoff line + kind story/thread/loop): the shippable versions are PASS, BORDERLINE and pace-only FAIL;
+  # primary = the strongest critic verdict, then the shortest (founder, 2026-10-29; was: shortest PASS)
+  ship_verdicts: [PASS, BORDERLINE]
+  never_ship: [FAIL]
+  # founder, 2026-10-30: moments ranked by their best shippable version's Stage 4 combined; primary = among versions within
+  # score_window of that best (no confusion FAIL), the one closest to the channel's typical Short length (median of its
+  # SCRIPTED-SERIES channel Shorts, clamped to band_s; default_s when none); ties combined, then critic passes.
+  primary: {score_window: 0.5}
+  typical_length: {default_s: 65, band_s: [45, 90], min_shorts: 1}   # band_s is reported only (founder, 2026-10-30: length is never a rule but the 180 s platform max)
+  pace_fail_ships: true            # founder, 2026-10-29: a FAIL of reason class pace does NOT block (shipped with the critic's note); a confusion FAIL blocks
+  ship_stage4_status: [pass, fan_clip_only]    # a variant Stage 4 rejected or widened is never shipped
+  alternate_min_diff_s: 5          # alternates listed only when their length differs by > this from the primary and each listed alternate
+  max_alternates: 3
+  rules:
+    max_per_scene: 2               # founder, 2026-10-30: at most 2 main moments per scene (never overlapping; never a whole-scene version beside another)
+    overlap: false                 # false = no overlapping ranges in the main set (or among bonus loops)
+    spread: {bins: 3, max_per_bin: 3}       # the episode in thirds (~8 min each on a 25-min episode), at most 3 main moments per third
+    fan_clip_max: 1                # fan clips allowed, at most this many, labelled
+    require_types: [hook, emotional]        # >= 1 of each when any moment of that type is shippable; the rest comedy
+    series_pull: {min_score: 7, min_moments: 2}   # people rule: >= 2 main moments with Stage 4 series_pull >= 7
+    recurring_cast_share: 0.5      # recurring cast (series face bank names) speak in >= this share of the main moments
+    bonus_may_overlap_main: true   # a loop may come from inside a main clip's range (it is a separate 8-15 s post)
+    bonus_loop_beside_main_hook: true   # founder, 2026-10-29: a bonus loop may share its payoff line with a main HOOK, never with a main comedy / emotional clip
+  creator_picks: 3                 # founder, 2026-10-29: the top N moments not in the set (by Stage 4 combined), marked promote for the creator
+  cta_series_pull_min: 7           # cta_target "series" when the primary's series_pull >= this, else "episode"
+  text:
+    hook_max_words: 8
+    caption_max_chars: 150
+    title_max_chars: 60
+    hashtags: 3
+    on_screen_latin_only: true     # Tenglish on screen = Telugu in Latin letters + English (no Telugu script)
+    people_check: true             # founder, 2026-10-29: people_in_text and relationship words checked against the clip's people (roles) and the cast list
+    hook_no_quote: true            # founder, 2026-10-29: hook_text frames the situation / asks the question; never a line spoken inside the clip (code checks quotes)
+    retries: 1
+    http_retries: 1
+    http_timeout_s: 300
+    expected_output_tokens_per_moment: 350
+  review:
+    embed_height: 360              # review.html embeds small re-encodes of the clips (self-contained, no external resources)
+    embed_crf: 32
+    embed_alternates: true
+  # founder, 2026-10-29: needs_caption_context = Stage 5 (Q2 "not understood" in >= 2 runs) OR the text call finds the
+  # critics' Q9 relationship contradicts the beat sheet's dynamic (the model's own judgement, not word overlap)
+  caption_context_check: q9_vs_dynamic

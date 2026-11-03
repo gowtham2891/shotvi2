@@ -38,7 +38,10 @@ def _load_provider(name: str) -> Provider:
     if name == "gemini":
         from .gemini import GeminiProvider
         return GeminiProvider()
-    raise LLMError(f"unknown LLM provider {name!r} (implemented: gemini; add others in shotvi/llm/)")
+    if name == "sarvam":
+        from .sarvam import SarvamProvider
+        return SarvamProvider()
+    raise LLMError(f"unknown LLM provider {name!r} (implemented: gemini, sarvam; add others in shotvi/llm/)")
 
 
 def _media_key(m: dict) -> dict:

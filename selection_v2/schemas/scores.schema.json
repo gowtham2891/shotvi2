@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Stage 4 scores for one scene (doc 7.2)",
+  "type": "object",
+  "required": ["scene_id", "candidates"],
+  "properties": {
+    "scene_id": {"type": "integer"},
+    "candidates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "hook", "payoff", "open_question", "standalone", "pace", "delivery", "series_pull", "fan_clip", "verdict_vs_sibling", "removed_needed", "kept_dead"],
+        "properties": {
+          "id": {"type": "string"},
+          "hook": {"$ref": "#/$defs/mark"},
+          "payoff": {"$ref": "#/$defs/mark"},
+          "open_question": {"$ref": "#/$defs/mark"},
+          "standalone": {"$ref": "#/$defs/mark"},
+          "pace": {"type": "object", "required": ["score", "evidence", "dead_stretches"],
+                   "properties": {"score": {"type": "integer", "minimum": 1, "maximum": 10}, "evidence": {"type": "string"},
+                                  "dead_stretches": {"type": "array", "items": {"type": "object", "required": ["range", "note"],
+                                                     "properties": {"range": {"type": "string"}, "note": {"type": "string"}}}}}},
+          "delivery": {"$ref": "#/$defs/mark"},
+          "series_pull": {"$ref": "#/$defs/mark"},
+          "fan_clip": {"type": "boolean"},
+          "verdict_vs_sibling": {"type": ["string", "null"]},
+          "removed_needed": {"type": "array", "items": {"type": "object", "required": ["what", "ref", "reason"],
+                             "properties": {"what": {"type": "string", "enum": ["stretch", "line"]}, "ref": {"type": "string"}, "reason": {"type": "string"}}}},
+          "kept_dead": {"type": "array", "items": {"type": "object", "required": ["range", "note"],
+                        "properties": {"range": {"type": "string"}, "note": {"type": "string"}}}}
+        }
+      }
+    }
+  },
+  "$defs": {
+    "mark": {"type": "object", "required": ["score", "evidence"],
+             "properties": {"score": {"type": "integer", "minimum": 1, "maximum": 10}, "evidence": {"type": "string"}}}
+  }
+}

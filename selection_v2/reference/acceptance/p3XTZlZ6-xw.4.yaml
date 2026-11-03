@@ -1,0 +1,31 @@
+# Stage 4 acceptance tests for Surya Ep 1 (founder, 2026-10-27), from the clips we watched. Read from scores.candidates.
+episode: p3XTZlZ6-xw
+stage: "4"
+checks:
+  # 1. FSSAI loop (scene 6, L0235-L0238): story dialogue, but no payoff -> vetoed on payoff < 5
+  - {kind: vetoed, candidate_containing: "9:10.8", type: loop, dimension: payoff, max_score: 4,
+     note: "FSSAI loop (scene 6) vetoed on payoff < 5"}
+  # 2. hoodie call (scene 9): the price exchange never lands; the 'I love you junior -> offer letter' hook passes on loop strength
+  # (the hoodie 'price నాలుగు వేలా' check moved to Stage 5, founder 2026-10-28: the cold viewer decides)
+  - {kind: scores_check, contains_line: L0401, type: hook, min: {loop_strength: 7}, not_vetoed: true,
+     note: "the hook ending on 'offer letter వచ్చింది' / 'join అవ్వాలి' passes with loop_strength >= 7"}
+  # 3. delivery sketch (scene 10): strangers, lands hard
+  - {kind: scores_check, scene_containing: "16:00", type: comedy, all: true, min: {payoff: 8, standalone: 8}, max: {series_pull: 5}, not_vetoed: true,
+     note: "every delivery comedy variant: payoff >= 8, standalone >= 8, series_pull <= 5, none vetoed"}
+  - {kind: sibling_verdicts, scene_containing: "16:00", note: "verdict_vs_sibling present for every delivery twin"}
+  # 4. kirana father-son (scene 5)
+  - {kind: scores_check, scene_containing: "7:00", type: comedy, min: {series_pull: 7},
+     note: "a kirana father-son comedy candidate has series_pull >= 7"}
+  - {kind: scores_check, scene_containing: "7:00", type: comedy, ends_after_line_any: [L0202, L0211], within_s: 8, not_vetoed: true,
+     note: "the one ending after 'పారిపోరా దరిద్రం వదిలిపోద్ది' / Amma's line (L0202) or after L0211 passes"}
+  # 5. Amma gives money (scene 4), emotional reading
+  - {kind: scores_check, contains_line: L0166, type_any: [emotional, comedy], min: {payoff: 7, standalone: 6, series_pull: 8},
+     note: "Amma gives money: payoff >= 7, standalone >= 6, series_pull >= 8"}
+  # 6. final scene (scene 13)
+  - {kind: fan_clip_or_standalone, scene_containing: "25:00", type_any: [emotional, comedy], standalone_min: 6, not_vetoed: true,
+     note: "final scene emotional candidate: fan_clip true OR standalone >= 6; not vetoed"}
+  # 7. Virgin / V Arjun loop (scene 11)
+  - {kind: scores_check, contains_line: L0513, type: loop, min: {standalone: 7}, not_vetoed: true,
+     note: "Virgin / V Arjun loop: standalone >= 7, not vetoed"}
+  # 8. rejections
+  - {kind: rejections_have_reasons, note: "no candidate rejected solely for length; every rejection carries a veto from the list"}

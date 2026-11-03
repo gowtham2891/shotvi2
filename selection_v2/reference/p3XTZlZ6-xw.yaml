@@ -1,0 +1,77 @@
+# Expected Stage 1A values for Surya Ep 1 (p3XTZlZ6-xw), transcribed from docs-1/klipvi_Clip_Selection_Pipeline.docx
+# v0.3 sections 4.1 and 4.3. Edit freely: the debug app re-evaluates on "Evaluate". Times are m:ss.s or seconds.
+# Line ids are the spec's (Scribe sentences + audio events in time order, L0001...), the same numbering Stage 1A uses.
+# Speaker labels in the doc are Sarvam numbers; Stage 1A carries speaker_fix keys, so speaker checks compare NAMES.
+# A boundary check matches a proposal on EITHER edge of its gap (prev line end / next line start) or its snapped
+# shot-cut time: the doc lists "scene N end" and "scene N+1 start" separately, but they are one gap.
+# A tag_event check accepts the literal `after` line or the content line (filler lines such as 'ఆ' skipped).
+episode: p3XTZlZ6-xw
+source: "klipvi_Clip_Selection_Pipeline.docx v0.3, 2026-10-24, sections 4.1 / 4.3"
+tolerances:
+  gap_s: 0.15        # gap length
+  time_s: 0.5        # tag event / hold times
+  boundary_s: 1.5    # a proposal within this of an expected scene edge counts
+checks:
+  # --- episode metadata (4.1 Normalize)
+  - {kind: episode, field: media_duration, expect: "26:28.2", note: "from the mp4 (the doc's 26:13.0 was the last tag end, dropped)"}
+  - {kind: episode, field: last_dialogue_end, expect: "25:36.8"}
+  # --- gap table slice (4.1 Gap table)
+  - {kind: gap, prev: L0163, next: L0164, gap: 0.3}
+  - {kind: gap, prev: L0165, next: L0166, gap: 3.9, note: "pause before Amma's reveal"}
+  - {kind: gap, prev: L0174, next: L0176, gap: 9.2, filled_by: other, note: "long gap, total speaker change"}
+  - {kind: gap, prev: L0419, next: L0420, gap: 0.06, note: "the doc writes L0419->L0421 0.0 s, skipping the filler 'హా' L0420; the gap table keeps every line"}
+  # --- tag events: eight laughs (4.1 Tag events)
+  - {kind: tag_event, class: laugh, t: "10:11.8", after: L0259}
+  - {kind: tag_event, class: laugh, t: "12:25.2", after: L0322}
+  - {kind: tag_event, class: laugh, t: "14:11.4", after: L0379}
+  - {kind: tag_event, class: laugh, t: "18:42.4", after: L0485}
+  - {kind: tag_event, class: laugh, t: "19:22.2", after: L0505}
+  - {kind: tag_event, class: laugh, t: "19:55.7", after: L0530, note: "L0531 'ఆ' (0.1 s) sits between; content line = L0530"}
+  - {kind: tag_event, class: laugh, t: "24:12.0", after: L0656}
+  - {kind: tag_event, class: laugh, t: "24:18.1", after: L0661}
+  - {kind: tag_count, class: laugh, expect: 8}
+  # door-bell cycles (sfx)
+  - {kind: tag_event, class: sfx, t: "15:37.6", note: door bell}
+  - {kind: tag_event, class: sfx, t: "15:54.8", note: door bell}
+  - {kind: tag_event, class: sfx, t: "16:06.3", note: door bell}
+  # long holds (dialogue gaps)
+  - {kind: hold, start: "12:40.5", end: "12:44.8", note: gift opened}
+  - {kind: hold, start: "24:52.3", end: "24:58.1", note: "after 'I love my family'"}
+  - {kind: hold, start: "24:59.2", end: "25:06.8", note: "after 'సూర్య తాగి వచ్చాడా?'"}
+  # --- scene edges (4.3 scene table): every scene start/end should have a proposal nearby
+  - {kind: boundary, t: "3:15.3", note: "scene 1 end"}
+  - {kind: boundary, t: "3:20.4", note: "scene 2 start"}
+  - {kind: boundary, t: "3:44.9", note: "scene 2 end"}
+  - {kind: boundary, t: "3:59.1", note: "scene 3 start"}
+  - {kind: boundary, t: "4:55.0", note: "scene 3 end per doc; the home dialogue runs to 4:57.7 (L0136), so 2.7 s off is expected"}
+  - {kind: boundary, t: "5:03.3", note: "scene 4 start (leaving home): 5.6 s gap + shot cut but the same family on both sides (turnover 0.25), score 0.525 < 0.55; known miss"}
+  - {kind: boundary, t: "6:27.1", note: "scene 4 end"}
+  - {kind: boundary, t: "6:36.4", note: "scene 5 start"}
+  - {kind: boundary, t: "8:25.0", note: "scene 5 end"}
+  - {kind: boundary, t: "8:42.1", note: "scene 6 start"}
+  - {kind: boundary, t: "9:17.8", note: "scene 6 end"}
+  - {kind: boundary, t: "9:32.2", note: "scene 7 start"}
+  - {kind: boundary, t: "10:36.7", note: "scene 7 end"}
+  - {kind: boundary, t: "10:41.3", note: "scene 8 start"}
+  - {kind: boundary, t: "12:29.0", note: "scene 8 end"}
+  - {kind: boundary, t: "12:38.4", note: "scene 9 start"}
+  - {kind: boundary, t: "15:24.8", note: "scene 9 end = scene 10 start: the HARD CUT; no ffmpeg shot cut here, so only total turnover can find it"}
+  - {kind: boundary, t: "18:45.1", note: "scene 10 end"}
+  - {kind: boundary, t: "18:51.1", note: "scene 11 start"}
+  - {kind: boundary, t: "20:25.0", note: "scene 11 end"}
+  - {kind: boundary, t: "20:50.6", note: "scene 12 start"}
+  - {kind: boundary, t: "22:30.9", note: "scene 12 end per doc, which drops L0600 (TV audio, non-story). The gap table sees 22:30.9/22:33.1 and 22:35.4/22:51.9; expected to miss until Stage 1B marks L0600 non-story"}
+  - {kind: boundary, t: "22:51.9", note: "scene 13 start"}
+  - {kind: boundary_count, min: 12, max: 30, note: "doc: 12-13 candidates passed to Half B; config top_k 16 by score + total-turnover and cast-swap gaps + coverage fills (Surya: 24, Office lo Krishna Leelalu: 29)"}
+  # --- name votes (4.1): the line says the name, the NEXT speaker is that person
+  - {kind: name_vote, line: L0104, name: Swami, next_name: Swami}
+  - {kind: name_vote, line: L0145, name: Lakshmi, next_name: Lakshmi}
+  - {kind: name_vote, line: L0266, name: Siva, next_name: Siva}
+  - {kind: name_vote, line: L0280, name: Sankaranna, next_name: Sankar}
+  # --- structural suspects (4.1). The doc flagged SARVAM labels; Stage 1A runs on speaker_fix keys and Scribe labels,
+  # and the fix has already relabelled all four lines at confidence 0.9, so only structure can still show them.
+  - {kind: suspect, line: L0067, note: "doc: speaker_4 singing Happy Birthday; fix says Meghana. Not structurally visible after the fix; Stage 1B"}
+  - {kind: suspect, line: L0402, note: "doc: speaker_0 inside the Anjali call; fix says Surya. Not structurally visible after the fix; Stage 1B"}
+  - {kind: suspect, line: L0420, note: "'హా' at the hard cut, fix says Surya who is not in the delivery scene: filler_island rule"}
+  - {kind: speaker_isolated, line: L0539, note: "doc: speaker_2 (Nanna) in the friends' scene; fix invents 'Subbu' for 5 lines in one segment: shows as isolated"}
+  # (the doc's speaker_11 filler-only speaker was a Sarvam label; Scribe's 8 labels and the fix's keys have no such speaker)

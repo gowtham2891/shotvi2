@@ -1,0 +1,33 @@
+# Stage 5 acceptance tests for Surya Ep 1 (founder, 2026-10-28). Read from critic.clips (the cold-viewer runs).
+episode: p3XTZlZ6-xw
+stage: "5"
+checks:
+  # 1. delivery cold open (C10f or its active twin). founder, 2026-10-29: BORDERLINE accepted (the remaining swipes are on dialogue,
+  #    not dead air); the located moment must still sit on 'five star rating' (L0485)
+  - {kind: critic_verdict, scene_containing: "16:00", type: comedy, variant_any: [cold_open, cold_open_trimmed], verdict_any: [PASS, BORDERLINE],
+     moment_near_line: L0485, tol: 3.0, min_runs: 2, note: "delivery cold open: PASS or BORDERLINE, located moment within 3 s of 'five star rating' (L0485)"}
+  # 2. kirana father-son. founder, 2026-10-29: a FAIL is EXPECTED for the arcs on this beat sheet (the critics land on the
+  #    'mundu choopu' / '15 lakhs' lines at ~40 s, not the engineer line at ~100 s); the payoff-list and hook_moments fixes
+  #    apply from Office on. Recorded, not judged.
+  - {kind: critic_record, scene_containing: "7:00", type: comedy,
+     note: "kirana father-son: record; FAIL expected on this beat sheet's arcs (payoff list fix applies from Office on)"}
+  # 3. Amma gives money
+  - {kind: critic_verdict, contains_line: L0166, type_any: [emotional, comedy], verdict_any: [PASS], no_missing_min_runs: 2,
+     note: "Amma-money emotional candidate: PASS with Q7 no missing context in >= 2 runs"}
+  # 4. final-scene arc C13c: record. founder, 2026-10-29: a FAIL is EXPECTED for the 160 s arcs on this beat sheet (the critics
+  #    pick the kung-fu moment at 33 s; the short peak variants were dropped by the Stage 3 per-scene cap, never judged)
+  - {kind: critic_record, scene_containing: "25:00", type_any: [emotional, comedy], variant_any: [extended, extended_untrimmed],
+     note: "final-scene arc: record the result; FAIL expected on this beat sheet's arcs"}
+  # 5. hoodie 'price నాలుగు వేలా': record (resolves the Stage 4 disagreement either way)
+  - {kind: critic_record, contains_line: L0339, type_any: [comedy, emotional], ends_before: "14:30",
+     note: "hoodie price exchange: record the result; whichever way it goes resolves the Stage 4 disagreement"}
+  # 6. hoodie hook: the better one by Stage 4 (ending on 'join అవ్వాలి' or on 'నువ్వు కూడా చెప్పు') must PASS on Q5
+  - {kind: critic_hook_q5, contains_line: L0394, type: hook, min_runs: 2,
+     note: "hoodie hook: the better end variant by Stage 4 is PASS with Q5 = yes in >= 2 runs"}
+  # 7. Virgin / V Arjun loop
+  - {kind: critic_verdict, contains_line: L0513, type: loop, verdict_any: [PASS], no_missing_min_runs: 2,
+     note: "Virgin loop: PASS; Q7 no missing context"}
+  # 8. completeness
+  - {kind: critic_all_recorded, note: "every clip in the run has 3 recorded answers and a cost"}
+  # 9. founder, 2026-10-29: every MOMENT (scene + payoff line) has at least one judged variant <= 60 s (was 45 s)
+  - {kind: critic_moment_short_variant, max_len_s: 60, note: "every moment in the critic run has at least one judged variant <= 60 s"}

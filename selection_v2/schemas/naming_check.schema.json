@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "naming_check",
+  "type": "object",
+  "required": ["people", "changes", "splits", "keep_text", "not_sure"],
+  "properties": {
+    "people": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["key", "name", "role", "gender", "aka", "video_keys", "main"],
+        "properties": {
+          "key": {"type": "string"},
+          "name": {"type": "string"},
+          "role": {"type": "string"},
+          "gender": {"type": "string", "enum": ["m", "f", "unknown"]},
+          "aka": {"type": "array", "items": {"type": "string"}},
+          "video_keys": {"type": "array", "items": {"type": "string"}},
+          "main": {"type": "boolean"},
+          "same_as": {"type": "string", "description": "the key of the person this text-step key really is; omit when none"}
+        }
+      }
+    },
+    "changes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["why", "lines", "to"],
+        "properties": {
+          "why": {"type": "string"},
+          "lines": {"type": "array", "items": {"type": "string"}},
+          "to": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    },
+    "splits": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["line", "at", "to", "why"],
+        "properties": {
+          "line": {"type": "string"},
+          "at": {"type": "string"},
+          "to": {"type": "array", "items": {"type": "string"}},
+          "why": {"type": "string"}
+        }
+      }
+    },
+    "keep_text": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["lines", "why"],
+        "properties": {
+          "lines": {"type": "array", "items": {"type": "string"}},
+          "why": {"type": "string"}
+        }
+      }
+    },
+    "not_sure": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["lines", "options", "why"],
+        "properties": {
+          "lines": {"type": "array", "items": {"type": "string"}},
+          "options": {"type": "array", "items": {"type": "string"}},
+          "why": {"type": "string"}
+        }
+      }
+    }
+  }
+}

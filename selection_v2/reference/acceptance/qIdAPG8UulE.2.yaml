@@ -1,0 +1,6 @@
+# Stage 2 acceptance tests for Office lo Krishna Leelalu Part 1 (founder, 2026-10-26).
+episode: qIdAPG8UulE
+stage: "2"
+checks:
+  - {kind: speakers_seen_line, line: L0852,
+     note: "Virajitha's 'బయలుదేరు' at 33:12.8: speakers_seen says whether she is on screen; either outcome passes if it is consistent with the video"}

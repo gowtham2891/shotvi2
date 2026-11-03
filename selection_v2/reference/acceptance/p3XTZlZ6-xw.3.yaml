@@ -1,0 +1,44 @@
+# Stage 3 acceptance tests for Surya Ep 1 (founder, 2026-10-27). Candidates are read from episode_facts.json after
+# `Run Stage 3`; times are episode seconds as m:ss.s. tol = seconds.
+#
+# Known limits of the current beat sheets (Gemini, 2026-10-26) that Stage 3 code cannot repair:
+#   - scene 5 (kirana): the sheet's first payoff is L0211 (7:58.9), not the founder's 'పారిపోరా దరిద్రం వదిలిపోద్ది' (L0200)
+#     + Amma's button line L0202; check 2a accepts either end (founder, 2026-10-27); the Stage 2 prompt now asks for every
+#     possible payoff line, ordered by strength, for future runs
+episode: p3XTZlZ6-xw
+stage: "3"
+checks:
+  # 1. delivery scene (scene 10, 15:28.2-18:45.1)
+  - {kind: candidates_min, scene_containing: "16:00", type: comedy, min: 3, variants_include: [full_arc, cold_open], untrimmed: true,
+     note: "delivery: >= 3 comedy variants incl. an untrimmed full arc and a cold open"}
+  - {kind: candidate_exists, scene_containing: "16:00", type: comedy, variant: cold_open, start_line: L0461, tol: 0.6,
+     note: "cold open starts on the dosa line L0461 (17:20.2)"}
+  - {kind: candidates_end_near, scene_containing: "16:00", type: comedy, t: "18:44.2", tol: 0.6,
+     note: "every comedy variant ends after the laugh at 18:42.4 (= 18:44.2)"}
+  - {kind: range_in_candidates, range: "16:44.9-16:50.2", expect: kept,
+     note: "the 16:44.9-16:50.2 reaction hold is inside every variant that spans it"}
+  - {kind: range_in_candidates, range: "17:01.3-17:20.2", expect: shortened,
+     note: "17:01.3-17:20.2 (meal-prep montage) is shortened, never removed"}
+  # 2. kirana store (scene 5)
+  - {kind: candidate_end_after_line, scene_containing: "7:00", type: comedy, line_any: [L0202, L0211], within_s: 8,
+     note: "a comedy candidate ending after 'పారిపోరా దరిద్రం వదిలిపోద్ది' + Amma's button line (L0202) OR after the sheet's payoff L0211 (founder, 2026-10-27)"}
+  - {kind: candidate_exists, scene_containing: "8:15", type: loop, start_near: "8:10.8", end_near: "8:23.1", tol: 1.0, contains_range: "8:13.4-8:18.9",
+     note: "a loop for Swami's exit line (~8:10.8 -> 8:23.1: the first pause after the punchline and Amma's stare, founder's loop end rule 2026-10-27) that keeps the 5.5 s pause"}
+  # 3. Amma gives money (scene 4)
+  - {kind: candidate_end_after_line, scene_containing: "6:00", type: emotional, line: L0166, within_s: 6,
+     note: "an emotional candidate ending on the pause after L0166 (the first real pause after it is 6:15.2)"}
+  # 4. hoodie call (scene 9)
+  - {kind: candidate_exists, scene_containing: "14:40", type: hook, start_near: "14:34.0", end_near: "14:49.1", tol: 0.8,
+     note: "a hook 14:34.0 -> ~14:49.1 ending on 'ten days లో join అవ్వాలి'"}
+  # 5. friends evening (scene 11)
+  - {kind: candidate_exists, scene_containing: "19:20", type: loop, end_near: "19:25.2", tol: 0.8,
+     note: "a loop ending after the laugh at 19:22.2"}
+  - {kind: candidate_exists, scene_containing: "19:30", type: loop, contains_line: L0513, end_after: "19:35.0",
+     note: "a loop for Virgin / V Arjun ending after 19:35"}
+  # 6. final scene (scene 13)
+  - {kind: candidate_exists, scene_containing: "25:00", type: emotional, end_near_any: ["25:06.8", "25:36.8"], tol: 0.8, contains_range: "25:20.8-25:33.9",
+     note: "an emotional candidate ending after the hold at 25:06.8 or after 'నేను జాబ్ తెచ్చుకుంటా', long silences kept"}
+  # 7. (moved to the Stage 4 reference, founder 2026-10-27: the FSSAI loop is vetoed on payoff < 5, not blocked here)
+  # 8. totals
+  - {kind: candidate_count, min: 25, max: 80, note: "25-80 base candidates (cap slots; trimmed twins not counted; founder 2026-10-27)"}
+  - {kind: no_boundary_inside_line, note: "no segment boundary inside a dialogue line"}

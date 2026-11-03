@@ -1,0 +1,446 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "episode_pass",
+  "description": "Stage 1B answer. Tier 0 (from WATCHING): cast per raw label, same_person merges, split_labels, reference_times. Tier 1: speakers (keyed by the final person keys), anchor_checks (only when asked), scenes (line ids), suspect_resolutions. Tier 2: possible_non_story, content_type, glossary.",
+  "type": "object",
+  "required": [
+    "cast",
+    "same_person",
+    "split_labels",
+    "reference_times",
+    "speakers",
+    "scenes",
+    "suspect_resolutions",
+    "threads",
+    "possible_non_story",
+    "content_type",
+    "glossary"
+  ],
+  "properties": {
+    "cast": {
+      "type": "array",
+      "description": "One entry per RAW label (speaker_N) in the line table.",
+      "items": {
+        "type": "object",
+        "required": [
+          "label",
+          "name",
+          "status",
+          "evidence"
+        ],
+        "properties": {
+          "label": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string",
+            "description": "character name, a role if unnamed ('delivery customer'), or 'unresolved'"
+          },
+          "role": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "confirmed",
+              "unresolved"
+            ]
+          },
+          "evidence": {
+            "type": "string",
+            "description": "what you SAW and heard: lines quoted, and the look of the person"
+          }
+        }
+      }
+    },
+    "same_person": {
+      "type": "array",
+      "description": "Groups of raw labels that are one and the same person (seen as the same face).",
+      "items": {
+        "type": "object",
+        "required": [
+          "labels",
+          "name",
+          "evidence"
+        ],
+        "properties": {
+          "labels": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "name": {
+            "type": "string"
+          },
+          "evidence": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "split_labels": {
+      "type": "array",
+      "description": "Raw labels that cover MORE than one person; give each person's line ranges.",
+      "items": {
+        "type": "object",
+        "required": [
+          "label",
+          "people",
+          "evidence"
+        ],
+        "properties": {
+          "label": {
+            "type": "string"
+          },
+          "people": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "name",
+                "lines"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "lines": {
+                  "type": "string",
+                  "description": "e.g. 'L<a>-L<b>, L<c>'"
+                }
+              }
+            }
+          },
+          "evidence": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "reference_times": {
+      "type": "array",
+      "description": "Per character: 2-3 timestamps (m:ss.s) where this person is ALONE and clearly on screen.",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "times"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "times": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "note": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "speakers": {
+      "type": "array",
+      "description": "One entry per FINAL person: key = the raw label of that person (after merging), or new_N for a person split out of a label. evidence_against_prior, then the name.",
+      "items": {
+        "type": "object",
+        "required": [
+          "key",
+          "evidence_against_prior",
+          "name",
+          "status",
+          "evidence"
+        ],
+        "properties": {
+          "key": {
+            "type": "string",
+            "description": "an existing key (A, B, ...) or a new one (new_1, new_2, ...)"
+          },
+          "evidence_against_prior": {
+            "type": "string",
+            "description": "BEFORE naming: line ids (with quoted words) that contradict the prior name for this key, or 'none'"
+          },
+          "name": {
+            "type": "string",
+            "description": "final character name, or a role like 'delivery customer' if unnamed, or 'unresolved'"
+          },
+          "role": {
+            "type": "string",
+            "description": "one line: who this is in the story"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "confirmed",
+              "renamed",
+              "new",
+              "unresolved"
+            ]
+          },
+          "lines": {
+            "type": "string",
+            "description": "for status new: the line ranges this person speaks, e.g. 'L<a>-L<b>' (may be omitted when an anchor check assigns the segment)"
+          },
+          "evidence": {
+            "type": "string",
+            "description": "line ids and quoted words that support the final name, in the original script"
+          }
+        }
+      }
+    },
+    "anchor_checks": {
+      "type": "array",
+      "description": "One entry per ANCHOR CHECK (Q1, Q2, ...) in PART 1: who the withheld speaker is, judged from this segment and the rest of the episode. Return [] when PART 1 has no ANCHOR CHECKS.",
+      "items": {
+        "type": "object",
+        "required": [
+          "check_id",
+          "key",
+          "who",
+          "consistent_with_episode",
+          "evidence",
+          "final_key"
+        ],
+        "properties": {
+          "check_id": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string",
+            "description": "the withheld key as shown"
+          },
+          "who": {
+            "type": "string",
+            "description": "who this speaker is, in words"
+          },
+          "consistent_with_episode": {
+            "type": "boolean",
+            "description": "true if their relationship to the others in this segment matches how those speakers relate elsewhere; false if this must be a different person"
+          },
+          "evidence": {
+            "type": "string",
+            "description": "line ids from this segment AND from elsewhere, quoted"
+          },
+          "final_key": {
+            "type": "string",
+            "description": "the key these lines belong to: the same key if confirmed, another existing key, or a new key (new_1 ...) that must also appear in speakers"
+          }
+        }
+      }
+    },
+    "scenes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "first_line",
+          "last_line",
+          "label",
+          "register"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "first_line": {
+            "type": "string",
+            "description": "id of the first dialogue line of the scene"
+          },
+          "last_line": {
+            "type": "string",
+            "description": "id of the last dialogue line of the scene"
+          },
+          "label": {
+            "type": "string",
+            "description": "a few words: place, who, what"
+          },
+          "register": {
+            "type": "string",
+            "description": "comedy | emotional | romance | tense | filler | transition such as comedy_to_emotional"
+          },
+          "speakers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "speaker keys present"
+          },
+          "note": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "suspect_resolutions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "line",
+          "labelled",
+          "likely",
+          "reason"
+        ],
+        "properties": {
+          "line": {
+            "type": "string"
+          },
+          "labelled": {
+            "type": "string",
+            "description": "the speaker key the line table shows"
+          },
+          "likely": {
+            "type": "string",
+            "description": "who really says it: a speaker key, or 'song', 'multiple', 'off-screen voice', 'unresolved'"
+          },
+          "likely_key": {
+            "type": "string",
+            "description": "the speaker key to reassign the line to, when one applies"
+          },
+          "reason": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "threads": {
+      "type": "array",
+      "maxItems": 3,
+      "description": "founder, 2026-10-29: setups that pay off in a LATER scene (at most 3; [] when none)",
+      "items": {
+        "type": "object",
+        "required": [
+          "setup_lines",
+          "payoff_scene",
+          "why"
+        ],
+        "properties": {
+          "setup_lines": {
+            "type": "string",
+            "description": "the setup as a line range 'Lxxxx-Lyyyy' inside one scene"
+          },
+          "payoff_scene": {
+            "type": "integer",
+            "description": "id of the later scene where it pays off"
+          },
+          "why": {
+            "type": "string",
+            "description": "what is set up and how it pays off, one line"
+          }
+        }
+      }
+    },
+    "possible_non_story": {
+      "type": "array",
+      "description": "Low-stakes flags (Stage 2 confirms with the video): lines that may not be story dialogue.",
+      "items": {
+        "type": "object",
+        "required": [
+          "lines",
+          "kind",
+          "signals",
+          "reason"
+        ],
+        "properties": {
+          "lines": {
+            "type": "string",
+            "description": "a line id or range, e.g. 'L<a>-L<b>'"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "tv_or_radio",
+              "sponsor_or_psa",
+              "song",
+              "recap",
+              "credits",
+              "other"
+            ]
+          },
+          "signals": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "no_addressee",
+                "no_response",
+                "aphoristic",
+                "sponsor_language",
+                "lyrics",
+                "repeats_earlier_content",
+                "other"
+              ]
+            }
+          },
+          "reason": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "content_type": {
+      "type": "string",
+      "enum": [
+        "scripted_series",
+        "podcast",
+        "talking_head",
+        "other"
+      ]
+    },
+    "glossary": {
+      "type": "object",
+      "required": [
+        "premise"
+      ],
+      "properties": {
+        "premise": {
+          "type": "string"
+        },
+        "nicknames": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "name",
+              "nickname"
+            ],
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "nickname": {
+                "type": "string"
+              },
+              "note": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "running_bits": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "catchphrases": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "relationships": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

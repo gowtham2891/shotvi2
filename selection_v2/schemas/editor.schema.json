@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Stage 5 editor's pick (founder, 2026-10-30)",
+  "type": "object",
+  "required": ["picks", "alternates"],
+  "properties": {
+    "picks": {"type": "array", "items": {"type": "object",
+      "required": ["rank", "moment_id", "version_id", "why", "hook", "newcomer_needs", "fan_clip", "cut_fix"],
+      "properties": {"rank": {"type": "integer"}, "moment_id": {"type": "string"}, "version_id": {"type": "string"}, "why": {"type": "string"},
+                     "hook": {"type": "object", "required": ["seen", "heard"], "properties": {"seen": {"type": "string"}, "heard": {"type": "string"}}},
+                     "newcomer_needs": {"type": "string"}, "fan_clip": {"type": "boolean"}, "cut_fix": {"type": ["string", "null"]}}}},
+    "alternates": {"type": "array", "items": {"type": "object", "required": ["moment_id", "version_id", "why"],
+      "properties": {"moment_id": {"type": "string"}, "version_id": {"type": "string"}, "why": {"type": "string"}}}}
+  }
+}

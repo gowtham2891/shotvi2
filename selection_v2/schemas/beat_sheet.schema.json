@@ -1,0 +1,477 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "beat_sheet",
+  "description": "Stage 2 answer for ONE scene (spec 5.2 + speakers_seen, non_story_confirm). Positions are LINE IDS; code converts to times.",
+  "type": "object",
+  "required": [
+    "scene_id",
+    "register",
+    "self_contained",
+    "setup",
+    "beats",
+    "payoff",
+    "reaction",
+    "context_required",
+    "callbacks",
+    "dynamic",
+    "delivery_notes",
+    "clip_hints",
+    "non_dialogue",
+    "skippable_lines",
+    "speakers_seen",
+    "non_story_confirm",
+    "other_device_audio",
+    "confidence",
+    "needs_video_default_res",
+    "hook_moments",
+    "button_line",
+    "situations",
+    "visual_beats"
+  ],
+  "properties": {
+    "scene_id": {
+      "type": "integer"
+    },
+    "register": {
+      "type": "string",
+      "description": "comedy | emotional | romantic | tense | filler | a transition such as comedy_to_emotional"
+    },
+    "self_contained": {
+      "type": "boolean"
+    },
+    "setup": {
+      "type": "string",
+      "description": "the setup in one line"
+    },
+    "beats": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "line",
+          "type"
+        ],
+        "properties": {
+          "line": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "entry",
+              "setup",
+              "escalation",
+              "turn",
+              "setup_for_payoff",
+              "payoff",
+              "peak",
+              "reaction",
+              "other"
+            ]
+          },
+          "note": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "payoff": {
+      "type": "object",
+      "required": [
+        "line",
+        "note",
+        "hook_channel"
+      ],
+      "properties": {
+        "line": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "the payoff / peak line id, or null if nothing lands"
+        },
+        "note": {
+          "type": "string"
+        },
+        "more_than_one": {
+          "type": "boolean"
+        },
+        "hook_channel": {
+          "type": "string",
+          "enum": [
+            "visual",
+            "spoken",
+            "both"
+          ],
+          "description": "founder, 2026-10-30: does the payoff land through what is SEEN, what is SAID, or both"
+        }
+      }
+    },
+    "reaction": {
+      "type": "object",
+      "required": [
+        "type",
+        "by"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "laugh",
+            "silence",
+            "stare",
+            "sigh",
+            "music",
+            "none",
+            "other"
+          ]
+        },
+        "after_line": {
+          "type": "string"
+        },
+        "tag_line": {
+          "type": "string",
+          "description": "the (sound) line id of the reaction tag when one exists"
+        },
+        "by": {
+          "type": "string"
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "button_line": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "founder, 2026-10-29: the SPOKEN reaction or exit line right after the payoff (a retort, a one-liner, 'I'll be right back'), which a clip should end after; null when the payoff / reaction is the end"
+    },
+    "context_required": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "callbacks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dynamic": {
+      "type": "object",
+      "required": [
+        "characters",
+        "relationship",
+        "reveals"
+      ],
+      "properties": {
+        "characters": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "speaker keys of recurring characters present"
+        },
+        "relationship": {
+          "type": "string"
+        },
+        "reveals": {
+          "type": "string"
+        }
+      }
+    },
+    "delivery_notes": {
+      "type": "string"
+    },
+    "clip_hints": {
+      "type": "object",
+      "required": [
+        "natural_open",
+        "natural_close"
+      ],
+      "properties": {
+        "natural_open": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "line ids a clip could start on"
+        },
+        "natural_close": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "line ids a clip could end after"
+        }
+      }
+    },
+    "non_dialogue": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "after_line",
+          "before_line",
+          "kind",
+          "bgm",
+          "recommend",
+          "reason"
+        ],
+        "properties": {
+          "after_line": {
+            "type": "string",
+            "description": "the dialogue line the stretch follows"
+          },
+          "before_line": {
+            "type": "string",
+            "description": "the dialogue line the stretch precedes"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "reaction_hold",
+              "action_beat",
+              "transition",
+              "scene_setting"
+            ]
+          },
+          "bgm": {
+            "type": "string"
+          },
+          "recommend": {
+            "type": "string",
+            "enum": [
+              "keep",
+              "shorten_to",
+              "remove"
+            ]
+          },
+          "target_s": {
+            "type": "number"
+          },
+          "reason": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "skippable_lines": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "line",
+          "reason"
+        ],
+        "properties": {
+          "line": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "speakers_seen": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "key",
+          "on_screen",
+          "matches_map",
+          "voice_source",
+          "who",
+          "evidence"
+        ],
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "on_screen": {
+            "type": "boolean"
+          },
+          "matches_map": {
+            "type": "boolean",
+            "description": "true if this is the same person the map names for this key (as in other scenes you were told about)"
+          },
+          "voice_source": {
+            "type": "string",
+            "enum": [
+              "on_screen",
+              "off_screen",
+              "phone",
+              "tv_or_device",
+              "unknown"
+            ]
+          },
+          "who": {
+            "type": "string",
+            "description": "who it really is: the map name, another map key's name, 'unknown person', or 'off-screen voice'"
+          },
+          "lines": {
+            "type": "string",
+            "description": "when only SOME of this key's lines in the scene belong to another person: those line ids / ranges"
+          },
+          "evidence": {
+            "type": "string",
+            "description": "what you see and hear"
+          }
+        }
+      }
+    },
+    "non_story_confirm": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "lines",
+          "verdict",
+          "reason"
+        ],
+        "properties": {
+          "lines": {
+            "type": "string"
+          },
+          "verdict": {
+            "type": "string",
+            "enum": [
+              "confirm",
+              "reject"
+            ]
+          },
+          "kind": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "other_device_audio": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "line",
+          "reason"
+        ],
+        "properties": {
+          "line": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "needs_video_default_res": {
+      "type": "boolean"
+    },
+    "hook_moments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "line",
+          "why",
+          "hook_channel"
+        ],
+        "properties": {
+          "line": {
+            "type": "string"
+          },
+          "why": {
+            "type": "string"
+          },
+          "hook_channel": {
+            "type": "string",
+            "enum": [
+              "visual",
+              "spoken",
+              "both"
+            ]
+          }
+        }
+      }
+    },
+    "situations": {
+      "type": "array",
+      "description": "founder, 2026-10-30: the separate situations of the scene, in order",
+      "items": {
+        "type": "object",
+        "required": [
+          "start_line",
+          "end_line",
+          "what_happens",
+          "strength"
+        ],
+        "properties": {
+          "start_line": {
+            "type": "string"
+          },
+          "end_line": {
+            "type": "string",
+            "description": "the situation's last line = its button"
+          },
+          "what_happens": {
+            "type": "string"
+          },
+          "strength": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 10
+          }
+        }
+      }
+    },
+    "visual_beats": {
+      "type": "array",
+      "description": "founder, 2026-10-30: moments that work on what is SEEN (look, gesture, action, reveal), mostly in silent stretches",
+      "items": {
+        "type": "object",
+        "required": [
+          "range",
+          "what_is_seen",
+          "role",
+          "strength"
+        ],
+        "properties": {
+          "range": {
+            "type": "string",
+            "description": "m:ss.s-m:ss.s on the EPISODE clock"
+          },
+          "what_is_seen": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "joke",
+              "feeling",
+              "question",
+              "situation"
+            ]
+          },
+          "strength": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 10
+          }
+        }
+      }
+    }
+  }
+}

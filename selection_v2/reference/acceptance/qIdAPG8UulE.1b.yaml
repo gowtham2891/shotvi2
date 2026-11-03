@@ -1,0 +1,7 @@
+# Stage 1B acceptance tests for Office lo Krishna Leelalu Part 1 (founder, 2026-10-25).
+episode: qIdAPG8UulE
+stage: 1b
+checks:
+  - {kind: line_reviewed, line: L0852, note: "Virajitha's 'బయలుదేరు' at 33:12.8, right before the parents' scene: flagged or reassigned (it may also be a correct label; then this stays red and that is information)"}
+  - {kind: scene_edge_at, t: "4:44.1", tol: 1.5, note: "the boyfriend leaves, Prasad enters: cast swap confirmed as a scene edge"}
+  - {kind: content_type, expect: scripted_series}

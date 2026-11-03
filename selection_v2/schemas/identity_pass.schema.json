@@ -1,0 +1,124 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "identity_pass",
+  "description": "founder, 2026-11-02: per spoken line, who talks (one, several, or unknown; a voice change inside the line as turns) and who is on screen, from watching the episode with the text step's answer",
+  "type": "object",
+  "required": [
+    "people",
+    "lines"
+  ],
+  "properties": {
+    "people": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "seen",
+          "key",
+          "name",
+          "aka",
+          "main",
+          "role",
+          "gender",
+          "look"
+        ],
+        "properties": {
+          "seen": {
+            "type": "string",
+            "description": "what tells you who this is: face, clothes, voice, how others address them"
+          },
+          "key": {
+            "type": "string",
+            "description": "the text step's key, or a new key V1, V2, ..."
+          },
+          "same_as": {
+            "type": "string",
+            "description": "only when this text-step key is the same person as another listed key"
+          },
+          "name": {
+            "type": "string"
+          },
+          "aka": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "other ways people address them, Telugu script"
+          },
+          "main": {
+            "type": "boolean",
+            "description": "true for the people the episode is about"
+          },
+          "role": {
+            "type": "string"
+          },
+          "gender": {
+            "type": "string",
+            "enum": [
+              "m",
+              "f",
+              "unknown"
+            ]
+          },
+          "look": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "lines": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "talk",
+          "see"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "why": {
+            "type": "string",
+            "description": "only when talk differs from the text step's person, or with turns"
+          },
+          "talk": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "see": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "turns": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "at",
+                "talk"
+              ],
+              "properties": {
+                "at": {
+                  "type": "string",
+                  "description": "the first word of the new voice's part, copied exactly from the line"
+                },
+                "talk": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

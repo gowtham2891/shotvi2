@@ -1,0 +1,164 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Stage 5 cold-viewer critic, one run (doc 8)",
+  "type": "object",
+  "required": [
+    "what_is_happening",
+    "first_3s",
+    "best_moment",
+    "swipe",
+    "want_next",
+    "want_more_people",
+    "confusion",
+    "caption",
+    "relationship",
+    "attention"
+  ],
+  "properties": {
+    "what_is_happening": {
+      "type": "string"
+    },
+    "first_3s": {
+      "type": "object",
+      "required": [
+        "understood",
+        "thought_it_was"
+      ],
+      "properties": {
+        "understood": {
+          "type": "boolean"
+        },
+        "thought_it_was": {
+          "type": "string"
+        }
+      }
+    },
+    "best_moment": {
+      "type": "object",
+      "required": [
+        "second",
+        "what",
+        "kind"
+      ],
+      "properties": {
+        "second": {
+          "type": "number",
+          "minimum": 0
+        },
+        "what": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "funny",
+            "emotional",
+            "other"
+          ]
+        }
+      }
+    },
+    "swipe": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "from_s",
+          "to_s",
+          "why"
+        ],
+        "properties": {
+          "from_s": {
+            "type": "number",
+            "minimum": 0
+          },
+          "to_s": {
+            "type": "number",
+            "minimum": 0
+          },
+          "why": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "want_next": {
+      "type": "object",
+      "required": [
+        "yes",
+        "why"
+      ],
+      "properties": {
+        "yes": {
+          "type": "boolean"
+        },
+        "why": {
+          "type": "string"
+        }
+      }
+    },
+    "want_more_people": {
+      "type": "object",
+      "required": [
+        "yes",
+        "why"
+      ],
+      "properties": {
+        "yes": {
+          "type": "boolean"
+        },
+        "why": {
+          "type": "string"
+        }
+      }
+    },
+    "confusion": {
+      "type": "object",
+      "required": [
+        "missing",
+        "what"
+      ],
+      "properties": {
+        "missing": {
+          "type": "string",
+          "enum": [
+            "none",
+            "minor",
+            "major"
+          ]
+        },
+        "what": {
+          "type": "string"
+        }
+      }
+    },
+    "caption": {
+      "type": "string"
+    },
+    "relationship": {
+      "type": "string",
+      "description": "Q9 (founder, 2026-10-29): who these people are to each other, from the clip alone; Stage 6 compares it with the beat sheet's dynamic in its text call"
+    },
+    "attention": {
+      "type": "object",
+      "required": [
+        "source",
+        "what"
+      ],
+      "description": "Q10 (founder, 2026-10-30): what caught the viewer's attention in the first seconds",
+      "properties": {
+        "source": {
+          "type": "string",
+          "enum": [
+            "said",
+            "seen",
+            "nothing"
+          ]
+        },
+        "what": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

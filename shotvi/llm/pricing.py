@@ -1,6 +1,7 @@
 """USD prices per 1M tokens. Thinking tokens are billed as output.
 
-Source: https://ai.google.dev/gemini-api/docs/pricing (checked 2026-09-27, paid tier, standard, text input).
+Source: https://ai.google.dev/gemini-api/docs/pricing (checked 2026-09-27, paid tier, standard, text input);
+Sarvam: docs.sarvam.ai/api/getting-started/pricing (native rupees, converted below).
 Prices change: override per run with ``pricing`` in the select config instead of editing pipeline code.
 ``long`` applies when the prompt exceeds ``long_threshold`` input tokens.
 """
@@ -9,6 +10,9 @@ from __future__ import annotations
 # Google Search grounding on Gemini 3.x: 5,000 free queries / month, then $14 per 1,000. Shotvi always records the
 # paid rate per executed query (conservative: keeps the rupee cap safe even inside the free tier).
 SEARCH_USD_PER_QUERY = 0.014
+
+# Rupee-priced providers (Sarvam) are converted at this rate; keep it equal to SHOTVI_USD_INR in .env.
+SARVAM_INR_PER_USD = 96
 
 PRICES: dict[str, dict] = {
     # Gemini 3.x Flash: promotional price through 2026-12-31, list price after (1.50 / 7.50).
@@ -28,6 +32,14 @@ PRICES: dict[str, dict] = {
                        "long": {"input": 2.50, "output": 15.00}},
     "gemini-2.5-flash": {"input": 0.30, "output": 2.50},
     "gemini-2.5-flash-lite": {"input": 0.10, "output": 0.40},
+    # Sarvam bills in rupees: sarvam-105b Rs 15 input / Rs 5 cached input / Rs 60 output per 1M tokens, excluding GST,
+    # same on every plan (docs.sarvam.ai/api/getting-started/pricing and sarvam.ai/api-pricing, checked 2026-11-02).
+    # Reasoning tokens are billed as output. Converted at SARVAM_INR_PER_USD (= SHOTVI_USD_INR in .env) so the
+    # ledger's rupees match Sarvam's; if SHOTVI_USD_INR changes, change it here too.
+    "sarvam-105b": {"input": 15.0 / SARVAM_INR_PER_USD, "output": 60.0 / SARVAM_INR_PER_USD,
+                    "cached": 5.0 / SARVAM_INR_PER_USD, "note": "native INR 15 / 60 / cached 5 per 1M, excl. GST"},
+    "sarvam-105b-conversations": {"input": 15.0 / SARVAM_INR_PER_USD, "output": 60.0 / SARVAM_INR_PER_USD,
+                                  "cached": 5.0 / SARVAM_INR_PER_USD, "note": "same rates as sarvam-105b"},
 }
 
 

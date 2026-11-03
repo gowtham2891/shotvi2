@@ -1,0 +1,52 @@
+# Stage 2 acceptance tests for Surya Ep 1. Ground truth = the founder watching the video (2026-10-25).
+#
+# WHY THESE EXIST: three speaker-fix errors were found on this episode by eye, about 69 lines, ALL at speaker-fix
+# confidence 0.9, all in scenes where diarization was thin (one Scribe label for several people):
+#   - the delivery customer (15:24-18:45, 51 lines) labelled Siva: a different actor
+#   - the paan shop (10:41-12:29, 17 lines) labelled Surya: Surya is not in the scene, those lines are Swami's
+#   - 14:51 'అంజలి' labelled Surya: Anjali's mother, off-phone
+# Confidence is NOT truth. Stage 2 (speakers_seen, from the picture) is the final word on identity.
+# Also seen: 2:13 whole family sings (Meghana loudest); 20:50 the father reads from his phone (story dialogue);
+# 22:33 audio from Meghana's phone (not story); 9:04 FSSAI lines are Surya speaking sincerely (story dialogue).
+episode: p3XTZlZ6-xw
+stage: "2"
+checks:
+  # 1. delivery customer
+  - {kind: map_corrected, lines: "L0421-L0487", from_name: Siva, min_share: 0.8,
+     note: "the customer is NOT Siva: map corrected to a new person / unknown person"}
+  - {kind: speakers_seen_check, scene_containing: "16:00", key: M, on_screen: true, matches_map: true,
+     note: "Arjun (K, the fix's 'Delivery Boy') confirmed as the delivery rider"}
+  # 2. paan shop
+  - {kind: map_corrected, lines: "L0280-L0322", from_name: Surya, min_share: 0.9,
+     note: "Surya is not on screen in the paan shop; those lines are Swami's"}
+  # 3. Anjali's mother
+  - {kind: line_not_speaker, line: L0402, not_name: Surya, expect_any: [mother, off, phone, voice],
+     note: "14:51 'అంజలి': off-screen voice, Anjali's mother or 'off-phone voice'"}
+  # 4. singers
+  - {kind: line_not_speaker, line: L0067, not_name: Arjun, expect_any: [family, multiple, group, song, chorus, Meghana, others],
+     note: "2:13 Happy Birthday: family / multiple / Meghana-and-others all pass"}
+  # 5. phone audio at 22:33
+  - {kind: non_story_lines, lines: [L0600], type_any: [phone, tv, radio, device, other, audio],
+     note: "device audio from Meghana's phone, non-story"}
+  - {kind: line_not_speaker, line: L0600, not_name: Swami, expect_any: [device, phone, audio, voice, off, Father, Nanna],
+     note: "and not attributed to Swami"}
+  # 6. father reading from his phone
+  - {kind: story_lines, lines: "L0551-L0552", note: "Nanna on screen reading from his phone: story dialogue"}
+  # 7. FSSAI
+  - {kind: story_lines, lines: "L0235-L0238", note: "Surya speaking sincerely: story dialogue"}
+  # 8. delivery scene beat sheet
+  - {kind: beat_payoff, scene_containing: "16:00", line: L0485, reaction_t: "18:42.4", tol: 1.5,
+     note: "payoff 'నువ్వు ఇవ్వాలిరా నాకు five star rating' at 18:40.8, laugh at 18:42.4"}
+  - {kind: non_dialogue_class, range: "16:44.9-16:50.2", stretch_kind: reaction_hold, recommend_any: [keep], tol: 1.0,
+     note: "the customer's stare after the turn"}
+  - {kind: non_dialogue_class, range: "17:01.3-17:20.2", stretch_kind: action_beat, recommend_any: [keep, shorten_to], tol: 1.0,
+     note: "eating the dosa under comic music; never remove"}
+  # 9. final home scene
+  - {kind: scene_register, scene_containing: "24:30", any: [comedy_to_emotional, emotional]}
+  - {kind: non_dialogue_class, range: "24:52.3-24:58.1", stretch_kind: reaction_hold, recommend_any: [keep], tol: 1.0,
+     note: "hold after 'I love my family' (after L0682)"}
+  - {kind: non_dialogue_class, range: "24:59.2-25:06.8", stretch_kind: reaction_hold, recommend_any: [keep], tol: 1.0,
+     note: "hold after 'సూర్య తాగి వచ్చాడా?' (after L0684)"}
+  # 10. Amma gives money
+  - {kind: dynamic_mentions, scene_containing: "6:00", any: [mother, son, Amma, father, money, Nanna],
+     note: "mother-son relationship; the father giving money indirectly"}

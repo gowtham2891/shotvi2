@@ -1,0 +1,415 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "episode_facts",
+  "description": "One document per episode, written by Stage 1A and extended by later stages (spec appendix).",
+  "type": "object",
+  "required": [
+    "schema",
+    "episode",
+    "layers",
+    "lines",
+    "gaps",
+    "tag_events",
+    "boundary_proposals",
+    "structural_suspects",
+    "speaker_flags",
+    "normalization_fixes",
+    "stages"
+  ],
+  "properties": {
+    "schema": {
+      "const": "episode_facts/1"
+    },
+    "episode": {
+      "type": "object",
+      "required": [
+        "video_id",
+        "duration",
+        "first_dialogue",
+        "last_dialogue",
+        "speakers"
+      ],
+      "properties": {
+        "video_id": {
+          "type": "string"
+        },
+        "series": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "series_key": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "title": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "duration": {
+          "type": "number",
+          "minimum": 0
+        },
+        "first_dialogue": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "last_dialogue": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "outro_s": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "speakers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "key",
+              "name"
+            ]
+          }
+        }
+      }
+    },
+    "layers": {
+      "type": "object",
+      "required": [
+        "asr_fix",
+        "speaker_fix"
+      ]
+    },
+    "lines": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "start",
+          "end",
+          "text",
+          "zero_len"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^L[0-9]{4,}$"
+          },
+          "kind": {
+            "enum": [
+              "speech",
+              "event"
+            ]
+          },
+          "start": {
+            "type": "number",
+            "minimum": 0
+          },
+          "end": {
+            "type": "number",
+            "minimum": 0
+          },
+          "speaker": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "speaker_key": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "speaker_name": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "speaker_confidence": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "text": {
+            "type": "string"
+          },
+          "tag": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "tag_class": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "zero_len": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "gaps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "prev",
+          "next",
+          "gap",
+          "filled_by",
+          "spk_before",
+          "spk_after",
+          "gap_pct",
+          "boundary_score",
+          "boundary_evidence"
+        ],
+        "properties": {
+          "prev": {
+            "type": "string"
+          },
+          "next": {
+            "type": "string"
+          },
+          "gap": {
+            "type": "number",
+            "minimum": 0
+          },
+          "filled_by": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "spk_before": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "spk_after": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "gap_pct": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "boundary_score": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "boundary_evidence": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "tag_events": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "t",
+          "class",
+          "after",
+          "line"
+        ],
+        "properties": {
+          "t": {
+            "type": "number"
+          },
+          "class": {
+            "type": "string"
+          },
+          "after": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "boundary_proposals": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "t",
+          "score",
+          "evidence",
+          "prev",
+          "next"
+        ],
+        "properties": {
+          "t": {
+            "type": "number"
+          },
+          "score": {
+            "type": "number"
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "structural_suspects": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "speaker",
+          "reason",
+          "detail"
+        ]
+      }
+    },
+    "structural_suspect_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "speaker_flags": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "line",
+          "flag"
+        ],
+        "properties": {
+          "flag": {
+            "enum": [
+              "suspect",
+              "low",
+              "unresolved"
+            ]
+          }
+        }
+      }
+    },
+    "normalization_fixes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "line",
+          "field",
+          "reason"
+        ]
+      }
+    },
+    "speaker_segments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "key",
+          "n_lines",
+          "n_segments",
+          "segments",
+          "isolated"
+        ]
+      }
+    },
+    "stages": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "version",
+          "generated_at",
+          "duration_s",
+          "usage"
+        ],
+        "properties": {
+          "usage": {
+            "type": "object",
+            "required": [
+              "input_tokens",
+              "output_tokens",
+              "cost_inr"
+            ]
+          }
+        }
+      }
+    },
+    "episode_pass": {
+      "type": "object"
+    },
+    "beat_sheets": {
+      "type": "array"
+    },
+    "speaker_map": {
+      "type": "object"
+    },
+    "cast_sheet": {
+      "type": "object"
+    },
+    "candidates": {
+      "type": "array"
+    },
+    "scores": {
+      "type": "object",
+      "description": "the ACTIVE Stage 4 run (a copy of one entry of score_runs)"
+    },
+    "critic": {
+      "type": "object",
+      "description": "Stage 5 cold-viewer critic (stage5_critic.py)",
+      "required": [
+        "version",
+        "generated_at",
+        "clips"
+      ]
+    },
+    "final": {
+      "type": "object"
+    },
+    "score_runs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "run_key",
+          "media",
+          "candidates"
+        ]
+      }
+    },
+    "scores_active": {
+      "type": "string"
+    }
+  }
+}

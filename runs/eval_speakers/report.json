@@ -1,1074 +1,321 @@
 {
  "episodes": [
   {
-   "video_id": "H41fJJJYTqo",
+   "video_id": "j14Om1SaFYE",
    "characters": [
-    "Akshara",
-    "Meenakshi",
-    "Ekta",
-    "Dhana",
-    "Jai",
-    "Meenakshi's husband",
-    "Stalker",
-    "Manager",
-    "Hall staff",
-    "Akshara's parent",
-    "Rapido driver"
+    "Amrutha",
+    "Gowtham",
+    "Amrutha's mother",
+    "Gowtham's father",
+    "Amrutha's friend",
+    "Gowtham's friend",
+    "Past groom",
+    "Past groom's father"
    ],
    "systems": {
     "scribe": {
-     "path": "D:\\shotvi\\scribe_dataset\\H41fJJJYTqo\\H41fJJJYTqo_scribe_transcript.json",
-     "n_key_lines": 101,
+     "path": "/Users/ganeshgowtham/projects/projects/shotvi/scribe_dataset/j14Om1SaFYE/j14Om1SaFYE_scribe_transcript.json",
+     "n_key_lines": 128,
      "n_unknown_skipped": 0,
-     "n_offscreen": 5,
+     "n_offscreen": 13,
      "no_words": 0,
-     "n_labels": 3,
+     "n_labels": 7,
      "one_to_one": {
       "all": {
-       "n": 101,
-       "correct": 36,
-       "acc": 0.356
+       "n": 128,
+       "correct": 93,
+       "acc": 0.727
       },
       "onscreen": {
-       "n": 96,
-       "correct": 33,
-       "acc": 0.344
+       "n": 115,
+       "correct": 84,
+       "acc": 0.73
       },
       "offscreen": {
-       "n": 5,
-       "correct": 3,
-       "acc": 0.6
+       "n": 13,
+       "correct": 9,
+       "acc": 0.692
       },
       "conf2plus": {
-       "n": 100,
-       "correct": 35,
-       "acc": 0.35
+       "n": 126,
+       "correct": 93,
+       "acc": 0.738
       }
      },
      "purity": {
       "all": {
-       "n": 101,
-       "correct": 36,
-       "acc": 0.356
+       "n": 128,
+       "correct": 102,
+       "acc": 0.797
       },
       "onscreen": {
-       "n": 96,
-       "correct": 33,
-       "acc": 0.344
+       "n": 115,
+       "correct": 93,
+       "acc": 0.809
       },
       "offscreen": {
-       "n": 5,
-       "correct": 3,
-       "acc": 0.6
+       "n": 13,
+       "correct": 9,
+       "acc": 0.692
       },
       "conf2plus": {
-       "n": 100,
-       "correct": 35,
-       "acc": 0.35
+       "n": 126,
+       "correct": 102,
+       "acc": 0.81
       }
      },
      "mapping_one_to_one": {
-      "speaker_0": "Dhana",
-      "speaker_1": "Meenakshi",
-      "speaker_2": "Manager"
+      "speaker_0": "Amrutha's mother",
+      "speaker_1": "Amrutha",
+      "speaker_2": "Gowtham",
+      "speaker_3": "Gowtham's father",
+      "speaker_4": "Gowtham's friend",
+      "speaker_7": "Amrutha's friend"
      },
      "confusion": {
       "speaker_0": {
-       "Dhana": 6,
-       "Akshara": 5,
-       "Ekta": 5,
-       "Jai": 4
+       "Amrutha's mother": 25,
+       "Amrutha's friend": 3,
+       "Amrutha": 1
       },
       "speaker_1": {
-       "Meenakshi": 27,
-       "Akshara": 20,
-       "Ekta": 16,
-       "Stalker": 6,
-       "Dhana": 3,
-       "Meenakshi's husband": 2,
-       "Akshara's parent": 1
+       "Amrutha": 13,
+       "Amrutha's friend": 2,
+       "Gowtham": 1
       },
       "speaker_2": {
-       "Manager": 3,
-       "Hall staff": 1,
-       "Rapido driver": 1,
-       "Stalker": 1
-      }
-     }
-    },
-    "A1_num_speakers": {
-     "path": "D:\\shotvi\\runs\\diar\\H41fJJJYTqo_ns.json",
-     "n_key_lines": 101,
-     "n_unknown_skipped": 0,
-     "n_offscreen": 5,
-     "no_words": 0,
-     "n_labels": 4,
-     "one_to_one": {
-      "all": {
-       "n": 101,
-       "correct": 42,
-       "acc": 0.416
-      },
-      "onscreen": {
-       "n": 96,
-       "correct": 41,
-       "acc": 0.427
-      },
-      "offscreen": {
-       "n": 5,
-       "correct": 1,
-       "acc": 0.2
-      },
-      "conf2plus": {
-       "n": 100,
-       "correct": 42,
-       "acc": 0.42
-      }
-     },
-     "purity": {
-      "all": {
-       "n": 101,
-       "correct": 43,
-       "acc": 0.426
-      },
-      "onscreen": {
-       "n": 96,
-       "correct": 40,
-       "acc": 0.417
-      },
-      "offscreen": {
-       "n": 5,
-       "correct": 3,
-       "acc": 0.6
-      },
-      "conf2plus": {
-       "n": 100,
-       "correct": 43,
-       "acc": 0.43
-      }
-     },
-     "mapping_one_to_one": {
-      "speaker_0": "Meenakshi",
-      "speaker_1": "Akshara",
-      "speaker_2": "Ekta",
-      "speaker_3": "Manager"
-     },
-     "confusion": {
-      "speaker_0": {
-       "Meenakshi": 14,
-       "Ekta": 9,
-       "Jai": 4,
-       "Akshara": 4
-      },
-      "speaker_1": {
-       "Akshara": 13,
-       "Dhana": 6,
-       "Akshara's parent": 1,
-       "Rapido driver": 1,
-       "Stalker": 1
-      },
-      "speaker_2": {
-       "Meenakshi": 13,
-       "Ekta": 12,
-       "Akshara": 8,
-       "Stalker": 6,
-       "Dhana": 3,
-       "Meenakshi's husband": 2
+       "Gowtham": 30,
+       "Past groom": 9,
+       "Gowtham's friend": 2,
+       "Gowtham's father": 2
       },
       "speaker_3": {
-       "Manager": 3,
-       "Hall staff": 1
-      }
-     }
-    },
-    "A2_threshold_0.15": {
-     "path": "D:\\shotvi\\runs\\diar\\H41fJJJYTqo_th015.json",
-     "n_key_lines": 101,
-     "n_unknown_skipped": 0,
-     "n_offscreen": 5,
-     "no_words": 0,
-     "n_labels": 5,
-     "one_to_one": {
-      "all": {
-       "n": 101,
-       "correct": 44,
-       "acc": 0.436
-      },
-      "onscreen": {
-       "n": 96,
-       "correct": 42,
-       "acc": 0.438
-      },
-      "offscreen": {
-       "n": 5,
-       "correct": 2,
-       "acc": 0.4
-      },
-      "conf2plus": {
-       "n": 100,
-       "correct": 43,
-       "acc": 0.43
-      }
-     },
-     "purity": {
-      "all": {
-       "n": 101,
-       "correct": 45,
-       "acc": 0.446
-      },
-      "onscreen": {
-       "n": 96,
-       "correct": 41,
-       "acc": 0.427
-      },
-      "offscreen": {
-       "n": 5,
-       "correct": 4,
-       "acc": 0.8
-      },
-      "conf2plus": {
-       "n": 100,
-       "correct": 44,
-       "acc": 0.44
-      }
-     },
-     "mapping_one_to_one": {
-      "speaker_0": "Dhana",
-      "speaker_1": "Akshara",
-      "speaker_2": "Meenakshi",
-      "speaker_3": "Stalker",
-      "speaker_4": "Manager"
-     },
-     "confusion": {
-      "speaker_0": {
-       "Dhana": 6,
-       "Ekta": 4,
-       "Akshara": 3
-      },
-      "speaker_1": {
-       "Akshara": 19,
-       "Ekta": 15,
-       "Meenakshi": 10,
-       "Jai": 4,
-       "Dhana": 3,
-       "Akshara's parent": 1
-      },
-      "speaker_2": {
-       "Meenakshi": 10,
-       "Ekta": 2
-      },
-      "speaker_3": {
-       "Meenakshi": 7,
-       "Stalker": 6,
-       "Akshara": 3,
-       "Meenakshi's husband": 2
+       "Gowtham's father": 12,
+       "Past groom's father": 1,
+       "Gowtham": 1
       },
       "speaker_4": {
-       "Manager": 3,
-       "Hall staff": 1,
-       "Rapido driver": 1,
-       "Stalker": 1
-      }
-     }
-    },
-    "llm_fix": {
-     "path": "D:\\shotvi\\runs\\speaker_fix\\H41fJJJYTqo.json",
-     "n_key_lines": 101,
-     "n_unknown_skipped": 0,
-     "n_offscreen": 5,
-     "no_words": 0,
-     "n_labels": 9,
-     "one_to_one": {
-      "all": {
-       "n": 101,
-       "correct": 63,
-       "acc": 0.624
-      },
-      "onscreen": {
-       "n": 96,
-       "correct": 58,
-       "acc": 0.604
-      },
-      "offscreen": {
-       "n": 5,
-       "correct": 5,
-       "acc": 1.0
-      },
-      "conf2plus": {
-       "n": 100,
-       "correct": 62,
-       "acc": 0.62
-      }
-     },
-     "purity": {
-      "all": {
-       "n": 101,
-       "correct": 65,
-       "acc": 0.644
-      },
-      "onscreen": {
-       "n": 96,
-       "correct": 60,
-       "acc": 0.625
-      },
-      "offscreen": {
-       "n": 5,
-       "correct": 5,
-       "acc": 1.0
-      },
-      "conf2plus": {
-       "n": 100,
-       "correct": 64,
-       "acc": 0.64
-      }
-     },
-     "mapping_one_to_one": {
-      "Akshara": "Akshara",
-      "Akshara's mother": "Akshara's parent",
-      "Customer / Manager": "Manager",
-      "Ektha": "Ekta",
-      "Meenakshi": "Meenakshi",
-      "Stalker guy": "Stalker",
-      "friend on phone": "Jai",
-      "roommate": "Dhana"
-     },
-     "confusion": {
-      "Akshara": {
-       "Akshara": 13,
-       "Ekta": 4,
-       "Meenakshi": 2
-      },
-      "Akshara's mother": {
-       "Akshara's parent": 1
-      },
-      "Customer / Manager": {
-       "Manager": 3,
-       "Hall staff": 1,
-       "Rapido driver": 1
-      },
-      "Ektha": {
-       "Ekta": 12,
-       "Meenakshi": 6,
-       "Akshara": 2,
-       "Meenakshi's husband": 2
-      },
-      "Meenakshi": {
-       "Meenakshi": 16,
-       "Akshara": 7,
-       "Ekta": 2,
-       "Dhana": 1
-      },
-      "Stalker guy": {
-       "Stalker": 7,
-       "Meenakshi": 3,
-       "Ekta": 1
-      },
-      "friend on phone": {
-       "Jai": 3,
-       "Akshara": 3
-      },
-      "roommate": {
-       "Dhana": 8,
-       "Jai": 1
-      },
-      "roommate 2": {
-       "Ekta": 2
-      }
-     },
-     "name_acc": {
-      "all": {
-       "n": 101,
-       "correct": 52,
-       "acc": 0.515
-      },
-      "onscreen": {
-       "n": 96,
-       "correct": 48,
-       "acc": 0.5
-      },
-      "offscreen": {
-       "n": 5,
-       "correct": 4,
-       "acc": 0.8
-      },
-      "conf2plus": {
-       "n": 100,
-       "correct": 52,
-       "acc": 0.52
-      }
-     },
-     "name_map": {
-      "Akshara": "Akshara",
-      "Akshara's mother": "Akshara's parent",
-      "Customer / Manager": "Manager",
-      "Ektha": "Ekta",
-      "Meenakshi": "Meenakshi",
-      "Stalker guy": "Stalker",
-      "friend on phone": null,
-      "roommate": null,
-      "roommate 2": null
-     },
-     "unmatched_names": [
-      "friend on phone",
-      "roommate",
-      "roommate 2"
-     ]
-    }
-   }
-  },
-  {
-   "video_id": "fjGrX8aBVAc",
-   "characters": [
-    "Abhi",
-    "Meera",
-    "Harshita",
-    "Dad",
-    "Abhi's friend",
-    "Coworker (Sindhu)",
-    "Dad's aide",
-    "Waiter"
-   ],
-   "systems": {
-    "scribe": {
-     "path": "D:\\shotvi\\scribe_dataset\\fjGrX8aBVAc\\fjGrX8aBVAc_scribe_transcript.json",
-     "n_key_lines": 91,
-     "n_unknown_skipped": 2,
-     "n_offscreen": 4,
-     "no_words": 0,
-     "n_labels": 4,
-     "one_to_one": {
-      "all": {
-       "n": 89,
-       "correct": 56,
-       "acc": 0.629
-      },
-      "onscreen": {
-       "n": 85,
-       "correct": 54,
-       "acc": 0.635
-      },
-      "offscreen": {
-       "n": 4,
-       "correct": 2,
-       "acc": 0.5
-      },
-      "conf2plus": {
-       "n": 89,
-       "correct": 56,
-       "acc": 0.629
-      }
-     },
-     "purity": {
-      "all": {
-       "n": 89,
-       "correct": 58,
-       "acc": 0.652
-      },
-      "onscreen": {
-       "n": 85,
-       "correct": 56,
-       "acc": 0.659
-      },
-      "offscreen": {
-       "n": 4,
-       "correct": 2,
-       "acc": 0.5
-      },
-      "conf2plus": {
-       "n": 89,
-       "correct": 58,
-       "acc": 0.652
-      }
-     },
-     "mapping_one_to_one": {
-      "speaker_0": "Harshita",
-      "speaker_1": "Abhi",
-      "speaker_2": "Dad",
-      "speaker_3": "Abhi's friend"
-     },
-     "confusion": {
-      "speaker_0": {
-       "Harshita": 35,
-       "Meera": 22,
-       "Coworker (Sindhu)": 2
-      },
-      "speaker_1": {
-       "Abhi": 13
-      },
-      "speaker_2": {
-       "Dad": 5,
-       "Abhi's friend": 1,
-       "Waiter": 1
-      },
-      "speaker_3": {
-       "Abhi": 5,
-       "Abhi's friend": 3,
-       "Dad's aide": 1,
-       "Dad": 1
-      }
-     }
-    },
-    "llm_fix": {
-     "path": "D:\\shotvi\\runs\\speaker_fix\\fjGrX8aBVAc.json",
-     "n_key_lines": 91,
-     "n_unknown_skipped": 2,
-     "n_offscreen": 4,
-     "no_words": 0,
-     "n_labels": 8,
-     "one_to_one": {
-      "all": {
-       "n": 89,
-       "correct": 80,
-       "acc": 0.899
-      },
-      "onscreen": {
-       "n": 85,
-       "correct": 76,
-       "acc": 0.894
-      },
-      "offscreen": {
-       "n": 4,
-       "correct": 4,
-       "acc": 1.0
-      },
-      "conf2plus": {
-       "n": 89,
-       "correct": 80,
-       "acc": 0.899
-      }
-     },
-     "purity": {
-      "all": {
-       "n": 89,
-       "correct": 80,
-       "acc": 0.899
-      },
-      "onscreen": {
-       "n": 85,
-       "correct": 76,
-       "acc": 0.894
-      },
-      "offscreen": {
-       "n": 4,
-       "correct": 4,
-       "acc": 1.0
-      },
-      "conf2plus": {
-       "n": 89,
-       "correct": 80,
-       "acc": 0.899
-      }
-     },
-     "mapping_one_to_one": {
-      "Abhi": "Abhi",
-      "Abhi's father": "Dad",
-      "Abhi's friend": "Abhi's friend",
-      "Harshitha": "Harshita",
-      "Informant": "Dad's aide",
-      "Meera": "Meera",
-      "Shopkeeper": "Waiter",
-      "Sindhu": "Coworker (Sindhu)"
-     },
-     "confusion": {
-      "Abhi": {
-       "Abhi": 17,
-       "Abhi's friend": 2
-      },
-      "Abhi's father": {
-       "Dad": 6
-      },
-      "Abhi's friend": {
-       "Abhi's friend": 2
-      },
-      "Harshitha": {
-       "Harshita": 33,
-       "Meera": 3,
-       "Abhi": 1
-      },
-      "Informant": {
-       "Dad's aide": 1
-      },
-      "Meera": {
-       "Meera": 19,
-       "Harshita": 2,
-       "Coworker (Sindhu)": 1
-      },
-      "Shopkeeper": {
-       "Waiter": 1
-      },
-      "Sindhu": {
-       "Coworker (Sindhu)": 1
-      }
-     },
-     "name_acc": {
-      "all": {
-       "n": 89,
-       "correct": 78,
-       "acc": 0.876
-      },
-      "onscreen": {
-       "n": 85,
-       "correct": 74,
-       "acc": 0.871
-      },
-      "offscreen": {
-       "n": 4,
-       "correct": 4,
-       "acc": 1.0
-      },
-      "conf2plus": {
-       "n": 89,
-       "correct": 78,
-       "acc": 0.876
-      }
-     },
-     "name_map": {
-      "Abhi": "Abhi",
-      "Abhi's father": "Dad",
-      "Abhi's friend": "Abhi's friend",
-      "Harshitha": "Harshita",
-      "Informant": null,
-      "Meera": "Meera",
-      "Shopkeeper": null,
-      "Sindhu": "Coworker (Sindhu)"
-     },
-     "unmatched_names": [
-      "Informant",
-      "Shopkeeper"
-     ]
-    }
-   }
-  },
-  {
-   "video_id": "qIdAPG8UulE",
-   "characters": [
-    "Prasad",
-    "Vaishu",
-    "Vaishu's husband",
-    "Bhramara",
-    "Pooja",
-    "Pratyusha",
-    "Virajitha",
-    "Colleague",
-    "Prasad's mother",
-    "Prasad's father"
-   ],
-   "systems": {
-    "scribe": {
-     "path": "D:\\shotvi\\scribe_dataset\\qIdAPG8UulE\\qIdAPG8UulE_scribe_transcript.json",
-     "n_key_lines": 104,
-     "n_unknown_skipped": 0,
-     "n_offscreen": 3,
-     "no_words": 0,
-     "n_labels": 8,
-     "one_to_one": {
-      "all": {
-       "n": 104,
-       "correct": 60,
-       "acc": 0.577
-      },
-      "onscreen": {
-       "n": 101,
-       "correct": 59,
-       "acc": 0.584
-      },
-      "offscreen": {
-       "n": 3,
-       "correct": 1,
-       "acc": 0.333
-      },
-      "conf2plus": {
-       "n": 104,
-       "correct": 60,
-       "acc": 0.577
-      }
-     },
-     "purity": {
-      "all": {
-       "n": 104,
-       "correct": 61,
-       "acc": 0.587
-      },
-      "onscreen": {
-       "n": 101,
-       "correct": 60,
-       "acc": 0.594
-      },
-      "offscreen": {
-       "n": 3,
-       "correct": 1,
-       "acc": 0.333
-      },
-      "conf2plus": {
-       "n": 104,
-       "correct": 61,
-       "acc": 0.587
-      }
-     },
-     "mapping_one_to_one": {
-      "speaker_0": "Vaishu",
-      "speaker_1": "Prasad",
-      "speaker_2": "Vaishu's husband",
-      "speaker_3": "Bhramara",
-      "speaker_4": "Pratyusha",
-      "speaker_5": "Pooja",
-      "speaker_6": "Virajitha",
-      "speaker_7": "Prasad's mother"
-     },
-     "confusion": {
-      "speaker_0": {
-       "Vaishu": 14,
-       "Bhramara": 12,
-       "Pooja": 4,
-       "Pratyusha": 2,
-       "Vaishu's husband": 1
-      },
-      "speaker_1": {
-       "Prasad": 22,
-       "Prasad's father": 2,
-       "Prasad's mother": 1
-      },
-      "speaker_2": {
-       "Vaishu's husband": 3,
-       "Pooja": 1,
-       "Bhramara": 1,
-       "Prasad": 1
-      },
-      "speaker_3": {
-       "Pooja": 5,
-       "Bhramara": 4,
-       "Pratyusha": 4,
-       "Colleague": 1
-      },
-      "speaker_4": {
-       "Pratyusha": 5,
-       "Bhramara": 2
-      },
-      "speaker_5": {
-       "Pooja": 4,
-       "Colleague": 1
+       "Gowtham's friend": 5,
+       "Gowtham's father": 1,
+       "Gowtham": 1
       },
       "speaker_6": {
-       "Virajitha": 4,
-       "Pooja": 3,
-       "Pratyusha": 2,
-       "Bhramara": 1
+       "Amrutha": 9
       },
       "speaker_7": {
-       "Prasad's mother": 4
+       "Amrutha's friend": 8,
+       "Amrutha's mother": 2
       }
      }
     },
     "llm_fix": {
-     "path": "D:\\shotvi\\runs\\speaker_fix\\qIdAPG8UulE.json",
-     "n_key_lines": 104,
+     "path": "/Users/ganeshgowtham/projects/projects/shotvi/runs/speaker_fix/j14Om1SaFYE.json",
+     "n_key_lines": 128,
      "n_unknown_skipped": 0,
-     "n_offscreen": 3,
+     "n_offscreen": 13,
      "no_words": 0,
-     "n_labels": 11,
+     "n_labels": 6,
      "one_to_one": {
       "all": {
-       "n": 104,
-       "correct": 73,
-       "acc": 0.702
+       "n": 128,
+       "correct": 104,
+       "acc": 0.812
       },
       "onscreen": {
-       "n": 101,
-       "correct": 71,
-       "acc": 0.703
+       "n": 115,
+       "correct": 95,
+       "acc": 0.826
       },
       "offscreen": {
-       "n": 3,
-       "correct": 2,
-       "acc": 0.667
+       "n": 13,
+       "correct": 9,
+       "acc": 0.692
       },
       "conf2plus": {
-       "n": 104,
-       "correct": 73,
-       "acc": 0.702
+       "n": 126,
+       "correct": 104,
+       "acc": 0.825
       }
      },
      "purity": {
       "all": {
-       "n": 104,
-       "correct": 81,
-       "acc": 0.779
+       "n": 128,
+       "correct": 104,
+       "acc": 0.812
       },
       "onscreen": {
-       "n": 101,
-       "correct": 79,
-       "acc": 0.782
+       "n": 115,
+       "correct": 95,
+       "acc": 0.826
       },
       "offscreen": {
-       "n": 3,
-       "correct": 2,
-       "acc": 0.667
+       "n": 13,
+       "correct": 9,
+       "acc": 0.692
       },
       "conf2plus": {
-       "n": 104,
-       "correct": 81,
-       "acc": 0.779
+       "n": 126,
+       "correct": 104,
+       "acc": 0.825
       }
      },
      "mapping_one_to_one": {
-      "Female Colleague": "Colleague",
-      "Husband": "Vaishu's husband",
-      "Pooja": "Vaishu",
-      "Prasad": "Prasad",
-      "Prasad's Father": "Prasad's father",
-      "Prasad's Friend": "Pooja",
-      "Prasad's Mother": "Prasad's mother",
-      "Pratheeksha": "Pratyusha",
-      "Vaishu": "Bhramara",
-      "Virajitha": "Virajitha"
+      "Amrutha": "Amrutha",
+      "Amrutha's friend": "Amrutha's friend",
+      "Amrutha's mother": "Amrutha's mother",
+      "Groom": "Gowtham",
+      "Groom's father": "Gowtham's father",
+      "Groom's friend": "Gowtham's friend"
      },
      "confusion": {
-      "Boyfriend": {
-       "Prasad": 5
+      "Amrutha": {
+       "Amrutha": 23,
+       "Amrutha's friend": 2,
+       "Gowtham": 1
       },
-      "Female Colleague": {
-       "Colleague": 1
+      "Amrutha's friend": {
+       "Amrutha's friend": 8,
+       "Amrutha's mother": 2
       },
-      "Husband": {
-       "Vaishu's husband": 4
+      "Amrutha's mother": {
+       "Amrutha's mother": 25,
+       "Amrutha's friend": 3
       },
-      "Pooja": {
-       "Pooja": 9,
-       "Vaishu": 6,
-       "Bhramara": 2
+      "Groom": {
+       "Gowtham": 30,
+       "Past groom": 9,
+       "Gowtham's friend": 2,
+       "Gowtham's father": 2
       },
-      "Prasad": {
-       "Prasad": 18
+      "Groom's father": {
+       "Gowtham's father": 13,
+       "Past groom's father": 1,
+       "Gowtham": 1
       },
-      "Prasad's Father": {
-       "Prasad's father": 2,
-       "Prasad's mother": 1
-      },
-      "Prasad's Friend": {
-       "Pooja": 6,
-       "Colleague": 1
-      },
-      "Prasad's Mother": {
-       "Prasad's mother": 4
-      },
-      "Pratheeksha": {
-       "Pratyusha": 11,
-       "Pooja": 1
-      },
-      "Vaishu": {
-       "Bhramara": 18,
-       "Vaishu": 8,
-       "Pratyusha": 2,
-       "Pooja": 1,
-       "Virajitha": 1
-      },
-      "Virajitha": {
-       "Virajitha": 3
+      "Groom's friend": {
+       "Gowtham's friend": 5,
+       "Gowtham": 1
       }
      },
      "name_acc": {
       "all": {
-       "n": 104,
-       "correct": 44,
-       "acc": 0.423
+       "n": 128,
+       "correct": 99,
+       "acc": 0.773
       },
       "onscreen": {
-       "n": 101,
-       "correct": 43,
-       "acc": 0.426
+       "n": 115,
+       "correct": 90,
+       "acc": 0.783
       },
       "offscreen": {
-       "n": 3,
-       "correct": 1,
-       "acc": 0.333
+       "n": 13,
+       "correct": 9,
+       "acc": 0.692
       },
       "conf2plus": {
-       "n": 104,
-       "correct": 44,
-       "acc": 0.423
+       "n": 126,
+       "correct": 99,
+       "acc": 0.786
       }
      },
      "name_map": {
-      "Boyfriend": null,
-      "Female Colleague": "Colleague",
-      "Husband": null,
-      "Pooja": "Pooja",
-      "Prasad": "Prasad",
-      "Prasad's Father": "Prasad's mother",
-      "Prasad's Friend": null,
-      "Prasad's Mother": "Prasad's mother",
-      "Pratheeksha": null,
-      "Vaishu": "Vaishu",
-      "Virajitha": "Virajitha"
+      "Amrutha": "Amrutha",
+      "Amrutha's friend": "Amrutha's friend",
+      "Amrutha's mother": "Amrutha's mother",
+      "Groom": "Gowtham",
+      "Groom's father": "Gowtham's father",
+      "Groom's friend": "Amrutha's friend"
      },
-     "unmatched_names": [
-      "Boyfriend",
-      "Husband",
-      "Prasad's Friend",
-      "Pratheeksha"
-     ]
+     "unmatched_names": []
     }
    }
   }
  ],
  "overall": {
-  "A1_num_speakers": {
-   "one_to_one.all": {
-    "correct": 42,
-    "n": 101,
-    "acc": 0.416
-   },
-   "one_to_one.offscreen": {
-    "correct": 1,
-    "n": 5,
-    "acc": 0.2
-   },
-   "one_to_one.onscreen": {
-    "correct": 41,
-    "n": 96,
-    "acc": 0.427
-   },
-   "purity.all": {
-    "correct": 43,
-    "n": 101,
-    "acc": 0.426
-   },
-   "purity.offscreen": {
-    "correct": 3,
-    "n": 5,
-    "acc": 0.6
-   },
-   "purity.onscreen": {
-    "correct": 40,
-    "n": 96,
-    "acc": 0.417
-   },
-   "episodes": [
-    "H41fJJJYTqo"
-   ]
-  },
-  "A2_threshold_0.15": {
-   "one_to_one.all": {
-    "correct": 44,
-    "n": 101,
-    "acc": 0.436
-   },
-   "one_to_one.offscreen": {
-    "correct": 2,
-    "n": 5,
-    "acc": 0.4
-   },
-   "one_to_one.onscreen": {
-    "correct": 42,
-    "n": 96,
-    "acc": 0.438
-   },
-   "purity.all": {
-    "correct": 45,
-    "n": 101,
-    "acc": 0.446
-   },
-   "purity.offscreen": {
-    "correct": 4,
-    "n": 5,
-    "acc": 0.8
-   },
-   "purity.onscreen": {
-    "correct": 41,
-    "n": 96,
-    "acc": 0.427
-   },
-   "episodes": [
-    "H41fJJJYTqo"
-   ]
-  },
   "llm_fix": {
    "name_acc.all": {
-    "correct": 174,
-    "n": 294,
-    "acc": 0.592
+    "correct": 99,
+    "n": 128,
+    "acc": 0.773
    },
    "name_acc.offscreen": {
     "correct": 9,
-    "n": 12,
-    "acc": 0.75
+    "n": 13,
+    "acc": 0.692
    },
    "name_acc.onscreen": {
-    "correct": 165,
-    "n": 282,
-    "acc": 0.585
+    "correct": 90,
+    "n": 115,
+    "acc": 0.783
    },
    "one_to_one.all": {
-    "correct": 216,
-    "n": 294,
-    "acc": 0.735
+    "correct": 104,
+    "n": 128,
+    "acc": 0.812
    },
    "one_to_one.offscreen": {
-    "correct": 11,
-    "n": 12,
-    "acc": 0.917
+    "correct": 9,
+    "n": 13,
+    "acc": 0.692
    },
    "one_to_one.onscreen": {
-    "correct": 205,
-    "n": 282,
-    "acc": 0.727
+    "correct": 95,
+    "n": 115,
+    "acc": 0.826
    },
    "purity.all": {
-    "correct": 226,
-    "n": 294,
-    "acc": 0.769
+    "correct": 104,
+    "n": 128,
+    "acc": 0.812
    },
    "purity.offscreen": {
-    "correct": 11,
-    "n": 12,
-    "acc": 0.917
+    "correct": 9,
+    "n": 13,
+    "acc": 0.692
    },
    "purity.onscreen": {
-    "correct": 215,
-    "n": 282,
-    "acc": 0.762
+    "correct": 95,
+    "n": 115,
+    "acc": 0.826
    },
    "episodes": [
-    "H41fJJJYTqo",
-    "fjGrX8aBVAc",
-    "qIdAPG8UulE"
+    "j14Om1SaFYE"
    ]
   },
   "scribe": {
    "one_to_one.all": {
-    "correct": 152,
-    "n": 294,
-    "acc": 0.517
+    "correct": 93,
+    "n": 128,
+    "acc": 0.727
    },
    "one_to_one.offscreen": {
-    "correct": 6,
-    "n": 12,
-    "acc": 0.5
+    "correct": 9,
+    "n": 13,
+    "acc": 0.692
    },
    "one_to_one.onscreen": {
-    "correct": 146,
-    "n": 282,
-    "acc": 0.518
+    "correct": 84,
+    "n": 115,
+    "acc": 0.73
    },
    "purity.all": {
-    "correct": 155,
-    "n": 294,
-    "acc": 0.527
+    "correct": 102,
+    "n": 128,
+    "acc": 0.797
    },
    "purity.offscreen": {
-    "correct": 6,
-    "n": 12,
-    "acc": 0.5
+    "correct": 9,
+    "n": 13,
+    "acc": 0.692
    },
    "purity.onscreen": {
-    "correct": 149,
-    "n": 282,
-    "acc": 0.528
+    "correct": 93,
+    "n": 115,
+    "acc": 0.809
    },
    "episodes": [
-    "H41fJJJYTqo",
-    "fjGrX8aBVAc",
-    "qIdAPG8UulE"
+    "j14Om1SaFYE"
    ]
   }
  }

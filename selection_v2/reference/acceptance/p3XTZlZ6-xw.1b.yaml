@@ -1,0 +1,28 @@
+# Stage 1B acceptance tests for Surya Ep 1 (founder, 2026-10-25). Green / red in the app's Stage 1B tab.
+# Moved to Stage 2 (video): L0067 singing, L0402 'అంజలి', the TV-audio lines, the paan-shop 'Surya' lines (founder: Surya is
+# not in that scene; Scribe used one label for it). Dropped: the 5:48.9 merge (judgment call).
+episode: p3XTZlZ6-xw
+stage: 1b
+# 2026-10-26: 1B now WATCHES the whole episode (low-res video) with raw labels as the prior. The three decisive checks:
+# the customer is not Siva, the delivery boy and Arjun are one person, Surya is not in the paan shop. If any fails,
+# we stop iterating 1B and go back to text-only 1B + the verified face bank.
+checks:
+  - {kind: lines_not_speaker, lines: "L0421-L0487", not_name: Siva, min_share: 0.8, new_speaker: true,
+     note: "DECISIVE: the delivery customer is a stranger, not Siva; a new person for those lines"}
+  - {kind: same_person, line_a: L0432, line_b: L0637,
+     note: "DECISIVE: the delivery boy (L0432) and V Arjun (L0637) are the same person"}
+  - {kind: lines_not_speaker, lines: "L0280-L0322", not_name: Surya, min_share: 0.95, new_speaker: false,
+     note: "DECISIVE: Surya is not in the paan shop; those lines are Swami's"}
+  - {kind: story_lines, lines: "L0235-L0238",
+     note: "FSSAI lines: founder watched 2026-10-25: Surya telling his friend, plain dialogue, not an insert"}
+  - {kind: scene_count, min: 12, max: 14}
+  - {kind: scene_edge_at, t: "15:24.8", tol: 1.5, note: "the hard cut into the delivery sketch"}
+  - {kind: no_scene_edge_at, t: "16:31.6", tol: 1.5, note: "music beat inside the delivery sketch"}
+  - {kind: no_scene_edge_at, t: "16:50.2", tol: 1.5, note: "music beat inside the delivery sketch"}
+  - {kind: no_scene_edge_at, t: "17:20.2", tol: 1.5, note: "music beat inside the delivery sketch"}
+  - {kind: no_scene_edge_at, t: "18:13.9", tol: 1.5, note: "music beat inside the delivery sketch"}
+  - {kind: speaker_names_include,
+     names: ["Meghana", "Lakshmi|Amma|Mother", "Nanna|Father", "Surya", "Arjun|Virgin", "Anjali|Junior", "Swami|Swamy",
+             "Swami's father|father", "Swami's mother|mother", "Siva|Shiva", "Sankaranna|Shankaranna|Sankar", "customer"],
+     note: "speaker map matches doc section 4.3 by name"}
+  - {kind: content_type, expect: scripted_series}

@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Stage 6 text call: on-screen words for the chosen moments (doc 9)",
+  "type": "object",
+  "required": [
+    "moments"
+  ],
+  "properties": {
+    "moments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "moment_id",
+          "q9_vs_dynamic",
+          "q9_note",
+          "hook_text",
+          "caption",
+          "title",
+          "hashtags",
+          "context_line",
+          "cta_target",
+          "people_in_text"
+        ],
+        "properties": {
+          "moment_id": {
+            "type": "string"
+          },
+          "q9_vs_dynamic": {
+            "type": "string",
+            "enum": [
+              "agrees",
+              "contradicts",
+              "no_answers"
+            ]
+          },
+          "q9_note": {
+            "type": "string"
+          },
+          "hook_text": {
+            "type": "string"
+          },
+          "caption": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "hashtags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "context_line": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "cta_target": {
+            "type": "string",
+            "enum": [
+              "episode",
+              "series"
+            ]
+          },
+          "people_in_text": {
+            "type": "array",
+            "description": "founder, 2026-10-29: who hook_text and caption refer to, with relationship (checked in code against the clip's people, the cast list and the data)",
+            "items": {
+              "type": "object",
+              "required": [
+                "name",
+                "relationship"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "relationship": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

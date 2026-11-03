@@ -1,0 +1,2253 @@
+{
+ "video_id": "j14Om1SaFYE",
+ "kind": "speaker_answer_key",
+ "version": 1,
+ "transcript": "scribe_dataset/j14Om1SaFYE/j14Om1SaFYE_scribe_transcript.json",
+ "transcript_sha256": "e31a1c2df3ab128fb7e058e36dc4083c66068b50b588f299fcaddc6ad74e4393",
+ "method": "Lines sampled across every scene (first bride-viewing flashback in Amrutha's bedroom and living room with the past groom, the echo montage, present-day bedroom, the new bride-viewing with Gowtham and his father incl. the sweets cover-up, both kitchen flashbacks, Amrutha and Gowtham's private talk, the office with Gowtham's friend, Amrutha telling her friend, the café flashbacks (cooking speech, full-meals speech, gongura/bajji), the night phone call, the wedding farewell and the closing lie speech). Lines are Scribe sentences (two sentences of one speaker merged at 6:32). For each line 4 frames evenly spaced over the line (lines under 1.2 s padded by 0.25 s each side) were extracted into runs/gt/j14Om1SaFYE/frames_spk/line_s<sentence id>.jpg (one 4-frame strip per line; sheet_NN.jpg stack 4 strips) and checked for who is on screen and whose mouth moves, combined with content (names and forms of address such as 'అత్తమ్మ', 'నాన్న', '-రా', '-ే', who answers whom, story logic). Dense frames for ambiguous stretches: dense_175 (prayer), dense_221 (aside), dense_246 (vomit joke), dense_287, dense_309 (sweets cover-up), dense_392 (mother's aside), dense_833 and dense_853 (friend scene), dense_1012 (wedding blessing); face_073 / face_1013 compare the flashback older man with Amrutha's father; crop_1014 + a median-F0 pitch check on the audio for the wedding blessing. 220 lines were labelled in all; 128 kept for the key (every low-confidence, off-screen and minor-character line, plus a thinned sample of the clear lead lines). Speaker decided from frames and content before looking at Scribe labels; Scribe label (majority word speaker, ties by overlap seconds, as eval.speakers.line_label) and its time share added afterwards. Pipeline outputs (runs/selection_v2, runs/speaker_fix, runs/name_test, data/series_cast) were not opened.",
+ "label_conventions": {
+  "speaker": "character name from the list; 'OFFSCREEN:<name>' = the speaker is not visible during the line (reaction shot held on a listener, insert shot, memory/echo voice-over) but is identified from content/voice context; 'UNKNOWN' = cannot tell. For diarization scoring, strip the OFFSCREEN: prefix.",
+  "confidence": "3 = seen speaking and/or unambiguous from content; 2 = likely (wide shot, back to camera or cut mid-line, content supports); 1 = guess",
+  "times": "seconds in the episode audio; keyed by time, not by Scribe line id",
+  "on_screen": "everyone visible at any moment during the line (union over the line's frames); [] = nobody (an insert shot such as a pan on the stove); on_screen_partly = only a back / shoulder / chest is visible. Independent of speaker: the speaker may be off screen while others are shown. Lines without on_screen are not scored for it.",
+  "voices": "only on lines with more than one voice: a list in time order of {from_text: the first word of that voice's part, copied from the line's text, speakers: [names]}; two people one after another = two entries; several people saying it together (group line, everyone laughing a word) = one entry with several names. Lines without voices were checked and have a single voice (clip-gt-editor 2026-11-02: Scribe word speakers inside the line, content, frames; no line in this key needed it)."
+ },
+ "characters": [
+  {
+   "name": "Amrutha",
+   "aliases": [
+    "అమృత",
+    "Amrutha garu",
+    "అమృత గారు",
+    "Amrita",
+    "the bride",
+    "heroine"
+   ],
+   "desc": "heroine, short and cannot cook (blue saree in the first flashback, green print top / yellow-green saree on the viewing day, black-white striped top with her friend, purple kurta at the café, red-orange saree and jasmine at the wedding); named by the past groom ('అమృత గారు')"
+  },
+  {
+   "name": "Gowtham",
+   "aliases": [
+    "గౌతమ్",
+    "Gautham",
+    "Goutham",
+    "the groom",
+    "hero",
+    "groom",
+    "the new groom",
+    "prospective groom"
+   ],
+   "desc": "hero and new groom, food lover, grew up in hostels (navy shirt on the viewing day, maroon shirt at the office, brown shirt at the café, white kurta and garland at the wedding); calls Amrutha's mother 'అత్తమ్మ'; never named in the dialogue, name from the founder's cast"
+  },
+  {
+   "name": "Amrutha's mother",
+   "aliases": [
+    "Amrutha's mom",
+    "Amrutha mother",
+    "అమృత అమ్మ",
+    "అమ్మ",
+    "మమ్మీ",
+    "అత్తమ్మ",
+    "mother-in-law"
+   ],
+   "desc": "covers for her daughter with lies (pink saree in the first flashback, green-blue saree on the viewing day, yellow/green and orange sarees in the kitchen flashbacks, magenta saree at the wedding)"
+  },
+  {
+   "name": "Gowtham's father",
+   "aliases": [
+    "Gowtham's dad",
+    "Gowtham father",
+    "నాన్న",
+    "groom's father"
+   ],
+   "desc": "bearded, yellow-white check shirt on the viewing day, black check shirt at the wedding; loves sweets; jokes about his son's English"
+  },
+  {
+   "name": "Amrutha's friend",
+   "aliases": [
+    "friend",
+    "Amrutha friend"
+   ],
+   "desc": "Amrutha's confidante (maroon top with a printed yoke); hears the story at 11:28-16:20 and advises her to say yes; never named"
+  },
+  {
+   "name": "Gowtham's friend",
+   "aliases": [
+    "colleague",
+    "office friend",
+    "Gowtham friend",
+    "groom's friend",
+    "the groom's friend"
+   ],
+   "desc": "office colleague (orange polo, long curly hair) who mocks Gowtham's food talk, 9:58-11:22; never named"
+  },
+  {
+   "name": "Past groom",
+   "aliases": [
+    "earlier groom",
+    "rejecting groom",
+    "flashback groom",
+    "first prospective groom",
+    "first groom",
+    "the first groom"
+   ],
+   "desc": "flashback suitor who rejected Amrutha for her height (heavy-set, red-navy check shirt), 1:12-2:03; his 'పొట్టిగా ఉన్నారు' echoes as a memory at 1:55 and 7:44"
+  },
+  {
+   "name": "Past groom's father",
+   "aliases": [
+    "earlier groom's father",
+    "first prospective groom's father",
+    "first groom's father"
+   ],
+   "desc": "flashback, older man in a white-grey check shirt with a moustache on the sofa (1:12); not Amrutha's father"
+  },
+  {
+   "name": "Amrutha's father",
+   "aliases": [
+    "Amrutha's dad"
+   ],
+   "desc": "seen at the wedding farewell; never speaks (founder notes 2026-11-01)"
+  }
+ ],
+ "hard_cases": [
+  "4:06-4:11 'ఆ వంకలు కాదు. అంటే వంటలు తిని తిని వాంతులు వరదలా వచ్చేవన్నమాట' is a wide two-shot; frames at 3 fps (dense_246.jpg) show Gowtham turned to his father talking and gesturing while the father's mouth stays closed, and the next lines ('మా వోడి అభిమానం' father, 'అది అభిమానం కాదు నాన్న' Gowtham) fit the son making the joke. Assigned to Gowtham at confidence 2; the father self-correcting is the alternative reading.",
+  "5:09-5:13 'super అత్తమ్మ' / 'ఏం acting చేస్తున్నావే' (dense_309.jpg): the camera holds on the beaming mother and Amrutha; the praise is off-screen from the guests' side and 'అత్తమ్మ' is how Gowtham addresses her elsewhere (OFFSCREEN:Gowtham, 2); the jab is Amrutha turning to her mother. 'ఓహో!' before it (5:09) is left out: Gowtham or his father, cannot tell.",
+  "11:28-16:20 is Amrutha with her FRIEND (maroon top), not her mother ('ఓసేయ్! నీకేమన్నా పిచ్చా?' is the friend's line). An earlier GT map (runs/gt/j14Om1SaFYE/map.md, scene 9) had this as the mother.",
+  "14:15 'ఇంక నా వల్ల కాదే' (dense_853.jpg): the friend holds her forehead in despair by the fridge while Amrutha, back to camera, opens it. It could be the friend giving up teaching or Amrutha giving up cooking; labelled the friend at confidence 1. The line after it ('కానీ నేనైతే ఒకటి చెప్తానే') is the friend (Amrutha is drinking from a bottle).",
+  "13:50-13:56 'అలా చెప్తే ఎవరూ No చెప్పగలరే?' and 'అయితే yes ఏ చెప్పే' (dense_833.jpg): Amrutha's face is half hidden by her knees; only the friend's lips move. 'కదా!' between them is left out because I could not see who said it.",
+  "Wedding farewell 16:54-16:58 'దీర్ఘాయుష్మాన్ భవ! పిల్ల పాపాలతో చల్లగా ఉండండి' is a wide shot where both of Amrutha's parents raise a hand over the couple (crop_1014.jpg). I first gave it to Amrutha's father (glasses, blue check shirt; he raises his hand first). After adding Scribe labels, Scribe's cluster for it was the one it uses for the friend (a female voice), so I re-checked with evidence independent of Scribe: median pitch of the two lines is ~174/186 Hz, matching the mother's wedding lines (178-222 Hz) and above every male line in the episode (102-157 Hz), and in a face crop the father's mouth does not clearly move while the mother smiles with her mouth open and raises her hand on the second line. Relabelled Amrutha's mother (confidence 1 and 2). Amrutha's father therefore has no line in the key and is not listed. 17:02 'నా కాలం మీద పడలేదు. ఏంది ఇది.' is Gowtham's father complaining he was skipped.",
+  "1:12 'అమ్మాయిని ఏమన్నా అడగాలంటే అడుగు బాబు' is said by the older man in a white-grey check shirt with a moustache, who is not Amrutha's father seen at the wedding (glasses, blue check shirt, face_1013.jpg), so he is the past groom's father (confidence 2).",
+  "Echo and memory voices are labelled OFFSCREEN: the past groom's 'మీరు కొంచెం పొట్టిగా ఉన్నారు' echo over the montage at 1:55 and over Amrutha's face at 7:44 (confidence 2; the voice is post-produced and could be a composite of different grooms), and Gowtham's café lines replayed at 16:25-16:38 while Amrutha stands alone at night (confidence 3).",
+  "Under-the-breath asides on the viewing day ('చచ్చింది గొర్ర' 3:41, 'దేవుడా... set అయ్యేట్టు చూడు తండ్రి' 2:57, 'ఏం అడుగుతాడో ఏమో? ఈ తింగరి దెయ్యం చెప్పుద్దు' 6:32) are the mother by content; her lips barely move or the shot is wide, so confidence 2.",
+  "Left out as unreadable: 5:17 'సూర్య మామది ప్రకృతి జాతి' (garbled, over music), 17:44 'మొత్తం నా car delivery చేస్తూ తిట్టేదినే విడిచావు' (garbled; Gowtham's phone rings while his father laughs) and 17:48 'Bye మామ' (Amrutha's father is hugging her; speaker not visible)."
+ ],
+ "labels": [
+  {
+   "start": 24.12,
+   "end": 26.12,
+   "text": "మమ్మీ Hair clip ఏదే?",
+   "speaker": "Amrutha",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "bedroom, Amrutha (blue saree) at the mirror, back to camera, alone in frame; calls 'మమ్మీ' asking for her hair clip",
+   "on_screen": [
+    "Amrutha"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "Amrutha at the mirror, back to camera, face in the mirror"
+  },
+  {
+   "start": 33.92,
+   "end": 34.38,
+   "text": "హ్, ఇదిగో.",
+   "speaker": "Amrutha's mother",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "mother (pink saree, flashback day) enters holding out the clip; Amrutha busy at the dresser",
+   "on_screen": [
+    "Amrutha's mother",
+    "Amrutha"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)"
+  },
+  {
+   "start": 42.58,
+   "end": 44.8,
+   "text": "రేపు పెళ్లయ్యాక ఇలాగే ఉంటే నిన్ను కాదు నన్ను అంటారు.",
+   "speaker": "Amrutha's mother",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "same close-up, mother talking ('నిన్ను కాదు నన్ను అంటారు')",
+   "on_screen": [
+    "Amrutha's mother"
+   ],
+   "on_screen_partly": [
+    "Amrutha"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "Amrutha's hand and hair at the right edge"
+  },
+  {
+   "start": 47.1,
+   "end": 47.78,
+   "text": "అమ్మో!",
+   "speaker": "Amrutha's mother",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "close-up on mother's shocked 'అమ్మో'",
+   "on_screen": [
+    "Amrutha's mother"
+   ],
+   "on_screen_partly": [
+    "Amrutha"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "over Amrutha's shoulder (hair only)"
+  },
+  {
+   "start": 48.44,
+   "end": 51.38,
+   "text": "ఇప్పటికే ఇరవై మూడేళ్లు భరించాను. ఇక నా వల్ల కాదమ్మా.",
+   "speaker": "Amrutha's mother",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "mother close-up through the whole line ('ఇరవై మూడేళ్లు భరించాను')",
+   "on_screen": [
+    "Amrutha's mother"
+   ],
+   "on_screen_partly": [
+    "Amrutha"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "over Amrutha's shoulder (hair only)"
+  },
+  {
+   "start": 62.24,
+   "end": 64.34,
+   "text": "ఎక్కువగా ఆలోచించకు. ready అవ్వు.",
+   "speaker": "Amrutha's mother",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "mother close-up, mouth moving ('ready అవ్వు')",
+   "on_screen": [
+    "Amrutha's mother"
+   ],
+   "on_screen_partly": [
+    "Amrutha"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "over Amrutha's shoulder (hair only)"
+  },
+  {
+   "start": 72.48,
+   "end": 74.04,
+   "text": "అమ్మాయిని ఏమన్నా అడగాలంటే అడుగు బాబు.",
+   "speaker": "Past groom's father",
+   "confidence": 2,
+   "scribe_label": "speaker_3",
+   "scribe_label_share": 1.0,
+   "note": "flashback: older man (white-grey check shirt, moustache, no glasses) on the sofa, mouth moving, turning to the groom; invites him to question the girl ('అడుగు బాబు'). Not Amrutha's father (glasses, blue check shirt at the wedding, face_1013.jpg); the host father could in principle say this too",
+   "on_screen": [
+    "Past groom's father",
+    "Past groom"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 74.08,
+   "end": 75.14,
+   "text": "ఉమ్ సరే.",
+   "speaker": "Past groom",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "flashback: heavy-set man in red check shirt (the earlier groom), head down, answers 'ఉమ్ సరే' to the man who invited him to ask; cut to Amrutha and mother at the end",
+   "on_screen": [
+    "Past groom"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "the cut to the mother and Amrutha lands at 75.13 s, at the line's last instant (end 75.14), so they are not counted"
+  },
+  {
+   "start": 85.0,
+   "end": 87.76,
+   "text": "అమృత గారు, ఒకసారి నించోగలుగుతారా please.",
+   "speaker": "Past groom",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "cut from the women to the red-check-shirt groom facing camera, mouth moving, names 'అమృత గారు'",
+   "on_screen": [
+    "Past groom",
+    "Amrutha"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 93.08,
+   "end": 94.6,
+   "text": "please ఒక్కసారి నించోండి.",
+   "speaker": "Past groom",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "same close-up, smiling and talking ('please ఒక్కసారి నించోండి')",
+   "on_screen": [
+    "Past groom"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)"
+  },
+  {
+   "start": 98.26,
+   "end": 99.48,
+   "text": "I am extremely sorry అండి.",
+   "speaker": "Past groom",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "groom standing facing Amrutha (back of her head in frame), mouth moving",
+   "on_screen": [
+    "Past groom"
+   ],
+   "on_screen_partly": [
+    "Amrutha"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "over Amrutha's shoulder (back of her head only)"
+  },
+  {
+   "start": 101.54,
+   "end": 104.1,
+   "text": "నేను height కదా, నాకన్నా కొంచెం height ఉండాలని.",
+   "speaker": "Past groom",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "groom talking at the start, then reaction shot of mother and Amrutha standing; content ('నేను height కదా') is his",
+   "on_screen": [
+    "Past groom",
+    "Amrutha",
+    "Amrutha's mother"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 104.88,
+   "end": 106.14,
+   "text": "so ఈడు jood బాగుంటది.",
+   "speaker": "OFFSCREEN:Past groom",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "held on the reaction two-shot of mother and Amrutha (neither speaks); continues the groom's height reasoning",
+   "on_screen": [
+    "Amrutha",
+    "Amrutha's mother"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 108.72,
+   "end": 110.04,
+   "text": "I hope you understand.",
+   "speaker": "Past groom",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "groom standing, gesturing and talking to Amrutha (back of her head in frame)",
+   "on_screen": [
+    "Past groom"
+   ],
+   "on_screen_partly": [
+    "Amrutha"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "over Amrutha's shoulder (back of her head only)"
+  },
+  {
+   "start": 115.14,
+   "end": 118.24,
+   "text": "sorry ఏమనుకోకండి, ఏమనుకోకండి మీరు కొంచెం పొట్టిగా ఉన్నారు, పొట్టిగా ఉన్నారు,",
+   "speaker": "OFFSCREEN:Past groom",
+   "confidence": 2,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "montage: Amrutha sitting alone in other sarees (pink, then gold/pink), silent; the groom's 'మీరు కొంచెం పొట్టిగా ఉన్నారు' echoes as a voice in her head (sounds like the same groom, could be a composite echo)",
+   "on_screen": [
+    "Amrutha"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 144.88,
+   "end": 146.68,
+   "text": "అలా కాదే, నా బంగారం కదూ.",
+   "speaker": "Amrutha's mother",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "mother sits by her, pleading face, mouth moving ('నా బంగారం కదూ')",
+   "on_screen": [
+    "Amrutha's mother"
+   ],
+   "on_screen_partly": [
+    "Amrutha"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "Amrutha's head from behind and arms (tying her hair) in the foreground, face not visible"
+  },
+  {
+   "start": 161.1,
+   "end": 161.66,
+   "text": "బంగారం.",
+   "speaker": "Amrutha's mother",
+   "confidence": 2,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "mother (back to camera) strokes Amrutha, who smiles with mouth closed; one-word endearment, mother's word",
+   "on_screen": [
+    "Amrutha",
+    "Amrutha's mother"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 177.28,
+   "end": 179.64,
+   "text": "ఎలాగైనా ఈ సంబంధం set అయ్యేట్టు చూడు తండ్రి.",
+   "speaker": "Amrutha's mother",
+   "confidence": 2,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "wide living-room shot (dense_175.jpg): mother stands with hands folded, Amrutha sits smiling, guests seated; the prayer for the match to work out is the mother's (follows 'దేవుడా!'); faces too small to see lips",
+   "on_screen": [
+    "Amrutha",
+    "Amrutha's mother",
+    "Gowtham",
+    "Gowtham's father"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 180.82,
+   "end": 181.96,
+   "text": "నేర్ నిల్చున్నారేంటమ్మా!",
+   "speaker": "Gowtham's father",
+   "confidence": 3,
+   "scribe_label": "speaker_3",
+   "scribe_label_share": 1.0,
+   "note": "new bride-viewing: Gowtham's father (beard, yellow-white check shirt) on the sofa, mouth moving, gesturing to the mother to sit",
+   "on_screen": [
+    "Gowtham's father"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "a blurred foreground head at the left edge, not identifiable"
+  },
+  {
+   "start": 184.82,
+   "end": 186.3,
+   "text": "ఈ కాలంలో కూడా ఈ పట్టు ఇమ్మా ఏంటమ్మా!",
+   "speaker": "Gowtham's father",
+   "confidence": 3,
+   "scribe_label": "speaker_3",
+   "scribe_label_share": 1.0,
+   "note": "father close-up, talking and smiling",
+   "on_screen": [
+    "Gowtham's father"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "a blurred foreground shape at the left edge, not identifiable"
+  },
+  {
+   "start": 195.44,
+   "end": 197.26,
+   "text": "అమ్మాయిని ఏదైనా అడగాలంటే అడగండి.",
+   "speaker": "Amrutha's mother",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "mother, now seated, close-up, smiling and talking",
+   "on_screen": [
+    "Amrutha's mother"
+   ],
+   "on_screen_partly": [
+    "Amrutha"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "a blurred green sleeve at the right edge, read as Amrutha beside her"
+  },
+  {
+   "start": 197.58,
+   "end": 197.82,
+   "text": "అయ్యో!",
+   "speaker": "Gowtham's father",
+   "confidence": 3,
+   "scribe_label": "speaker_3",
+   "scribe_label_share": 1.0,
+   "note": "two-shot father and Gowtham; father raises a hand ('అయ్యో'), Gowtham silent",
+   "on_screen": [
+    "Amrutha's mother",
+    "Gowtham's father",
+    "Gowtham"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 198.2,
+   "end": 199.34,
+   "text": "అలాంటివేమీ అవసరం లేదమ్మా.",
+   "speaker": "Gowtham's father",
+   "confidence": 3,
+   "scribe_label": "speaker_3",
+   "scribe_label_share": 1.0,
+   "note": "two-shot, father gesturing and talking, Gowtham listening",
+   "on_screen": [
+    "Gowtham's father",
+    "Gowtham"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 203.2,
+   "end": 203.44,
+   "text": "ఏరా!",
+   "speaker": "Gowtham's father",
+   "confidence": 2,
+   "scribe_label": "speaker_3",
+   "scribe_label_share": 1.0,
+   "note": "father turns to his son ('ఏరా'), then cut to Gowtham's close-up; single word, father addressing his son",
+   "on_screen": [
+    "Gowtham's father",
+    "Gowtham"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 211.34,
+   "end": 212.0,
+   "text": "మీకు వంట వచ్చా?",
+   "speaker": "Gowtham",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "Gowtham close-up, smiling, mouth moving: his only question 'మీకు వంట వచ్చా?'",
+   "on_screen": [
+    "Gowtham"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)"
+  },
+  {
+   "start": 221.62,
+   "end": 222.7,
+   "text": "చచ్చింది గొర్ర.",
+   "speaker": "Amrutha's mother",
+   "confidence": 2,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "mother and Amrutha two-shot (dense_221.jpg, 5 fps): mother holds a frozen smile with barely moving lips, Amrutha wide-eyed with her mouth closed; an under-the-breath aside",
+   "on_screen": [
+    "Amrutha",
+    "Amrutha's mother"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 225.18,
+   "end": 226.04,
+   "text": "ఆహా! ఆ వచ్చు బాబు.",
+   "speaker": "Amrutha's mother",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 0.86,
+   "note": "mother and Amrutha two-shot; mother gestures, mouth open ('ఆ వచ్చు బాబు'), Amrutha stares",
+   "on_screen": [
+    "Amrutha",
+    "Amrutha's mother"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 232.74,
+   "end": 233.74,
+   "text": "మళ్లీ start చేసావా?",
+   "speaker": "Gowtham's father",
+   "confidence": 3,
+   "scribe_label": "speaker_3",
+   "scribe_label_share": 1.0,
+   "note": "father leans to Gowtham with a hand on him, mouth moving ('మళ్లీ start చేసావా?')",
+   "on_screen": [
+    "Gowtham",
+    "Gowtham's father"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 238.42,
+   "end": 242.62,
+   "text": "చిన్నప్పటి నుంచి వాడికి అమ్మ లేకపోవడం వల్ల hostels, PG's లో అడ్డమైన వంట తినేవాడు.",
+   "speaker": "Gowtham's father",
+   "confidence": 3,
+   "scribe_label": "speaker_3",
+   "scribe_label_share": 1.0,
+   "note": "cut-in of mother and Amrutha, then father close-up talking (motherless son, hostel food)",
+   "on_screen": [
+    "Amrutha",
+    "Amrutha's mother",
+    "Gowtham's father"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 246.66,
+   "end": 247.66,
+   "text": "ఆ వంకలు కాదు.",
+   "speaker": "Gowtham",
+   "confidence": 2,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "wide two-shot (dense_246.jpg, 3 fps): Gowtham turned to his father, mouth moving and smiling, father's mouth closed; the son correcting his father's word is the joke's logic",
+   "on_screen": [
+    "Gowtham",
+    "Gowtham's father"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 247.9,
+   "end": 251.08,
+   "text": "అంటే వంటలు తిని తిని వాంతులు వరదలా వచ్చేవన్నమాట.",
+   "speaker": "Gowtham",
+   "confidence": 2,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "dense_246.jpg: Gowtham keeps talking to his father and gestures with his hand; father listens; laughter follows; father then covers 'మా వోడి అభిమానం'",
+   "on_screen": [
+    "Gowtham",
+    "Gowtham's father"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 253.42,
+   "end": 254.16,
+   "text": "మా వోడి అభిమానం.",
+   "speaker": "Gowtham's father",
+   "confidence": 3,
+   "scribe_label": "speaker_3",
+   "scribe_label_share": 1.0,
+   "note": "father close-up, smiling, mouth moving",
+   "on_screen": [
+    "Gowtham's father",
+    "Gowtham"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 266.38,
+   "end": 269.9,
+   "text": "వచ్చే wife కి వంట వస్తే చాలనుకునే అబ్బాయిల్లో నేను ఒకడిని.",
+   "speaker": "OFFSCREEN:Gowtham",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "held on the mother (smiling) and Amrutha (grimacing), neither speaks; content is Gowtham's 'వచ్చే wife కి వంట వస్తే చాలు'",
+   "on_screen": [
+    "Amrutha",
+    "Amrutha's mother"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 270.46,
+   "end": 273.88,
+   "text": "అయ్యో! ఈ sweets అన్నీ మా అమ్మాయే చేసింది బాబు.",
+   "speaker": "Amrutha's mother",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "mother and Amrutha two-shot; mother talks and gestures toward the sweets, Amrutha looks at her",
+   "on_screen": [
+    "Amrutha",
+    "Amrutha's mother"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 274.42,
+   "end": 274.88,
+   "text": "అవునా!",
+   "speaker": "Gowtham's father",
+   "confidence": 3,
+   "scribe_label": "speaker_3",
+   "scribe_label_share": 1.0,
+   "note": "father close-up, mouth open in delight ('అవునా!')",
+   "on_screen": [
+    "Amrutha",
+    "Amrutha's mother",
+    "Gowtham",
+    "Gowtham's father"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 275.24,
+   "end": 276.12,
+   "text": "నాకు sweet అంటే చాలా ఇష్టం.",
+   "speaker": "Gowtham's father",
+   "confidence": 2,
+   "scribe_label": "speaker_3",
+   "scribe_label_share": 1.0,
+   "note": "wide: father leans forward reaching for the sweets as the line plays; mouths too small to see; sweet-lover line fits him (Gowtham could also be the speaker)",
+   "on_screen": [
+    "Amrutha",
+    "Amrutha's mother",
+    "Gowtham",
+    "Gowtham's father"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 276.14,
+   "end": 276.86,
+   "text": "తీసుకోండి బాబు.",
+   "speaker": "Amrutha's mother",
+   "confidence": 2,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "wide shot with mother on the left, then the men take sweets; offering 'తీసుకోండి బాబు' is the hostess's line",
+   "on_screen": [
+    "Amrutha",
+    "Amrutha's mother",
+    "Gowtham",
+    "Gowtham's father"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 280.36,
+   "end": 281.6,
+   "text": "పుల్లారెడ్డి sweets లాగే ఉన్నాయ్ రా.",
+   "speaker": "Gowtham's father",
+   "confidence": 3,
+   "scribe_label": "speaker_3",
+   "scribe_label_share": 1.0,
+   "note": "father, eating, turns to Gowtham; 'రా' addresses his son",
+   "on_screen": [
+    "Gowtham",
+    "Gowtham's father"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 282.16,
+   "end": 283.2,
+   "text": "పుల్లారెడ్డి నుంచే కదా తీసుకొచ్చాం.",
+   "speaker": "Amrutha",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "mother and Amrutha two-shot; Amrutha blurts it, mouth open and gesturing; mother freezes",
+   "on_screen": [
+    "Amrutha",
+    "Amrutha's mother"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 287.54,
+   "end": 289.18,
+   "text": "తుమ్ము మొహం దానా!",
+   "speaker": "Amrutha's mother",
+   "confidence": 2,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "dense_287.jpg (4 fps): mother's lips move at the start of the line, Amrutha (blurred foreground) also has her mouth open; a mother-to-daughter insult ('...దానా')",
+   "on_screen": [
+    "Amrutha",
+    "Amrutha's mother"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 299.5,
+   "end": 301.18,
+   "text": "recipe అంట. తినొచ్చు.",
+   "speaker": "Gowtham's father",
+   "confidence": 2,
+   "scribe_label": "speaker_3",
+   "scribe_label_share": 1.0,
+   "note": "father alone on screen, eating the sweet and laughing; muttered 'recipe అంట. తినొచ్చు' fits him",
+   "on_screen": [
+    "Gowtham's father"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)"
+  },
+  {
+   "start": 301.56,
+   "end": 309.1,
+   "text": "అప్పటి నుండి మా sweets కన్నా మీ అమ్మాయి చేసిన sweets ఏ చాలా బాగున్నాయని వాళ్లే reverse లో మా అమ్మాయిని recipe అడుగుతున్నారు.",
+   "speaker": "Amrutha's mother",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "mother talking with big gestures ('reverse లో మా అమ్మాయిని recipe అడుగుతున్నారు'), Amrutha mouth closed",
+   "on_screen": [
+    "Amrutha",
+    "Amrutha's mother"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 311.12,
+   "end": 311.94,
+   "text": "super అత్తమ్మ.",
+   "speaker": "OFFSCREEN:Gowtham",
+   "confidence": 2,
+   "scribe_label": "speaker_3",
+   "scribe_label_share": 1.0,
+   "note": "dense_309.jpg: shot held on the mother beaming (not talking) and Amrutha; praise comes from the guests' side; 'అత్తమ్మ' is how Gowtham addresses her elsewhere (6:15, 17:07)",
+   "on_screen": [
+    "Amrutha",
+    "Amrutha's mother"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 321.98,
+   "end": 322.6,
+   "text": "నూనెయ్యవే!",
+   "speaker": "Amrutha's mother",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "kitchen flashback (mother in green blouse/yellow saree, Amrutha in blue top at the stove); mother instructs her, mouth moving in the close two-shot",
+   "on_screen": [
+    "Amrutha",
+    "Amrutha's mother"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 329.18,
+   "end": 331.98,
+   "text": "అది నూనె అనుకుంటున్నావా, బండిలో పోసే petrol అనుకుంటున్నావా, అంత పోసావు.",
+   "speaker": "Amrutha's mother",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "mother close two-shot, scolding about the oil ('బండిలో పోసే petrol'), Amrutha holds the oil bottle",
+   "on_screen": [
+    "Amrutha",
+    "Amrutha's mother"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 339.2,
+   "end": 340.7,
+   "text": "హ్మ్ ఏం తెలివే.",
+   "speaker": "Amrutha's mother",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "close two-shot, mother replies, mouth moving",
+   "on_screen": [
+    "Amrutha",
+    "Amrutha's mother"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 344.14,
+   "end": 344.66,
+   "text": "ఏంటే?",
+   "speaker": "OFFSCREEN:Amrutha's mother",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "Amrutha alone at the stove; 'ఏంటే?' comes from the mother off-frame (she walks in moments later)",
+   "on_screen": [
+    "Amrutha"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 344.72,
+   "end": 345.62,
+   "text": "మమ్మీ అరుస్తుందే.",
+   "speaker": "Amrutha",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "Amrutha at the whistling cooker, mouth moving ('మమ్మీ అరుస్తుందే')",
+   "on_screen": [
+    "Amrutha"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)"
+  },
+  {
+   "start": 347.6,
+   "end": 349.88,
+   "text": "లోపల పప్పు ఉడుకుతుంటే బయట whistles వస్తున్నాయి.",
+   "speaker": "Amrutha's mother",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "mother in the foreground gesturing at the cooker, Amrutha listens",
+   "on_screen": [
+    "Amrutha",
+    "Amrutha's mother"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 354.9,
+   "end": 355.24,
+   "text": "అవునా!",
+   "speaker": "Amrutha",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "Amrutha close-up (mother's shoulder in foreground), mouth open ('అవునా!')",
+   "on_screen": [
+    "Amrutha",
+    "Amrutha's mother"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 375.15,
+   "end": 375.63,
+   "text": "అత్తమ్మ",
+   "speaker": "Gowtham",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "back to the living room: Gowtham close-up, mouth moving ('అత్తమ్మ')",
+   "on_screen": [
+    "Gowtham",
+    "Amrutha",
+    "Amrutha's mother"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 376.97,
+   "end": 379.33,
+   "text": "మీ అమ్మాయితో ఒక two minutes మాట్లాడొచ్చా?",
+   "speaker": "Gowtham",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "Gowtham close-up asking to talk to her alone",
+   "on_screen": [
+    "Gowtham"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "a dark blurred shape at the left edge, not identifiable"
+  },
+  {
+   "start": 379.91,
+   "end": 381.35,
+   "text": "నాకు తెలుసురా నువ్వేం మాట్లాడతావో",
+   "speaker": "Gowtham's father",
+   "confidence": 3,
+   "scribe_label": "speaker_4",
+   "scribe_label_share": 1.0,
+   "note": "father close-up on the sofa teasing his son ('నాకు తెలుసురా...')",
+   "on_screen": [
+    "Gowtham's father"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)"
+  },
+  {
+   "start": 381.87,
+   "end": 382.79,
+   "text": "ఇప్పుడు అవన్నీ ఎందుకు?",
+   "speaker": "Amrutha's mother",
+   "confidence": 2,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "cut to mother and Amrutha; mother's mouth open on the line, Amrutha stands up; the mother is the one trying to stop the private talk",
+   "on_screen": [
+    "Amrutha",
+    "Amrutha's mother"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 386.95,
+   "end": 387.49,
+   "text": "వెళ్ళండి.",
+   "speaker": "Amrutha's mother",
+   "confidence": 2,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "mother close-up, reluctant, lips moving on 'వెళ్ళండి' as Amrutha (foreground) leaves; the father could also say it",
+   "on_screen": [
+    "Amrutha",
+    "Amrutha's mother",
+    "Gowtham",
+    "Gowtham's father"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 392.73,
+   "end": 395.27,
+   "text": "ఏం అడుగుతాడో ఏమో? ఈ తింగరి దెయ్యం చెప్పుద్దు.",
+   "speaker": "Amrutha's mother",
+   "confidence": 2,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "wide (dense_392.jpg, 4 fps): Gowtham walks past, the mother sits with a worried face and moving lips; an aside about what he will ask",
+   "on_screen": [
+    "Gowtham's father",
+    "Amrutha's mother"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 421.25,
+   "end": 421.69,
+   "text": "చెప్పండి.",
+   "speaker": "OFFSCREEN:Gowtham",
+   "confidence": 2,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "shot on Amrutha listening with mouth closed, Gowtham's shoulder in frame; 'చెప్పండి' ends his 'I brought you out to give you space'",
+   "on_screen": [
+    "Amrutha"
+   ],
+   "on_screen_partly": [
+    "Gowtham"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 423.51,
+   "end": 424.35,
+   "text": "నేను మీకు నచ్చలేదా?",
+   "speaker": "Gowtham",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "Gowtham close-up asking 'నేను మీకు నచ్చలేదా?'",
+   "on_screen": [
+    "Gowtham"
+   ],
+   "on_screen_partly": [
+    "Amrutha"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "over Amrutha's shoulder (back of her head)"
+  },
+  {
+   "start": 437.83,
+   "end": 439.81,
+   "text": "ఆ మీకు ఇది ఎన్నో పెళ్లిచూపులు",
+   "speaker": "Amrutha",
+   "confidence": 3,
+   "scribe_label": "speaker_6",
+   "scribe_label_share": 1.0,
+   "note": "Amrutha close-up, asks how many bride-viewings this is for him",
+   "on_screen": [
+    "Amrutha"
+   ],
+   "on_screen_partly": [
+    "Gowtham"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "Gowtham's navy shoulder at the right edge"
+  },
+  {
+   "start": 447.29,
+   "end": 447.79,
+   "text": "ఓహో!",
+   "speaker": "Gowtham",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "Gowtham close-up, mouth rounded on 'ఓహో!'",
+   "on_screen": [
+    "Gowtham"
+   ],
+   "on_screen_partly": [
+    "Amrutha"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "over Amrutha's shoulder (back of her head)"
+  },
+  {
+   "start": 448.45,
+   "end": 451.61,
+   "text": "అంటే నా అదృష్టానికి కారణం నలుగురు దురదృష్టం అనమాట",
+   "speaker": "Gowtham",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "wide two-shot, Gowtham talking with gestures, Amrutha listening",
+   "on_screen": [
+    "Gowtham",
+    "Amrutha"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 451.67,
+   "end": 453.43,
+   "text": "అవునండి.",
+   "speaker": "Amrutha",
+   "confidence": 2,
+   "scribe_label": "speaker_6",
+   "scribe_label_share": 1.0,
+   "note": "wide then Amrutha close-up, lips parted; she agrees with his joke ('అవునండి')",
+   "on_screen": [
+    "Amrutha",
+    "Gowtham"
+   ],
+   "on_screen_partly": [
+    "Gowtham"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 455.47,
+   "end": 455.91,
+   "text": "ఏమన్నారు?",
+   "speaker": "Amrutha",
+   "confidence": 3,
+   "scribe_label": "speaker_6",
+   "scribe_label_share": 1.0,
+   "note": "Amrutha close-up, mouth open, asking what he said",
+   "on_screen": [
+    "Amrutha",
+    "Gowtham"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 464.61,
+   "end": 471.69,
+   "text": "sorry ఏమనుకోకండి ఏమనుకోకండి మీరు కొంచెం పొట్టిగా ఉన్నారు పొట్టిగా ఉన్నారు మీరు కొంచెం పొట్టిగా ఉన్నారు పొట్టిగా ఉన్నారు పొట్టిగా ఉన్నారు పొట్టిగా ఉన్నారు",
+   "speaker": "OFFSCREEN:Past groom",
+   "confidence": 2,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "Amrutha looks down, Gowtham silent; the earlier groom's 'పొట్టిగా ఉన్నారు' replays as an echo in her head (memory voice, not said in the room)",
+   "on_screen": [
+    "Amrutha",
+    "Gowtham"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 472.39,
+   "end": 473.65,
+   "text": "నేను పొట్టిగా ఉంటాను కదా",
+   "speaker": "Amrutha",
+   "confidence": 3,
+   "scribe_label": "speaker_6",
+   "scribe_label_share": 1.0,
+   "note": "Amrutha close-up, mouth moving ('నేను పొట్టిగా ఉంటాను కదా')",
+   "on_screen": [
+    "Amrutha"
+   ],
+   "on_screen_partly": [
+    "Gowtham"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "Gowtham's navy shoulder at the right edge"
+  },
+  {
+   "start": 481.65,
+   "end": 482.11,
+   "text": "పర్వాలేదు",
+   "speaker": "Amrutha",
+   "confidence": 3,
+   "scribe_label": "speaker_6",
+   "scribe_label_share": 1.0,
+   "note": "Amrutha close-up continuing ('పర్వాలేదు')",
+   "on_screen": [
+    "Amrutha"
+   ],
+   "on_screen_partly": [
+    "Gowtham"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "Gowtham's navy shoulder at the right edge"
+  },
+  {
+   "start": 533.03,
+   "end": 534.71,
+   "text": "మీలా పొట్టిగా ఉన్న అమ్మాయలే నచ్చుతారు.",
+   "speaker": "Gowtham",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "same framing, Gowtham smiling and talking",
+   "on_screen": [
+    "Gowtham"
+   ],
+   "on_screen_partly": [
+    "Amrutha"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "over Amrutha's shoulder (back of her head)"
+  },
+  {
+   "start": 565.41,
+   "end": 566.65,
+   "text": "మీరు నిజంగా అంటున్నారా?",
+   "speaker": "Amrutha",
+   "confidence": 3,
+   "scribe_label": "speaker_6",
+   "scribe_label_share": 1.0,
+   "note": "Amrutha close-up over Gowtham's shoulder, mouth moving ('మీరు నిజంగా అంటున్నారా?')",
+   "on_screen": [
+    "Amrutha"
+   ],
+   "on_screen_partly": [
+    "Gowtham"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "over Gowtham's shoulder (back of his head)"
+  },
+  {
+   "start": 580.19,
+   "end": 581.07,
+   "text": "ఇంకా అవసరం లేదు.",
+   "speaker": "Amrutha",
+   "confidence": 3,
+   "scribe_label": "speaker_6",
+   "scribe_label_share": 1.0,
+   "note": "Amrutha close-up, smiling, lips moving ('ఇంకా అవసరం లేదు')",
+   "on_screen": [
+    "Amrutha"
+   ],
+   "on_screen_partly": [
+    "Gowtham"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "over Gowtham's shoulder (back of his head)"
+  },
+  {
+   "start": 598.17,
+   "end": 599.77,
+   "text": "ఏరా ఆ అమ్మాయి అంత నచ్చిందా?",
+   "speaker": "Gowtham's friend",
+   "confidence": 2,
+   "scribe_label": "speaker_4",
+   "scribe_label_share": 1.0,
+   "note": "office wide: Gowtham (maroon shirt) grinning at his laptop, friend (orange shirt, curly hair) turned to him; the teasing question is the friend's",
+   "on_screen": [
+    "Gowtham",
+    "Gowtham's friend"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 612.63,
+   "end": 613.49,
+   "text": "యా ఛాయ్ ఇలా ఉండదా?",
+   "speaker": "Gowtham's friend",
+   "confidence": 3,
+   "scribe_label": "speaker_4",
+   "scribe_label_share": 1.0,
+   "note": "reverse: friend close-up, mouth moving, mocking",
+   "on_screen": [
+    "Gowtham's friend",
+    "Gowtham"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 614.19,
+   "end": 614.53,
+   "text": "రేయ్!",
+   "speaker": "Gowtham",
+   "confidence": 2,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "Gowtham looks sternly at the friend on 'రేయ్!', then cut to the friend; single word, mouths unclear",
+   "on_screen": [
+    "Gowtham",
+    "Gowtham's friend"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 618.99,
+   "end": 620.11,
+   "text": "కొంచెం పాయసంలా ఉంటుందంట.",
+   "speaker": "Gowtham",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "Gowtham close-up talking ('పాయసంలా ఉంటుందంట')",
+   "on_screen": [
+    "Gowtham"
+   ],
+   "on_screen_partly": [
+    "Gowtham's friend"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "over the friend's shoulder (back of his curly head)"
+  },
+  {
+   "start": 620.73,
+   "end": 622.43,
+   "text": "పాయసం చేస్తే పన్నీర్ లా ఉంటదా?",
+   "speaker": "Gowtham's friend",
+   "confidence": 3,
+   "scribe_label": "speaker_4",
+   "scribe_label_share": 1.0,
+   "note": "friend (orange shirt) close-up, gesturing and talking, mocking ('పన్నీర్ లా ఉంటదా?')",
+   "on_screen": [
+    "Gowtham's friend"
+   ],
+   "on_screen_partly": [
+    "Gowtham"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "Gowtham's blurred profile/shoulder at the left edge"
+  },
+  {
+   "start": 625.49,
+   "end": 626.83,
+   "text": "నువ్వేమన్నా ఆ అమ్మాయితో curry point పెట్టేస్తున్నావా?",
+   "speaker": "Gowtham's friend",
+   "confidence": 3,
+   "scribe_label": "speaker_4",
+   "scribe_label_share": 1.0,
+   "note": "friend close-up, mouth moving ('curry point పెట్టేస్తున్నావా?')",
+   "on_screen": [
+    "Gowtham's friend"
+   ],
+   "on_screen_partly": [
+    "Gowtham"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "Gowtham's blurred profile/shoulder at the left edge"
+  },
+  {
+   "start": 641.07,
+   "end": 642.73,
+   "text": "ఏయ్ boiled గుడ్డు మర్చిపోయావ్.",
+   "speaker": "Gowtham's friend",
+   "confidence": 3,
+   "scribe_label": "speaker_4",
+   "scribe_label_share": 1.0,
+   "note": "friend close-up, hand gesture, talking ('boiled గుడ్డు మర్చిపోయావ్')",
+   "on_screen": [
+    "Gowtham's friend"
+   ],
+   "on_screen_partly": [
+    "Gowtham"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "Gowtham's blurred profile/shoulder at the left edge"
+  },
+  {
+   "start": 644.85,
+   "end": 645.95,
+   "text": "ఉమ్ ఉమ్ continue",
+   "speaker": "Gowtham's friend",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "friend waves him on with a hand ('ఉమ్ ఉమ్ continue')",
+   "on_screen": [
+    "Gowtham's friend"
+   ],
+   "on_screen_partly": [
+    "Gowtham"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "Gowtham's blurred profile/shoulder at the left edge"
+  },
+  {
+   "start": 659.39,
+   "end": 662.75,
+   "text": "offer లు, coupon లతో పాటు కొలెస్ట్రాల్ కూడా free గా వస్తున్నాయి రా.",
+   "speaker": "Gowtham",
+   "confidence": 3,
+   "scribe_label": "speaker_4",
+   "scribe_label_share": 1.0,
+   "note": "Gowtham close-up, talking ('కొలెస్ట్రాల్ కూడా free')",
+   "on_screen": [
+    "Gowtham"
+   ],
+   "on_screen_partly": [
+    "Gowtham's friend"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "the friend's back of head/shoulder at the right edge"
+  },
+  {
+   "start": 679.25,
+   "end": 681.83,
+   "text": "మరి ఇందుకేనా నన్ను పెళ్లి చేసుకున్నావ్ అని ఆ అమ్మాయి అడిగితే?",
+   "speaker": "Gowtham's friend",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "friend close-up, mouth moving, asking the what-if question",
+   "on_screen": [
+    "Gowtham's friend",
+    "Gowtham"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "Gowtham's profile at the left edge, recognizable in the second half"
+  },
+  {
+   "start": 688.71,
+   "end": 689.75,
+   "text": "ఓసేయ్! నీకేమన్నా పిచ్చా?",
+   "speaker": "Amrutha's friend",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "new scene: Amrutha (black-white striped top) sits glum, chin on hand; her friend (maroon top) turns to her, mouth moving ('ఓసేయ్! నీకేమన్నా పిచ్చా?'); not the mother",
+   "on_screen": [
+    "Amrutha",
+    "Amrutha's friend"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 690.27,
+   "end": 692.19,
+   "text": "వండరాదని ఇప్పుడు తెలియపోయిన తర్వాత అన్నా తెలుస్తది కదా.",
+   "speaker": "Amrutha's friend",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "same two-shot, friend talking to Amrutha, Amrutha silent",
+   "on_screen": [
+    "Amrutha",
+    "Amrutha's friend"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 697.15,
+   "end": 697.61,
+   "text": "కానీ--",
+   "speaker": "Amrutha",
+   "confidence": 3,
+   "scribe_label": "speaker_6",
+   "scribe_label_share": 1.0,
+   "note": "Amrutha close-up, trailing off ('కానీ--')",
+   "on_screen": [
+    "Amrutha"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)"
+  },
+  {
+   "start": 698.45,
+   "end": 698.73,
+   "text": "కానీ?",
+   "speaker": "Amrutha's friend",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "reverse on the friend (maroon top), mouth moving ('కానీ?')",
+   "on_screen": [
+    "Amrutha's friend"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)"
+  },
+  {
+   "start": 709.13,
+   "end": 710.49,
+   "text": "నేను ఒక విషయం చెప్పాలి మీకు",
+   "speaker": "Amrutha",
+   "confidence": 3,
+   "scribe_label": "speaker_6",
+   "scribe_label_share": 1.0,
+   "note": "flashback at a café: Amrutha (purple kurta) facing Gowtham (back to camera), mouth moving",
+   "on_screen": [
+    "Amrutha"
+   ],
+   "on_screen_partly": [
+    "Gowtham"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "over Gowtham's shoulder (back of his head)"
+  },
+  {
+   "start": 747.75,
+   "end": 749.71,
+   "text": "Let's make our marriage life tasty.",
+   "speaker": "Gowtham",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "Gowtham close-up ('Let's make our marriage life tasty')",
+   "on_screen": [
+    "Gowtham"
+   ],
+   "on_screen_partly": [
+    "Amrutha"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "Amrutha's blurred hair at the left edge"
+  },
+  {
+   "start": 780.49,
+   "end": 782.01,
+   "text": "కానీ అది లేకపోతే tasteless.",
+   "speaker": "Gowtham",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "Gowtham close-up, talking and smiling",
+   "on_screen": [
+    "Gowtham"
+   ],
+   "on_screen_partly": [
+    "Amrutha"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "Amrutha's blurred hair (blue clip) at the left edge"
+  },
+  {
+   "start": 830.29,
+   "end": 832.95,
+   "text": "అలా చెప్తే ఎవరూ No చెప్పగలరే?",
+   "speaker": "Amrutha",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "founder correction 2026-11-01: Amrutha, not the friend (was: Amrutha's friend, confidence 2). two-shot on the sofa, Amrutha hugs her knees (face partly hidden), friend with chin on hand; dense_833.jpg shows the friend's lips moving at the end of the line, Amrutha's closed",
+   "on_screen": [
+    "Amrutha",
+    "Amrutha's friend"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 835.59,
+   "end": 836.41,
+   "text": "అయితే yes ఏ చెప్పే.",
+   "speaker": "Amrutha's friend",
+   "confidence": 2,
+   "scribe_label": "speaker_7",
+   "scribe_label_share": 1.0,
+   "note": "same two-shot; dense_833.jpg: friend's mouth moves through 834-836 s while Amrutha's stays closed; advice 'అయితే yes ఏ చెప్పే'",
+   "on_screen": [
+    "Amrutha",
+    "Amrutha's friend"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 837.61,
+   "end": 840.57,
+   "text": "అలా చెప్తే నాకు cooking లేదన్న విషయం తర్వాతైనా తెలియాల్సిందే కదా.",
+   "speaker": "Amrutha",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "Amrutha turns to the friend, mouth moving ('నాకు cooking లేదన్న విషయం...')",
+   "on_screen": [
+    "Amrutha",
+    "Amrutha's friend"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 841.25,
+   "end": 843.13,
+   "text": "ఇన్ని ఆలోచించే బదులు cooking నేర్చుకోవచ్చు కదా.",
+   "speaker": "Amrutha's friend",
+   "confidence": 3,
+   "scribe_label": "speaker_7",
+   "scribe_label_share": 1.0,
+   "note": "friend turns to Amrutha and answers ('cooking నేర్చుకోవచ్చు కదా'); Amrutha replies next line",
+   "on_screen": [
+    "Amrutha",
+    "Amrutha's friend"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 847.35,
+   "end": 848.19,
+   "text": "ఉయ్యమ్మో ఇదేమిది",
+   "speaker": "OFFSCREEN:Amrutha",
+   "confidence": 2,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "insert of a smoking pan on the stove during Amrutha's cooking attempt (green kurta); her exclamation",
+   "on_screen": [],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 852.79,
+   "end": 853.31,
+   "text": "Mummy",
+   "speaker": "Amrutha",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "Amrutha (green kurta) coughing in the smoke, mouth open ('Mummy')",
+   "on_screen": [
+    "Amrutha"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)"
+  },
+  {
+   "start": 855.67,
+   "end": 856.65,
+   "text": "ఇంక నా వల్ల కాదే.",
+   "speaker": "Amrutha",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "founder correction 2026-11-01: Amrutha, not the friend (was: Amrutha's friend, confidence 1). kitchen with the friend (dense_853.jpg): friend holds her forehead in despair by the fridge, Amrutha's back to camera opening it; the next line 'కానీ నేనైతే ఒకటి చెప్తానే' is the friend's, so this may be the friend giving up teaching or Amrutha giving up cooking",
+   "on_screen": [
+    "Amrutha",
+    "Amrutha's friend"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 858.23,
+   "end": 859.75,
+   "text": "కానీ నేనైతే ఒకటి చెప్తానే.",
+   "speaker": "Amrutha's friend",
+   "confidence": 2,
+   "scribe_label": "speaker_7",
+   "scribe_label_share": 1.0,
+   "note": "friend leaning on the fridge, hand to head; Amrutha is drinking from a bottle and cannot be talking; friend's opinion follows",
+   "on_screen": [
+    "Amrutha",
+    "Amrutha's friend"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 863.03,
+   "end": 864.43,
+   "text": "ఇలాంటి అబ్బాయి అంత easy గా దొరకడు.",
+   "speaker": "Amrutha's friend",
+   "confidence": 2,
+   "scribe_label": "speaker_7",
+   "scribe_label_share": 1.0,
+   "note": "two-shot at the fridge: friend talking with hand at temple, Amrutha looks down with lips pressed",
+   "on_screen": [
+    "Amrutha",
+    "Amrutha's friend"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 866.57,
+   "end": 867.87,
+   "text": "marriage అయ్యేదాకా manage చెయ్.",
+   "speaker": "Amrutha's friend",
+   "confidence": 3,
+   "scribe_label": "speaker_7",
+   "scribe_label_share": 1.0,
+   "note": "same two-shot, friend's advice to Amrutha ('marriage అయ్యేదాకా manage చెయ్'); Amrutha silent",
+   "on_screen": [
+    "Amrutha",
+    "Amrutha's friend"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 868.77,
+   "end": 869.11,
+   "text": "Hello!",
+   "speaker": "Amrutha",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "Amrutha gestures and talks back ('Hello!')",
+   "on_screen": [
+    "Amrutha",
+    "Amrutha's friend"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 869.85,
+   "end": 871.17,
+   "text": "నువ్వు full story ఇంకా వినలేదు.",
+   "speaker": "Amrutha",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "Amrutha gesturing and talking to the friend by the fridge",
+   "on_screen": [
+    "Amrutha",
+    "Amrutha's friend"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 879.97,
+   "end": 881.53,
+   "text": "ఆ మీ favourite dish ఏంటి?",
+   "speaker": "Gowtham",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "Gowtham close-up, asking her favourite dish",
+   "on_screen": [
+    "Gowtham"
+   ],
+   "on_screen_partly": [
+    "Amrutha"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "Amrutha's blurred hair at the left edge"
+  },
+  {
+   "start": 887.69,
+   "end": 888.23,
+   "text": "ఆ Chicken.",
+   "speaker": "Amrutha",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "Amrutha close-up, smiling and answering with a hand gesture ('Chicken')",
+   "on_screen": [
+    "Amrutha"
+   ],
+   "on_screen_partly": [
+    "Gowtham"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "over Gowtham's shoulder (back of his head)"
+  },
+  {
+   "start": 889.19,
+   "end": 889.57,
+   "text": "Chicken.",
+   "speaker": "Gowtham",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "Gowtham close-up, repeats 'Chicken' with a gesture",
+   "on_screen": [
+    "Gowtham"
+   ],
+   "on_screen_partly": [
+    "Amrutha"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "Amrutha's blurred hair (blue clip) at the left edge"
+  },
+  {
+   "start": 892.97,
+   "end": 895.21,
+   "text": "something different like గోంగూర.",
+   "speaker": "Gowtham",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "Gowtham close-up, gesturing ('something different like గోంగూర')",
+   "on_screen": [
+    "Gowtham"
+   ],
+   "on_screen_partly": [
+    "Amrutha"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "Amrutha's blurred hair at the left edge"
+  },
+  {
+   "start": 904.09,
+   "end": 904.95,
+   "text": "నేను అడిగింది గోంగూర.",
+   "speaker": "Gowtham",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "Amrutha laughing for the first frame, then Gowtham talking ('నేను అడిగింది గోంగూర')",
+   "on_screen": [
+    "Gowtham"
+   ],
+   "on_screen_partly": [
+    "Amrutha"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "Amrutha's blurred hair at the left edge; the shot of Amrutha laughing ends just before the line"
+  },
+  {
+   "start": 919.15,
+   "end": 920.93,
+   "text": "అంటే ఏదైనా పచ్చడే కదా.",
+   "speaker": "Amrutha",
+   "confidence": 2,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "Amrutha close-up smiling, lips slightly moving; her cover-up continues ('అంటే ఏదైనా పచ్చడే కదా')",
+   "on_screen": [
+    "Amrutha"
+   ],
+   "on_screen_partly": [
+    "Gowtham"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "over Gowtham's shoulder"
+  },
+  {
+   "start": 929.61,
+   "end": 933.95,
+   "text": "ఎంతిష్టం అంటే మిర్చి బజ్జిలో ఉన్న గోధుమపిండి పక్కన పెట్టి ఉత్తి మిర్చి మాత్రమే తింటాడు.",
+   "speaker": "Amrutha",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "brief Gowtham reaction, then Amrutha talking with big gestures (father's bajji story)",
+   "on_screen": [
+    "Gowtham",
+    "Amrutha"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 959.71,
+   "end": 960.63,
+   "text": "call చేసి చెప్తారా?",
+   "speaker": "Gowtham",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "Gowtham close-up, asking her to call him",
+   "on_screen": [
+    "Gowtham"
+   ],
+   "on_screen_partly": [
+    "Amrutha"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "Amrutha's blurred hair at the left edge"
+  },
+  {
+   "start": 969.95,
+   "end": 970.35,
+   "text": "ఏం పర్లేదు.",
+   "speaker": "OFFSCREEN:Amrutha's friend",
+   "confidence": 2,
+   "scribe_label": "speaker_7",
+   "scribe_label_share": 1.0,
+   "note": "Amrutha (striped top) at a mirror, back to camera; the friend walks in from the right a moment later and continues ('నీ పెళ్లి టైం కి...')",
+   "on_screen": [
+    "Amrutha",
+    "Amrutha's friend"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 970.79,
+   "end": 972.73,
+   "text": "నీ పెళ్లి టైం కి నువ్వు ఎలా అయినా అన్ని నేర్చేసుకుంటావు.",
+   "speaker": "Amrutha's friend",
+   "confidence": 3,
+   "scribe_label": "speaker_7",
+   "scribe_label_share": 1.0,
+   "note": "friend (maroon) standing in the room, talking to Amrutha at the mirror; addresses her as 'నీ'",
+   "on_screen": [
+    "Amrutha",
+    "Amrutha's friend"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 977.59,
+   "end": 977.91,
+   "text": "సరేనా?",
+   "speaker": "Amrutha's friend",
+   "confidence": 2,
+   "scribe_label": "speaker_7",
+   "scribe_label_share": 1.0,
+   "note": "Amrutha looks down at their joined hands, friend's back to camera; the friend's 'సరేనా?' closes her advice",
+   "on_screen": [
+    "Amrutha",
+    "Amrutha's friend"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 985.39,
+   "end": 987.59,
+   "text": "నాకు వంట వచ్చే wife మాత్రమే కావాలనుకుంటున్నానంటే",
+   "speaker": "OFFSCREEN:Gowtham",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "night: Amrutha alone in a red saree holding her phone, silent; Gowtham's earlier café words replay in her head (memory voice)",
+   "on_screen": [
+    "Amrutha"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 991.61,
+   "end": 994.89,
+   "text": "Trust me you will have the best meals with me.",
+   "speaker": "OFFSCREEN:Gowtham",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "same night shot, Amrutha alone; his 'Trust me...' line replayed as memory",
+   "on_screen": [
+    "Amrutha"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 996.79,
+   "end": 997.73,
+   "text": "call చేసి చెప్తారా?",
+   "speaker": "OFFSCREEN:Gowtham",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "same, Amrutha alone with hand at her face; his 'call చేసి చెప్తారా?' replayed",
+   "on_screen": [
+    "Amrutha"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 1006.31,
+   "end": 1006.63,
+   "text": "Hello",
+   "speaker": "Amrutha",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "Amrutha on the phone, mouth moving ('Hello')",
+   "on_screen": [
+    "Amrutha"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)"
+  },
+  {
+   "start": 1008.47,
+   "end": 1009.01,
+   "text": "నాకు okay.",
+   "speaker": "Amrutha",
+   "confidence": 3,
+   "scribe_label": "speaker_1",
+   "scribe_label_share": 1.0,
+   "note": "Amrutha on the phone, 'నాకు okay.'",
+   "on_screen": [
+    "Amrutha"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)"
+  },
+  {
+   "start": 1014.25,
+   "end": 1015.41,
+   "text": "వీర్గా అయిష్మాన్ భవా!",
+   "speaker": "Amrutha's mother",
+   "confidence": 1,
+   "scribe_label": "speaker_7",
+   "scribe_label_share": 1.0,
+   "note": "wedding farewell (dense_1012.jpg, crop_1014.jpg): the couple bows to Amrutha's parents; the father (glasses, blue check shirt) raises his hand first, but his mouth shows no clear movement while the mother smiles with her mouth open; median F0 of the line ~174 Hz, in the mother's range at the wedding (178-222 Hz) and above every male line (102-157 Hz); wide shot, so a guess between the two parents",
+   "on_screen": [
+    "Amrutha's mother",
+    "Amrutha",
+    "Gowtham",
+    "Gowtham's father",
+    "Amrutha's father"
+   ],
+   "on_screen_partly": [
+    "cab driver"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 1015.97,
+   "end": 1017.69,
+   "text": "పిల్ల పాపాలతో చల్లగా ఉండండి.",
+   "speaker": "Amrutha's mother",
+   "confidence": 2,
+   "scribe_label": "speaker_7",
+   "scribe_label_share": 1.0,
+   "note": "crop_1014.jpg: the mother raises her hand in blessing as this line plays, the father lowers his; median F0 ~186 Hz (female range; the men here are 102-157 Hz)",
+   "on_screen": [
+    "Amrutha's mother",
+    "Amrutha",
+    "Gowtham",
+    "Gowtham's father",
+    "Amrutha's father"
+   ],
+   "on_screen_partly": [
+    "cab driver"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 1022.57,
+   "end": 1023.63,
+   "text": "నా కాలం మీద పడలేదు.",
+   "speaker": "Gowtham's father",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "Gowtham's father (black check shirt, beard), left out of the foot-touching, talks and gestures, laughing; Gowtham grins silently",
+   "on_screen": [
+    "Gowtham",
+    "Gowtham's father"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 1023.73,
+   "end": 1024.13,
+   "text": "ఏంది ఇది.",
+   "speaker": "Gowtham's father",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "same two-shot, father continuing his complaint ('ఏంది ఇది')",
+   "on_screen": [
+    "Gowtham",
+    "Gowtham's father"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 1027.01,
+   "end": 1027.31,
+   "text": "అత్తమ్మ",
+   "speaker": "Gowtham",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "Gowtham (white kurta, garland) turns, mouth open ('అత్తమ్మ')",
+   "on_screen": [
+    "Amrutha",
+    "Amrutha's mother",
+    "Gowtham",
+    "Gowtham's father"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 1032.71,
+   "end": 1033.73,
+   "text": "అలా ఏం లేదు బాబు.",
+   "speaker": "Amrutha's mother",
+   "confidence": 3,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "mother (magenta saree) close-up, mouth moving ('అలా ఏం లేదు బాబు')",
+   "on_screen": [
+    "Amrutha's mother"
+   ],
+   "on_screen_partly": [
+    "Amrutha"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "Amrutha's head from behind (jasmine) at the right edge; the cut to Gowtham comes just after the line"
+  },
+  {
+   "start": 1047.47,
+   "end": 1047.95,
+   "text": "తెలుసు.",
+   "speaker": "Gowtham",
+   "confidence": 2,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "Gowtham close-up, smiling with mouth open (mother's head in the foreground); one word, his reply",
+   "on_screen": [
+    "Gowtham"
+   ],
+   "on_screen_partly": [
+    "Amrutha's mother",
+    "Gowtham's father"
+   ],
+   "on_screen_source": "frames (clip-gt-editor 2026-11-02)",
+   "on_screen_note": "the mother's head from behind (left foreground) and a black-check shoulder at the right edge (Gowtham's father)"
+  },
+  {
+   "start": 1051.51,
+   "end": 1053.13,
+   "text": "మేము ఇల్లు ఈ week చివరనే తీసుకున్నాం.",
+   "speaker": "Gowtham",
+   "confidence": 2,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "Gowtham turns from his father to face the mother, mouth moving; father beside him rubs his hands; 'మేము ఇల్లు...తీసుకున్నాం' is the groom's news",
+   "on_screen": [
+    "Gowtham",
+    "Gowtham's father"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 1053.59,
+   "end": 1055.45,
+   "text": "So మీరు ఎప్పుడు కావంటే అప్పుడు రావచ్చు.",
+   "speaker": "OFFSCREEN:Gowtham",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "reaction shot of mother and alarmed Amrutha, neither speaking; continues Gowtham's invitation",
+   "on_screen": [
+    "Amrutha",
+    "Amrutha's mother"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 1057.17,
+   "end": 1059.63,
+   "text": "ఎప్పుడు కావంటే అప్పుడు మీ కూతురు వంట తనివితీరా తినొచ్చు.",
+   "speaker": "Gowtham",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "starts on the mother hugging Amrutha, then Gowtham talking with his father beside him ('మీ కూతురు వంట తనివితీరా తినొచ్చు')",
+   "on_screen": [
+    "Amrutha",
+    "Amrutha's mother",
+    "Gowtham",
+    "Gowtham's father"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 1060.69,
+   "end": 1061.95,
+   "text": "చాలా సంతోషం బాబు.",
+   "speaker": "Amrutha's mother",
+   "confidence": 2,
+   "scribe_label": "speaker_0",
+   "scribe_label_share": 1.0,
+   "note": "mother (magenta saree, profile) holding Amrutha's hands, lips moving; 'చాలా సంతోషం బాబు' answers the son-in-law",
+   "on_screen": [
+    "Amrutha",
+    "Amrutha's mother"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 1067.03,
+   "end": 1067.39,
+   "text": "చెప్పు.",
+   "speaker": "Gowtham",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "Gowtham answers his phone ('చెప్పు'), father beside him; cut to mother and Amrutha",
+   "on_screen": [
+    "Amrutha",
+    "Amrutha's mother",
+    "Gowtham",
+    "Gowtham's father"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 1077.57,
+   "end": 1078.95,
+   "text": "అబద్ధం మాట్లాడుతున్నాడు అబద్ధాలు.",
+   "speaker": "Gowtham",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "Gowtham lowering the phone, talking, then reaction shot of Amrutha and mother",
+   "on_screen": [
+    "Amrutha",
+    "Amrutha's mother",
+    "Gowtham",
+    "Gowtham's father"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  },
+  {
+   "start": 1095.39,
+   "end": 1096.45,
+   "text": "కొట్టినట్టు కొట్టాలనిపిస్తుంది.",
+   "speaker": "Gowtham",
+   "confidence": 3,
+   "scribe_label": "speaker_2",
+   "scribe_label_share": 1.0,
+   "note": "Gowtham close-up gesturing ('కొట్టినట్టు కొట్టాలనిపిస్తుంది'), cut to the women",
+   "on_screen": [
+    "Gowtham",
+    "Amrutha",
+    "Amrutha's mother"
+   ],
+   "on_screen_source": "founder notes 2026-11-01"
+  }
+ ],
+ "scribe_agreement": {
+  "n_lines": 128,
+  "n_labelled": 128,
+  "one_to_one_agree": 93,
+  "one_to_one_rate": 0.727,
+  "one_to_one_rate_conf2plus": 0.738,
+  "n_conf2plus": 126,
+  "many_to_one_agree": 102,
+  "many_to_one_rate": 0.797,
+  "best_mapping": {
+   "speaker_0": "Amrutha's mother",
+   "speaker_1": "Amrutha",
+   "speaker_2": "Gowtham",
+   "speaker_3": "Gowtham's father",
+   "speaker_4": "Gowtham's friend",
+   "speaker_7": "Amrutha's friend"
+  },
+  "confusion": {
+   "speaker_0": {
+    "Amrutha's mother": 25,
+    "Amrutha's friend": 3,
+    "Amrutha": 1
+   },
+   "speaker_1": {
+    "Amrutha": 13,
+    "Amrutha's friend": 2,
+    "Gowtham": 1
+   },
+   "speaker_2": {
+    "Gowtham": 30,
+    "Past groom": 9,
+    "Gowtham's friend": 2,
+    "Gowtham's father": 2
+   },
+   "speaker_3": {
+    "Gowtham's father": 12,
+    "Past groom's father": 1,
+    "Gowtham": 1
+   },
+   "speaker_4": {
+    "Gowtham's friend": 5,
+    "Gowtham's father": 1,
+    "Gowtham": 1
+   },
+   "speaker_6": {
+    "Amrutha": 9
+   },
+   "speaker_7": {
+    "Amrutha's friend": 8,
+    "Amrutha's mother": 2
+   }
+  }
+ },
+ "corrections": [
+  {
+   "date": "2026-11-01",
+   "by": "founder",
+   "lines": [
+    "13:50.3",
+    "14:15.7"
+   ],
+   "to": "Amrutha",
+   "source": "data/human/names_review_r1_2026-11-01.csv"
+  },
+  {
+   "date": "2026-11-01",
+   "by": "founder",
+   "what": "on_screen for 77 lines from the notes in data/human/key_corrections_j14_r1_2026-11-01.csv; the 'fix' verdicts there record who is on screen, the speaker (voice) is unchanged"
+  },
+  {
+   "date": "2026-11-02",
+   "by": "clip-gt-editor",
+   "what": "on_screen (+ on_screen_partly, on_screen_note) for 51 lines from 4-6 frames sampled evenly inside each line (runs/gt/j14Om1SaFYE/frames_os/, edge cuts checked at full size); source 'frames (clip-gt-editor 2026-11-02)'; founder's on_screen lines left untouched; every line checked for more than one voice: none found, so no voices fields; speaker (voice) unchanged on every line"
+  },
+  {
+   "date": "2026-11-02",
+   "by": "assistant",
+   "what": "aliases for people never named in Ep1 (the groom is never called Gowtham in this episode): groom / groom's friend / first groom forms, so a correct description is not scored as a wrong name; speakers unchanged"
+  }
+ ]
+}

@@ -1,0 +1,5209 @@
+{
+ "video_id": "QWIvgoTQGKk",
+ "schema": "speaker_fix/2",
+ "model": "gemini-3.8-flash",
+ "params": {
+  "thinking_level": "low"
+ },
+ "prompt": "2+38f3542f",
+ "chunks": [
+  {
+   "part": 1,
+   "core": [
+    0,
+    101
+   ],
+   "shown": [
+    0,
+    111
+   ],
+   "projected_inr": 1.54,
+   "ok": true,
+   "inr": 0.564,
+   "input_tokens": 3488,
+   "output_tokens": 868,
+   "thought_tokens": 0,
+   "missing_in_chunk": 0
+  },
+  {
+   "part": 2,
+   "core": [
+    102,
+    214
+   ],
+   "shown": [
+    92,
+    224
+   ],
+   "projected_inr": 1.7,
+   "ok": true,
+   "inr": 0.628,
+   "input_tokens": 4155,
+   "output_tokens": 914,
+   "thought_tokens": 0,
+   "missing_in_chunk": 0
+  },
+  {
+   "part": 3,
+   "core": [
+    215,
+    334
+   ],
+   "shown": [
+    205,
+    334
+   ],
+   "projected_inr": 1.69,
+   "ok": true,
+   "inr": 0.589,
+   "input_tokens": 4384,
+   "output_tokens": 759,
+   "thought_tokens": 0,
+   "missing_in_chunk": 0
+  }
+ ],
+ "cast": [
+  {
+   "key": "A",
+   "name": "Amrutha",
+   "desc": "Newly married daughter-in-law who cannot cook",
+   "aka": [],
+   "n_lines": 105,
+   "n_words": 352
+  },
+  {
+   "key": "B",
+   "name": "Husband",
+   "desc": "Amrutha's husband, particular about tea and food",
+   "aka": [],
+   "n_lines": 169,
+   "n_words": 726
+  },
+  {
+   "key": "C",
+   "name": "Father-in-law",
+   "desc": "Husband's father who prepares tea and food",
+   "aka": [],
+   "n_lines": 22,
+   "n_words": 107
+  },
+  {
+   "key": "D",
+   "name": "Mother",
+   "desc": "Amrutha's mother visiting her daughter's in-laws",
+   "aka": [],
+   "n_lines": 27,
+   "n_words": 124
+  },
+  {
+   "key": "E",
+   "name": "Husband's Friend",
+   "desc": "Husband's friend who talks with him about marriage",
+   "aka": [],
+   "n_lines": 12,
+   "n_words": 57
+  }
+ ],
+ "lines": [
+  {
+   "id": 0,
+   "start": 134.06,
+   "end": 135.28,
+   "words": [
+    0,
+    1
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 1,
+   "start": 136.14,
+   "end": 136.4,
+   "words": [
+    2,
+    2
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 2,
+   "start": 136.84,
+   "end": 137.32,
+   "words": [
+    3,
+    3
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 3,
+   "start": 141.36,
+   "end": 142.98,
+   "words": [
+    4,
+    7
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 4,
+   "start": 143.44,
+   "end": 147.48,
+   "words": [
+    8,
+    18
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 5,
+   "start": 148.02,
+   "end": 148.4,
+   "words": [
+    19,
+    19
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 6,
+   "start": 149.12,
+   "end": 151.7,
+   "words": [
+    20,
+    25
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 7,
+   "start": 152.16,
+   "end": 152.56,
+   "words": [
+    26,
+    26
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 8,
+   "start": 153.28,
+   "end": 153.52,
+   "words": [
+    27,
+    27
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 9,
+   "start": 156.88,
+   "end": 159.92,
+   "words": [
+    28,
+    31
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 10,
+   "start": 159.98,
+   "end": 160.58,
+   "words": [
+    32,
+    33
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 11,
+   "start": 161.14,
+   "end": 162.56,
+   "words": [
+    34,
+    38
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 12,
+   "start": 162.56,
+   "end": 162.56,
+   "words": [
+    39,
+    39
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 13,
+   "start": 164.48,
+   "end": 164.7,
+   "words": [
+    40,
+    40
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 14,
+   "start": 167.04,
+   "end": 168.86,
+   "words": [
+    41,
+    46
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 15,
+   "start": 169.42,
+   "end": 169.98,
+   "words": [
+    47,
+    48
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 16,
+   "start": 171.16,
+   "end": 172.8,
+   "words": [
+    49,
+    54
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 17,
+   "start": 173.82,
+   "end": 177.34,
+   "words": [
+    55,
+    68
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 18,
+   "start": 177.86,
+   "end": 178.36,
+   "words": [
+    69,
+    69
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 19,
+   "start": 179.0,
+   "end": 180.74,
+   "words": [
+    70,
+    72
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 20,
+   "start": 181.18,
+   "end": 181.66,
+   "words": [
+    73,
+    74
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Father-in-law",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 21,
+   "start": 181.74,
+   "end": 181.78,
+   "words": [
+    75,
+    75
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 22,
+   "start": 182.64,
+   "end": 182.88,
+   "words": [
+    76,
+    76
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Father-in-law",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 23,
+   "start": 183.24,
+   "end": 183.24,
+   "words": [
+    77,
+    77
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 24,
+   "start": 183.28,
+   "end": 183.9,
+   "words": [
+    78,
+    79
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Father-in-law",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 25,
+   "start": 184.88,
+   "end": 185.52,
+   "words": [
+    80,
+    82
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Father-in-law",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 26,
+   "start": 187.9,
+   "end": 188.66,
+   "words": [
+    83,
+    83
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 27,
+   "start": 189.1,
+   "end": 189.4,
+   "words": [
+    84,
+    84
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Father-in-law",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 28,
+   "start": 190.08,
+   "end": 190.16,
+   "words": [
+    85,
+    85
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 29,
+   "start": 191.36,
+   "end": 194.5,
+   "words": [
+    86,
+    91
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 30,
+   "start": 194.78,
+   "end": 195.28,
+   "words": [
+    92,
+    92
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Father-in-law",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 31,
+   "start": 196.58,
+   "end": 196.58,
+   "words": [
+    93,
+    93
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 32,
+   "start": 196.62,
+   "end": 197.78,
+   "words": [
+    94,
+    98
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 33,
+   "start": 198.38,
+   "end": 198.84,
+   "words": [
+    99,
+    100
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 34,
+   "start": 202.36,
+   "end": 202.94,
+   "words": [
+    101,
+    103
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Father-in-law",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 35,
+   "start": 203.76,
+   "end": 203.82,
+   "words": [
+    104,
+    104
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Father-in-law",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 36,
+   "start": 205.62,
+   "end": 206.56,
+   "words": [
+    105,
+    106
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 37,
+   "start": 210.46,
+   "end": 212.46,
+   "words": [
+    107,
+    112
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 38,
+   "start": 213.68,
+   "end": 215.14,
+   "words": [
+    113,
+    117
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 39,
+   "start": 215.7,
+   "end": 217.32,
+   "words": [
+    118,
+    121
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Father-in-law",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 40,
+   "start": 218.28,
+   "end": 219.36,
+   "words": [
+    122,
+    126
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Father-in-law",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 41,
+   "start": 219.92,
+   "end": 220.44,
+   "words": [
+    127,
+    128
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 42,
+   "start": 221.6,
+   "end": 222.68,
+   "words": [
+    129,
+    132
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Father-in-law",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 43,
+   "start": 223.12,
+   "end": 223.48,
+   "words": [
+    133,
+    133
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 44,
+   "start": 225.32,
+   "end": 226.2,
+   "words": [
+    134,
+    135
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 45,
+   "start": 227.66,
+   "end": 228.8,
+   "words": [
+    136,
+    139
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 46,
+   "start": 229.58,
+   "end": 231.34,
+   "words": [
+    140,
+    145
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 47,
+   "start": 232.2,
+   "end": 237.5,
+   "words": [
+    146,
+    157
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 48,
+   "start": 238.32,
+   "end": 247.16,
+   "words": [
+    158,
+    174
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 49,
+   "start": 251.38,
+   "end": 251.76,
+   "words": [
+    175,
+    175
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Father-in-law",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 50,
+   "start": 253.02,
+   "end": 253.4,
+   "words": [
+    176,
+    176
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Father-in-law",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 51,
+   "start": 254.24,
+   "end": 257.86,
+   "words": [
+    177,
+    189
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Father-in-law",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 52,
+   "start": 258.899,
+   "end": 260.36,
+   "words": [
+    190,
+    191
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 53,
+   "start": 260.88,
+   "end": 261.12,
+   "words": [
+    192,
+    192
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 54,
+   "start": 261.18,
+   "end": 263.22,
+   "words": [
+    193,
+    200
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 55,
+   "start": 264.76,
+   "end": 264.96,
+   "words": [
+    201,
+    201
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 56,
+   "start": 265.22,
+   "end": 267.74,
+   "words": [
+    202,
+    209
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Father-in-law",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 57,
+   "start": 271.12,
+   "end": 273.08,
+   "words": [
+    210,
+    213
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 58,
+   "start": 278.86,
+   "end": 279.3,
+   "words": [
+    214,
+    214
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 59,
+   "start": 289.76,
+   "end": 290.72,
+   "words": [
+    215,
+    217
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 60,
+   "start": 292.16,
+   "end": 292.2,
+   "words": [
+    218,
+    218
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 61,
+   "start": 292.32,
+   "end": 292.34,
+   "words": [
+    219,
+    219
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 62,
+   "start": 293.66,
+   "end": 295.2,
+   "words": [
+    220,
+    222
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 63,
+   "start": 295.6,
+   "end": 295.6,
+   "words": [
+    223,
+    223
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 64,
+   "start": 297.86,
+   "end": 297.9,
+   "words": [
+    224,
+    224
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 65,
+   "start": 298.74,
+   "end": 300.4,
+   "words": [
+    225,
+    230
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 66,
+   "start": 302.74,
+   "end": 303.76,
+   "words": [
+    231,
+    234
+   ],
+   "scribe": "speaker_0",
+   "key": "C",
+   "name": "Father-in-law",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 67,
+   "start": 305.4,
+   "end": 305.9,
+   "words": [
+    235,
+    236
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Mother",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 68,
+   "start": 305.92,
+   "end": 305.96,
+   "words": [
+    237,
+    237
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 69,
+   "start": 306.78,
+   "end": 308.26,
+   "words": [
+    238,
+    241
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Mother",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 70,
+   "start": 309.26,
+   "end": 311.5,
+   "words": [
+    242,
+    245
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 71,
+   "start": 314.12,
+   "end": 314.8,
+   "words": [
+    246,
+    246
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 72,
+   "start": 316.14,
+   "end": 316.98,
+   "words": [
+    247,
+    249
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 73,
+   "start": 317.08,
+   "end": 317.24,
+   "words": [
+    250,
+    250
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Mother",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 74,
+   "start": 317.98,
+   "end": 318.82,
+   "words": [
+    251,
+    253
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 75,
+   "start": 320.1,
+   "end": 320.24,
+   "words": [
+    254,
+    254
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 76,
+   "start": 326.28,
+   "end": 326.28,
+   "words": [
+    255,
+    255
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 77,
+   "start": 326.34,
+   "end": 329.42,
+   "words": [
+    256,
+    261
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Mother",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 78,
+   "start": 329.96,
+   "end": 334.08,
+   "words": [
+    262,
+    273
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Mother",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 79,
+   "start": 334.64,
+   "end": 334.76,
+   "words": [
+    274,
+    274
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 80,
+   "start": 337.2,
+   "end": 338.94,
+   "words": [
+    275,
+    280
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 81,
+   "start": 340.3,
+   "end": 341.92,
+   "words": [
+    281,
+    285
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 82,
+   "start": 342.06,
+   "end": 344.48,
+   "words": [
+    286,
+    291
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Mother",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 83,
+   "start": 344.9,
+   "end": 345.2,
+   "words": [
+    292,
+    292
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 84,
+   "start": 345.26,
+   "end": 348.82,
+   "words": [
+    293,
+    301
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Mother",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 85,
+   "start": 348.98,
+   "end": 349.04,
+   "words": [
+    302,
+    302
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 86,
+   "start": 349.78,
+   "end": 349.9,
+   "words": [
+    303,
+    303
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 87,
+   "start": 350.92,
+   "end": 351.3,
+   "words": [
+    304,
+    304
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Mother",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 88,
+   "start": 351.88,
+   "end": 353.52,
+   "words": [
+    305,
+    309
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 89,
+   "start": 354.34,
+   "end": 356.96,
+   "words": [
+    310,
+    315
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 90,
+   "start": 357.66,
+   "end": 357.68,
+   "words": [
+    316,
+    316
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 91,
+   "start": 358.46,
+   "end": 358.98,
+   "words": [
+    317,
+    317
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 92,
+   "start": 359.48,
+   "end": 361.46,
+   "words": [
+    318,
+    323
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 93,
+   "start": 363.0,
+   "end": 363.52,
+   "words": [
+    324,
+    325
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 94,
+   "start": 363.78,
+   "end": 364.34,
+   "words": [
+    326,
+    327
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Mother",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 95,
+   "start": 366.16,
+   "end": 368.82,
+   "words": [
+    328,
+    335
+   ],
+   "scribe": "speaker_3",
+   "key": "C",
+   "name": "Father-in-law",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 96,
+   "start": 369.9,
+   "end": 374.88,
+   "words": [
+    336,
+    349
+   ],
+   "scribe": "speaker_3",
+   "key": "C",
+   "name": "Father-in-law",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 97,
+   "start": 375.62,
+   "end": 377.04,
+   "words": [
+    350,
+    356
+   ],
+   "scribe": "speaker_3",
+   "key": "C",
+   "name": "Father-in-law",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 98,
+   "start": 377.46,
+   "end": 378.22,
+   "words": [
+    357,
+    358
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 99,
+   "start": 378.54,
+   "end": 381.86,
+   "words": [
+    359,
+    370
+   ],
+   "scribe": "speaker_3",
+   "key": "C",
+   "name": "Father-in-law",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 100,
+   "start": 384.16,
+   "end": 387.42,
+   "words": [
+    371,
+    378
+   ],
+   "scribe": "speaker_3",
+   "key": "C",
+   "name": "Father-in-law",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 101,
+   "start": 388.04,
+   "end": 389.26,
+   "words": [
+    379,
+    382
+   ],
+   "scribe": "speaker_3",
+   "key": "C",
+   "name": "Father-in-law",
+   "confidence": 0.9,
+   "part": 1,
+   "from_margin": false
+  },
+  {
+   "id": 102,
+   "start": 398.28,
+   "end": 398.379,
+   "words": [
+    383,
+    383
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 103,
+   "start": 401.58,
+   "end": 402.64,
+   "words": [
+    384,
+    386
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 104,
+   "start": 404.76,
+   "end": 405.08,
+   "words": [
+    387,
+    387
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 105,
+   "start": 405.12,
+   "end": 405.34,
+   "words": [
+    388,
+    388
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Mother",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 106,
+   "start": 405.94,
+   "end": 408.02,
+   "words": [
+    389,
+    394
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 107,
+   "start": 408.42,
+   "end": 408.42,
+   "words": [
+    395,
+    395
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Mother",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 108,
+   "start": 409.34,
+   "end": 412.5,
+   "words": [
+    396,
+    405
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Mother",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 109,
+   "start": 416.88,
+   "end": 421.86,
+   "words": [
+    406,
+    417
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 110,
+   "start": 422.24,
+   "end": 423.56,
+   "words": [
+    418,
+    419
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 111,
+   "start": 424.14,
+   "end": 429.16,
+   "words": [
+    420,
+    430
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 112,
+   "start": 430.16,
+   "end": 431.12,
+   "words": [
+    431,
+    434
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 113,
+   "start": 431.8,
+   "end": 431.98,
+   "words": [
+    435,
+    435
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Mother",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 114,
+   "start": 434.2,
+   "end": 434.64,
+   "words": [
+    436,
+    436
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Mother",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 115,
+   "start": 435.1,
+   "end": 435.4,
+   "words": [
+    437,
+    437
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Mother",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 116,
+   "start": 436.5,
+   "end": 436.84,
+   "words": [
+    438,
+    438
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 117,
+   "start": 437.7,
+   "end": 439.6,
+   "words": [
+    439,
+    441
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Mother",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 118,
+   "start": 445.92,
+   "end": 446.28,
+   "words": [
+    442,
+    442
+   ],
+   "scribe": "speaker_3",
+   "key": "E",
+   "name": "Husband's Friend",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 119,
+   "start": 447.04,
+   "end": 447.6,
+   "words": [
+    443,
+    444
+   ],
+   "scribe": "speaker_3",
+   "key": "E",
+   "name": "Husband's Friend",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 120,
+   "start": 448.02,
+   "end": 448.52,
+   "words": [
+    445,
+    446
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 121,
+   "start": 449.04,
+   "end": 450.74,
+   "words": [
+    447,
+    451
+   ],
+   "scribe": "speaker_3",
+   "key": "E",
+   "name": "Husband's Friend",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 122,
+   "start": 451.46,
+   "end": 456.3,
+   "words": [
+    452,
+    464
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 123,
+   "start": 456.66,
+   "end": 457.54,
+   "words": [
+    465,
+    467
+   ],
+   "scribe": "speaker_3",
+   "key": "E",
+   "name": "Husband's Friend",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 124,
+   "start": 458.04,
+   "end": 467.9,
+   "words": [
+    468,
+    490
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 125,
+   "start": 469.42,
+   "end": 470.08,
+   "words": [
+    491,
+    492
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 126,
+   "start": 470.94,
+   "end": 472.88,
+   "words": [
+    493,
+    499
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 127,
+   "start": 473.2,
+   "end": 474.9,
+   "words": [
+    500,
+    505
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 128,
+   "start": 475.14,
+   "end": 475.8,
+   "words": [
+    506,
+    507
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 129,
+   "start": 475.84,
+   "end": 476.66,
+   "words": [
+    508,
+    509
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 130,
+   "start": 476.86,
+   "end": 478.48,
+   "words": [
+    510,
+    516
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 131,
+   "start": 479.5,
+   "end": 482.52,
+   "words": [
+    517,
+    524
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 132,
+   "start": 483.32,
+   "end": 484.46,
+   "words": [
+    525,
+    527
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 133,
+   "start": 484.98,
+   "end": 485.72,
+   "words": [
+    528,
+    528
+   ],
+   "scribe": "speaker_3",
+   "key": "E",
+   "name": "Husband's Friend",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 134,
+   "start": 486.0,
+   "end": 486.52,
+   "words": [
+    529,
+    530
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 135,
+   "start": 486.9,
+   "end": 492.92,
+   "words": [
+    531,
+    546
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 136,
+   "start": 494.939,
+   "end": 495.599,
+   "words": [
+    547,
+    549
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 137,
+   "start": 496.599,
+   "end": 500.2,
+   "words": [
+    550,
+    556
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 138,
+   "start": 501.16,
+   "end": 501.86,
+   "words": [
+    557,
+    559
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 139,
+   "start": 502.58,
+   "end": 503.52,
+   "words": [
+    560,
+    561
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 140,
+   "start": 503.62,
+   "end": 505.02,
+   "words": [
+    562,
+    564
+   ],
+   "scribe": "speaker_3",
+   "key": "E",
+   "name": "Husband's Friend",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 141,
+   "start": 506.02,
+   "end": 509.38,
+   "words": [
+    565,
+    575
+   ],
+   "scribe": "speaker_3",
+   "key": "E",
+   "name": "Husband's Friend",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 142,
+   "start": 510.9,
+   "end": 511.9,
+   "words": [
+    576,
+    578
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 143,
+   "start": 521.78,
+   "end": 522.88,
+   "words": [
+    579,
+    580
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 144,
+   "start": 525.04,
+   "end": 526.76,
+   "words": [
+    581,
+    584
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 145,
+   "start": 528.14,
+   "end": 530.34,
+   "words": [
+    585,
+    591
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 146,
+   "start": 531.76,
+   "end": 532.62,
+   "words": [
+    592,
+    594
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 147,
+   "start": 533.26,
+   "end": 533.52,
+   "words": [
+    595,
+    595
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 148,
+   "start": 534.24,
+   "end": 536.18,
+   "words": [
+    596,
+    602
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 149,
+   "start": 537.2,
+   "end": 537.92,
+   "words": [
+    603,
+    605
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 150,
+   "start": 540.32,
+   "end": 542.36,
+   "words": [
+    606,
+    613
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 151,
+   "start": 542.48,
+   "end": 543.1,
+   "words": [
+    614,
+    614
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 152,
+   "start": 544.56,
+   "end": 548.1,
+   "words": [
+    615,
+    618
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 153,
+   "start": 548.52,
+   "end": 548.78,
+   "words": [
+    619,
+    619
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 154,
+   "start": 549.46,
+   "end": 550.1,
+   "words": [
+    620,
+    622
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 155,
+   "start": 550.68,
+   "end": 552.02,
+   "words": [
+    623,
+    626
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 156,
+   "start": 552.46,
+   "end": 553.04,
+   "words": [
+    627,
+    628
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 157,
+   "start": 553.84,
+   "end": 554.08,
+   "words": [
+    629,
+    629
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 158,
+   "start": 556.12,
+   "end": 556.74,
+   "words": [
+    630,
+    631
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 159,
+   "start": 600.46,
+   "end": 600.74,
+   "words": [
+    632,
+    632
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 160,
+   "start": 600.92,
+   "end": 602.0,
+   "words": [
+    633,
+    635
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 161,
+   "start": 604.4,
+   "end": 604.66,
+   "words": [
+    636,
+    636
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 162,
+   "start": 605.38,
+   "end": 606.76,
+   "words": [
+    637,
+    641
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 163,
+   "start": 606.84,
+   "end": 606.96,
+   "words": [
+    642,
+    642
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 164,
+   "start": 608.18,
+   "end": 609.4,
+   "words": [
+    643,
+    646
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 165,
+   "start": 609.8,
+   "end": 610.66,
+   "words": [
+    647,
+    648
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 166,
+   "start": 611.42,
+   "end": 611.7,
+   "words": [
+    649,
+    649
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 167,
+   "start": 613.36,
+   "end": 613.84,
+   "words": [
+    650,
+    651
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 168,
+   "start": 615.0,
+   "end": 616.66,
+   "words": [
+    652,
+    656
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 169,
+   "start": 616.86,
+   "end": 621.18,
+   "words": [
+    657,
+    670
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 170,
+   "start": 621.76,
+   "end": 622.88,
+   "words": [
+    671,
+    673
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 171,
+   "start": 623.859,
+   "end": 624.38,
+   "words": [
+    674,
+    674
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 172,
+   "start": 651.42,
+   "end": 652.46,
+   "words": [
+    675,
+    678
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 173,
+   "start": 653.46,
+   "end": 659.48,
+   "words": [
+    679,
+    700
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 174,
+   "start": 659.7,
+   "end": 660.44,
+   "words": [
+    701,
+    701
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 175,
+   "start": 661.62,
+   "end": 663.0,
+   "words": [
+    702,
+    706
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 176,
+   "start": 664.76,
+   "end": 665.4,
+   "words": [
+    707,
+    708
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 177,
+   "start": 688.28,
+   "end": 688.64,
+   "words": [
+    709,
+    709
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 178,
+   "start": 690.84,
+   "end": 690.86,
+   "words": [
+    710,
+    710
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 179,
+   "start": 692.7,
+   "end": 693.0,
+   "words": [
+    711,
+    711
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 180,
+   "start": 698.4,
+   "end": 701.48,
+   "words": [
+    712,
+    720
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 181,
+   "start": 706.0,
+   "end": 706.18,
+   "words": [
+    721,
+    721
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 182,
+   "start": 706.64,
+   "end": 706.82,
+   "words": [
+    722,
+    722
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 183,
+   "start": 707.14,
+   "end": 707.56,
+   "words": [
+    723,
+    724
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 184,
+   "start": 709.26,
+   "end": 709.54,
+   "words": [
+    725,
+    725
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 185,
+   "start": 710.48,
+   "end": 712.8,
+   "words": [
+    726,
+    731
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 186,
+   "start": 713.66,
+   "end": 716.92,
+   "words": [
+    732,
+    739
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 187,
+   "start": 717.74,
+   "end": 718.24,
+   "words": [
+    740,
+    741
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 188,
+   "start": 719.1,
+   "end": 720.18,
+   "words": [
+    742,
+    746
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 189,
+   "start": 721.84,
+   "end": 725.52,
+   "words": [
+    747,
+    755
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 190,
+   "start": 726.28,
+   "end": 727.94,
+   "words": [
+    756,
+    761
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 191,
+   "start": 728.8,
+   "end": 729.14,
+   "words": [
+    762,
+    762
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 192,
+   "start": 730.46,
+   "end": 732.2,
+   "words": [
+    763,
+    766
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 193,
+   "start": 735.064,
+   "end": 736.024,
+   "words": [
+    767,
+    771
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 194,
+   "start": 740.444,
+   "end": 740.844,
+   "words": [
+    772,
+    772
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 195,
+   "start": 742.684,
+   "end": 745.224,
+   "words": [
+    773,
+    779
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 196,
+   "start": 746.104,
+   "end": 746.224,
+   "words": [
+    780,
+    780
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 197,
+   "start": 748.104,
+   "end": 749.104,
+   "words": [
+    781,
+    783
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 198,
+   "start": 750.424,
+   "end": 751.784,
+   "words": [
+    784,
+    787
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 199,
+   "start": 753.384,
+   "end": 753.644,
+   "words": [
+    788,
+    788
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 200,
+   "start": 754.724,
+   "end": 756.344,
+   "words": [
+    789,
+    793
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 201,
+   "start": 757.064,
+   "end": 758.244,
+   "words": [
+    794,
+    798
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 202,
+   "start": 758.984,
+   "end": 759.584,
+   "words": [
+    799,
+    799
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 203,
+   "start": 760.384,
+   "end": 762.764,
+   "words": [
+    800,
+    805
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 204,
+   "start": 765.684,
+   "end": 766.184,
+   "words": [
+    806,
+    807
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 205,
+   "start": 775.124,
+   "end": 777.424,
+   "words": [
+    808,
+    814
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 206,
+   "start": 782.464,
+   "end": 784.864,
+   "words": [
+    815,
+    822
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 207,
+   "start": 786.484,
+   "end": 789.624,
+   "words": [
+    823,
+    830
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 208,
+   "start": 789.684,
+   "end": 791.164,
+   "words": [
+    831,
+    836
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 209,
+   "start": 791.384,
+   "end": 792.764,
+   "words": [
+    837,
+    841
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 210,
+   "start": 793.024,
+   "end": 794.024,
+   "words": [
+    842,
+    845
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 211,
+   "start": 794.264,
+   "end": 795.944,
+   "words": [
+    846,
+    851
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 212,
+   "start": 796.224,
+   "end": 797.164,
+   "words": [
+    852,
+    854
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 213,
+   "start": 797.424,
+   "end": 797.624,
+   "words": [
+    855,
+    855
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 214,
+   "start": 798.504,
+   "end": 798.824,
+   "words": [
+    856,
+    856
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 2,
+   "from_margin": false
+  },
+  {
+   "id": 215,
+   "start": 808.244,
+   "end": 810.344,
+   "words": [
+    857,
+    864
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 216,
+   "start": 812.024,
+   "end": 812.864,
+   "words": [
+    865,
+    866
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 217,
+   "start": 813.364,
+   "end": 814.564,
+   "words": [
+    867,
+    869
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 218,
+   "start": 814.924,
+   "end": 815.264,
+   "words": [
+    870,
+    870
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 219,
+   "start": 816.764,
+   "end": 820.224,
+   "words": [
+    871,
+    881
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 220,
+   "start": 820.744,
+   "end": 821.644,
+   "words": [
+    882,
+    883
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 221,
+   "start": 822.444,
+   "end": 822.984,
+   "words": [
+    884,
+    885
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 222,
+   "start": 825.084,
+   "end": 825.964,
+   "words": [
+    886,
+    889
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 223,
+   "start": 833.904,
+   "end": 834.484,
+   "words": [
+    890,
+    890
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 224,
+   "start": 838.964,
+   "end": 839.244,
+   "words": [
+    891,
+    891
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 225,
+   "start": 839.284,
+   "end": 840.004,
+   "words": [
+    892,
+    893
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 226,
+   "start": 842.544,
+   "end": 842.584,
+   "words": [
+    894,
+    894
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 227,
+   "start": 842.624,
+   "end": 844.644,
+   "words": [
+    895,
+    898
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 228,
+   "start": 845.064,
+   "end": 846.764,
+   "words": [
+    899,
+    903
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 229,
+   "start": 848.484,
+   "end": 850.464,
+   "words": [
+    904,
+    909
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 230,
+   "start": 850.884,
+   "end": 851.304,
+   "words": [
+    910,
+    910
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 231,
+   "start": 853.924,
+   "end": 854.544,
+   "words": [
+    911,
+    911
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 232,
+   "start": 854.584,
+   "end": 855.664,
+   "words": [
+    912,
+    913
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 233,
+   "start": 855.724,
+   "end": 856.904,
+   "words": [
+    914,
+    916
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 234,
+   "start": 857.504,
+   "end": 859.444,
+   "words": [
+    917,
+    923
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Mother",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 235,
+   "start": 861.084,
+   "end": 861.264,
+   "words": [
+    924,
+    924
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 236,
+   "start": 861.784,
+   "end": 863.883,
+   "words": [
+    925,
+    929
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Mother",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 237,
+   "start": 866.184,
+   "end": 867.684,
+   "words": [
+    930,
+    932
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Mother",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 238,
+   "start": 869.284,
+   "end": 870.624,
+   "words": [
+    933,
+    936
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Mother",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 239,
+   "start": 871.604,
+   "end": 873.784,
+   "words": [
+    937,
+    942
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Mother",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 240,
+   "start": 876.924,
+   "end": 877.784,
+   "words": [
+    943,
+    945
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 241,
+   "start": 883.564,
+   "end": 884.424,
+   "words": [
+    946,
+    948
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 242,
+   "start": 885.724,
+   "end": 887.404,
+   "words": [
+    949,
+    953
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 243,
+   "start": 889.204,
+   "end": 889.604,
+   "words": [
+    954,
+    954
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 244,
+   "start": 891.344,
+   "end": 891.404,
+   "words": [
+    955,
+    955
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 245,
+   "start": 892.144,
+   "end": 893.544,
+   "words": [
+    956,
+    960
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 246,
+   "start": 893.984,
+   "end": 895.584,
+   "words": [
+    961,
+    965
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 247,
+   "start": 896.044,
+   "end": 896.944,
+   "words": [
+    966,
+    969
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 248,
+   "start": 897.064,
+   "end": 897.264,
+   "words": [
+    970,
+    970
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 249,
+   "start": 897.804,
+   "end": 898.644,
+   "words": [
+    971,
+    972
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 250,
+   "start": 899.604,
+   "end": 901.904,
+   "words": [
+    973,
+    980
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 251,
+   "start": 902.504,
+   "end": 905.184,
+   "words": [
+    981,
+    986
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 252,
+   "start": 905.344,
+   "end": 905.444,
+   "words": [
+    987,
+    987
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 253,
+   "start": 907.664,
+   "end": 907.944,
+   "words": [
+    988,
+    988
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 254,
+   "start": 914.784,
+   "end": 914.784,
+   "words": [
+    989,
+    989
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 255,
+   "start": 914.824,
+   "end": 917.704,
+   "words": [
+    990,
+    996
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 256,
+   "start": 919.024,
+   "end": 925.244,
+   "words": [
+    997,
+    998
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 257,
+   "start": 925.284,
+   "end": 925.584,
+   "words": [
+    999,
+    999
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 258,
+   "start": 948.844,
+   "end": 949.644,
+   "words": [
+    1000,
+    1001
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 259,
+   "start": 950.184,
+   "end": 950.724,
+   "words": [
+    1002,
+    1002
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 260,
+   "start": 951.924,
+   "end": 952.744,
+   "words": [
+    1003,
+    1004
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 261,
+   "start": 953.784,
+   "end": 953.824,
+   "words": [
+    1005,
+    1005
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 262,
+   "start": 955.724,
+   "end": 956.644,
+   "words": [
+    1006,
+    1007
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 263,
+   "start": 957.064,
+   "end": 958.924,
+   "words": [
+    1008,
+    1013
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 264,
+   "start": 961.604,
+   "end": 962.244,
+   "words": [
+    1014,
+    1014
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 265,
+   "start": 966.264,
+   "end": 966.844,
+   "words": [
+    1015,
+    1016
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 266,
+   "start": 968.144,
+   "end": 968.164,
+   "words": [
+    1017,
+    1017
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 267,
+   "start": 968.284,
+   "end": 968.964,
+   "words": [
+    1018,
+    1019
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 268,
+   "start": 969.524,
+   "end": 970.184,
+   "words": [
+    1020,
+    1021
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 269,
+   "start": 970.624,
+   "end": 972.064,
+   "words": [
+    1022,
+    1027
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 270,
+   "start": 972.344,
+   "end": 973.444,
+   "words": [
+    1028,
+    1033
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 271,
+   "start": 999.304,
+   "end": 1001.264,
+   "words": [
+    1034,
+    1040
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 272,
+   "start": 1007.564,
+   "end": 1009.984,
+   "words": [
+    1041,
+    1047
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 273,
+   "start": 1013.504,
+   "end": 1015.124,
+   "words": [
+    1048,
+    1052
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 274,
+   "start": 1016.064,
+   "end": 1016.684,
+   "words": [
+    1053,
+    1053
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 275,
+   "start": 1016.884,
+   "end": 1017.224,
+   "words": [
+    1054,
+    1054
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 276,
+   "start": 1022.784,
+   "end": 1024.524,
+   "words": [
+    1055,
+    1060
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Husband's Friend",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 277,
+   "start": 1025.224,
+   "end": 1026.384,
+   "words": [
+    1061,
+    1063
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Husband's Friend",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 278,
+   "start": 1027.464,
+   "end": 1030.544,
+   "words": [
+    1064,
+    1071
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Husband's Friend",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 279,
+   "start": 1031.924,
+   "end": 1033.764,
+   "words": [
+    1072,
+    1076
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Husband's Friend",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 280,
+   "start": 1034.344,
+   "end": 1037.744,
+   "words": [
+    1077,
+    1085
+   ],
+   "scribe": "speaker_0",
+   "key": "E",
+   "name": "Husband's Friend",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 281,
+   "start": 1039.504,
+   "end": 1040.484,
+   "words": [
+    1086,
+    1089
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 282,
+   "start": 1040.764,
+   "end": 1041.504,
+   "words": [
+    1090,
+    1092
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 283,
+   "start": 1041.564,
+   "end": 1047.504,
+   "words": [
+    1093,
+    1094
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 284,
+   "start": 1047.564,
+   "end": 1049.484,
+   "words": [
+    1095,
+    1098
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 285,
+   "start": 1050.824,
+   "end": 1051.924,
+   "words": [
+    1099,
+    1102
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 286,
+   "start": 1053.624,
+   "end": 1055.084,
+   "words": [
+    1103,
+    1107
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 287,
+   "start": 1056.344,
+   "end": 1058.504,
+   "words": [
+    1108,
+    1109
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 288,
+   "start": 1060.224,
+   "end": 1061.264,
+   "words": [
+    1110,
+    1113
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 289,
+   "start": 1062.144,
+   "end": 1063.744,
+   "words": [
+    1114,
+    1117
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 290,
+   "start": 1095.444,
+   "end": 1096.184,
+   "words": [
+    1118,
+    1118
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 291,
+   "start": 1096.684,
+   "end": 1099.924,
+   "words": [
+    1119,
+    1127
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Mother",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 292,
+   "start": 1100.364,
+   "end": 1105.484,
+   "words": [
+    1128,
+    1146
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 293,
+   "start": 1105.944,
+   "end": 1106.864,
+   "words": [
+    1147,
+    1149
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Mother",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 294,
+   "start": 1107.324,
+   "end": 1109.264,
+   "words": [
+    1150,
+    1154
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Mother",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 295,
+   "start": 1110.044,
+   "end": 1110.964,
+   "words": [
+    1155,
+    1156
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Mother",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 296,
+   "start": 1111.784,
+   "end": 1119.524,
+   "words": [
+    1157,
+    1172
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Mother",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 297,
+   "start": 1119.864,
+   "end": 1120.804,
+   "words": [
+    1173,
+    1175
+   ],
+   "scribe": "speaker_2",
+   "key": "D",
+   "name": "Mother",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 298,
+   "start": 1128.044,
+   "end": 1130.264,
+   "words": [
+    1176,
+    1181
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 299,
+   "start": 1130.624,
+   "end": 1132.824,
+   "words": [
+    1182,
+    1186
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 300,
+   "start": 1134.904,
+   "end": 1137.004,
+   "words": [
+    1187,
+    1192
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 301,
+   "start": 1138.284,
+   "end": 1138.404,
+   "words": [
+    1193,
+    1193
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 302,
+   "start": 1139.844,
+   "end": 1140.144,
+   "words": [
+    1194,
+    1194
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 303,
+   "start": 1140.864,
+   "end": 1143.584,
+   "words": [
+    1195,
+    1202
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 304,
+   "start": 1143.944,
+   "end": 1145.284,
+   "words": [
+    1203,
+    1205
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 305,
+   "start": 1145.444,
+   "end": 1145.944,
+   "words": [
+    1206,
+    1209
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 306,
+   "start": 1147.044,
+   "end": 1149.624,
+   "words": [
+    1210,
+    1218
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 307,
+   "start": 1151.324,
+   "end": 1153.384,
+   "words": [
+    1219,
+    1223
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 308,
+   "start": 1153.664,
+   "end": 1155.124,
+   "words": [
+    1224,
+    1227
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 309,
+   "start": 1155.164,
+   "end": 1155.964,
+   "words": [
+    1228,
+    1229
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 310,
+   "start": 1156.484,
+   "end": 1157.404,
+   "words": [
+    1230,
+    1233
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 311,
+   "start": 1158.464,
+   "end": 1160.044,
+   "words": [
+    1234,
+    1239
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 312,
+   "start": 1160.384,
+   "end": 1160.484,
+   "words": [
+    1240,
+    1240
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 313,
+   "start": 1161.604,
+   "end": 1161.943,
+   "words": [
+    1241,
+    1241
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 314,
+   "start": 1162.784,
+   "end": 1162.984,
+   "words": [
+    1242,
+    1242
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 315,
+   "start": 1163.424,
+   "end": 1163.584,
+   "words": [
+    1243,
+    1243
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 316,
+   "start": 1179.444,
+   "end": 1180.284,
+   "words": [
+    1244,
+    1246
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 317,
+   "start": 1189.344,
+   "end": 1190.224,
+   "words": [
+    1247,
+    1248
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 318,
+   "start": 1191.124,
+   "end": 1191.724,
+   "words": [
+    1249,
+    1249
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 319,
+   "start": 1192.504,
+   "end": 1195.504,
+   "words": [
+    1250,
+    1262
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 320,
+   "start": 1196.104,
+   "end": 1197.564,
+   "words": [
+    1263,
+    1267
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 321,
+   "start": 1198.424,
+   "end": 1202.684,
+   "words": [
+    1268,
+    1276
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 322,
+   "start": 1209.604,
+   "end": 1210.244,
+   "words": [
+    1277,
+    1278
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 323,
+   "start": 1211.684,
+   "end": 1216.864,
+   "words": [
+    1279,
+    1293
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 324,
+   "start": 1217.284,
+   "end": 1219.044,
+   "words": [
+    1294,
+    1299
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 325,
+   "start": 1219.664,
+   "end": 1222.024,
+   "words": [
+    1300,
+    1305
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 326,
+   "start": 1222.724,
+   "end": 1227.104,
+   "words": [
+    1306,
+    1315
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 327,
+   "start": 1227.424,
+   "end": 1231.424,
+   "words": [
+    1316,
+    1326
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 328,
+   "start": 1231.824,
+   "end": 1235.524,
+   "words": [
+    1327,
+    1334
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 329,
+   "start": 1240.264,
+   "end": 1242.384,
+   "words": [
+    1335,
+    1339
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 330,
+   "start": 1243.124,
+   "end": 1244.024,
+   "words": [
+    1340,
+    1343
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 331,
+   "start": 1244.324,
+   "end": 1247.244,
+   "words": [
+    1344,
+    1353
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 332,
+   "start": 1247.504,
+   "end": 1248.564,
+   "words": [
+    1354,
+    1356
+   ],
+   "scribe": "speaker_0",
+   "key": "B",
+   "name": "Husband",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 333,
+   "start": 1248.664,
+   "end": 1250.324,
+   "words": [
+    1357,
+    1361
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  },
+  {
+   "id": 334,
+   "start": 1251.404,
+   "end": 1252.624,
+   "words": [
+    1362,
+    1365
+   ],
+   "scribe": "speaker_1",
+   "key": "A",
+   "name": "Amrutha",
+   "confidence": 0.9,
+   "part": 3,
+   "from_margin": false
+  }
+ ],
+ "coverage": {
+  "n_lines": 335,
+  "assigned": 335,
+  "unknown": 0,
+  "missing": 0,
+  "from_margin": 0,
+  "duplicate_ids": 0,
+  "invalid_items": [],
+  "bad_keys": []
+ },
+ "cost": {
+  "projected": {
+   "chunks": [
+    {
+     "part": 1,
+     "core": [
+      0,
+      101
+     ],
+     "shown": [
+      0,
+      111
+     ],
+     "input_tokens": 3936,
+     "output_tokens": 3500,
+     "max_output_tokens": 8576,
+     "inr": 1.54,
+     "worst_case_inr": 3.37
+    },
+    {
+     "part": 2,
+     "core": [
+      102,
+      214
+     ],
+     "shown": [
+      92,
+      224
+     ],
+     "input_tokens": 4602,
+     "output_tokens": 3815,
+     "max_output_tokens": 9416,
+     "inr": 1.7,
+     "worst_case_inr": 3.72
+    },
+    {
+     "part": 3,
+     "core": [
+      215,
+      334
+     ],
+     "shown": [
+      205,
+      334
+     ],
+     "input_tokens": 4650,
+     "output_tokens": 3770,
+     "max_output_tokens": 9296,
+     "inr": 1.69,
+     "worst_case_inr": 3.68
+    }
+   ],
+   "inr": 4.93,
+   "worst_case_inr": 10.77
+  },
+  "actual": {
+   "inr": 1.781,
+   "chunks_ok": 3,
+   "chunks": 3
+  }
+ },
+ "stopped": null,
+ "failures": [],
+ "transcript": "scribe_dataset/QWIvgoTQGKk/QWIvgoTQGKk_scribe_transcript.json",
+ "asr_fix": true
+}
