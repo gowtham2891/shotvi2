@@ -105,10 +105,10 @@ class TestPrefix(unittest.TestCase):
         a, b = prefix.build_prefix(f, None, CFG), prefix.build_prefix(copy.deepcopy(f), None, CFG)
         self.assertEqual(a, b)
         self.assertIn("## LINE TABLE", a)
-        self.assertIn("## SCENE-EDGE PROPOSALS", a)
+        self.assertNotIn("SCENE-EDGE PROPOSALS", a)            # the program no longer guesses scenes (2026-11-03)
         self.assertIn("[speaker_0]:", a)                  # raw labels are the prior in the line table
         self.assertIn("speaker_0: A Surya x11", a)        # the fix's names only in the LOW-TRUST block
-        self.assertIn("## ANCHOR CHECKS", a)
+        self.assertNotIn("ANCHOR CHECKS", a)
         self.assertNotIn("## SERIES GLOSSARY", a)
         c = prefix.build_prefix(f, {"premise": "x"}, CFG)
         self.assertIn("## SERIES GLOSSARY", c)
@@ -121,16 +121,16 @@ class TestValidator(unittest.TestCase):
         self.assertEqual(E.validate_tier1(a, f, a["possible_non_story"], raw=True), [])
         self.assertEqual(E.validate_tier2(a, f, CFG), [])
 
-    def test_small_gap_between_scenes_is_joined(self):
+    def test_a_scene_gap_is_asked_again_never_fixed_in_code(self):
+        """founder, 2026-11-03: even a one-line gap between scenes goes back to the model."""
         f = facts(); a = good_answer(f)
         dlg = E.dialogue_ids(f)
         sc = a["scenes"]
         i = dlg.index(sc[1]["first_line"])
         sc[1]["first_line"] = dlg[i + 1]                                   # one line left between scene 1 and scene 2
-        notes = E.repair_scene_gaps(a, f)
-        self.assertEqual(sc[0]["last_line"], dlg[i]); self.assertEqual(len(notes), 1)
-        b = good_answer(f); j = dlg.index(b["scenes"][1]["first_line"]); b["scenes"][1]["first_line"] = dlg[j + 3]
-        self.assertEqual(E.repair_scene_gaps(b, f), [])                     # three lines: left for the validator
+        errs = E.validate_tier1(a, f, a["possible_non_story"], raw=True)
+        self.assertTrue(any("belong to no scene" in e for e in errs), errs)
+        self.assertFalse(hasattr(E, "repair_scene_gaps"))
 
     def test_threads_rules(self):
         """founder, 2026-10-29: threads = at most 3 setups paying off in a LATER scene."""
@@ -240,24 +240,21 @@ class TestRun(unittest.TestCase):
         self.assertGreater(out["stages"]["1b"]["usage"]["cost_inr"], 0)
         self.assertEqual(dbg["attempts"][0]["tier"], "all")
         self.assertEqual(dbg["attempts"][0]["validation_tier1"], [])
-        statuses = {p["status"] for p in ep["derived"]["proposals"]}
-        self.assertTrue(statuses <= {"confirmed", "merged", "outside"})
-        self.assertTrue(any(s["origin"] == "confirmed" for s in ep["derived"]["scenes"][1:]))
+        self.assertNotIn("proposals", ep["derived"])
         self.assertIn("Named 8 speakers", E.plain_summary_1b(ep))
         self.assertIn("label merges", E.plain_summary_1b(ep))
 
-    def test_short_scene_merges(self):
+    def test_short_scenes_are_kept(self):
+        """founder, 2026-11-03: the model's scenes are used as given; code never merges a short scene."""
         f = facts(); a = good_answer(f)
         dl = E.dialogue_ids(f)
         a["scenes"][2]["last_line"] = dl[-4]
         a["scenes"].append({"id": 4, "first_line": dl[-3], "last_line": dl[-2], "label": "tiny", "register": "comedy", "speakers": ["speaker_6"]})
         a["scenes"].append({"id": 5, "first_line": dl[-1], "last_line": dl[-1], "label": "tail", "register": "comedy", "speakers": ["speaker_5"]})
         self.assertEqual(E.validate_tier1(a, f, a["possible_non_story"], raw=True), [])
-        d = E.derive(a, f, min_scene_s=5.0, raw=True)      # scene 3 is 9 s in the synthetic; the rule must only take the 2 s one
-        self.assertEqual([x["id"] for x in d["scenes"]], [1, 2, 3, 5])
-        self.assertEqual(d["scenes"][2]["last_line"], dl[-2])
-        self.assertEqual(d["merged_short"][0]["id"], 4)
-        self.assertEqual(d["counts"]["n_short_scenes_merged"], 1)
+        d = E.derive(a, f, raw=True)
+        self.assertEqual([x["id"] for x in d["scenes"]], [1, 2, 3, 4, 5])
+        self.assertNotIn("merged_short", d)
 
     def test_tier1_retry_then_pass(self):
         f = facts(); good = good_answer(f)

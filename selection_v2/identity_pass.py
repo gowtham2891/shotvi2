@@ -43,12 +43,22 @@ def naming_check_on(cfg: dict) -> bool:
     return bool((cfg.get("naming_check") or {}).get("enabled"))
 
 
+def scenes_mode(cfg: dict) -> str:
+    """founder, 2026-11-03 test: "off" (no scenes asked), "check" (the text step's scene split is sent and the video step
+    checks it) or "find" (no scene split is sent; the video step finds the scenes)."""
+    m = (cfg.get("identity_pass") or {}).get("scenes") or "off"
+    if m not in ("off", "check", "find"):
+        raise ValueError(f"identity_pass.scenes must be off, check or find, not {m!r}")
+    return m
+
+
 def speech(facts: dict) -> list[dict]:
     return [r for r in facts["lines"] if r["kind"] == "speech"]
 
 
-def context_text(facts: dict, base: dict) -> str:
-    """PART 1 (the text step's people) and PART 2 (the transcript by scene with the text step's person per line)."""
+def context_text(facts: dict, base: dict, with_scenes: bool = True) -> str:
+    """PART 1 (the text step's people) and PART 2 (the transcript with the text step's person per line), grouped by the
+    text step's scenes unless ``with_scenes`` is False (then one list in time order)."""
     names = NC._names(facts, base)
     sp = {s["key"]: s for s in base["speakers"]}
     used = sorted({NC._key_of(r, base) for r in speech(facts)} - {None})
@@ -58,8 +68,8 @@ def context_text(facts: dict, base: dict) -> str:
     for k in used:
         s = sp.get(k) or {}
         out.append(f"{k} = {names.get(k) or '?'}: {s.get('role') or ''}" + (f" ({s['evidence']})" if s.get("evidence") else ""))
-    out += ["", "# PART 2: TRANSCRIPT BY SCENE (id [start-end] voice label | text step's person | words)"]
-    scenes = facts["episode_pass"]["derived"]["scenes"]
+    out += ["", f"# PART 2: TRANSCRIPT {'BY SCENE' if with_scenes else 'IN TIME ORDER'} (id [start-end] voice label | text step's person | words)"]
+    scenes = facts["episode_pass"]["derived"]["scenes"] if with_scenes else []
     si = 0
     for r in facts["lines"]:
         while si < len(scenes) and r["start"] >= scenes[si]["start"] - 1e-6:
@@ -142,6 +152,60 @@ def validate(ans: dict, facts: dict, base: dict, max_missing_share: float = 0.05
     return errs, warns, lines
 
 
+def validate_scenes(ans: dict, facts: dict, known: set) -> tuple[list[str], list[str], list[dict]]:
+    """Format checks only on the video step's scenes. A scene whose first line is not a line id is dropped (warning);
+    no scenes at all is an error. ``last`` (asked from 2026-11-03) ends a scene; lines after it and before the next
+    scene are a gap the model describes in ``after``. A missing or bad ``last`` (not a line, before ``first``, past the
+    next scene's start) is a warning and the scene runs to the line before the next one. Returns
+    [{id, first_line, last_line, start, end, where, who, why, end_why, after, gap: [first, last] | None}] in line order."""
+    errs, warns = [], []
+    pos = {r["id"]: i for i, r in enumerate(facts["lines"])}
+    got, bad, dup = {}, [], 0
+    for sc in ans.get("scenes") or []:
+        f = sc.get("first")
+        if f not in pos:
+            bad.append(f); continue
+        if f in got:
+            dup += 1; continue
+        got[f] = sc
+    if not got:
+        errs.append("scenes: no scene with a valid first line id; give every scene's first line id")
+        return errs, warns, []
+    if bad:
+        warns.append(f"{len(bad)} scene(s) with a first id that is not a line were dropped: {bad[:6]}")
+    if dup:
+        warns.append(f"{dup} scene(s) with a repeated first line were dropped")
+    firsts = list(got)
+    if firsts != sorted(firsts, key=pos.get):
+        warns.append("scenes were not in line order; read in line order")
+    firsts.sort(key=pos.get)
+    if pos[firsts[0]] != 0:
+        warns.append(f"the first scene starts at {firsts[0]}, not the first line; the lines before it go to the first scene")
+    lines = facts["lines"]
+    out, bad_last = [], []
+    for i, f in enumerate(firsts):
+        a = 0 if i == 0 else pos[f]
+        nxt = pos[firsts[i + 1]] - 1 if i + 1 < len(firsts) else len(lines) - 1
+        sc = got[f]
+        b = nxt
+        if sc.get("last") is not None:
+            lb = pos.get(sc["last"])
+            if lb is None or lb < pos[f] or lb > nxt:
+                bad_last.append(f"{f}..{sc['last']}")
+            else:
+                b = lb
+        unk = [k for k in sc.get("who") or [] if k not in known]
+        if unk:
+            warns.append(f"scene at {f}: key(s) {unk} not in people")
+        out.append({"id": i + 1, "first_line": lines[a]["id"], "last_line": lines[b]["id"], "start": lines[a]["start"],
+                    "end": lines[b].get("end", lines[b]["start"]), "where": sc.get("where") or "", "who": list(sc.get("who") or []),
+                    "why": sc.get("why") or "", "end_why": sc.get("end_why") or "", "after": sc.get("after") or "",
+                    "gap": [lines[b + 1]["id"], lines[nxt]["id"]] if b < nxt else None})
+    if bad_last:
+        warns.append(f"{len(bad_last)} scene(s) with a last line that is not a line inside the scene; they run to the next scene: {bad_last[:6]}")
+    return errs, warns, out
+
+
 def finalize(facts: dict, record: dict, base: dict) -> dict:
     """The final speaker map from the video step alone (see ``answer_from_video``); the summary (cast with names and
     looks, alone_on_screen for the cast sheet, line changes) goes to ``facts["speakers_from_video"]``."""
@@ -210,7 +274,8 @@ def run(inputs, facts: dict | None, cfg: dict, client=None, log=None, cutter=Non
     spec = ModelSpec.from_dict(ic["model"])
     run_dir = Path(inputs.paths.run_dir); run_dir.mkdir(parents=True, exist_ok=True)
     base = NC.base_of(facts)
-    context = context_text(facts, base)
+    smode = scenes_mode(cfg)
+    context = context_text(facts, base, with_scenes=smode != "find")
     (run_dir / "context_identity.txt").write_text(context, encoding="utf-8")
     cutter = cutter or cut_scene; uploader = uploader or upload
     dur = float(facts["episode"]["duration"])
@@ -224,6 +289,15 @@ def run(inputs, facts: dict | None, cfg: dict, client=None, log=None, cutter=Non
     parts = [media_part(up, "video", 1, key=mkey), {"text": "The video above is the whole episode; its clock matches the line times below.\n\n" + context}]
     sections = s1b.load_prompt(PROMPT_PATH)
     schema = json.loads(SCHEMA_PATH.read_text(encoding="utf-8"))
+    body = sections["instructions"]
+    if smode != "off":
+        schema["required"] = schema["required"] + ["scenes"]
+        body += "\n" + sections["scenes_" + smode]
+    if smode == "find":
+        assert "PART 2 is the transcript, scene by scene." in body
+        body = body.replace("PART 2 is the transcript, scene by scene.", "PART 2 is the transcript in time order.")
+    fmt_out = sections["output_format_scenes" if smode != "off" else "output_format"]
+    scenes = []
     if client is None:
         from shotvi.llm.client import Ledger, LLMClient, get_provider
         client = LLMClient(Ledger(), cache_dir=str(ROOT / "runs" / "cache"), max_retries=int(ic.get("http_retries", 1)))
@@ -231,9 +305,9 @@ def run(inputs, facts: dict | None, cfg: dict, client=None, log=None, cutter=Non
     attempts, errors, ans, warns, lines = [], [], None, [], {}
     usage = {"input_tokens": 0, "output_tokens": 0, "thought_tokens": 0, "cached_tokens": 0}
     for attempt in range(int(ic.get("retries", 1)) + 1):
-        instr = (sections["instructions"]
+        instr = (body
                  + ("\n\n" + sections["retry"].replace("{errors}", "\n".join(f"- {e}" for e in errors)) + f"\n(attempt {attempt + 1})" if errors else "")
-                 + "\n\n" + sections["output_format"])
+                 + "\n\n" + fmt_out)
         att = {"n": attempt + 1, "instructions": instr, "errors_shown": errors}
         attempts.append(att)
         log(f"identity pass: call {attempt + 1}")
@@ -249,6 +323,9 @@ def run(inputs, facts: dict | None, cfg: dict, client=None, log=None, cutter=Non
         for k in usage:
             usage[k] += att["usage"][k]
         errors, warns, lines = validate(obj, facts, base, float(ic.get("max_missing_share", 0.05)))
+        if smode != "off":
+            e2, w2, scenes = validate_scenes(obj, facts, {p.get("key") for p in obj.get("people") or []})
+            errors += e2; warns += w2
         att["validation"] = errors; att["warnings"] = warns
         if not errors:
             ans = obj; break
@@ -269,7 +346,8 @@ def run(inputs, facts: dict | None, cfg: dict, client=None, log=None, cutter=Non
                          "note": "validation failed: " + " | ".join(errors[:5])})
         raise IdentityPassError("the identity pass failed validation after the retry: " + " | ".join(errors[:6]))
     record = {"version": VERSION, "generated_at": time.strftime("%Y-%m-%dT%H:%M:%S"), "model": spec.to_dict(),
-              "people": ans["people"], "lines": lines, "warnings": list(warns), "usage": {**usage, "cost_inr": cost},
+              "people": ans["people"], "lines": lines, "warnings": list(warns), "scenes_mode": smode,
+              **({"scenes": scenes} if smode != "off" else {}), "usage": {**usage, "cost_inr": cost},
               "n_attempts": len(attempts)}
     append_log(cfg, {"episode": inputs.vid, "stage": "identity_pass", "status": "ok", "duration_s": round(time.perf_counter() - t0, 1),
                      "input_tokens": usage["input_tokens"], "output_tokens": usage["output_tokens"] + usage["thought_tokens"],

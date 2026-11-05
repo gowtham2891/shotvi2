@@ -9,47 +9,14 @@ import json
 
 from .stage1_facts import fmt_ts
 
-PREFIX_VERSION = "prefix/2"
+PREFIX_VERSION = "prefix/3"   # 2026-11-03: no scene-edge proposals, suspects or anchor checks (code decides nothing)
 
 
-def _anchored_segments(facts: dict, max_share: float = 0.5) -> list[tuple[dict, dict]]:
-    """(speaker, segment) pairs whose prior name is withheld. If plain isolation would withhold more than ``max_share``
-    of the speech lines (a one-location episode where everyone is isolated), only the exclusive-partner cases stay."""
-    n_speech = sum(1 for r in facts["lines"] if r["kind"] == "speech") or 1
-    pairs = [(d, s) for d in facts.get("speaker_segments") or [] for s in d["segments"] if s.get("anchored")]
-    share = sum(len(s.get("line_ids") or []) for _, s in pairs) / n_speech
-    if share > max_share:
-        pairs = [(d, s) for d, s in pairs if s["co_speakers"] and set(s["co_speakers"]) <= set(s["co_speakers_exclusive"])
-                 and not d["isolated"]]
-    return pairs
-
-
-def anchor_checks(facts: dict, max_share: float = 0.5) -> list[dict]:
-    out = []
-    for d, s in _anchored_segments(facts, max_share):
-        out.append({"check_id": f"Q{len(out) + 1}", "key": d["key"], "range": s["range"], "n_lines": len(s.get("line_ids") or []),
-                    "first_line": (s.get("line_ids") or [None])[0], "last_line": (s.get("line_ids") or [None])[-1],
-                    "co_speakers": s["co_speakers"], "isolated": d["isolated"], "line_ids": list(s.get("line_ids") or [])})
-    return out
-
-
-def anchored_lines(facts: dict, max_share: float = 0.5) -> dict[str, dict]:
-    """line id -> {key, range, check_id} for every line whose prior name is withheld."""
-    out = {}
-    for q in anchor_checks(facts, max_share):
-        for lid in q["line_ids"]:
-            out[lid] = {"key": q["key"], "range": q["range"], "check_id": q["check_id"]}
-    return out
-
-
-def _line(r: dict, withheld: dict | None = None) -> str:
+def _line(r: dict) -> str:
     if r["kind"] == "event":
         return f"{r['id']} [{fmt_ts(r['start'])}-{fmt_ts(r['end'])}] (sound) {r['text']}"
     key = r.get("speaker_key") or "?"
     name = r.get("speaker_name") or "unresolved"
-    if withheld and r["id"] in withheld:
-        w = withheld[r["id"]]
-        return f"{r['id']} [{fmt_ts(r['start'])}-{fmt_ts(r['end'])}] [{key} ?? {w['check_id']}]: {r['text']}"
     conf = r.get("speaker_confidence")
     cmark = "" if conf in (None, 0.9) else f" c={conf:g}"
     z = " (zero-length)" if r.get("zero_len") else ""
@@ -89,10 +56,8 @@ def build_prefix(facts: dict, glossary: dict | None = None, cfg: dict | None = N
            f"series: {ep.get('series') or ''}",
            f"duration: {ep['duration_str']}; dialogue {ep['first_dialogue_str']} to {ep['last_dialogue_str']}",
            "",
-           "## LINE TABLE (id [start-end] [speaker key name]: words; (sound) = audio tag; '?? Qn' = prior name withheld, see ANCHOR CHECKS)"]
-    max_share = float(((cfg or {}).get("stage1b") or {}).get("anchor_max_share", 0.5))
-    withheld = anchored_lines(facts, max_share)
-    out += [_line(r, withheld) for r in facts["lines"]]
+           "## LINE TABLE (id [start-end] [speaker key name]: words; (sound) = audio tag)"]
+    out += [_line(r) for r in facts["lines"]]
     out += ["", "## SPEAKER KEYS (from the speaker-correction step; a prior, not the truth)"]
     for c in ep.get("speakers") or []:
         aka = f" aka {', '.join(c['aka'])}" if c.get("aka") else ""
@@ -105,28 +70,9 @@ def build_prefix(facts: dict, glossary: dict | None = None, cfg: dict | None = N
     out += ["", "## SOUND TAGS (time, class, tag, after line)"]
     for e in facts["tag_events"]:
         out.append(f"{fmt_ts(e['t'])} {e['class']} {e['tag']} after {e.get('after_content_line') or e['after']}")
-    out += ["", "## SCENE-EDGE PROPOSALS (candidates: confirm, merge or split; t = the pause between prev and next)"]
-    for p in facts["boundary_proposals"]:
-        out.append(f"#{p['rank']} {p['t_str']} between {p['prev']} and {p['next']} (score {p['score']:.2f}): "
-                   + "; ".join(p["evidence"]))
-    out += ["", "## SUSPECT LINES (structural flags in both label spaces; confidence flags)"]
-    for x in facts.get("structural_suspects") or []:
-        out.append(f"{x.get('line') or ','.join(x.get('lines') or [])} [{x.get('label_space', 'fix')}] {x['speaker']}: {x['reason']}: {x['detail']}")
+    out += ["", "## LINES THE SPEAKER-CORRECTION STEP WAS UNSURE ABOUT (its own confidence)"]
     for x in facts.get("speaker_flags") or []:
         out.append(f"{x['line']} {x['speaker']}: speaker-fix confidence {x['confidence']} ({x['flag']})")
-    out += ["", "## WHERE EACH SPEAKER KEY APPEARS (segments between proposals; * = a partner who never appears without them)"]
-    for d in facts.get("speaker_segments") or []:
-        out.append(f"{d['key']} {d['name']}: {d['n_lines']} lines in {d['n_segments']} segment(s)"
-                   + (" [isolated]" if d["isolated"] else "") + f": {d['segments_str']}")
-    checks = anchor_checks(facts, max_share)
-    out += ["", "## ANCHOR CHECKS (speaker segments where the prior name is withheld: isolated speakers, or speakers whose only "
-                "company there never appears without them). For each: who is this speaker? Is their relationship to the others "
-                "in this segment consistent with how those speakers relate elsewhere in the episode? Cite lines."]
-    for q in checks:
-        out.append(f"{q['check_id']}: key {q['key']} in {q['range']}, {q['n_lines']} lines {q['first_line']}-{q['last_line']}, "
-                   f"with {' '.join(q['co_speakers']) or 'nobody'}" + (" [isolated: appears nowhere else]" if q["isolated"] else ""))
-    if not checks:
-        out.append("(none)")
     if glossary:
         out += ["", "## SERIES GLOSSARY FROM EARLIER EPISODES (a prior)",
                 json.dumps(glossary, ensure_ascii=False, sort_keys=True, indent=0)]
@@ -194,19 +140,9 @@ def build_prefix_raw(facts: dict, glossary: dict | None = None, cfg: dict | None
     out += ["", "## SOUND TAGS (time, class, tag, after line)"]
     for e in facts["tag_events"]:
         out.append(f"{fmt_ts(e['t'])} {e['class']} {e['tag']} after {e.get('after_content_line') or e['after']}")
-    out += ["", "## SCENE-EDGE PROPOSALS (candidates: confirm, merge or split; t = the pause between prev and next)"]
-    for p in facts["boundary_proposals"]:
-        out.append(f"#{p['rank']} {p['t_str']} between {p['prev']} and {p['next']} (score {p['score']:.2f}): " + "; ".join(p["evidence"]))
-    out += ["", "## STRUCTURAL SUSPECTS (raw-label space)"]
-    out += [f"{x.get('line') or ','.join(x.get('lines') or [])} {x['speaker']}: {x['reason']}: {x['detail']}"
-            for x in facts.get("structural_suspects") or [] if x.get("label_space") == "scribe"] or ["(none)"]
-    out += ["", "## ANCHOR CHECKS", "(none: the raw labels are the prior; answer Tier 0 from the video instead)"]
     out += ["", "## LOW-TRUST SUGGESTIONS: an earlier TEXT-ONLY step guessed these names per raw label (key name x lines). It merged a",
             "stranger into a main character in another episode; use only as a hint, never as evidence."]
     out += [f"{x['label']}: " + "; ".join(f"{nm} x{c}" for nm, c in x["suggestions"]) for x in sug]
-    out += ["", "## WHERE THE TEXT-ONLY STEP'S KEYS APPEAR (low trust; segments between proposals; * = a partner who never appears without them)"]
-    for d in facts.get("speaker_segments") or []:
-        out.append(f"{d['key']} {d['name']}: {d['n_lines']} lines in {d['n_segments']} segment(s)" + (" [isolated]" if d["isolated"] else "") + f": {d['segments_str']}")
     if glossary:
         out += ["", "## SERIES GLOSSARY FROM EARLIER EPISODES (a prior)", json.dumps(glossary, ensure_ascii=False, sort_keys=True, indent=0)]
     out.append("")

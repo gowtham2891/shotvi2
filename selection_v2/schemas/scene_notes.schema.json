@@ -1,0 +1,154 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "scene_notes",
+  "description": "founder, 2026-11-03: Stage 2 as ONE call over the whole episode; per scene the facts only (no clips, hooks, payoffs or ratings)",
+  "type": "object",
+  "required": [
+    "episode",
+    "scenes"
+  ],
+  "properties": {
+    "episode": {
+      "type": "string"
+    },
+    "scenes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "scene_id",
+          "story",
+          "situations",
+          "mood",
+          "reactions",
+          "visual_moments",
+          "silences",
+          "context_needed",
+          "connections",
+          "relationships"
+        ],
+        "properties": {
+          "scene_id": {
+            "type": "integer"
+          },
+          "story": {
+            "type": "string"
+          },
+          "situations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "first",
+                "last",
+                "what_happens"
+              ],
+              "properties": {
+                "first": {
+                  "type": "string"
+                },
+                "last": {
+                  "type": "string"
+                },
+                "what_happens": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "mood": {
+            "type": "string"
+          },
+          "reactions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "after",
+                "who",
+                "how"
+              ],
+              "properties": {
+                "after": {
+                  "type": "string",
+                  "description": "the line id the reaction follows"
+                },
+                "who": {
+                  "type": "string"
+                },
+                "how": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "visual_moments": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "range",
+                "what_is_seen"
+              ],
+              "properties": {
+                "range": {
+                  "type": "string",
+                  "description": "m:ss.s-m:ss.s on the episode clock"
+                },
+                "what_is_seen": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "silences": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "range",
+                "what_happens"
+              ],
+              "properties": {
+                "range": {
+                  "type": "string",
+                  "description": "m:ss.s-m:ss.s on the episode clock"
+                },
+                "what_happens": {
+                  "type": "string"
+                },
+                "music": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "context_needed": {
+            "type": "string"
+          },
+          "connections": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "scene",
+                "how"
+              ],
+              "properties": {
+                "scene": {
+                  "type": "integer"
+                },
+                "how": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "relationships": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

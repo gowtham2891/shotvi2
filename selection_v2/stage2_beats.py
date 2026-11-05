@@ -75,21 +75,6 @@ def line_key(r: dict, overrides: dict) -> str | None:
     return overrides.get(r["id"]) or r.get("speaker_key")
 
 
-def anchored_in_scene(facts: dict, scene: dict) -> list[dict]:
-    """Stage 1A anchored speaker segments (isolated speaker, or every co-speaker an exclusive partner) whose lines fall
-    in this scene: the structural signal that caught the delivery customer."""
-    ids = set(scene_dialogue_ids(facts, scene))
-    out = []
-    for d in facts.get("speaker_segments") or []:
-        for seg in d["segments"]:
-            if seg.get("anchored"):
-                hit = [x for x in seg.get("line_ids") or [] if x in ids]
-                if hit:
-                    out.append({"key": d["key"], "range": seg["range"], "n_lines": len(hit),
-                                "why": "isolated speaker" if d.get("isolated") else f"only company {seg['co_speakers']} never appears without them"})
-    return out
-
-
 def scene_stats(facts: dict, scene: dict, cfg: dict) -> dict:
     ids = scene_dialogue_ids(facts, scene)
     _, over = map_names(facts)
@@ -98,11 +83,10 @@ def scene_stats(facts: dict, scene: dict, cfg: dict) -> dict:
     # not the majority key of their raw label (a split), plus 1B merges are not reassignments
     st = diarization_stats(facts["lines"], ids, set() if raw_mode else set(over), keys=over if raw_mode else None)
     tcfg = cfg["stage2"]["thin_diarization"]
-    st["anchored"] = anchored_in_scene(facts, scene) if tcfg.get("anchored_segments", True) else []
-    st["thin"] = is_thin_diarization(st, float(tcfg["reassigned_fraction"])) or bool(st["anchored"])
+    st["anchored"] = []                       # Stage 1A no longer flags anchored segments (2026-11-03)
+    st["thin"] = is_thin_diarization(st, float(tcfg["reassigned_fraction"]))
     st["thin_reasons"] = ([f"{st['n_raw_labels']} raw label(s) for {st['n_map_speakers']} speakers"] if st["n_raw_labels"] < st["n_map_speakers"] else []) \
-        + ([f"{st['reassigned_fraction']:.0%} of lines reassigned by the fix"] if st["reassigned_fraction"] > float(tcfg["reassigned_fraction"]) else []) \
-        + [f"1A anchor: {a['key']} in {a['range']} ({a['why']})" for a in st["anchored"]]
+        + ([f"{st['reassigned_fraction']:.0%} of lines reassigned by the fix"] if st["reassigned_fraction"] > float(tcfg["reassigned_fraction"]) else [])
     return st
 
 
@@ -152,16 +136,13 @@ def reference_lines(facts: dict, cfg: dict, per_speaker: int | None = None) -> d
     for sc in scenes:
         for r in scene_lines(facts, sc):
             scene_of[r["id"]] = sc["id"]
-    # never take a reference from a line whose label is itself in doubt: anchored segments (the prior was withheld
-    # there), structural / confidence suspects, 1B resolutions and reassignments, possibly non-story lines
+    # never take a reference from a line whose label is itself in doubt: 1B resolutions and reassignments, possibly
+    # non-story lines
     all_ids = [r["id"] for r in facts["lines"]]
     raw_mode = (facts.get("episode_pass") or {}).get("prior") == "raw"
     prior_of = {r["id"]: (r.get("speaker") if raw_mode else r.get("speaker_key")) for r in facts["lines"]}
     reassigned = {lid for lid, k in over.items() if k != prior_of.get(lid)}      # lines 1B moved to another person
-    excluded = set(facts.get("structural_suspect_ids") or []) | reassigned
-    from .prefix import anchor_checks
-    for q in anchor_checks(facts, float(cfg.get("stage1b", {}).get("anchor_max_share", 0.5))):   # the anchors 1B actually asked
-        excluded |= set(q.get("line_ids") or [])
+    excluded = set(reassigned)
     ep = facts.get("episode_pass") or {}
     for x in ep.get("suspect_resolutions") or []:
         excluded.add(x.get("line"))

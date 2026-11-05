@@ -125,25 +125,11 @@ class TestThinDiarization(unittest.TestCase):
         self.assertFalse(S.is_thin_diarization(st))
 
 
-class TestAnchorCriterion(unittest.TestCase):
-    def test_anchored_segment_makes_scene_thin(self):
-        f = facts_after_1b()
-        sc = scene(f, 1)       # the friends' scene: C and D are mutual exclusive partners -> anchored in 1A
-        st = S2.scene_stats(f, sc, CFG)
-        self.assertTrue(st["anchored"])
-        self.assertTrue(st["thin"])
-        self.assertTrue(any(r.startswith("1A anchor") for r in st["thin_reasons"]))
-        c2 = copy.deepcopy(CFG); c2["stage2"]["thin_diarization"]["anchored_segments"] = False
-        st2 = S2.scene_stats(f, sc, c2)
-        self.assertEqual(st2["anchored"], [])
-
-
 class TestReferenceFrames(unittest.TestCase):
     def test_reference_lines_prefer_clean_scenes(self):
         f = facts_after_1b()
         refs = S2.reference_lines(f, CFG)
         self.assertTrue(set(refs) >= {"speaker_0", "speaker_1"})
-        self.assertNotIn("speaker_2", refs); self.assertNotIn("speaker_3", refs)   # their lines are 1A-anchored: no reference
         self.assertTrue(all(r["t"] > 0 and r["line"].startswith("L") for rs in refs.values() for r in rs))
         self.assertTrue(all(len(rs) <= 3 for rs in refs.values()))
         import yaml, tempfile, copy as _c

@@ -94,9 +94,7 @@ class TestGapTable(unittest.TestCase):
         self.assertEqual(g["spk_after"], ["C", "D"])
         self.assertNotIn("shot_cuts", g)                # shot cuts removed (founder, 2026-11-02: unreliable)
         self.assertGreaterEqual(g["gap_pct"], 0.97)  # the longest gap of the episode (strictly-shorter share)
-        self.assertIn("tag:silence", g["boundary_evidence"])
-        self.assertIn("turnover: total speaker change", g["boundary_evidence"])
-        self.assertGreaterEqual(g["boundary_score"], 0.9)
+        self.assertNotIn("boundary_score", g)            # no code scoring of scene edges (founder, 2026-11-03)
 
     def test_hard_cut_with_zero_gap(self):
         f = facts()
@@ -104,9 +102,7 @@ class TestGapTable(unittest.TestCase):
         a = next(r for r in f["lines"] if r["kind"] == "speech" and r["text"] == "సరే" and r["start"] == 59.2)
         g = next(g for g in f["gaps"] if g["prev"] == a["id"])
         self.assertEqual(g["gap"], 0.0)
-        self.assertIn("hard_cut", g["boundary_evidence"])
-        self.assertFalse(any(e.startswith("shot_cut") for e in g["boundary_evidence"]))
-        self.assertTrue(g["qualifies"])          # total turnover alone qualifies, whatever the score
+        self.assertNotIn("qualifies", g)
 
     def test_percentiles_are_relative(self):
         f = facts()
@@ -126,33 +122,6 @@ class TestGapTable(unittest.TestCase):
         self.assertLess(g["gap_raw"], 0)
 
 
-class TestProposals(unittest.TestCase):
-    def test_both_scene_edges_proposed_and_small_gaps_not(self):
-        f = facts()
-        ts = [p["t"] for p in f["boundary_proposals"]]
-        self.assertIn(34.0, ts)      # the next line's start (no shot-cut snapping)
-        self.assertIn(60.0, ts)
-        for p in f["boundary_proposals"]:
-            if p["selected_by"] == "score":
-                self.assertTrue(p["score"] >= CFG["stage1a"]["boundary"]["min_score"] and len(p["evidence"]) >= 2, p)
-            else:
-                self.assertIn(p["selected_by"], ("total_turnover", "cast_swap", "coverage"), p)
-        self.assertLessEqual(len(f["boundary_proposals"]), 6)
-        swap = next(p for p in f["boundary_proposals"] if p["t"] == 60.0)
-        self.assertTrue(swap["cast_swap"])                       # C, D leave; F enters
-        self.assertTrue(any(e.startswith("cast swap: +F -D") for e in swap["evidence"]), swap["evidence"])
-        top2 = sorted(f["boundary_proposals"], key=lambda p: -p["score"])[:2]
-        self.assertEqual(sorted(p["t"] for p in top2), [34.0, 60.0])
-        for p in f["boundary_proposals"]:
-            self.assertTrue(p["evidence"])
-            self.assertEqual(p["t_str"], S.fmt_ts(p["t"]))
-
-    def test_ranks_are_in_time_order(self):
-        f = facts()
-        ranks = [p["rank"] for p in f["boundary_proposals"]]
-        self.assertEqual(ranks, sorted(ranks))
-
-
 class TestFiller(unittest.TestCase):
     def test_filler_lines_marked_and_ignored_in_speaker_sets(self):
         f = facts()
@@ -163,13 +132,6 @@ class TestFiller(unittest.TestCase):
         a = next(r for r in f["lines"] if r["kind"] == "speech" and r["text"] == "సరే" and r["start"] == 59.2)
         g = next(g for g in f["gaps"] if g["prev"] == a["id"])
         self.assertNotIn("H", g["spk_after"])
-        self.assertEqual(g["boundary_components"]["turnover"], 1.0)
-
-    def test_lone_turnover_without_total_change_does_not_qualify(self):
-        f = facts()
-        weak = [g for g in f["gaps"] if g["boundary_evidence"] and all(e.startswith("turnover 0.") for e in g["boundary_evidence"])]
-        self.assertTrue(weak)
-        self.assertFalse(any(g["qualifies"] for g in weak))
 
 
 class TestTagEvents(unittest.TestCase):
@@ -200,49 +162,13 @@ class TestCastList(unittest.TestCase):
         self.assertEqual(f["cast_list"]["series_key"], "surya")
 
 
-class TestSuspects(unittest.TestCase):
-    def test_lone_speaker_flagged(self):
-        f = facts()
-        hb = by_text(f, "Happy birthday to you")
-        lone = [s for s in f["structural_suspects"] if s["reason"] == "lone_speaker" and s["label_space"] == "fix"]
-        self.assertIn(hb["id"], [s["line"] for s in lone])
-        self.assertEqual(next(s for s in lone if s["line"] == hb["id"])["speaker"], "E")
-        self.assertTrue({s["speaker"] for s in lone} <= {"E", "H"})   # H's single overlapping 'హా' may be lone too
-
-    def test_overlap_and_filler_only_in_both_label_spaces(self):
-        f = facts()
-        h = by_text(f, "హా")
-        ov = [s for s in f["structural_suspects"] if s["reason"] == "overlaps_previous_line"]
-        self.assertEqual(sorted((s["line"], s["label_space"]) for s in ov), [(h["id"], "fix"), (h["id"], "scribe")])
-        fo = [s for s in f["structural_suspects"] if s["reason"] == "filler_only_speaker"]
-        self.assertEqual(sorted((s["speaker"], s["label_space"]) for s in fo), [("H", "fix"), ("speaker_7", "scribe")])
-        self.assertEqual(set(f["stages"]["1a"]["summary"]["n_structural_suspects"]), {"fix", "scribe"})
-
-    def test_filler_island(self):
-        f = facts()
-        h = by_text(f, "హా")     # H's only line, filler, and H never speaks in the next segment
-        fi = [s for s in f["structural_suspects"] if s["reason"] == "filler_island" and s["label_space"] == "fix"]
-        self.assertIn(h["id"], [s["line"] for s in fi])
-        self.assertNotIn(by_text(f, "ఊ")["id"], [s["line"] for s in fi])   # F has content lines in that segment
-
-    def test_speaker_segments(self):
-        f = facts()
-        segs = {d["key"]: d for d in f["speaker_segments"]}
-        self.assertEqual(segs["A"]["n_lines"], 11)
-        self.assertEqual(segs["A"]["scribe_labels"], ["speaker_0"])
-        self.assertTrue(segs["E"]["isolated"])
-        self.assertTrue(segs["E"]["isolated"])
-        self.assertIn("G", segs["F"]["exclusive_partners"])    # the customer G only ever appears next to F
-        self.assertIn("G*", segs["F"]["segments_str"])
-        self.assertTrue(all(d["isolated"] for d in f["speaker_segments"] if d["key"] in "ABEGH"))
-
+class TestSpeakerFlags(unittest.TestCase):
     def test_confidence_flags(self):
         f = facts()
         flags = {x["line"]: x["flag"] for x in f["speaker_flags"]}
         self.assertEqual(flags[by_text(f, "Happy birthday to you")["id"]], "suspect")
         self.assertEqual(flags[by_text(f, "హా")["id"]], "suspect")
         self.assertEqual(flags[by_text(f, "ఏంటి?")["id"]], "low")
-        self.assertIn(by_text(f, "హా")["id"], f["structural_suspect_ids"])
 
 
 class TestDocument(unittest.TestCase):

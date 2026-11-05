@@ -43,6 +43,23 @@ The video shows Kiran tying his shoes while his mother's voice asks; then Kiran 
   {"id": "L0101", "talk": ["B"], "see": ["A"]}
   {"id": "L0102", "why": "Kiran's mouth moves on 'office కి'; then the mother's voice", "talk": ["A"], "see": ["A", "B"], "turns": [{"at": "సరే,", "talk": ["B"]}]}
 
+## scenes_check
+3. scenes: PART 2's split into scenes came from the text step, which only read the words; it could not see or hear the episode. Check it against the video and give the scenes as you find them. A scene is a continuous stretch of the story in one place and time with one group of people; a music beat or a pause inside the same conversation is NOT a scene change. Give them in order so that every line is in one scene. For each scene:
+   - first: the id of its first line.
+   - where: the place, in a few words.
+   - who: the keys of the people in it.
+   - why: what you saw or heard that tells you a new scene starts here.
+
+## scenes_find
+3. scenes: split the whole episode into scenes. The tool uses your scenes to make clips: it reads each scene with its lines to find moments that work as a Reel or Short, and a clip may run on into the next scene when the story continues. So the scenes and where they start and end have to match what a viewer sees. A scene is a continuous stretch of the story in one place and time with one group of people; a music beat or a pause inside the same conversation is NOT a scene change. Give them in order. For each scene:
+   - first: the id of its first line.
+   - last: the id of its last line.
+   - where: the place, in a few words.
+   - who: the keys of the people in it.
+   - why: what you saw or heard that tells you a new scene starts here.
+   - end_why: what tells you the scene ends here, in a few words.
+   - after: "" when the next scene starts right after this one; otherwise what fills the lines in between (a title card, an ad, a song, end credits).
+
 ## retry
 Your previous answer failed these checks:
 {errors}
@@ -50,3 +67,6 @@ Fix exactly these problems and answer again, same format.
 
 ## output_format
 Return one JSON object with exactly these keys: people, lines.
+
+## output_format_scenes
+Return one JSON object with exactly these keys: people, lines, scenes.

@@ -28,6 +28,7 @@ rates:
   usd_per_1m_input: 0.75
   usd_per_1m_output: 3.75          # thinking tokens count as output
   usd_per_1m_cached_input: 0.075
+  usd_per_1m_cache_storage_hour: 0.50   # explicit context cache storage per 1M tokens per hour
   tokens_per_s_audio: 32
   tokens_per_s_video_low: 100
   tokens_per_s_video_default: 300
@@ -53,24 +54,6 @@ stage1a:
     max_s: 0.3
     continuation_s: 5.0        # a filler by the speaker who was just talking, within this after the gap, keeps them in
                                # the after-set ("ఆ" while the other replies); later fillers do not
-  boundary:
-    weights: {gap: 0.35, turnover: 0.30, tag: 0.25, cast_change: 0.20}   # no shot cuts (founder 2026-11-02: unreliable)
-    # cast change: the gap right before a speaker's first content line (entry) / right after their last (exit),
-    # skipping other people's fillers. Entry AND exit at the same gap, or at a neighbouring gap within cast_change_s
-    # (a one-word reply in between), = cast swap (someone leaves, someone new arrives); shown as "+C -B~"
-    cast_change_s: 3.0
-    cast_swap_alone_ok: true     # a cast swap qualifies on its own, like total turnover (someone leaves, someone new arrives)
-    gap_full_percentile: 0.90    # gaps at or above this percentile (within THIS episode) earn the full gap credit
-    gap_soft_percentile: 0.70    # partial credit between soft and full; none below
-    tag_classes: [silence, music, ambient]   # a tag of these classes inside the gap fires the tag evidence
-    hard_cut_max_gap_s: 0.15     # gap <= this with total turnover = "hard_cut" evidence
-    min_score: 0.55
-    min_evidence_types: 2        # a proposal needs two kinds of evidence (gap, turnover, tag) ...
-    turnover_alone_ok: true      # ... unless the turnover is TOTAL (no speaker shared across the gap): sufficient alone
-    top_k: 16                    # cap on proposals by score; total-turnover / cast-swap gaps are exempt
-    min_separation_s: 2.0        # non-max suppression between proposals
-    coverage_max_unbroken_s: 240 # after the cap, any stretch longer than this with a qualifying gap gets its best one
-                                 # (a global top-k otherwise starves quiet stretches when music beats score high elsewhere)
   summary:
     long_pause_s: 4.0            # "pauses longer than N s" in the plain-language summary
     hold_min_s: 4.0              # a hold = a dialogue pause >= this with no music under it (silence / sigh / nothing)
@@ -84,11 +67,6 @@ stage1a:
   suspects:
     low_confidence_max: 0.3      # speaker_fix confidence <= this = suspect
     low_mark: 0.6                # speaker_fix confidence == this = "low" (separate column)
-    single_line_max: 1           # a speaker with <= this many lines in a provisional segment is a lone speaker
-    min_lines_for_presence: 3    # a speaker "is present" in a segment (for isolation / exclusive-partner / anchoring) only
-                                 # with this many lines there or with a co-speaker; a 2-line solo tail does not count
-    filler_max_words: 2          # a speaker whose every line has <= this many words is filler-only
-    filler_max_s: 0.8
 
 tags:
   # Free-form Scribe tag text -> fixed class. Case-insensitive substring match on the NFC text without brackets;
@@ -103,10 +81,6 @@ tags:
     ambient:  ["vehicle", "horn", "scooter", "bike", "traffic", "వాహన", "హారన్", "స్కూటర్", "బైక్", "car", "వెనకశబ్ద"]
     censored: ["సెన్సార్", "censor", "beep", "bleep"]
 
-sanity:
-  # automatic checks on every Stage 1A run (no reference needed). Red = a code bug, not a judgment call.
-  proposals_per_min: [0.19, 2.3]   # 26 min -> 5..60 scene-edge proposals
-
 stage1b:
   # STANDING DESIGN (founder, 2026-10-26): the TEXT pass owns line labels and scenes; the VIDEO identity pass (below,
   # `identity_pass`) owns per-label identity, merges and reference timestamps and has no line-level field at all.
@@ -118,13 +92,9 @@ stage1b:
   prefix_gap_min_s: 2.0            # gap-table rows shown in the cached prefix (every row >= this)
   expected_output_tokens: 10000    # for the cost estimate (answer + thinking); the real number is logged after the run
   max_retries_per_tier: 1          # a tier re-asked with the validator's errors at most this often (with video each re-ask
-                                   # re-reads the whole episode, ~₹15 on a 25-min episode; trivial slips are repaired in code instead)
+                                   # re-reads the whole episode, ~₹15 on a 25-min episode); a scene gap or overlap is re-asked, never fixed in code
   http_timeout_s: 1200             # a call that carries the episode video may run 5-15 min; never cut it off at 5 min
   http_retries: 1                  # transport retries inside the client for the 1B call (each attempt may be billed)
-  min_scene_s: 10                  # code post-processing: a scene shorter than this merges into the previous scene
-  anchor_max_share: 0.5            # safety: if withholding prior names would cover more than this share of speech lines
-                                   # (a one-location episode where everyone is "isolated"), only the exclusive-partner
-                                   # segments are anchored, not the plain isolated ones
   glossary_max_entries: 15
   glossary_dir: data/series_glossary
 
@@ -136,9 +106,7 @@ stage2:
   expected_output_tokens: 3500     # per scene (answer; thinking is low)
   max_scene_s: 600                 # a scene longer than this is refused (cost guard); split it in 1B first
   thin_diarization:
-    reassigned_fraction: 0.33      # thin when raw Scribe labels < map speakers, or > this fraction of lines reassigned,
-    anchored_segments: true        # or (founder, 2026-10-26) a Stage 1A anchored segment (isolated speaker / exclusive
-                                   # partner) overlaps the scene: the structural signal, not the fix grading its own homework
+    reassigned_fraction: 0.33      # thin when raw Scribe labels < map speakers, or > this fraction of lines reassigned
   retries: 1                       # one retry per scene with the validator's errors
   reference_frames:
     per_speaker: 3                 # keyframes per speaker key attached to every scene call (the reference faces); a frame
@@ -166,6 +134,56 @@ identity_pass:
   output_tokens_base: 3000         # estimate: people list + thinking
   output_tokens_per_line: 30       # estimate: one {id, talk, see} entry per spoken line
   max_missing_share: 0.05          # more spoken lines than this without an entry = re-ask; fewer = a warning
+  scenes: off                      # founder, 2026-11-03 test: off | check (send the text step's scenes, ask it to check) | find (no scenes sent; it finds them)
+  delete_upload_after_call: true
+
+stage2_episode:
+  # founder, 2026-11-03: Stage 2 as ONE call that watches the whole episode with the video step's scenes and per-line
+  # who-talks / on-screen, and describes every scene as facts (no clips, hooks, payoffs or ratings: Stage 3 decides)
+  model: {provider: gemini, model: gemini-3.8-flash, params: {thinking_level: low, max_output_tokens: 65536, media_resolution: low}}
+  video_max_height: 480
+  http_timeout_s: 1200
+  http_retries: 1
+  retries: 1                       # one re-ask with the validator's errors (re-reads the video)
+  output_tokens_base: 2000         # estimate: the episode story + thinking
+  output_tokens_per_scene: 900     # estimate: one scene's notes
+  delete_upload_after_call: true
+
+stage3_find:
+  # founder, 2026-11-04: 3a = one TEXT call per scene (whole transcript + every scene's description) lists the moments
+  # whose payoff lands there; 3b = one call per moment with the video of its scenes shapes it into a clip. Code only
+  # looks up times and checks the format; no ranking here (Stage 4).
+  moments_model: {provider: gemini, model: gemini-3.8-flash, params: {thinking_level: medium, max_output_tokens: 32768}}
+  shape_model: {provider: gemini, model: gemini-3.8-flash, params: {thinking_level: medium, max_output_tokens: 16384, media_resolution: low}}
+  # founder, 2026-11-04: one step (3a + 3b merged, find_clips): one call per scene, the whole episode video + text cached
+  # once at Google. No media_resolution here: a cached video's tokens are fixed when the cache is made (countTokens,
+  # 2026-11-04: the default for 3.8 Flash video = the low setting, ~103 tokens/s with audio).
+  clips_model: {provider: gemini, model: gemini-3.8-flash, params: {thinking_level: medium, max_output_tokens: 32768}}
+  cache_ttl_s: 2400                # the cache is deleted when the step ends; storage is recorded for the whole TTL
+  clips_output_tokens: 4000        # estimate per scene call (answer + thinking)
+  video_max_height: 480
+  http_timeout_s: 300               # 2026-11-04: a call hung 45 min at 900; scene calls take ~30-60 s
+  http_retries: 1
+  retries: 1                       # one re-ask with the validator's errors
+  max_clip_s: 180                  # the platform maximum (the only length limit code enforces)
+  moments_output_tokens: 1200      # estimate per scene call (answer + thinking)
+  shape_output_tokens: 1000        # estimate per moment in a scene call (plus ~3000 per call for thinking)
+  delete_upload_after_call: true
+
+
+stage3_edit:
+  # founder, 2026-11-05: one call per found clip with the video of just its stretch (pre_s before, post_s after) at
+  # fps frames a second: tighten (up to 3 whole-line cuts), split two moments, cold open, end hold, hook / title / why.
+  model: {provider: gemini, model: gemini-3.8-flash, params: {thinking_level: medium, max_output_tokens: 16384}}
+  fps: 2
+  pre_s: 8
+  post_s: 15
+  video_max_height: 480
+  http_timeout_s: 300
+  http_retries: 1
+  retries: 1
+  max_clip_s: 180
+  output_tokens: 5000              # estimate per call (answer + thinking)
   delete_upload_after_call: true
 
 naming_check:

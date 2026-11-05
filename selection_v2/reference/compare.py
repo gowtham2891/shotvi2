@@ -68,6 +68,11 @@ def _lines(facts):
     return {r["id"]: r for r in facts["lines"]}
 
 
+RETIRED = {"boundary": "scene-edge proposals removed 2026-11-03", "boundary_count": "scene-edge proposals removed 2026-11-03",
+           "name_vote": "name votes removed 2026-11-02", "suspect": "structural suspects removed 2026-11-03",
+           "speaker_isolated": "speaker segments removed 2026-11-03", "suspect_speaker": "structural suspects removed 2026-11-03"}
+
+
 def evaluate(facts: dict, ref: dict) -> list[dict]:
     tol = {"gap_s": 0.15, "time_s": 0.5, "boundary_s": 1.5, **(ref.get("tolerances") or {})}
     rows = []
@@ -130,67 +135,10 @@ def evaluate(facts: dict, ref: dict) -> list[dict]:
                 d = abs(g["t_prev_end"] - a) + abs(g["t_next_start"] - b)
                 row["got"] = f"{g['prev']}->{g['next']} {fmt_ts(g['t_prev_end'])}-{fmt_ts(g['t_next_start'])} ({g['gap']} s)"
                 row["status"] = "agree" if d <= 2 * tol["time_s"] else "disagree"
-            elif kind == "boundary":
-                t = _t(c["t"])
-                row["expect"] = f"proposal near {c['t']}"
-                # a proposal is one GAP: it matches on its snapped time or on either edge (prev end / next start)
-                dist = lambda p: min(abs(p["t"] - t), abs(p["t_prev_end"] - t), abs(p["t_next_start"] - t))  # noqa: E731
-                p = min(facts["boundary_proposals"], key=dist, default=None)
-                if p is None or dist(p) > tol["boundary_s"]:
-                    g = min(facts["gaps"], key=lambda g: abs(g["t_next_start"] - t), default=None)
-                    row["status"] = "missing"
-                    row["got"] = (f"nearest proposal {fmt_ts(p['t'])} (score {p['score']})" if p else "no proposals") + (
-                        f"; nearest gap {g['prev']}->{g['next']} @ {fmt_ts(g['t_next_start'])} score {g['boundary_score']} "
-                        f"{g['boundary_evidence']}" if g else "")
-                else:
-                    row["got"] = (f"{p['prev']}->{p['next']} edges {fmt_ts(p['t_prev_end'])} / {fmt_ts(p['t_next_start'])}, "
-                                  f"cut {fmt_ts(p['t'])}, score {p['score']} {p['evidence']}")
-                    row["status"] = "agree"
-            elif kind == "boundary_count":
-                n = len(facts["boundary_proposals"])
-                row["expect"], row["got"] = f"{c.get('min', 0)}-{c.get('max', 999)} proposals", str(n)
-                row["status"] = "agree" if int(c.get("min", 0)) <= n <= int(c.get("max", 999)) else "disagree"
-            elif kind == "name_vote":
-                evs = [e for e in facts["name_vote_events"] if e["line"] == c["line"]]
-                row["expect"] = f"{c['line']} says {c['name']}; next speaker = {c.get('next_name', c['name'])}"
-                hit = [e for e in evs if e["name"].lower() == str(c["name"]).lower()]
-                if not hit:
-                    row["status"] = "missing"
-                    txt = lines.get(c["line"], {}).get("text", "?")
-                    row["got"] = (f"no vote for {c['name']} on this line; votes: {[e['name'] for e in evs]}; text: {txt[:60]}")
-                else:
-                    e = hit[0]
-                    want = str(c.get("next_name") or c["name"])
-                    cast = next((x for x in facts["episode"].get("speakers") or [] if x.get("key") == e.get("next_speaker")), None)
-                    row["got"] = (f"said by {e['said_by']} ({e['said_by_name']}); next {e['next_speaker']} "
-                                  f"({e['next_speaker_name']}: {(cast or {}).get('desc', '')}) at {e['next_line']}")
-                    row["status"] = "agree" if names_match(want, cast, e.get("next_speaker_name")) else "disagree"
-            elif kind == "suspect":
-                ids = set(facts.get("structural_suspect_ids") or [])
-                row["expect"] = f"{c['line']} flagged"
-                if c["line"] in ids:
-                    why = [f"{s['reason']} [{s.get('label_space', 'fix')}]" for s in facts["structural_suspects"] if s.get("line") == c["line"]]
-                    why += [f"speaker_fix confidence {f['confidence']}" for f in facts["speaker_flags"]
-                            if f["line"] == c["line"] and f["flag"] == "suspect"]
-                    row["got"], row["status"] = ", ".join(why), "agree"
-                else:
-                    r = lines.get(c["line"], {})
-                    row["status"] = "missing"
-                    row["got"] = f"not flagged; {r.get('speaker_key')} ({r.get('speaker_name')}, conf {r.get('speaker_confidence')}): {r.get('text', '')[:50]}"
-            elif kind == "speaker_isolated":
-                r = lines.get(c["line"], {})
-                d = next((x for x in facts.get("speaker_segments") or [] if x["key"] == (r.get("speaker_key") or f"scribe:{r.get('speaker')}")), None)
-                row["expect"] = f"{c['line']}'s speaker appears in one segment only"
-                if d is None:
-                    row["status"], row["got"] = "missing", f"no speaker_segments row for {c['line']}"
-                else:
-                    row["got"] = f"{d['key']} ({d['name']}): {d['n_lines']} lines, {d['n_segments']} segment(s): {d['segments_str']}"
-                    row["status"] = "agree" if d["isolated"] else "disagree"
-            elif kind == "suspect_speaker":
-                fo = [s for s in facts["structural_suspects"] if s["reason"] == "filler_only_speaker"]
-                row["expect"] = "at least one filler-only speaker (either label space)"
-                row["got"] = "; ".join(f"[{s.get('label_space', 'fix')}] {s['speaker']} ({s['speaker_name']}): {s['lines']}" for s in fo) or "none"
-                row["status"] = "agree" if fo else "missing"
+            elif kind in RETIRED:
+                # founder, 2026-11-02 / 11-03: Stage 1A no longer proposes scene edges, flags suspects or counts name votes;
+                # the model decides scenes and speakers, so these hand-worked checks no longer apply
+                row["expect"], row["got"], row["status"] = f"{kind} (retired)", RETIRED[kind], "retired"
             else:
                 row["status"], row["got"] = "error", f"unknown check kind {kind!r}"
         except Exception as e:  # noqa: BLE001 - one bad check must not hide the others; the row shows the error

@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "stage3_moments",
+  "description": "founder, 2026-11-04: Stage 3a, the moments whose payoff lands in one scene (found from the transcript and the scene descriptions; no ranking)",
+  "type": "object",
+  "required": [
+    "scene_id",
+    "moments"
+  ],
+  "properties": {
+    "scene_id": {
+      "type": "integer"
+    },
+    "moments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "payoff",
+          "payoff_quote",
+          "payoff_type",
+          "kind",
+          "needs_from",
+          "scenes",
+          "what_lands",
+          "why_it_works",
+          "spoiler"
+        ],
+        "properties": {
+          "payoff": {
+            "type": "string"
+          },
+          "payoff_quote": {
+            "type": "string"
+          },
+          "payoff_type": {
+            "type": "string",
+            "enum": [
+              "punchline",
+              "reveal",
+              "conclusion",
+              "emotional_peak",
+              "cliffhanger"
+            ]
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "standalone",
+              "promo"
+            ]
+          },
+          "needs_from": {
+            "type": "string"
+          },
+          "scenes": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "what_lands": {
+            "type": "string"
+          },
+          "why_it_works": {
+            "type": "string"
+          },
+          "spoiler": {
+            "type": "boolean"
+          }
+        }
+      }
+    }
+  }
+}

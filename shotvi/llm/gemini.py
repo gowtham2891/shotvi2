@@ -137,8 +137,9 @@ class GeminiProvider(Provider):
         return CACHE_MIN_TOKENS["gemini-2.5"] if model.startswith("gemini-2.5") else CACHE_MIN_TOKENS["default"]
 
     def create_cache(self, spec: ModelSpec, system: str, prefix: str, ttl_s: int = 3600,
-                     display_name: str = "") -> dict:
-        """POST cachedContents: ``system`` as the cache's systemInstruction, ``prefix`` as one user text part, for
+                     display_name: str = "", media: list[dict] | None = None) -> dict:
+        """POST cachedContents: ``system`` as the cache's systemInstruction, ``media`` parts (e.g. a whole episode
+        video, placed first) and ``prefix`` as one user text part, for
         ``ttl_s`` seconds. Later generate calls pass the returned ``name`` as ``cached_content`` and send only the
         per-call text. Storage for the whole TTL is recorded in the project ledger at creation (conservative: the
         cache is usually deleted earlier). Raises CacheUnavailable on any 4xx (model without explicit caching,
@@ -146,8 +147,8 @@ class GeminiProvider(Provider):
         from .pricing import cache_storage_usd
         if cache_storage_usd(spec.model, 1, 1.0) is None:
             raise CacheUnavailable(f"{spec.model}: no explicit-cache storage price in pricing.PRICES")
-        body = {"model": f"models/{spec.model}", "contents": [{"role": "user", "parts": [{"text": prefix}]}],
-                "ttl": f"{int(ttl_s)}s"}
+        parts = [_media_part(m) for m in media or []] + [{"text": prefix}]
+        body = {"model": f"models/{spec.model}", "contents": [{"role": "user", "parts": parts}], "ttl": f"{int(ttl_s)}s"}
         if system:
             body["systemInstruction"] = {"parts": [{"text": system}]}
         if display_name:

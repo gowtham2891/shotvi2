@@ -10,8 +10,6 @@
     "lines",
     "gaps",
     "tag_events",
-    "boundary_proposals",
-    "structural_suspects",
     "speaker_flags",
     "normalization_fixes",
     "stages"
@@ -179,9 +177,7 @@
           "filled_by",
           "spk_before",
           "spk_after",
-          "gap_pct",
-          "boundary_score",
-          "boundary_evidence"
+          "gap_pct"
         ],
         "properties": {
           "prev": {
@@ -216,17 +212,6 @@
             "type": "number",
             "minimum": 0,
             "maximum": 1
-          },
-          "boundary_score": {
-            "type": "number",
-            "minimum": 0,
-            "maximum": 1
-          },
-          "boundary_evidence": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
           }
         }
       }
@@ -257,50 +242,6 @@
         }
       }
     },
-    "boundary_proposals": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "required": [
-          "t",
-          "score",
-          "evidence",
-          "prev",
-          "next"
-        ],
-        "properties": {
-          "t": {
-            "type": "number"
-          },
-          "score": {
-            "type": "number"
-          },
-          "evidence": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        }
-      }
-    },
-    "structural_suspects": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "required": [
-          "speaker",
-          "reason",
-          "detail"
-        ]
-      }
-    },
-    "structural_suspect_ids": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
-    },
     "speaker_flags": {
       "type": "array",
       "items": {
@@ -328,19 +269,6 @@
           "line",
           "field",
           "reason"
-        ]
-      }
-    },
-    "speaker_segments": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "required": [
-          "key",
-          "n_lines",
-          "n_segments",
-          "segments",
-          "isolated"
         ]
       }
     },

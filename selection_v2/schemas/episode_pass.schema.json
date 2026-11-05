@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "episode_pass",
-  "description": "Stage 1B answer. Tier 0 (from WATCHING): cast per raw label, same_person merges, split_labels, reference_times. Tier 1: speakers (keyed by the final person keys), anchor_checks (only when asked), scenes (line ids), suspect_resolutions. Tier 2: possible_non_story, content_type, glossary.",
+  "description": "Stage 1B answer. Tier 0 (from WATCHING): cast per raw label, same_person merges, split_labels, reference_times. Tier 1: speakers (keyed by the final person keys), scenes (line ids), suspect_resolutions. Tier 2: possible_non_story, content_type, glossary.",
   "type": "object",
   "required": [
     "cast",
@@ -188,46 +188,6 @@
           "evidence": {
             "type": "string",
             "description": "line ids and quoted words that support the final name, in the original script"
-          }
-        }
-      }
-    },
-    "anchor_checks": {
-      "type": "array",
-      "description": "One entry per ANCHOR CHECK (Q1, Q2, ...) in PART 1: who the withheld speaker is, judged from this segment and the rest of the episode. Return [] when PART 1 has no ANCHOR CHECKS.",
-      "items": {
-        "type": "object",
-        "required": [
-          "check_id",
-          "key",
-          "who",
-          "consistent_with_episode",
-          "evidence",
-          "final_key"
-        ],
-        "properties": {
-          "check_id": {
-            "type": "string"
-          },
-          "key": {
-            "type": "string",
-            "description": "the withheld key as shown"
-          },
-          "who": {
-            "type": "string",
-            "description": "who this speaker is, in words"
-          },
-          "consistent_with_episode": {
-            "type": "boolean",
-            "description": "true if their relationship to the others in this segment matches how those speakers relate elsewhere; false if this must be a different person"
-          },
-          "evidence": {
-            "type": "string",
-            "description": "line ids from this segment AND from elsewhere, quoted"
-          },
-          "final_key": {
-            "type": "string",
-            "description": "the key these lines belong to: the same key if confirmed, another existing key, or a new key (new_1 ...) that must also appear in speakers"
           }
         }
       }

@@ -10,7 +10,8 @@ validated against ``schemas/episode_pass.schema.json`` and then by code:
 A tier that fails validation is re-asked ALONE with the validator's errors, at most ``max_retries_per_tier`` times;
 every attempt is logged (tokens, rupees, errors) in ``runs/selection_v2/<id>/stage1b_debug.json`` with the exact
 instructions and the raw answers; the prefix bytes are in ``prefix.txt``. Code then DERIVES (never decides):
-scene times, which proposals were confirmed / merged / added, which lines changed speaker, and counts.
+scene times, which lines changed speaker, and counts. The model decides the scenes alone (founder, 2026-11-03: no
+program-proposed edges, no anchor checks, no code gap repair or short-scene merge).
 
 Refuses to run when Stage 1A is missing or older than the current ``stage1_facts.VERSION``.
 """
@@ -27,7 +28,7 @@ from . import stage1_facts
 from .config import ROOT, inr_per_usd
 from .glossary import load_glossary, merge_glossary, save_glossary
 from .paths import write_json
-from .prefix import anchor_checks, build_prefix
+from .prefix import build_prefix
 from .stage1_facts import fmt_ts, parse_ts
 
 VERSION = "stage1b/0.3"
@@ -37,7 +38,7 @@ ROLE = "episode_pass"
 PROMPT_PATH = Path(__file__).resolve().parent / "prompts" / "stage1b_episode_pass.md"
 SCHEMA_PATH = Path(__file__).resolve().parent / "schemas" / "episode_pass.schema.json"
 TIER0 = ("cast", "same_person", "split_labels", "reference_times")
-TIER1 = ("speakers", "anchor_checks", "scenes", "suspect_resolutions", "threads")   # threads: founder, 2026-10-29
+TIER1 = ("speakers", "scenes", "suspect_resolutions", "threads")   # threads: founder, 2026-10-29
 TIER2 = ("possible_non_story", "content_type", "glossary")
 LINE_RE = re.compile(r"L\d{4,}")
 LEFTOVER_SHARE = 0.2     # raw mode: a label needs its own speakers entry only when > this share of its lines was not split away
@@ -212,26 +213,6 @@ def repair_scene_edges(ans: dict, facts: dict) -> list[str]:
     return notes
 
 
-GAP_JOIN_MAX_LINES = 2
-
-
-def repair_scene_gaps(ans: dict, facts: dict, max_lines: int = GAP_JOIN_MAX_LINES) -> list[str]:
-    """2026-10-30: at most ``max_lines`` dialogue lines left BETWEEN two consecutive scenes (after one scene's last line,
-    before the next one's first line) join the earlier scene (its last_line moves forward). A larger gap is left for
-    the validator. Returns the repairs made, in place."""
-    dlg = dialogue_ids(facts)
-    pos = {x: i for i, x in enumerate(dlg)}
-    notes = []
-    scs = [sc for sc in ans.get("scenes") or [] if sc.get("first_line") in pos and sc.get("last_line") in pos]
-    scs.sort(key=lambda sc: pos[sc["first_line"]])
-    for a, b in zip(scs, scs[1:]):
-        gap = dlg[pos[a["last_line"]] + 1:pos[b["first_line"]]]
-        if 0 < len(gap) <= max_lines:
-            notes.append(f"scene {a.get('id')}: dialogue line(s) {', '.join(gap)} between it and scene {b.get('id')} joined to it")
-            a["last_line"] = gap[-1]
-    return notes
-
-
 def validate_tier1(ans: dict, facts: dict, non_story: list[dict] | None = None, max_share: float = 0.5, raw: bool = False) -> list[str]:
     errs: list[str] = []
     all_ids = [r["id"] for r in facts["lines"]]
@@ -271,12 +252,11 @@ def validate_tier1(ans: dict, facts: dict, non_story: list[dict] | None = None, 
         if not str(s.get("name") or "").strip():
             errs.append(f"speaker {k} has an empty name (use 'unresolved' if unknown)")
         if s.get("status") == "new":
-            assigned_by_anchor = any(a.get("final_key") == k for a in ans.get("anchor_checks") or [])
             split_out = raw and any(_loose(person.get("name")) == _loose(s.get("name"))
                                     for sp in ans.get("split_labels") or [] for person in sp.get("people") or [])
-            if not s.get("lines") and not assigned_by_anchor and not split_out:
+            if not s.get("lines") and not split_out:
                 errs.append(f"new speaker {k} must list the line ranges they speak (lines)" + (
-                    ", or be a person named in split_labels" if raw else ", or be the final_key of an anchor check"))
+                    ", or be a person named in split_labels" if raw else ""))
             elif s.get("lines"):
                 _, e = expand_lines(s["lines"], all_ids)
                 if e:
@@ -296,20 +276,6 @@ def validate_tier1(ans: dict, facts: dict, non_story: list[dict] | None = None, 
                 if not any(s.get("status") == "new" and _loose(s.get("name")) == nm for s in ans.get("speakers") or []) \
                         and not any(_loose(s.get("name")) == nm for s in ans.get("speakers") or []):
                     errs.append(f"split_labels {sp.get('label')}: person {person.get('name')!r} needs a speakers entry (status new, same name)")
-    expected = {} if raw else {q["check_id"]: q for q in anchor_checks(facts, max_share)}
-    got = {}
-    for a in ans.get("anchor_checks") or []:
-        cid = str(a.get("check_id") or "")
-        if cid not in expected:
-            errs.append(f"anchor_checks: unknown check_id {cid!r} (expected {sorted(expected)})")
-            continue
-        got[cid] = a
-        fk = a.get("final_key")
-        if fk and fk not in known_keys:
-            errs.append(f"anchor check {cid}: final_key {fk!r} is not a known key and has no speakers entry (add one with status new)")
-    missing_q = [c for c in expected if c not in got]
-    if missing_q:
-        errs.append(f"anchor_checks missing for {missing_q}: every ANCHOR CHECK in PART 1 needs an answer")
     scenes = ans.get("scenes") or []
     if not scenes:
         errs.append("scenes is empty")
@@ -387,7 +353,7 @@ def validate_tier2(ans: dict, facts: dict, cfg: dict) -> list[str]:
 
 
 # ----------------------------------------------------------------------------------------------- derivation (code)
-def derive(ans: dict, facts: dict, min_scene_s: float = 0.0, max_share: float = 0.5, raw: bool = False) -> dict:
+def derive(ans: dict, facts: dict, raw: bool = False) -> dict:
     lines = {r["id"]: r for r in facts["lines"]}
     all_ids = [r["id"] for r in facts["lines"]]
     dlg = dialogue_ids(facts)
@@ -443,20 +409,6 @@ def derive(ans: dict, facts: dict, min_scene_s: float = 0.0, max_share: float = 
             for lid in ids:
                 if lines[lid]["kind"] == "speech":
                     line_speakers[lid] = s["key"]
-    anchors = {q["check_id"]: q for q in anchor_checks(facts, max_share)}
-    anchor_table = []
-    for a in ans.get("anchor_checks") or []:
-        q = anchors.get(str(a.get("check_id")))
-        if q is None:
-            continue
-        fk = a.get("final_key") or q["key"]
-        ids = list(q["line_ids"])
-        if fk != q["key"]:
-            for lid in ids:
-                line_speakers[lid] = fk
-        anchor_table.append({"check_id": q["check_id"], "key": q["key"], "range": q["range"], "n_lines": len(ids),
-                             "who": a.get("who"), "consistent": a.get("consistent_with_episode"), "final_key": fk,
-                             "changed": fk != q["key"], "evidence": a.get("evidence")})
     for r in ans.get("suspect_resolutions") or []:
         lk = r.get("likely_key")
         if lk and r.get("line") in lines and lk != lines[r["line"]].get("speaker_key"):
@@ -490,59 +442,8 @@ def derive(ans: dict, facts: dict, min_scene_s: float = 0.0, max_share: float = 
         scenes.append({"id": sc.get("id"), "first_line": sc["first_line"], "last_line": sc["last_line"],
                        "start": f["start"], "end": l["end"], "start_str": fmt_ts(f["start"]), "end_str": fmt_ts(l["end"]),
                        "label": sc.get("label"), "register": sc.get("register"), "speakers": sc.get("speakers") or [],
-                       "note": sc.get("note"), "proposals_confirmed": [], "proposals_merged": [], "origin": None})
+                       "note": sc.get("note")})
     scenes.sort(key=lambda s: s["start"])
-    # code post-processing: a scene shorter than min_scene_s merges into the previous scene
-    merged_short = []
-    min_s = float(min_scene_s or 0)
-    if min_s > 0:
-        kept = []
-        for sc in scenes:
-            if kept and (sc["end"] - sc["start"]) < min_s:
-                prev = kept[-1]
-                merged_short.append({"id": sc["id"], "start_str": sc["start_str"], "end_str": sc["end_str"], "label": sc["label"],
-                                     "into": prev["id"]})
-                prev["last_line"], prev["end"], prev["end_str"] = sc["last_line"], sc["end"], sc["end_str"]
-                prev["speakers"] = sorted(set(prev["speakers"]) | set(sc["speakers"]))
-                prev["note"] = ((prev.get("note") or "") + f" (+ merged short scene {sc['id']}: {sc['label']})").strip()
-            else:
-                kept.append(sc)
-        scenes = kept
-    edges = []   # (last_line_of_prev, first_line_of_next)
-    for a, b in zip(scenes, scenes[1:]):
-        edges.append((a["last_line"], b["first_line"], a, b))
-    props = facts.get("boundary_proposals") or []
-    status: dict[int, str] = {}
-    for a_last, b_first, a, b in edges:
-        hit = [p for p in props if p["prev"] == a_last and p["next"] == b_first]
-        if hit:
-            for p in hit:
-                status[p["rank"]] = "confirmed"
-                b["proposals_confirmed"].append(p["t_str"])
-            b["origin"] = "confirmed"
-        else:
-            # the edge gap: between a_last and b_first there may be non-story lines; a proposal whose t falls in there
-            lo, hi = lines[a_last]["end"], lines[b_first]["start"]
-            near = [p for p in props if lo - 1e-6 <= p["t_next_start"] <= hi + 1e-6 or lo - 1e-6 <= p["t_prev_end"] <= hi + 1e-6]
-            if near:
-                for p in near:
-                    status[p["rank"]] = "confirmed"
-                    b["proposals_confirmed"].append(p["t_str"])
-                b["origin"] = "confirmed"
-            else:
-                b["origin"] = "added"
-    if scenes:
-        scenes[0]["origin"] = scenes[0]["origin"] or "start"
-    for p in props:
-        if p["rank"] in status:
-            continue
-        inside = next((s for s in scenes if s["start"] - 1e-6 < p["t"] < s["end"] + 1e-6), None)
-        if inside is not None:
-            status[p["rank"]] = "merged"
-            inside["proposals_merged"].append(p["t_str"])
-        else:
-            status[p["rank"]] = "outside"
-    proposals = [{"rank": p["rank"], "t_str": p["t_str"], "status": status.get(p["rank"], "outside")} for p in props]
     ns_lines = []
     for n in ans.get("possible_non_story") or []:
         ids, _ = expand_lines(n.get("lines", ""), all_ids)
@@ -551,17 +452,11 @@ def derive(ans: dict, facts: dict, min_scene_s: float = 0.0, max_share: float = 
               "n_speakers_changed": sum(1 for s in speakers_table if s["changed"]),
               "n_new_speakers": sum(1 for s in speakers_table if s["status"] == "new"),
               "n_scenes": len(scenes),
-              "n_proposals_confirmed": sum(1 for v in status.values() if v == "confirmed"),
-              "n_proposals_merged": sum(1 for v in status.values() if v == "merged"),
-              "n_edges_added": sum(1 for s in scenes if s["origin"] == "added"),
-              "n_short_scenes_merged": len(merged_short),
               "n_merges": len(merges), "n_splits": len(splits), "n_inferred_lines": len(inferred),
-              "n_anchor_checks": len(anchor_table), "n_anchor_changed": sum(1 for a in anchor_table if a["changed"]),
               "n_resolutions": len(ans.get("suspect_resolutions") or []),
               "n_lines_reassigned": len(line_speakers),
               "n_non_story_lines": len(set(ns_lines)), "content_type": ans.get("content_type")}
-    return {"speakers_table": speakers_table, "anchor_table": anchor_table, "scenes": scenes, "merged_short": merged_short,
-            "proposals": proposals, "line_speakers": line_speakers, "merges": merges, "splits": splits, "inferred_lines": inferred,
+    return {"speakers_table": speakers_table, "scenes": scenes, "line_speakers": line_speakers, "merges": merges, "splits": splits, "inferred_lines": inferred,
             "prior": "raw" if raw else "fix",
             "non_story_lines": sorted(set(ns_lines), key=all_ids.index), "counts": counts}
 
@@ -569,10 +464,8 @@ def derive(ans: dict, facts: dict, min_scene_s: float = 0.0, max_share: float = 
 def plain_summary_1b(ep: dict) -> str:
     c = ep["derived"]["counts"]
     return (f"Named {c['n_speakers']} speakers ({c['n_speakers_changed']} changed from the speaker fix, {c['n_new_speakers']} new; "
-            f"{c.get('n_merges', 0)} label merges, {c.get('n_splits', 0)} label splits; "
-            f"{c.get('n_anchor_checks', 0)} anchor checks, {c.get('n_anchor_changed', 0)} overturned), "
-            f"confirmed {c['n_scenes']} scenes (confirmed {c['n_proposals_confirmed']} proposals, merged {c['n_proposals_merged']}, "
-            f"added {c['n_edges_added']} edges, {c.get('n_short_scenes_merged', 0)} short scenes merged), resolved {c['n_resolutions']} "
+            f"{c.get('n_merges', 0)} label merges, {c.get('n_splits', 0)} label splits), "
+            f"found {c['n_scenes']} scenes, resolved {c['n_resolutions']} "
             f"suspects ({c['n_lines_reassigned']} lines reassigned), flagged {c['n_non_story_lines']} possibly non-story lines, "
             f"content type {c['content_type']}.")
 
@@ -704,11 +597,10 @@ def run(inputs, facts: dict | None, cfg: dict, client=None, log=None, cutter=Non
 
     def v1(a: dict) -> list[str]:
         repairs.extend(repair_scene_edges(a, facts))
-        repairs.extend(repair_scene_gaps(a, facts))
         e0 = validate_tier0(a, facts, float(facts["episode"]["duration"])) if raw else []
         return e0 + validate_tier1(a, facts, a.get("possible_non_story"), share, raw)
 
-    share = float(cfg["stage1b"].get("anchor_max_share", 0.5))
+    share = 0.5   # unused since the anchor checks were removed (2026-11-03)
     ans = call("all", None)
     t1_errs = v1(ans)
     attempts[-1]["validation_tier1"] = t1_errs
@@ -750,7 +642,7 @@ def run(inputs, facts: dict | None, cfg: dict, client=None, log=None, cutter=Non
             video_info["deleted_from_google"] = (deleter or delete_upload)({"name": up.get("name")})
         except Exception as e:  # noqa: BLE001 - a failed delete must be visible, never fatal (the file expires in 48 h)
             video_info["deleted_from_google"] = f"failed: {type(e).__name__}: {e}"
-    derived = derive(ans, facts, float(cfg["stage1b"].get("min_scene_s", 0) or 0), share, raw)
+    derived = derive(ans, facts, raw=raw)
     merged = merge_glossary(prep["glossary_prior"], ans.get("glossary") or {}, inputs.vid)
     gpath = save_glossary(prep["series_key"], merged, cfg)
     usd = (usage["input_tokens"] - min(usage["cached_tokens"], usage["input_tokens"])) * cfg["rates"]["usd_per_1m_input"] / 1e6 \

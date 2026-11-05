@@ -171,41 +171,13 @@ all_tabs = st.tabs(tab_names)
 review_tab, tabs = all_tabs[0], all_tabs[1:]
 
 # ----------------------------------------------------------------------------------------------- Review (guided)
-REVIEW_DIR = Path(runner.ROOT) / "data" / "human"
-
-
-def review_path(v: str) -> Path:
-    return REVIEW_DIR / f"stage1a_scene_edges_{v}.csv"
-
-
-def load_answers(v: str) -> dict:
-    p = review_path(v)
-    if not p.exists():
-        return {}
-    df = pd.read_csv(p)
-    return {f"{r.prev}->{r.next}": r.answer for r in df.itertuples()}
-
-
-def save_answer(v: str, p: dict, answer: str):
-    import csv
-    REVIEW_DIR.mkdir(parents=True, exist_ok=True)
-    path = review_path(v)
-    new = not path.exists()
-    with open(path, "a", newline="", encoding="utf-8") as f:
-        w = csv.writer(f)
-        if new:
-            w.writerow(["ts", "video_id", "rank", "t", "t_str", "prev", "next", "score", "selected_by", "answer"])
-        w.writerow([time.strftime("%Y-%m-%dT%H:%M:%S"), v, p["rank"], p["t"], p["t_str"], p["prev"], p["next"],
-                    p["score"], p.get("selected_by", ""), answer])
-
 
 with review_tab:
     st.markdown(f"## {P.title() or vid}")
     st.markdown(
         "**What this is.** The computer watched this episode with a stopwatch and wrote down facts: where each line is "
-        "said, where the pauses are, where there is a laugh, and where it *thinks* a scene changes. It has not picked any "
-        "clips. Your job here is one question, asked once per guess: **did the scene really change at this moment?** "
-        "You watch ten seconds of video and press a button.")
+        "said, where the pauses are and where there is a laugh. It decides nothing: the scenes and the speakers come from "
+        "the model in the later steps.")
     F = facts_of(vid)
     if F is None or "1a" not in F.get("stages", {}):
         st.info("This episode has not been measured yet.")
@@ -222,77 +194,22 @@ with review_tab:
                 st.caption("Automatic checks: all passed.")
         except Exception as e:
             show_exception(e)
-        props = F["boundary_proposals"]
-        if not props:
-            st.warning("no scene-change guesses to review")
-        else:
-            answers = load_answers(vid)
-            n = len(props)
-            key_idx = f"rev_idx_{vid}"
-            if key_idx not in st.session_state:
-                first_open = next((i for i, p in enumerate(props) if f"{p['prev']}->{p['next']}" not in answers), 0)
-                st.session_state[key_idx] = first_open
-            i = max(0, min(n - 1, st.session_state[key_idx]))
-            p = props[i]
-            done = sum(1 for p2 in props if f"{p2['prev']}->{p2['next']}" in answers)
-            st.markdown("---")
-            st.markdown(f"### Scene change guess {i + 1} of {n} · at {p['t_str']}")
-            st.progress(done / n, text=f"{done} of {n} answered")
-            st.caption("Why the computer thinks so: " + "; ".join(p["evidence"]))
-            video_at(p["t"])
-            with st.expander("what is said just before and after", expanded=False):
-                context_block(F, [p["prev"], p["next"]], n=3)
-            prev_answer = answers.get(f"{p['prev']}->{p['next']}")
-            if prev_answer:
-                st.caption(f"you answered: **{prev_answer}** (press again to change)")
-            c1, c2, c3, c4, c5 = st.columns([2, 2, 2, 1, 1])
-            def _answer(a):
-                save_answer(vid, p, a)
-                st.session_state[key_idx] = min(n - 1, i + 1)
-                st.rerun()
-            if c1.button("✅ Yes, the scene changes here", key=f"rev_yes_{vid}_{i}", type="primary"):
-                _answer("yes")
-            if c2.button("❌ No, same scene", key=f"rev_no_{vid}_{i}"):
-                _answer("no")
-            if c3.button("🤷 Not sure", key=f"rev_ns_{vid}_{i}"):
-                _answer("not_sure")
-            if c4.button("◀ back", key=f"rev_prev_{vid}_{i}", disabled=i == 0):
-                st.session_state[key_idx] = i - 1
-                st.rerun()
-            if c5.button("skip ▶", key=f"rev_next_{vid}_{i}", disabled=i >= n - 1):
-                st.session_state[key_idx] = i + 1
-                st.rerun()
-            if done:
-                tally = {a: sum(1 for v2 in answers.values() if v2 == a) for a in ("yes", "no", "not_sure")}
-                st.markdown(f"**So far:** {tally['yes']} yes · {tally['no']} no · {tally['not_sure']} not sure · "
-                            f"saved in `{review_path(vid).relative_to(runner.ROOT)}`")
-            if done >= n:
-                st.success("All guesses answered for this episode. Tell me the yes / no counts, or just say you are done; "
-                           "I read the file.")
-            st.markdown("---")
-            st.markdown("**Missed one?** If, while watching, you saw a scene change that has no guess, type its time here.")
-            miss = st.text_input("time of a scene change the computer missed (m:ss), then Enter", key=f"rev_miss_{vid}")
-            if miss:
-                try:
-                    from selection_v2.stage1_facts import parse_ts
-                    t_m = parse_ts(miss)[0]
-                    save_answer(vid, {"rank": "", "t": t_m, "t_str": fmt_ts(t_m), "prev": "", "next": "", "score": ""}, "missed")
-                    st.success(f"saved a missed scene change at {fmt_ts(t_m)}")
-                except Exception as e:
-                    show_exception(e)
+        st.caption("Scene changes are decided by the model in Stage 1B (founder, 2026-11-03: the program no longer guesses "
+                   "them), so there is nothing to review here; see the Scenes table in the Stage 1B tab.")
+
 
 # ---- Stage 1A
 EDGE, LAUGH, HOLD, GOLD, SILVER, SCENE = "#3987e5", "#d95926", "#199e70", "#c98500", "#9085e9", "#d55181"   # dark-surface slots
 
 
 def timeline(F: dict, key: str):
-    """Whole-episode timeline: scene-edge proposals as vertical lines, laughs as dots, holds as bigger dots, golden-set
+    """Whole-episode timeline: the 1B scenes as vertical lines, laughs as dots, holds as bigger dots, golden-set
     moments as bars. Hover for the time and evidence; click a mark to see the transcript around it."""
     import altair as alt
     gold = golden_set.moments_of(golden_set.load(), F["episode"]["video_id"]) if golden_set.DEFAULT_PATH.exists() else []
     marks, spans = present.timeline_rows(F, CFG, gold)
     if not marks:
-        st.info("nothing to draw: no proposals, laughs or holds")
+        st.info("nothing to draw: no scenes, laughs or holds")
         return
     dur = F["episode"]["duration"]
     mdf = pd.DataFrame(marks)
@@ -365,13 +282,7 @@ with tabs[0]:
         # 3. check it yourself
         st.markdown("### Check it yourself (no reference needed: the video plays at the clicked moment)")
         st.markdown(
-            "1. **Scene edges**: click 3–4 blue lines in the timeline (or rows in the proposals table). The video starts "
-            "4 s before the mark. Watch ~10 s: does the place, time or group of people change? Write down the time and "
-            "yes / no. A music beat inside one scene is fine (Stage 1B merges those). What matters is a cut where "
-            "nothing changes, or a scene change you notice while watching that has no blue line.\n"
-            "2. **Speakers**: in Details → Speakers, pick a row marked `isolated` or with a `*` partner, click one of that "
-            "speaker's suspect lines (Details → Suspect lines) and watch: is the named person really the one talking?\n"
-            "3. **Laughs**: click an orange dot; the video starts 8 s earlier. Did a joke just land? Then scrub to a joke "
+            "1. **Laughs**: click an orange dot; the video starts 8 s earlier. Did a joke just land? Then scrub to a joke "
             "you remember and see whether there is an orange dot near it.")
         # 4. reference (only episodes with a hand-worked reference file)
         ref_path = ref_compare.reference_path(vid)
@@ -402,62 +313,24 @@ with tabs[0]:
 
         # detailed tables, collapsed
         st.markdown("### Details")
-        with st.expander("Scene-boundary proposals (click a row for the transcript)", expanded=False):
-            pdf = pd.DataFrame([{"rank": p["rank"], "t": p["t_str"], "prev_end": fmt_ts(p["t_prev_end"]),
-                                 "next_start": fmt_ts(p["t_next_start"]), "score": p["score"], "by": p.get("selected_by"),
-                                 "evidence": "; ".join(p["evidence"]), "prev": p["prev"], "next": p["next"], "gap_s": p["gap"],
-                                 "before": " ".join(p["spk_before"]), "after": " ".join(p["spk_after"])}
-                                for p in F["boundary_proposals"]])
-            bcfg = CFG["stage1a"]["boundary"]
-            st.caption(f"{len(pdf)} proposals of {s1['summary'].get('n_gaps_qualifying', '?')} qualifying pauses. A proposal is one "
-                       f"pause: prev-line end and next-line start are its edges, t is the next line's start. "
-                       f"`by`: score (>= {bcfg['min_score']} with 2+ evidence types), total_turnover, cast_swap, coverage")
-            sel = selected_rows(pdf, f"props_{vid}", height=300)
-            if sel:
-                r = pdf.iloc[sel[0]]
-                video_at(F["boundary_proposals"][int(r["rank"]) - 1]["t"])
-                context_block(F, [r["prev"], r["next"]])
-        with st.expander("Speakers: cast, where they appear, name votes", expanded=False):
-            st.caption("isolated = appears in exactly one segment. A co-speaker marked * is an exclusive partner: someone who "
-                       "never appears in any segment without this speaker.")
-            sgdf = pd.DataFrame([{"key": d["key"], "name": d["name"], "scribe": " ".join(d["scribe_labels"]), "lines": d["n_lines"],
-                                  "segments": d["n_segments"], "first": d["first"], "last": d["last"], "isolated": d["isolated"],
-                                  "exclusive_partners": " ".join(d.get("exclusive_partners") or []), "where": d["segments_str"]}
-                                 for d in F.get("speaker_segments") or []])
-            st.dataframe(sgdf, width="stretch", hide_index=True, height=min(500, 40 + 36 * max(1, len(sgdf))))
+        with st.expander("Speakers: cast list", expanded=False):
             cl = F["cast_list"]
             st.caption(f"cast list: {cl['n_config_names']} names from data/series_cast/cast_lists.yaml ({cl['series_key']}) + "
                        f"{cl['n_speaker_fix_names']} from speaker_fix" + (f"; skipped role words: {cl.get('speaker_fix_names_skipped')}" if cl.get("speaker_fix_names_skipped") else ""))
-        with st.expander("Suspect lines (structural flags in both label spaces; speaker_fix confidence flags)", expanded=False):
-            cA, cB = st.columns(2)
-            with cA:
-                sdf = pd.DataFrame(F["structural_suspects"])
-                if len(sdf):
-                    sel = selected_rows(sdf, f"susp_{vid}", height=240)
-                    if sel:
-                        r = F["structural_suspects"][sel[0]]
-                        lid = r.get("line") or (r.get("lines") or [None])[0]
-                        if lid:
-                            video_at(next(x["start"] for x in F["lines"] if x["id"] == lid))
-                        context_block(F, [r["line"]] if r.get("line") else list(r.get("lines") or []), n=4)
-                else:
-                    st.write("no structural flags")
-            with cB:
-                fdf = pd.DataFrame(F["speaker_flags"])
-                if len(fdf):
-                    sel = selected_rows(fdf, f"flags_{vid}", height=240)
-                    if sel:
-                        context_block(F, [fdf.iloc[sel[0]]["line"]], n=4)
-                else:
-                    st.write("no confidence flags (every line at 0.9)")
+        with st.expander("Lines the speaker-fix step was unsure about (its own confidence)", expanded=False):
+            fdf = pd.DataFrame(F["speaker_flags"])
+            if len(fdf):
+                sel = selected_rows(fdf, f"flags_{vid}", height=240)
+                if sel:
+                    context_block(F, [fdf.iloc[sel[0]]["line"]], n=4)
+            else:
+                st.write("no confidence flags (every line at 0.9)")
         with st.expander("Gap table (every pause between lines)", expanded=False):
             gmin = st.slider("show pauses ≥ (s)", 0.0, 15.0, 1.0, 0.1, key=f"gmin_{vid}")
             gdf = pd.DataFrame([{"prev": g["prev"], "next": g["next"], "t_end": fmt_ts(g["t_prev_end"]),
                                  "t_next": fmt_ts(g["t_next_start"]), "gap_s": g["gap"], "pct": g["gap_pct"],
                                  "filled_by": g["filled_by"], "before": " ".join(g["spk_before"]),
-                                 "after": " ".join(g["spk_after"]),
-                                 "score": g["boundary_score"], "qualifies": g.get("qualifies"),
-                                 "evidence": "; ".join(g["boundary_evidence"]), "overlap": g["overlap"]}
+                                 "after": " ".join(g["spk_after"]), "overlap": g["overlap"]}
                                 for g in F["gaps"] if g["gap"] >= gmin])
             st.caption(f"{len(gdf)} of {len(F['gaps'])} pauses · percentiles (s): {s1['summary']['gap_percentiles_s']} · click a row for context")
             sel = selected_rows(gdf, f"gaps_{vid}", height=320)
@@ -613,20 +486,9 @@ with tabs[1]:
                 st.markdown("**reference moments per character** (the cast sheet cuts only these)")
                 st.dataframe(pd.DataFrame([{"name": r.get("name"), "times": ", ".join(r.get("times") or []), "note": r.get("note")}
                                            for r in ep.get("reference_times") or []]), width="stretch", hide_index=True)
-        st.markdown("### Anchor checks (prior name withheld; who is this speaker?)")
-        adf = pd.DataFrame(ep["derived"].get("anchor_table") or [])
-        if len(adf):
-            st.dataframe(adf.style.apply(lambda row: ["background-color: #4a2a1a" if row["changed"] else "" for _ in row], axis=1),
-                         width="stretch", hide_index=True, height=min(400, 40 + 36 * len(adf)))
-        else:
-            st.write("none asked")
         st.markdown("### Scenes")
-        if ep["derived"].get("merged_short"):
-            st.caption("short scenes merged into the previous one by code: " + "; ".join(
-                f"{m['id']} {m['start_str']}-{m['end_str']} → {m['into']}" for m in ep["derived"]["merged_short"]))
         scdf = pd.DataFrame([{"id": s["id"], "start": s["start_str"], "end": s["end_str"], "label": s["label"], "register": s["register"],
-                              "speakers": " ".join(s["speakers"]), "origin": s["origin"],
-                              "proposals confirmed": ", ".join(s["proposals_confirmed"]), "proposals merged": ", ".join(s["proposals_merged"]),
+                              "speakers": " ".join(s["speakers"]),
                               "first": s["first_line"], "last": s["last_line"]} for s in ep["derived"]["scenes"]])
         sel = selected_rows(scdf, f"scenes1b_{vid}", height=min(520, 40 + 36 * max(1, len(scdf))))
         if sel:

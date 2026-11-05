@@ -258,3 +258,56 @@ class TestCastSheetUsesAloneLines(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestVideoStepScenes(unittest.TestCase):
+    """founder, 2026-11-03 test: the video step also gives the scenes, checking the text step's split (check) or
+    finding them with no split sent (find). Code checks ids only."""
+    def run_mode(self, mode, scenes):
+        f = facts_1b()
+        inputs = make_inputs()
+        with tempfile.TemporaryDirectory() as td:
+            inputs.paths = SimpleNamespace(run_dir=Path(td), mp4=Path(td) / "ep.mp4", title=lambda: "Synthetic")
+            cfg = copy.deepcopy(CFG); cfg["paths"]["runs_log"] = str(Path(td) / "runs.csv"); cfg["naming_check"]["enabled"] = False
+            cfg["identity_pass"]["scenes"] = mode
+            ans = video_answer(f); ans["scenes"] = scenes(f)
+            client = FakeClient([ans])
+            out = IDP.run(inputs, f, cfg, client=client, cutter=_cutter, uploader=_uploader, deleter=_deleter)
+        return f, out, client
+
+    def test_find_sends_no_scene_split_and_stores_scenes(self):
+        mid = lambda f: f["lines"][len(f["lines"]) // 2]["id"]
+        f, out, client = self.run_mode("find", lambda f: [{"first": f["lines"][0]["id"], "where": "home", "who": [], "why": "start"},
+                                                            {"first": mid(f), "where": "office", "who": [], "why": "new place"}])
+        ctx = client.calls[0]["media"][1]["text"]
+        self.assertIn("TRANSCRIPT IN TIME ORDER", ctx); self.assertNotIn("== Scene", ctx)
+        self.assertIn("in time order", client.calls[0]["prompt"]); self.assertIn("split the whole episode into scenes", client.calls[0]["prompt"])
+        sc = out["identity_pass"]["scenes"]
+        self.assertEqual([s["first_line"] for s in sc], [f["lines"][0]["id"], mid(f)])
+        self.assertEqual(sc[-1]["last_line"], f["lines"][-1]["id"])
+        self.assertEqual(out["identity_pass"]["scenes_mode"], "find")
+
+    def test_check_sends_the_text_split(self):
+        f, out, client = self.run_mode("check", lambda f: [{"first": f["lines"][0]["id"], "where": "home", "who": [], "why": "start"}])
+        self.assertIn("== Scene", client.calls[0]["media"][1]["text"])
+        self.assertIn("came from the text step", client.calls[0]["prompt"])
+
+    def test_scene_ids_are_checked(self):
+        f = facts_1b()
+        errs, warns, sc = IDP.validate_scenes({"scenes": [{"first": "nope", "who": []}]}, f, set())
+        self.assertTrue(errs)
+        ids = [r["id"] for r in f["lines"]]
+        errs, warns, sc = IDP.validate_scenes({"scenes": [{"first": ids[3], "who": ["Z"]}, {"first": ids[1], "who": []}, {"first": "x", "who": []}]}, f, set())
+        self.assertEqual(errs, [])
+        self.assertEqual([s["first_line"] for s in sc], [ids[0], ids[3]])     # sorted; lines before the first go to scene 1
+        self.assertEqual(len(warns), 4)
+
+    def test_scene_ends_leave_gaps(self):
+        f = facts_1b(); ids = [r["id"] for r in f["lines"]]
+        ans = {"scenes": [{"first": ids[0], "last": ids[2], "who": [], "after": "title card"},
+                          {"first": ids[5], "last": ids[1], "who": []}]}                 # a last before its first: a slip
+        errs, warns, sc = IDP.validate_scenes(ans, f, set())
+        self.assertEqual(errs, [])
+        self.assertEqual((sc[0]["last_line"], sc[0]["gap"], sc[0]["after"]), (ids[2], [ids[3], ids[4]], "title card"))
+        self.assertEqual((sc[1]["last_line"], sc[1]["gap"]), (ids[-1], None))
+        self.assertTrue(any("last line" in w for w in warns))

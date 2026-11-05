@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shotvi Clip Flow</title>
+<style>
+:root{--bg:#f6f6f3;--panel:#fff;--ink:#1c1c1a;--ink2:#55544f;--muted:#86857e;--line:#e2e2dc;--accent:#2f5d8a;--accentbg:#e6eef7;--ai:#6b3fa0;--aibg:#f0e9f8;--code:#2e7d4f;--codebg:#e3f3e9;--warn:#9a6b00;--warnbg:#fbf1d9;--bad:#b3412f;--badbg:#f8e3df;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#161615;--panel:#1f1f1d;--ink:#ecebe7;--ink2:#bdbab2;--muted:#8d8a83;--line:#34332f;--accent:#8ab4e0;--accentbg:#1c2a38;--ai:#c4a3ec;--aibg:#2b2238;--code:#7fcf9c;--codebg:#1d3326;--warn:#f0c46a;--warnbg:#3a3018;--bad:#f2a49c;--badbg:#3a1f1c}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans Telugu",sans-serif}
+main{max-width:1100px;margin:0 auto;padding:20px 16px 60px}
+h1{font-size:24px;margin:0 0 4px}h2{font-size:19px;margin:32px 0 10px;padding-top:8px;border-top:1px solid var(--line)}h3{font-size:16px;margin:0}
+p{margin:6px 0}.sub{color:var(--ink2);margin:0 0 14px}.muted{color:var(--muted)}
+a{color:var(--accent)}
+code,.mono{font-family:var(--mono);font-size:12.5px}
+.strip{display:flex;flex-wrap:wrap;gap:6px;align-items:stretch;margin:12px 0}
+.strip a{text-decoration:none;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:6px 10px;font-size:13px;line-height:1.3;display:flex;flex-direction:column;min-width:110px;flex:1 1 110px}
+.strip a b{font-size:13px}.strip a span{font-size:11.5px;color:var(--ink2)}
+.strip a.ai{border-left:4px solid var(--ai)}.strip a.code{border-left:4px solid var(--code)}.strip a.new{border-left:4px solid var(--warn)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12.5px;color:var(--ink2)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px;margin:12px 0;scroll-margin-top:10px}
+.card.ai{border-left:5px solid var(--ai)}.card.code{border-left:5px solid var(--code)}.card.new{border-left:5px solid var(--warn)}
+.head{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:baseline;margin-bottom:6px}
+.tag{display:inline-block;font-size:11.5px;padding:1px 8px;border-radius:10px;margin-left:4px;border:1px solid var(--line);color:var(--ink2);white-space:nowrap}
+.tag.ai{background:var(--aibg);color:var(--ai);border-color:transparent}.tag.code{background:var(--codebg);color:var(--code);border-color:transparent}
+.tag.warn{background:var(--warnbg);color:var(--warn);border-color:transparent}
+.io{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0}
+.io>div{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 10px}
+.io h4{margin:0 0 4px;font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+.io ul,.card ul{margin:2px 0;padding-left:18px}.io li,.card li{margin:2px 0}
+.kv{display:grid;grid-template-columns:140px 1fr;gap:3px 12px;font-size:13.5px;margin-top:8px}
+.kv dt{color:var(--muted)}.kv dd{margin:0}
+details{margin-top:8px}summary{cursor:pointer;color:var(--accent);font-size:13.5px}
+pre{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px;overflow-x:auto;font-family:var(--mono);font-size:12px;line-height:1.45;white-space:pre-wrap;word-break:break-word;margin:6px 0}
+table{border-collapse:collapse;width:100%;font-size:13.5px;margin:8px 0}
+th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{color:var(--muted);font-weight:600;font-size:12.5px}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.tw{overflow-x:auto}
+.callout{background:var(--warnbg);border-radius:8px;padding:8px 12px;margin:8px 0;font-size:14px}
+.callout.bad{background:var(--badbg)}
+.callout.ok{background:var(--codebg)}
+.arrow{color:var(--muted);text-align:center;font-size:18px;margin:-4px 0}
+@media (max-width:760px){.io{grid-template-columns:1fr}.kv{grid-template-columns:1fr}.kv dt{margin-top:6px}}
+</style>
+</head>
+<body>
+<main>
+<h1>Shotvi: how a web-series episode becomes clips</h1>
+<p class="sub">Selection v2, as it stands on 5 Nov 2026. Each step lists what goes in, what comes out, who decides (AI or code), the model, the cost per episode and real examples from Couple Goals Ep1 (CG) and Hello Madam Ep1 (HM).</p>
+
+<div class="legend"><span><i style="background:var(--ai)"></i>AI decides (Gemini 3.8 Flash)</span><span><i style="background:var(--code)"></i>code only (measures, looks up times, checks format, cuts video)</span><span><i style="background:var(--warn)"></i>new, being tested</span></div>
+
+<nav class="strip" aria-label="Steps">
+<a class="code" href="#s0"><b>0 Source</b><span>video + Scribe transcript</span></a>
+<a class="ai" href="#s1"><b>1 Word fix</b><span>misheard words</span></a>
+<a class="ai" href="#s2"><b>2 Speaker fix</b><span>who says each line</span></a>
+<a class="code" href="#s3"><b>3 Stage 1A</b><span>lines, gaps, sound tags</span></a>
+<a class="ai" href="#s4"><b>4 Stage 1B</b><span>people, ads (text)</span></a>
+<a class="ai" href="#s5"><b>5 Video step</b><span>who talks / on screen, scenes</span></a>
+<a class="ai" href="#s6"><b>6 Stage 2</b><span>scene notes</span></a>
+<a class="ai" href="#s7"><b>7 Stage 3 find</b><span>clips per scene</span></a>
+<a class="new" href="#s8"><b>8 Stage 3 edit</b><span>tighten each clip</span></a>
+<a class="code" href="#s9"><b>9 Cut + review</b><span>clip files, your ratings</span></a>
+<a href="#s10"><b>10 Later</b><span>Stage 4 choosing</span></a>
+</nav>
+
+<h2>Cost per episode (today's Gemini prices, ₹96/$)</h2>
+<div class="tw"><table>
+<thead><tr><th>Step</th><th>Calls</th><th class="num">CG (19 min)</th><th class="num">HM (27 min)</th><th>Main cost</th></tr></thead>
+<tbody>
+<tr><td>1 Word fix</td><td>1 text + a few audio calls</td><td class="num">≈ ₹2</td><td class="num">≈ ₹2–4</td><td>text + short audio</td></tr>
+<tr><td>2 Speaker fix</td><td>3 text calls (parts of the episode)</td><td class="num">≈ ₹1.7</td><td class="num">≈ ₹2</td><td>text</td></tr>
+<tr><td>3 Stage 1A</td><td>none</td><td class="num">₹0</td><td class="num">₹0</td><td>code only</td></tr>
+<tr><td>4 Stage 1B</td><td>1 text call</td><td class="num">₹2.6</td><td class="num">₹2.6</td><td>~22–24k tokens of transcript</td></tr>
+<tr><td>5 Video step</td><td>1 call, whole video</td><td class="num">₹12.9</td><td class="num">₹16.9</td><td>video ~100 tokens/s</td></tr>
+<tr><td>6 Stage 2 scene notes</td><td>1 call, whole video</td><td class="num">₹12.1</td><td class="num">₹14.3</td><td>video</td></tr>
+<tr><td>7 Stage 3 find</td><td>1 cache + 1 call per scene (17 / 10)</td><td class="num">₹39</td><td class="num">₹32</td><td>thinking + cached video reads</td></tr>
+<tr><td>8 Stage 3 edit (testing)</td><td>1 call per clip (11 / 8)</td><td class="num">≈ ₹33 est.</td><td class="num">≈ ₹29 est.</td><td>clip video at 2 fps + thinking</td></tr>
+<tr><th>Total</th><th></th><th class="num">≈ ₹104</th><th class="num">≈ ₹100</th><th>prices double on 1 Jan 2027 (Google)</th></tr>
+</tbody></table></div>
+<p class="muted">Thinking tokens are billed as output and often exceed estimates (Stage 3 find ran 40% over once). Every paid run is approved by you in ₹ first; the project cap is enforced in <code>shotvi/llm/spend.py</code> (now ₹3,800).</p>
+
+<!-- ================================================================ 0 -->
+<section class="card code" id="s0">
+<div class="head"><h3>0 · Source: the episode and its Scribe transcript</h3><span><span class="tag code">no AI here</span></span></div>
+<p>The episode video and an ElevenLabs Scribe (scribe_v2) transcript made earlier with speaker labels.</p>
+<div class="io">
+<div><h4>Goes in</h4><ul><li>YouTube episode → <code>scribe_dataset/&lt;id&gt;/&lt;id&gt;.mp4</code> (+ <code>_audio.wav</code>)</li><li>Optional <code>youtube_meta.json</code> (title, chapters)</li></ul></div>
+<div><h4>Comes out</h4><ul><li><code>&lt;id&gt;_scribe_transcript.json</code>: every word with start/end time, speaker label (speaker_0…), confidence; sentences; sound events like <code>[నవ్వు]</code> laughter, <code>[పాట]</code> song, <code>[ఫోన్ రింగ్]</code></li></ul></div>
+</div>
+<details><summary>Example (HM)</summary>
+<pre>word:  {"word": "please.", "start": 1486.928, "end": 1487.288, "speaker": "speaker_0", "logprob": -0.022}
+event: {"text": "[ఫోన్ రింగ్]", "start": 133.82, "end": 150.9}</pre></details>
+</section>
+<div class="arrow">↓</div>
+
+<!-- ================================================================ 1 -->
+<section class="card ai" id="s1">
+<div class="head"><h3>1 · Word fix (ASR correction layer)</h3><span><span class="tag ai">AI</span><span class="tag">≈ ₹2–4</span></span></div>
+<p>Finds words Scribe misheard and proposes corrections, without touching the original transcript (a separate layer).</p>
+<div class="io">
+<div><h4>Goes in</h4><ul><li>The Scribe words; low-confidence words flagged by code</li><li>Call A (text): all lines, flagged words marked <code>word(?)</code></li><li>Call B (audio): only the suspect lines' audio + 3 lines of text around them</li></ul></div>
+<div><h4>Comes out</h4><ul><li><code>runs/asr_fix/&lt;id&gt;/corrections.json</code>: word index → corrected word, accepted only when the model hears it in its own re-listen</li></ul></div>
+</div>
+<dl class="kv"><dt>Code</dt><dd><code>shotvi/segment/asr_fix.py</code></dd><dt>Known gap</dt><dd>Humming can be transcribed as words (HM L0113), parked.</dd></dl>
+</section>
+<div class="arrow">↓</div>
+
+<!-- ================================================================ 2 -->
+<section class="card ai" id="s2">
+<div class="head"><h3>2 · Speaker fix</h3><span><span class="tag ai">AI</span><span class="tag">≈ ₹2</span></span></div>
+<p>Scribe's speaker labels are often wrong (two people merged, one person split). This reads the transcript in three overlapping parts and gives each line a speaker key, a name when the dialogue reveals it, and a confidence. Required before Stage 1A.</p>
+<div class="io">
+<div><h4>Goes in</h4><ul><li>Transcript lines (with word fix applied) in 3 parts with overlap</li></ul></div>
+<div><h4>Comes out</h4><ul><li><code>runs/speaker_fix/&lt;id&gt;.json</code>: per line key / name / confidence, cast list</li></ul></div>
+</div>
+<dl class="kv"><dt>Model</dt><dd>Gemini 3.8 Flash, thinking low</dd></dl>
+</section>
+<div class="arrow">↓</div>
+
+<!-- ================================================================ 3 -->
+<section class="card code" id="s3">
+<div class="head"><h3>3 · Stage 1A: episode facts (measures only)</h3><span><span class="tag code">code only</span><span class="tag">₹0</span></span></div>
+<p>Builds the numbered line table every later step uses (L0001, L0002 …): speech lines and sound lines in time order. It measures and decides nothing (your rule, 3 Nov: code only measures; the model decides scenes).</p>
+<div class="io">
+<div><h4>Goes in</h4><ul><li>Scribe sentences + sound events, word fix, speaker fix</li></ul></div>
+<div><h4>Comes out</h4><ul><li>Lines: id, start, end, text, speaker key/name, sound tag class (laugh, music, silence…), zero-length fillers marked</li><li>Gap table: every pause between lines, what filled it</li><li>CG: 404 lines (348 spoken) · HM: 464 lines (437 spoken)</li></ul></div>
+</div>
+<details><summary>Example line (HM)</summary>
+<pre>{"id": "L0177", "kind": "speech", "start": 674.444, "end": 677.384, "speaker_key": "G",
+ "speaker_name": "Paddu", "speaker_confidence": 0.9,
+ "text": "నేను ఇప్పుడు wine తాగుదాము అంటే ఏమంటావా అని"}</pre></details>
+<dl class="kv"><dt>Code</dt><dd><code>selection_v2/stage1_facts.py</code>, <code>selection_v2/inputs.py</code></dd></dl>
+</section>
+<div class="arrow">↓</div>
+
+<!-- ================================================================ 4 -->
+<section class="card ai" id="s4">
+<div class="head"><h3>4 · Stage 1B: the text step</h3><span><span class="tag ai">AI</span><span class="tag">1 text call</span><span class="tag">₹2.6</span></span></div>
+<p>Reads the whole transcript (no video) and works out the people: who each speaker key is, merges (two keys = one person), roles, and stretches that are not story (ads, promos). It also proposes scenes, but <b>its scenes are no longer used</b>: the video step copied them when we sent them (3 Nov), so the video step now finds scenes itself.</p>
+<div class="io">
+<div><h4>Goes in</h4><ul><li>All lines + Stage 1A facts + series glossary (earlier episodes' names)</li></ul></div>
+<div><h4>Comes out</h4><ul><li>People: key, name, role, merged_into, evidence</li><li>Possible non-story (ads), content type, glossary</li></ul></div>
+</div>
+<details><summary>Example (HM)</summary>
+<pre>{"key": "A", "name": "Hansini", "role": "female protagonist / teacher", "status": "merged",
+ "merged_into": "E", "evidence": "L0001, L0015-L0027 promote Himalaya purifying neem face wash"}</pre></details>
+<dl class="kv"><dt>Prompt</dt><dd><code>selection_v2/prompts/stage1b_episode_pass.md</code></dd><dt>Known gap</dt><dd>HM's ad lines get named Hansini (parked).</dd></dl>
+</section>
+<div class="arrow">↓</div>
+
+<!-- ================================================================ 5 -->
+<section class="card ai" id="s5">
+<div class="head"><h3>5 · Video step: who talks, who is on screen, and the scenes</h3><span><span class="tag ai">AI</span><span class="tag">1 call, whole video</span><span class="tag">₹13–17</span></span></div>
+<p>Gemini <b>watches the whole episode</b> (low quality, 1 frame/s, with sound) with the transcript and 1B's people marked as a guess to check. For every spoken line it says who talks and who is on screen, describes each person's look, and splits the episode into scenes. Its answer is final (no separate naming check). Names held at 94–99% on our checks; video-found scenes were the most accurate in your scene review.</p>
+<div class="io">
+<div><h4>Goes in</h4><ul><li>Whole episode video (480p, low resolution ≈ 100 tokens/s)</li><li>PART 1 people from 1B (as a guess)</li><li>PART 2 the transcript in time order (no scenes sent)</li><li>Clip-use context ("these scenes are used to cut clips")</li></ul></div>
+<div><h4>Comes out</h4><ul><li>Per spoken line: who talks, who is on screen</li><li>People: name, also-known-as, role, gender, look</li><li>Scenes: first/last line, where, who, why it is a scene, why it ends, what comes after</li><li>CG 17 scenes · HM 10 scenes</li></ul></div>
+</div>
+<details><summary>Example scene (HM)</summary>
+<pre>{"id": 8, "first_line": "L0158", "last_line": "L0306", "start": 607.1, "end": 1064.5,
+ "where": "Hansini's House", "who": ["E", "G"],
+ "why": "Hansini and her mother Paddu talking in the living room and sharing wine",
+ "end_why": "Night conversation ends as mother encourages her to give Aravind a chance"}</pre></details>
+<dl class="kv"><dt>Prompt</dt><dd><code>selection_v2/prompts/identity_pass.md</code> (scenes_find section)</dd><dt>Code</dt><dd><code>selection_v2/identity_pass.py</code>: checks ids and format only</dd><dt>Known gaps</dt><dd>A person seen from behind counts as on screen (parked).</dd></dl>
+</section>
+<div class="arrow">↓</div>
+
+<!-- ================================================================ 6 -->
+<section class="card ai" id="s6">
+<div class="head"><h3>6 · Stage 2: scene notes (facts, no judgement)</h3><span><span class="tag ai">AI</span><span class="tag">1 call, whole video</span><span class="tag">₹12–14</span></span></div>
+<p>One call over the whole episode describes every scene as facts. Your decision (3 Nov): <b>no payoffs, hooks or ratings here</b>, because any judgement would steer Stage 3. One call for all scenes (not one per scene), because clips can stretch across scenes.</p>
+<div class="io">
+<div><h4>Goes in</h4><ul><li>Whole episode video</li><li>People with their looks (from the video step)</li><li>Transcript split by the video step's scenes, with who is on screen per line</li></ul></div>
+<div><h4>Comes out</h4><ul><li>The episode's story in a paragraph</li><li>Per scene: story, situations (line ranges), mood, reactions (after which line), visual moments and silences (with times, music), what a new viewer needs to know, links to other scenes, relationships</li></ul></div>
+</div>
+<details><summary>Example (HM scene 8, shortened)</summary>
+<pre>story: "At home, Hansini warns her mother Paddu not to bring up Aravind, but Paddu surprises her by
+  pouring wine and suggesting they drink like friends. Paddu gently explains life's reality..."
+situations: L0158-L0183 "Hansini tells her mom to drop Aravind's topic, and Paddu suggests having wine together."
+            L0184-L0225 "The mother and daughter toast wine, joking about drinking together and family quirks."
+mood: "intimate, comedic, and deeply emotional"
+reactions: after L0185 Hansini "hesitates and feels awkward clinking glasses with her own mother"
+visual_moments: 11:33.0-11:38.0 "Paddu and Hansini clinking glasses of red wine in their living room."
+silences: 16:21.0-16:29.0 "Hansini looks down, weighing her mother's sincere words." (music: tender emotional melody)</pre></details>
+<dl class="kv"><dt>Prompt</dt><dd><code>selection_v2/prompts/stage2_episode.md</code></dd><dt>Code</dt><dd><code>selection_v2/stage2_episode.py</code>: drops items whose lines are outside their scene</dd><dt>Output</dt><dd><code>runs/name_test/&lt;id&gt;/scene_notes.v4.json</code></dd></dl>
+</section>
+<div class="arrow">↓</div>
+
+<!-- ================================================================ 7 -->
+<section class="card ai" id="s7">
+<div class="head"><h3>7 · Stage 3 find: the clips, scene by scene</h3><span><span class="tag ai">AI</span><span class="tag">1 cache + 1 call per scene</span><span class="tag">₹32–39</span></span></div>
+<p>Works like a Telugu regional editor, not from rules: for each scene, it gives the clips whose <b>payoff lands in that scene</b> (a punchline, reveal, conclusion, emotional peak or cliffhanger). A clip may start in an earlier scene. Earlier this was two steps (find moments, then shape them); the second step copied the first one's lines, so on 4 Nov you merged them into this one step.</p>
+<p><b>How the episode is sent once:</b> the whole video + people + story + all scene notes + the transcript are stored at Google once (an explicit cache, ≈ 145k tokens for CG, ≈ 177k for HM, kept at most 40 min, deleted at the end). Each scene call reads it at a tenth of the normal price and sends only the instructions and "the scene to search: Scene N".</p>
+<div class="io">
+<div><h4>Goes in (cached once)</h4><ul><li>Whole episode video</li><li>PART 1 people (role, look)</li><li>PART 2 the episode's story + every scene's notes</li><li>PART 3 transcript by scene: <span class="mono">id [start-end] who (on screen: …) | words</span></li></ul>
+<h4 style="margin-top:8px">Goes in (each call)</h4><ul><li>The editor instructions (<code>prompts/stage3_clips.md</code>)</li><li>"The scene to search: Scene N (times, lines)"</li></ul></div>
+<div><h4>Comes out (per clip)</h4><ul><li>payoff line + its words + type</li><li>start line + first word + why it starts here</li><li>end line + last word + hold_until (m:ss) + what it ends on</li><li>cuts (≤ 3 whole-line chunks), cold open (or none)</li><li>hook, title, why it works, emotion, standalone/promo, spoiler</li></ul>
+<h4 style="margin-top:8px">Code then</h4><ul><li>Finds the quoted words' times, builds the played pieces (cold open first, cuts left out)</li><li>Checks: the payoff plays in the clip, hold not into the next speech, ≤ 180 s. A failed check re-asks once with the errors.</li></ul></div>
+</div>
+<details><summary>Example found clip (HM c07, 79 s)</summary>
+<pre>payoff L0406 "దండనండి." (punchline, standalone)
+start  L0372 "అప్పుడప్పుడు"  why: Paddu advises Aravind about Hansini's soft nature and encourages him to keep trying.
+end    L0406 "దండనండి." hold_until 21:54.5
+       why: Aravind folds his hands in panic and flees after being freaked out by the mother's sudden full support.
+cuts: none · cold open: none
+title: వాళ్ళ అమ్మ Support నాకేనా?!
+emotion: hilarious confusion and awkwardness</pre></details>
+<div class="callout"><b>What your ratings showed:</b> CG clips match your approved ones well (8/8 covered in two full runs; 10 Yes / 3 Maybe / 1 No on the first). But the step asks for a lot at once while watching 20+ minutes at 1 frame/s: it <b>almost never cuts</b> (3 of 19 clips), its <b>end holds are seconds too short</b>, and in HM's long scenes it <b>joins two moments into one long clip</b> (c04 140 s = your wine clip + "the thief is mom" clip). That is why step 8 exists.</div>
+<dl class="kv"><dt>Prompt</dt><dd><code>selection_v2/prompts/stage3_clips.md</code> (v7 wording; the "pick the beat" ending is parked in <code>prompts/parked/</code>)</dd><dt>Code</dt><dd><code>selection_v2/stage3_find.py</code> (<code>find_clips</code>, <code>validate_clip</code>)</dd><dt>Output</dt><dd><code>runs/name_test/&lt;id&gt;/stage3.v8.json</code></dd></dl>
+</section>
+<div class="arrow">↓</div>
+
+<!-- ================================================================ 8 -->
+<section class="card new" id="s8">
+<div class="head"><h3>8 · Stage 3 edit: the editor tightens each clip</h3><span><span class="tag warn">new, testing on HM</span><span class="tag ai">AI</span><span class="tag">1 call per clip</span><span class="tag">≈ ₹3.6 / clip</span></span></div>
+<p>One call per found clip. Gemini watches <b>only that clip's stretch</b> (8 s before to 15 s after) at <b>2 frames/s</b>, so looks, nods and eye-rolls are visible. Building on the found clip is this step's job (it edits it), so it gets the found start, end and payoff.</p>
+<div class="io">
+<div><h4>Goes in</h4><ul><li>Video of the stretch only, its clock starting at 0:00</li><li>PART 1 people · PART 2 the scene's story + what a new viewer needs</li><li>PART 3 the found moment: where it lands, rough start and end, why it works</li><li>PART 4 transcript of the stretch on the video's own clock (so the times it writes match what it sees)</li></ul></div>
+<div><h4>Comes out</h4><ul><li><b>Tighten</b>: up to 3 cuts of whole lines (side talk, repeats, small talk, dead air, song bridge), each with a reason</li><li><b>Split</b> into two clips when the stretch holds two moments</li><li>start / end (may move), how long to hold on the reaction, cold open</li><li>hook, title, why, emotion, standalone/promo, spoiler</li></ul></div>
+</div>
+<details><summary>Example: HM c07 before and after (79 s → 41 s)</summary>
+<pre>found:  starts L0372 · no cuts · 79 s
+edited: starts L0383 "మా"  why: Starts right on Paddu offering maternal insight on Hansini's nature.
+        cut L0387..L0393  why: Cuts awkward goodbye pleasantries to tighten the pace straight into
+                               Aravind's internal monologue.
+        ends L0406 "దండనండి."  why: Ends on Aravind's hilarious panic-bow as he quickly beats a retreat
+                                    after getting her unexpected blessing.
+        title: అత్తగారి Support దొరికితే చాలు!   · 41 s</pre></details>
+<div class="callout"><b>Result on HM (₹46 + ₹11.7 redo):</b> first run, 4 of 8 clips came back; in the other 4 Gemini named lines by their words instead of their ids (L0123). After the fix, all 4 came back. <b>Tightened:</b> c07 79 → 41 s, c08 97 → 45 s, c06 112 → 87 s, c01 37 → 32 s. <b>Not tightened:</b> c04 stays 138 s with no cut and no split (the clip you said needs internal cuts), c05 156 s, c02 102 s, c03 56 s. Ends now hold longer where it saw a reaction (c02, c03 hold 10.6 s).</div>
+<dl class="kv"><dt>Prompt</dt><dd><code>selection_v2/prompts/stage3_edit.md</code></dd><dt>Code</dt><dd><code>selection_v2/stage3_edit.py</code> (times on the video's clock, converted back by code)</dd><dt>Settings</dt><dd><code>stage3_edit</code> in <code>selection_v2/config/pipeline.yaml</code>: fps 2, 8 s before, 15 s after, thinking medium</dd><dt>Output</dt><dd><code>runs/name_test/epZ0lbXkgWA/stage3.v9.json</code></dd></dl>
+</section>
+<div class="arrow">↓</div>
+
+<!-- ================================================================ 9 -->
+<section class="card code" id="s9">
+<div class="head"><h3>9 · Cut the clips and your review</h3><span><span class="tag code">code only</span><span class="tag">₹0</span></span></div>
+<p>Every clip is cut into its own video file exactly as it would be posted (cold open first, cuts left out), then shown on a rating page. Your ratings are the measure; approvals and hand-made inputs never feed the pipeline.</p>
+<div class="io">
+<div><h4>Goes in</h4><ul><li>The clips' played pieces (times)</li><li>The source mp4</li></ul></div>
+<div><h4>Comes out</h4><ul><li><code>review/clips_vN/&lt;id&gt;/cNN.mp4</code> (ffmpeg join, 720p, 0.1 s before the first word and 0.3 s after the last so no word is clipped)</li><li><code>review/stage3_clips_vN.html</code>: Yes / Maybe / No + note per clip → you download → <code>data/human/ratings_stage3_vN_*.csv</code></li><li>Check against your approved clips (<code>data/gold/&lt;id&gt;.json</code>): <code>score_stage3.py</code></li></ul></div>
+</div>
+<dl class="kv"><dt>Code</dt><dd><code>selection_v2/eval/naming/render_clips.py</code>, <code>make_clips_page.py</code>, <code>score_stage3.py</code>; runner: <code>python -m selection_v2.eval.naming.name_test clips|edit &lt;id&gt;</code></dd></dl>
+</section>
+<div class="arrow">↓</div>
+
+<!-- ================================================================ 10 -->
+<section class="card" id="s10">
+<div class="head"><h3>10 · Later</h3><span><span class="tag">not built</span></span></div>
+<ul>
+<li><b>Stage 4, choosing:</b> which clips the creator sees first. Research says comparing two clips at a time is more reliable than scoring each alone.</li>
+<li>Wire the new flow into the runner and the Streamlit debug app (founder runs stages there).</li>
+<li>Commit when you ask (much of this is not committed yet).</li>
+</ul>
+</section>
+
+<h2>Runs so far (Stage 3)</h2>
+<div class="tw"><table>
+<thead><tr><th>Run</th><th>What changed</th><th>Episode</th><th class="num">Clips</th><th>Your ratings</th><th class="num">Cost</th></tr></thead>
+<tbody>
+<tr><td>v4</td><td>two steps (find moments → shape); shape copied the find step's lines</td><td>CG + HM</td><td class="num">29</td><td>set aside</td><td class="num">₹106</td></tr>
+<tr><td>v5</td><td>one step, whole video cached</td><td>CG</td><td class="num">14</td><td>10 Yes · 3 Maybe · 1 No</td><td class="num">₹39</td></tr>
+<tr><td>v6</td><td>+ end hold, start/end reasons, emotion, cuts wording</td><td>CG</td><td class="num">14</td><td>9 Yes · 3 Maybe · 1 No (c04 unrated); c13 "ended perfectly"</td><td class="num">₹69*</td></tr>
+<tr><td>v7</td><td>+ "beats without words count", use known beat times (4 scenes)</td><td>CG</td><td class="num">4</td><td>3 Yes · 1 Maybe (stool and montage back)</td><td class="num">₹14</td></tr>
+<tr><td>v8</td><td>v7 prompt, full run</td><td>HM + CG</td><td class="num">8 + 11</td><td>HM 6 Yes · 1 Maybe (c04 "needs internal cuts")</td><td class="num">₹66</td></tr>
+<tr><td>v9</td><td>edit step on v8's HM clips</td><td>HM</td><td class="num">8</td><td>waiting for your ratings</td><td class="num">₹57.3</td></tr>
+<tr><td>v8 + v9</td><td>first new episode: all four steps (video step, scene notes, find, edit)</td><td>Surya Ep1</td><td class="num">14</td><td>waiting for your ratings</td><td class="num">₹132</td></tr>
+</tbody></table></div>
+<p class="muted">* v6 cost extra because the end time was asked in seconds next to m:ss line times; Gemini wrote 1:54.5 as "154.5" and was re-asked in 11 of 17 scenes. Fixed (asked in m:ss).</p>
+
+<h2>Rules this flow follows (your decisions)</h2>
+<ul>
+<li><b>No hard editing rules in code.</b> The AI decides clip edges, cuts, holds and cold opens; code only measures, looks up times, checks the format, cuts video and enforces the 3-minute maximum.</li>
+<li><b>Never hand the AI an answer it can copy.</b> Seen three times: scenes sent to the video step were copied; 3a's lines were copied by 3b; scene-by-scene asking pulls clips toward whole scenes. Each step gets facts, not decisions (the edit step is the exception on purpose: editing the found clip is its job).</li>
+<li><b>Think like a Telugu regional editor.</b> The hook can be anywhere; a cliffhanger is one way to pull viewers to the episode, not the only one; clips under about 20 s are not posted for these series.</li>
+<li><b>Web series: mostly continuous,</b> at most ~3 cuts, each a whole chunk between lines, never words inside an actor's line.</li>
+<li>Your approved clips and ratings are only for measuring; they never feed the pipeline. Paid runs need your ₹ approval first.</li>
+</ul>
+
+<h2>Open problems and parked ideas</h2>
+<ul>
+<li><b>End holds</b> from the find step are seconds too short (Gemini names the right beat but times it badly at 1 frame/s). The edit step watches closely; a separate "ending check" is the fallback idea. The "pick a sound line" version is parked (it misses silent nods and looks).</li>
+<li><b>Runs vary:</b> the hostel-food clip (approved Yes) was found in two full runs and missed in the v7/v8 answer for scene 8.</li>
+<li><b>Long scenes:</b> the find step joins neighbouring moments (HM c04, c05); the edit step is asked to split them.</li>
+<li>Parked: HM ad lines named Hansini · humming transcribed as words (L0113) · a person seen from behind counts as on screen · Surya merges.</li>
+</ul>
+</main>
+</body>
+</html>

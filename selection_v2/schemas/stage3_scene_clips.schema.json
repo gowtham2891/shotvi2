@@ -1,0 +1,163 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "stage3_scene_clips",
+  "description": "founder, 2026-11-04: Stage 3 in one step, one call per scene (whole episode video cached) gives the finished clips whose payoff lands in that scene",
+  "type": "object",
+  "required": [
+    "scene_id",
+    "clips"
+  ],
+  "properties": {
+    "scene_id": {
+      "type": "integer"
+    },
+    "clips": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "payoff",
+          "payoff_quote",
+          "payoff_type",
+          "start",
+          "end",
+          "drops",
+          "cold_open",
+          "hook",
+          "title",
+          "why",
+          "emotion",
+          "kind",
+          "spoiler"
+        ],
+        "properties": {
+          "payoff": {
+            "type": "string",
+            "description": "the line id where it lands"
+          },
+          "payoff_quote": {
+            "type": "string",
+            "description": "the payoff words copied exactly from the line"
+          },
+          "payoff_type": {
+            "type": "string",
+            "enum": [
+              "punchline",
+              "reveal",
+              "conclusion",
+              "emotional_peak",
+              "cliffhanger"
+            ]
+          },
+          "start": {
+            "type": "object",
+            "required": [
+              "line",
+              "at",
+              "why"
+            ],
+            "properties": {
+              "line": {
+                "type": "string"
+              },
+              "at": {
+                "type": "string",
+                "description": "the word copied exactly from the line"
+              },
+              "why": {
+                "type": "string"
+              }
+            }
+          },
+          "end": {
+            "type": "object",
+            "required": [
+              "line",
+              "at",
+              "hold_until",
+              "why"
+            ],
+            "properties": {
+              "line": {
+                "type": "string"
+              },
+              "at": {
+                "type": "string",
+                "description": "the word copied exactly from the line"
+              },
+              "why": {
+                "type": "string"
+              },
+              "hold_until": {
+                "type": "string",
+                "description": "episode clock, m:ss.s like the line times: where the clip really ends"
+              }
+            }
+          },
+          "drops": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "first",
+                "last",
+                "why"
+              ],
+              "properties": {
+                "first": {
+                  "type": "string"
+                },
+                "last": {
+                  "type": "string"
+                },
+                "why": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "cold_open": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "required": [
+              "line",
+              "why"
+            ],
+            "properties": {
+              "line": {
+                "type": "string"
+              },
+              "why": {
+                "type": "string"
+              }
+            }
+          },
+          "hook": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "why": {
+            "type": "string"
+          },
+          "emotion": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "standalone",
+              "promo"
+            ]
+          },
+          "spoiler": {
+            "type": "boolean"
+          }
+        }
+      }
+    }
+  }
+}

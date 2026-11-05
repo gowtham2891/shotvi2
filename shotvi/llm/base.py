@@ -84,7 +84,7 @@ class Provider:
         raise NotImplementedError
 
     def create_cache(self, spec: ModelSpec, system: str, prefix: str, ttl_s: int = 3600,
-                     display_name: str = "") -> dict:
+                     display_name: str = "", media: list[dict] | None = None) -> dict:
         """Explicit context cache of (system instruction + one user text part) for ``ttl_s`` seconds. Returns
         ``{name, tokens, ttl_s, expire_time}``. Providers without it raise CacheUnavailable."""
         raise CacheUnavailable(f"{self.name}: explicit context caching is not implemented")

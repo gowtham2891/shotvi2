@@ -1,7 +1,7 @@
 """Plain-language presentation of a Stage 1A document for the debug app (no Streamlit here, so it is testable):
 
   plain_summary   one paragraph: what was measured, how many pauses / tags / scene edges / speakers, time, rupees
-  timeline_rows   the rows the timeline draws: scene-edge proposals, laugh tags, holds, golden-set moments
+  timeline_rows   the rows the timeline draws: 1B scenes, laugh tags, holds, golden-set moments
   sanity_checks   automatic green / red checks that need no reference (red = a code bug, not a judgment call)
 """
 from __future__ import annotations
@@ -26,15 +26,8 @@ def genre_of(facts: dict, cast_cfg: dict) -> str | None:
 
 
 def suspicious_speakers(facts: dict) -> list[str]:
-    """Short labels of what looks off: 'D@<line id>' for a flagged line, 'H (1 line)' for a tiny isolated speaker."""
-    out = []
-    for x in facts["structural_suspects"]:
-        if x.get("label_space", "fix") == "fix":
-            out.append(f"{x['speaker']}@{x['line']}" if x.get("line") else f"{x['speaker']} ({x['reason']})")
-    out += [f"{f['speaker']}@{f['line']}" for f in facts["speaker_flags"] if f["flag"] in ("suspect", "unresolved")]
-    out += [f"{d['key']} ({d['n_lines']} line{'s' if d['n_lines'] != 1 else ''}, one segment)"
-            for d in facts.get("speaker_segments") or [] if d["isolated"] and d["n_lines"] <= 3]
-    return sorted(set(out))
+    """Short labels 'D@<line id>' for the lines the speaker-fix step itself marked unsure or unresolved."""
+    return sorted({f"{f['speaker']}@{f['line']}" for f in facts["speaker_flags"] if f["flag"] in ("suspect", "unresolved")})
 
 
 def plain_summary(facts: dict, cfg: dict) -> str:
@@ -51,7 +44,7 @@ def plain_summary(facts: dict, cfg: dict) -> str:
     text = (f"Measured {ep['duration_str'].split('.')[0]} of video (dialogue {ep['first_dialogue_str'].split('.')[0]} to "
             f"{ep['last_dialogue_str'].split('.')[0]}). Found {sm['n_gaps']} pauses between lines ({n_long} longer than "
             f"{lp:g} s), {sm['n_tag_events']} sound tags ({laughs} laughs, {holds} holds"
-            + (f", {cens} censored" if cens else "") + f"), {sm['n_proposals']} possible scene changes, "
+            + (f", {cens} censored" if cens else "") + "), "
             f"{n_spk} speakers" + (f" ({len(sus)} look suspicious: {', '.join(sus[:4])}{'…' if len(sus) > 4 else ''})" if sus else "") + ". "
             f"Took {s['duration_s']:.1f} s, ₹{cost:.0f}.")
     if not facts["layers"].get("asr_fix"):
@@ -62,13 +55,9 @@ def plain_summary(facts: dict, cfg: dict) -> str:
 def timeline_rows(facts: dict, cfg: dict, gold_moments: list[dict] | None = None) -> tuple[list[dict], list[dict]]:
     """(marks, spans): point / rule marks and the golden-set spans for the timeline."""
     marks = []
-    for p in facts["boundary_proposals"]:
-        marks.append({"t": p["t"], "kind": "scene edge", "label": p["t_str"], "line": p["next"],
-                      "detail": f"{p.get('selected_by', 'score')} {p['score']:.2f}: " + "; ".join(p["evidence"])})
     for sc in ((facts.get("episode_pass") or {}).get("derived") or {}).get("scenes") or []:
         marks.append({"t": sc["start"], "kind": "scene (1B)", "label": sc["start_str"], "line": sc["first_line"],
-                      "detail": f"scene {sc['id']} {sc.get('label') or ''} [{sc.get('register') or ''}] {sc['start_str']}-{sc['end_str']} "
-                                f"({sc.get('origin')})"})
+                      "detail": f"scene {sc['id']} {sc.get('label') or ''} [{sc.get('register') or ''}] {sc['start_str']}-{sc['end_str']}"})
     for e in facts["tag_events"]:
         if e["class"] == "laugh":
             marks.append({"t": e["t"], "kind": "laugh", "label": fmt_ts(e["t"]), "line": e.get("after_content_line") or e["after"],
@@ -85,20 +74,6 @@ def timeline_rows(facts: dict, cfg: dict, gold_moments: list[dict] | None = None
 def sanity_checks(facts: dict, cfg: dict, cast_cfg: dict) -> list[dict]:
     """[{name, ok: True|False|None, detail}]; ok None = not applicable (grey)."""
     out = []
-    gaps = {(g["prev"], g["next"]) for g in facts["gaps"]}
-    props = facts["boundary_proposals"]
-    bad = [p["t_str"] for p in props if (p["prev"], p["next"]) not in gaps]
-    out.append({"name": "every scene-edge proposal sits on a pause from the gap table", "ok": not bad,
-                "detail": f"{len(props)} proposals checked" if not bad else f"not in the gap table: {bad}"})
-    speech = [r for r in facts["lines"] if r["kind"] == "speech" and not r["zero_len"]]
-    inside = []
-    for p in props:
-        for r in speech:
-            if r["start"] + 1e-6 < p["t"] < r["end"] - 1e-6:
-                inside.append(f"{p['t_str']} inside {r['id']} ({fmt_ts(r['start'])}-{fmt_ts(r['end'])})")
-                break
-    out.append({"name": "no proposal time falls inside a dialogue line", "ok": not inside,
-                "detail": "all proposals sit between lines" if not inside else "; ".join(inside[:5])})
     genre = genre_of(facts, cast_cfg)
     laughs = sum(e["class"] == "laugh" for e in facts["tag_events"])
     if genre == "comedy":
@@ -129,11 +104,6 @@ def sanity_checks(facts: dict, cfg: dict, cast_cfg: dict) -> list[dict]:
     out.append({"name": "every speaker key the fix uses has lines in the line table", "ok": not empty,
                 "detail": (f"{len(declared)} keys" if not empty else f"the fix counts lines for {empty} but none were joined")
                 + ("; " + "; ".join(notes) if notes else "")})
-    mins = facts["episode"]["duration"] / 60.0
-    lo, hi = cfg["sanity"]["proposals_per_min"]
-    nmin, nmax = max(1, round(lo * mins)), round(hi * mins)
-    out.append({"name": f"scene-edge count is plausible for {mins:.0f} min ({nmin}-{nmax})", "ok": nmin <= len(props) <= nmax,
-                "detail": f"{len(props)} proposals"})
     ids = [r["id"] for r in facts["lines"]]
     starts = [r["start"] for r in facts["lines"]]
     out.append({"name": "line ids are unique and in time order", "ok": len(set(ids)) == len(ids) and starts == sorted(starts),

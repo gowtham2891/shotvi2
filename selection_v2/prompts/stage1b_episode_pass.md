@@ -15,14 +15,12 @@ A block of LOW-TRUST SUGGESTIONS lists what an earlier text-only step guessed pe
 
 About the speaker names: they are a PRIOR to confirm or overturn, not the truth. In another episode that step labelled 25 lines of a complete stranger as a main character, with 0.9 confidence. So re-derive who speaks, scene by scene, from who addresses whom, what they say, what they know, and how the others answer them. For EVERY speaker, first write evidence_against_prior (line ids that contradict the prior name, or "none"), and only then the final name. Where a stranger was merged into a known character, create a NEW speaker key (new_1, new_2, ...) with the line ranges that person actually speaks.
 
-About the ANCHOR CHECKS (Q1, Q2, ...): in those segments the prior name is withheld and the lines show "?? Qn". Answer each one: who is this speaker, and is their relationship to the others in this segment consistent with how those speakers relate elsewhere in the episode? Compare concretely: if two people are strangers here (formal address, no shared history, a transaction) but the prior says they are close friends elsewhere, that is a different person; give final_key = a new key and add that key to speakers. Cite lines from this segment and from elsewhere.
+About the SCENES: decide them yourself from the dialogue, the pauses and the sound tags (no program proposes edges). A scene is a continuous stretch of the story in one place and time with one group of people; a music beat or a pause inside the same conversation is NOT a scene edge. Give every scene as its FIRST and LAST dialogue line id. Scenes must be in order, must not overlap, and together must cover every dialogue line from the first to the last (the program checks this and will ask again if it fails). Do not put an audio-tag line as a scene edge.
 
-About the scene-edge PROPOSALS: they are candidates. Confirm, merge or split them. You may add a scene edge that was not proposed. A scene is a continuous stretch of the story in one place and time with one group of people; a music beat or a pause inside the same conversation is NOT a scene edge. Give every scene as its FIRST and LAST dialogue line id. Scenes must be in order, must not overlap, and together must cover every dialogue line from the first to the last (the program checks this and will ask again if it fails). Do not put an audio-tag line as a scene edge.
-
-About the SUSPECT lines: start from the ones the program flagged (structural flags, low confidence) and add any the dialogue reveals. For each, say who really speaks it, or "song", "multiple", "off-screen voice" or "unresolved".
+About the SUSPECT lines: start from the lines the speaker-correction step was unsure about (listed in PART 1) and add any the dialogue reveals. For each, say who really speaks it, or "song", "multiple", "off-screen voice" or "unresolved".
 
 Then the seven questions in two tiers. Tier 1 first, because its first three questions are the same question from three sides:
-  Tier 1  (1) speakers: one entry per FINAL person (key = the raw label of that person after merging, or new_1, new_2 ... for a person split out of a label), with the anchor checks answered if any  (2) where are the scenes  (3) which lines are mislabelled
+  Tier 1  (1) speakers: one entry per FINAL person (key = the raw label of that person after merging, or new_1, new_2 ... for a person split out of a label), (2) where are the scenes  (3) which lines are mislabelled
           (4) threads: at most three SETUPS that pay off in a LATER scene (a worry, a promise, a warning in one scene that lands
               in another): the setup as a line range inside one scene, the payoff scene's id, and why in one line; [] when none
   Tier 2  (5) which lines are POSSIBLY not story dialogue (TV or radio audio, sponsor or PSA inserts, songs, recaps, credits):
@@ -31,7 +29,7 @@ Then the seven questions in two tiers. Tier 1 first, because its first three que
           (6) the content type  (7) a series glossary: premise, nicknames, running bits, catchphrases, relationships
 
 ## tier1
-Answer Tier 0 and Tier 1: "cast", "same_person", "split_labels", "reference_times", "speakers", "anchor_checks", "scenes", "suspect_resolutions", "threads". Every raw label in the line table needs a cast entry; every final person needs a speakers entry (key = a raw label or new_N) with evidence_against_prior filled in first. anchor_checks is [] when PART 1 lists none. Every line id you mention must exist.
+Answer Tier 0 and Tier 1: "cast", "same_person", "split_labels", "reference_times", "speakers", "scenes", "suspect_resolutions", "threads". Every raw label in the line table needs a cast entry; every final person needs a speakers entry (key = a raw label or new_N) with evidence_against_prior filled in first. Every line id you mention must exist.
 
 ## tier2
 Answer Tier 2 only: "possible_non_story", "content_type", "glossary". The glossary is bounded: at most {glossary_max} entries in total across nicknames, running bits, catchphrases and relationships; keep the ones a clip editor needs to understand a joke or a relationship.
