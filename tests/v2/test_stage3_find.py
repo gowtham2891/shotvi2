@@ -172,7 +172,7 @@ class TestStage3OneStep(unittest.TestCase):
         inputs = make_inputs()
         with tempfile.TemporaryDirectory() as td:
             inputs.paths = SimpleNamespace(run_dir=Path(td), mp4=Path(td) / "ep.mp4", title=lambda: "Synthetic")
-            c = cfg(td)
+            c = cfg(td); c["stage3_find"]["mode"] = "per_scene"          # the default is "group" since 2026-11-09
             answers = [{"scene_id": sc["id"], "clips": [self.clip(f, speech_ids(f, sc)[0], speech_ids(f, sc)[-1])]} for sc in scs]
             client, prov = CachedFakeClient(answers), FakeProvider()
             out = S3.find_clips(inputs, f, c, client=client, cutter=_cutter, uploader=_uploader, provider=prov, deleter=_deleter)
@@ -220,8 +220,12 @@ class TestEndHold(unittest.TestCase):
         bad = copy.deepcopy(base); bad["end"]["hold_until"] = nxt["start"] + 1.0
         self.assertTrue(any("runs into" in e for e in S3.validate_clip(bad, f, w, 0, len(f["lines"]) - 1, 180)[0]))
         self.assertEqual(S3.clock_s("1:02:03.5"), 3723.5); self.assertIsNone(S3.clock_s("abc"))
-        bad["end"]["hold_until"] = t1 - 2
-        self.assertTrue(any("before the last word" in e for e in S3.validate_clip(bad, f, w, 0, len(f["lines"]) - 1, 180)[0]))
+        bad["end"]["hold_until"] = t1 - 2               # founder, 2026-11-05: kept, ends on its last word, with a warning
+        e, wn, v = S3.validate_clip(bad, f, w, 0, len(f["lines"]) - 1, 180)
+        self.assertEqual(e, []); self.assertTrue(any("before the last word" in x for x in wn)); self.assertLess(v["hold_s"], 0.5)
+        bad["end"]["hold_until"] = "soon"
+        e, wn, v = S3.validate_clip(bad, f, w, 0, len(f["lines"]) - 1, 180)
+        self.assertEqual(e, []); self.assertTrue(any("not a time" in x for x in wn))
 
 
 class TestEndHoldPick(unittest.TestCase):
@@ -247,3 +251,104 @@ class TestEndHoldPick(unittest.TestCase):
         c["end"]["hold"] = "S1"
         e, _, v = S3.validate_clip(c, f2, w, 0, len(f2["lines"]) - 1, 180); self.assertEqual(e, [])
         self.assertAlmostEqual(v["pieces"][-1]["end"], nxt["start"] - 0.1)
+
+
+class TestWordNumbers(unittest.TestCase):
+    """founder, 2026-11-06: words numbered in the transcript; answers by number; end = after word N until m:ss.s."""
+
+    def setup(self):
+        f = facts3(); w = make_inputs().words
+        wt = S3.word_table(f, w)
+        return f, w, wt
+
+    def test_table_and_text(self):
+        f, w, wt = self.setup()
+        self.assertEqual([x["n"] for x in wt], list(range(1, len(wt) + 1)))
+        self.assertTrue(all(x["end"] >= x["start"] for x in wt))
+        txt = "\n".join(S3.transcript_text(f, words=w))
+        self.assertIn(f"{wt[0]['n']} {wt[0]['tok']}", txt)
+
+    def test_marks(self):
+        f, w, wt = self.setup()
+        L = [r for r in f["lines"] if r["kind"] == "speech" and not r.get("zero_len")]
+        a, b = L[0], L[1]
+        inside, gap = (a["start"] + a["end"]) / 2, (a["end"] + b["start"]) / 2
+        m = S3.MarkCursor([inside, gap])
+        m.after(a)
+        out = m.before(b)
+        self.assertEqual(len(out), 1 if b["start"] > a["end"] else 0)        # the change inside a spoken line is not listed
+
+    def test_answer_by_number(self):
+        f, w, wt = self.setup()
+        first = [x for x in wt if x["line"] == wt[0]["line"]]
+        second_line = next(x["line"] for x in wt if x["line"] != wt[0]["line"])
+        last = [x for x in wt if x["line"] == second_line][-1]
+        nxt = next((x for x in wt if x["n"] > last["n"]), None)
+        until = min(last["end"] + 0.5, (nxt["start"] - 0.1) if nxt else last["end"] + 0.5)
+        ans = {"start": {"word": first[0]["n"], "why": "w"}, "end": {"word": last["n"], "until": f"{int(until // 60)}:{until % 60:04.1f}", "why": "w"},
+               "drops": [], "cold_open": None}
+        e, wn, v = S3.validate_clip(ans, f, w, 0, len(f["lines"]) - 1, 180)
+        self.assertEqual(e, [])
+        self.assertAlmostEqual(v["start_time"], first[0]["start"]); self.assertAlmostEqual(v["end_time"], last["end"])
+        self.assertEqual(v["start_line"], first[0]["line"]); self.assertEqual(v["end_line"], second_line)
+        self.assertAlmostEqual(v["pieces"][-1]["end"], max(round(until, 1), last["end"]), delta=0.06)
+        bad = copy.deepcopy(ans); bad["start"]["word"] = 999999
+        self.assertTrue(any("start.word" in x for x in S3.validate_clip(bad, f, w, 0, len(f["lines"]) - 1, 180)[0]))
+
+
+class TestAllScenes(unittest.TestCase):
+    """founder, 2026-11-06 test: every scene in ONE call."""
+
+    def test_validate_all(self):
+        f = facts3(); w = make_inputs().words
+        s1, s2 = f["identity_pass"]["scenes"][:2]; a, b = speech_ids(f, s1), speech_ids(f, s2)
+        c1 = TestStage3OneStep().clip(f, a[0], a[-1]); c1["scene"] = s1["id"]
+        c2 = TestStage3OneStep().clip(f, b[0], b[-1]); c2["scene"] = 99
+        errs, warns, out = S3.validate_all_clips({"clips": [c1, c2]}, f, w, 180)
+        self.assertEqual(errs, []); self.assertEqual([x["scene"] for x in out], [s1["id"], s2["id"]])
+        self.assertTrue(any("said scene 99" in x for x in warns))      # code looks the scene up from the payoff line
+
+    def test_run_one_call(self):
+        f = facts3(); scs = f["identity_pass"]["scenes"]; inputs = make_inputs()
+        with tempfile.TemporaryDirectory() as td:
+            inputs.paths = SimpleNamespace(run_dir=Path(td), mp4=Path(td) / "ep.mp4", title=lambda: "Synthetic")
+            c = cfg(td); c["stage3_find"]["mode"] = "all"
+            clips = []
+            for sc in scs:
+                ids = speech_ids(f, sc); x = TestStage3OneStep().clip(f, ids[0], ids[-1]); x["scene"] = sc["id"]; clips.append(x)
+            client, prov = CachedFakeClient([{"clips": clips}]), FakeProvider()
+            out = S3.find_clips(inputs, f, c, client=client, cutter=_cutter, uploader=_uploader, provider=prov, deleter=_deleter)
+            self.assertEqual(len(client.calls), 1); self.assertEqual(prov.created[0]["ttl_s"], 600)
+            self.assertEqual(out["clips"]["mode"], "all"); self.assertEqual(len(out["clips"]["clips"]), len(scs))
+            self.assertEqual(S3.estimate_clips(f, c, counter=len)["calls"], 1)
+
+
+class TestGroups(unittest.TestCase):
+    """founder, 2026-11-06: one call per group of neighbouring scenes; each call sees the whole episode."""
+
+    def test_groups(self):
+        sc = [{"id": i, "start": i * 100.0, "end": i * 100.0 + d} for i, d in enumerate([60, 200, 30, 400, 20, 20])]
+        g = S3.scene_groups(sc, 250)
+        self.assertEqual([[x["id"] for x in a] for a in g], [[0, 1], [2, 3], [4, 5]])
+
+    def test_scope(self):
+        f = facts3(); w = make_inputs().words
+        s1, s2 = f["identity_pass"]["scenes"][:2]; b = speech_ids(f, s2)
+        c2 = TestStage3OneStep().clip(f, b[0], b[-1]); c2["scene"] = s2["id"]
+        errs, _, out = S3.validate_all_clips({"clips": [c2]}, f, w, 180, scope=[s1])
+        self.assertTrue(errs and "not in scenes" in errs[0]); self.assertEqual(out, [])
+
+    def test_run_groups(self):
+        f = facts3(); scs = f["identity_pass"]["scenes"]; inputs = make_inputs()
+        with tempfile.TemporaryDirectory() as td:
+            inputs.paths = SimpleNamespace(run_dir=Path(td), mp4=Path(td) / "ep.mp4", title=lambda: "Synthetic")
+            c = cfg(td); c["stage3_find"]["mode"] = "group"; c["stage3_find"]["group_target_s"] = 1
+            groups = S3.scene_groups(scs, 1)
+            answers = []
+            for g in groups:
+                ids = speech_ids(f, g[0]); x = TestStage3OneStep().clip(f, ids[0], ids[-1]); x["scene"] = g[0]["id"]; answers.append({"clips": [x]})
+            client, prov = CachedFakeClient(answers), FakeProvider()
+            out = S3.find_clips(inputs, f, c, client=client, cutter=_cutter, uploader=_uploader, provider=prov, deleter=_deleter)
+            self.assertEqual(len(client.calls), len(groups)); self.assertEqual(len(prov.created), 1)
+            self.assertIn("The scenes to search: Scenes", client.calls[0]["prompt"]); self.assertIn("Tighten.", client.calls[0]["prompt"])
+            self.assertEqual(out["clips"]["mode"], "group")

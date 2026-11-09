@@ -40,6 +40,25 @@ P = Path(__file__).resolve().parent
 MOMENTS_PROMPT, SHAPE_PROMPT = P / "prompts" / "stage3_moments.md", P / "prompts" / "stage3_shape.md"
 MOMENTS_SCHEMA, SHAPE_SCHEMA = P / "schemas" / "stage3_moments.schema.json", P / "schemas" / "stage3_clip.schema.json"
 CLIPS_PROMPT, CLIPS_SCHEMA = P / "prompts" / "stage3_clips.md", P / "schemas" / "stage3_scene_clips.schema.json"
+# founder, 2026-11-06 test: all scenes in ONE call (stage3_find.mode: all); the prompt is the per-scene one with the
+# smallest change (diff: "watch the episode", "go through the whole episode, scene by scene", each clip names its scene)
+ALL_PROMPT, ALL_SCHEMA = P / "prompts" / "stage3_clips_all.md", P / "schemas" / "stage3_all_clips.schema.json"
+# founder, 2026-11-06: one call per GROUP of neighbouring scenes (mode: group), each call still reads the whole episode;
+# the per-scene prompt + step 8's "Tighten." and "One moment per clip." (no separate edit step)
+GROUP_PROMPT, GROUP_SCHEMA = P / "prompts" / "stage3_clips_group.md", P / "schemas" / "stage3_group_clips.schema.json"
+
+
+def scene_groups(scenes: list[dict], target_s: float) -> list[list[dict]]:
+    """Neighbouring scenes in time order, a new group once the group reaches ``target_s`` seconds (a call batch, not an
+    editing choice: every call still sees the whole episode and a clip may use any earlier scene)."""
+    out, cur, t = [], [], 0.0
+    for sc in sorted(scenes, key=lambda x: x["start"]):
+        if cur and t >= target_s:
+            out.append(cur); cur, t = [], 0.0
+        cur.append(sc); t += float(sc["end"]) - float(sc["start"])
+    if cur:
+        out.append(cur)
+    return out
 
 
 class Stage3Error(RuntimeError):
@@ -85,8 +104,96 @@ def line_text(facts: dict, r: dict) -> str:
     return f"{r['id']} [{fmt_ts(r['start'])}-{fmt_ts(r['end'])}] {nm.get(k, k or '?')} (on screen: {vis}) | {r['text']}"
 
 
-def transcript_text(facts: dict, lo: int = 0, hi: int | None = None) -> list[str]:
-    """Lines lo..hi (positions) grouped by the video step's scenes, gaps marked."""
+# founder, 2026-11-06: every spoken word carries a number and Gemini answers with numbers (start word, end word), never
+# by copying words; the end is "after word N, until m:ss.s". Shot changes are marked between lines with their times.
+_WT: dict = {}
+
+
+def word_table(facts: dict, words: list[dict] | None) -> list[dict]:
+    """Every spoken word of the episode, numbered 1..N in time order: {n, line, i, tok, start, end}. Times are the
+    transcriber's word times; when a line's (fixed) text no longer has the transcriber's word count (about 1% of
+    lines) its words share the line's time evenly."""
+    L = facts["lines"]
+    key = (id(facts), id(words), len(L), L[0]["id"] if L else "", L[-1]["id"] if L else "", len(words or []))
+    if key in _WT:
+        return _WT[key]
+    out, n = [], 0
+    for r in facts["lines"]:
+        if r["kind"] != "speech" or r.get("zero_len"):
+            continue
+        toks = r["text"].split()
+        a, b = r.get("words") or (None, None)
+        exact = words is not None and a is not None and b - a + 1 == len(toks)
+        span = (float(r["end"]) - float(r["start"])) / max(1, len(toks))
+        for i, t in enumerate(toks):
+            n += 1
+            s0, s1 = (words[a + i]["start"], words[a + i]["end"]) if exact else (r["start"] + i * span, r["start"] + (i + 1) * span)
+            out.append({"n": n, "line": r["id"], "i": i, "tok": t, "start": float(s0), "end": float(s1)})
+    _WT.clear()
+    _WT[key] = out
+    return out
+
+
+def shot_cuts(facts: dict) -> list[float]:
+    """Shot-change times (runs/video/<id>/shots.json, ffmpeg scene detection, free); empty when not made."""
+    p = ROOT / "runs" / "video" / str(facts["episode"].get("video_id") or "") / "shots.json"
+    try:
+        return [float(x) for x in json.loads(p.read_text(encoding="utf-8")).get("cuts") or []]
+    except (OSError, ValueError):
+        return []
+
+
+def numbered_line_text(facts: dict, r: dict, by_line: dict, offset: float = 0.0) -> str:
+    """``line_text`` with every word numbered ("5120 నేను 5121 ఇప్పుడు ..."), times on a clock starting at ``offset``."""
+    nm = _names(facts)
+    d = facts["episode_pass"]["derived"]
+    a, b = fmt_ts(max(0.0, r["start"] - offset)), fmt_ts(max(0.0, r.get("end", r["start"]) - offset))
+    if r["kind"] != "speech":
+        return f"{r['id']} [{a}-{b}] (sound) {r.get('text') or r.get('tag') or ''}"
+    k = (d.get("line_speakers") or {}).get(r["id"])
+    vis = ", ".join(nm.get(x, x) for x in (d.get("on_screen") or {}).get(r["id"]) or []) or "nobody"
+    ws = by_line.get(r["id"])
+    body = " ".join(f"{w['n']} {w['tok']}" for w in ws) if ws else r["text"]
+    return f"{r['id']} [{a}-{b}] {nm.get(k, k or '?')} (on screen: {vis}) | {body}"
+
+
+def shot_marks(cuts: list[float], t0: float, t1: float, offset: float = 0.0) -> list[str]:
+    return [f"   ‖ shot change {fmt_ts(c - offset)}" for c in cuts if t0 <= c < t1]
+
+
+class MarkCursor:
+    """Shot changes between SPOKEN words: each one not inside a spoken line is listed once, before the first line that
+    starts after it (a change during a (sound) line is listed after that line, with its time)."""
+
+    def __init__(self, cuts: list[float], offset: float = 0.0):
+        self.cuts, self.offset, self.last_speech_end, self.done = sorted(cuts), offset, None, set()
+
+    def before(self, r: dict) -> list[str]:
+        if self.last_speech_end is None:
+            return []
+        out = []
+        for c in self.cuts:
+            if c not in self.done and self.last_speech_end <= c < float(r["start"]):
+                out.append(f"   ‖ shot change {fmt_ts(c - self.offset)}"); self.done.add(c)
+        return out
+
+    def after(self, r: dict) -> None:
+        if r["kind"] == "speech" and not r.get("zero_len"):
+            self.last_speech_end = max(self.last_speech_end or 0.0, float(r.get("end", r["start"])))
+        elif self.last_speech_end is None:
+            self.last_speech_end = float(r["start"])
+
+    def tail(self, t1: float) -> list[str]:
+        out = []
+        for c in self.cuts:
+            if c not in self.done and (self.last_speech_end or 0.0) <= c < t1:
+                out.append(f"   ‖ shot change {fmt_ts(c - self.offset)}"); self.done.add(c)
+        return out
+
+
+def transcript_text(facts: dict, lo: int = 0, hi: int | None = None, words: list[dict] | None = None) -> list[str]:
+    """Lines lo..hi (positions) grouped by the video step's scenes, gaps marked. With ``words``: every spoken word
+    numbered and the shot changes between lines marked (founder, 2026-11-06)."""
     lines = facts["lines"]
     hi = len(lines) - 1 if hi is None else hi
     pos = {r["id"]: i for i, r in enumerate(lines)}
@@ -94,25 +201,37 @@ def transcript_text(facts: dict, lo: int = 0, hi: int | None = None) -> list[str
     for s in facts["identity_pass"]["scenes"]:
         for i in range(pos[s["first_line"]], pos[s["last_line"]] + 1):
             owner[i] = s
-    out, cur = [], "start"
+    by_line, cuts = {}, []
+    if words is not None:
+        for w in word_table(facts, words):
+            by_line.setdefault(w["line"], []).append(w)
+        cuts = shot_cuts(facts)
+    out, cur, marks = [], "start", MarkCursor(cuts)
     for i in range(lo, hi + 1):
         s = owner.get(i)
         sid = s["id"] if s else None
+        r = lines[i]
+        out += marks.before(r)
         if sid != cur:
             out.append("\n-- between scenes --" if s is None else f"\n== Scene {sid} ({fmt_ts(s['start'])}-{fmt_ts(s['end'])}) {s.get('where') or ''}")
             cur = sid
-        out.append(line_text(facts, lines[i]))
+        out.append(numbered_line_text(facts, r, by_line) if words is not None else line_text(facts, r))
+        marks.after(r)
     return out
 
 
-def episode_text(facts: dict) -> str:
+def episode_text(facts: dict, words: list[dict] | None = None) -> str:
     sn = facts["scene_notes"]
     ep = facts["episode"]
     out = [f"# EPISODE: {ep.get('title') or ep['video_id']} ({ep['duration_str']})", "", "# PART 1: PEOPLE"] + people_text(facts)
     out += ["", "# PART 2: THE EPISODE'S STORY AND EVERY SCENE", sn["episode"], ""]
     for n in sn["scenes"]:
         out += scene_note_text(n) + [""]
-    out += ["# PART 3: TRANSCRIPT BY SCENE (id [start-end] who says it (on screen) | words)"] + transcript_text(facts)
+    if words is not None:
+        out += ["# PART 3: TRANSCRIPT BY SCENE (id [start-end] who says it (on screen) | every word with its number; "
+                "‖ marks a shot change between lines)"] + transcript_text(facts, words=words)
+    else:
+        out += ["# PART 3: TRANSCRIPT BY SCENE (id [start-end] who says it (on screen) | words)"] + transcript_text(facts)
     return "\n".join(out)
 
 
@@ -276,20 +395,39 @@ def validate_clip(ans: dict, facts: dict, words: list[dict], lo: int, hi: int, m
     lines = facts["lines"]
     pos = {r["id"]: i for i, r in enumerate(lines)}
     inside = lambda l: l in pos and lo <= pos[l] <= hi
-    st, en = ans.get("start") or {}, ans.get("end") or {}
-    for name, x in (("start", st), ("end", en)):
-        if not inside(x.get("line")) or lines[pos[x["line"]]]["kind"] != "speech":
-            errs.append(f"{name}.line {x.get('line')!r} is not a spoken line in {where}; give the line's id (like L0123), not its words")
-    if errs:
-        return errs, warns, {}
-    t0, _ = word_time(facts, words, st["line"], st.get("at") or "", False)
-    t1, _ = word_time(facts, words, en["line"], en.get("at") or "", True)
-    if t0 is None:
-        errs.append(f"start.at {st.get('at')!r} is not a word of {st['line']}; copy the first word exactly")
-    if t1 is None:
-        errs.append(f"end.at {en.get('at')!r} is not a word of {en['line']}; copy the last word exactly")
-    if errs:
-        return errs, warns, {}
+    st, en = dict(ans.get("start") or {}), dict(ans.get("end") or {})
+    if "word" in st or "word" in en:
+        # founder, 2026-11-06: start / end given as word NUMBERS; the line and the time are looked up
+        wt = {w["n"]: w for w in word_table(facts, words)}
+        got = {}
+        for name, x in (("start", st), ("end", en)):
+            try:
+                w = wt.get(int(x.get("word")))
+            except (TypeError, ValueError):
+                w = None
+            if w is None or not inside(w["line"]):
+                errs.append(f"{name}.word {x.get('word')!r} is not the number of a spoken word in {where}")
+            got[name] = w
+        if errs:
+            return errs, warns, {}
+        st["line"], st["at"], en["line"], en["at"] = got["start"]["line"], got["start"]["tok"], got["end"]["line"], got["end"]["tok"]
+        t0, t1 = got["start"]["start"], got["end"]["end"]
+        if en.get("until") not in (None, "") and en.get("hold_until") in (None, ""):
+            en["hold_until"] = en["until"]
+    else:
+        for name, x in (("start", st), ("end", en)):
+            if not inside(x.get("line")) or lines[pos[x["line"]]]["kind"] != "speech":
+                errs.append(f"{name}.line {x.get('line')!r} is not a spoken line in {where}; give the line's id (like L0123), not its words")
+        if errs:
+            return errs, warns, {}
+        t0, _ = word_time(facts, words, st["line"], st.get("at") or "", False)
+        t1, _ = word_time(facts, words, en["line"], en.get("at") or "", True)
+        if t0 is None:
+            errs.append(f"start.at {st.get('at')!r} is not a word of {st['line']}; copy the first word exactly")
+        if t1 is None:
+            errs.append(f"end.at {en.get('at')!r} is not a word of {en['line']}; copy the last word exactly")
+        if errs:
+            return errs, warns, {}
     if t1 <= t0:
         return [f"the end ({en['line']} {en['at']}) is not after the start ({st['line']} {st['at']})"], warns, {}
     a, b = pos[st["line"]], pos[en["line"]]
@@ -355,11 +493,15 @@ def validate_clip(ans: dict, facts: dict, words: list[dict], lo: int, hi: int, m
             return [f"end.hold {h!r} must be a (sound) line between {en['line']} and the next spoken line, \"next_line\" or \"none\""], warns, {}
         hold = max(hold, t1) if hold is not None else None
     if hold is not None and pieces:
-        hold = clock_s(hold)
+        raw_hold, hold = hold, clock_s(hold)
+        # founder, 2026-11-05: a hold that is not a time, or comes before the clip's own last word, no longer loses the
+        # clip (Surya scene 13): the clip ends on the model's last word, without the hold, and a warning says so
         if hold is None:
-            return [f"end.hold_until {en.get('hold_until')!r} is not a time like the line times (m:ss.s)"], warns, {}
-        if hold < t1 - 0.05:
-            return [f"end.hold_until {hold:.1f} is before the last word ends ({t1:.1f}); give a time at or after it"], warns, {}
+            warns.append(f"end.hold_until {raw_hold!r} is not a time; the clip ends on its last word")
+        elif hold < t1 - 0.05:
+            warns.append(f"end.hold_until {hold:.1f} is before the last word ends ({t1:.1f}); the clip ends on its last word")
+            hold = None
+    if hold is not None and pieces:
         nxt = next((r for r in lines[b + 1:] if r["kind"] == "speech" and not r.get("zero_len")), None)
         if nxt is not None and hold > nxt["start"] + 0.05:
             return [f"end.hold_until {hold:.1f} runs into the next spoken line {nxt['id']} (starts {nxt['start']:.1f}); "
@@ -368,7 +510,7 @@ def validate_clip(ans: dict, facts: dict, words: list[dict], lo: int, hi: int, m
     dur = round(sum(p["end"] - p["start"] for p in pieces), 2)
     if dur > max_s:
         errs.append(f"the clip plays {dur:.0f} s; the maximum is {max_s:.0f} s: start later, end earlier or drop whole chunks")
-    return errs, warns, {"pieces": pieces, "duration": dur, "start_time": t0, "end_time": t1,
+    return errs, warns, {"pieces": pieces, "duration": dur, "start_time": t0, "end_time": t1, "start_line": st["line"], "end_line": en["line"],
                          "hold_s": round(pieces[-1]["end"] - t1, 2) if pieces else 0.0}
 
 
@@ -544,12 +686,44 @@ def validate_found_clips(ans: dict, facts: dict, words: list[dict], scene: dict,
         errs += [f"clip {i}: {x}" for x in e]
         warns += [f"clip {i}: {x}" for x in w]
         if not e:
-            out.append({**c, **val})
+            out.append({**c, "start": {**(c.get("start") or {}), "line": val["start_line"]},
+                        "end": {**(c.get("end") or {}), "line": val["end_line"]}, **val})
     return errs, warns, out
 
 
-def shared_video_text(facts: dict) -> str:
-    return "The video above is the whole episode; its clock matches the line times below.\n\n" + episode_text(facts)
+def validate_all_clips(ans: dict, facts: dict, words: list[dict], max_s: float, scope: list[dict] | None = None) -> tuple[list[str], list[str], list[dict]]:
+    """All scenes in one answer: each clip as in ``validate_found_clips`` but its payoff may be any spoken line; its
+    scene is the scene the payoff line is in (code looks it up; the model's ``scene`` is kept as ``scene_said``)."""
+    errs, warns, out = [], [], []
+    lines = facts["lines"]
+    pos = {r["id"]: i for i, r in enumerate(lines)}
+    owner = {}
+    for sc in facts["identity_pass"]["scenes"]:
+        for i in range(pos[sc["first_line"]], pos[sc["last_line"]] + 1):
+            owner[i] = sc["id"]
+    allowed = {x["id"] for x in scope} if scope else None
+    for i, c in enumerate(ans.get("clips") or [], 1):
+        p = c.get("payoff")
+        if p not in pos or lines[pos[p]]["kind"] != "speech":
+            errs.append(f"clip {i}: payoff {p!r} is not a spoken line"); continue
+        if allowed is not None and owner.get(pos[p]) not in allowed:
+            errs.append(f"clip {i}: payoff {p} is not in scenes {sorted(allowed)}"); continue
+        e, w, val = validate_clip(c, facts, words, 0, len(lines) - 1, max_s, where="the transcript")
+        if not e and not any(p in pc["lines"] for pc in val["pieces"]):
+            e = [f"the payoff {p} does not play in the clip (outside start..end, or dropped)"]
+        errs += [f"clip {i}: {x}" for x in e]
+        warns += [f"clip {i}: {x}" for x in w]
+        if not e:
+            sid = owner.get(pos[p])
+            if c.get("scene") != sid:
+                warns.append(f"clip {i}: said scene {c.get('scene')!r}, its payoff {p} is in scene {sid!r}")
+            out.append({**c, "scene": sid, "scene_said": c.get("scene"), "start": {**(c.get("start") or {}), "line": val["start_line"]},
+                        "end": {**(c.get("end") or {}), "line": val["end_line"]}, **val})
+    return errs, warns, out
+
+
+def shared_video_text(facts: dict, words: list[dict] | None = None) -> str:
+    return "The video above is the whole episode; its clock matches the line times below.\n\n" + episode_text(facts, words)
 
 
 def find_clips(inputs, facts: dict, cfg: dict, client=None, log=None, scene_ids=None, cutter=None, uploader=None, provider=None, deleter=None) -> dict:
@@ -560,10 +734,14 @@ def find_clips(inputs, facts: dict, cfg: dict, client=None, log=None, scene_ids=
     if not facts.get("scene_notes"):
         raise Stage3Error("Stage 3 needs Stage 2's scene notes")
     c = cfg["stage3_find"]
+    all_mode = c.get("mode", "per_scene") == "all"
+    group_mode = c.get("mode", "per_scene") == "group"
     spec = ModelSpec.from_dict(c["clips_model"])
+    if all_mode:
+        spec = ModelSpec(spec.provider, spec.model, {**spec.params, "max_output_tokens": int(c.get("all_max_output_tokens", 65536))})
     run_dir = Path(inputs.paths.run_dir); run_dir.mkdir(parents=True, exist_ok=True)
-    sections = s1b.load_prompt(CLIPS_PROMPT)
-    schema = json.loads(CLIPS_SCHEMA.read_text(encoding="utf-8"))
+    sections = s1b.load_prompt(ALL_PROMPT if all_mode else GROUP_PROMPT if group_mode else CLIPS_PROMPT)
+    schema = json.loads((ALL_SCHEMA if all_mode else GROUP_SCHEMA if group_mode else CLIPS_SCHEMA).read_text(encoding="utf-8"))
     client = _client(c, spec, client)
     cutter = cutter or cut_scene; uploader = uploader or upload
     dur = float(facts["episode"]["duration"])
@@ -573,14 +751,45 @@ def find_clips(inputs, facts: dict, cfg: dict, client=None, log=None, scene_ids=
     except OSError:
         mkey = str(mpath)
     up = uploader(mpath, "video")
-    shared = shared_video_text(facts)
+    shared = shared_video_text(facts, inputs.words)
     (run_dir / "context_stage3.txt").write_text(shared, encoding="utf-8")
-    cache = VideoCache(spec, sections["system"], shared, [media_part(up, "video", 1, key=mkey)], mkey, int(c.get("cache_ttl_s", 3600)), log, provider)
+    ttl = int(c.get("cache_ttl_s_all", 600) if all_mode else c.get("cache_ttl_s_group", 900) if group_mode else c.get("cache_ttl_s", 3600))
+    cache = VideoCache(spec, sections["system"], shared, [media_part(up, "video", 1, key=mkey)], mkey, ttl, log, provider)
     words = inputs.words
     attempts, clips, warns, failed = [], [], [], []
     usage = {"input_tokens": 0, "output_tokens": 0, "thought_tokens": 0, "cached_tokens": 0}
     try:
-        for sc in facts["identity_pass"]["scenes"]:
+        if all_mode:
+            log("stage 3: all scenes in one call")
+            ans, errs, w, val = _ask(client, "stage3_clips_all", spec, sections, "", schema, None,
+                                     {"video_id": inputs.vid, "stage": "stage3", "scene": "all"},
+                                     lambda o: validate_all_clips(o, facts, words, float(c.get("max_clip_s", 180))),
+                                     int(c.get("retries", 1)), attempts, usage, cache=cache)
+            if ans is None:
+                failed.append("all")
+                warns.append(f"clips with errors after the re-ask were left out ({' | '.join(errs[:3])})")
+            warns += list(w)
+            for cl in sorted(val or [], key=lambda x: x["start_time"]):
+                clips.append({"id": f"c{len(clips) + 1:02d}",
+                              "payoffs": [{"line": cl["payoff"], "quote": cl.get("payoff_quote"), "type": cl.get("payoff_type")}], **cl})
+        if group_mode:
+            for g in scene_groups(facts["identity_pass"]["scenes"], float(c.get("group_target_s", 300))):
+                names = "; ".join(f"{sc['id']} {sc.get('where') or ''}".strip() for sc in g)
+                tail = (f"The scenes to search: Scenes {g[0]['id']}-{g[-1]['id']} ({fmt_ts(g[0]['start'])}-{fmt_ts(g[-1]['end'])}, "
+                        f"lines {g[0]['first_line']}-{g[-1]['last_line']}): {names}.")
+                log(f"stage 3: scenes {g[0]['id']}-{g[-1]['id']}")
+                ans, errs, w, val = _ask(client, "stage3_clips_group", spec, sections, tail, schema, None,
+                                         {"video_id": inputs.vid, "stage": "stage3", "scene": f"{g[0]['id']}-{g[-1]['id']}"},
+                                         lambda o, g=g: validate_all_clips(o, facts, words, float(c.get("max_clip_s", 180)), scope=g),
+                                         int(c.get("retries", 1)), attempts, usage, cache=cache)
+                if ans is None:
+                    failed.append(f"{g[0]['id']}-{g[-1]['id']}")
+                    warns.append(f"scenes {g[0]['id']}-{g[-1]['id']}: clips with errors after the re-ask were left out ({' | '.join(errs[:3])})")
+                warns += [f"scenes {g[0]['id']}-{g[-1]['id']}: {x}" for x in w]
+                for cl in sorted(val or [], key=lambda x: x["start_time"]):
+                    clips.append({"id": f"c{len(clips) + 1:02d}",
+                                  "payoffs": [{"line": cl["payoff"], "quote": cl.get("payoff_quote"), "type": cl.get("payoff_type")}], **cl})
+        for sc in ([] if all_mode or group_mode else facts["identity_pass"]["scenes"]):
             if scene_ids and sc["id"] not in scene_ids:
                 continue
             log(f"stage 3: scene {sc['id']}")
@@ -613,25 +822,32 @@ def find_clips(inputs, facts: dict, cfg: dict, client=None, log=None, scene_ids=
                      "cost_inr_est": cost, "note": f"{len(clips)} clips; cache storage ₹{storage_inr}; " + "; ".join(warns)[:200]})
     out = dict(facts)
     out["clips"] = {"version": VERSION, "generated_at": time.strftime("%Y-%m-%dT%H:%M:%S"), "model": spec.to_dict(), "one_step": True,
+                    "mode": "all" if all_mode else "group" if group_mode else "per_scene",
                     "clips": clips, "warnings": warns, "failed_scenes": failed, "cache": cinfo,
                     "usage": {**usage, "storage_inr": storage_inr, "cost_inr": cost}}
     return out
 
 
-def estimate_clips(facts: dict, cfg: dict, counter=None) -> dict:
+def estimate_clips(facts: dict, cfg: dict, counter=None, words: list[dict] | None = None) -> dict:
     """The one step: the cache (video at ~tokens_per_s_video_low + the shared text) stored for the TTL and read once
     per scene call at the cached price; the prompt at the input price; answer + thinking at the output price."""
     if counter is None:
         from shotvi.segment.render import estimate_tokens
         counter = estimate_tokens
     c, r, rate = cfg["stage3_find"], cfg["rates"], inr_per_usd(cfg)
-    n = len(facts["identity_pass"]["scenes"])
-    cached = int(float(facts["episode"]["duration"]) * r["tokens_per_s_video_low"] + counter(shared_video_text(facts))
-                 + counter(s1b.load_prompt(CLIPS_PROMPT)["system"]))
-    prompt = int(counter(s1b.load_prompt(CLIPS_PROMPT)["instructions"])) + 300
-    storage = cached * int(c.get("cache_ttl_s", 3600)) / 3600 * r.get("usd_per_1m_cache_storage_hour", 0.5) / 1e6
-    calls = n * (cached * r["usd_per_1m_cached_input"] + prompt * r["usd_per_1m_input"]
-                 + int(c.get("clips_output_tokens", 6000)) * r["usd_per_1m_output"]) / 1e6
+    all_mode = c.get("mode", "per_scene") == "all"
+    group_mode = c.get("mode", "per_scene") == "group"
+    pr = ALL_PROMPT if all_mode else GROUP_PROMPT if group_mode else CLIPS_PROMPT
+    n = (1 if all_mode else len(scene_groups(facts["identity_pass"]["scenes"], float(c.get("group_target_s", 300)))) if group_mode
+         else len(facts["identity_pass"]["scenes"]))
+    cached = int(float(facts["episode"]["duration"]) * r["tokens_per_s_video_low"] + counter(shared_video_text(facts, words))
+                 + counter(s1b.load_prompt(pr)["system"]))
+    prompt = int(counter(s1b.load_prompt(pr)["instructions"])) + 300
+    ttl = int(c.get("cache_ttl_s_all", 600) if all_mode else c.get("cache_ttl_s_group", 900) if group_mode else c.get("cache_ttl_s", 3600))
+    storage = cached * ttl / 3600 * r.get("usd_per_1m_cache_storage_hour", 0.5) / 1e6
+    out_tok = (int(c.get("all_output_tokens", 30000)) if all_mode else int(c.get("group_output_tokens", 8000)) if group_mode
+               else int(c.get("clips_output_tokens", 6000)))
+    calls = n * (cached * r["usd_per_1m_cached_input"] + prompt * r["usd_per_1m_input"] + out_tok * r["usd_per_1m_output"]) / 1e6
     return {"calls": n, "cached_tokens": cached, "storage_inr": round(storage * rate, 2), "calls_inr": round(calls * rate, 2),
             "total_inr": round((storage + calls) * rate, 2)}
 

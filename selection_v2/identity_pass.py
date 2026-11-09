@@ -286,8 +286,16 @@ def run(inputs, facts: dict | None, cfg: dict, client=None, log=None, cutter=Non
     except OSError:
         mkey = None
     # the video first, then the text that refers to it (Gemini's advice for long media)
-    parts = [media_part(up, "video", 1, key=mkey), {"text": "The video above is the whole episode; its clock matches the line times below.\n\n" + context}]
+    vpart = media_part(up, "video", 1, key=mkey)
+    parts = [vpart, {"text": "The video above is the whole episode; its clock matches the line times below.\n\n" + context}]
     sections = s1b.load_prompt(PROMPT_PATH)
+    # founder, 2026-11-06: box A, the video stored once at Google for this step and the scene notes (video_box.py)
+    from . import video_box as VB
+    box = None
+    if VB.enabled(cfg):
+        box = VB.load(run_dir, mkey, spec.model, cfg) or VB.make(run_dir, spec, vpart, mkey, cfg, log=log)
+    rq = VB.request(sections["system"], vpart, context, box)
+    cspec = VB.spec_for(spec, box)
     schema = json.loads(SCHEMA_PATH.read_text(encoding="utf-8"))
     body = sections["instructions"]
     if smode != "off":
@@ -312,7 +320,8 @@ def run(inputs, facts: dict | None, cfg: dict, client=None, log=None, cutter=Non
         attempts.append(att)
         log(f"identity pass: call {attempt + 1}")
         try:
-            obj, raw = client.generate_json(ROLE, spec, sections["system"], instr, schema, meta={"video_id": inputs.vid, "stage": "identity"}, want_raw=True, media=parts)
+            obj, raw = client.generate_json(ROLE, cspec, rq["system"], instr, schema, meta={"video_id": inputs.vid, "stage": "identity"}, want_raw=True,
+                                            media=rq["media"], **({"cached_content": rq["cached_content"]} if rq["cached_content"] else {}))
         except BaseException as e:
             att["error"] = f"{type(e).__name__}: {e}"
             write_json(run_dir / "identity_pass_debug.json", {"attempts": attempts, "system": sections["system"]})
@@ -329,7 +338,7 @@ def run(inputs, facts: dict | None, cfg: dict, client=None, log=None, cutter=Non
         att["validation"] = errors; att["warnings"] = warns
         if not errors:
             ans = obj; break
-    if ic.get("delete_upload_after_call", True):
+    if ic.get("delete_upload_after_call", True) and not box:     # a box may still need the uploaded file
         try:
             from .media import delete_upload
             attempts[-1]["upload_deleted"] = (deleter or delete_upload)(up)
@@ -345,7 +354,10 @@ def run(inputs, facts: dict | None, cfg: dict, client=None, log=None, cutter=Non
                          "input_tokens": usage["input_tokens"], "output_tokens": usage["output_tokens"] + usage["thought_tokens"], "cost_inr_est": cost,
                          "note": "validation failed: " + " | ".join(errors[:5])})
         raise IdentityPassError("the identity pass failed validation after the retry: " + " | ".join(errors[:6]))
+    if box and box.get("made_at", 0) >= t0 - 1:      # made in this run: its storage is this step's cost
+        cost = round(cost + float(box.get("storage_usd") or 0.0) * rate, 3)
     record = {"version": VERSION, "generated_at": time.strftime("%Y-%m-%dT%H:%M:%S"), "model": spec.to_dict(),
+              "video_box": ({k: box.get(k) for k in ("name", "tokens", "ttl_s", "storage_usd")} if box else None),
               "people": ans["people"], "lines": lines, "warnings": list(warns), "scenes_mode": smode,
               **({"scenes": scenes} if smode != "off" else {}), "usage": {**usage, "cost_inr": cost},
               "n_attempts": len(attempts)}

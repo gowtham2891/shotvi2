@@ -162,13 +162,20 @@ def run(inputs, facts: dict, cfg: dict, client=None, log=None, cutter=None, uplo
     cutter = cutter or cut_scene; uploader = uploader or upload
     dur = float(facts["episode"]["duration"])
     mpath = cutter(Path(inputs.paths.mp4), run_dir / cfg["stage2"]["media_dir"], 0, 0.0, dur, "video", int(c.get("video_max_height", 480)), log)
-    up = uploader(mpath, "video")
     try:
         mkey = content_key(mpath)
     except OSError:
         mkey = None
-    parts = [media_part(up, "video", 1, key=mkey), {"text": "The video above is the whole episode; its clock matches the line times below.\n\n" + context}]
     sections = s1b.load_prompt(PROMPT_PATH)
+    # founder, 2026-11-06: read box A (made by the video step) when it is still there; else send the video as before
+    from . import video_box as VB
+    box = VB.load(run_dir, mkey, spec.model, cfg) if VB.enabled(cfg) else None
+    if box:
+        log("scene notes: reading the stored video (box A)")
+    up = None if box else uploader(mpath, "video")
+    vpart = None if box else media_part(up, "video", 1, key=mkey)
+    rq = VB.request(sections["system"], vpart, context, box)
+    cspec = VB.spec_for(spec, box)
     schema = json.loads(SCHEMA_PATH.read_text(encoding="utf-8"))
     if client is None:
         from shotvi.llm.client import Ledger, LLMClient, get_provider
@@ -184,7 +191,8 @@ def run(inputs, facts: dict, cfg: dict, client=None, log=None, cutter=None, uplo
         attempts.append(att)
         log(f"scene notes: call {attempt + 1}")
         try:
-            obj, raw = client.generate_json(ROLE, spec, sections["system"], instr, schema, meta={"video_id": inputs.vid, "stage": "scene_notes"}, want_raw=True, media=parts)
+            obj, raw = client.generate_json(ROLE, cspec, rq["system"], instr, schema, meta={"video_id": inputs.vid, "stage": "scene_notes"}, want_raw=True,
+                                            media=rq["media"], **({"cached_content": rq["cached_content"]} if rq["cached_content"] else {}))
         except BaseException as e:
             att["error"] = f"{type(e).__name__}: {e}"
             write_json(run_dir / "scene_notes_debug.json", {"attempts": attempts, "system": sections["system"]})
@@ -198,7 +206,7 @@ def run(inputs, facts: dict, cfg: dict, client=None, log=None, cutter=None, uplo
         att["validation"] = errors; att["warnings"] = warns
         if not errors:
             ans = obj; break
-    if c.get("delete_upload_after_call", True):
+    if c.get("delete_upload_after_call", True) and up is not None:
         try:
             from .media import delete_upload
             attempts[-1]["upload_deleted"] = (deleter or delete_upload)(up)
@@ -218,5 +226,5 @@ def run(inputs, facts: dict, cfg: dict, client=None, log=None, cutter=None, uplo
     out = dict(facts)
     out["scene_notes"] = {"version": VERSION, "generated_at": time.strftime("%Y-%m-%dT%H:%M:%S"), "model": spec.to_dict(),
                           "episode": ans.get("episode") or "", "scenes": notes, "warnings": warns,
-                          "usage": {**usage, "cost_inr": cost}, "n_attempts": len(attempts)}
+                          "usage": {**usage, "cost_inr": cost}, "n_attempts": len(attempts), "video_box": bool(box)}
     return out

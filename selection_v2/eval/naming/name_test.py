@@ -50,6 +50,11 @@ def cfg_for(vid):
     cfg["paths"]["runs_dir"] = str(OUT)
     cfg["paths"]["runs_log"] = str(OUT / "runs.csv")
     cfg["stage1b"]["glossary_dir"] = str(OUT / vid / "glossary")      # no series memory in, nothing written to data/
+    env = __import__("os").environ
+    if env.get("VIDEO_BOX") == "1":                                       # founder, 2026-11-06 test: box A for steps 5 and 6
+        cfg["video_box"]["enabled"] = True
+    if env.get("STAGE3_MODE"):                                            # per_scene | all
+        cfg["stage3_find"]["mode"] = env["STAGE3_MODE"]
     return cfg
 
 
@@ -145,7 +150,7 @@ def clips(vid):
     cfg = cfg_for(vid)
     inp = load_inputs(vid, cfg)
     f = s3_facts(vid)
-    print(vid, "estimate:", S3.estimate_clips(f, cfg), flush=True)
+    print(vid, "estimate:", S3.estimate_clips(f, cfg, words=inp.words), flush=True)
     only = [int(x) for x in __import__("os").environ.get("STAGE3_SCENES", "").split(",") if x.strip()]   # a test on some scenes
     out = S3.find_clips(inp, f, cfg, log=print, scene_ids=only or None)
     write_json(OUT / vid / f"stage3.{S3_TAG}.json", {"clips": out["clips"]})
@@ -155,7 +160,8 @@ def clips(vid):
 
 def clips_estimate(vid):
     from selection_v2 import stage3_find as S3
-    print(vid, S3.estimate_clips(s3_facts(vid), cfg_for(vid)), flush=True)
+    cfg = cfg_for(vid)
+    print(vid, S3.estimate_clips(s3_facts(vid), cfg, words=load_inputs(vid, cfg).words), flush=True)
 
 
 def _edit_in(vid):
@@ -168,7 +174,7 @@ def edit(vid):
     inp = load_inputs(vid, cfg)
     f = s3_facts(vid)
     cl = _edit_in(vid)
-    print(vid, "estimate:", SE.estimate(f, cfg, cl), flush=True)
+    print(vid, "estimate:", SE.estimate(f, cfg, cl, words=inp.words), flush=True)
     only = [x.strip() for x in __import__("os").environ.get("EDIT_CLIPS", "").split(",") if x.strip()]   # redo some clips
     out = SE.edit_clips(inp, f, cfg, cl, log=lambda *a: print(*a, flush=True), clip_ids=only or None)
     c = out["clips"]
@@ -192,7 +198,8 @@ def edit(vid):
 
 def edit_estimate(vid):
     from selection_v2 import stage3_edit as SE
-    print(vid, SE.estimate(s3_facts(vid), cfg_for(vid), _edit_in(vid)), flush=True)
+    cfg = cfg_for(vid)
+    print(vid, SE.estimate(s3_facts(vid), cfg, _edit_in(vid), words=load_inputs(vid, cfg).words), flush=True)
 
 
 def check(model, vid):

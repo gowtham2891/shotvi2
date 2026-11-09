@@ -54,7 +54,7 @@ def line_text(facts: dict, r: dict, w0: float) -> str:
     return f"{r['id']} [{a}-{b}] {nm.get(k, k or '?')} (on screen: {vis}) | {r['text']}"
 
 
-def call_text(facts: dict, clip: dict, w0: float, w1: float, lo: int, hi: int) -> str:
+def call_text(facts: dict, clip: dict, w0: float, w1: float, lo: int, hi: int, words: list[dict] | None = None) -> str:
     notes = {n["scene_id"]: n for n in facts["scene_notes"]["scenes"]}
     L = facts["lines"]
     used = sorted({s["id"] for s in facts["identity_pass"]["scenes"] if s["start"] < w1 and s["end"] > w0} | {clip["scene"]})
@@ -67,11 +67,29 @@ def call_text(facts: dict, clip: dict, w0: float, w1: float, lo: int, hi: int) -
     rel = lambda lid: fmt_ts(max(0.0, L[pos[lid]]["start"] - w0))
     out += ["# PART 3: THE MOMENT FOUND",
             f"It lands on {clip['payoff']} [{rel(clip['payoff'])}] \"{clip.get('payoff_quote') or ''}\" ({clip.get('payoff_type') or ''}, {clip.get('kind') or ''}).",
-            f"Rough start: {clip['start']['line']} [{rel(clip['start']['line'])}]; rough end: {clip['end']['line']} [{rel(clip['end']['line'])}].",
+            f"Rough start: {_ln(clip, 'start')} [{rel(_ln(clip, 'start'))}]; rough end: {_ln(clip, 'end')} [{rel(_ln(clip, 'end'))}].",
             f"Why it works: {clip.get('why') or ''}", "",
             f"# PART 4: TRANSCRIPT OF THE STRETCH (the video is {fmt_ts(w1 - w0)} long; id [start-end] who says it (on screen) | words)"]
-    out += [line_text(facts, L[i], w0) for i in range(lo, hi + 1)]
+    if words is None:
+        out += [line_text(facts, L[i], w0) for i in range(lo, hi + 1)]
+        return "\n".join(out)
+    # founder, 2026-11-06: every word numbered, shot changes between lines marked, all on the video's clock
+    by_line = {}
+    for w in S3.word_table(facts, words):
+        by_line.setdefault(w["line"], []).append(w)
+    marks = S3.MarkCursor(S3.shot_cuts(facts), offset=w0)
+    for i in range(lo, hi + 1):
+        r = L[i]
+        out += marks.before(r)
+        out.append(S3.numbered_line_text(facts, r, by_line, offset=w0))
+        marks.after(r)
+    out += marks.tail(w1)
     return "\n".join(out)
+
+
+def _ln(clip: dict, side: str) -> str:
+    """The found clip's start / end line (answers by word number carry it as start_line / end_line)."""
+    return (clip.get(side) or {}).get("line") or clip.get(f"{side}_line")
 
 
 def validate(ans: dict, facts: dict, words: list[dict], w0: float, lo: int, hi: int, max_s: float) -> tuple[list[str], list[str], list[dict]]:
@@ -82,13 +100,16 @@ def validate(ans: dict, facts: dict, words: list[dict], w0: float, lo: int, hi: 
     pos = {r["id"]: i for i, r in enumerate(facts["lines"])}
     for i, c in enumerate(cl, 1):
         c2 = copy.deepcopy(c)
-        h = S3.clock_s((c2.get("end") or {}).get("hold_until"))
-        if (c2.get("end") or {}).get("hold_until") not in (None, "") and h is None:
-            errs.append(f"clip {i}: end.hold_until {c2['end']['hold_until']!r} is not a time like the line times (m:ss.s)"); continue
+        e_ = c2.get("end") if isinstance(c2.get("end"), dict) else {}
+        raw = e_.get("until") if e_.get("until") not in (None, "") else e_.get("hold_until")
+        h = S3.clock_s(raw)
+        if raw not in (None, "") and h is None:
+            warns.append(f"clip {i}: end time {raw!r} is not a time; the clip ends on its last word")
+        e_.pop("until", None)
         if h is not None:
-            c2["end"]["hold_until"] = h + w0           # the video's clock -> the episode's
-        elif isinstance(c2.get("end"), dict):
-            c2["end"].pop("hold_until", None)          # empty: end just after the last word
+            e_["hold_until"] = h + w0                  # the video's clock -> the episode's
+        else:
+            e_.pop("hold_until", None)                 # empty: end just after the last word
         e, w, val = S3.validate_clip(c2, facts, words, lo, hi, max_s, where="PART 4")
         p = c.get("payoff")
         if not e and not (p in pos and any(p in pc["lines"] for pc in val["pieces"])):
@@ -96,7 +117,8 @@ def validate(ans: dict, facts: dict, words: list[dict], w0: float, lo: int, hi: 
         errs += [f"clip {i}: {x}" for x in e]
         warns += [f"clip {i}: {x}" for x in w]
         if not e:
-            out.append({**c, "end": {**c["end"], "hold_until_episode": round(h + w0, 2) if h is not None else None}, **val})
+            out.append({**c, "start": {**(c.get("start") or {}), "line": val["start_line"]},
+                        "end": {**c["end"], "line": val["end_line"], "hold_until_episode": round(h + w0, 2) if h is not None else None}, **val})
     return errs, warns, out
 
 
@@ -124,7 +146,7 @@ def edit_clips(inputs, facts: dict, cfg: dict, clips: list[dict], client=None, l
             mkey = content_key(mpath)
         except OSError:
             mkey = None
-        parts = [media_part(up, "video", float(c.get("fps", 2)), key=mkey), {"text": call_text(facts, clip, w0, w1, lo, hi)}]
+        parts = [media_part(up, "video", float(c.get("fps", 2)), key=mkey), {"text": call_text(facts, clip, w0, w1, lo, hi, inputs.words)}]
         try:
             ans, errs, w, val = S3._ask(client, "stage3_edit", spec, sections, "", schema, parts, {"video_id": inputs.vid, "stage": "stage3_edit", "clip": clip["id"]},
                                         lambda o: validate(o, facts, inputs.words, w0, lo, hi, float(c.get("max_clip_s", 180))),
@@ -156,7 +178,7 @@ def edit_clips(inputs, facts: dict, cfg: dict, clips: list[dict], client=None, l
     return res
 
 
-def estimate(facts: dict, cfg: dict, clips: list[dict], counter=None) -> dict:
+def estimate(facts: dict, cfg: dict, clips: list[dict], counter=None, words: list[dict] | None = None) -> dict:
     """Per clip: the stretch's video at ``fps`` (~70 tokens a frame + 32 a second of sound) + the text at the input
     price; answer + thinking at the output price."""
     if counter is None:
@@ -167,7 +189,7 @@ def estimate(facts: dict, cfg: dict, clips: list[dict], counter=None) -> dict:
     tot_in = tot_out = 0
     for clip in clips:
         w0, w1, lo, hi = window(facts, clip, float(c.get("pre_s", 8)), float(c.get("post_s", 15)))
-        tot_in += (w1 - w0) * (70 * float(c.get("fps", 2)) + r["tokens_per_s_audio"]) + counter(call_text(facts, clip, w0, w1, lo, hi)) + prompt
+        tot_in += (w1 - w0) * (70 * float(c.get("fps", 2)) + r["tokens_per_s_audio"]) + counter(call_text(facts, clip, w0, w1, lo, hi, words)) + prompt
         tot_out += int(c.get("output_tokens", 5000))
     usd = (tot_in * r["usd_per_1m_input"] + tot_out * r["usd_per_1m_output"]) / 1e6
     return {"calls": len(clips), "input_tokens": int(tot_in), "inr": round(usd * rate, 2)}

@@ -133,7 +133,7 @@ with st.sidebar:
     P = EpisodePaths(vid, CFG)
     stt = P.status()
     st.markdown("**inputs on disk**")
-    for k in ("video", "audio", "scribe", "youtube_meta", "shots", "asr_fix", "speaker_fix"):
+    for k in ("video", "audio", "scribe", "youtube_meta", "asr_fix", "speaker_fix"):
         st.write(("✅ " if stt[k] else "❌ ") + k)
     st.markdown("**stage outputs**")
     st.write(("✅ " if stt["facts"] else "❌ ") + "episode_facts.json" + (f" (stages {', '.join(stt['stages_done'])})" if stt["stages_done"] else ""))
@@ -166,9 +166,127 @@ with st.sidebar:
     st.caption(f"runs log: {P.runs_log}")
 
 # ----------------------------------------------------------------------------------------------- tabs
-tab_names = ["Review"] + [label.split(":")[0] for _, label, _ in runner.STAGES] + ["Tags", "Golden set", "Runs log"]
+tab_names = ["Review", "New flow (web series)"] + [label.split(":")[0] for _, label, _ in runner.STAGES] + ["Tags", "Golden set", "Runs log"]
 all_tabs = st.tabs(tab_names)
-review_tab, tabs = all_tabs[0], all_tabs[1:]
+review_tab, flow_tab, tabs = all_tabs[0], all_tabs[1], all_tabs[2:]
+
+# ----------------------------------------------------------------------------------------------- New flow (2026-11-05)
+from selection_v2 import flow_v2 as FV  # noqa: E402
+
+
+def flow_step_view(F: dict, step: str):
+    """What a finished step produced, as tables."""
+    if step == "text":
+        sp = F["episode_pass"]["speakers"]
+        st.dataframe(pd.DataFrame([{"key": x["key"], "name": x.get("name"), "role": x.get("role"), "status": x.get("status"),
+                                    "merged into": x.get("merged_into") or ""} for x in sp]), hide_index=True, width="stretch")
+    elif step == "video":
+        idp = F["identity_pass"]
+        st.dataframe(pd.DataFrame([{"scene": s["id"], "start": fmt_ts(s["start"]), "end": fmt_ts(s["end"]), "lines": f"{s['first_line']}-{s['last_line']}",
+                                    "where": s.get("where"), "why a scene": s.get("why"), "why it ends": s.get("end_why")} for s in idp["scenes"]]),
+                     hide_index=True, width="stretch")
+        st.dataframe(pd.DataFrame([{"key": x.get("key"), "name": x.get("name"), "role": x.get("role"), "look": x.get("look")}
+                                   for x in idp.get("people") or []]), hide_index=True, width="stretch")
+    elif step == "notes":
+        sn = F["scene_notes"]
+        st.markdown(f"**The episode's story.** {sn['episode']}")
+        st.dataframe(pd.DataFrame([{"scene": n["scene_id"], "time": f"{fmt_ts(n['start'])}-{fmt_ts(n['end'])}", "story": n["story"],
+                                    "mood": n.get("mood"), "reactions": len(n.get("reactions") or []), "seen without words": len(n.get("visual_moments") or []),
+                                    "silences": len(n.get("silences") or [])} for n in sn["scenes"]]), hide_index=True, width="stretch")
+    elif step in ("find", "edit"):
+        cl = (F.get("clips_found") if step == "find" and F.get("clips_found") else F["clips"])["clips"]
+        st.dataframe(pd.DataFrame([{"clip": c["id"], "scene": c.get("scene"), "starts": fmt_ts(c["start_time"]), "plays (s)": round(c["duration"]),
+                                    **({"found (s)": round((c.get("found") or {}).get("duration") or c["duration"])} if step == "edit" else {}),
+                                    "cuts": len(c.get("drops") or []), "cold open": "yes" if c.get("cold_open") else "",
+                                    "hold (s)": round(c.get("hold_s") or 0, 1), "title": c.get("title"), "why": c.get("why"), "feels": c.get("emotion")}
+                                   for c in cl]), hide_index=True, width="stretch")
+
+
+with flow_tab:
+    st.markdown(f"## New flow: {P.title() or vid}")
+    st.caption("The web-series flow agreed on 3-5 Nov: text step, video step (who talks, who is on screen, scenes), scene notes, "
+               "find clips, edit clips. Everything for this episode is saved in one file, separate from the old stages: "
+               f"`{FV.path(vid, CFG)}`. The full explanation is in `review/flow.html`.")
+    FF = None
+    try:
+        FF = FV.load(vid, FV.cfg_for(vid, CFG))
+    except Exception as e:
+        show_exception(e)
+    have = FV.done(FF)
+    tests = FV.test_results(vid)
+    if tests["facts"]:
+        with st.container(border=True):
+            st.markdown("**Test results exist for this episode** (from the runs we did together). Loading them is free and "
+                        "replaces this episode's flow file." + (" There is already a flow file; it will be overwritten." if FF else ""))
+            st.caption("Found: " + ", ".join(k for k, v in tests.items() if v))
+            if st.button("Load the test results (free)", key=f"flow_import_{vid}"):
+                try:
+                    FV.import_test(vid, CFG)
+                    st.rerun()
+                except Exception as e:
+                    show_exception(e)
+    order = [k for k, _ in FV.STEPS]
+    for i, (step, label) in enumerate(FV.STEPS):
+        with st.container(border=True):
+            ready = all(have[k] for k in order[:i])
+            st.markdown(f"**{i + 1}. {label}** " + (":green[done]" if have[step] else ":gray[not run]" if ready else ":gray[waiting for the step before]"))
+            if ready:
+                est_key = f"flow_est_{step}_{vid}"
+                row = st.container(horizontal=True, vertical_alignment="center")
+                if row.button("Estimate cost (free)", key=f"flow_estb_{step}_{vid}"):
+                    try:
+                        st.session_state[est_key] = FV.estimate(vid, step, CFG)
+                    except Exception as e:
+                        st.session_state[est_key] = None
+                        show_exception(e)
+                est = st.session_state.get(est_key)
+                if est is not None:
+                    if row.button(f"Run ({'re-run, ' if have[step] else ''}≈ ₹{est:.0f}; thinking can add 40%)", key=f"flow_run_{step}_{vid}", type="primary"):
+                        t0 = time.perf_counter()
+                        with st.spinner(f"Running {label}. This can take a few minutes; keep this tab open."):
+                            try:
+                                res = FV.run(vid, step, CFG)
+                                st.session_state[f"flow_last_{step}_{vid}"] = {"ok": True, **res}
+                            except BaseException as e:  # noqa: BLE001 - shown in full
+                                st.session_state[f"flow_last_{step}_{vid}"] = {"ok": False, "s": time.perf_counter() - t0, "err": e, "tb": traceback.format_exc()}
+                        st.session_state.pop(est_key, None)
+                        st.rerun()
+            last = st.session_state.get(f"flow_last_{step}_{vid}")
+            if last:
+                if last["ok"]:
+                    st.success(f"finished in {last['seconds']:.0f} s, cost ≈ ₹{(last.get('cost_inr') or 0):.2f}")
+                    for w in last.get("warnings") or []:
+                        st.warning(w)
+                else:
+                    st.error(f"FAILED after {last['s']:.0f} s")
+                    show_exception(last["err"], last["tb"])
+            if have[step] and FF:
+                with st.expander("What it produced"):
+                    try:
+                        flow_step_view(FF, step)
+                    except Exception as e:
+                        show_exception(e)
+    with st.container(border=True):
+        st.markdown("**6. Cut the clips and build the rating page** (free)")
+        if have["find"]:
+            if st.button("Cut every clip into its own file and build the page", key=f"flow_cut_{vid}"):
+                with st.spinner("Cutting clips with ffmpeg"):
+                    try:
+                        st.session_state[f"flow_cut_res_{vid}"] = FV.cut(vid, CFG)
+                    except Exception as e:
+                        show_exception(e)
+            res = st.session_state.get(f"flow_cut_res_{vid}")
+            if res:
+                st.success(f"{len(res['files'])} clip files; rating page: `{res['page']}`")
+                if st.button("Open the rating page", key=f"flow_open_{vid}"):
+                    import subprocess
+                    subprocess.run(["open", res["page"]], check=False)
+                with st.expander("Watch the clips here"):
+                    for fpath in res["files"]:
+                        st.caption(Path(fpath).name)
+                        st.video(fpath)
+        else:
+            st.caption("waiting for Stage 3 find")
 
 # ----------------------------------------------------------------------------------------------- Review (guided)
 

@@ -52,17 +52,13 @@
           "start": {
             "type": "object",
             "required": [
-              "line",
-              "at",
+              "word",
               "why"
             ],
             "properties": {
-              "line": {
-                "type": "string"
-              },
-              "at": {
-                "type": "string",
-                "description": "the word copied exactly from the line"
+              "word": {
+                "type": "integer",
+                "description": "the number of the first word"
               },
               "why": {
                 "type": "string"
@@ -72,25 +68,21 @@
           "end": {
             "type": "object",
             "required": [
-              "line",
-              "at",
-              "hold_until",
+              "word",
+              "until",
               "why"
             ],
             "properties": {
-              "line": {
-                "type": "string"
+              "word": {
+                "type": "integer",
+                "description": "the number of the last spoken word"
               },
-              "at": {
+              "until": {
                 "type": "string",
-                "description": "the word copied exactly from the line"
+                "description": "m:ss.s where the clip really ends, at or after the last word"
               },
               "why": {
                 "type": "string"
-              },
-              "hold_until": {
-                "type": "string",
-                "description": "episode clock, m:ss.s like the line times: where the clip really ends"
               }
             }
           },

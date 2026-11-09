@@ -1,0 +1,155 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "stage3_group_clips",
+  "description": "founder, 2026-11-06 test: Stage 3 find, one call per group of neighbouring scenes",
+  "type": "object",
+  "required": [
+    "clips"
+  ],
+  "properties": {
+    "clips": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "scene",
+          "payoff",
+          "payoff_quote",
+          "payoff_type",
+          "start",
+          "end",
+          "drops",
+          "cold_open",
+          "hook",
+          "title",
+          "why",
+          "emotion",
+          "kind",
+          "spoiler"
+        ],
+        "properties": {
+          "scene": {
+            "type": "integer"
+          },
+          "payoff": {
+            "type": "string",
+            "description": "the line id where it lands"
+          },
+          "payoff_quote": {
+            "type": "string",
+            "description": "the payoff words copied exactly from the line"
+          },
+          "payoff_type": {
+            "type": "string",
+            "enum": [
+              "punchline",
+              "reveal",
+              "conclusion",
+              "emotional_peak",
+              "cliffhanger"
+            ]
+          },
+          "start": {
+            "type": "object",
+            "required": [
+              "word",
+              "why"
+            ],
+            "properties": {
+              "word": {
+                "type": "integer",
+                "description": "the number of the first word"
+              },
+              "why": {
+                "type": "string"
+              }
+            }
+          },
+          "end": {
+            "type": "object",
+            "required": [
+              "word",
+              "until",
+              "why"
+            ],
+            "properties": {
+              "word": {
+                "type": "integer",
+                "description": "the number of the last spoken word"
+              },
+              "until": {
+                "type": "string",
+                "description": "m:ss.s where the clip really ends, at or after the last word"
+              },
+              "why": {
+                "type": "string"
+              }
+            }
+          },
+          "drops": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "first",
+                "last",
+                "why"
+              ],
+              "properties": {
+                "first": {
+                  "type": "string"
+                },
+                "last": {
+                  "type": "string"
+                },
+                "why": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "cold_open": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "required": [
+              "line",
+              "why"
+            ],
+            "properties": {
+              "line": {
+                "type": "string"
+              },
+              "why": {
+                "type": "string"
+              }
+            }
+          },
+          "hook": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "why": {
+            "type": "string"
+          },
+          "emotion": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "standalone",
+              "promo"
+            ]
+          },
+          "spoiler": {
+            "type": "boolean"
+          }
+        }
+      }
+    }
+  }
+}

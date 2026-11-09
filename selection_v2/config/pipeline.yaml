@@ -122,6 +122,13 @@ stage2:
   faces_bank_max_per_name: 4
   media_dir: media                 # under runs/selection_v2/<id>/
 
+video_box:
+  # founder, 2026-11-06: box A, the episode video stored once at Google by the video step and read by it and the scene
+  # notes at a tenth of the price (video_box.py). Making a box is free; storage is billed for the full time set.
+  enabled: true                    # founder, 2026-11-09: on by default (tested on CG: step 5 ₹12.9 -> 8.2, step 6 ₹12.1 -> 4.6)
+  ttl_s: 1800                      # founder: 30 minutes
+  min_left_s: 120                  # a box with less than this left is not used (the step sends the video instead)
+
 identity_pass:
   # founder, 2026-11-02: ONE Gemini call that WATCHES the whole episode with the text step's answer and says, for EVERY
   # spoken line, who talks (one, several, or cannot tell; a voice change inside the line) and who is on screen. Code
@@ -161,6 +168,13 @@ stage3_find:
   clips_model: {provider: gemini, model: gemini-3.8-flash, params: {thinking_level: medium, max_output_tokens: 32768}}
   cache_ttl_s: 2400                # the cache is deleted when the step ends; storage is recorded for the whole TTL
   clips_output_tokens: 4000        # estimate per scene call (answer + thinking)
+  mode: group                      # founder, 2026-11-09 default: group (prompts/stage3_clips_group.md, the v13 wording) | per_scene | all
+  cache_ttl_s_all: 600             # founder: box B kept 10 minutes in the all-scenes call
+  all_max_output_tokens: 65536     # one answer for the whole episode (answer + thinking)
+  all_output_tokens: 30000         # estimate for the all-scenes call (answer + thinking)
+  group_target_s: 180              # mode group: a call per ~3 minutes of neighbouring scenes or more (CG 4 calls, HM 5); each call sees the whole episode
+  cache_ttl_s_group: 900           # box B kept for the group calls (ASK the founder before changing)
+  group_output_tokens: 8000        # estimate per group call (answer + thinking)
   video_max_height: 480
   http_timeout_s: 300               # 2026-11-04: a call hung 45 min at 900; scene calls take ~30-60 s
   http_retries: 1

@@ -20,18 +20,23 @@ CLIP_DIR = "clips" if S3_TAG == "v4" else f"clips_{S3_TAG}"   # render_clips.DES
 def episode(vid: str, title: str) -> dict:
     s3 = load(OUT / vid / f"stage3.{S3_TAG}.json")
     f = load(OUT / vid / "episode_facts.v4_scenes_find.json")
+    return episode_from(f, s3["clips"]["clips"], vid, title, f"{CLIP_DIR}/{vid}")
+
+
+def episode_from(f: dict, clip_list: list[dict], vid: str, title: str, clip_dir: str) -> dict:
+    """The page's data for one episode: ``f`` = the facts (lines, people), clip files at review/<clip_dir>/<id>.mp4."""
     L = {r["id"]: r for r in f["lines"]}
     nm = {s["key"]: s.get("name") or s["key"] for s in f["episode_pass"]["speakers"]}
     who = f["episode_pass"]["derived"].get("line_speakers") or {}
     clips = []
-    for c in s3["clips"]["clips"]:
+    for c in clip_list:
         text = []
         for p in c["pieces"]:
             for lid in p["lines"]:
                 r = L[lid]
                 if r["kind"] == "speech":
                     text.append({"who": nm.get(who.get(lid), who.get(lid) or ""), "text": r["text"], "cold": bool(p.get("cold_open"))})
-        clips.append({"id": c["id"], "file": f"{CLIP_DIR}/{vid}/{c['id']}.mp4", "title": c.get("title") or "", "kind": c.get("kind"), "spoiler": c.get("spoiler"),
+        clips.append({"id": c["id"], "file": f"{clip_dir}/{c['id']}.mp4", "title": c.get("title") or "", "kind": c.get("kind"), "spoiler": c.get("spoiler"),
                       "works": c.get("works"), "why_not": c.get("why_not") or "", "hook": c.get("hook") or "", "why": c.get("why") or "",
                       "duration": c["duration"], "start": fmt_ts(c["start_time"]), "pieces": [[p["start"], p["end"]] for p in c["pieces"]],
                       "cold_open": bool(c.get("cold_open")), "n_drops": len(c.get("drops") or []), "text": text,
