@@ -200,6 +200,14 @@ stage3_edit:
   output_tokens: 5000              # estimate per call (answer + thinking)
   delete_upload_after_call: true
 
+stage4_rank:
+  # founder, 2026-11-09: one TEXT call per episode puts all of step 7's clips in posting order (stage4_rank.py)
+  model: {provider: gemini, model: gemini-3.8-flash, params: {thinking_level: medium, max_output_tokens: 16384}}
+  retries: 1
+  output_tokens: 4000              # estimate (answer + thinking)
+  http_timeout_s: 300
+  http_retries: 1
+
 naming_check:
   # founder, 2026-11-01: no code rules decide who is who. After the identity pass, ONE text call reads the whole transcript
   # with the text step's person and the video step's answer per line, and decides who says every spoken line (founder,

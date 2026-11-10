@@ -25,7 +25,9 @@ PRICES: dict[str, dict] = {
     "gemini-3.6-flash": {"input": 0.75, "output": 3.75, "cached": 0.075, "cache_storage_hour": 0.50,
                          "note": "promo to 2026-12-31; list 1.50/7.50"},
     "gemini-3.5-flash": {"input": 1.50, "output": 9.00},
-    "gemini-3.5-flash-lite": {"input": 0.30, "output": 2.50, "cached": 0.03},
+    # cache_storage_hour for 3.5 Flash-Lite NOT confirmed (2026-11-10): the list price of the Flash models is used as a
+    # conservative estimate for the ledger; Google's bill is the real number.
+    "gemini-3.5-flash-lite": {"input": 0.30, "output": 2.50, "cached": 0.03, "cache_storage_hour": 1.00},
     "gemini-3.1-pro-preview": {"input": 2.00, "output": 12.00, "long_threshold": 200_000,
                                "long": {"input": 4.00, "output": 18.00}},
     "gemini-2.5-pro": {"input": 1.25, "output": 10.00, "long_threshold": 200_000,

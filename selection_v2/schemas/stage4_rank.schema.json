@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "stage4_rank",
+  "type": "object",
+  "required": [
+    "order",
+    "post_first",
+    "reasons",
+    "verdict",
+    "verdict_why"
+  ],
+  "properties": {
+    "order": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "post_first": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "reasons": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "clip",
+          "why"
+        ],
+        "properties": {
+          "clip": {
+            "type": "string"
+          },
+          "why": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "verdict": {
+      "type": "string",
+      "enum": [
+        "strong",
+        "thin",
+        "none"
+      ]
+    },
+    "verdict_why": {
+      "type": "string"
+    }
+  }
+}

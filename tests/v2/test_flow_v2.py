@@ -6,7 +6,7 @@ from selection_v2 import flow_v2 as FV
 
 class TestFlow(unittest.TestCase):
     def test_done(self):
-        self.assertEqual(FV.done(None), {"text": False, "video": False, "notes": False, "find": False, "edit": False})
+        self.assertEqual(FV.done(None), {"text": False, "video": False, "notes": False, "find": False, "edit": False, "rank": False})
         f = {"episode_pass": {"speakers": []}, "identity_pass": {"scenes": [{"id": 1}]}, "scene_notes": {"scenes": []},
              "clips": {"version": "stage3_find/0.2", "clips": []}}
         d = FV.done(f)
@@ -18,4 +18,4 @@ class TestFlow(unittest.TestCase):
         c = FV.cfg_for("x")
         self.assertEqual(c["identity_pass"]["scenes"], "find")
         self.assertIn("flow_glossary", c["stage1b"]["glossary_dir"])     # no series memory in or out
-        self.assertEqual([k for k, _ in FV.STEPS], ["text", "video", "notes", "find", "edit"])
+        self.assertEqual([k for k, _ in FV.STEPS], ["text", "video", "notes", "find", "rank"])

@@ -8,3 +8,4 @@ sarvamai==0.1.37    # tools/transcribe_sarvam.py (speaker-label comparison; opti
 streamlit==1.66.1     # selection_v2/debug_app.py
 pyyaml==6.0.3         # selection_v2 config, reference YAML, golden_set.yaml
 pandas==3.1.0         # selection_v2/debug_app.py tables
+opencv-python-headless==5.0.0   # selection_v2/vertical.py: face detection (YuNet) + recognition (SFace) for the 9:16 crop; models/*.onnx downloaded by vertical.ensure_models()

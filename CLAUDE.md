@@ -47,10 +47,16 @@ decision must generalize to any Telugu podcast a creator uploads.
 - **Ground truth for these types comes from the `clip-gt-editor` agent** reading the whole episode (plus keyframes
   for web series), reviewed by the founder. The channel's own published Shorts/Reels are NOT used as ground truth.
 
-## Current phase: clip selection
+## Current phase: clip selection done (v1); now vertical 9:16 rendering
 
-Input: a Scribe transcript JSON. Output: a ranked list of clip proposals a creator (or their team) reviews.
-Rendering, reframing, captions, and backend integration come later. Do not build them now.
+Clip selection (founder, 2026-11-09/10): Gemini 3.8 Flash; box A on (video stored once for steps 5-6); step 7 in batches
+of scenes with the v13 prompt; Stage 4 one text call gives the posting order, post-first picks and the episode verdict.
+Output: a ranked list of clip proposals a creator (or their team) reviews.
+
+**Vertical 9:16 (founder, 2026-11-10):** every clip can be rendered in TWO styles and the user selects which one they
+want: (1) **fit + blurred fill** (the whole 16:9 picture in the middle, a blurred copy above and below) and (2) **crop
+to the person** (a 9:16 slice that follows who matters in each shot). Captions, the customer delivery page and the
+one-click episode run (built with the frontend) come later; do not build them yet.
 
 ## Users
 

@@ -25,7 +25,9 @@
           "why",
           "emotion",
           "kind",
-          "spoiler"
+          "spoiler",
+          "strength",
+          "strength_why"
         ],
         "properties": {
           "scene": {
@@ -147,6 +149,17 @@
           },
           "spoiler": {
             "type": "boolean"
+          },
+          "strength": {
+            "type": "string",
+            "enum": [
+              "post_first",
+              "good",
+              "weaker"
+            ]
+          },
+          "strength_why": {
+            "type": "string"
           }
         }
       }

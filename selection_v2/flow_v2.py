@@ -3,8 +3,11 @@
   text    Stage 1A (code, free) + Stage 1B text step: people, ads; COLD (no series cast list, no saved glossary)
   video   the video step with scenes: find (who talks / who is on screen per line, people's looks, the scenes)
   notes   Stage 2 scene notes, one whole-episode call (facts per scene, no payoffs or hooks)
-  find    Stage 3 find: whole video + text cached at Google, one call per scene gives the clips
-  edit    Stage 3 edit: one call per clip with the video of its stretch (tighten, split, hold, cold open)
+  find    Stage 3 find: whole video + text cached at Google, one call per batch of scenes gives the clips
+  rank    Stage 4 (founder, 2026-11-09): one text call puts all the clips in posting order, the few to post first,
+          and the episode's verdict
+  (The edit step, stage3_edit.py, is no longer in the flow: founder, 2026-11-09, too costly; its tightening is in the
+  step 7 prompt. ``run(vid, "edit")`` still works on its own.)
 
 Everything for an episode lives in ONE file, ``runs/selection_v2/<id>/flow_v2.json`` (the old stages' episode_facts.json
 is not touched). ``import_test`` copies the results of the tests run from ``eval/naming/name_test.py`` (free). ``cut``
@@ -23,13 +26,15 @@ from . import stage1_facts as S1A
 from . import stage2_episode as S2E
 from . import stage3_edit as SE
 from . import stage3_find as S3
+from . import stage4_rank as S4
 from .config import ROOT, load_config
 from .inputs import load_inputs
 from .paths import EpisodePaths, load_json, write_json
 
 STEPS = [("text", "Text step (Stage 1A + 1B)"), ("video", "Video step: who talks, who is on screen, scenes"),
-         ("notes", "Stage 2: scene notes"), ("find", "Stage 3 find: clips per scene"), ("edit", "Stage 3 edit: tighten each clip")]
+         ("notes", "Stage 2: scene notes"), ("find", "Stage 3 find: clips (batches of scenes)"), ("rank", "Stage 4: posting order")]
 TEST_DIR = ROOT / "runs" / "name_test"
+TEST_FIND = "v14"     # the test run whose clips (step 7 batches, v13 prompt + strength) and ranking import_test loads
 
 
 def cfg_for(vid: str, cfg: dict | None = None) -> dict:
@@ -53,7 +58,8 @@ def done(f: dict | None) -> dict:
     f = f or {}
     return {"text": bool(f.get("episode_pass")), "video": bool((f.get("identity_pass") or {}).get("scenes")),
             "notes": bool(f.get("scene_notes")), "find": bool(f.get("clips_found") or f.get("clips")),
-            "edit": bool((f.get("clips") or {}).get("version", "").startswith("stage3_edit"))}
+            "edit": bool((f.get("clips") or {}).get("version", "").startswith("stage3_edit")),
+            "rank": bool(f.get("ranking"))}
 
 
 def _counter():
@@ -79,6 +85,8 @@ def estimate(vid: str, step: str, cfg: dict | None = None) -> float:
     if step == "edit":
         found = (f.get("clips_found") or f.get("clips") or {}).get("clips") or []
         return SE.estimate(f, c, found, counter=_counter(), words=load_inputs(vid, c).words)["inr"]
+    if step == "rank":
+        return S4.estimate(f, c, (f.get("clips") or {}).get("clips") or [], counter=_counter())["inr"]
     raise KeyError(step)
 
 
@@ -92,7 +100,7 @@ def run(vid: str, step: str, cfg: dict | None = None, log=None) -> dict:
     f = load(vid, c)
     have = done(f)
     order = [k for k, _ in STEPS]
-    for prev in order[:order.index(step)]:
+    for prev in order[:order.index(step)] if step in order else ["text", "video", "notes", "find"]:
         if not have[prev]:
             raise RuntimeError(f"run '{prev}' first")
     if step == "text":
@@ -109,13 +117,18 @@ def run(vid: str, step: str, cfg: dict | None = None, log=None) -> dict:
         warns, cost = new["scene_notes"].get("warnings") or [], new["scene_notes"]["usage"].get("cost_inr")
     elif step == "find":
         new = S3.find_clips(inp, f, c, log=log)
-        new.pop("clips_found", None)
+        new.pop("clips_found", None); new.pop("ranking", None)
         warns, cost = new["clips"]["warnings"], new["clips"]["usage"]["cost_inr"]
     elif step == "edit":
         found = f.get("clips_found") or f["clips"]
         new = SE.edit_clips(inp, f, c, found["clips"], log=log)
         new["clips_found"] = found
+        new.pop("ranking", None)
         warns, cost = new["clips"]["warnings"], new["clips"]["usage"]["cost_inr"]
+    elif step == "rank":
+        new = dict(f)
+        new["ranking"] = S4.run(inp, f, c, f["clips"]["clips"], log=log)
+        warns, cost = new["ranking"]["warnings"], new["ranking"]["usage"]["cost_inr"]
     else:
         raise KeyError(step)
     write_json(path(vid, c), new)
@@ -125,15 +138,13 @@ def run(vid: str, step: str, cfg: dict | None = None, log=None) -> dict:
 def test_results(vid: str) -> dict:
     """Which tests from eval/naming/name_test.py exist for this episode (the files import_test would copy)."""
     d = TEST_DIR / vid
-    edited = d / "stage3.v9.json"
-    edited_ok = edited.exists() and any(c.get("edited") for c in load_json(edited)["clips"]["clips"])
     return {"facts": (d / "episode_facts.v4_scenes_find.json").exists(), "notes": (d / "scene_notes.v4.json").exists(),
-            "find": (d / "stage3.v8.json").exists(), "edit": edited_ok}
+            "find": (d / f"stage3.{TEST_FIND}.json").exists(), "rank": (d / f"stage4.{TEST_FIND}.json").exists()}
 
 
 def import_test(vid: str, cfg: dict | None = None) -> dict:
-    """Free: build the flow file from the test runs (video step v4 with scenes, notes v4, find v8, edit v9 when it
-    exists). Overwrites the episode's flow file."""
+    """Free: build the flow file from the test runs (video step v4 with scenes, notes v4, step 7 + ranking from
+    ``TEST_FIND``). Overwrites the episode's flow file."""
     c = cfg_for(vid, cfg)
     d = TEST_DIR / vid
     have = test_results(vid)
@@ -143,10 +154,9 @@ def import_test(vid: str, cfg: dict | None = None) -> dict:
     if have["notes"]:
         f["scene_notes"] = load_json(d / "scene_notes.v4.json")
         if have["find"]:
-            f["clips"] = load_json(d / "stage3.v8.json")["clips"]
-            if have["edit"]:
-                f["clips_found"] = f["clips"]
-                f["clips"] = load_json(d / "stage3.v9.json")["clips"]
+            f["clips"] = load_json(d / f"stage3.{TEST_FIND}.json")["clips"]
+            if have["rank"]:
+                f["ranking"] = load_json(d / f"stage4.{TEST_FIND}.json")
     write_json(path(vid, c), f)
     return have
 
@@ -164,13 +174,22 @@ def cut(vid: str, cfg: dict | None = None, log=None) -> dict:
     src = Path(EpisodePaths(vid, c).mp4)
     dest = ROOT / "review" / "flow_clips" / vid
     files = []
-    for cl in f["clips"]["clips"]:
+    clips = list(f["clips"]["clips"])
+    rk = f.get("ranking")
+    if rk:      # posting order (Stage 4), the AI's post-first picks shown on the page
+        at = {x: i for i, x in enumerate(rk["order"])}
+        clips.sort(key=lambda x: at.get(x["id"], len(at)))
+        clips = [{**x, "rank": at.get(x["id"], len(at)) + 1, "post_first_ai": x["id"] in rk["post_first"],
+                  "rank_why": rk["why"].get(x["id"], "")} for x in clips]
+    for cl in clips:
         dst = dest / f"{cl['id']}.mp4"
         RC.render(src, cl["pieces"], dst)
         files.append(dst)
         log(f"{cl['id']} {cl['duration']:.0f} s -> {dst}")
     title = EpisodePaths(vid, c).title() or vid
-    ep = MP.episode_from(f, f["clips"]["clips"], vid, title, f"flow_clips/{vid}")
+    ep = MP.episode_from(f, clips, vid, title, f"flow_clips/{vid}")
+    if rk:
+        ep.update(show_ai=True, verdict=rk["verdict"], verdict_why=rk["verdict_why"])
     page = ROOT / "review" / f"flow_{vid}.html"
     page.write_text(MP.PAGE.replace("__DATA__", json.dumps([ep], ensure_ascii=False)).replace("__TAG__", f"flow_{vid}"), encoding="utf-8")
     return {"files": [str(x) for x in files], "page": str(page)}

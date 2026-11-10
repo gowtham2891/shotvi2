@@ -35,6 +35,7 @@ Shape each clip:
 - why: why this clip works for a viewer who never saw the series, in one or two sentences.
 - emotion: what the viewer feels watching it, in a few words, in your own words (for example: laughs at how clueless he is; feels for her; tense, wants to know what happens next).
 - kind: standalone (works fully on its own; the payoff is inside the clip) or promo (its main pull is toward the episode: rising tension, a secret about to come out, a question left open); spoiler: true when it gives away the episode's main twist or ending.
+- strength: how this clip stands against the best moments of the WHOLE episode: post_first (one of the episode's best few), good (worth posting), or weaker (postable, not the episode's best); strength_why: why, in one sentence.
 
 Words are always given by their numbers, never copied. scene: the number of the scene the payoff lands in. When these scenes have no clip, give an empty list.
 
@@ -44,4 +45,4 @@ Your previous answer failed these checks:
 Fix exactly these problems and answer again, same format.
 
 ## output_format
-Return one JSON object with exactly one key: clips, a list of clips, each with exactly these keys: scene, payoff, payoff_quote, payoff_type, start, end, drops, cold_open, hook, title, why, emotion, kind, spoiler. start is {word, why}; end is {word, until, why} (word is a number); drops are {first, last, why}; cold_open is {line, why} or null.
+Return one JSON object with exactly one key: clips, a list of clips, each with exactly these keys: scene, payoff, payoff_quote, payoff_type, start, end, drops, cold_open, hook, title, why, emotion, kind, spoiler, strength, strength_why. start is {word, why}; end is {word, until, why} (word is a number); drops are {first, last, why}; cold_open is {line, why} or null.

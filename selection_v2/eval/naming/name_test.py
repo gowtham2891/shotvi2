@@ -55,6 +55,10 @@ def cfg_for(vid):
         cfg["video_box"]["enabled"] = True
     if env.get("STAGE3_MODE"):                                            # per_scene | all
         cfg["stage3_find"]["mode"] = env["STAGE3_MODE"]
+    if env.get("STAGE3_MODEL"):                                           # founder, 2026-11-10: cheaper-model test
+        cfg["stage3_find"]["clips_model"]["model"] = env["STAGE3_MODEL"]
+    if env.get("RANK_MODEL"):
+        cfg["stage4_rank"]["model"]["model"] = env["RANK_MODEL"]
     return cfg
 
 
@@ -202,6 +206,19 @@ def edit_estimate(vid):
     print(vid, SE.estimate(s3_facts(vid), cfg, _edit_in(vid), words=load_inputs(vid, cfg).words), flush=True)
 
 
+def rank(vid):
+    """Stage 4 (founder, 2026-11-09): one text call orders stage3.<S3_TAG>.json's clips -> stage4.<S3_TAG>.json"""
+    from selection_v2 import stage4_rank as R
+    cfg = cfg_for(vid)
+    inp = load_inputs(vid, cfg)
+    f = s3_facts(vid)
+    cl = load(OUT / vid / f"stage3.{S3_TAG}.json")["clips"]["clips"]
+    print(vid, "estimate:", R.estimate(f, cfg, cl), flush=True)
+    out = R.run(inp, f, cfg, cl, log=lambda *a: print(*a, flush=True))
+    write_json(OUT / vid / f"stage4.{S3_TAG}.json", out)
+    print(vid, "stage 4:", out["usage"], "| order", out["order"], "| post first", out["post_first"], "| verdict", out["verdict"], flush=True)
+
+
 def check(model, vid):
     cfg = cfg_for(vid)
     cfg["naming_check"]["model"] = MODELS[model]
@@ -249,4 +266,4 @@ if __name__ == "__main__":
     else:
         for v in rest:
             {"video": video, "full": full, "score": score, "videoonly": videoonly, "notes": notes, "moments": moments, "shape": shape, "clips": clips, "clips_estimate": clips_estimate,
-             "edit": edit, "edit_estimate": edit_estimate}[mode](v)
+             "edit": edit, "edit_estimate": edit_estimate, "rank": rank}[mode](v)

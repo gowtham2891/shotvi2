@@ -193,6 +193,13 @@ def flow_step_view(F: dict, step: str):
         st.dataframe(pd.DataFrame([{"scene": n["scene_id"], "time": f"{fmt_ts(n['start'])}-{fmt_ts(n['end'])}", "story": n["story"],
                                     "mood": n.get("mood"), "reactions": len(n.get("reactions") or []), "seen without words": len(n.get("visual_moments") or []),
                                     "silences": len(n.get("silences") or [])} for n in sn["scenes"]]), hide_index=True, width="stretch")
+    elif step == "rank":
+        rk = F["ranking"]
+        st.markdown(f"**Episode verdict: {rk['verdict']}.** {rk['verdict_why']}")
+        byid = {c["id"]: c for c in F["clips"]["clips"]}
+        st.dataframe(pd.DataFrame([{"order": i + 1, "clip": cid, "post first": "yes" if cid in rk["post_first"] else "",
+                                    "title": (byid.get(cid) or {}).get("title"), "why here": rk["why"].get(cid, "")}
+                                   for i, cid in enumerate(rk["order"])]), hide_index=True, width="stretch")
     elif step in ("find", "edit"):
         cl = (F.get("clips_found") if step == "find" and F.get("clips_found") else F["clips"])["clips"]
         st.dataframe(pd.DataFrame([{"clip": c["id"], "scene": c.get("scene"), "starts": fmt_ts(c["start_time"]), "plays (s)": round(c["duration"]),

@@ -45,11 +45,22 @@ def cut_scene(src: Path, media_dir: Path, scene_id, start: float, end: float, mo
     return dst
 
 
-def upload(path: Path, mode: str = "video") -> dict:
-    """Files API upload (resumable, cached by path/size/mtime). Returns {uri, name, mime_type}."""
+def upload(path: Path, mode: str = "video", tries: int = 3) -> dict:
+    """Files API upload (resumable, cached by path/size/mtime). Returns {uri, name, mime_type}. A dropped connection
+    (founder's network, 2026-11-07 and 11-09: "broken pipe" mid-upload) is retried up to ``tries`` times; uploads are free."""
+    import time
+
+    import requests
+
     from shotvi.llm.gemini import upload_file
     mime = "audio/mpeg" if mode == "audio" else "video/mp4"
-    return upload_file(str(path), mime_type=mime)
+    for k in range(tries):
+        try:
+            return upload_file(str(path), mime_type=mime)
+        except (requests.ConnectionError, requests.Timeout):
+            if k == tries - 1:
+                raise
+            time.sleep(10 * (k + 1))
 
 
 def content_key(path: Path) -> str:
