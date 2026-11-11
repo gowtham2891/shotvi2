@@ -1,15 +1,7 @@
 {
- "total_usd": 42.748197,
- "calls": 3060,
+ "total_usd": 42.756869,
+ "calls": 3061,
  "entries": [
-  {
-   "t": "2026-10-02T16:06:49",
-   "model": "gemini-3.8-flash",
-   "in": 4419,
-   "out": 416,
-   "usd": 0.004874,
-   "source": "r9-B-FS1"
-  },
   {
    "t": "2026-10-02T16:06:49",
    "model": "gemini-3.8-flash",
@@ -16446,6 +16438,14 @@
    "out": 1492,
    "usd": 0.006983,
    "source": "model_test"
+  },
+  {
+   "t": "2026-11-11T17:32:26",
+   "model": "gemini-3.5-flash-lite",
+   "in": 6915,
+   "out": 2639,
+   "usd": 0.008672,
+   "source": ""
   }
  ]
 }
