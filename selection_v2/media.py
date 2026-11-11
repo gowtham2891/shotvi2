@@ -8,6 +8,15 @@ import subprocess
 from pathlib import Path
 
 
+def source_video(vid: str, root=None) -> Path:
+    """The episode video to cut clips from: ``<id>_1080.mp4`` when it was downloaded (founder, 2026-11-10: 1080p so the
+    9:16 crop is sharp), else the original ``<id>.mp4``. Same timeline either way (the same YouTube video)."""
+    from .config import ROOT as _ROOT
+    d = Path(root or _ROOT) / "scribe_dataset" / vid
+    hd = d / f"{vid}_1080.mp4"
+    return hd if hd.exists() and hd.stat().st_size > 0 else d / f"{vid}.mp4"
+
+
 def ffmpeg_cmd(src: Path, dst: Path, start: float, end: float, mode: str = "video", max_height: int = 480) -> list[str]:
     """``mode`` video: H.264 mp4 downscaled to <= max_height (even dimensions), AAC audio; audio: 16 kHz mono mp3."""
     a, b = float(start), float(end)

@@ -171,7 +171,8 @@ def cut(vid: str, cfg: dict | None = None, log=None) -> dict:
     f = load(vid, c)
     if not (f or {}).get("clips"):
         raise RuntimeError("no clips yet: run Stage 3 find first")
-    src = Path(EpisodePaths(vid, c).mp4)
+    from .media import source_video
+    src = source_video(vid)
     dest = ROOT / "review" / "flow_clips" / vid
     files = []
     clips = list(f["clips"]["clips"])

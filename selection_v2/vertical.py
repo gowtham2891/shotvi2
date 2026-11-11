@@ -440,6 +440,12 @@ def render_both(vid: str, facts: dict, src: Path, clip: dict, out_dir: Path, peo
     return {"fit": str(fit), "crop": str(crop), "debug": str(dbg), "plan": plan}
 
 
+def source_for(vid: str) -> Path:
+    """The episode video for rendering (1080p when downloaded; see media.source_video)."""
+    from .media import source_video
+    return source_video(vid)
+
+
 def people_for(vid: str, facts: dict, src: Path, run_dir: Path, faces: Faces | None = None, log=None) -> People:
     """The episode's reference faces: built once and saved in <run_dir>/face_refs.json."""
     faces = faces or Faces()

@@ -33,7 +33,8 @@ def render(src: Path, pieces: list[dict], dst: Path) -> None:
 
 def run(vid: str, tag: str = S3_TAG) -> list[Path]:
     s3 = load(OUT / vid / f"stage3.{tag}.json")
-    src = Path("scribe_dataset") / vid / f"{vid}.mp4"
+    from selection_v2.media import source_video
+    src = source_video(vid)
     out = []
     for c in s3["clips"]["clips"]:
         dst = DEST / vid / f"{c['id']}.mp4"
