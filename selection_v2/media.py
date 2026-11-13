@@ -17,6 +17,25 @@ def source_video(vid: str, root=None) -> Path:
     return hd if hd.exists() and hd.stat().st_size > 0 else d / f"{vid}.mp4"
 
 
+def download_1080(vid: str, url: str, root=None) -> Path:
+    """Download the 1080p version next to the 720p one (``<id>_1080.mp4``), for sharp 9:16 crops. Free (yt-dlp).
+    Same video, same timeline: the transcript and every time stay valid."""
+    import yt_dlp
+    from .config import ROOT as _ROOT
+    d = Path(root or _ROOT) / "scribe_dataset" / vid
+    dst = d / f"{vid}_1080.mp4"
+    if dst.exists() and dst.stat().st_size > 0:
+        return dst
+    d.mkdir(parents=True, exist_ok=True)
+    opts = {"format": "bv*[height<=1080][ext=mp4]+ba[ext=m4a]/bv*[height<=1080]+ba/b[height<=1080]",
+            "merge_output_format": "mp4", "outtmpl": str(d / f"{vid}_1080.%(ext)s"), "quiet": True, "no_warnings": True}
+    with yt_dlp.YoutubeDL(opts) as y:
+        y.download([url])
+    if not dst.exists():
+        raise RuntimeError(f"1080p download of {vid} did not produce {dst}")
+    return dst
+
+
 def ffmpeg_cmd(src: Path, dst: Path, start: float, end: float, mode: str = "video", max_height: int = 480) -> list[str]:
     """``mode`` video: H.264 mp4 downscaled to <= max_height (even dimensions), AAC audio; audio: 16 kHz mono mp3."""
     a, b = float(start), float(end)

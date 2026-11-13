@@ -35,6 +35,7 @@ STEPS: list[tuple[str, str]] = [
     ("find", "Finding the clips"),
     ("rank", "Choosing the posting order"),
     ("save", "Saving the clips"),
+    ("vertical", "Making the vertical videos"),
 ]
 PREP = {"download": RE.Download, "transcribe": RE.Transcribe, "shots": RE.Shots,
         "word_fix": RE.AsrFix, "speaker_fix": RE.SpeakerFix}
@@ -84,7 +85,7 @@ def pending(vid: str, url: str = "") -> list[str]:
     out = [k for k, cls in PREP.items() if not cls().done(ctx.p)]
     have = FV.done(FV.load(vid, FV.cfg_for(vid)))
     out += [k for k in FLOW if not have[k]]
-    return out + ["save"]
+    return out + ["save", "vertical"]     # both check their own work (clips replaced; videos skipped when present)
 
 
 def source_length_s(vid: str, url: str) -> float:
@@ -104,6 +105,59 @@ def source_length_s(vid: str, url: str) -> float:
 def length_s(vid: str) -> float:
     p = RE.Paths(vid, ROOT)
     return RE.media_duration_s(p.wav if p.wav.exists() else p.mp4)
+
+
+def poster_key(video_key: str) -> str:
+    return video_key[:-4] + ".jpg"
+
+
+def make_poster(video: Path, dst: Path, at_s: float = 1.0) -> None:
+    """A still frame (540 px wide JPEG) one second in."""
+    import subprocess
+    dst.parent.mkdir(parents=True, exist_ok=True)
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", f"{at_s}", "-i", str(video), "-frames:v", "1", "-vf", "scale=540:-2",
+                    "-q:v", "4", str(dst)], check=True)
+
+
+def vertical_videos(episode: dict, url: str, log: Callable[..., None] = print) -> list[dict]:
+    """Fit and crop videos (no captions) of every clip into storage ``episodes/<episode id>/<clip>_{fit,crop}.mp4``,
+    from the 1080p source (downloaded here when missing; free). A clip whose two files exist is skipped. Returns one
+    row per file for public.renders: {number, style, file, size_mb}."""
+    from selection_v2 import flow_v2 as FV
+    from selection_v2 import vertical as VT
+    from selection_v2.media import download_1080
+    from . import storage
+    vid = episode["video_id"]
+    flow = FV.load(vid, FV.cfg_for(vid)) or {}
+    clips = (flow.get("clips") or {}).get("clips") or []
+    base = f"episodes/{episode['id']}"
+    todo = [c for c in clips if not all(storage.exists(f"{base}/{c['id']}_{st}.mp4") for st in ("fit", "crop"))]
+    if todo:
+        try:
+            download_1080(vid, url)
+        except Exception as e:       # the 720p source still works, only softer
+            log(f"    1080p download failed ({type(e).__name__}: {e}); using the 720p source")
+        src = VT.source_for(vid)
+        run_dir = Path(FV.EpisodePaths(vid, FV.cfg_for(vid)).run_dir)
+        people = VT.people_for(vid, flow, src, run_dir, log=log)
+        tmp = storage.root() / "tmp" / str(episode["id"])
+        for c in todo:
+            VT.render_both(vid, flow, src, c, tmp, people, log=None, debug=False)
+            for st in ("fit", "crop"):
+                storage.put(tmp / f"{c['id']}_{st}.mp4", f"{base}/{c['id']}_{st}.mp4")
+            log(f"    {c['id']}: fit + crop")
+    for c in clips:          # poster frames: the page shows a picture before any video loads
+        for st in ("fit", "crop"):
+            key = f"{base}/{c['id']}_{st}.mp4"
+            if storage.exists(key) and not storage.exists(poster_key(key)):
+                make_poster(storage.path(key), storage.path(poster_key(key)))
+    rows = []
+    for c in clips:
+        for st in ("fit", "crop"):
+            key = f"{base}/{c['id']}_{st}.mp4"
+            if storage.exists(key):
+                rows.append({"number": c["id"], "style": st, "file": key, "size_mb": storage.size_mb(key)})
+    return rows
 
 
 def clip_rows(flow: dict) -> list[dict]:
@@ -129,7 +183,7 @@ def clip_rows(flow: dict) -> list[dict]:
 
 def run(episode: dict, on_step: Callable[[int, str, str], None],
         add_cost: Callable[[float], None], save: Callable[[list[dict], dict], int],
-        log: Callable[..., None] = print) -> dict:
+        log: Callable[..., None] = print, save_renders: Callable[[list[dict]], None] | None = None) -> dict:
     """Run every pending step for ``episode`` (a public.episodes row). Returns {"minutes", "clips", "ran"}."""
     from selection_v2 import flow_v2 as FV
     vid, url = episode["video_id"], episode["source_url"] or episode["video_id"]
@@ -156,7 +210,7 @@ def run(episode: dict, on_step: Callable[[int, str, str], None],
             log(f"    cost ₹{spent:.2f} (step's own estimate ₹{float(res.get('cost_inr') or 0.0):.2f})")
             for w in res.get("warnings") or []:
                 log(f"    warning: {w}")
-        else:   # save
+        elif key == "save":
             flow = FV.load(vid, FV.cfg_for(vid)) or {}
             rows = clip_rows(flow)
             rk = flow.get("ranking") or {}
@@ -170,5 +224,45 @@ def run(episode: dict, on_step: Callable[[int, str, str], None],
                 upd["title"] = title
             save(rows, upd)
             log(f"    saved {len(rows)} clips")
+        elif key == "vertical":
+            made = vertical_videos(episode, url, log=log)
+            if save_renders:
+                save_renders(made)
+            log(f"    {len(made)} vertical videos ready")
         ran.append(key)
     return {"minutes": length_s(vid) / 60.0, "ran": ran}
+
+
+def caption_video(render: dict, clip_number: str, episode: dict) -> tuple[str, float]:
+    """Burn captions (``render["settings"]``) onto the clip's plain fit/crop video. Returns (storage key, size MB).
+    The settings are checked again here (captions.clean_settings), whatever the API let through."""
+    import shutil
+    from selection_v2 import captions as C
+    from selection_v2 import flow_v2 as FV
+    from selection_v2.inputs import load_inputs
+    from . import storage
+    vid, style = episode["video_id"], render["style"]
+    cfg = FV.cfg_for(vid)
+    flow = FV.load(vid, cfg) or {}
+    clip = next((c for c in (flow.get("clips") or {}).get("clips") or [] if c["id"] == clip_number), None)
+    if clip is None:
+        raise RuntimeError(f"clip {clip_number} is not in the episode's results")
+    base = f"episodes/{episode['id']}/{clip_number}_{style}.mp4"
+    if not storage.exists(base):
+        raise RuntimeError(f"the clip's {style} video is missing ({base})")
+    settings = C.clean_settings(render["settings"] or {})
+    tmp = ROOT / "runs" / "klipvi_tmp" / str(render["id"])      # under the repo: the subtitle burn needs a relative path
+    words = load_inputs(vid, cfg).words
+    try:
+        edited = render.get("captions") or {}
+        ew = C.clean_words(edited["words"], float(clip["duration"]) + 3.0) if edited.get("words") is not None else None
+        brk = C.clean_breaks(edited.get("breaks"), len(ew if ew is not None else C.clip_words(flow, words, clip)))
+        out = C.render_captions(flow, words, clip, storage.path(base), tmp, settings=settings, vertical_style=style,
+                                name=render["settings_hash"], edited_words=ew, breaks=brk)
+        key = f"episodes/{episode['id']}/{clip_number}_{style}_cap_{render['settings_hash']}.mp4"
+        storage.put(Path(out["file"]), key)
+        spoken = ew if ew else C.clip_words(flow, words, clip)   # the poster shows the captions: after the first word
+        make_poster(storage.path(key), storage.path(poster_key(key)), at_s=(spoken[0]["end"] + 0.3) if spoken else 1.0)
+        return key, storage.size_mb(key)
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)

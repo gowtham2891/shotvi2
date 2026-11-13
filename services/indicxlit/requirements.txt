@@ -1,0 +1,6 @@
+# Isolated IndicXlit env — NEVER merge with the main app's requirements.
+# fairseq (pulled by ai4bharat-transliteration) fatally conflicts with the
+# ASR/torch stack; this file only ever installs inside the indicxlit image.
+ai4bharat-transliteration
+fastapi
+uvicorn

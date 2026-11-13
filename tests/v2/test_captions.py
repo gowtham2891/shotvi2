@@ -36,12 +36,39 @@ class TestCues(unittest.TestCase):
         cs = C.cues([W("Marriage", 0, .4), W("అంటే", .45, .7), W("full", .75, .9), W("meals", .95, 1.3)])
         t = C.ass_text(cs, C.settings_for("clean"), "crop")
         self.assertIn("PlayResY: 1920", t); self.assertEqual(t.count("Dialogue:"), 1)
-        self.assertIn("\\pos(540,1613)", t)                                 # pos_x 0.5, crop default pos_y 0.84
+        self.assertIn("\\pos(540,1421)", t)                                 # pos_x 0.5, crop default pos_y 0.74
         h = C.ass_text(cs, C.settings_for("highlight"), "crop")
         self.assertEqual(h.count("Dialogue:"), 4); self.assertIn("\\c&H0000D4FF&", h)
         p = C.ass_text(cs, C.settings_for("pop"), "fit")
-        self.assertIn("\\fscx112", p); self.assertIn("\\pos(540,1536)", p)   # fit default pos_y 0.80
+        self.assertIn("\\fscx112", p); self.assertIn("\\pos(540,1421)", p)   # fit default pos_y 0.74
         u = C.ass_text(cs, C.settings_for("clean", uppercase_latin=True), "crop")
         self.assertIn("MARRIAGE", u); self.assertIn("అంటే", u)
         f = C.ass_text(cs, C.settings_for("mandali"), "crop")
         self.assertIn("\\fad(120,120)", f)
+
+
+# ---- settings from the web app (selection_v2.captions.clean_settings / settings_hash / escaping)
+import pytest  # noqa: E402
+
+
+def test_clean_settings_fills_defaults_and_keeps_valid_values():
+    s = C.clean_settings({"font": "Mandali-Regular.ttf", "size": 90, "highlight": "#FFD400", "pos_y": 0.7, "pos_x": 0.5})
+    assert s["font"] == "Mandali-Regular.ttf" and s["size"] == 90 and s["pos_y"] == 0.7 and s["outline"] == C.DEFAULTS["outline"]
+    assert C.clean_settings(C.settings_for("pop"))["animation"] == "pop"
+
+
+@pytest.mark.parametrize("bad", [{"font": "../secret.ttf"}, {"font": "Nope.ttf"}, {"colour": "red"},
+                                 {"colour": "#FFF}{\\pos(0,0)"}, {"size": 999}, {"size": True}, {"pos_x": 2},
+                                 {"animation": "spin"}, {"hack": 1}, {"box": "#00000"}])
+def test_clean_settings_refuses(bad):
+    with pytest.raises(ValueError):
+        C.clean_settings(bad)
+
+
+def test_settings_hash_is_stable_and_ignores_labels():
+    a = C.clean_settings(C.settings_for("clean"))
+    assert C.settings_hash(a) == C.settings_hash({**a}) != C.settings_hash({**a, "size": a["size"] + 2})
+
+
+def test_caption_text_cannot_carry_formatting():
+    assert C._esc("hi {\\pos(1,1)} \\N") == "hi ｛＼pos(1,1)｝ ＼N"

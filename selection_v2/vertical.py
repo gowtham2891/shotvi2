@@ -64,6 +64,62 @@ def probe(src: Path) -> tuple[int, int]:
     return int(s["width"]), int(s["height"])
 
 
+PICTURE_SAMPLES = 10              # moments sampled across the episode to find the picture area
+PICTURE_MIN_BAR = 0.02            # bars thinner than 2% of the frame are ignored (no trim)
+
+
+def choose_box(boxes: list[tuple[int, int, int, int]], W: int, H: int) -> tuple[int, int, int, int]:
+    """The picture area from per-sample ``cropdetect`` boxes (x, y, w, h): the most common box (dark scenes make the
+    detector cut into the picture, so a rare smaller box is ignored); ties go to the larger box. Bars thinner than
+    PICTURE_MIN_BAR are ignored; a box smaller than half the frame is not trusted (full frame)."""
+    if not boxes:
+        return 0, 0, W, H
+    from collections import Counter
+    count = Counter(boxes)
+    box = max(count, key=lambda b: (count[b], b[2] * b[3]))
+    x, y, w, h = box
+    if w * h < 0.5 * W * H:
+        return 0, 0, W, H
+    if (W - w) < PICTURE_MIN_BAR * W:
+        x, w = 0, W
+    if (H - h) < PICTURE_MIN_BAR * H:
+        y, h = 0, H
+    return x, y, w, h
+
+
+def _cropdetect(src: Path, t: float) -> tuple[int, int, int, int] | None:
+    out = subprocess.run(["ffmpeg", "-hide_banner", "-ss", f"{t:.2f}", "-i", str(src), "-t", "2", "-vf",
+                          "cropdetect=limit=24:round=2:reset=0", "-f", "null", "-"], capture_output=True, text=True).stderr
+    found = [m for m in out.split("crop=")[1:]]
+    if not found:
+        return None
+    w, h, x, y = (int(v) for v in found[-1].split()[0].split(":")[:4])
+    return x, y, w, h
+
+
+def picture_box(vid: str, src: Path) -> tuple[int, int, int, int]:
+    """The real picture inside the frame (x, y, w, h in ``src`` pixels), without black bars baked into the video
+    (web series are often shot wider than 16:9). Measured once per episode on PICTURE_SAMPLES moments and saved as
+    fractions in runs/video/<id>/picture.json, so the 720p and 1080p files share it."""
+    W, H = probe(src)
+    p = ROOT / "runs" / "video" / vid / "picture.json"
+    if p.exists():
+        f = json.loads(p.read_text(encoding="utf-8"))
+    else:
+        dur = float(subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0",
+                                    str(src)], capture_output=True, text=True).stdout.strip() or 0)
+        times = [dur * (i + 1) / (PICTURE_SAMPLES + 1) for i in range(PICTURE_SAMPLES)] if dur else []
+        boxes = [b for b in (_cropdetect(src, t) for t in times) if b]
+        x, y, w, h = choose_box(boxes, W, H)
+        f = {"x": x / W, "y": y / H, "w": w / W, "h": h / H, "measured_on": f"{src.name} {W}x{H}",
+             "samples": [list(b) for b in boxes]}
+        p.parent.mkdir(parents=True, exist_ok=True)
+        p.write_text(json.dumps(f, indent=1), encoding="utf-8")
+    even = lambda v: int(round(v / 2)) * 2
+    x, y, w, h = even(f["x"] * W), even(f["y"] * H), even(f["w"] * W), even(f["h"] * H)
+    return x, y, min(w, W - x), min(h, H - y)
+
+
 def shot_cuts(vid: str) -> list[float]:
     p = ROOT / "runs" / "video" / vid / "shots.json"
     try:
@@ -242,10 +298,13 @@ def _centre(fs: list[dict], crop_w: int, W: int) -> tuple[float, bool]:
     return big["x"] + big["w"] / 2, False
 
 
-def decide(found: list[dict], talkers: list[str], seen: list[str], names: dict, crop_w: int, W: int) -> tuple[list[str], float, str, bool]:
+def decide(found: list[dict], talkers: list[str], seen: list[str], names: dict, crop_w: int, W: int,
+           mid: float | None = None) -> tuple[list[str], float, str, bool]:
     """One shot's choice (approach B): the persons to follow (keys), a first slice centre (source px), the reason and
-    whether it was decided. ``found`` = faces of the whole shot (every sampled frame), each with its matched person."""
+    whether it was decided. ``found`` = faces of the whole shot (every sampled frame), each with its matched person.
+    ``mid`` = the picture's middle (default W / 2)."""
     nm = lambda k: names.get(k, k)
+    mid = W / 2 if mid is None else mid
     known = {}
     for f in found:
         if f.get("person"):
@@ -253,7 +312,7 @@ def decide(found: list[dict], talkers: list[str], seen: list[str], names: dict, 
             if k not in known or f["w"] * f["h"] > known[k]["w"] * known[k]["h"]:
                 known[k] = f
     if not found:
-        return [], W / 2, "undecided: no face found, the middle", False
+        return [], mid, "undecided: no face found, the middle", False
     for group, label in ((talkers, "talking"), (seen, "on screen while someone else talks")):
         on = [k for k in group if k in known]
         if on:
@@ -271,7 +330,7 @@ def decide(found: list[dict], talkers: list[str], seen: list[str], names: dict, 
     x, fit = _centre(found, crop_w, W)
     if fit:
         return [], x, f"undecided: {len(found)} face(s) matched nobody, centred on all", False
-    return [], W / 2, f"undecided: {len(found)} faces matched nobody and do not fit, the middle", False
+    return [], mid, f"undecided: {len(found)} faces matched nobody and do not fit, the middle", False
 
 
 def path(samples: list[tuple[float, float | None]], x0: float, crop_w: int, W: int, fps: float = TRACK_FPS) -> list[list[float]]:
@@ -302,8 +361,10 @@ def path(samples: list[tuple[float, float | None]], x0: float, crop_w: int, W: i
 def crop_plan(vid: str, facts: dict, src: Path, pieces: list[dict], people: People, log=None, track: bool = TRACK) -> list[dict]:
     """One entry per shot of each played piece: {piece, start, end, x, why, decided, faces}."""
     log = log or (lambda *a: None)
-    W, H = probe(src)
-    crop_w = int(round(H * 9 / 16)) // 2 * 2
+    px, py, pw, ph = picture_box(vid, src)
+    crop_w = int(round(ph * 9 / 16)) // 2 * 2
+    lo, hi = px + crop_w / 2, px + pw - crop_w / 2          # slice centre limits: inside the picture, not the bars
+    W = pw
     cuts = shot_cuts(vid)
     ip = facts["identity_pass"]
     names = {s["key"]: s.get("name") or s["key"] for s in facts["episode_pass"]["speakers"]}
@@ -334,8 +395,8 @@ def crop_plan(vid: str, facts: dict, src: Path, pieces: list[dict], people: Peop
                     row.append({**{a_: f[a_] for a_ in ("x", "y", "w", "h", "score")}, "person": who, "sim": round(best, 3), "margin": round(margin, 3)})
                 frames.append((t, row))
             found = [f for _, fs in frames for f in fs]
-            follow, x, why, decided = decide(found, talkers, seen, names, crop_w, W)
-            x = min(max(x, crop_w / 2), W - crop_w / 2)
+            follow, x, why, decided = decide(found, talkers, seen, names, crop_w, W, mid=px + pw / 2)
+            x = min(max(x, lo), hi)
             if follow and track:
                 # the followed person's face centre per sampled frame (the group's centre when following several)
                 samples = []
@@ -343,7 +404,8 @@ def crop_plan(vid: str, facts: dict, src: Path, pieces: list[dict], people: Peop
                     mine = [f for f in fs if f["person"] in follow]
                     samples.append((t, (sum(f["x"] + f["w"] / 2 for f in mine) / len(mine)) if mine else None))
                 first = next((p for _, p in samples if p is not None), x)
-                keys = path(samples, first, crop_w, W)
+                keys = [[t_, x_ + px] for t_, x_ in path([(t_, None if c_ is None else c_ - px) for t_, c_ in samples],
+                                                              first - px, crop_w, W)]
                 x = keys[0][1]
                 moved = max(v for _, v in keys) - min(v for _, v in keys)
                 if moved > 2:
@@ -367,11 +429,15 @@ def _encode(args: list[str], graph: str, n: int, dst: Path, crf: int = 21) -> No
                     "-movflags", "+faststart", str(dst)], check=True)
 
 
-def render_fit(src: Path, pieces: list[dict], dst: Path) -> Path:
+def render_fit(src: Path, pieces: list[dict], dst: Path, box: tuple[int, int, int, int] | None = None) -> Path:
+    """The whole picture in the middle, a blurred copy above and below. ``box`` = the picture area (bars trimmed)."""
+    W, H = probe(src)
+    px, py, pw, ph = box or (0, 0, W, H)
+    trim = f"crop={pw}:{ph}:{px}:{py}," if (pw, ph) != (W, H) else ""
     args, parts = [], []
     for i, (a, b) in enumerate(padded(pieces)):
         args += ["-ss", f"{a:.3f}", "-to", f"{b:.3f}", "-i", str(src)]
-        parts.append(f"[{i}:v:0]split[s{i}][t{i}];"
+        parts.append(f"[{i}:v:0]{trim}split[s{i}][t{i}];"
                      f"[s{i}]scale={OUT_W}:{OUT_H}:force_original_aspect_ratio=increase,crop={OUT_W}:{OUT_H},boxblur=24:2[b{i}];"
                      f"[t{i}]scale={OUT_W}:-2[f{i}];[b{i}][f{i}]overlay=(W-w)/2:(H-h)/2,setsar=1,fps=30[v{i}];"
                      f"[{i}:a:0]aresample=48000[a{i}]")
@@ -398,30 +464,35 @@ def _x_expr(shots: list[dict], a: float, crop_w: int, scale: float = 1.0) -> str
     return expr
 
 
-def render_crop(src: Path, pieces: list[dict], plan: list[dict], dst: Path) -> Path:
-    """Each piece in one go (so the sound never breaks); the slice switches position at the shot changes."""
+def render_crop(src: Path, pieces: list[dict], plan: list[dict], dst: Path,
+                box: tuple[int, int, int, int] | None = None) -> Path:
+    """Each piece in one go (so the sound never breaks); the slice switches position at the shot changes.
+    ``box`` = the picture area: the slice is cut from it, so baked-in black bars never reach the 9:16 frame."""
     W, H = probe(src)
+    px, py, pw, H = box or (0, 0, W, H)
     crop_w = int(round(H * 9 / 16)) // 2 * 2
     args, parts = [], []
     for i, (a, b) in enumerate(padded(pieces)):
         args += ["-ss", f"{a:.3f}", "-to", f"{b:.3f}", "-i", str(src)]
         shots = [s for s in plan if s["piece"] == i] or [{"start": a, "end": b, "x": W / 2, "keys": [[a, W / 2]]}]
-        parts.append(f"[{i}:v:0]crop={crop_w}:{H}:x='{_x_expr(shots, a, crop_w)}':y=0,scale={OUT_W}:{OUT_H},setsar=1,fps=30[v{i}];"
+        parts.append(f"[{i}:v:0]crop={crop_w}:{H}:x='{_x_expr(shots, a, crop_w)}':y={py},scale={OUT_W}:{OUT_H},setsar=1,fps=30[v{i}];"
                      f"[{i}:a:0]aresample=48000[a{i}]")
     _encode(args, ";".join(parts), len(parts), dst)
     return dst
 
 
-def render_debug(src: Path, pieces: list[dict], plan: list[dict], dst: Path) -> Path:
+def render_debug(src: Path, pieces: list[dict], plan: list[dict], dst: Path,
+                 box: tuple[int, int, int, int] | None = None) -> Path:
     """The 16:9 clip with the chosen slice drawn (green when decided, red when undecided), to check the choices."""
-    W, H = probe(src)
+    W, H0 = probe(src)
+    px, py, pw, H = box or (0, 0, W, H0)
     crop_w = int(round(H * 9 / 16)) // 2 * 2
     sc = 960 / W
     args, parts = [], []
     for i, (a, b) in enumerate(padded(pieces)):
         args += ["-ss", f"{a:.3f}", "-to", f"{b:.3f}", "-i", str(src)]
         shots = [s for s in plan if s["piece"] == i] or [{"start": a, "end": b, "x": W / 2, "keys": [[a, W / 2]]}]
-        boxes = "".join(f",drawbox=x='{_x_expr([s_], a, crop_w, sc)}':y=0:w={crop_w * sc:.0f}:h={H * sc:.0f}"
+        boxes = "".join(f",drawbox=x='{_x_expr([s_], a, crop_w, sc)}':y={py * sc:.0f}:w={crop_w * sc:.0f}:h={H * sc:.0f}"
                         f":color={'lime' if s_.get('decided', True) else 'red'}@0.9:t=6:enable='between(t\\,{s_['start'] - a:.3f}\\,{s_['end'] - a:.3f})'"
                         for s_ in shots)
         parts.append(f"[{i}:v:0]scale=960:-2,setsar=1{boxes},fps=30[v{i}];[{i}:a:0]aresample=48000[a{i}]")
@@ -429,15 +500,18 @@ def render_debug(src: Path, pieces: list[dict], plan: list[dict], dst: Path) -> 
     return dst
 
 
-def render_both(vid: str, facts: dict, src: Path, clip: dict, out_dir: Path, people: People, log=None, track: bool = TRACK) -> dict:
-    """``<out_dir>/<clip id>_fit.mp4``, ``_crop.mp4``, ``_crop_debug.mp4`` and ``_crop_plan.json``."""
+def render_both(vid: str, facts: dict, src: Path, clip: dict, out_dir: Path, people: People, log=None, track: bool = TRACK,
+                debug: bool = True) -> dict:
+    """``<out_dir>/<clip id>_fit.mp4``, ``_crop.mp4``, ``_crop_plan.json`` and (``debug``, our check page only)
+    ``_crop_debug.mp4``."""
     out_dir = Path(out_dir)
-    fit = render_fit(src, clip["pieces"], out_dir / f"{clip['id']}_fit.mp4")
+    box = picture_box(vid, src)
+    fit = render_fit(src, clip["pieces"], out_dir / f"{clip['id']}_fit.mp4", box)
     plan = crop_plan(vid, facts, src, clip["pieces"], people, log, track=track)
-    crop = render_crop(src, clip["pieces"], plan, out_dir / f"{clip['id']}_crop.mp4")
-    dbg = render_debug(src, clip["pieces"], plan, out_dir / f"{clip['id']}_crop_debug.mp4")
+    crop = render_crop(src, clip["pieces"], plan, out_dir / f"{clip['id']}_crop.mp4", box)
+    dbg = render_debug(src, clip["pieces"], plan, out_dir / f"{clip['id']}_crop_debug.mp4", box) if debug else None
     (out_dir / f"{clip['id']}_crop_plan.json").write_text(json.dumps(plan, indent=1, ensure_ascii=False), encoding="utf-8")
-    return {"fit": str(fit), "crop": str(crop), "debug": str(dbg), "plan": plan}
+    return {"fit": str(fit), "crop": str(crop), "debug": str(dbg) if dbg else None, "plan": plan}
 
 
 def source_for(vid: str) -> Path:

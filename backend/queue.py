@@ -169,3 +169,59 @@ def save_clips(conn, episode_id, rows: list[dict], episode_update: dict) -> int:
         if sets:
             conn.execute(f"update public.episodes set {sets} where id = %s", (*episode_update.values(), episode_id))
     return len(rows)
+
+
+PLAIN = "plain"     # settings_hash of a render without captions
+
+
+def save_plain_renders(conn, episode_id, rows: list[dict]) -> int:
+    """Ready fit/crop videos (no captions) of an episode's clips -> public.renders (one per clip and style)."""
+    with conn.transaction():
+        ids = {r["number"]: r["id"] for r in conn.execute(
+            "select id, number from public.clips where episode_id = %s", (episode_id,)).fetchall()}
+        n = 0
+        for r in rows:
+            if r["number"] not in ids:
+                continue
+            conn.execute(
+                "insert into public.renders (clip_id, style, template_id, settings, settings_hash, status, file, size_mb) "
+                "values (%s, %s, null, '{}', %s, 'ready', %s, %s) on conflict (clip_id, style, settings_hash) do update "
+                "set status = 'ready', file = excluded.file, size_mb = excluded.size_mb",
+                (ids[r["number"]], r["style"], PLAIN, r["file"], r["size_mb"]))
+            n += 1
+    return n
+
+
+# ----------------------------------------------------------------------------------------------- caption renders
+RENDER_STALE_S = 900
+
+
+def request_render(conn, clip_id, style: str, template_id, settings: dict, settings_hash: str,
+                   captions: dict | None = None) -> dict:
+    """The render for (clip, style, settings[, edited words]): the existing one when it was made already (or is being
+    made), else a new 'waiting' request. A failed one is asked again."""
+    with conn.transaction():
+        r = conn.execute(
+            "insert into public.renders (clip_id, style, template_id, settings, settings_hash, status, captions) "
+            "values (%s, %s, %s, %s, %s, 'waiting', %s) on conflict (clip_id, style, settings_hash) do update "
+            "set status = case when public.renders.status = 'failed' then 'waiting' else public.renders.status end, "
+            "error = case when public.renders.status = 'failed' then null else public.renders.error end "
+            "returning *", (clip_id, style, template_id, json.dumps(settings), settings_hash,
+                             json.dumps(captions, ensure_ascii=False) if captions else None)).fetchone()
+    return r
+
+
+def claim_render(conn) -> dict | None:
+    with conn.transaction():
+        conn.execute("update public.renders set status = 'waiting' where status = 'making' "
+                     "and updated_at < now() - make_interval(secs => %s)", (RENDER_STALE_S,))
+        return conn.execute(
+            """update public.renders set status = 'making'
+                where id = (select id from public.renders where status = 'waiting'
+                             order by created_at limit 1 for update skip locked)
+            returning *""").fetchone()
+
+
+def finish_render(conn, render_id, file: str | None, size_mb: float | None, error: str | None = None) -> None:
+    conn.execute("update public.renders set status = %s, file = %s, size_mb = %s, error = %s where id = %s",
+                 ("failed" if error else "ready", file, size_mb, (error or None) and error[-4000:], render_id))

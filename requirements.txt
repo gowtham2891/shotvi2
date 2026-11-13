@@ -10,3 +10,6 @@ pyyaml==6.0.3         # selection_v2 config, reference YAML, golden_set.yaml
 pandas==3.1.0         # selection_v2/debug_app.py tables
 opencv-python-headless==5.0.0   # selection_v2/vertical.py: face detection (YuNet) + recognition (SFace) for the 9:16 crop; models/*.onnx downloaded by vertical.ensure_models()
 psycopg[binary]==3.2.13
+fastapi==0.162.5                # backend/api.py (Klipvi API)
+uvicorn==0.54.0                 # serves the API:  uvicorn backend.api:app
+pyjwt[crypto]==2.15.1           # backend/auth.py: Supabase sign-in tokens (ES256, public keys)

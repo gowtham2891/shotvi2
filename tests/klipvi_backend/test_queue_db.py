@@ -122,7 +122,7 @@ def test_runaway_cost_stops_and_refunds(conn):
     due(conn, out["job"]["id"])
     job = Q.claim(conn, "w")
 
-    def fake_run(ep, on_step, add_cost, save, log):
+    def fake_run(ep, on_step, add_cost, save, log, **kw):
         add_cost(100.0)
         add_cost(30.0)                     # 130 > 120: stops here
         raise AssertionError("must not get here")

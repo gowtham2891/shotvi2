@@ -74,7 +74,8 @@ def handle(conn, job: dict, log=print, run=P.run) -> str:
     try:
         with Heartbeat(job["id"]):
             res = run(ep, on_step=on_step, add_cost=add_cost,
-                      save=lambda rows, upd: Q.save_clips(conn, ep["id"], rows, upd), log=log)
+                      save=lambda rows, upd: Q.save_clips(conn, ep["id"], rows, upd), log=log,
+                      save_renders=lambda rows: Q.save_plain_renders(conn, ep["id"], rows))
         Q.succeed(conn, job)
         log(f"job {job['id']} done: ran {', '.join(res['ran']) or 'nothing (all steps existed)'}")
         return "done"
@@ -85,6 +86,22 @@ def handle(conn, job: dict, log=print, run=P.run) -> str:
         tb = traceback.format_exc()
         log(f"job {job['id']} error: {type(e).__name__}: {e}")
         return Q.fail(conn, job, tb[-8000:])
+
+
+def handle_render(conn, render: dict, log=print, make=None) -> str:
+    """Make one caption render. Returns 'ready' or 'failed'."""
+    make = make or P.caption_video
+    row = conn.execute("select c.number, e.* from public.clips c join public.episodes e on e.id = c.episode_id "
+                       "where c.id = %s", (render["clip_id"],)).fetchone()
+    try:
+        key, mb = make(render, row["number"], row)
+        Q.finish_render(conn, render["id"], key, mb)
+        log(f"render {render['id']}: {row['number']} {render['style']} ready ({mb} MB)")
+        return "ready"
+    except Exception as e:
+        Q.finish_render(conn, render["id"], None, None, error=f"{type(e).__name__}: {e}\n{traceback.format_exc()[-3000:]}")
+        log(f"render {render['id']} failed: {type(e).__name__}: {e}")
+        return "failed"
 
 
 def main(argv=None) -> int:
@@ -106,6 +123,12 @@ def main(argv=None) -> int:
             n = Q.requeue_stale(conn)
             if n:
                 print(f"requeued {n} stale job(s)")
+            render = Q.claim_render(conn)       # caption renders first: someone is usually waiting on the page
+            if render:
+                handle_render(conn, render)
+                if a.once:
+                    return 0
+                continue
             job = Q.claim(conn, name)
             if job:
                 handle(conn, job)

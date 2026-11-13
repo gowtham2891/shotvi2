@@ -1,0 +1,11 @@
+/* The app's interface type: Anek Telugu (variable: weight 100-800, width 75-125), self-hosted under its own family name
+ * "Klipvi UI" so it never mixes with the caption font "Anek Telugu" (fonts.css, the renderer's static Bold), which would
+ * make the browser pick letters from both inside one word. OFL licence: OFL-AnekTelugu.txt. */
+@font-face {
+    font-family: "Klipvi UI";
+    font-style: normal;
+    font-weight: 100 800;
+    font-stretch: 75% 125%;
+    font-display: swap;
+    src: url("/ui-fonts/AnekTelugu-Variable.ttf") format("truetype");
+}
