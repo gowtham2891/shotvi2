@@ -66,12 +66,15 @@ def retime(flow: dict, pieces: list[dict], start: float, end: float, episode_s: 
 
 MIN_PIECE_S = 0.2       # a part of the clip (between two cuts) must play at least this long
 MERGE_GAP_S = 0.05      # a cut smaller than this is no cut: the two parts are joined
+MAX_PIECES = 60         # creator Shorts use 8-26 pieces; more only makes every re-render slower and costlier
 
 
 def repiece(flow: dict, pieces: list[dict], spans: list, episode_s: float) -> list[dict]:
     """New pieces from the stretches that should play, [[start, end], ...] in episode seconds (the creator's edit:
     edges moved, cuts made bigger or smaller, brought back or added). ``ValueError`` if not allowed. A piece that is
     unchanged keeps its line list; changed ones are recomputed so their words (and captions) follow."""
+    if len(spans or []) > MAX_PIECES:
+        raise ValueError(f"a clip can have at most {MAX_PIECES} parts")
     try:
         spans = sorted((round(float(a), 2), round(float(b), 2)) for a, b in spans)
     except (TypeError, ValueError):

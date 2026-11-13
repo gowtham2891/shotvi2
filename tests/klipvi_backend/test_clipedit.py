@@ -73,7 +73,8 @@ def test_repiece_adds_a_cut():
 
 
 @pytest.mark.parametrize("spans,why", [([], "at least one"), ([[100, 100.1]], "at least 0.2"), ([[-1, 10]], "inside"),
-                                       ([[100, 101]], "at least 3"), ([[0, 100], [110, 200]], "at most"), ([["x", 1]], "start and an end")])
+                                       ([[100, 101]], "at least 3"), ([[0, 100], [110, 200]], "at most"), ([["x", 1]], "start and an end"),
+                                       ([[100 + i, 100.5 + i] for i in range(61)], "at most 60 parts")])
 def test_repiece_refuses(spans, why):
     with pytest.raises(ValueError, match=why):
         E.repiece(FLOW, ONE, spans, 400)

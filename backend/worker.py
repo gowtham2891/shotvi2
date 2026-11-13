@@ -108,6 +108,19 @@ def handle_render(conn, render: dict, log=print, make=None) -> str:
         return "failed"
 
 
+def _guarded(fn, conn, item) -> None:
+    """Run one job or render; a mistake in recording its result must not stop the worker (a stuck job is picked up
+    again by requeue_stale). A lost database connection still goes up, so the loop reconnects."""
+    import psycopg
+    try:
+        fn(conn, item)
+    except (psycopg.OperationalError, psycopg.InterfaceError):
+        raise
+    except Exception as e:
+        print(f"{fn.__name__} {item.get('id')}: could not finish ({type(e).__name__}: {e}); moving on")
+        traceback.print_exc()
+
+
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(prog="python -m backend.worker")
     ap.add_argument("--once", action="store_true", help="handle at most one job, then exit")
@@ -136,13 +149,13 @@ def main(argv=None) -> int:
                         print(f"requeued {n} stale job(s)")
                     render = Q.claim_render(conn)       # caption renders first: someone is usually waiting on the page
                     if render:
-                        handle_render(conn, render)
+                        _guarded(handle_render, conn, render)
                         if a.once:
                             return 0
                         continue
                     job = Q.claim(conn, name)
                     if job:
-                        handle(conn, job)
+                        _guarded(handle, conn, job)
                     if a.once:
                         return 0
                     if not job:

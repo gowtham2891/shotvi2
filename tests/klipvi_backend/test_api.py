@@ -79,6 +79,8 @@ def users(keypair):
                       (u, f"klipvi.test{i}.{u.hex[:6]}@example.com"))
         wss = [c.execute("select workspace_id from public.members where user_id = %s", (u,)).fetchone()["workspace_id"]
                for u in ids]
+        for w in wss:   # a worker running at the same time skips these (backend.queue.TEST_WS_PATTERN)
+            c.execute("update public.workspaces set name = 'pytest: ' || name where id = %s", (w,))
     try:
         yield [(str(u), str(w), token(keypair, sub=str(u))) for u, w in zip(ids, wss)]
     finally:

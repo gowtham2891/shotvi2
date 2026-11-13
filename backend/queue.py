@@ -76,6 +76,11 @@ def _settle(conn, episode_id, spend: bool) -> dict:
     return ep
 
 
+# Work of the API tests' workspaces (named "pytest: ...") is never claimed: the tests run against the live database
+# and a worker running at the same time must not make videos (or paid AI calls) for them.
+TEST_WS_PATTERN = "pytest:%"
+
+
 def claim(conn, worker: str) -> dict | None:
     """The oldest waiting job that is due, now ``running`` for this worker (or None)."""
     with conn.transaction():
@@ -83,12 +88,14 @@ def claim(conn, worker: str) -> dict | None:
             """update public.jobs
                   set status = 'running', worker = %s, attempts = attempts + 1, started_at = now(),
                       heartbeat_at = now(), error = null
-                where id = (select id from public.jobs
-                             where status = 'waiting' and run_after <= now()
-                             order by run_after, id
+                where id = (select j.id from public.jobs j
+                             join public.episodes e on e.id = j.episode_id
+                             join public.workspaces w on w.id = e.workspace_id
+                             where j.status = 'waiting' and j.run_after <= now() and w.name not like %s
+                             order by j.run_after, j.id
                              limit 1
-                             for update skip locked)
-            returning *""", (worker,)).fetchone()
+                             for update of j skip locked)
+            returning *""", (worker, TEST_WS_PATTERN)).fetchone()
         if job:
             conn.execute("update public.episodes set status = 'running', message = null where id = %s",
                          (job["episode_id"],))
@@ -131,6 +138,8 @@ def fail(conn, job: dict, error: str, final: bool = False) -> str:
     """Record the error; retry later unless ``final`` or out of attempts. Returns 'retry' or 'failed'."""
     with conn.transaction():
         j = conn.execute("select attempts, max_attempts from public.jobs where id = %s", (job["id"],)).fetchone()
+        if not j:                       # the episode (and its job) was deleted while it ran: nothing to record
+            return "gone"
         if not final and j["attempts"] < j["max_attempts"]:
             wait = BACKOFF_S[min(j["attempts"], len(BACKOFF_S)) - 1]
             conn.execute("update public.jobs set status = 'waiting', error = %s, worker = null, "
@@ -217,9 +226,13 @@ def claim_render(conn) -> dict | None:
                      "and updated_at < now() - make_interval(secs => %s)", (RENDER_STALE_S,))
         return conn.execute(
             """update public.renders set status = 'making'
-                where id = (select id from public.renders where status = 'waiting'
-                             order by created_at limit 1 for update skip locked)
-            returning *""").fetchone()
+                where id = (select r.id from public.renders r
+                             join public.clips c on c.id = r.clip_id
+                             join public.episodes e on e.id = c.episode_id
+                             join public.workspaces w on w.id = e.workspace_id
+                             where r.status = 'waiting' and w.name not like %s
+                             order by r.created_at limit 1 for update of r skip locked)
+            returning *""", (TEST_WS_PATTERN,)).fetchone()
 
 
 def finish_render(conn, render_id, file: str | None, size_mb: float | None, error: str | None = None) -> None:

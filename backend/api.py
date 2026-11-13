@@ -18,7 +18,7 @@ from urllib.parse import parse_qs, urlencode, urlparse
 from fastapi import Depends, FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from . import queue as Q
 from . import storage
@@ -291,7 +291,7 @@ def source_file(episode_id: str, exp: int, sig: str, conn=Depends(db)):
 class Timing(BaseModel):
     start: float | None = None          # episode seconds: where the clip now starts (cuts inside stay)
     end: float | None = None            # episode seconds: where it now ends
-    pieces: list[list[float]] | None = None   # or every part that plays, [[start, end], ...]: cuts changed too
+    pieces: list[list[float]] | None = Field(None, max_length=60)   # or every part that plays, [[start, end], ...]: cuts changed too
 
 
 @app.put("/clips/{clip_id}/timing")

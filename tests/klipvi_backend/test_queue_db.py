@@ -75,6 +75,20 @@ def test_fail_retries_then_fails(conn):
     assert ep == {"status": "failed", "message": Q.MSG_FAILED}
 
 
+def test_test_workspaces_are_never_claimed_and_a_deleted_job_is_gone(conn):
+    w = ws(conn)
+    conn.execute("update public.workspaces set name = 'pytest: x' where id = %s", (w,))
+    out = Q.submit(conn, w, "https://youtu.be/abcdefghijk", "abcdefghijk", 600)
+    conn.execute("update public.jobs set run_after = now() - interval '10 days' where id = %s", (out["job"]["id"],))
+    got = Q.claim(conn, "w")
+    assert got is None or got["id"] != out["job"]["id"]
+    conn.execute("update public.workspaces set name = 'real' where id = %s", (w,))
+    job = Q.claim(conn, "w")
+    assert job["id"] == out["job"]["id"]
+    conn.execute("delete from public.episodes where id = %s", (job["episode_id"],))   # deleted while it ran
+    assert Q.fail(conn, job, "boom") == "gone"
+
+
 def test_stale_job_is_requeued(conn):
     w = ws(conn)
     out = Q.submit(conn, w, "https://youtu.be/abcdefghijk", "abcdefghijk", 600)
