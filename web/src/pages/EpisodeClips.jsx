@@ -4,6 +4,7 @@ import { Download, Loader2, PenLine } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import Shell from "@/components/klipvi/Shell";
 import CaptionOverlay from "@/components/klipvi/CaptionOverlay";
+import DownloadAll from "@/components/klipvi/DownloadAll";
 import { downloadClip, getClipEditor, renderLinks } from "@/api/klipvi";
 import { parseStep, splitTitle, templateLabel, useCaptionTemplates, useEpisode, useWorkspace } from "@/hooks/useKlipvi";
 
@@ -231,13 +232,18 @@ function Working({ ep }) {
 
 export default function EpisodeClips() {
   const { episodeId } = useParams();
-  const { data: ep, isLoading, error } = useEpisode(episodeId);
+  const { data: ep, isLoading, error, refetch } = useEpisode(episodeId);
   const { workspace } = useWorkspace();
   const { data: templates } = useCaptionTemplates(ep?.workspace_id || workspace?.id);
   const t = ep ? splitTitle(ep.title) : null;
 
   return (
-    <Shell title={t ? t.main || "Episode" : " "} subtitle={t?.rest || ""} back={{ to: "/dashboard", label: "Episodes" }}>
+    <Shell
+      title={t ? t.main || "Episode" : " "}
+      subtitle={t?.rest || ""}
+      back={{ to: "/dashboard", label: "Episodes" }}
+      actions={ep && ep.status === "done" && ep.clips.length > 0 ? <DownloadAll episode={ep} templates={templates} refresh={refetch} /> : null}
+    >
       {isLoading && <p className="mt-6 text-k-muted">Loading the clips…</p>}
       {error && <p role="alert" className="mt-6 text-k-bad">{error.message}</p>}
       {ep && ep.status !== "done" && <Working ep={ep} />}

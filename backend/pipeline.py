@@ -233,7 +233,33 @@ def run(episode: dict, on_step: Callable[[int, str, str], None],
     return {"minutes": length_s(vid) / 60.0, "ran": ran}
 
 
-def caption_video(render: dict, clip_number: str, episode: dict) -> tuple[str, float]:
+def plain_video(render: dict, clip_number: str, pieces: list[dict], episode: dict) -> tuple[str, float]:
+    """Make one clip's plain fit or crop video again from its saved pieces (after its start or end moved).
+    Returns (storage key, size MB); the poster is remade too."""
+    from selection_v2 import flow_v2 as FV
+    from selection_v2 import vertical as VT
+    from . import storage
+    vid, style = episode["video_id"], render["style"]
+    cfg = FV.cfg_for(vid)
+    flow = FV.load(vid, cfg) or {}
+    src = VT.source_for(vid)
+    box = VT.picture_box(vid, src)
+    tmp = ROOT / "runs" / "klipvi_tmp" / str(render["id"])
+    tmp.mkdir(parents=True, exist_ok=True)
+    out = tmp / f"{clip_number}_{style}.mp4"
+    if style == "fit":
+        VT.render_fit(src, pieces, out, box)
+    else:
+        people = VT.people_for(vid, flow, src, Path(FV.EpisodePaths(vid, cfg).run_dir))
+        plan = VT.crop_plan(vid, flow, src, pieces, people)
+        VT.render_crop(src, pieces, plan, out, box)
+    key = f"episodes/{episode['id']}/{clip_number}_{style}.mp4"
+    storage.put(out, key)
+    make_poster(storage.path(key), storage.path(poster_key(key)))
+    return key, storage.size_mb(key)
+
+
+def caption_video(render: dict, clip_number: str, episode: dict, pieces: list[dict] | None = None) -> tuple[str, float]:
     """Burn captions (``render["settings"]``) onto the clip's plain fit/crop video. Returns (storage key, size MB).
     The settings are checked again here (captions.clean_settings), whatever the API let through."""
     import shutil
@@ -245,6 +271,9 @@ def caption_video(render: dict, clip_number: str, episode: dict) -> tuple[str, f
     cfg = FV.cfg_for(vid)
     flow = FV.load(vid, cfg) or {}
     clip = next((c for c in (flow.get("clips") or {}).get("clips") or [] if c["id"] == clip_number), None)
+    if pieces:      # the clip as saved (its start / end may have been moved in the editor)
+        clip = {**(clip or {}), "id": clip_number, "pieces": pieces,
+                "duration": sum(float(p["end"]) - float(p["start"]) for p in pieces)}
     if clip is None:
         raise RuntimeError(f"clip {clip_number} is not in the episode's results")
     base = f"episodes/{episode['id']}/{clip_number}_{style}.mp4"

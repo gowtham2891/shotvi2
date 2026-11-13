@@ -1,12 +1,15 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Download, Keyboard, Loader2, Pause, Play, Redo2, Scissors, ShieldCheck, Star, Undo, Undo2 } from "lucide-react";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import Shell from "@/components/klipvi/Shell";
 import CaptionOverlay, { CaptionBlock, useVideoTime } from "@/components/klipvi/CaptionOverlay";
 import TeluguTextarea from "@/components/klipvi/TeluguTextarea";
+import TimingPanel from "@/components/klipvi/TimingPanel";
+import Timeline, { fmtT } from "@/components/klipvi/Timeline";
+import { API_BASE_URL } from "@/api/client";
 import { OUT_W } from "@/lib/captionEngine";
-import { downloadClip, getClipEditor, renderLinks, saveDraft } from "@/api/klipvi";
+import { downloadClip, getClipEditor, renderLinks, saveDraft, setTiming } from "@/api/klipvi";
 import { templateLabel, useCaptionTemplates } from "@/hooks/useKlipvi";
 import { DEFAULT_POS_Y, FONTS, cueAt, cues as buildCues, withDefaults } from "@/lib/captionEngine";
 import { romanize } from "@/lib/romanize";
@@ -386,7 +389,14 @@ function useUndoable() {
     last.current = 0;
     setRaw(ref.current);
   }, []);
-  return [state, set, { undo, redo, canUndo: past.current.length > 0, canRedo: future.current.length > 0 }];
+  const reset = useCallback(() => {
+    past.current = [];
+    future.current = [];
+    last.current = 0;
+    ref.current = null;
+    setRaw(null);
+  }, []);
+  return [state, set, { undo, redo, reset, canUndo: past.current.length > 0, canRedo: future.current.length > 0 }];
 }
 
 const MAC = typeof navigator !== "undefined" && /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent);
@@ -431,10 +441,44 @@ function ShortcutsDialog({ onClose }) {
 
 export default function ClipEditor() {
   const { clipId } = useParams();
-  const { data, isLoading, error } = useQuery({ queryKey: ["clip-editor", clipId], queryFn: () => getClipEditor(clipId), staleTime: 0 });
+  const qc = useQueryClient();
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["clip-editor", clipId],
+    queryFn: () => getClipEditor(clipId),
+    staleTime: 0,
+    refetchInterval: (q) => (q.state.data?.remaking?.length ? 3000 : false), // the new version is being made
+  });
   const { data: templates } = useCaptionTemplates(data?.clip?.workspace_id);
   const [state, setState, history] = useUndoable(); // { style, template_id, settings, words, breaks }
   const [showKeys, setShowKeys] = useState(false);
+  const [leftTab, setLeftTab] = useState("captions"); // captions | timing
+  const [tParts, setTParts] = useState(null); // the parts of the episode that play, being edited ({start, end} s)
+  const [scrub, setScrub] = useState(null); // an episode moment shown in the player while trimming (null = the clip)
+  const sourceRef = useRef(null);
+  const savedPieces = data?.timing?.pieces;
+  const resetParts = useCallback(() => {
+    if (savedPieces?.length) setTParts(savedPieces.map((p) => ({ start: p.start, end: p.end })));
+  }, [savedPieces]);
+  useEffect(resetParts, [resetParts]);
+  useEffect(() => {
+    if (scrub != null && sourceRef.current) sourceRef.current.currentTime = scrub;
+  }, [scrub]);
+  const [timingBusy, setTimingBusy] = useState(false);
+  const applyTiming = async (parts) => {
+    setTimingBusy(true);
+    setProblem(null);
+    try {
+      await setTiming(clipId, parts);
+      first.current = true; // reloading the clip is not an edit: don't save a draft for it
+      history.reset(); // the clip changed: start again from the carried-over draft
+      await qc.invalidateQueries({ queryKey: ["clip-editor", clipId] });
+      qc.invalidateQueries({ queryKey: ["episode"] });
+    } catch (e) {
+      setProblem(e.message);
+    } finally {
+      setTimingBusy(false);
+    }
+  };
   const [links, setLinks] = useState(null);
   const [saving, setSaving] = useState("");
   const [busy, setBusy] = useState(null);
@@ -465,11 +509,14 @@ export default function ClipEditor() {
 
   // the plain video for the chosen picture style
   const videoId = state && data?.videos?.[state.style];
+  const remaking = Boolean(data?.remaking?.length);
   useEffect(() => {
     let live = true;
     setLinks(null);
     if (!videoId) return undefined;
-    renderLinks(videoId).then((l) => live && setLinks(l)).catch((e) => live && setProblem(e.message));
+    renderLinks(videoId)
+      .then((l) => live && setLinks(l))
+      .catch((e) => live && e.status !== 409 && setProblem(e.message)); // 409: being made again, the poll brings it back
     return () => {
       live = false;
     };
@@ -614,6 +661,30 @@ export default function ClipEditor() {
       {state && (
         <div className="mt-4 grid gap-5 xl:gap-6 lg:grid-cols-[minmax(240px,320px)_minmax(300px,1fr)_minmax(260px,310px)] lg:h-[calc(100dvh-5.75rem)]">
           <section aria-label="Captions, line by line" className="order-3 lg:order-1 lg:h-full lg:overflow-y-auto overscroll-contain rounded-2xl border border-k-line bg-k-surface p-3">
+            {/* the tabs stay in view while the panel scrolls */}
+            <div className="lg:sticky lg:-top-3 z-20 -mx-3 -mt-3 px-3 pt-3 pb-3 bg-k-surface rounded-t-2xl">
+            <div className="grid grid-cols-2 rounded-lg bg-k-bg p-1" role="tablist" aria-label="Edit">
+              {[
+                ["captions", "Captions"],
+                ["timing", "Timing"],
+              ].map(([k, label]) => (
+                <button
+                  key={k}
+                  type="button"
+                  role="tab"
+                  aria-selected={leftTab === k}
+                  onClick={() => setLeftTab(k)}
+                  className={`rounded-md py-1.5 text-sm font-semibold ${leftTab === k ? "bg-k-raised text-k-text shadow-sm" : "text-k-muted hover:text-k-text"}`}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+            </div>
+            {leftTab === "timing" && data?.timing && tParts ? (
+              <TimingPanel timing={data.timing} busy={timingBusy || remaking} onApply={applyTiming} parts={tParts} setParts={setTParts} />
+            ) : (
+              <>
             <div className="flex items-center justify-between gap-3 px-2 pb-2">
               <h2 className="font-semibold">Captions</h2>
               <label className="inline-flex items-center gap-2 text-sm text-k-muted cursor-pointer" title="Type a word in English letters and pick its Telugu spelling">
@@ -634,10 +705,12 @@ export default function ClipEditor() {
               setEdits={setEdits}
               typeTelugu={typeTelugu}
             />
+              </>
+            )}
           </section>
 
           <section aria-label="Preview" className="order-1 lg:order-2 lg:h-full min-h-0 flex flex-col items-center">
-            <div className="relative aspect-[9/16] w-full max-w-[420px] lg:w-auto lg:max-w-full lg:h-[calc(100%-3.75rem)] rounded-xl overflow-hidden bg-black ring-1 ring-k-line">
+            <div className="relative aspect-[9/16] w-full max-w-[420px] lg:w-auto lg:max-w-full lg:h-[calc(100%-11rem)] rounded-xl overflow-hidden bg-black ring-1 ring-k-line">
               {links ? (
                 <video
                   ref={videoRef}
@@ -651,7 +724,24 @@ export default function ClipEditor() {
                   className="w-full h-full object-cover bg-black"
                 />
               ) : (
-                <div className="absolute inset-0 grid place-items-center text-k-faint">Loading video…</div>
+                <div className="absolute inset-0 grid place-items-center px-6 text-center text-k-muted">
+                  {remaking ? (
+                    <span className="inline-flex items-center gap-2">
+                      <Loader2 size={18} className="animate-spin" aria-hidden="true" />
+                      Making the new version of this clip… about a minute
+                    </span>
+                  ) : (
+                    "Loading video…"
+                  )}
+                </div>
+              )}
+              {scrub != null && data?.timing?.source_url && (
+                <div className="absolute inset-0 z-30 bg-black grid place-items-center" aria-live="polite">
+                  <video ref={sourceRef} src={`${API_BASE_URL}${data.timing.source_url}`} muted playsInline preload="auto" className="w-full" />
+                  <span className="absolute top-3 left-3 right-3 rounded-md bg-black/70 px-2.5 py-1 text-sm text-white">
+                    Preview: the episode at <span className="tabular-nums font-semibold">{fmtT(scrub)}</span>
+                  </span>
+                </div>
               )}
               {links && (
                 <CaptionOverlay
@@ -696,6 +786,21 @@ export default function ClipEditor() {
                 <ShieldCheck size={18} />
               </button>
             </div>
+            {data?.timing?.window && tParts && (
+              <div className="mt-2 w-full max-w-[680px]">
+                <Timeline
+                  timing={data.timing}
+                  stripUrl={`${API_BASE_URL}${data.timing.strip_url}`}
+                  parts={tParts}
+                  setParts={setTParts}
+                  clipTime={time}
+                  onScrub={setScrub}
+                  busy={timingBusy || remaking}
+                  onApply={applyTiming}
+                  onReset={resetParts}
+                />
+              </div>
+            )}
             {safe && (
               <div className="mt-1.5 flex flex-wrap items-center justify-center gap-2 text-sm text-k-muted">
                 <span>Show what covers the video on</span>

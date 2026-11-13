@@ -180,3 +180,84 @@ def test_caption_render_requests(users, tmp_path, monkeypatch):
     assert cl.post(f"/clips/{clip}/renders", json=body, headers=h2).status_code == 404
     assert cl.get(f"/renders/{r1.json()['id']}", headers=h1).json()["status"] == "waiting"
     assert cl.get(f"/renders/{r1.json()['id']}", headers=h2).status_code == 404
+
+
+def _real_clip(c, w1, rank=1, number="c02"):
+    import json as _json
+    from selection_v2 import flow_v2 as FV
+    f = FV.load("QWIvgoTQGKk", FV.cfg_for("QWIvgoTQGKk"))
+    fc = next(x for x in f["clips"]["clips"] if x["id"] == number)
+    ep = c.execute("insert into public.episodes (workspace_id, source_url, video_id, title, length_s) values "
+                   "(%s, 'https://youtu.be/QWIvgoTQGKk', 'QWIvgoTQGKk', 'Test Ep', 1311.9) returning id", (w1,)).fetchone()["id"]
+    clip = c.execute("insert into public.clips (episode_id, number, rank, title, start_s, end_s, length_s, pieces) values "
+                     "(%s, %s, %s, 'Chai', %s, %s, %s, %s) returning id",
+                     (ep, number, rank, fc["start_time"], fc["end_time"], fc["duration"], _json.dumps(fc["pieces"]))).fetchone()["id"]
+    return ep, clip, fc
+
+
+@db
+def test_clip_timing(users):
+    from fastapi.testclient import TestClient
+    from backend.db import connect
+    (u1, w1, t1), (u2, w2, t2) = users
+    with connect() as c:
+        ep, clip, fc = _real_clip(c, w1)
+        c.execute("insert into public.renders (clip_id, style, settings_hash, status, file) values (%s, 'crop', 'plain', 'ready', 'x')", (clip,))
+        c.execute("insert into public.renders (clip_id, style, settings_hash, status, file, settings) values "
+                  "(%s, 'crop', 'abc', 'ready', 'y', '{\"font\": \"NotoSansTelugu-Bold.ttf\"}')", (clip,))
+    cl = TestClient(A.app)
+    h1, h2 = {"Authorization": f"Bearer {t1}"}, {"Authorization": f"Bearer {t2}"}
+    ed = cl.get(f"/clips/{clip}/editor", headers=h1).json()
+    a, b = ed["timing"]["start"], ed["timing"]["end"]
+    assert ed["timing"]["lines"] and any(x["in"] for x in ed["timing"]["lines"]) and any(not x["in"] for x in ed["timing"]["lines"])
+    r = cl.put(f"/clips/{clip}/timing", json={"start": a - 2, "end": b + 1}, headers=h1)
+    assert r.status_code == 200, r.text
+    with connect() as c:
+        rows = c.execute("select settings_hash, status from public.renders where clip_id = %s", (clip,)).fetchall()
+        row = c.execute("select start_s, end_s, pieces from public.clips where id = %s", (clip,)).fetchone()
+    assert rows == [{"settings_hash": "plain", "status": "waiting"}]          # plain re-queued, captioned removed
+    assert float(row["start_s"]) == round(a - 2, 2) and row["pieces"][0]["start"] == round(a - 2, 2)
+    assert cl.get(f"/clips/{clip}/editor", headers=h1).json()["remaking"] == ["crop"]
+    assert cl.put(f"/clips/{clip}/timing", json={"start": a, "end": a + 400}, headers=h1).status_code == 422
+    assert cl.put(f"/clips/{clip}/timing", json={"start": a, "end": b}, headers=h2).status_code == 404
+    # a cut in the middle, then brought back
+    a2, b2 = round(a - 2, 2), round(b + 1, 2)
+    mid = round((a2 + b2) / 2, 2)
+    r = cl.put(f"/clips/{clip}/timing", json={"pieces": [[a2, mid - 3], [mid + 3, b2]]}, headers=h1)
+    assert r.status_code == 200, r.text
+    assert len(cl.get(f"/clips/{clip}/editor", headers=h1).json()["timing"]["pieces"]) == 2
+    r = cl.put(f"/clips/{clip}/timing", json={"pieces": [[a2, b2]]}, headers=h1)
+    assert r.status_code == 200 and abs(r.json()["length_s"] - (b2 - a2)) < 0.02
+    assert cl.put(f"/clips/{clip}/timing", json={}, headers=h1).status_code == 422
+
+
+@db
+def test_download_all_zip(users, tmp_path, monkeypatch):
+    import io
+    import zipfile
+    from fastapi.testclient import TestClient
+    from backend import storage
+    from backend.db import connect
+    monkeypatch.setenv("KLIPVI_STORAGE_DIR", str(tmp_path))
+    (u1, w1, t1), (u2, w2, t2) = users
+    ids = []
+    with connect() as c:
+        ep, clip1, _ = _real_clip(c, w1, rank=2, number="c02")
+        clip2 = c.execute("insert into public.clips (episode_id, number, rank, title, start_s, end_s, length_s, why) values "
+                          "(%s, 'c03', 1, 'First Night', 1, 31, 30, 'Funny') returning id", (ep,)).fetchone()["id"]
+        for k, cid in enumerate((clip1, clip2)):
+            key = f"episodes/{ep}/c{k}_crop.mp4"
+            storage.path(key).parent.mkdir(parents=True, exist_ok=True)
+            storage.path(key).write_bytes(b"v" * (100 + k))
+            ids.append(str(c.execute("insert into public.renders (clip_id, style, settings_hash, status, file) values "
+                                     "(%s, 'crop', 'plain', 'ready', %s) returning id", (cid, key)).fetchone()["id"]))
+    cl = TestClient(A.app)
+    h1, h2 = {"Authorization": f"Bearer {t1}"}, {"Authorization": f"Bearer {t2}"}
+    assert cl.post(f"/episodes/{ep}/zip-link", json={"render_ids": ids}, headers=h2).status_code == 404
+    link = cl.post(f"/episodes/{ep}/zip-link", json={"render_ids": ids}, headers=h1).json()["url"]
+    r = cl.get(link)
+    assert r.status_code == 200 and r.headers["content-type"] == "application/zip"
+    names = zipfile.ZipFile(io.BytesIO(r.content)).namelist()
+    assert names == ["01 - First Night (crop).mp4", "02 - Chai (crop).mp4", "Klipvi - clips.txt"]
+    assert A.safe_name("అమృత?! 😂") == "అమృత! 😂"          # Telugu vowel signs and emoji survive
+    assert cl.get(link.replace("sig=", "sig=0")).status_code == 403

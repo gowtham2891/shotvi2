@@ -23,7 +23,7 @@ from pydantic import BaseModel
 from . import queue as Q
 from . import storage
 from .auth import User, current_user
-from .db import connect
+from .db import ROOT as ROOT_DIR, connect
 
 app = FastAPI(title="Klipvi API", version="0.1")
 app.add_middleware(
@@ -34,6 +34,14 @@ app.add_middleware(
 )
 
 VIDEO_ID = re.compile(r"^[A-Za-z0-9_-]{11}$")
+
+
+def safe_name(text: str, limit: int = 90) -> str:
+    """A file name that works on Windows and Mac: only the characters they forbid are removed (Telugu letters with their
+    vowel signs, emoji and spaces stay; removing "non-word" characters would cut Telugu words apart)."""
+    t = re.sub(r'[<>:"/\\|?*\x00-\x1f]', "", text or "")
+    t = re.sub(r"\s+", " ", t).strip().rstrip(".")
+    return t[:limit].strip()
 
 
 def db():
@@ -198,19 +206,130 @@ def clip_editor(clip_id: str, user: User = Depends(current_user), conn=Depends(d
     from selection_v2 import captions as C
     from selection_v2 import flow_v2 as FV
     from selection_v2.inputs import load_inputs
+    from . import clipedit as E
     c = clip_for(conn, clip_id, user)
     cfg = FV.cfg_for(c["video_id"])
     flow = FV.load(c["video_id"], cfg) or {}
-    fc = next((x for x in (flow.get("clips") or {}).get("clips") or [] if x["id"] == c["number"]), None)
+    pieces = c["pieces"] or []
+    fc = {"id": c["number"], "pieces": pieces}
     words = [{"tok": w["tok"], "start": w["start"], "end": w["end"]}
-             for w in C.clip_words(flow, load_inputs(c["video_id"], cfg).words, fc)] if fc else []
-    plain = conn.execute("select id, style from public.renders where clip_id = %s and settings_hash = %s and status = 'ready'",
+             for w in C.clip_words(flow, load_inputs(c["video_id"], cfg).words, fc)] if pieces else []
+    plain = conn.execute("select id, style, status from public.renders where clip_id = %s and settings_hash = %s",
                          (clip_id, Q.PLAIN)).fetchall()
+    ep_len = conn.execute("select length_s from public.episodes where id = %s", (c["episode_id"],)).fetchone()["length_s"]
     return {"clip": {"id": str(c["id"]), "episode_id": str(c["episode_id"]), "workspace_id": str(c["workspace_id"]),
                      "number": c["number"], "rank": c["rank"], "post_first": c["post_first"], "title": c["title"],
                      "why": c["why"], "length_s": float(c["length_s"])},
-            "words": words, "draft": c["draft"], "videos": {r["style"]: str(r["id"]) for r in plain},
+            "words": words, "draft": c["draft"],
+            "videos": {r["style"]: str(r["id"]) for r in plain if r["status"] == "ready"},
+            "remaking": [r["style"] for r in plain if r["status"] in ("waiting", "making")],
+            "timing": timing_payload(c, flow, pieces, float(ep_len or 0)),
             "defaults": C.DEFAULTS, "default_pos_y": C.DEFAULT_POS_Y}
+
+
+def timing_payload(c: dict, flow: dict, pieces: list[dict], ep_len: float) -> dict:
+    """What the editor's timeline needs: the clip's edges and inner parts, the stretch of the episode shown around it,
+    its transcript lines and sound, and signed links to the frame strip and to the episode video (preview while
+    dragging an edge)."""
+    from shotvi.run_episode import Paths
+    from . import clipedit as E
+    if not pieces:
+        return {"start": 0.0, "end": 0.0, "pieces": [], "lines": []}
+    w0, w1 = E.window(pieces, ep_len)
+    exp = int(time.time()) + LINK_TTL_S
+    strip_q = {"w0": w0, "w1": w1, "exp": exp}
+    strip_q["sig"] = _sig_text(f"strip|{c['id']}|{w0}|{w1}|{exp}")
+    src_q = {"exp": exp, "sig": _sig_text(f"source|{c['episode_id']}|{exp}")}
+    return {"start": float(pieces[0]["start"]), "end": float(pieces[-1]["end"]),
+            "pieces": [{"start": float(p["start"]), "end": float(p["end"])} for p in pieces],
+            "cuts": max(0, len(pieces) - 1), "episode_s": ep_len, "max_s": E.MAX_CLIP_S,
+            "lines": E.context_lines(flow, pieces), "window": [w0, w1],
+            "peaks": E.peaks(Paths(c["video_id"], ROOT_DIR).wav, w0, w1),
+            "strip_url": f"/strips/{c['id']}?" + urlencode(strip_q),
+            "source_url": f"/sources/{c['episode_id']}?" + urlencode(src_q)}
+
+
+def _sig_text(text: str) -> str:
+    return hmac.new(_file_secret(), text.encode(), hashlib.sha256).hexdigest()
+
+
+@app.get("/strips/{clip_id}")
+def strip_file(clip_id: str, w0: float, w1: float, exp: int, sig: str, conn=Depends(db)):
+    """The timeline's frame strip for a clip's window (made once, then kept)."""
+    from shotvi.run_episode import Paths
+    from selection_v2 import vertical as VT
+    from . import clipedit as E
+    if exp < time.time() or not hmac.compare_digest(sig, _sig_text(f"strip|{clip_id}|{w0}|{w1}|{exp}")):
+        raise HTTPException(403, "This link has expired. Open the clip again.")
+    row = conn.execute("select e.video_id from public.clips c join public.episodes e on e.id = c.episode_id where c.id = %s",
+                       (clip_id,)).fetchone()
+    if not row:
+        raise HTTPException(404, "Clip not found.")
+    vid = row["video_id"]
+    key = f"strips/{vid}_{w0:.2f}_{w1:.2f}.jpg"
+    if not storage.exists(key):
+        src = Paths(vid, ROOT_DIR).mp4
+        E.filmstrip(src, w0, w1, storage.path(key), box=VT.picture_box(vid, src))
+    return FileResponse(storage.path(key), media_type="image/jpeg", headers={"Cache-Control": "private, max-age=3600"})
+
+
+@app.get("/sources/{episode_id}")
+def source_file(episode_id: str, exp: int, sig: str, conn=Depends(db)):
+    """The episode's own video (720p), so the editor can show what an edge drag adds before it is applied."""
+    from shotvi.run_episode import Paths
+    if exp < time.time() or not hmac.compare_digest(sig, _sig_text(f"source|{episode_id}|{exp}")):
+        raise HTTPException(403, "This link has expired. Open the clip again.")
+    row = conn.execute("select video_id from public.episodes where id = %s", (episode_id,)).fetchone()
+    if not row:
+        raise HTTPException(404, "Episode not found.")
+    src = Paths(row["video_id"], ROOT_DIR).mp4
+    if not src.exists():
+        raise HTTPException(404, "The episode's video is not available.")
+    return FileResponse(src, media_type="video/mp4")
+
+
+class Timing(BaseModel):
+    start: float | None = None          # episode seconds: where the clip now starts (cuts inside stay)
+    end: float | None = None            # episode seconds: where it now ends
+    pieces: list[list[float]] | None = None   # or every part that plays, [[start, end], ...]: cuts changed too
+
+
+@app.put("/clips/{clip_id}/timing")
+def set_timing(clip_id: str, body: Timing, user: User = Depends(current_user), conn=Depends(db)):
+    """Move the clip's start and end (cuts inside it stay), or set every part that plays (cuts made bigger or smaller,
+    brought back or added). Its fit/crop videos are made again (the worker), captioned versions made for the old
+    timing are removed, and caption edits are carried over to the new timing."""
+    import json as _json
+    from selection_v2 import captions as C
+    from selection_v2 import flow_v2 as FV
+    from selection_v2.inputs import load_inputs
+    from . import clipedit as E
+    c = clip_for(conn, clip_id, user)
+    cfg = FV.cfg_for(c["video_id"])
+    flow = FV.load(c["video_id"], cfg) or {}
+    old = c["pieces"] or []
+    ep_len = float(conn.execute("select length_s from public.episodes where id = %s", (c["episode_id"],)).fetchone()["length_s"] or 0)
+    try:
+        if body.pieces is not None:
+            new = E.repiece(flow, old, body.pieces, ep_len)
+        elif body.start is not None and body.end is not None:
+            new = E.retime(flow, old, body.start, body.end, ep_len)
+        else:
+            raise ValueError("send the new start and end, or the parts that play")
+    except ValueError as e:
+        raise HTTPException(422, str(e))
+    words = [{"tok": w["tok"], "start": w["start"], "end": w["end"]}
+             for w in C.clip_words(flow, load_inputs(c["video_id"], cfg).words, {"id": c["number"], "pieces": new})]
+    draft = E.rebase_draft(c["draft"], old, new, words)
+    length = sum(float(p["end"]) - float(p["start"]) for p in new)
+    with conn.transaction():
+        conn.execute("update public.clips set pieces = %s, start_s = %s, end_s = %s, length_s = %s, draft = %s where id = %s",
+                     (_json.dumps(new, ensure_ascii=False), new[0]["start"], new[-1]["end"], round(length, 2),
+                      _json.dumps(draft, ensure_ascii=False) if draft else None, clip_id))
+        conn.execute("delete from public.renders where clip_id = %s and settings_hash <> %s", (clip_id, Q.PLAIN))
+        conn.execute("update public.renders set status = 'waiting', error = null where clip_id = %s and settings_hash = %s",
+                     (clip_id, Q.PLAIN))
+    return {"length_s": round(length, 2), "start": new[0]["start"], "end": new[-1]["end"]}
 
 
 class Draft(BaseModel):
@@ -386,7 +505,65 @@ def render_file(render_id: str, exp: int, dl: int, sig: str, kind: str = "video"
             raise HTTPException(404, "No picture for this video.")
         return FileResponse(storage.path(poster_key(r["file"])), media_type="image/jpeg",
                             headers={"Cache-Control": "private, max-age=3600"})
-    name = re.sub(r"[^\w\s.-]", "", f"{r['ep_title'] or 'Episode'} - {r['rank']}. {r['title'] or 'clip'}", flags=re.UNICODE)
-    name = re.sub(r"\s+", " ", name).strip()[:120] + f" ({r['style']}).mp4"
+    name = safe_name(f"{r['ep_title'] or 'Episode'} - {r['rank']}. {r['title'] or 'clip'}", 120) + f" ({r['style']}).mp4"
     return FileResponse(storage.path(r["file"]), media_type="video/mp4", filename=name,
                         content_disposition_type="attachment" if dl else "inline")
+
+
+# ----------------------------------------------------------------------------------------------- download all (ZIP)
+class ZipRequest(BaseModel):
+    render_ids: list[str]
+
+
+def _zip_sig(episode_id: str, ids: str, exp: int) -> str:
+    return hmac.new(_file_secret(), f"zip|{episode_id}|{ids}|{exp}".encode(), hashlib.sha256).hexdigest()
+
+
+@app.post("/episodes/{episode_id}/zip-link")
+def zip_link(episode_id: str, body: ZipRequest, user: User = Depends(current_user), conn=Depends(db)):
+    """A one-hour link to a ZIP of these ready videos of this episode (one per clip, in posting order)."""
+    episode_for(conn, episode_id, user)
+    ids = [i for i in dict.fromkeys(body.render_ids)][:200]
+    if not ids:
+        raise HTTPException(422, "Choose at least one clip.")
+    rows = conn.execute("select r.id, r.status, r.file from public.renders r join public.clips c on c.id = r.clip_id "
+                        "where r.id = any(%s::uuid[]) and c.episode_id = %s", (ids, episode_id)).fetchall()
+    if len(rows) != len(ids):
+        raise HTTPException(404, "Some of these videos are not part of this episode.")
+    if any(r["status"] != "ready" or not r["file"] or not storage.exists(r["file"]) for r in rows):
+        raise HTTPException(409, "Some videos are not ready yet.")
+    joined, exp = ",".join(ids), int(time.time()) + LINK_TTL_S
+    return {"url": f"/zips/{episode_id}?" + urlencode({"r": joined, "exp": exp, "sig": _zip_sig(episode_id, joined, exp)})}
+
+
+@app.get("/zips/{episode_id}")
+def zip_file(episode_id: str, r: str, exp: int, sig: str, conn=Depends(db)):
+    import tempfile
+    import zipfile
+    from starlette.background import BackgroundTask
+    if exp < time.time() or not hmac.compare_digest(sig, _zip_sig(episode_id, r, exp)):
+        raise HTTPException(403, "This link has expired. Press Download all again.")
+    ids = r.split(",")
+    rows = conn.execute(
+        "select r.file, r.style, r.settings, c.rank, c.title, c.length_s, c.post_first, c.hook, c.why, e.title as ep_title "
+        "from public.renders r join public.clips c on c.id = r.clip_id join public.episodes e on e.id = c.episode_id "
+        "where r.id = any(%s::uuid[]) and c.episode_id = %s order by c.rank nulls last", (ids, episode_id)).fetchall()
+    if not rows:
+        raise HTTPException(404, "Nothing to download.")
+    clean = lambda t: safe_name(t, 80)
+    ep_title = clean(rows[0]["ep_title"]) or "Episode"
+    tmp = tempfile.NamedTemporaryFile(prefix="klipvi_", suffix=".zip", delete=False, dir=storage.root())
+    tmp.close()
+    notes = [f"{rows[0]['ep_title'] or 'Episode'}", "Clips in the order to post them (made with Klipvi).", ""]
+    with zipfile.ZipFile(tmp.name, "w", compression=zipfile.ZIP_STORED) as z:      # mp4 is already compressed
+        for x in rows:
+            if not x["file"] or not storage.exists(x["file"]):
+                continue
+            name = f"{x['rank'] or 0:02d} - {clean(x['title']) or 'clip'} ({x['style']}).mp4"
+            z.write(storage.path(x["file"]), name)
+            notes += [f"{x['rank']}. {x['title']}  ({round(float(x['length_s']))} s{', post first' if x['post_first'] else ''})",
+                      f"   File: {name}"] + ([f"   Hook: {x['hook']}"] if x["hook"] else []) + \
+                     ([f"   Why it works: {x['why']}"] if x["why"] else []) + [""]
+        z.writestr("Klipvi - clips.txt", "\n".join(notes))
+    return FileResponse(tmp.name, media_type="application/zip", filename=f"{ep_title} - Klipvi clips.zip",
+                        background=BackgroundTask(lambda: os.path.exists(tmp.name) and os.remove(tmp.name)))

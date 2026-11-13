@@ -90,11 +90,15 @@ def handle(conn, job: dict, log=print, run=P.run) -> str:
 
 def handle_render(conn, render: dict, log=print, make=None) -> str:
     """Make one caption render. Returns 'ready' or 'failed'."""
-    make = make or P.caption_video
-    row = conn.execute("select c.number, e.* from public.clips c join public.episodes e on e.id = c.episode_id "
+    row = conn.execute("select c.number, c.pieces, e.* from public.clips c join public.episodes e on e.id = c.episode_id "
                        "where c.id = %s", (render["clip_id"],)).fetchone()
     try:
-        key, mb = make(render, row["number"], row)
+        if make:
+            key, mb = make(render, row["number"], row)
+        elif render["settings_hash"] == Q.PLAIN:          # the clip's start / end moved: its plain video again
+            key, mb = P.plain_video(render, row["number"], row["pieces"], row)
+        else:
+            key, mb = P.caption_video(render, row["number"], row, row["pieces"])
         Q.finish_render(conn, render["id"], key, mb)
         log(f"render {render['id']}: {row['number']} {render['style']} ready ({mb} MB)")
         return "ready"
@@ -118,24 +122,37 @@ def main(argv=None) -> int:
         os.environ["GEMINI_API_KEY"] = key
         print(f"TEST MODE: every flow step on {os.environ['KLIPVI_TEST_MODEL']}, test key")
     print(f"worker {name} started")
-    with connect() as conn:
-        while True:
-            n = Q.requeue_stale(conn)
-            if n:
-                print(f"requeued {n} stale job(s)")
-            render = Q.claim_render(conn)       # caption renders first: someone is usually waiting on the page
-            if render:
-                handle_render(conn, render)
-                if a.once:
-                    return 0
-                continue
-            job = Q.claim(conn, name)
-            if job:
-                handle(conn, job)
+    import psycopg
+    wait = POLL_S
+    while True:
+        # The database pooler closes idle connections (seen 2026-11-13): reconnect instead of stopping. A job that was
+        # running when the connection dropped is picked up again by requeue_stale once its heartbeat is old.
+        try:
+            with connect() as conn:
+                wait = POLL_S
+                while True:
+                    n = Q.requeue_stale(conn)
+                    if n:
+                        print(f"requeued {n} stale job(s)")
+                    render = Q.claim_render(conn)       # caption renders first: someone is usually waiting on the page
+                    if render:
+                        handle_render(conn, render)
+                        if a.once:
+                            return 0
+                        continue
+                    job = Q.claim(conn, name)
+                    if job:
+                        handle(conn, job)
+                    if a.once:
+                        return 0
+                    if not job:
+                        time.sleep(POLL_S)
+        except (psycopg.OperationalError, psycopg.InterfaceError) as e:
             if a.once:
-                return 0
-            if not job:
-                time.sleep(POLL_S)
+                raise
+            print(f"database connection lost ({type(e).__name__}: {str(e).strip()[:120]}); reconnecting in {wait:g} s")
+            time.sleep(wait)
+            wait = min(60, wait * 2)
 
 
 if __name__ == "__main__":

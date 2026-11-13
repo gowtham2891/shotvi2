@@ -62,3 +62,28 @@ export async function downloadClip(clipId, body, plainRenderId, onStatus = () =>
   onStatus("Downloading…");
   window.location.assign((await renderLinks(renderId, true)).url);
 }
+
+/** Move where a clip starts and ends (episode seconds); its videos are made again. */
+/** The parts of the episode the clip plays ([{start, end}] episode seconds): edges and cuts. */
+export const setTiming = (clipId, parts) =>
+  call(() => client.put(`/clips/${clipId}/timing`, { pieces: parts.map((p) => [p.start, p.end]) }), "Couldn't change the clip's timing.");
+
+/** One ZIP of these ready videos of an episode: starts the download. */
+export async function downloadZip(episodeId, renderIds) {
+  const data = await call(() => client.post(`/episodes/${episodeId}/zip-link`, { render_ids: renderIds }), "Couldn't prepare the download.");
+  window.location.assign(`${API_BASE_URL}${data.url}`);
+}
+
+/** The ready version of a clip for `body` ({ style, template_id?, settings?, words?, breaks? }): makes it if needed. */
+export async function readyRender(clipId, body, plainRenderId) {
+  if (!body.settings && !body.template_id) return plainRenderId;
+  let r = await requestRender(clipId, body);
+  const t0 = Date.now();
+  while (r.status === "waiting" || r.status === "making") {
+    if (Date.now() - t0 > 15 * 60_000) throw new Error("This is taking longer than usual. Try again in a few minutes.");
+    await new Promise((ok) => setTimeout(ok, 2000));
+    r = await getRender(r.id);
+  }
+  if (r.status !== "ready") throw new Error("Couldn't make one of the videos. Try again, or pick another caption style.");
+  return r.id;
+}
